@@ -6,22 +6,22 @@
 // Learn more from the introduction of this approach:
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
-
 import initialState from './initialState';
-import { reducer as fetchRedditReactjsListReducer } from './fetchRedditReactjsList';
+import { reducer as getSessionReducer } from './getSession';
+import { reducer as getSessionAsyncReducer } from './getSessionAsync';
 
 const reducers = [
-  fetchRedditReactjsListReducer,
+  getSessionReducer,
+  getSessionAsyncReducer,
 ];
 
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
-    // Put global reducers here
+    // Handle cross-topic actions here
     default:
       newState = state;
       break;
   }
-  /* istanbul ignore next */
   return reducers.reduce((s, r) => r(s, action), newState);
 }

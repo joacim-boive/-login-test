@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RedditList } from './';
-import { counterPlusOne, counterMinusOne, resetCounter, fetchRedditReactjsList } from './redux/actions';
+import { fetchRedditReactjsList } from './redux/actions';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -13,7 +13,7 @@ export class DefaultPage extends Component {
 
   render() {
     const { count, fetchRedditReactjsListPending, redditReactjsList, fetchRedditReactjsListError } = this.props.home;
-    const { counterPlusOne, counterMinusOne, resetCounter, fetchRedditReactjsList } = this.props.actions;
+    const { fetchRedditReactjsList } = this.props.actions;
     return (
       <div className="home-default-page">
         <a href="http://github.com/supnate/rekit"><img src={require('../../images/logo.png')} className="app-logo" alt="logo" /></a>
@@ -33,12 +33,6 @@ export class DefaultPage extends Component {
         <h3>Demos</h3>
         <p>Here are two simple demos for your quick reference. You can open the browser dev tools to see Redux action logs.</p>
         <p className="section-title">To see how Redux works in the project, here is the demo of a simple counter:</p>
-        <div className="demo-count">
-          <button className="btn-minus-one" onClick={counterMinusOne} disabled={count === 0}>-</button>
-          <label>{count}</label>
-          <button className="btn-plus-one" onClick={counterPlusOne}>+</button>
-          <button className="btn-reset-counter" onClick={resetCounter}>Reset</button>
-        </div>
 
         <p className="section-title">To see how async flow works, here is an example of fetching reddit reactjs topics:</p>
         <div className="demo-reddit">
@@ -68,7 +62,7 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ counterPlusOne, counterMinusOne, resetCounter, fetchRedditReactjsList }, dispatch)
+    actions: bindActionCreators({ fetchRedditReactjsList }, dispatch)
   };
 }
 

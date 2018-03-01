@@ -76,9 +76,6 @@ describe('features/home/DefaultPage', () => {
     const pageProps = {
       home: {},
       actions: {
-        counterPlusOne: sinon.spy(),
-        counterMinusOne: sinon.spy(),
-        resetCounter: sinon.spy(),
         fetchRedditReactjsList: sinon.spy(),
       },
     };
