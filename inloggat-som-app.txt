@@ -1,0 +1,77 @@
+Inloggat som App
+----
+
+* Bygg ny applikation i React
+  Routing, Redux state, webpack build
+
+* Integrera befintlig Knockout-funktionalitet om det bedöms lämpligt/möjligt
+  Jämför nya Dashboard: API-nycklar, Betalsätt och Leveransländer
+  Integrerad funktionalitet måste modifieras och komponentifieras
+  CSS gås igenom och förbättras
+
+* Skriv om funktionalitet i React om integrering av KO inte är ett bra val
+
+* Uppdatera utseende på inkluderad funktionalitet till godtagbar nivå
+
+* Bygg allt i fristående komponenter, även integrerad KO-funktionalitet
+  KO-funktioner
+     se över inkludering av @ecster/ecster-styles CSS
+     se över inkludering av @ecster JS-komponenter
+
+* Paketera med Cordova tidigt
+
+* Förbered för språkstöd genom att paketera separata appar för respektive språk
+
+* URL'er och routing
+
+  Alternativ
+
+  Engelska överallt, separat domän per land
+  --
+  https://secure.ecster.se/login
+  https://secure.ecster.fi/login
+
+  https://secure.ecster.se/login/#/account/overview
+  https://secure.ecster.fi/login/#/account/overview
+
+  Engelska överallt, samma domän
+  --
+  https://secure.ecster.com/se/login
+  https://secure.ecster.com/fi/login
+
+  https://secure.ecster.com/se/login/#/my-profile
+  https://secure.ecster.com/fi/login/#/my-profile
+
+  Landets språk, separat domän per land
+  --
+  https://secure.ecster.se/loggain
+  https://secure.ecster.fi/kirjautuminen  (google translate "login")
+
+  https://secure.ecster.se/loggain/#/konton
+  https://secure.ecster.fi/kirjautuminen/#/tilit  (google translate "konton")
+
+  Landets språk, samma domän
+  --
+  https://secure.ecster.com/se/... osv
+  https://secure.ecster.com/fi/... osv
+
+
+
+  
+
+Möjligheter
+----
+* Lansera en ny App snabbt (kan göras utan Payair-funktioner)
+
+* Lansera ny webb tidigt, om nytt URL-upplägg - lansera snabbt som Beta med begränsad funktionalitet
+
+
+
+URL-er
+----
+
+
+
+Alternativ
+----
+* Bygg om allt i React och ny UX - leveranstid 8-12 månader
