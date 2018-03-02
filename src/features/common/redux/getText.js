@@ -16,7 +16,7 @@ export function getText(country, lang, textId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_TEXT_URL(country, lang, textId)}).then(
+      Ajax.get({ url: GET_TEXT_URL(country, lang, textId) }).then(
         (res) => {
           dispatch({
             type: COMMON_GET_TEXT_SUCCESS,

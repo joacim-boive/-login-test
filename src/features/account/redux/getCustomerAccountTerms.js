@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_URL } from './urls';
+import { GET_CUSTOMER_ACCOUNT_TERMS_URL } from './urls';
 
 export function getCustomerAccountTerms(customerId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getCustomerAccountTerms(customerId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_URL(customerId) }).then(
+      Ajax.get({ url: GET_CUSTOMER_ACCOUNT_TERMS_URL(customerId) }).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_SUCCESS,

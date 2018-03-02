@@ -6,6 +6,7 @@ import {
     ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE,
     ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR,
 } from './constants';
+
 import { DELETE_CUSTOMER_ACCOUNT_URL } from './urls';
 
 export function deleteCustomerAccount(customerId, referenceId) {
