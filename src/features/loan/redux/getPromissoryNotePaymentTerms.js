@@ -15,7 +15,7 @@ export function getPromissoryNotePaymentTerms(paymentPeriodYear, makePaymentPlan
       type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_PROMISSORY_NOTE_PAYMENT_TERMS_URL(paymentPeriodYear, makePaymentPlan)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getPromissoryNotePaymentTerms(paymentPeriodYear, makePaymentPlan
         },
       );
     });
-
-    return promise;
   };
 }
 

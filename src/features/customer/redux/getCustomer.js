@@ -13,7 +13,7 @@ export function getCustomer(args = {}) {
       type: CUSTOMER_GET_CUSTOMER_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const doRequest = args.error ? Promise.reject(new Error()) : Promise.resolve();
       doRequest.then(
         (res) => {
@@ -32,8 +32,6 @@ export function getCustomer(args = {}) {
         },
       );
     });
-
-    return promise;
   };
 }
 

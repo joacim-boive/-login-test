@@ -15,7 +15,7 @@ export function updateCustomerContactInfo(customerId, data) {
       type: ACCOUNT_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.put({url: UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId)}, data).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function updateCustomerContactInfo(customerId, data) {
         },
       );
     });
-
-    return promise;
   };
 }
 

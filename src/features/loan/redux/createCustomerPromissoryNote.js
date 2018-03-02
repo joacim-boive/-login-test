@@ -15,7 +15,7 @@ export function createCustomerPromissoryNote(customerId, data) {
       type: LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.post({url: CREATE_CUSTOMER_PROMISSORY_NOTE_URL(customerId)}, data).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function createCustomerPromissoryNote(customerId, data) {
         },
       );
     });
-
-    return promise;
   };
 }
 

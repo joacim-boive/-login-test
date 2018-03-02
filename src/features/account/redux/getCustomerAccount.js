@@ -15,7 +15,7 @@ export function getCustomerAccount(customerId, refcode) {
       type: ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({ url: GET_CUSTOMER_ACCOUNT_URL(customerId, refcode) }).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerAccount(customerId, refcode) {
         },
       );
     });
-
-    return promise;
   };
 }
 

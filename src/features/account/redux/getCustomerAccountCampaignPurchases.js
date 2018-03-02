@@ -15,7 +15,7 @@ export function getCustomerAccountCampaignPurchases(customerId, referenceId) {
       type: ACCOUNT_GET_CUSTOMER_ACCOUNT_CAMPAIGN_PURCHASES_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_CUSTOMER_ACCOUNT_CAMPAIGN_PURCHASES_URL(customerId, referenceId)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerAccountCampaignPurchases(customerId, referenceId) {
         },
       );
     });
-
-    return promise;
   };
 }
 

@@ -15,7 +15,7 @@ export function getAccountPaymentTerms(country, lang) {
       type: ACCOUNT_GET_ACCOUNT_PAYMENT_TERMS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_ACCOUNT_PAYMENT_TERMS_URL(country, lang)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getAccountPaymentTerms(country, lang) {
         },
       );
     });
-
-    return promise;
   };
 }
 

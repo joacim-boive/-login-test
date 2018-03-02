@@ -15,7 +15,7 @@ export function createSession(data) {
       type: AUTHENTICATION_CREATE_SESSION_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.post({url: CREATE_SESSION_URL()}, data).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function createSession(data) {
         },
       );
     });
-
-    return promise;
   };
 }
 

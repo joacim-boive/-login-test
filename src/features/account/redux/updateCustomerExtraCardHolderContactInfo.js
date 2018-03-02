@@ -15,7 +15,7 @@ export function updateCustomerExtraCardHolderContactInfo(customerId, data) {
       type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.put({url: UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_URL(customerId)}, data).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function updateCustomerExtraCardHolderContactInfo(customerId, data) {
         },
       );
     });
-
-    return promise;
   };
 }
 

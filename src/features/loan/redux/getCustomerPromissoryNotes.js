@@ -15,7 +15,7 @@ export function getCustomerPromissoryNotes(customerId) {
       type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_CUSTOMER_PROMISSORY_NOTES_URL(customerId)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerPromissoryNotes(customerId) {
         },
       );
     });
-
-    return promise;
   };
 }
 

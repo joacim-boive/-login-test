@@ -15,7 +15,7 @@ export function getPromissoryNoteDefaultParameters() {
       type: LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_URL()}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getPromissoryNoteDefaultParameters() {
         },
       );
     });
-
-    return promise;
   };
 }
 

@@ -7,7 +7,7 @@ import {
   AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { GET_SESSION_URL } from '.,/urls';
+import { GET_SESSION_URL } from './urls';
 
 export function getSession(sessionKey) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -15,7 +15,7 @@ export function getSession(sessionKey) {
       type: AUTHENTICATION_GET_SESSION_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({ url: GET_SESSION_URL(sessionKey) }).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getSession(sessionKey) {
         },
       );
     });
-
-    return promise;
   };
 }
 

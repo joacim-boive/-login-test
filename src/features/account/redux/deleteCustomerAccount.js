@@ -14,7 +14,7 @@ export function deleteCustomerAccount(customerId, referenceId) {
             type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN,
         });
 
-        const promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const url = DELETE_CUSTOMER_ACCOUNT_URL(customerId, referenceId);
             Ajax.delete({ url }).then(
                 (res) => {
@@ -33,8 +33,6 @@ export function deleteCustomerAccount(customerId, referenceId) {
                 },
             );
         });
-
-        return promise;
     };
 }
 

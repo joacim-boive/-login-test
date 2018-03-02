@@ -15,7 +15,7 @@ export function deleteSession(sessionKey) {
       type: AUTHENTICATION_DELETE_SESSION_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.delete({url: DELETE_SESSION_URL(sessionKey)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function deleteSession(sessionKey) {
         },
       );
     });
-
-    return promise;
   };
 }
 

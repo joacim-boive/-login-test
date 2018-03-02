@@ -15,7 +15,7 @@ export function getCustomerExtraCardHolders(customerId) {
       type: ACCOUNT_GET_CUSTOMER_EXTRA_CARD_HOLDERS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_CUSTOMER_EXTRA_CARD_HOLDERS_URL(customerId)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerExtraCardHolders(customerId) {
         },
       );
     });
-
-    return promise;
   };
 }
 

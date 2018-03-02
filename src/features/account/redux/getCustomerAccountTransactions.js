@@ -15,7 +15,7 @@ export function getCustomerAccountTransactions(customerId, referenceId, offset, 
       type: ACCOUNT_GET_CUSTOMER_ACCOUNT_TRANSACTIONS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_CUSTOMER_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords)}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerAccountTransactions(customerId, referenceId, offset, 
         },
       );
     });
-
-    return promise;
   };
 }
 

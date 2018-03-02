@@ -15,7 +15,7 @@ export function getCustomerAccountTerms(customerId) {
       type: ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_CUSTOMER_URL(customerId) }).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getCustomerAccountTerms(customerId) {
         },
       );
     });
-
-    return promise;
   };
 }
 

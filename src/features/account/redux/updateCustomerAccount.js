@@ -15,7 +15,7 @@ export function updateCustomerAccount(customerId, referenceId, data) {
       type: ACCOUNT_UPDATE_CUSTOMER_ACCOUNT_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.put({ url: UPDATE_CUSTOMER_ACCOUNT_URL(customerId, referenceId) }, data).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function updateCustomerAccount(customerId, referenceId, data) {
         },
       );
     });
-
-    return promise;
   };
 }
 

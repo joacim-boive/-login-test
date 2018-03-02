@@ -15,7 +15,7 @@ export function getActivePromissoryNoteCampaigns() {
       type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_BEGIN,
     });
 
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       Ajax.get({url: GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL()}).then(
         (res) => {
           dispatch({
@@ -33,8 +33,6 @@ export function getActivePromissoryNoteCampaigns() {
         },
       );
     });
-
-    return promise;
   };
 }
 
