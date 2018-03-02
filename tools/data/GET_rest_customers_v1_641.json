@@ -1,0 +1,20 @@
+{
+  "responseTime" : 3,
+  "status" : 200,
+  "response" : {
+    "id" : 641,
+    "ssn" : "370203-0333",
+    "name" : "Von, Göran Rolf",
+    "address" : "Köpmansgränd 3 B",
+    "address2" : "",
+    "city" : "Larsby",
+    "zip" : "169 67",
+    "contactInformation" : {
+      "phoneNumber" : {
+        "countryCallingCode" : "+46",
+        "number" : "701234588"
+      },
+      "email" : "apa@apa.se"
+    }
+  }
+}

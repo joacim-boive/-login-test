@@ -10,6 +10,7 @@
     "devPort": 6075,
     "studioPort": 6076,
     "buildPort": 6077,
+    "restPort": 6078,
     "plugins": [],
     "css": "sass"
   },
@@ -21,7 +22,7 @@
     "test": "node ./tools/run_test.js"
   },
   "devDependencies": {
-    "@ecster/ecster-dev-server": "^1.0.0",
+    "@ecster/ecster-dev-server": "^1.0.9",
     "argparse": "^1.0.7",
     "axios": "^0.17.0",
     "babel-core": "^6.25.0",
@@ -84,6 +85,6 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "@ecster/ecster-net": "^1.0.201802192136"
+    "@ecster/ecster-net": "^1.0.71"
   }
 }

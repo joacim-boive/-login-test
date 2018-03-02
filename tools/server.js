@@ -18,18 +18,29 @@ const request = require('request');
 const pkgJson = require('../package.json');
 const getConfig = require('../webpack-config');
 const { ArgumentParser } = require('argparse');
+const util = require('util');
 
-const initEcsterBackend = require('@ecster/ecster-dev-server');
+const initEcsterDevServer = require('@ecster/ecster-dev-server');
 
 const parser = new ArgumentParser({
     addHelp: true,
     description: 'Start an express server for webpack dev or build result.',
 });
 
-parser.addArgument(['-m', '--mode'], {
+parser.addArgument(['--mode'], { // removed -m, interferes with -mock which is used by Ecster dev server /joli44
     help: 'Server mode, dev or build.',
     metavar: 'mode',
     choices: ['dev', 'build', 'studio'],
+});
+
+parser.addArgument(['-mock'], {
+    help: 'Run Ecster rest server in mock mode',
+    nargs: 0
+});
+
+parser.addArgument(['-record'], {
+    help: 'Run Ecster rest server in recording mode',
+    nargs: 0
 });
 
 parser.addArgument(['--readonly'], {
@@ -43,12 +54,12 @@ const srcPath = path.join(__dirname, '../src');
 const manifestPath = path.join(__dirname, '../.tmp/dev-vendors-manifest.json');
 
 function startEcsterServer() {
-    const ecsterBackend = initEcsterBackend('https://secure5.ft.ecster.se', __dirname);
-    const PORT = pkgJson.rekit.buildPort + 1;
+    const ecsterBackend = initEcsterDevServer('https://secure5.ft.ecster.se', __dirname);
+    const PORT = pkgJson.rekit.restPort;
 
     ecsterBackend.listen(PORT, () => {
-        console.log(`Proxy server listening at ${PORT}`);
-        console.log('  quit with 2 x Ctrl-C');
+        util.log(`Ecster Dev server listening at ${PORT}`);
+        console.log();
     });
 }
 
@@ -77,11 +88,74 @@ function startDevServer() {
     app.use(express.static(path.join(__dirname, '../')));
 
     // Proxy all calls /api when DEV to
-    const { rekit: { proxy: API } } = pkgJson;
-    if (API) {
-        app.get('/api/*', (req, res) => req.pipe(request.get(`${API}${req.originalUrl}`)).pipe(res));
-        app.post('/api/*', (req, res) => req.pipe(request.post(`${API}${req.originalUrl}`)).pipe(res));
-    }
+    // const { rekit: { proxy: API } } = pkgJson;
+    //
+    // if (API) {
+    //     app.get('/api/*', (req, res) => req.pipe(request.get(`${API}${req.originalUrl}`)).pipe(res));
+    //     app.post('/api/*', (req, res) => req.pipe(request.post(`${API}${req.originalUrl}`)).pipe(res));
+    // }
+
+    console.log();
+    console.log('------------------------------------------------------------');
+    console.log('Ecster NOTE: set the no_proxy variable in your dev env to: ');
+    console.log('no_proxy=localhost,127.0.0.1,se.shb.biz,shbmain.shb.biz');
+    console.log('------------------------------------------------------------');
+    console.log();
+
+    const { rekit: { restPort } } = pkgJson;
+    const proxyUrl = req => 'http://127.0.0.1:' + restPort + req.url;
+    const proxyHeaders = req => (
+        {
+            'X-ECSTER-origin': req.header('X-ECSTER-origin'),
+            'X-ECSTER-session': req.header('X-ECSTER-session'),
+            cookie: req.header('cookie')
+        });
+
+    // TODO: is there a smarter way to do this? express proxy plugin or something... /joli44
+    app.get('/rest/*', (req, res) => {
+        request.get({
+            url: proxyUrl(req),
+            rejectUnauthorized: false,
+            headers: proxyHeaders(req),
+            json: true
+        }).pipe(res);
+    });
+
+
+    app.post('/rest/*', (req, res) => {
+        request
+            .post({
+                url: proxyUrl(req),
+                rejectUnauthorized: false,
+                headers: proxyHeaders(req),
+                json: true,
+                body: req.body
+            })
+            .pipe(res);
+    });
+
+    app.put('/rest/*', (req, res) => {
+        request
+            .put({
+                url: proxyUrl(req),
+                rejectUnauthorized: false,
+                headers: proxyHeaders(req),
+                json: true,
+                body: req.body
+            })
+            .pipe(res);
+    });
+
+    app.delete('/rest/*', (req, res) => {
+        request
+            .delete({
+                url: proxyUrl(req),
+                rejectUnauthorized: false,
+                headers: proxyHeaders(req),
+                json: true
+            })
+            .pipe(res);
+    });
 
     // History api fallback
     app.use(fallback('index.html', { root: path.join(__dirname, '../src') }));
@@ -97,9 +171,9 @@ function startDevServer() {
             console.error(err);
         }
         console.log(`Dev server listening at http://localhost:${pkgJson.rekit.devPort}/`);
-        if (API) {
-            console.log(`Proxy to API Server(Only for dev): ${API}`);
-        }
+        // if (API) {
+        //     console.log(`Proxy to API Server(Only for dev): ${API}`);
+        // }
     });
 }
 
@@ -202,5 +276,10 @@ function buildDevDll() {
 }
 
 if (!args.mode || args.mode === 'build') startBuildServer();
-if (!args.mode || args.mode === 'dev') buildDevDll().then(startDevServer);
+if (!args.mode || args.mode === 'dev') {
+    buildDevDll().then(() => {
+        startEcsterServer();
+        startDevServer();
+    });
+}
 if (!args.mode || args.mode === 'studio') startStudioServer();
