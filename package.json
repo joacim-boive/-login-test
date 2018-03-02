@@ -15,10 +15,13 @@
   },
   "scripts": {
     "start": "node ./tools/server.js",
+    "record": "node ./tools/server.js -record",
+    "mock": "node ./tools/server.js -mock",
     "build": "node ./tools/build.js",
     "test": "node ./tools/run_test.js"
   },
   "devDependencies": {
+    "@ecster/ecster-dev-server": "^1.0.0",
     "argparse": "^1.0.7",
     "axios": "^0.17.0",
     "babel-core": "^6.25.0",
@@ -79,5 +82,8 @@
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "@ecster/ecster-net": "^1.0.201802192136"
   }
 }

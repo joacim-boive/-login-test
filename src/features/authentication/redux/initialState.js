@@ -8,6 +8,10 @@
 const initialState = {
   getSessionAsyncPending: false,
   getSessionAsyncError: null,
+  deleteSessionPending: false,
+  deleteSessionError: null,
+  createSessionPending: false,
+  createSessionError: null,
 };
 
 export default initialState;

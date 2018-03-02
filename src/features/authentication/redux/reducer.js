@@ -9,10 +9,14 @@
 import initialState from './initialState';
 import { reducer as getSessionReducer } from './getSession';
 import { reducer as getSessionAsyncReducer } from './getSessionAsync';
+import { reducer as deleteSessionReducer } from './deleteSession';
+import { reducer as createSessionReducer } from './createSession';
 
 const reducers = [
   getSessionReducer,
   getSessionAsyncReducer,
+  deleteSessionReducer,
+  createSessionReducer,
 ];
 
 export default function reducer(state = initialState, action) {

@@ -12,7 +12,7 @@ export class DefaultPage extends Component {
   };
 
   render() {
-    const { count, fetchRedditReactjsListPending, redditReactjsList, fetchRedditReactjsListError } = this.props.home;
+    const { fetchRedditReactjsListPending, redditReactjsList, fetchRedditReactjsListError } = this.props.home;
     const { fetchRedditReactjsList } = this.props.actions;
     return (
       <div className="home-default-page">
@@ -31,8 +31,6 @@ export class DefaultPage extends Component {
           To learn more about how to get started, you can visit: <a href="http://rekit.js.org/docs/get-started.html">Get started</a>
         </p>
         <h3>Demos</h3>
-        <p>Here are two simple demos for your quick reference. You can open the browser dev tools to see Redux action logs.</p>
-        <p className="section-title">To see how Redux works in the project, here is the demo of a simple counter:</p>
 
         <p className="section-title">To see how async flow works, here is an example of fetching reddit reactjs topics:</p>
         <div className="demo-reddit">

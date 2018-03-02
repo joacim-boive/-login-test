@@ -7,8 +7,18 @@
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
 import initialState from './initialState';
+import { reducer as getCustomerPromissoryNotesReducer } from './getCustomerPromissoryNotes';
+import { reducer as getActivePromissoryNoteCampaignsReducer } from './getActivePromissoryNoteCampaigns';
+import { reducer as getPromissoryNoteDefaultParametersReducer } from './getPromissoryNoteDefaultParameters';
+import { reducer as getPromissoryNotePaymentTermsReducer } from './getPromissoryNotePaymentTerms';
+import { reducer as createCustomerPromissoryNoteReducer } from './createCustomerPromissoryNote';
 
 const reducers = [
+  getCustomerPromissoryNotesReducer,
+  getActivePromissoryNoteCampaignsReducer,
+  getPromissoryNoteDefaultParametersReducer,
+  getPromissoryNotePaymentTermsReducer,
+  createCustomerPromissoryNoteReducer,
 ];
 
 export default function reducer(state = initialState, action) {

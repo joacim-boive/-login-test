@@ -2,92 +2,94 @@ get /export/customerTransactions?session&refCode&from&to
 
 // ACCOUNT
 
-// delete customer account
+// deleteCustomerAccount
 del /rest/customers/v1/:customerid/accounts/:referenceid
 
-// get custoemr account terms
+// getCustoemrAccountTerms
 get /rest/customers/v1/:customerid/accounts/:refCode/terms
 
-// get customer account
+// getCustomerAccount
 get /rest/customers/v1/:customerid/accounts/:refcode?noCache
 
-// get customer account allowed part payments
+// getCustomerAccountAllowedPartPayments
 get /rest/customers/v1/:customerid/accounts/:referenceid/allowedpartpayments
 
-// get customer account bills
+// getCustomerAccountBills
 get /rest/customers/v1/:customerid/accounts/:referenceid/bills
 
-// get customer account campaign purchases
+// getCustomerAccountCampaignPurchases
 get /rest/customers/v1/:customerid/accounts/:referenceid/campaignpurchases
 
-// get customer account cards
+// getCustomerAccountCards
 get /rest/customers/v1/:customerid/accounts/:referenceid/cards?noCache
 
-// get customer account transactions
+// getCustomerAccountTransactions
 get /rest/customers/v1/:customerid/accounts/:referenceid/transactions?offset&maxRecords
 
-// get customer accounts
+// getCustomerAccounts
 get /rest/customers/v1/:customerid/accounts?noCache
 
-// get customer extra card holders
+// getCustomerExtraCardHolders
 get /rest/customers/v1/:customerid/extracardholders
 
-// get account payment terms
+// getAccountPaymentTerms
 get /rest/ess/v1/:country/:lang/partpayments?amount
 
-// get account limit raise terms
+// getAccountLimitRaiseTerms
 get /rest/ess/v1/:country/:lang/terms/raise
 
-// update customer account 
+// updateCustomerAccount 
 put /rest/customers/v1/:customerid/accounts/:referenceid
 
-// update customer account transaction part payment
+// updateCustomerAccountTransactionPartPayment
 put /rest/customers/v1/:customerid/accounts/:referenceid/transactions/:transactionId/partpayments
 
-// update customer account card (activate)
+// updateCustomerAccountCard
+// (Activate)
 put /rest/customers/v1/:customerid/accounts/cards/:referenceid 
 
-// update customer contact info
+// updateCustomerContactInfo
 put /rest/customers/v1/:customerid/contact
 
-// update customer extra card holder contact info
+// updateCustomerExtraCardHolderContactInfo
 put /rest/customers/v1/:customerid/extracardholders
 
 // CUSTOMER
+// getCustomer
 get /rest/customers/v1/:customerid
 
-// get customer properties
+// getCustomerProperties
 get /rest/customers/v1/:customerid/properties?property
 
 // AUTHENTICATION
 
-// get session
+// getSession
 get /rest/sessions/v1/:sessionKey
 
-// delete session
+// deleteSession
 del /rest/sessions/v1/:sessionKey
 
-// create session
+// createSession
 post /rest/sessions/v1
 
 // LOAN
 
-// get customer promissory notes
+// getCustomerPromissoryNotes
 get /rest/customers/v1/:customerid/promissorynotes
 
-// get active promissory note campaigns
+// getActivePromissoryNoteCampaigns
 get /rest/ess/v1/SE/sv/promissorynotes/campaigns
 
-// get promissory note default parameters
+// getPromissoryNoteDefaultParameters
 get /rest/ess/v1/SE/sv/promissorynotes/parameters
 
-// get promissory note payment terms
+// getPromissoryNotePaymentTerms
 get /rest/ess/v1/SE/sv/promissorynotes/terms?creditAmount&paymentPeriodYear&makePaymentPlan
 
-// create customer promissory note
+// createCustomerPromissoryNote
 post /rest/customers/v1/:customerid/promissorynotes
 
 // COMMON
 
-// get text
+// getText
 get /rest/texts/v1/:country/:lang/:textId
