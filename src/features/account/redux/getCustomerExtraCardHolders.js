@@ -1,4 +1,4 @@
-import { Ajax } from '@ecster/ecster-net';
+import Ajax from '@ecster/ecster-net/lib/Ajax';
 
 import {
   ACCOUNT_GET_CUSTOMER_EXTRA_CARD_HOLDERS_BEGIN,

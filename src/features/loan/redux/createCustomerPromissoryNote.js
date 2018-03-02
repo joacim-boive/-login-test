@@ -1,4 +1,4 @@
-import { Ajax } from '@ecster/ecster-net';
+import Ajax from '@ecster/ecster-net/lib/Ajax';
 
 import {
   LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_BEGIN,
