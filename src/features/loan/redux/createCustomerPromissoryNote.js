@@ -1,3 +1,5 @@
+import { Ajax } from '@ecster/ecster-net';
+
 import {
   LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_BEGIN,
   LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_SUCCESS,
@@ -5,9 +7,11 @@ import {
   LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_DISMISS_ERROR,
 } from './constants';
 
+import { CREATE_CUSTOMER_PROMISSORY_NOTE_URL } from './urls';
+
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function createCustomerPromissoryNote(args = {}) {
+export function createCustomerPromissoryNote(customerId) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
       type: LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_BEGIN,
@@ -21,8 +25,7 @@ export function createCustomerPromissoryNote(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = args.error ? Promise.reject(new Error()) : Promise.resolve();
-      doRequest.then(
+      Ajax.post({url: CREATE_CUSTOMER_PROMISSORY_NOTE_URL(customerId)}).then(
         (res) => {
           dispatch({
             type: LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_SUCCESS,

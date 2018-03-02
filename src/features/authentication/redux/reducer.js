@@ -7,16 +7,14 @@
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
 import initialState from './initialState';
-import { reducer as getSessionReducer } from './getSession';
-import { reducer as getSessionAsyncReducer } from './getSessionAsync';
 import { reducer as deleteSessionReducer } from './deleteSession';
 import { reducer as createSessionReducer } from './createSession';
+import { reducer as getSessionReducer } from './getSession';
 
 const reducers = [
-  getSessionReducer,
-  getSessionAsyncReducer,
   deleteSessionReducer,
   createSessionReducer,
+  getSessionReducer,
 ];
 
 export default function reducer(state = initialState, action) {

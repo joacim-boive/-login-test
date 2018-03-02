@@ -6,6 +6,7 @@ import {
     ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE,
     ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR,
 } from './constants';
+import { DELETE_CUSTOMER_ACCOUNT_URL } from './urls';
 
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
@@ -20,9 +21,8 @@ export function deleteCustomerAccount(customerId, referenceId) {
         // It's hard to use state to manage it, but returning a promise allows you to easily achieve it.
         // e.g.: handleSubmit() { this.props.actions.submitForm(data).then(()=> {}).catch(() => {}); }
         const promise = new Promise((resolve, reject) => {
-
-            const doRequest = Ajax.de;
-            doRequest.then(
+            const url = DELETE_CUSTOMER_ACCOUNT_URL(customerId, referenceId);
+            Ajax.delete({ url }).then(
                 (res) => {
                     dispatch({
                         type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_SUCCESS,
@@ -34,7 +34,7 @@ export function deleteCustomerAccount(customerId, referenceId) {
                 (err) => {
                     dispatch({
                         type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE,
-                        data: {error: err},
+                        data: { error: err },
                     });
                     reject(err);
                 },

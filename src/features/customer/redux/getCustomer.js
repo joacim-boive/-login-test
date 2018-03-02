@@ -1,3 +1,5 @@
+import { Ajax } from '@ecster/ecster-net';
+
 import {
   CUSTOMER_GET_CUSTOMER_BEGIN,
   CUSTOMER_GET_CUSTOMER_SUCCESS,

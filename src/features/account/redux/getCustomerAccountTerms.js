@@ -1,3 +1,5 @@
+import { Ajax } from '@ecster/ecster-net';
+
 import {
   ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_BEGIN,
   ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_SUCCESS,
@@ -5,9 +7,11 @@ import {
   ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_DISMISS_ERROR,
 } from './constants';
 
+import { GET_CUSTOMER_URL } from './urls';
+
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function getCustomerAccountTerms(args = {}) {
+export function getCustomerAccountTerms(customerId) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
       type: ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_BEGIN,
@@ -21,8 +25,7 @@ export function getCustomerAccountTerms(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = args.error ? Promise.reject(new Error()) : Promise.resolve();
-      doRequest.then(
+      Ajax.get({url: GET_CUSTOMER_URL(customerId) }).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_CUSTOMER_ACCOUNT_TERMS_SUCCESS,

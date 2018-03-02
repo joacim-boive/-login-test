@@ -1,20 +1,92 @@
-// Rekit uses a new approach to organizing actions and reducers. That is
-// putting related actions and reducers in one file. See more at:
-// https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da
+import { Ajax } from '@ecster/ecster-net';
 
-import { AUTHENTICATION_GET_SESSION } from './constants';
+import {
+  AUTHENTICATION_GET_SESSION_BEGIN,
+  AUTHENTICATION_GET_SESSION_SUCCESS,
+  AUTHENTICATION_GET_SESSION_FAILURE,
+  AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
+} from './constants';
 
-export function getSession() {
+import { GET_SESSION_URL } from '.,/urls';
+
+// Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
+// If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
+export function getSession(sessionKey) {
+  return (dispatch) => { // optionally you can have getState as the second argument
+    dispatch({
+      type: AUTHENTICATION_GET_SESSION_BEGIN,
+    });
+
+    // Return a promise so that you could control UI flow without states in the store.
+    // For example: after submit a form, you need to redirect the page to another when succeeds or show some errors message if fails.
+    // It's hard to use state to manage it, but returning a promise allows you to easily achieve it.
+    // e.g.: handleSubmit() { this.props.actions.submitForm(data).then(()=> {}).catch(() => {}); }
+    const promise = new Promise((resolve, reject) => {
+      // doRequest is a placeholder Promise. You should replace it with your own logic.
+      // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
+      // args.error here is only for test coverage purpose.
+      Ajax.get({ url: GET_SESSION_URL(sessionKey) }).then(
+        (res) => {
+          dispatch({
+            type: AUTHENTICATION_GET_SESSION_SUCCESS,
+            data: res,
+          });
+          resolve(res);
+        },
+        // Use rejectHandler as the second argument so that render errors won't be caught.
+        (err) => {
+          dispatch({
+            type: AUTHENTICATION_GET_SESSION_FAILURE,
+            data: { error: err },
+          });
+          reject(err);
+        },
+      );
+    });
+
+    return promise;
+  };
+}
+
+// Async action saves request error by default, this method is used to dismiss the error info.
+// If you don't want errors to be saved in Redux store, just ignore this method.
+export function dismissGetSessionError() {
   return {
-    type: AUTHENTICATION_GET_SESSION,
+    type: AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case AUTHENTICATION_GET_SESSION:
+    case AUTHENTICATION_GET_SESSION_BEGIN:
+      // Just after a request is sent
       return {
         ...state,
+        getSessionPending: true,
+        getSessionError: null,
+      };
+
+    case AUTHENTICATION_GET_SESSION_SUCCESS:
+      // The request is success
+      return {
+        ...state,
+        getSessionPending: false,
+        getSessionError: null,
+      };
+
+    case AUTHENTICATION_GET_SESSION_FAILURE:
+      // The request is failed
+      return {
+        ...state,
+        getSessionPending: false,
+        getSessionError: action.data.error,
+      };
+
+    case AUTHENTICATION_GET_SESSION_DISMISS_ERROR:
+      // Dismiss the request failure error
+      return {
+        ...state,
+        getSessionError: null,
       };
 
     default:
