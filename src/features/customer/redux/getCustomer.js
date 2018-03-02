@@ -7,15 +7,16 @@ import {
   CUSTOMER_GET_CUSTOMER_DISMISS_ERROR,
 } from './constants';
 
-export function getCustomer(args = {}) {
+import { GET_CUSTOMER_URL } from './urls';
+
+export function getCustomer(customerId) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
       type: CUSTOMER_GET_CUSTOMER_BEGIN,
     });
 
     return new Promise((resolve, reject) => {
-      const doRequest = args.error ? Promise.reject(new Error()) : Promise.resolve();
-      doRequest.then(
+      Ajax.get({ url: GET_CUSTOMER_URL(customerId) }).then(
         (res) => {
           dispatch({
             type: CUSTOMER_GET_CUSTOMER_SUCCESS,
