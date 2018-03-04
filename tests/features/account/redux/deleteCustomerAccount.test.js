@@ -4,17 +4,17 @@ import nock from 'nock';
 import { expect } from 'chai';
 
 import {
-  ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN,
-  ACCOUNT_DELETE_CUSTOMER_ACCOUNT_SUCCESS,
-  ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE,
-  ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR,
+  ACCOUNT_DELETE_ACCOUNT_BEGIN,
+  ACCOUNT_DELETE_ACCOUNT_SUCCESS,
+  ACCOUNT_DELETE_ACCOUNT_FAILURE,
+  ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR,
 } from 'src/features/account/redux/constants';
 
 import {
-  deleteCustomerAccount,
+  deleteAccount,
   dismissDeleteCustomerAccountError,
   reducer,
-} from 'src/features/account/redux/deleteCustomerAccount';
+} from 'src/features/account/redux/deleteAccount';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -27,29 +27,29 @@ describe('account/redux/deleteCustomerAccount', () => {
   it('dispatches success action when deleteCustomerAccount succeeds', () => {
     const store = mockStore({});
 
-    return store.dispatch(deleteCustomerAccount())
+    return store.dispatch(deleteAccount())
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_DELETE_CUSTOMER_ACCOUNT_SUCCESS);
+        expect(actions[0]).to.have.property('type', ACCOUNT_DELETE_ACCOUNT_BEGIN);
+        expect(actions[1]).to.have.property('type', ACCOUNT_DELETE_ACCOUNT_SUCCESS);
       });
   });
 
   it('dispatches failure action when deleteCustomerAccount fails', () => {
     const store = mockStore({});
 
-    return store.dispatch(deleteCustomerAccount({ error: true }))
+    return store.dispatch(deleteAccount({ error: true }))
       .catch(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE);
+        expect(actions[0]).to.have.property('type', ACCOUNT_DELETE_ACCOUNT_BEGIN);
+        expect(actions[1]).to.have.property('type', ACCOUNT_DELETE_ACCOUNT_FAILURE);
         expect(actions[1]).to.have.nested.property('data.error').that.exist;
       });
   });
 
   it('returns correct action by dismissDeleteCustomerAccountError', () => {
     const expectedAction = {
-      type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR,
+      type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR,
     };
     expect(dismissDeleteCustomerAccountError()).to.deep.equal(expectedAction);
   });
@@ -58,7 +58,7 @@ describe('account/redux/deleteCustomerAccount', () => {
     const prevState = { deleteCustomerAccountPending: false };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN }
+      { type: ACCOUNT_DELETE_ACCOUNT_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.deleteCustomerAccountPending).to.be.true;
@@ -68,7 +68,7 @@ describe('account/redux/deleteCustomerAccount', () => {
     const prevState = { deleteCustomerAccountPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_SUCCESS, data: {} }
+      { type: ACCOUNT_DELETE_ACCOUNT_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.deleteCustomerAccountPending).to.be.false;
@@ -78,7 +78,7 @@ describe('account/redux/deleteCustomerAccount', () => {
     const prevState = { deleteCustomerAccountPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
+      { type: ACCOUNT_DELETE_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.deleteCustomerAccountPending).to.be.false;
@@ -89,7 +89,7 @@ describe('account/redux/deleteCustomerAccount', () => {
     const prevState = { deleteCustomerAccountError: new Error('some error') };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR }
+      { type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.deleteCustomerAccountError).to.be.null;

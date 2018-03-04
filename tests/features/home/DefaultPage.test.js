@@ -3,9 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import sinon from 'sinon';
 import ConnectedDefaultPage, { DefaultPage } from 'src/features/home/DefaultPage';
-
 
 describe('features/home/DefaultPage', () => {
   it('redux connect works', () => {
@@ -40,55 +38,4 @@ describe('features/home/DefaultPage', () => {
     ).to.exist;
   });
 
-  it('should disable fetch button when fetching reddit', () => {
-    const pageProps = {
-      home: {
-        fetchRedditReactjsListPending: true,
-      },
-      actions: {},
-    };
-    const renderedComponent = shallow(
-      <DefaultPage {...pageProps} />
-    );
-
-    expect(
-      renderedComponent.find('.btn-fetch-reddit[disabled]').getElement()
-    ).to.exist;
-  });
-
-  it('should show error if fetch failed', () => {
-    const pageProps = {
-      home: {
-        fetchRedditReactjsListError: new Error('server error'),
-      },
-      actions: {},
-    };
-    const renderedComponent = shallow(
-      <DefaultPage {...pageProps} />
-    );
-
-    expect(
-      renderedComponent.find('.fetch-list-error').getElement()
-    ).to.exist;
-  });
-
-  it('counter actions are called when buttons clicked', () => {
-    const pageProps = {
-      home: {},
-      actions: {
-        fetchRedditReactjsList: sinon.spy(),
-      },
-    };
-    const renderedComponent = shallow(
-      <DefaultPage {...pageProps} />
-    );
-    renderedComponent.find('.btn-plus-one').simulate('click');
-    renderedComponent.find('.btn-minus-one').simulate('click');
-    renderedComponent.find('.btn-reset-counter').simulate('click');
-    renderedComponent.find('.btn-fetch-reddit').simulate('click');
-    expect(pageProps.actions.counterPlusOne).to.have.property('callCount', 1);
-    expect(pageProps.actions.counterMinusOne).to.have.property('callCount', 1);
-    expect(pageProps.actions.resetCounter).to.have.property('callCount', 1);
-    expect(pageProps.actions.fetchRedditReactjsList).to.have.property('callCount', 1);
-  });
 });

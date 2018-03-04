@@ -1,11 +1,18 @@
 #!/bin/sh
 
-actions=`egrep '^// ' ajax-actions.txt | sed -e 's|// ||g'` 
+name=$1
 
-cp ajax-actions.txt ajax-actions2.txt
+if [ ! "$name" ] ; then
+    echo "usage: fix <name>"
+    exit 1
+fi
 
-for action in $actions ; do
-    underscore=`echo $action| sed 's/\([a-z0-9]\)\([A-Z]\)/\1_\L\2/g' | tr 'abcdefghijklmnopqrstuvwxyz' 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
+files=$(find src tests -name "*.js" -exec fgrep -l $name {} \;)
 
-    sed -i.bak -e "s|// $action$|// $action $underscore|g" ajax-actions2.txt
+for file in $files ; do
+    echo "[i] replacing $name with $new in $file"
+    new=$(echo $name | sed -e 's|CUSTOMER_||g')
+    sed -i.bak -e "s|$name|$new|g" $file
 done
+
+

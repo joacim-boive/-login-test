@@ -8,10 +8,8 @@
 
 
 import initialState from './initialState';
-import { reducer as fetchRedditReactjsListReducer } from './fetchRedditReactjsList';
 
 const reducers = [
-  fetchRedditReactjsListReducer,
 ];
 
 export default function reducer(state = initialState, action) {

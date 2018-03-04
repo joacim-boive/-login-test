@@ -4,17 +4,17 @@ import nock from 'nock';
 import { expect } from 'chai';
 
 import {
-  ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN,
-  ACCOUNT_GET_CUSTOMER_ACCOUNT_SUCCESS,
-  ACCOUNT_GET_CUSTOMER_ACCOUNT_FAILURE,
-  ACCOUNT_GET_CUSTOMER_ACCOUNT_DISMISS_ERROR,
+  ACCOUNT_GET_ACCOUNT_BEGIN,
+  ACCOUNT_GET_ACCOUNT_SUCCESS,
+  ACCOUNT_GET_ACCOUNT_FAILURE,
+  ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
 } from 'src/features/account/redux/constants';
 
 import {
-  getCustomerAccount,
+  getAccount,
   dismissGetCustomerAccountError,
   reducer,
-} from 'src/features/account/redux/getCustomerAccount';
+} from 'src/features/account/redux/getAccount';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -27,69 +27,69 @@ describe('account/redux/getCustomerAccount', () => {
   it('dispatches success action when getCustomerAccount succeeds', () => {
     const store = mockStore({});
 
-    return store.dispatch(getCustomerAccount())
+    return store.dispatch(getAccount())
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_GET_CUSTOMER_ACCOUNT_SUCCESS);
+        expect(actions[0]).to.have.property('type', ACCOUNT_GET_ACCOUNT_BEGIN);
+        expect(actions[1]).to.have.property('type', ACCOUNT_GET_ACCOUNT_SUCCESS);
       });
   });
 
   it('dispatches failure action when getCustomerAccount fails', () => {
     const store = mockStore({});
 
-    return store.dispatch(getCustomerAccount({ error: true }))
+    return store.dispatch(getAccount({ error: true }))
       .catch(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_GET_CUSTOMER_ACCOUNT_FAILURE);
+        expect(actions[0]).to.have.property('type', ACCOUNT_GET_ACCOUNT_BEGIN);
+        expect(actions[1]).to.have.property('type', ACCOUNT_GET_ACCOUNT_FAILURE);
         expect(actions[1]).to.have.nested.property('data.error').that.exist;
       });
   });
 
   it('returns correct action by dismissGetCustomerAccountError', () => {
     const expectedAction = {
-      type: ACCOUNT_GET_CUSTOMER_ACCOUNT_DISMISS_ERROR,
+      type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
     };
     expect(dismissGetCustomerAccountError()).to.deep.equal(expectedAction);
   });
 
-  it('handles action type ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN correctly', () => {
+  it('handles action type ACCOUNT_GET_ACCOUNT_BEGIN correctly', () => {
     const prevState = { getCustomerAccountPending: false };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_GET_CUSTOMER_ACCOUNT_BEGIN }
+      { type: ACCOUNT_GET_ACCOUNT_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.getCustomerAccountPending).to.be.true;
   });
 
-  it('handles action type ACCOUNT_GET_CUSTOMER_ACCOUNT_SUCCESS correctly', () => {
+  it('handles action type ACCOUNT_GET_ACCOUNT_SUCCESS correctly', () => {
     const prevState = { getCustomerAccountPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_GET_CUSTOMER_ACCOUNT_SUCCESS, data: {} }
+      { type: ACCOUNT_GET_ACCOUNT_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.getCustomerAccountPending).to.be.false;
   });
 
-  it('handles action type ACCOUNT_GET_CUSTOMER_ACCOUNT_FAILURE correctly', () => {
+  it('handles action type ACCOUNT_GET_ACCOUNT_FAILURE correctly', () => {
     const prevState = { getCustomerAccountPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_GET_CUSTOMER_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
+      { type: ACCOUNT_GET_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.getCustomerAccountPending).to.be.false;
     expect(state.getCustomerAccountError).to.exist;
   });
 
-  it('handles action type ACCOUNT_GET_CUSTOMER_ACCOUNT_DISMISS_ERROR correctly', () => {
+  it('handles action type ACCOUNT_GET_ACCOUNT_DISMISS_ERROR correctly', () => {
     const prevState = { getCustomerAccountError: new Error('some error') };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_GET_CUSTOMER_ACCOUNT_DISMISS_ERROR }
+      { type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.getCustomerAccountError).to.be.null;

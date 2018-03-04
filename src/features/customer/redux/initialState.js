@@ -10,6 +10,12 @@ const initialState = {
   getCustomerError: null,
   getCustomerPropertiesPending: false,
   getCustomerPropertiesError: null,
+  getCustomerExtraCardHoldersPending: false,
+  getCustomerExtraCardHoldersError: null,
+  updateCustomerContactInfoPending: false,
+  updateCustomerContactInfoError: null,
+  updateCustomerExtraCardHolderContactInfoPending: false,
+  updateCustomerExtraCardHolderContactInfoError: null,
 };
 
 export default initialState;

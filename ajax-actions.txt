@@ -1,9 +1,6 @@
-//// excel?
-// exportCustomerTransactions
 get /export/customerTransactions?session&refCode&from&to
 
-
-//// ACCOUNT
+// ACCOUNT
 
 // deleteCustomerAccount
 del /rest/customers/v1/:customerid/accounts/:referenceid
@@ -48,6 +45,7 @@ put /rest/customers/v1/:customerid/accounts/:referenceid
 put /rest/customers/v1/:customerid/accounts/:referenceid/transactions/:transactionId/partpayments
 
 // updateCustomerAccountCard
+// (Activate)
 put /rest/customers/v1/:customerid/accounts/cards/:referenceid 
 
 // updateCustomerContactInfo
@@ -56,15 +54,14 @@ put /rest/customers/v1/:customerid/contact
 // updateCustomerExtraCardHolderContactInfo
 put /rest/customers/v1/:customerid/extracardholders
 
-//// CUSTOMER
-
+// CUSTOMER
 // getCustomer
 get /rest/customers/v1/:customerid
 
 // getCustomerProperties
 get /rest/customers/v1/:customerid/properties?property
 
-//// AUTHENTICATION
+// AUTHENTICATION
 
 // getSession
 get /rest/sessions/v1/:sessionKey
@@ -74,10 +71,8 @@ del /rest/sessions/v1/:sessionKey
 
 // createSession
 post /rest/sessions/v1
-{type: "BANKID_MOBILE", ssn: "1212121212"}
-{type: "BANKID"}
 
-//// LOAN
+// LOAN
 
 // getCustomerPromissoryNotes
 get /rest/customers/v1/:customerid/promissorynotes
@@ -94,7 +89,7 @@ get /rest/ess/v1/SE/sv/promissorynotes/terms?creditAmount&paymentPeriodYear&make
 // createCustomerPromissoryNote
 post /rest/customers/v1/:customerid/promissorynotes
 
-//// COMMON
+// COMMON
 
 // getText
 get /rest/texts/v1/:country/:lang/:textId

@@ -9,10 +9,16 @@
 import initialState from './initialState';
 import { reducer as getCustomerReducer } from './getCustomer';
 import { reducer as getCustomerPropertiesReducer } from './getCustomerProperties';
+import { reducer as getCustomerExtraCardHoldersReducer } from './getCustomerExtraCardHolders';
+import { reducer as updateCustomerContactInfoReducer } from './updateCustomerContactInfo';
+import { reducer as updateCustomerExtraCardHolderContactInfoReducer } from './updateCustomerExtraCardHolderContactInfo';
 
 const reducers = [
   getCustomerReducer,
   getCustomerPropertiesReducer,
+  getCustomerExtraCardHoldersReducer,
+  updateCustomerContactInfoReducer,
+  updateCustomerExtraCardHolderContactInfoReducer,
 ];
 
 export default function reducer(state = initialState, action) {

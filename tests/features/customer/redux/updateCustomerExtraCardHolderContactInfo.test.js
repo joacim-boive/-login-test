@@ -4,22 +4,22 @@ import nock from 'nock';
 import { expect } from 'chai';
 
 import {
-  ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN,
-  ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS,
-  ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE,
-  ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR,
-} from 'src/features/account/redux/constants';
+  CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN,
+  CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS,
+  CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE,
+  CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR,
+} from 'src/features/customer/redux/constants';
 
 import {
   updateCustomerExtraCardHolderContactInfo,
   dismissUpdateCustomerExtraCardHolderContactInfoError,
   reducer,
-} from 'src/features/account/redux/updateCustomerExtraCardHolderContactInfo';
+} from 'src/features/customer/redux/updateCustomerExtraCardHolderContactInfo';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/updateCustomerExtraCardHolderContactInfo', () => {
+describe('customer/redux/updateCustomerExtraCardHolderContactInfo', () => {
   afterEach(() => {
     nock.cleanAll();
   });
@@ -30,8 +30,8 @@ describe('account/redux/updateCustomerExtraCardHolderContactInfo', () => {
     return store.dispatch(updateCustomerExtraCardHolderContactInfo())
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS);
+        expect(actions[0]).to.have.property('type', CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN);
+        expect(actions[1]).to.have.property('type', CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS);
       });
   });
 
@@ -41,55 +41,55 @@ describe('account/redux/updateCustomerExtraCardHolderContactInfo', () => {
     return store.dispatch(updateCustomerExtraCardHolderContactInfo({ error: true }))
       .catch(() => {
         const actions = store.getActions();
-        expect(actions[0]).to.have.property('type', ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN);
-        expect(actions[1]).to.have.property('type', ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE);
+        expect(actions[0]).to.have.property('type', CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN);
+        expect(actions[1]).to.have.property('type', CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE);
         expect(actions[1]).to.have.nested.property('data.error').that.exist;
       });
   });
 
   it('returns correct action by dismissUpdateCustomerExtraCardHolderContactInfoError', () => {
     const expectedAction = {
-      type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR,
+      type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR,
     };
     expect(dismissUpdateCustomerExtraCardHolderContactInfoError()).to.deep.equal(expectedAction);
   });
 
-  it('handles action type ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN correctly', () => {
+  it('handles action type CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN correctly', () => {
     const prevState = { updateCustomerExtraCardHolderContactInfoPending: false };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN }
+      { type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.updateCustomerExtraCardHolderContactInfoPending).to.be.true;
   });
 
-  it('handles action type ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS correctly', () => {
+  it('handles action type CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS correctly', () => {
     const prevState = { updateCustomerExtraCardHolderContactInfoPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS, data: {} }
+      { type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.updateCustomerExtraCardHolderContactInfoPending).to.be.false;
   });
 
-  it('handles action type ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE correctly', () => {
+  it('handles action type CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE correctly', () => {
     const prevState = { updateCustomerExtraCardHolderContactInfoPending: true };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE, data: { error: new Error('some error') } }
+      { type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.updateCustomerExtraCardHolderContactInfoPending).to.be.false;
     expect(state.updateCustomerExtraCardHolderContactInfoError).to.exist;
   });
 
-  it('handles action type ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR correctly', () => {
+  it('handles action type CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR correctly', () => {
     const prevState = { updateCustomerExtraCardHolderContactInfoError: new Error('some error') };
     const state = reducer(
       prevState,
-      { type: ACCOUNT_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR }
+      { type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
     expect(state.updateCustomerExtraCardHolderContactInfoError).to.be.null;
