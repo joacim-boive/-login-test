@@ -7,7 +7,7 @@ import {
   ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR,
 } from './constants';
 
-import { UPDATE_CUSTOMER_ACCOUNT_TRANSACTION_PART_PAYMENT_URL } from './urls';
+import { UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL } from './urls';
 
 export function updateAccountTransactionPartPayment(customerId, referenceId, transactionId, data) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function updateAccountTransactionPartPayment(customerId, referenceId, tra
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.put({url: UPDATE_CUSTOMER_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId)}, data).then(
+      Ajax.put({url: UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId)}, data).then(
         (res) => {
           dispatch({
             type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS,
@@ -36,7 +36,7 @@ export function updateAccountTransactionPartPayment(customerId, referenceId, tra
   };
 }
 
-export function dismissUpdateCustomerAccountTransactionPartPaymentError() {
+export function dismissUpdateAccountTransactionPartPaymentError() {
   return {
     type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        updateCustomerAccountTransactionPartPaymentPending: true,
-        updateCustomerAccountTransactionPartPaymentError: null,
+        updateAccountTransactionPartPaymentPending: true,
+        updateAccountTransactionPartPaymentError: null,
       };
 
     case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS:
       // The request is success
       return {
         ...state,
-        updateCustomerAccountTransactionPartPaymentPending: false,
-        updateCustomerAccountTransactionPartPaymentError: null,
+        updateAccountTransactionPartPaymentPending: false,
+        updateAccountTransactionPartPaymentError: null,
       };
 
     case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE:
       // The request is failed
       return {
         ...state,
-        updateCustomerAccountTransactionPartPaymentPending: false,
-        updateCustomerAccountTransactionPartPaymentError: action.data.error,
+        updateAccountTransactionPartPaymentPending: false,
+        updateAccountTransactionPartPaymentError: action.data.error,
       };
 
     case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        updateCustomerAccountTransactionPartPaymentError: null,
+        updateAccountTransactionPartPaymentError: null,
       };
 
     default:

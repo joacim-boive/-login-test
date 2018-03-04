@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNTS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNTS_URL } from './urls';
+import { GET_ACCOUNTS_URL } from './urls';
 
 export function getAccounts(customerId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccounts(customerId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({ url: GET_CUSTOMER_ACCOUNTS_URL(customerId) }).then(
+      Ajax.get({ url: GET_ACCOUNTS_URL(customerId) }).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNTS_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccounts(customerId) {
   };
 }
 
-export function dismissGetCustomerAccountsError() {
+export function dismissGetAccountsError() {
   return {
     type: ACCOUNT_GET_ACCOUNTS_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountsPending: true,
-        getCustomerAccountsError: null,
+        getAccountsPending: true,
+        getAccountsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNTS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountsPending: false,
-        getCustomerAccountsError: null,
+        getAccountsPending: false,
+        getAccountsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNTS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountsPending: false,
-        getCustomerAccountsError: action.data.error,
+        getAccountsPending: false,
+        getAccountsError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNTS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountsError: null,
+        getAccountsError: null,
       };
 
     default:

@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNT_TRANSACTIONS_URL } from './urls';
+import { GET_ACCOUNT_TRANSACTIONS_URL } from './urls';
 
 export function getAccountTransactions(customerId, referenceId, offset, maxRecords) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccountTransactions(customerId, referenceId, offset, maxRecor
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords)}).then(
+      Ajax.get({url: GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords)}).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccountTransactions(customerId, referenceId, offset, maxRecor
   };
 }
 
-export function dismissGetCustomerAccountTransactionsError() {
+export function dismissGetAccountTransactionsError() {
   return {
     type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountTransactionsPending: true,
-        getCustomerAccountTransactionsError: null,
+        getAccountTransactionsPending: true,
+        getAccountTransactionsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountTransactionsPending: false,
-        getCustomerAccountTransactionsError: null,
+        getAccountTransactionsPending: false,
+        getAccountTransactionsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountTransactionsPending: false,
-        getCustomerAccountTransactionsError: action.data.error,
+        getAccountTransactionsPending: false,
+        getAccountTransactionsError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountTransactionsError: null,
+        getAccountTransactionsError: null,
       };
 
     default:

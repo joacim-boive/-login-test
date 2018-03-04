@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNT_ALLOWED_PART_PAYMENTS_URL } from './urls';
+import { GET_ACCOUNT_ALLOWED_PART_PAYMENTS_URL } from './urls';
 
 export function getAccountAllowedPartPayments(customerId, referenceId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccountAllowedPartPayments(customerId, referenceId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_ACCOUNT_ALLOWED_PART_PAYMENTS_URL(customerId, referenceId)}).then(
+      Ajax.get({url: GET_ACCOUNT_ALLOWED_PART_PAYMENTS_URL(customerId, referenceId)}).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccountAllowedPartPayments(customerId, referenceId) {
   };
 }
 
-export function dismissGetCustomerAccountAllowedPartPaymentsError() {
+export function dismissGetAccountAllowedPartPaymentsError() {
   return {
     type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountAllowedPartPaymentsPending: true,
-        getCustomerAccountAllowedPartPaymentsError: null,
+        getAccountAllowedPartPaymentsPending: true,
+        getAccountAllowedPartPaymentsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountAllowedPartPaymentsPending: false,
-        getCustomerAccountAllowedPartPaymentsError: null,
+        getAccountAllowedPartPaymentsPending: false,
+        getAccountAllowedPartPaymentsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountAllowedPartPaymentsPending: false,
-        getCustomerAccountAllowedPartPaymentsError: action.data.error,
+        getAccountAllowedPartPaymentsPending: false,
+        getAccountAllowedPartPaymentsError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountAllowedPartPaymentsError: null,
+        getAccountAllowedPartPaymentsError: null,
       };
 
     default:

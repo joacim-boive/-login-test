@@ -7,37 +7,36 @@
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
 import initialState from './initialState';
-import { reducer as deleteCustomerAccountReducer } from './deleteAccount';
-import { reducer as getCustomerAccountTermsReducer } from './getAccountTerms';
-import { reducer as getCustomerAccountReducer } from './getAccount';
-import { reducer as getCustomerAccountAllowedPartPaymentsReducer } from './getAccountAllowedPartPayments';
-import { reducer as getCustomerAccountBillsReducer } from './getAccountBills';
-import { reducer as getCustomerAccountCampaignPurchasesReducer } from './getAccountCampaignPurchases';
-import { reducer as getCustomerAccountCardsReducer } from './getAccountCards';
-import { reducer as getCustomerAccountTransactionsReducer } from './getAccountTransactions';
-import { reducer as getCustomerAccountsReducer } from './getAccounts';
+import { reducer as deleteAccountReducer } from './deleteAccount';
+import { reducer as getAccountTermsReducer } from './getAccountTerms';
+import { reducer as getAccountReducer } from './getAccount';
+import { reducer as getAccountAllowedPartPaymentsReducer } from './getAccountAllowedPartPayments';
+import { reducer as getAccountBillsReducer } from './getAccountBills';
+import { reducer as getAccountCampaignPurchasesReducer } from './getAccountCampaignPurchases';
+import { reducer as getAccountCardsReducer } from './getAccountCards';
+import { reducer as getAccountTransactionsReducer } from './getAccountTransactions';
+import { reducer as getAccountsReducer } from './getAccounts';
 import { reducer as getAccountPaymentTermsReducer } from './getAccountPaymentTerms';
 import { reducer as getAccountLimitRaiseTermsReducer } from './getAccountLimitRaiseTerms';
-import { reducer as updateCustomerAccountReducer } from './updateAccount';
-import { reducer as updateCustomerAccountTransactionPartPaymentReducer } from './updateAccountTransactionPartPayment';
-import { reducer as updateCustomerAccountCardReducer } from './updateAccountCard';
+import { reducer as updateAccountReducer } from './updateAccount';
+import { reducer as updateAccountTransactionPartPaymentReducer } from './updateAccountTransactionPartPayment';
+import { reducer as updateAccountCardReducer } from './updateAccountCard';
 
 const reducers = [
-  deleteCustomerAccountReducer,
-  getCustomerAccountTermsReducer,
-  getCustomerAccountReducer,
-  getCustomerAccountAllowedPartPaymentsReducer,
-  getCustomerAccountBillsReducer,
-  getCustomerAccountCampaignPurchasesReducer,
-  getCustomerAccountCardsReducer,
-  getCustomerAccountTransactionsReducer,
-  getCustomerAccountsReducer,
-  getCustomerExtraCardHoldersReducer,
+  deleteAccountReducer,
+  getAccountTermsReducer,
+  getAccountReducer,
+  getAccountAllowedPartPaymentsReducer,
+  getAccountBillsReducer,
+  getAccountCampaignPurchasesReducer,
+  getAccountCardsReducer,
+  getAccountTransactionsReducer,
+  getAccountsReducer,
   getAccountPaymentTermsReducer,
   getAccountLimitRaiseTermsReducer,
-  updateCustomerAccountReducer,
-  updateCustomerAccountTransactionPartPaymentReducer,
-  updateCustomerAccountCardReducer,
+  updateAccountReducer,
+  updateAccountTransactionPartPaymentReducer,
+  updateAccountCardReducer,
 ];
 
 export default function reducer(state = initialState, action) {

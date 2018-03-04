@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNT_CAMPAIGN_PURCHASES_URL } from './urls';
+import { GET_ACCOUNT_CAMPAIGN_PURCHASES_URL } from './urls';
 
 export function getAccountCampaignPurchases(customerId, referenceId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccountCampaignPurchases(customerId, referenceId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_ACCOUNT_CAMPAIGN_PURCHASES_URL(customerId, referenceId)}).then(
+      Ajax.get({url: GET_ACCOUNT_CAMPAIGN_PURCHASES_URL(customerId, referenceId)}).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccountCampaignPurchases(customerId, referenceId) {
   };
 }
 
-export function dismissGetCustomerAccountCampaignPurchasesError() {
+export function dismissGetAccountCampaignPurchasesError() {
   return {
     type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountCampaignPurchasesPending: true,
-        getCustomerAccountCampaignPurchasesError: null,
+        getAccountCampaignPurchasesPending: true,
+        getAccountCampaignPurchasesError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountCampaignPurchasesPending: false,
-        getCustomerAccountCampaignPurchasesError: null,
+        getAccountCampaignPurchasesPending: false,
+        getAccountCampaignPurchasesError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountCampaignPurchasesPending: false,
-        getCustomerAccountCampaignPurchasesError: action.data.error,
+        getAccountCampaignPurchasesPending: false,
+        getAccountCampaignPurchasesError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountCampaignPurchasesError: null,
+        getAccountCampaignPurchasesError: null,
       };
 
     default:

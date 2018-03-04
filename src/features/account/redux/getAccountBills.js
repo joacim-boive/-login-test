@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNT_BILLS_URL } from './urls';
+import { GET_ACCOUNT_BILLS_URL } from './urls';
 
 export function getAccountBills(customerId, referenceId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccountBills(customerId, referenceId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_ACCOUNT_BILLS_URL(customerId, referenceId)}).then(
+      Ajax.get({url: GET_ACCOUNT_BILLS_URL(customerId, referenceId)}).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccountBills(customerId, referenceId) {
   };
 }
 
-export function dismissGetCustomerAccountBillsError() {
+export function dismissGetAccountBillsError() {
   return {
     type: ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountBillsPending: true,
-        getCustomerAccountBillsError: null,
+        getAccountBillsPending: true,
+        getAccountBillsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountBillsPending: false,
-        getCustomerAccountBillsError: null,
+        getAccountBillsPending: false,
+        getAccountBillsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_BILLS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountBillsPending: false,
-        getCustomerAccountBillsError: action.data.error,
+        getAccountBillsPending: false,
+        getAccountBillsError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountBillsError: null,
+        getAccountBillsError: null,
       };
 
     default:

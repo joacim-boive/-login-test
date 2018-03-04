@@ -7,7 +7,7 @@ import {
   ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
 } from './constants';
 
-import { GET_CUSTOMER_ACCOUNT_CARDS_URL } from './urls';
+import { GET_ACCOUNT_CARDS_URL } from './urls';
 
 export function getAccountCards(customerId, referenceId) {
   return (dispatch) => { // optionally you can have getState as the second argument
@@ -16,7 +16,7 @@ export function getAccountCards(customerId, referenceId) {
     });
 
     return new Promise((resolve, reject) => {
-      Ajax.get({url: GET_CUSTOMER_ACCOUNT_CARDS_URL(customerId, referenceId)}).then(
+      Ajax.get({url: GET_ACCOUNT_CARDS_URL(customerId, referenceId)}).then(
         (res) => {
           dispatch({
             type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
@@ -36,7 +36,7 @@ export function getAccountCards(customerId, referenceId) {
   };
 }
 
-export function dismissGetCustomerAccountCardsError() {
+export function dismissGetAccountCardsError() {
   return {
     type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
   };
@@ -48,31 +48,31 @@ export function reducer(state, action) {
       // Just after a request is sent
       return {
         ...state,
-        getCustomerAccountCardsPending: true,
-        getCustomerAccountCardsError: null,
+        getAccountCardsPending: true,
+        getAccountCardsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS:
       // The request is success
       return {
         ...state,
-        getCustomerAccountCardsPending: false,
-        getCustomerAccountCardsError: null,
+        getAccountCardsPending: false,
+        getAccountCardsError: null,
       };
 
     case ACCOUNT_GET_ACCOUNT_CARDS_FAILURE:
       // The request is failed
       return {
         ...state,
-        getCustomerAccountCardsPending: false,
-        getCustomerAccountCardsError: action.data.error,
+        getAccountCardsPending: false,
+        getAccountCardsError: action.data.error,
       };
 
     case ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        getCustomerAccountCardsError: null,
+        getAccountCardsError: null,
       };
 
     default:
