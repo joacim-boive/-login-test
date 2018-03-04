@@ -16,22 +16,24 @@ export function updateCustomerContactInfo(customerId, data) {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.put({url: UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId)}, data).then(
-                (res) => {
-                    dispatch({
-                        type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
-                        data: res,
-                    });
-                    resolve(res);
-                },
-                (err) => {
-                    dispatch({
-                        type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE,
-                        data: {error: err},
-                    });
-                    reject(err);
-                },
-            );
+            Ajax.put({url: UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId)}, data)
+                .then(
+                    (xhr, res) => {
+                        dispatch({
+                            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
+                            data: res,
+                        });
+                        resolve(res);
+                    })
+                .catch(
+                    (err) => {
+                        dispatch({
+                            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE,
+                            data: {error: err},
+                        });
+                        reject(err);
+                    },
+                );
         });
     };
 }

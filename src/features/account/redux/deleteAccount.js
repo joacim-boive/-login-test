@@ -18,22 +18,24 @@ export function deleteAccount(customerId, referenceId) {
         return new Promise((resolve, reject) => {
             const url = DELETE_ACCOUNT_URL(customerId, referenceId);
 
-            Ajax.delete({ url }).then(
-                (res) => {
-                    dispatch({
-                        type: ACCOUNT_DELETE_ACCOUNT_SUCCESS,
-                        data: res,
-                    });
-                    resolve(res);
-                },
-                (err) => {
-                    dispatch({
-                        type: ACCOUNT_DELETE_ACCOUNT_FAILURE,
-                        data: { error: err },
-                    });
-                    reject(err);
-                },
-            );
+            Ajax.delete({ url })
+                .then(
+                    (xhr, res) => {
+                        dispatch({
+                            type: ACCOUNT_DELETE_ACCOUNT_SUCCESS,
+                            data: res,
+                        });
+                        resolve(res);
+                    })
+                .catch(
+                    (err) => {
+                        dispatch({
+                            type: ACCOUNT_DELETE_ACCOUNT_FAILURE,
+                            data: { error: err },
+                        });
+                        reject(err);
+                    },
+                );
         });
     };
 }

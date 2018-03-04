@@ -16,22 +16,24 @@ export function getCustomerExtraCardHolders(customerId) {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_CUSTOMER_EXTRA_CARD_HOLDERS_URL(customerId) }).then(
-                (res) => {
-                    dispatch({
-                        type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_SUCCESS,
-                        data: res,
-                    });
-                    resolve(res);
-                },
-                (err) => {
-                    dispatch({
-                        type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_FAILURE,
-                        data: { error: err },
-                    });
-                    reject(err);
-                },
-            );
+            Ajax.get({ url: GET_CUSTOMER_EXTRA_CARD_HOLDERS_URL(customerId) })
+                .then(
+                    (xhr, res) => {
+                        dispatch({
+                            type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_SUCCESS,
+                            data: res,
+                        });
+                        resolve(res);
+                    })
+                .catch(
+                    (err) => {
+                        dispatch({
+                            type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_FAILURE,
+                            data: { error: err },
+                        });
+                        reject(err);
+                    },
+                );
         });
     };
 }

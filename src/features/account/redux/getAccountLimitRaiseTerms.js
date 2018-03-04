@@ -16,22 +16,24 @@ export function getAccountLimitRaiseTerms(country, lang) {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_ACCOUNT_LIMIT_RAISE_TERMS_URL(country, lang) }).then(
-                (res) => {
-                    dispatch({
-                        type: ACCOUNT_GET_ACCOUNT_LIMIT_RAISE_TERMS_SUCCESS,
-                        data: res,
-                    });
-                    resolve(res);
-                },
-                (err) => {
-                    dispatch({
-                        type: ACCOUNT_GET_ACCOUNT_LIMIT_RAISE_TERMS_FAILURE,
-                        data: { error: err },
-                    });
-                    reject(err);
-                },
-            );
+            Ajax.get({ url: GET_ACCOUNT_LIMIT_RAISE_TERMS_URL(country, lang) })
+                .then(
+                    (xhr, res) => {
+                        dispatch({
+                            type: ACCOUNT_GET_ACCOUNT_LIMIT_RAISE_TERMS_SUCCESS,
+                            data: res,
+                        });
+                        resolve(res);
+                    })
+                .catch(
+                    (err) => {
+                        dispatch({
+                            type: ACCOUNT_GET_ACCOUNT_LIMIT_RAISE_TERMS_FAILURE,
+                            data: { error: err },
+                        });
+                        reject(err);
+                    },
+                );
         });
     };
 }
