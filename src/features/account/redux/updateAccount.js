@@ -21,7 +21,7 @@ export function updateAccount(customerId, referenceId, data) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_UPDATE_ACCOUNT_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

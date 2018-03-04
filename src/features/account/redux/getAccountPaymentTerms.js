@@ -21,7 +21,7 @@ export function getAccountPaymentTerms(country, lang) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_PAYMENT_TERMS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

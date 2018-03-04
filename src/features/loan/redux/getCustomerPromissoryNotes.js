@@ -21,7 +21,7 @@ export function getCustomerPromissoryNotes(customerId) {
                     (xhr, res) => {
                         dispatch({
                             type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

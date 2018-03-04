@@ -21,7 +21,7 @@ export function createCustomerPromissoryNote(customerId, data) {
                     (xhr, res) => {
                         dispatch({
                             type: LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

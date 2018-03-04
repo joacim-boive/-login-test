@@ -21,7 +21,7 @@ export function updateCustomerContactInfo(customerId, data) {
                     (xhr, res) => {
                         dispatch({
                             type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

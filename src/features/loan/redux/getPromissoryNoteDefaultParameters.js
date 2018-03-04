@@ -21,7 +21,7 @@ export function getPromissoryNoteDefaultParameters() {
                     (xhr, res) => {
                         dispatch({
                             type: LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

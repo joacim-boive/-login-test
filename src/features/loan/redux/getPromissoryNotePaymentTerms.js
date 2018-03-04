@@ -21,7 +21,7 @@ export function getPromissoryNotePaymentTerms(paymentPeriodYear, makePaymentPlan
                     (xhr, res) => {
                         dispatch({
                             type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

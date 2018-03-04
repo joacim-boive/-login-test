@@ -21,7 +21,7 @@ export function getCustomerExtraCardHolders(customerId) {
                     (xhr, res) => {
                         dispatch({
                             type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

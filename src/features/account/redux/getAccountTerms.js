@@ -21,7 +21,7 @@ export function getAccountTerms(customerId) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_TERMS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

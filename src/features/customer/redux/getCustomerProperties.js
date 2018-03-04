@@ -21,7 +21,7 @@ export function getCustomerProperties(customerId, property) {
                     (xhr, res) => {
                         dispatch({
                             type: CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

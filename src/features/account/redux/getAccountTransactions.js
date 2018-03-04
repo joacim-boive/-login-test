@@ -21,7 +21,7 @@ export function getAccountTransactions(customerId, referenceId, offset, maxRecor
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

@@ -21,7 +21,7 @@ export function getAccountCampaignPurchases(customerId, referenceId) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

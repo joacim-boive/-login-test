@@ -21,7 +21,7 @@ export function getAccounts(customerId) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNTS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

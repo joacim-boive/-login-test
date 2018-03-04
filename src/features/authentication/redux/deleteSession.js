@@ -21,7 +21,7 @@ export function deleteSession(sessionKey) {
                     (xhr, res) => {
                         dispatch({
                             type: AUTHENTICATION_DELETE_SESSION_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

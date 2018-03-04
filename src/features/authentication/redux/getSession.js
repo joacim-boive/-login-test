@@ -21,7 +21,7 @@ export function getSession(sessionKey) {
                     (xhr, res) => {
                         dispatch({
                             type: AUTHENTICATION_GET_SESSION_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

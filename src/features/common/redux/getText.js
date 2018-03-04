@@ -21,7 +21,7 @@ export function getText(country, lang, textId) {
                     (xhr, res) => {
                         dispatch({
                             type: COMMON_GET_TEXT_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

@@ -21,7 +21,7 @@ export function updateCustomerExtraCardHolderContactInfo(customerId, data) {
                     (xhr, res) => {
                         dispatch({
                             type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

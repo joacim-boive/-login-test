@@ -23,7 +23,7 @@ export function deleteAccount(customerId, referenceId) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_DELETE_ACCOUNT_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

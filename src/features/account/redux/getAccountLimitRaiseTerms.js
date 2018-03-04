@@ -21,7 +21,7 @@ export function getAccountLimitRaiseTerms(country, lang) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_LIMIT_RAISE_TERMS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

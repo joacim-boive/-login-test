@@ -21,7 +21,7 @@ export function getAccountAllowedPartPayments(customerId, referenceId) {
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

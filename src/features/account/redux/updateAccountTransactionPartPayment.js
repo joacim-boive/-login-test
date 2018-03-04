@@ -21,7 +21,7 @@ export function updateAccountTransactionPartPayment(customerId, referenceId, tra
                     (xhr, res) => {
                         dispatch({
                             type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })

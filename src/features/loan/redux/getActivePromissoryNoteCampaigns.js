@@ -21,7 +21,7 @@ export function getActivePromissoryNoteCampaigns() {
                     (xhr, res) => {
                         dispatch({
                             type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_SUCCESS,
-                            data: res,
+                            data: res.response,
                         });
                         resolve(res);
                     })
