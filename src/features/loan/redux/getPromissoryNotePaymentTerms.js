@@ -47,7 +47,6 @@ export function dismissGetPromissoryNotePaymentTermsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getPromissoryNotePaymentTermsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 promissoryNotePaymentTerms: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getPromissoryNotePaymentTermsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getPromissoryNotePaymentTermsError: null,

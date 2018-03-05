@@ -47,7 +47,6 @@ export function dismissGetPromissoryNoteDefaultParametersError() {
 export function reducer(state, action) {
     switch (action.type) {
         case LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getPromissoryNoteDefaultParametersPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 promissoryNoteDefaultParameters: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getPromissoryNoteDefaultParametersPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getPromissoryNoteDefaultParametersError: null,

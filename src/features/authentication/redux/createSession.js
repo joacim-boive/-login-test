@@ -47,7 +47,6 @@ export function dismissCreateSessionError() {
 export function reducer(state, action) {
     switch (action.type) {
         case AUTHENTICATION_CREATE_SESSION_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 createSessionPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 createSessionPending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 createSessionPending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 createSessionError: null,

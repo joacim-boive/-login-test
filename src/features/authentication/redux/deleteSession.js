@@ -47,7 +47,6 @@ export function dismissDeleteSessionError() {
 export function reducer(state, action) {
     switch (action.type) {
         case AUTHENTICATION_DELETE_SESSION_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 deleteSessionPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_DELETE_SESSION_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 deleteSessionPending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_DELETE_SESSION_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 deleteSessionPending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_DELETE_SESSION_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 deleteSessionError: null,

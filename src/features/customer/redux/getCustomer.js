@@ -47,7 +47,6 @@ export function dismissGetCustomerError() {
 export function reducer(state, action) {
     switch (action.type) {
         case CUSTOMER_GET_CUSTOMER_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getCustomerPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 customer: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getCustomerPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getCustomerError: null,

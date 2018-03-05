@@ -47,7 +47,6 @@ export function dismissGetCustomerExtraCardHoldersError() {
 export function reducer(state, action) {
     switch (action.type) {
         case CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getCustomerExtraCardHoldersPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 customerExtraCardHolders: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getCustomerExtraCardHoldersPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getCustomerExtraCardHoldersError: null,

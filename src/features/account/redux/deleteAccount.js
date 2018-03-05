@@ -49,7 +49,6 @@ export function dismissDeleteAccountError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_DELETE_ACCOUNT_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 deleteAccountPending: true,
@@ -57,7 +56,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_DELETE_ACCOUNT_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 deleteAccountPending: false,
@@ -65,7 +63,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_DELETE_ACCOUNT_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 deleteAccountPending: false,
@@ -73,7 +70,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 deleteAccountError: null,

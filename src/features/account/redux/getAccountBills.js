@@ -47,7 +47,6 @@ export function dismissGetAccountBillsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_BILLS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getAccountBillsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 accountBills: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_BILLS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getAccountBillsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getAccountBillsError: null,
