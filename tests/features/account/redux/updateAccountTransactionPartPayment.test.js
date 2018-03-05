@@ -12,19 +12,19 @@ import {
 
 import {
   updateAccountTransactionPartPayment,
-  dismissUpdateCustomerAccountTransactionPartPaymentError,
+  dismissUpdateAccountTransactionPartPaymentError,
   reducer,
 } from 'src/features/account/redux/updateAccountTransactionPartPayment';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/updateCustomerAccountTransactionPartPayment', () => {
+describe('account/redux/updateAccountTransactionPartPayment', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when updateCustomerAccountTransactionPartPayment succeeds', () => {
+  it('dispatches success action when updateAccountTransactionPartPayment succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccountTransactionPartPayment())
@@ -35,7 +35,7 @@ describe('account/redux/updateCustomerAccountTransactionPartPayment', () => {
       });
   });
 
-  it('dispatches failure action when updateCustomerAccountTransactionPartPayment fails', () => {
+  it('dispatches failure action when updateAccountTransactionPartPayment fails', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccountTransactionPartPayment({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/updateCustomerAccountTransactionPartPayment', () => {
       });
   });
 
-  it('returns correct action by dismissUpdateCustomerAccountTransactionPartPaymentError', () => {
+  it('returns correct action by dismissUpdateAccountTransactionPartPaymentError', () => {
     const expectedAction = {
       type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR,
     };
-    expect(dismissUpdateCustomerAccountTransactionPartPaymentError()).to.deep.equal(expectedAction);
+    expect(dismissUpdateAccountTransactionPartPaymentError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN correctly', () => {
-    const prevState = { updateCustomerAccountTransactionPartPaymentPending: false };
+    const prevState = { updateAccountTransactionPartPaymentPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountTransactionPartPaymentPending).to.be.true;
+    expect(state.updateAccountTransactionPartPaymentPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS correctly', () => {
-    const prevState = { updateCustomerAccountTransactionPartPaymentPending: true };
+    const prevState = { updateAccountTransactionPartPaymentPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountTransactionPartPaymentPending).to.be.false;
+    expect(state.updateAccountTransactionPartPaymentPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE correctly', () => {
-    const prevState = { updateCustomerAccountTransactionPartPaymentPending: true };
+    const prevState = { updateAccountTransactionPartPaymentPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountTransactionPartPaymentPending).to.be.false;
-    expect(state.updateCustomerAccountTransactionPartPaymentError).to.exist;
+    expect(state.updateAccountTransactionPartPaymentPending).to.be.false;
+    expect(state.updateAccountTransactionPartPaymentError).to.exist;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR correctly', () => {
-    const prevState = { updateCustomerAccountTransactionPartPaymentError: new Error('some error') };
+    const prevState = { updateAccountTransactionPartPaymentError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountTransactionPartPaymentError).to.be.null;
+    expect(state.updateAccountTransactionPartPaymentError).to.be.null;
   });
 });

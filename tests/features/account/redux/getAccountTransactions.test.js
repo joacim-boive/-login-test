@@ -12,19 +12,19 @@ import {
 
 import {
   getAccountTransactions,
-  dismissGetCustomerAccountTransactionsError,
+  dismissGetAccountTransactionsError,
   reducer,
 } from 'src/features/account/redux/getAccountTransactions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/getCustomerAccountTransactions', () => {
+describe('account/redux/getAccountTransactions', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when getCustomerAccountTransactions succeeds', () => {
+  it('dispatches success action when getAccountTransactions succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountTransactions())
@@ -35,7 +35,7 @@ describe('account/redux/getCustomerAccountTransactions', () => {
       });
   });
 
-  it('dispatches failure action when getCustomerAccountTransactions fails', () => {
+  it('dispatches failure action when getAccountTransactions fails', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountTransactions({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/getCustomerAccountTransactions', () => {
       });
   });
 
-  it('returns correct action by dismissGetCustomerAccountTransactionsError', () => {
+  it('returns correct action by dismissGetAccountTransactionsError', () => {
     const expectedAction = {
       type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
     };
-    expect(dismissGetCustomerAccountTransactionsError()).to.deep.equal(expectedAction);
+    expect(dismissGetAccountTransactionsError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN correctly', () => {
-    const prevState = { getCustomerAccountTransactionsPending: false };
+    const prevState = { getAccountTransactionsPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountTransactionsPending).to.be.true;
+    expect(state.getAccountTransactionsPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS correctly', () => {
-    const prevState = { getCustomerAccountTransactionsPending: true };
+    const prevState = { getAccountTransactionsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountTransactionsPending).to.be.false;
+    expect(state.getAccountTransactionsPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE correctly', () => {
-    const prevState = { getCustomerAccountTransactionsPending: true };
+    const prevState = { getAccountTransactionsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountTransactionsPending).to.be.false;
-    expect(state.getCustomerAccountTransactionsError).to.exist;
+    expect(state.getAccountTransactionsPending).to.be.false;
+    expect(state.getAccountTransactionsError).to.exist;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR correctly', () => {
-    const prevState = { getCustomerAccountTransactionsError: new Error('some error') };
+    const prevState = { getAccountTransactionsError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountTransactionsError).to.be.null;
+    expect(state.getAccountTransactionsError).to.be.null;
   });
 });

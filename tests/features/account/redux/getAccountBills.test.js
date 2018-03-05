@@ -12,19 +12,19 @@ import {
 
 import {
   getAccountBills,
-  dismissGetCustomerAccountBillsError,
+  dismissGetAccountBillsError,
   reducer,
 } from 'src/features/account/redux/getAccountBills';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/getCustomerAccountBills', () => {
+describe('account/redux/getAccountBills', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when getCustomerAccountBills succeeds', () => {
+  it('dispatches success action when getAccountBills succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountBills())
@@ -35,7 +35,7 @@ describe('account/redux/getCustomerAccountBills', () => {
       });
   });
 
-  it('dispatches failure action when getCustomerAccountBills fails', () => {
+  it('dispatches failure action when getAccountBills fails', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountBills({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/getCustomerAccountBills', () => {
       });
   });
 
-  it('returns correct action by dismissGetCustomerAccountBillsError', () => {
+  it('returns correct action by dismissGetAccountBillsError', () => {
     const expectedAction = {
       type: ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR,
     };
-    expect(dismissGetCustomerAccountBillsError()).to.deep.equal(expectedAction);
+    expect(dismissGetAccountBillsError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_BILLS_BEGIN correctly', () => {
-    const prevState = { getCustomerAccountBillsPending: false };
+    const prevState = { getAccountBillsPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_BILLS_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountBillsPending).to.be.true;
+    expect(state.getAccountBillsPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS correctly', () => {
-    const prevState = { getCustomerAccountBillsPending: true };
+    const prevState = { getAccountBillsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountBillsPending).to.be.false;
+    expect(state.getAccountBillsPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_BILLS_FAILURE correctly', () => {
-    const prevState = { getCustomerAccountBillsPending: true };
+    const prevState = { getAccountBillsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_BILLS_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountBillsPending).to.be.false;
-    expect(state.getCustomerAccountBillsError).to.exist;
+    expect(state.getAccountBillsPending).to.be.false;
+    expect(state.getAccountBillsError).to.exist;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR correctly', () => {
-    const prevState = { getCustomerAccountBillsError: new Error('some error') };
+    const prevState = { getAccountBillsError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountBillsError).to.be.null;
+    expect(state.getAccountBillsError).to.be.null;
   });
 });

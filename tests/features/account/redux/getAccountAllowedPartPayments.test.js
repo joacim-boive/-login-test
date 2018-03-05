@@ -12,19 +12,19 @@ import {
 
 import {
   getAccountAllowedPartPayments,
-  dismissGetCustomerAccountAllowedPartPaymentsError,
+  dismissGetAccountAllowedPartPaymentsError,
   reducer,
 } from 'src/features/account/redux/getAccountAllowedPartPayments';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/getCustomerAccountAllowedPartPayments', () => {
+describe('account/redux/getAccountAllowedPartPayments', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when getCustomerAccountAllowedPartPayments succeeds', () => {
+  it('dispatches success action when getAccountAllowedPartPayments succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountAllowedPartPayments())
@@ -35,7 +35,7 @@ describe('account/redux/getCustomerAccountAllowedPartPayments', () => {
       });
   });
 
-  it('dispatches failure action when getCustomerAccountAllowedPartPayments fails', () => {
+  it('dispatches failure action when getAccountAllowedPartPayments fails', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountAllowedPartPayments({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/getCustomerAccountAllowedPartPayments', () => {
       });
   });
 
-  it('returns correct action by dismissGetCustomerAccountAllowedPartPaymentsError', () => {
+  it('returns correct action by dismissGetAccountAllowedPartPaymentsError', () => {
     const expectedAction = {
       type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR,
     };
-    expect(dismissGetCustomerAccountAllowedPartPaymentsError()).to.deep.equal(expectedAction);
+    expect(dismissGetAccountAllowedPartPaymentsError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_BEGIN correctly', () => {
-    const prevState = { getCustomerAccountAllowedPartPaymentsPending: false };
+    const prevState = { getAccountAllowedPartPaymentsPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountAllowedPartPaymentsPending).to.be.true;
+    expect(state.getAccountAllowedPartPaymentsPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS correctly', () => {
-    const prevState = { getCustomerAccountAllowedPartPaymentsPending: true };
+    const prevState = { getAccountAllowedPartPaymentsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountAllowedPartPaymentsPending).to.be.false;
+    expect(state.getAccountAllowedPartPaymentsPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_FAILURE correctly', () => {
-    const prevState = { getCustomerAccountAllowedPartPaymentsPending: true };
+    const prevState = { getAccountAllowedPartPaymentsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountAllowedPartPaymentsPending).to.be.false;
-    expect(state.getCustomerAccountAllowedPartPaymentsError).to.exist;
+    expect(state.getAccountAllowedPartPaymentsPending).to.be.false;
+    expect(state.getAccountAllowedPartPaymentsError).to.exist;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR correctly', () => {
-    const prevState = { getCustomerAccountAllowedPartPaymentsError: new Error('some error') };
+    const prevState = { getAccountAllowedPartPaymentsError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountAllowedPartPaymentsError).to.be.null;
+    expect(state.getAccountAllowedPartPaymentsError).to.be.null;
   });
 });

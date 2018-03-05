@@ -12,19 +12,19 @@ import {
 
 import {
   getAccountCards,
-  dismissGetCustomerAccountCardsError,
+  dismissGetAccountCardsError,
   reducer,
 } from 'src/features/account/redux/getAccountCards';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/getCustomerAccountCards', () => {
+describe('account/redux/getAccountCards', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when getCustomerAccountCards succeeds', () => {
+  it('dispatches success action when getAccountCards succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountCards())
@@ -35,7 +35,7 @@ describe('account/redux/getCustomerAccountCards', () => {
       });
   });
 
-  it('dispatches failure action when getCustomerAccountCards fails', () => {
+  it('dispatches failure action when getAccountCards fails', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountCards({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/getCustomerAccountCards', () => {
       });
   });
 
-  it('returns correct action by dismissGetCustomerAccountCardsError', () => {
+  it('returns correct action by dismissGetAccountCardsError', () => {
     const expectedAction = {
       type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
     };
-    expect(dismissGetCustomerAccountCardsError()).to.deep.equal(expectedAction);
+    expect(dismissGetAccountCardsError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_CARDS_BEGIN correctly', () => {
-    const prevState = { getCustomerAccountCardsPending: false };
+    const prevState = { getAccountCardsPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_CARDS_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountCardsPending).to.be.true;
+    expect(state.getAccountCardsPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS correctly', () => {
-    const prevState = { getCustomerAccountCardsPending: true };
+    const prevState = { getAccountCardsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountCardsPending).to.be.false;
+    expect(state.getAccountCardsPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_CARDS_FAILURE correctly', () => {
-    const prevState = { getCustomerAccountCardsPending: true };
+    const prevState = { getAccountCardsPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_CARDS_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountCardsPending).to.be.false;
-    expect(state.getCustomerAccountCardsError).to.exist;
+    expect(state.getAccountCardsPending).to.be.false;
+    expect(state.getAccountCardsError).to.exist;
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR correctly', () => {
-    const prevState = { getCustomerAccountCardsError: new Error('some error') };
+    const prevState = { getAccountCardsError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.getCustomerAccountCardsError).to.be.null;
+    expect(state.getAccountCardsError).to.be.null;
   });
 });

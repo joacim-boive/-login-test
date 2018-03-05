@@ -12,19 +12,19 @@ import {
 
 import {
   getAccountTerms,
-  dismissGetCustomerAccountTermsError,
+  dismissGetAccountTermsError,
   reducer,
 } from 'src/features/account/redux/getAccountTerms';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/getCustomerAccountTerms', () => {
+describe('account/redux/getAccountTerms', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when getCustomerAccountTerms succeeds', () => {
+  it('dispatches success action when getAccountTerms succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountTerms())
@@ -35,7 +35,7 @@ describe('account/redux/getCustomerAccountTerms', () => {
       });
   });
 
-  it('dispatches failure action when getCustomerAccountTerms fails', () => {
+  it('dispatches failure action when getAccountTerms fails', () => {
     const store = mockStore({});
 
     return store.dispatch(getAccountTerms({ error: true }))
@@ -47,11 +47,11 @@ describe('account/redux/getCustomerAccountTerms', () => {
       });
   });
 
-  it('returns correct action by dismissGetCustomerAccountTermsError', () => {
+  it('returns correct action by dismissGetAccountTermsError', () => {
     const expectedAction = {
       type: ACCOUNT_GET_ACCOUNT_TERMS_DISMISS_ERROR,
     };
-    expect(dismissGetCustomerAccountTermsError()).to.deep.equal(expectedAction);
+    expect(dismissGetAccountTermsError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_GET_ACCOUNT_TERMS_BEGIN correctly', () => {

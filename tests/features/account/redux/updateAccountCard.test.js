@@ -12,19 +12,19 @@ import {
 
 import {
   updateAccountCard,
-  dismissUpdateCustomerAccountCardError,
+  dismissUpdateAccountCardError,
   reducer,
 } from 'src/features/account/redux/updateAccountCard';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/updateCustomerAccountCard', () => {
+describe('account/redux/updateAccountCard', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when updateCustomerAccountCard succeeds', () => {
+  it('dispatches success action when updateAccountCard succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccountCard())
@@ -35,7 +35,7 @@ describe('account/redux/updateCustomerAccountCard', () => {
       });
   });
 
-  it('dispatches failure action when updateCustomerAccountCard fails', () => {
+  it('dispatches failure action when updateAccountCard fails', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccountCard({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/updateCustomerAccountCard', () => {
       });
   });
 
-  it('returns correct action by dismissUpdateCustomerAccountCardError', () => {
+  it('returns correct action by dismissUpdateAccountCardError', () => {
     const expectedAction = {
       type: ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR,
     };
-    expect(dismissUpdateCustomerAccountCardError()).to.deep.equal(expectedAction);
+    expect(dismissUpdateAccountCardError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN correctly', () => {
-    const prevState = { updateCustomerAccountCardPending: false };
+    const prevState = { updateAccountCardPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountCardPending).to.be.true;
+    expect(state.updateAccountCardPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS correctly', () => {
-    const prevState = { updateCustomerAccountCardPending: true };
+    const prevState = { updateAccountCardPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountCardPending).to.be.false;
+    expect(state.updateAccountCardPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_CARD_FAILURE correctly', () => {
-    const prevState = { updateCustomerAccountCardPending: true };
+    const prevState = { updateAccountCardPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_CARD_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountCardPending).to.be.false;
-    expect(state.updateCustomerAccountCardError).to.exist;
+    expect(state.updateAccountCardPending).to.be.false;
+    expect(state.updateAccountCardError).to.exist;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR correctly', () => {
-    const prevState = { updateCustomerAccountCardError: new Error('some error') };
+    const prevState = { updateAccountCardError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountCardError).to.be.null;
+    expect(state.updateAccountCardError).to.be.null;
   });
 });

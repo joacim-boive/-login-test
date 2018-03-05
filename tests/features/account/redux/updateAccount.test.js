@@ -12,19 +12,19 @@ import {
 
 import {
   updateAccount,
-  dismissUpdateCustomerAccountError,
+  dismissUpdateAccountError,
   reducer,
 } from 'src/features/account/redux/updateAccount';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/updateCustomerAccount', () => {
+describe('account/redux/updateAccount', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when updateCustomerAccount succeeds', () => {
+  it('dispatches success action when updateAccount succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccount())
@@ -35,7 +35,7 @@ describe('account/redux/updateCustomerAccount', () => {
       });
   });
 
-  it('dispatches failure action when updateCustomerAccount fails', () => {
+  it('dispatches failure action when updateAccount fails', () => {
     const store = mockStore({});
 
     return store.dispatch(updateAccount({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/updateCustomerAccount', () => {
       });
   });
 
-  it('returns correct action by dismissUpdateCustomerAccountError', () => {
+  it('returns correct action by dismissUpdateAccountError', () => {
     const expectedAction = {
       type: ACCOUNT_UPDATE_ACCOUNT_DISMISS_ERROR,
     };
-    expect(dismissUpdateCustomerAccountError()).to.deep.equal(expectedAction);
+    expect(dismissUpdateAccountError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_BEGIN correctly', () => {
-    const prevState = { updateCustomerAccountPending: false };
+    const prevState = { updateAccountPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountPending).to.be.true;
+    expect(state.updateAccountPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_SUCCESS correctly', () => {
-    const prevState = { updateCustomerAccountPending: true };
+    const prevState = { updateAccountPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountPending).to.be.false;
+    expect(state.updateAccountPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_FAILURE correctly', () => {
-    const prevState = { updateCustomerAccountPending: true };
+    const prevState = { updateAccountPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountPending).to.be.false;
-    expect(state.updateCustomerAccountError).to.exist;
+    expect(state.updateAccountPending).to.be.false;
+    expect(state.updateAccountError).to.exist;
   });
 
   it('handles action type ACCOUNT_UPDATE_ACCOUNT_DISMISS_ERROR correctly', () => {
-    const prevState = { updateCustomerAccountError: new Error('some error') };
+    const prevState = { updateAccountError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_UPDATE_ACCOUNT_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.updateCustomerAccountError).to.be.null;
+    expect(state.updateAccountError).to.be.null;
   });
 });

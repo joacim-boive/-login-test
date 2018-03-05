@@ -12,19 +12,19 @@ import {
 
 import {
   deleteAccount,
-  dismissDeleteCustomerAccountError,
+  dismissDeleteAccountError,
   reducer,
 } from 'src/features/account/redux/deleteAccount';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('account/redux/deleteCustomerAccount', () => {
+describe('account/redux/deleteAccount', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('dispatches success action when deleteCustomerAccount succeeds', () => {
+  it('dispatches success action when deleteAccount succeeds', () => {
     const store = mockStore({});
 
     return store.dispatch(deleteAccount())
@@ -35,7 +35,7 @@ describe('account/redux/deleteCustomerAccount', () => {
       });
   });
 
-  it('dispatches failure action when deleteCustomerAccount fails', () => {
+  it('dispatches failure action when deleteAccount fails', () => {
     const store = mockStore({});
 
     return store.dispatch(deleteAccount({ error: true }))
@@ -47,51 +47,51 @@ describe('account/redux/deleteCustomerAccount', () => {
       });
   });
 
-  it('returns correct action by dismissDeleteCustomerAccountError', () => {
+  it('returns correct action by dismissDeleteAccountError', () => {
     const expectedAction = {
       type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR,
     };
-    expect(dismissDeleteCustomerAccountError()).to.deep.equal(expectedAction);
+    expect(dismissDeleteAccountError()).to.deep.equal(expectedAction);
   });
 
   it('handles action type ACCOUNT_DELETE_CUSTOMER_ACCOUNT_BEGIN correctly', () => {
-    const prevState = { deleteCustomerAccountPending: false };
+    const prevState = { deleteAccountPending: false };
     const state = reducer(
       prevState,
       { type: ACCOUNT_DELETE_ACCOUNT_BEGIN }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.deleteCustomerAccountPending).to.be.true;
+    expect(state.deleteAccountPending).to.be.true;
   });
 
   it('handles action type ACCOUNT_DELETE_CUSTOMER_ACCOUNT_SUCCESS correctly', () => {
-    const prevState = { deleteCustomerAccountPending: true };
+    const prevState = { deleteAccountPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_DELETE_ACCOUNT_SUCCESS, data: {} }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.deleteCustomerAccountPending).to.be.false;
+    expect(state.deleteAccountPending).to.be.false;
   });
 
   it('handles action type ACCOUNT_DELETE_CUSTOMER_ACCOUNT_FAILURE correctly', () => {
-    const prevState = { deleteCustomerAccountPending: true };
+    const prevState = { deleteAccountPending: true };
     const state = reducer(
       prevState,
       { type: ACCOUNT_DELETE_ACCOUNT_FAILURE, data: { error: new Error('some error') } }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.deleteCustomerAccountPending).to.be.false;
-    expect(state.deleteCustomerAccountError).to.exist;
+    expect(state.deleteAccountPending).to.be.false;
+    expect(state.deleteAccountError).to.exist;
   });
 
   it('handles action type ACCOUNT_DELETE_CUSTOMER_ACCOUNT_DISMISS_ERROR correctly', () => {
-    const prevState = { deleteCustomerAccountError: new Error('some error') };
+    const prevState = { deleteAccountError: new Error('some error') };
     const state = reducer(
       prevState,
       { type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state.deleteCustomerAccountError).to.be.null;
+    expect(state.deleteAccountError).to.be.null;
   });
 });
