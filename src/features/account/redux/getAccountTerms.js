@@ -50,31 +50,32 @@ export function reducer(state, action) {
             // Just after a request is sent
             return {
                 ...state,
-                getCustoemrAccountTermsPending: true,
-                getCustoemrAccountTermsError: null,
+                getAccountTermsPending: true,
+                getAccountTermsError: null,
             };
 
         case ACCOUNT_GET_ACCOUNT_TERMS_SUCCESS:
             // The request is success
             return {
                 ...state,
-                getCustoemrAccountTermsPending: false,
-                getCustoemrAccountTermsError: null,
+                accountTerms: action.data,
+                getAccountTermsPending: false,
+                getAccountTermsError: null,
             };
 
         case ACCOUNT_GET_ACCOUNT_TERMS_FAILURE:
             // The request is failed
             return {
                 ...state,
-                getCustoemrAccountTermsPending: false,
-                getCustoemrAccountTermsError: action.data.error,
+                getAccountTermsPending: false,
+                getAccountTermsError: action.data.error,
             };
 
         case ACCOUNT_GET_ACCOUNT_TERMS_DISMISS_ERROR:
             // Dismiss the request failure error
             return {
                 ...state,
-                getCustoemrAccountTermsError: null,
+                getAccountTermsError: null,
             };
 
         default:

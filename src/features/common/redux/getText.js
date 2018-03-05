@@ -21,6 +21,7 @@ export function getText(country, lang, textId) {
                     (xhr, res) => {
                         dispatch({
                             type: COMMON_GET_TEXT_SUCCESS,
+                            textId: textId,
                             data: res.response,
                         });
                         resolve(res);
@@ -58,6 +59,9 @@ export function reducer(state, action) {
             // The request is success
             return {
                 ...state,
+                texts: {
+                    [action.textId]: action.data
+                },
                 getTextPending: false,
                 getTextError: null,
             };
@@ -66,6 +70,7 @@ export function reducer(state, action) {
             // The request is failed
             return {
                 ...state,
+                [action.key]: action.data,
                 getTextPending: false,
                 getTextError: action.data.error,
             };

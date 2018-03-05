@@ -58,6 +58,7 @@ export function reducer(state, action) {
             // The request is success
             return {
                 ...state,
+                accountPaymentTerms: action.data,
                 getAccountPaymentTermsPending: false,
                 getAccountPaymentTermsError: null,
             };

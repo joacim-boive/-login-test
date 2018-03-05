@@ -58,6 +58,7 @@ export function reducer(state, action) {
             // The request is success
             return {
                 ...state,
+                customerExtraCardHolders: action.data,
                 getCustomerExtraCardHoldersPending: false,
                 getCustomerExtraCardHoldersError: null,
             };

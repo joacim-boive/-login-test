@@ -58,6 +58,7 @@ export function reducer(state, action) {
             // The request is success
             return {
                 ...state,
+                promissoryNotePaymentTerms: action.data,
                 getPromissoryNotePaymentTermsPending: false,
                 getPromissoryNotePaymentTermsError: null,
             };
