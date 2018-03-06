@@ -1,4 +1,3 @@
 export { default as App } from './App';
-export { default as DefaultPage } from './DefaultPage';
+export { default as StartPage } from './StartPage';
 export { default as TestPage } from './TestPage';
-export { default as Start } from './Start';

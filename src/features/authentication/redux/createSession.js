@@ -56,6 +56,7 @@ export function reducer(state, action) {
         case AUTHENTICATION_CREATE_SESSION_SUCCESS:
             return {
                 ...state,
+                session: action.data,
                 createSessionPending: false,
                 createSessionError: null,
             };

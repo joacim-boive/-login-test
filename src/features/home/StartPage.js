@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-export class DefaultPage extends Component {
+export class StartPage extends Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
@@ -11,7 +11,7 @@ export class DefaultPage extends Component {
 
   render() {
     return (
-      <div className="home-default-page">
+      <div className="home-start-page">
         <a href="http://github.com/supnate/rekit"><img src={require('../../images/logo.png')} className="app-logo" alt="logo" /></a>
         <h1>Welcome to your Rekit application!</h1>
         <p>
@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DefaultPage);
+)(StartPage);

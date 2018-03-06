@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import ConnectedDefaultPage, { DefaultPage } from 'src/features/home/DefaultPage';
+import ConnectedDefaultPage, { StartPage } from 'src/features/home/StartPage';
 
 describe('features/home/DefaultPage', () => {
   it('redux connect works', () => {
@@ -20,7 +20,7 @@ describe('features/home/DefaultPage', () => {
     );
 
     expect(
-      wrapper.find('.home-default-page').length
+      wrapper.find('.home-start-page').length
     ).to.equal(1);
   });
 
@@ -30,11 +30,11 @@ describe('features/home/DefaultPage', () => {
       actions: {},
     };
     const renderedComponent = shallow(
-      <DefaultPage {...pageProps} />
+      <StartPage {...pageProps} />
     );
 
     expect(
-      renderedComponent.find('.home-default-page').getElement()
+      renderedComponent.find('.home-start-page').getElement()
     ).to.exist;
   });
 
