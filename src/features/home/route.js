@@ -4,6 +4,7 @@
 import {
   DefaultPage,
   TestPage,
+  Start,
 } from './';
 
 export default {
@@ -16,5 +17,6 @@ export default {
       isIndex: true,
     },
     { path: 'test-page', name: 'Test page', component: TestPage },
+    { path: 'start', name: 'Start', component: Start },
   ],
 };
