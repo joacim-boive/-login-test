@@ -47,7 +47,6 @@ export function dismissUpdateAccountError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_UPDATE_ACCOUNT_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 updateAccountPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 updateAccountPending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 updateAccountPending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 updateAccountError: null,

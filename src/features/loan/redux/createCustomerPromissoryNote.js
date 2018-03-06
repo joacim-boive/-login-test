@@ -47,7 +47,6 @@ export function dismissCreateCustomerPromissoryNoteError() {
 export function reducer(state, action) {
     switch (action.type) {
         case LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 createCustomerPromissoryNotePending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 createCustomerPromissoryNotePending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 createCustomerPromissoryNotePending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_CREATE_CUSTOMER_PROMISSORY_NOTE_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 createCustomerPromissoryNoteError: null,

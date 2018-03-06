@@ -47,7 +47,6 @@ export function dismissUpdateCustomerContactInfoError() {
 export function reducer(state, action) {
     switch (action.type) {
         case CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 updateCustomerContactInfoPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 updateCustomerContactInfoPending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 updateCustomerContactInfoPending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 updateCustomerContactInfoError: null,

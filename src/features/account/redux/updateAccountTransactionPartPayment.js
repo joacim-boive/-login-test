@@ -47,7 +47,6 @@ export function dismissUpdateAccountTransactionPartPaymentError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 updateAccountTransactionPartPaymentPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 updateAccountTransactionPartPaymentPending: false,
@@ -63,7 +61,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 updateAccountTransactionPartPaymentPending: false,
@@ -71,7 +68,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 updateAccountTransactionPartPaymentError: null,

@@ -47,7 +47,6 @@ export function dismissGetAccountTransactionsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getAccountTransactionsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 accountTransactions: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getAccountTransactionsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getAccountTransactionsError: null,

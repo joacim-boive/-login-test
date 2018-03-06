@@ -47,7 +47,6 @@ export function dismissGetActivePromissoryNoteCampaignsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getActivePromissoryNoteCampaignsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 activePromissoryNoteCampaigns: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getActivePromissoryNoteCampaignsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getActivePromissoryNoteCampaignsError: null,

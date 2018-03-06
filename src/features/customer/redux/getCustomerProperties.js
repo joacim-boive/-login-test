@@ -47,7 +47,6 @@ export function dismissGetCustomerPropertiesError() {
 export function reducer(state, action) {
     switch (action.type) {
         case CUSTOMER_GET_CUSTOMER_PROPERTIES_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getCustomerPropertiesPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 customerProperties: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_PROPERTIES_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getCustomerPropertiesPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case CUSTOMER_GET_CUSTOMER_PROPERTIES_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getCustomerPropertiesError: null,

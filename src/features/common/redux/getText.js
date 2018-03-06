@@ -48,7 +48,6 @@ export function dismissGetTextError() {
 export function reducer(state, action) {
     switch (action.type) {
         case COMMON_GET_TEXT_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getTextPending: true,
@@ -56,7 +55,6 @@ export function reducer(state, action) {
             };
 
         case COMMON_GET_TEXT_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 texts: {
@@ -67,7 +65,6 @@ export function reducer(state, action) {
             };
 
         case COMMON_GET_TEXT_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 [action.key]: action.data,
@@ -76,7 +73,6 @@ export function reducer(state, action) {
             };
 
         case COMMON_GET_TEXT_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getTextError: null,

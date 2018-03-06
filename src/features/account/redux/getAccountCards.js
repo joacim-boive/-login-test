@@ -47,7 +47,6 @@ export function dismissGetAccountCardsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_CARDS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getAccountCardsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 accountCards: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_CARDS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getAccountCardsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getAccountCardsError: null,

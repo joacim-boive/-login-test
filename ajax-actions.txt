@@ -1,95 +1,100 @@
+//// excel?
+// exportCustomerTransactions EXPORT_CUSTOMER_TRANSACTIONS
 get /export/customerTransactions?session&refCode&from&to
 
-// ACCOUNT
 
-// deleteCustomerAccount
+//// ACCOUNT
+
+// deleteAccount DELETE_ACCOUNT
 del /rest/customers/v1/:customerid/accounts/:referenceid
 
-// getCustomerAccountTerms
+// getAccountTerms GET_ACCOUNT_TERMS
 get /rest/customers/v1/:customerid/accounts/:refCode/terms
 
-// getCustomerAccount
+// getAccount GET_ACCOUNT
 get /rest/customers/v1/:customerid/accounts/:refcode?noCache
 
-// getCustomerAccountAllowedPartPayments
+// getAccountAllowedPartPayments GET_ACCOUNT_ALLOWED_PART_PAYMENTS
 get /rest/customers/v1/:customerid/accounts/:referenceid/allowedpartpayments
 
-// getCustomerAccountBills
+// getAccountBills GET_ACCOUNT_BILLS
 get /rest/customers/v1/:customerid/accounts/:referenceid/bills
 
-// getCustomerAccountCampaignPurchases
+// getAccountCampaignPurchases GET_ACCOUNT_CAMPAIGN_PURCHASES
 get /rest/customers/v1/:customerid/accounts/:referenceid/campaignpurchases
 
-// getCustomerAccountCards
+// getAccountCards GET_ACCOUNT_CARDS
 get /rest/customers/v1/:customerid/accounts/:referenceid/cards?noCache
 
-// getCustomerAccountTransactions
+// getAccountTransactions GET_ACCOUNT_TRANSACTIONS
 get /rest/customers/v1/:customerid/accounts/:referenceid/transactions?offset&maxRecords
 
-// getCustomerAccounts
+// getAccounts GET_ACCOUNTS
 get /rest/customers/v1/:customerid/accounts?noCache
 
-// getCustomerExtraCardHolders
+// getCustomerExtraCardHolders GET_CUSTOMER_EXTRA_CARD_HOLDERS
 get /rest/customers/v1/:customerid/extracardholders
 
-// getAccountPaymentTerms
+// getAccountPaymentTerms GET_ACCOUNT_PAYMENT_TERMS
 get /rest/ess/v1/:country/:lang/partpayments?amount
 
-// getAccountLimitRaiseTerms
+// getAccountLimitRaiseTerms GET_ACCOUNT_LIMIT_RAISE_TERMS
 get /rest/ess/v1/:country/:lang/terms/raise
 
-// updateCustomerAccount 
+// updateAccount UPDATE_ACCOUNT
 put /rest/customers/v1/:customerid/accounts/:referenceid
 
-// updateCustomerAccountTransactionPartPayment
+// updateAccountTransactionPartPayment UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT
 put /rest/customers/v1/:customerid/accounts/:referenceid/transactions/:transactionId/partpayments
 
-// updateCustomerAccountCard
-// (Activate)
-put /rest/customers/v1/:customerid/accounts/cards/:referenceid 
+// updateAccountCard UPDATE_ACCOUNT_CARD
+put /rest/customers/v1/:customerid/accounts/cards/:referenceid
 
-// updateCustomerContactInfo
+// updateCustomerContactInfo UPDATE_CUSTOMER_CONTACT_INFO
 put /rest/customers/v1/:customerid/contact
 
-// updateCustomerExtraCardHolderContactInfo
+// updateCustomerExtraCardHolderContactInfo UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO
 put /rest/customers/v1/:customerid/extracardholders
 
-// CUSTOMER
-// getCustomer
+//// CUSTOMER
+
+// getCustomer GET_CUSTOMER
 get /rest/customers/v1/:customerid
 
-// getCustomerProperties
+// getCustomerProperties GET_CUSTOMER_PROPERTIES
 get /rest/customers/v1/:customerid/properties?property
 
-// AUTHENTICATION
+//// AUTHENTICATION
 
-// getSession
+// getSession GET_SESSION
 get /rest/sessions/v1/:sessionKey
 
-// deleteSession
+// deleteSession DELETE_SESSION
 del /rest/sessions/v1/:sessionKey
 
-// createSession
+// createSession CREATE_SESSION
 post /rest/sessions/v1
+{type: "BANKID_MOBILE", ssn: "1212121212"}
+{type: "BANKID"}
 
-// LOAN
+//// LOAN
 
-// getCustomerPromissoryNotes
+// getCustomerPromissoryNotes GET_CUSTOMER_PROMISSORY_NOTES
 get /rest/customers/v1/:customerid/promissorynotes
 
-// getActivePromissoryNoteCampaigns
+// getActivePromissoryNoteCampaigns GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS
 get /rest/ess/v1/SE/sv/promissorynotes/campaigns
 
-// getPromissoryNoteDefaultParameters
+// getPromissoryNoteDefaultParameters GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS
 get /rest/ess/v1/SE/sv/promissorynotes/parameters
 
-// getPromissoryNotePaymentTerms
+// getPromissoryNotePaymentTerms GET_PROMISSORY_NOTE_PAYMENT_TERMS
 get /rest/ess/v1/SE/sv/promissorynotes/terms?creditAmount&paymentPeriodYear&makePaymentPlan
 
-// createCustomerPromissoryNote
+// createCustomerPromissoryNote CREATE_CUSTOMER_PROMISSORY_NOTE
 post /rest/customers/v1/:customerid/promissorynotes
 
-// COMMON
+//// COMMON
 
-// getText
+// getText GET_TEXT
 get /rest/texts/v1/:country/:lang/:textId

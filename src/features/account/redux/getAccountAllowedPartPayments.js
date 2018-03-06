@@ -47,7 +47,6 @@ export function dismissGetAccountAllowedPartPaymentsError() {
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getAccountAllowedPartPaymentsPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 accountAllowedPartPayments: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getAccountAllowedPartPaymentsPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getAccountAllowedPartPaymentsError: null,

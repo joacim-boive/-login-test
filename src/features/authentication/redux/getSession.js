@@ -47,7 +47,6 @@ export function dismissGetSessionError() {
 export function reducer(state, action) {
     switch (action.type) {
         case AUTHENTICATION_GET_SESSION_BEGIN:
-            // Just after a request is sent
             return {
                 ...state,
                 getSessionPending: true,
@@ -55,7 +54,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_GET_SESSION_SUCCESS:
-            // The request is success
             return {
                 ...state,
                 session: action.data,
@@ -64,7 +62,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_GET_SESSION_FAILURE:
-            // The request is failed
             return {
                 ...state,
                 getSessionPending: false,
@@ -72,7 +69,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_GET_SESSION_DISMISS_ERROR:
-            // Dismiss the request failure error
             return {
                 ...state,
                 getSessionError: null,
