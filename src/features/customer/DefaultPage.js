@@ -5,35 +5,35 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
 export class DefaultPage extends Component {
-  static propTypes = {
-    customer: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
+    static propTypes = {
+        customer: PropTypes.object.isRequired,
+        actions: PropTypes.object.isRequired,
+    };
 
-  render() {
-    return (
-      <div className="customer-default-page">
-        Page Content: customer/DefaultPage
-      </div>
-    );
-  }
+    render() {
+        return (
+          <div className="customer-default-page">
+                Page Content: customer/DefaultPage
+          </div>
+        );
+    }
 }
 
 /* istanbul ignore next */
 function mapStateToProps(state) {
-  return {
-    customer: state.customer,
-  };
+    return {
+        customer: state.customer,
+    };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ ...actions }, dispatch)
-  };
+    return {
+        actions: bindActionCreators({ ...actions }, dispatch)
+    };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(DefaultPage);

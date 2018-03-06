@@ -1,38 +1,38 @@
 @import '../../styles/mixins';
 
 .home-start-page {
-  line-height: 160%;
-  position: relative;
+    line-height: 160%;
+    position: relative;
 
-  .app-logo {
-    position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 60px;
-  }
+    .app-logo {
+        position: absolute;
+        top: -18px;
+        left: -10px;
+        width: 60px;
+    }
 
-  h1 {
-    padding-left: 60px;
-    margin-bottom: 30px;
-  }
+    h1 {
+        padding-left: 60px;
+        margin-bottom: 30px;
+    }
 
-  h3 {
-    margin-top: 20px;
-  }
+    h3 {
+        margin-top: 20px;
+    }
 
-  ul.cmd {
-    margin: 10px 15px 0;
-    color: #666;
-    font-family: 'Courier New';
-  }
+    ul.cmd {
+        margin: 10px 15px 0;
+        color: #666;
+        font-family: 'Courier New';
+    }
 
-  p {
-    margin-top: 20px;
-  }
+    p {
+        margin-top: 20px;
+    }
 
-  .section-title {
-    padding: 5px 10px;
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-  }
+    .section-title {
+        padding: 5px 10px;
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
 }

@@ -9,29 +9,29 @@ import routeConfig from '../../common/routeConfig';
   You should adjust it according to the requirement of your app.
 */
 export default class App extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  };
+    static propTypes = {
+        children: PropTypes.node,
+    };
 
-  static defaultProps = {
-    children: 'No content.',
-  };
+    static defaultProps = {
+        children: 'No content.',
+    };
 
-  render() {
-    return (
-      <div className="home-app">
-        <div className="sidebar">
-          <SimpleNav routes={routeConfig} />
-          <p className="memo">
-            Above is a simple navigation tree for you to navigate between pages,
-            it&apos;s generated from the route config so it will be auto updated
-            when you add/remove features or pages.
-          </p>
-        </div>
-        <div className="page-container">
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+          <div className="home-app">
+            <div className="sidebar">
+              <SimpleNav routes={routeConfig} />
+              <p className="memo">
+                  Above is a simple navigation tree for you to navigate between pages,
+                  it&apos;s generated from the route config so it will be auto updated
+                  when you add/remove features or pages.
+              </p>
+            </div>
+            <div className="page-container">
+              {this.props.children}
+            </div>
+          </div>
+        );
+    }
 }

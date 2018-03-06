@@ -16,7 +16,7 @@ export function getActivePromissoryNoteCampaigns() {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL()})
+            Ajax.get({ url: GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL() })
                 .then(
                     (xhr, res) => {
                         dispatch({

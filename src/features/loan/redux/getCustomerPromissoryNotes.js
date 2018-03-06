@@ -16,7 +16,7 @@ export function getCustomerPromissoryNotes(customerId) {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_CUSTOMER_PROMISSORY_NOTES_URL(customerId)})
+            Ajax.get({ url: GET_CUSTOMER_PROMISSORY_NOTES_URL(customerId) })
                 .then(
                     (xhr, res) => {
                         dispatch({

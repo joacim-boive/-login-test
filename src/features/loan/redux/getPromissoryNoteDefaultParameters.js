@@ -16,7 +16,7 @@ export function getPromissoryNoteDefaultParameters() {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_URL()})
+            Ajax.get({ url: GET_PROMISSORY_NOTE_DEFAULT_PARAMETERS_URL() })
                 .then(
                     (xhr, res) => {
                         dispatch({

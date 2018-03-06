@@ -16,7 +16,7 @@ export function updateAccountTransactionPartPayment(customerId, referenceId, tra
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.put({url: UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId)}, data)
+            Ajax.put({ url: UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId) }, data)
                 .then(
                     (xhr, res) => {
                         dispatch({

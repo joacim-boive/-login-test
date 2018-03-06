@@ -6,7 +6,7 @@ const initialState = {
     activePromissoryNoteCampaigns: [],
     promissoryNoteDefaultParameters: [],
     promissoryNotePaymentTerms: {},
-    
+
     // generated
     getCustomerPromissoryNotesPending: false,
     getCustomerPromissoryNotesError: null,

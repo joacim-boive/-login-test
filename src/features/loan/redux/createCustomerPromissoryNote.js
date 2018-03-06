@@ -16,7 +16,7 @@ export function createCustomerPromissoryNote(customerId, data) {
         });
 
         return new Promise((resolve, reject) => {
-            Ajax.post({url: CREATE_CUSTOMER_PROMISSORY_NOTE_URL(customerId)}, data)
+            Ajax.post({ url: CREATE_CUSTOMER_PROMISSORY_NOTE_URL(customerId) }, data)
                 .then(
                     (xhr, res) => {
                         dispatch({
