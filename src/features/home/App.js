@@ -20,14 +20,6 @@ export default class App extends Component {
     render() {
         return (
           <div className="home-app">
-            <div className="sidebar">
-              <SimpleNav routes={routeConfig} />
-              <p className="memo">
-                  Above is a simple navigation tree for you to navigate between pages,
-                  it&apos;s generated from the route config so it will be auto updated
-                  when you add/remove features or pages.
-              </p>
-            </div>
             <div className="page-container">
               {this.props.children}
             </div>
