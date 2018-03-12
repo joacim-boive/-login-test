@@ -85,7 +85,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "@ecster/ecster-components": "^1.0.0",
+    "@ecster/ecster-components": "^1.0.203",
     "@ecster/ecster-net": "^1.0.71",
     "@ecster/ecster-styles": "^1.0.0",
     "@ecster/ecster-util": "^2.0.0"
