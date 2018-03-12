@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { Button, Input } from '@ecster/ecster-components';
+
+import { createSession, getSession } from '../authentication/redux/actions';
 
 export class StartPage extends Component {
     static propTypes = {
@@ -9,48 +13,61 @@ export class StartPage extends Component {
         actions: PropTypes.object.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            showMobileBankIdForm: false,
+            showDekstopBankIdForm: false,
+            ssn: ''
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+    }
+
+    onClickMobileBankId() {
+        this.setState({ showMobileBankIdForm: true });
+    }
+
+    onClickDesktopBankId() {
+        this.setState({ showDesktopBankIdForm: true });
+    }
+
     render() {
         return (
           <div className="home-start-page">
-            <a href="http://github.com/supnate/rekit"><img
-              src={require('../../images/logo.png')}
-              className="app-logo"
-              alt="logo"
-            />
-            </a>
-            <h1>Welcome to your Rekit application!</h1>
-            <p>
-                    Contratulations! You have created your Rekit app successfully! Seeing this page means everything
-                    works well now.
-            </p>
-            <p>
-                    By default <a href="https://github.com/supnate/rekit">Rekit Studio</a> is also started at <a
-                      href="http://localhost:6076"
-                    >http://localhost:6076
-                    </a> to manage the project.
-            </p>
-            <p>
-                    To learn more about how to get started, you can visit: <a
-                      href="http://rekit.js.org/docs/get-started.html"
-                    >Get started
-                    </a>
-            </p>
-            <h3>No Demos</h3>
+            <h1>Logga in på Ecster!</h1>
+            <Button>Mobilt Bank-ID</Button>
+
+              this.state.showMobileBankIdForm &&
+            <div className="startpage-mobile-bankid-form" >
+              Logga in med mobilt bankid
+            </div>
+
+              this.state.showDesktopBankIdForm &&
+            <div className="startpage-desktop-bankid-form" >
+              Logga in med bankid
+            </div>
           </div>
         );
     }
 }
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps({authentication}) {
     return {
-        home: state.home,
+        // home: home,
+        session: authentication.session
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
-    return {};
+    return {
+        createSession: (data) => { dispatch(createSession(data)); },
+        getSession: () => { dispatch(getSession()); }
+    };
 }
 
 export default connect(

@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_GET_ACCOUNT_BEGIN,
     ACCOUNT_GET_ACCOUNT_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_ACCOUNT_URL } from './urls';
 
-export function getAccount(customerId, refcode) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getAccount = (customerId, refcode) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_GET_ACCOUNT_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_ACCOUNT_URL(customerId, refcode));
         dispatch({
-            type: ACCOUNT_GET_ACCOUNT_BEGIN,
+            type: ACCOUNT_GET_ACCOUNT_SUCCESS,
+            data: res.response
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_ACCOUNT_URL(customerId, refcode) })
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_GET_ACCOUNT_FAILURE,
+            data: { error: err }
         });
-    };
-}
+    }
+};
 
-export function dismissGetAccountError() {
-    return {
-        type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
-    };
-}
+export const dismissGetAccountError = () => ({ type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

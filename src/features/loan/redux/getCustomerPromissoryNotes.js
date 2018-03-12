@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     LOAN_GET_CUSTOMER_PROMISSORY_NOTES_BEGIN,
     LOAN_GET_CUSTOMER_PROMISSORY_NOTES_SUCCESS,
@@ -7,42 +5,30 @@ import {
     LOAN_GET_CUSTOMER_PROMISSORY_NOTES_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_CUSTOMER_PROMISSORY_NOTES_URL } from './urls';
 
-export function getCustomerPromissoryNotes(customerId) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getCustomerPromissoryNotes = customerId => async (dispatch) => {
+    dispatch({
+        type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_CUSTOMER_PROMISSORY_NOTES_URL(customerId));
         dispatch({
-            type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_BEGIN,
+            type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_CUSTOMER_PROMISSORY_NOTES_URL(customerId) })
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissGetCustomerPromissoryNotesError() {
-    return {
-        type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_DISMISS_ERROR,
-    };
-}
+export const dismissGetCustomerPromissoryNotesError = () => ({ type: LOAN_GET_CUSTOMER_PROMISSORY_NOTES_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

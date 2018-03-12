@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     AUTHENTICATION_CREATE_SESSION_BEGIN,
     AUTHENTICATION_CREATE_SESSION_SUCCESS,
@@ -7,42 +5,30 @@ import {
     AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
 } from './constants';
 
+import { post } from '../../../common/asyncAjax';
+
 import { CREATE_SESSION_URL } from './urls';
 
-export function createSession(data) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const createSession = data => async (dispatch) => {
+    dispatch({
+        type: AUTHENTICATION_CREATE_SESSION_BEGIN,
+    });
+
+    try {
+        const res = await post(CREATE_SESSION_URL(), data);
         dispatch({
-            type: AUTHENTICATION_CREATE_SESSION_BEGIN,
+            type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.post({url: CREATE_SESSION_URL()}, data)
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: AUTHENTICATION_CREATE_SESSION_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: AUTHENTICATION_CREATE_SESSION_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissCreateSessionError() {
-    return {
-        type: AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
-    };
-}
+export const dismissCreateSessionError = () => ({ type: AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

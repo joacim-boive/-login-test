@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
     CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
@@ -7,42 +5,30 @@ import {
     CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR,
 } from './constants';
 
-import {UPDATE_CUSTOMER_CONTACT_INFO_URL} from './urls';
+import { put } from '../../../common/asyncAjax';
 
-export function updateCustomerContactInfo(customerId, data) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+import { UPDATE_CUSTOMER_CONTACT_INFO_URL } from './urls';
+
+export const updateCustomerContactInfo = (customerId, data) => async (dispatch) => {
+    dispatch({
+        type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
+    });
+
+    try {
+        const res = await put(UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId), data);
         dispatch({
-            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
+            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.put({url: UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId)}, data)
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE,
-                            data: {error: err},
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissUpdateCustomerContactInfoError() {
-    return {
-        type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR,
-    };
-}
+export const dismissUpdateCustomerContactInfoError = () => ({ type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

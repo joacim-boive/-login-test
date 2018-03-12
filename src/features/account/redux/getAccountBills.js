@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_GET_ACCOUNT_BILLS_BEGIN,
     ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_ACCOUNT_BILLS_URL } from './urls';
 
-export function getAccountBills(customerId, referenceId) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getAccountBills = (customerId, referenceId) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_GET_ACCOUNT_BILLS_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_ACCOUNT_BILLS_URL(customerId, referenceId));
         dispatch({
-            type: ACCOUNT_GET_ACCOUNT_BILLS_BEGIN,
+            type: ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS,
+            data: res.response
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_ACCOUNT_BILLS_URL(customerId, referenceId)})
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_BILLS_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_GET_ACCOUNT_BILLS_FAILURE,
+            data: { error: err }
         });
-    };
-}
+    }
+};
 
-export function dismissGetAccountBillsError() {
-    return {
-        type: ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR,
-    };
-}
+export const dismissGetAccountBillsError = () => ({ type: ACCOUNT_GET_ACCOUNT_BILLS_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

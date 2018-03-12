@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_ACCOUNT_TRANSACTIONS_URL } from './urls';
 
-export function getAccountTransactions(customerId, referenceId, offset, maxRecords) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getAccountTransactions = (customerId, referenceId, offset, maxRecords) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords));
         dispatch({
-            type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
+            type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords)})
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissGetAccountTransactionsError() {
-    return {
-        type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
-    };
-}
+export const dismissGetAccountTransactionsError = () => ({ type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

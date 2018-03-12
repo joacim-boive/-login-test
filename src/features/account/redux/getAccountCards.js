@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_GET_ACCOUNT_CARDS_BEGIN,
     ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_ACCOUNT_CARDS_URL } from './urls';
 
-export function getAccountCards(customerId, referenceId) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getAccountCards = (customerId, referenceId) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_GET_ACCOUNT_CARDS_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_ACCOUNT_CARDS_URL(customerId, referenceId));
         dispatch({
-            type: ACCOUNT_GET_ACCOUNT_CARDS_BEGIN,
+            type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
+            data: res.response
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_ACCOUNT_CARDS_URL(customerId, referenceId)})
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_GET_ACCOUNT_CARDS_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_GET_ACCOUNT_CARDS_FAILURE,
+            data: { error: err }
         });
-    };
-}
+    }
+};
 
-export function dismissGetAccountCardsError() {
-    return {
-        type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
-    };
-}
+export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

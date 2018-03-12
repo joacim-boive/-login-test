@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN,
     ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR,
 } from './constants';
 
+import { put } from '../../../common/asyncAjax';
+
 import { UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL } from './urls';
 
-export function updateAccountTransactionPartPayment(customerId, referenceId, transactionId, data) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const updateAccountTransactionPartPayment = (customerId, referenceId, transactionId, data) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN,
+    });
+
+    try {
+        const res = await put(UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId), data);
         dispatch({
-            type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_BEGIN,
+            type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.put({ url: UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_URL(customerId, referenceId, transactionId) }, data)
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissUpdateAccountTransactionPartPaymentError() {
-    return {
-        type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR,
-    };
-}
+export const dismissUpdateAccountTransactionPartPaymentError = () => ({ type: ACCOUNT_UPDATE_ACCOUNT_TRANSACTION_PART_PAYMENT_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

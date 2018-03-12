@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_BEGIN,
     LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_SUCCESS,
@@ -7,42 +5,30 @@ import {
     LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL } from './urls';
 
-export function getActivePromissoryNoteCampaigns() {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getActivePromissoryNoteCampaigns = () => async (dispatch) => {
+    dispatch({
+        type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL());
         dispatch({
-            type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_BEGIN,
+            type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_URL() })
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissGetActivePromissoryNoteCampaignsError() {
-    return {
-        type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_DISMISS_ERROR,
-    };
-}
+export const dismissGetActivePromissoryNoteCampaignsError = () => ({ type: LOAN_GET_ACTIVE_PROMISSORY_NOTE_CAMPAIGNS_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

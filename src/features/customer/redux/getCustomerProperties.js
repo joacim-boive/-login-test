@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     CUSTOMER_GET_CUSTOMER_PROPERTIES_BEGIN,
     CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS,
@@ -7,42 +5,30 @@ import {
     CUSTOMER_GET_CUSTOMER_PROPERTIES_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_CUSTOMER_PROPERTIES_URL } from './urls';
 
-export function getCustomerProperties(customerId, property) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getCustomerProperties = (customerId, property) => async (dispatch) => {
+    dispatch({
+        type: CUSTOMER_GET_CUSTOMER_PROPERTIES_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_CUSTOMER_PROPERTIES_URL(customerId, property));
         dispatch({
-            type: CUSTOMER_GET_CUSTOMER_PROPERTIES_BEGIN,
+            type: CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({url: GET_CUSTOMER_PROPERTIES_URL(customerId, property)})
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: CUSTOMER_GET_CUSTOMER_PROPERTIES_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: CUSTOMER_GET_CUSTOMER_PROPERTIES_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissGetCustomerPropertiesError() {
-    return {
-        type: CUSTOMER_GET_CUSTOMER_PROPERTIES_DISMISS_ERROR,
-    };
-}
+export const dismissGetCustomerPropertiesError = () => ({ type: CUSTOMER_GET_CUSTOMER_PROPERTIES_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

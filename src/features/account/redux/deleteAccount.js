@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_DELETE_ACCOUNT_BEGIN,
     ACCOUNT_DELETE_ACCOUNT_SUCCESS,
@@ -7,44 +5,30 @@ import {
     ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR,
 } from './constants';
 
+import { del } from '../../../common/asyncAjax';
+
 import { DELETE_ACCOUNT_URL } from './urls';
 
-export function deleteAccount(customerId, referenceId) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const deleteAccount = (customerId, referenceId) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_DELETE_ACCOUNT_BEGIN,
+    });
+
+    try {
+        const res = await del(DELETE_ACCOUNT_URL(customerId, referenceId));
         dispatch({
-            type: ACCOUNT_DELETE_ACCOUNT_BEGIN,
+            type: ACCOUNT_DELETE_ACCOUNT_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            const url = DELETE_ACCOUNT_URL(customerId, referenceId);
-
-            Ajax.delete({ url })
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_DELETE_ACCOUNT_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_DELETE_ACCOUNT_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_DELETE_ACCOUNT_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissDeleteAccountError() {
-    return {
-        type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR,
-    };
-}
+export const dismissDeleteAccountError = () => ({ type: ACCOUNT_DELETE_ACCOUNT_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

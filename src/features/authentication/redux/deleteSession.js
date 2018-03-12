@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     AUTHENTICATION_DELETE_SESSION_BEGIN,
     AUTHENTICATION_DELETE_SESSION_SUCCESS,
@@ -7,42 +5,30 @@ import {
     AUTHENTICATION_DELETE_SESSION_DISMISS_ERROR,
 } from './constants';
 
+import { del } from '../../../common/asyncAjax';
+
 import { DELETE_SESSION_URL } from './urls';
 
-export function deleteSession(sessionKey) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const deleteSession = sessionKey => async (dispatch) => {
+    dispatch({
+        type: AUTHENTICATION_DELETE_SESSION_BEGIN,
+    });
+
+    try {
+        const res = await del(DELETE_SESSION_URL(sessionKey));
         dispatch({
-            type: AUTHENTICATION_DELETE_SESSION_BEGIN,
+            type: AUTHENTICATION_DELETE_SESSION_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.delete({url: DELETE_SESSION_URL(sessionKey)})
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: AUTHENTICATION_DELETE_SESSION_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: AUTHENTICATION_DELETE_SESSION_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: AUTHENTICATION_DELETE_SESSION_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissDeleteSessionError() {
-    return {
-        type: AUTHENTICATION_DELETE_SESSION_DISMISS_ERROR,
-    };
-}
+export const dismissDeleteSessionError = () => ({ type: AUTHENTICATION_DELETE_SESSION_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

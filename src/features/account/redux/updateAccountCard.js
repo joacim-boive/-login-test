@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
@@ -7,42 +5,30 @@ import {
     ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR,
 } from './constants';
 
+import { put } from '../../../common/asyncAjax';
+
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 
-export function updateAccountCard(customerId, referenceId, data) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const updateAccountCard = (customerId, referenceId, data) => async (dispatch) => {
+    dispatch({
+        type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
+    });
+
+    try {
+        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, referenceId), data);
         dispatch({
-            type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
+            type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.put({url: UPDATE_ACCOUNT_CARD_URL(customerId, referenceId)}, data)
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: ACCOUNT_UPDATE_ACCOUNT_CARD_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: ACCOUNT_UPDATE_ACCOUNT_CARD_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissUpdateAccountCardError() {
-    return {
-        type: ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR,
-    };
-}
+export const dismissUpdateAccountCardError = () => ({ type: ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {

@@ -1,5 +1,3 @@
-import Ajax from '@ecster/ecster-net/lib/Ajax';
-
 import {
     CUSTOMER_GET_CUSTOMER_BEGIN,
     CUSTOMER_GET_CUSTOMER_SUCCESS,
@@ -7,42 +5,30 @@ import {
     CUSTOMER_GET_CUSTOMER_DISMISS_ERROR,
 } from './constants';
 
+import { get } from '../../../common/asyncAjax';
+
 import { GET_CUSTOMER_URL } from './urls';
 
-export function getCustomer(customerId) {
-    return (dispatch) => { // optionally you can have getState as the second argument
+export const getCustomer = customerId => async (dispatch) => {
+    dispatch({
+        type: CUSTOMER_GET_CUSTOMER_BEGIN,
+    });
+
+    try {
+        const res = await get(GET_CUSTOMER_URL(customerId));
         dispatch({
-            type: CUSTOMER_GET_CUSTOMER_BEGIN,
+            type: CUSTOMER_GET_CUSTOMER_SUCCESS,
+            data: res.response,
         });
-
-        return new Promise((resolve, reject) => {
-            Ajax.get({ url: GET_CUSTOMER_URL(customerId) })
-                .then(
-                    (xhr, res) => {
-                        dispatch({
-                            type: CUSTOMER_GET_CUSTOMER_SUCCESS,
-                            data: res.response,
-                        });
-                        resolve(res);
-                    })
-                .catch(
-                    (err) => {
-                        dispatch({
-                            type: CUSTOMER_GET_CUSTOMER_FAILURE,
-                            data: { error: err },
-                        });
-                        reject(err);
-                    },
-                );
+    } catch (err) {
+        dispatch({
+            type: CUSTOMER_GET_CUSTOMER_FAILURE,
+            data: { error: err },
         });
-    };
-}
+    }
+};
 
-export function dismissGetCustomerError() {
-    return {
-        type: CUSTOMER_GET_CUSTOMER_DISMISS_ERROR,
-    };
-}
+export const dismissGetCustomerError = () => ({ type: CUSTOMER_GET_CUSTOMER_DISMISS_ERROR });
 
 export function reducer(state, action) {
     switch (action.type) {
