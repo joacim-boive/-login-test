@@ -1,7 +1,7 @@
 // Copied from Dashboard X, src/util/api.js
 // todo: @ecster node modules?
 
-import { Ajax } from '@ecster/ecster-net';
+import Ajax from '@ecster/ecster-net/lib/Ajax';
 
 const successHandler = (xhr, body) => Promise.resolve(body);
 const errorHandler = (xhr, body) => Promise.reject(body);
