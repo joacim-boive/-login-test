@@ -43,6 +43,7 @@ export function reducer(state, action) {
             return {
                 ...state,
                 session: action.data,
+                isLoggedIn: true,
                 getSessionPending: false,
                 getSessionError: null,
             };
@@ -50,6 +51,7 @@ export function reducer(state, action) {
         case AUTHENTICATION_GET_SESSION_FAILURE:
             return {
                 ...state,
+                isLoggedIn: false,
                 getSessionPending: false,
                 getSessionError: action.data.error,
             };
