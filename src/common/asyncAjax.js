@@ -1,7 +1,8 @@
 // Copied from Dashboard X, src/util/api.js
 // todo: @ecster node modules?
 
-import { Ajax } from '@ecster/ecster-net';
+import Ajax from '@ecster/ecster-net/lib/Ajax';
+import Session from '@ecster/ecster-net/lib/Session';
 
 const successHandler = (xhr, body) => Promise.resolve(body);
 const errorHandler = (xhr, body) => Promise.reject(body);
@@ -37,6 +38,11 @@ export const del = (url, data) =>
         .delete({ url }, data)
         .then(successHandler)
         .catch(errorHandler);
+
+export const setHeaders = (sessionKey) => {
+    Session.set('origin', 'mypages');
+    Session.set('sessionKey', sessionKey);
+};
 
 // export const findErrorText = (e) => {
 //     const jsonResponse = JSON.parse(e.response);

@@ -4,8 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Switch, Route, HashRouter } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
-import history from './common/history';
+import Authorized from './features/authentication/Authorized';
+
+// import { ConnectedRouter } from 'react-router-redux';
+// import history from './common/history';
 
 function renderRouteConfigV3(Container, routes, contextPath) {
     // Resolve route config object in React Router v3.
@@ -22,7 +24,8 @@ function renderRouteConfigV3(Container, routes, contextPath) {
         if (item.component && item.childRoutes) {
             children.push(renderRouteConfigV3(item.component, item.childRoutes, newContextPath));
         } else if (item.component) {
-            children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact />);
+            const route = <Route key={newContextPath} component={item.component} path={newContextPath} exact />;
+            children.push( item.isPublic ? route : <Authorized>{route}</Authorized>);
         } else if (item.childRoutes) {
             item.childRoutes.forEach(r => renderRoute(r, newContextPath));
         }

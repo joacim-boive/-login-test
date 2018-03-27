@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { get } from '../../../common/asyncAjax';
+import { get, setHeaders } from '../../../common/asyncAjax';
 
 import { GET_SESSION_URL } from './urls';
 
@@ -16,6 +16,7 @@ export const getSession = sessionKey => async (dispatch) => {
 
     try {
         const res = await get(GET_SESSION_URL(sessionKey));
+        setHeaders(res.response.key);
         dispatch({
             type: AUTHENTICATION_GET_SESSION_SUCCESS,
             data: res.response,
@@ -42,8 +43,9 @@ export function reducer(state, action) {
         case AUTHENTICATION_GET_SESSION_SUCCESS:
             return {
                 ...state,
-                session: action.data,
-                isLoggedIn: true,
+                sessionKey: action.data.key,
+                isLoggedIn: action.data.authentication.status === 'VERIFIED',
+                person: action.data.person,
                 getSessionPending: false,
                 getSessionError: null,
             };
@@ -51,7 +53,9 @@ export function reducer(state, action) {
         case AUTHENTICATION_GET_SESSION_FAILURE:
             return {
                 ...state,
+                sessionKey: undefined,
                 isLoggedIn: false,
+                person: {},
                 getSessionPending: false,
                 getSessionError: action.data.error,
             };

@@ -1,38 +1,15 @@
-@import '../../styles/mixins';
 
 .home-start-page {
-    line-height: 160%;
-    position: relative;
+    max-width: 600px;
+    margin: 20px auto 0;
+    text-align: center;
 
-    .app-logo {
-        position: absolute;
-        top: -18px;
-        left: -10px;
-        width: 60px;
+    .bankid-form {
+        max-width: 250px;
+        margin: 0 auto;
     }
 
-    h1 {
-        padding-left: 60px;
-        margin-bottom: 30px;
-    }
-
-    h3 {
-        margin-top: 20px;
-    }
-
-    ul.cmd {
-        margin: 10px 15px 0;
-        color: #666;
-        font-family: 'Courier New';
-    }
-
-    p {
-        margin-top: 20px;
-    }
-
-    .section-title {
-        padding: 5px 10px;
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
+    h1, button, p {
+        margin-bottom: 20px;
     }
 }
