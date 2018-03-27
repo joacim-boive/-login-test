@@ -24,8 +24,16 @@ function renderRouteConfigV3(Container, routes, contextPath) {
         if (item.component && item.childRoutes) {
             children.push(renderRouteConfigV3(item.component, item.childRoutes, newContextPath));
         } else if (item.component) {
-            const route = <Route key={newContextPath} component={item.component} path={newContextPath} exact />;
-            children.push( item.isPublic ? route : <Authorized>{route}</Authorized>);
+            if (item.isPublic) {
+                console.log(' public path = ', newContextPath, item);
+                children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact />);
+            } else {
+                console.log('  login path = ', newContextPath, item);
+                children.push(
+                  <Authorized key={newContextPath}>
+                      <Route component={item.component} path={newContextPath} exact />
+                  </Authorized>);
+            }
         } else if (item.childRoutes) {
             item.childRoutes.forEach(r => renderRoute(r, newContextPath));
         }

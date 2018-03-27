@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Button, ButtonGroup, Input } from '@ecster/ecster-components';
+import '@ecster/ecster-styles/v2/include/color-classes.css';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 
@@ -15,73 +16,65 @@ export class StartPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMobileBankIdForm: false,
-            showDesktopBankIdForm: false,
+            showMBIDOtherDevice: false,
+            showBID: false,
             ssn: ''
         };
 
-        this.onClickMobileBankId = this.onClickMobileBankId.bind(this);
-        this.onClickDesktopBankId = this.onClickDesktopBankId.bind(this);
-        this.onCancelLoginForm = this.onCancelLoginForm.bind(this);
+        this.onClickMBID = this.onClickMBID.bind(this);
+        this.onClickMBIDOtherDevice = this.onClickMBIDOtherDevice.bind(this);
+        this.onClickBID = this.onClickBID.bind(this);
         this.onSsnChange = this.onSsnChange.bind(this);
-        this.startMobileBankIdLogin = this.startMobileBankIdLogin.bind(this);
-        this.startDesktopBankIdLogin = this.startDesktopBankIdLogin.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         console.log('StartPage will receive props: ', nextProps);
     }
 
-    onClickMobileBankId() {
-        this.setState({ showMobileBankIdForm: true });
+    onClickMBID() {
+        this.props.createSession({'BANKID'});
     }
 
-    onClickDesktopBankId() {
-        this.setState({ showDesktopBankIdForm: true });
+    onClickMBIDOtherDevice() {
+        this.setState({ showMBIDOtherDevice: true });
+    }
+
+    onClickBID() {
+        this.setState({ showBID: true });
     }
 
     onSsnChange({ target }) {
         this.setState({ ssn: target.value });
     }
 
-    onCancelLoginForm() {
-        this.setState({
-            showMobileBankIdForm: false,
-            showDesktopBankIdForm: false
-        });
-    }
-
-    startMobileBankIdLogin() {
-        this.props.createSession({method: 'BANKID_MOBILE'});
-    }
-
-    startDesktopBankIdLogin() {
-        console.log('desktop bankid not implemented');
-//        this.props.createSession({method: 'BANKID'});
-    }
-
     render() {
         return (
           <div className="home-start-page">
-            <h1>Logga in på Ecster!</h1>
-            <Button onClick={this.onClickMobileBankId}>Mobilt Bank-ID</Button>
+            <h1 className="e-green120">Logga in</h1>
+            <h2>{`sessoionKey = ${this.props.sessionKey}`}</h2>
+            <div>
+              <Button onClick={this.onClickMBID} round>Logga in med mobilt BankID</Button>
+            </div>
+            <div>
+              <Button onClick={this.onClickMBIDOtherDevice} transparent>Använd mobilt BankID från annan enhet</Button>
+            </div>
 
             {
-                this.state.showMobileBankIdForm &&
+                this.state.showMBIDOtherDevice &&
                 <div className="bankid-form startpage-mobile-bankid-form" >
                   <Input label="Ange personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
                   <ButtonGroup align="center">
-                    <Button secondary outline onClick={this.onCancelLoginForm}> Avbryt</Button>
-                    <Button secondary onClick={this.startMobileBankIdLogin} >Logga in</Button>
+                    <Button secondary outline onClick={console.log}> Avbryt</Button>
+                    <Button secondary onClick={console.log} >Logga in</Button>
                   </ButtonGroup>
 
                 </div>
             }
 
             {
-                this.state.showDesktopBankIdForm &&
+                this.state.showBID &&
                 <div className="bankid-form startpage-desktop-bankid-form" >
-                    Logga in med bankid
+                    Logga in med BankID
                 </div>
             }
           </div>
@@ -90,15 +83,15 @@ export class StartPage extends React.Component {
 }
 
 StartPage.propTypes = {
-    session: PropTypes.shape().isRequired,
-    createSession: PropTypes.func.isRequired
+    createSession: PropTypes.func.isRequired,
+    sessionKey: PropTypes.string
 };
 
 /* istanbul ignore next */
 function mapStateToProps({ authentication }) {
     return {
         // home: home,
-        session: authentication.session
+        sessionKey: authentication.sessionKey
     };
 }
 
@@ -106,7 +99,7 @@ function mapStateToProps({ authentication }) {
 function mapDispatchToProps(dispatch) {
     return {
         createSession: (data) => { dispatch(createSession(data)); },
-        getSession: () => { dispatch(getSession()); }
+        getSession: (sessionKey) => { dispatch(getSession(sessionKey)); }
     };
 }
 

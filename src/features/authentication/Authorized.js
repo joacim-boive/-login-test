@@ -7,7 +7,9 @@ import { getSession } from './redux/getSession';
 
 class Authorized extends React.Component {
     componentDidMount() {
+        console.log('Authorized did mount');
         if (!this.props.getSessionPending && !this.props.isLoggedIn) {
+            console.log('Authorized getSession');
             this.props.getSession(this.props.sessionKey);
         }
     }
@@ -16,7 +18,7 @@ class Authorized extends React.Component {
         if (this.props.isLoggedIn === true) {
             return this.props.children;
         } else if (this.props.isLoggedIn === false) {
-            return <Redirect to="/login" />;
+            return <Redirect to="/start" />;
         }
         return <div />;
     }
