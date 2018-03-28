@@ -2,17 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Button, ButtonGroup, Input } from '@ecster/ecster-components';
-import '@ecster/ecster-styles/v2/include/color-classes.css';
+import { Button, ButtonGroup, Input/* , DesktopDevice, TabletDevice, MobileDevice */ } from '@ecster/ecster-components';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 
 export class StartPage extends React.Component {
-    // static propTypes = {
-    //     home: PropTypes.object.isRequired,
-    //     actions: PropTypes.object.isRequired,
-    // };
-    //
     constructor(props) {
         super(props);
         this.state = {
@@ -73,40 +67,59 @@ export class StartPage extends React.Component {
 
     render() {
         return (
-          <div className="home-start-page">
-            <h1 className="e-green120">Logga in</h1>
-            <small>{`sessionKey = ${this.props.loginStatus.sessionKey}`}</small>
-            <div>
-              <Button onClick={this.startMbidLogin} round>Logga in med mobilt BankID</Button>
-            </div>
-            <div>
-              <Button onClick={this.showMbidOtherDeviceForm} transparent>Använd mobilt BankID från annan enhet</Button>
-            </div>
+            <div className="home-start-page">
+                <h1 className="e-green120">Logga in</h1>
+                {
+                  this.props.loginStatus.isLoggedIn &&
+                  <small className="e-green120">Inloggad</small>
+              }
+                {
+                  !this.props.loginStatus.isLoggedIn &&
+                  <small className="e-purple">Ej inloggad</small>
+              }
+                <div className="mt-4x">
+                    <Button onClick={this.startMbidLogin} round>Logga in med mobilt BankID</Button>
+                </div>
+                <div>
+                    <Button onClick={this.showMbidOtherDeviceForm} transparent>Använd mobilt BankID från annan enhet</Button>
+                </div>
 
-            {
+                <div className="mb-2x">
+                    <a href="#/common/info">Gå till common / info</a>
+                </div>
+                <div className="mb-2x">
+                    <a href="#/account">Gå till kontosida /account</a>
+                </div>
+                <div className="mb-2x">
+                    <a href="#/account/overview">Gå till kontoöversikt /account/overview </a>
+                </div>
+                <div className="mb-2x">
+                    <a href="#/customer">Gå till kundsida /customer</a>
+                </div>
+
+                {
                 this.state.showMbidOtherDevice &&
                 <div className="bankid-form startpage-mobile-bankid-form" >
-                  <Input label="Ange personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
-                  <ButtonGroup align="center">
-                    <Button secondary outline onClick={console.log}> Avbryt</Button>
-                    <Button secondary onClick={console.log} >Logga in</Button>
-                  </ButtonGroup>
-
+                    <Input label="Ange personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
+                    <ButtonGroup align="center">
+                        <Button secondary outline onClick={console.log}> Avbryt</Button>
+                        <Button secondary onClick={console.log} >Logga in</Button>
+                    </ButtonGroup>
                 </div>
             }
 
-            {
+                {
                 this.state.showBid &&
                 <div className="bankid-form startpage-desktop-bankid-form" >
                     Logga in med BankID
                 </div>
             }
 
-            {
+                {
               this.state.createIframe &&
               <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
             }
-          </div>
+            </div>
         );
     }
 }

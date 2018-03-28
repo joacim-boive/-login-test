@@ -15,10 +15,21 @@ export const createSession = data => async (dispatch) => {
     });
 
     try {
-        const res = await post(CREATE_SESSION_URL(), data);
+        // TODO: do the createSession call!! Tmp removed for testing /joli44 2018-03-28
+        // const res = await post(CREATE_SESSION_URL(), data);
         dispatch({
             type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
-            data: res.response,
+            // TODO: send the real data!! Tmp removed for testing /joli44 2018-03-28
+            // data: res.response,
+            data: {
+                authentication: {
+                    status: 'VERIFIED',
+                    eid: {
+                        pollTime: 0,
+                        startUrl: undefined
+                    }
+                }
+            }
         });
     } catch (err) {
         dispatch({
@@ -58,6 +69,8 @@ export function reducer(state, action) {
                 ...state,
                 loginStatus: {
                     sessionKey: action.data.key,
+                    // TODO: remove isLoggedIn!! Will be set in getSession success. Set here for test /joli44 2018-03-28
+                    isLoggedIn: true
                 },
                 loginProgress: {
                     status: action.data.authentication.status,

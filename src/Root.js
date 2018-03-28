@@ -9,9 +9,17 @@ import Authorized from './features/authentication/Authorized';
 // import { ConnectedRouter } from 'react-router-redux';
 // import history from './common/history';
 
+// import StartPage from './features/home/StartPage';
+// import InfoPage from './features/common/InfoPage';
+// import AccountPage from './features/account/DefaultPage';
+// import AccountOverviewPage from './features/account/OverviewPage';
+// import CustomerPage from './features/customer/DefaultPage';
+//
 function renderRouteConfigV3(Container, routes, contextPath) {
     // Resolve route config object in React Router v3.
     const children = []; // children component list
+
+    console.log('renderRouteConfigV3, routes = ', routes);
 
     const renderRoute = (item, routeContextPath) => {
         let newContextPath;
@@ -24,16 +32,7 @@ function renderRouteConfigV3(Container, routes, contextPath) {
         if (item.component && item.childRoutes) {
             children.push(renderRouteConfigV3(item.component, item.childRoutes, newContextPath));
         } else if (item.component) {
-            if (item.isPublic) {
-                console.log(' public path = ', newContextPath, item);
-                children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact />);
-            } else {
-                console.log('  login path = ', newContextPath, item);
-                children.push(
-                  <Authorized key={newContextPath}>
-                      <Route component={item.component} path={newContextPath} exact />
-                  </Authorized>);
-            }
+            children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact />);
         } else if (item.childRoutes) {
             item.childRoutes.forEach(r => renderRoute(r, newContextPath));
         }
@@ -45,11 +44,11 @@ function renderRouteConfigV3(Container, routes, contextPath) {
     if (!Container) return <Switch>{children}</Switch>;
 
     return (
-      <Container key={contextPath}>
-        <Switch>
-          {children}
-        </Switch>
-      </Container>
+        <Container key={contextPath}>
+            <Switch>
+                {children}
+            </Switch>
+        </Container>
     );
 }
 
@@ -62,13 +61,14 @@ export default class Root extends React.Component {
     // history={history}
 
     render() {
+        console.log('route config = ', this.props.routeConfig);
         const children = renderRouteConfigV3(null, this.props.routeConfig, '/');
         return (
-          <Provider store={this.props.store}>
-            <HashRouter>
-              {children}
-            </HashRouter>
-          </Provider>
+            <Provider store={this.props.store}>
+                <HashRouter>
+                    {children}
+                </HashRouter>
+            </Provider>
         );
     }
 }

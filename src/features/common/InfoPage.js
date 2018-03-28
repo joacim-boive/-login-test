@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
-export class OverviewPage extends Component {
+export class InfoPage extends Component {
   static propTypes = {
-    account: PropTypes.object.isRequired,
+    common: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   render() {
     return (
-      <div className="page account-overview-page">
-        <h1>Account / overview page</h1>
-      </div>
+        <div className="page common-info-page">
+            <h1>Common / info page </h1>
+        </div>
     );
   }
 }
@@ -22,7 +22,7 @@ export class OverviewPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    account: state.account,
+    common: state.common,
   };
 }
 
@@ -36,4 +36,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OverviewPage);
+)(InfoPage);

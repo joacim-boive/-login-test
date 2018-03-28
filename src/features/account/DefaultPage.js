@@ -12,8 +12,8 @@ export class DefaultPage extends Component {
 
     render() {
         return (
-          <div className="account-default-page">
-                Page Content: account/DefaultPage
+          <div className="page account-default-page">
+                <h1>Account page</h1>
           </div>
         );
     }

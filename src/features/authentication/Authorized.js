@@ -7,18 +7,20 @@ import { getSession } from './redux/getSession';
 
 class Authorized extends React.Component {
     componentDidMount() {
-        console.log('Authorized did mount');
-        if (!this.props.getSessionPending && !this.props.isLoggedIn) {
+        console.log('Authorized did mount: isLoggedIn = ', this.props.loginStatus.isLoggedIn);
+        console.log('Authorized did mount: children = ', this.props.children);
+        if (!this.props.getSessionPending && !this.props.loginStatus.isLoggedIn) {
             console.log('Authorized getSession');
-            this.props.getSession(this.props.sessionKey);
+            this.props.getSession(this.props.loginStatus.sessionKey);
         }
     }
 
     render() {
-        if (this.props.isLoggedIn === true) {
+        console.log('Authorized render: isLoggedIn', this.props.loginStatus.isLoggedIn);
+        if (this.props.loginStatus.isLoggedIn === true) {
             return this.props.children;
-        } else if (this.props.isLoggedIn === false) {
-            return <Redirect to="/start" />;
+        } else if (this.props.loginStatus.isLoggedIn === false) {
+            return <Redirect to="/" />;
         }
         return <div />;
     }
@@ -28,17 +30,16 @@ Authorized.propTypes = {
     children: PropTypes.node.isRequired,
     getSession: PropTypes.func.isRequired,
     getSessionPending: PropTypes.bool.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    sessionKey: PropTypes.string
+    // loginProgress: PropTypes.shape().isRequired,
+    loginStatus: PropTypes.shape().isRequired,
 };
 
 Authorized.defaultProps = {
-    sessionKey: undefined
 };
 
 const mapStateToProps = ({ authentication }) => ({
-    isLoggedIn: authentication.isLoggedIn,
-    sessionKey: authentication.sessionKey,
+    // loginProgress: authentication.loginProgress,
+    loginStatus: authentication.loginStatus,
     getSessionPending: authentication.getSessionPending,
 });
 

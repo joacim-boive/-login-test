@@ -12,9 +12,9 @@ export class DefaultPage extends Component {
 
     render() {
         return (
-          <div className="customer-default-page">
-                Page Content: customer/DefaultPage
-          </div>
+            <div className="page customer-default-page">
+                <h1>Customer page</h1>
+            </div>
         );
     }
 }

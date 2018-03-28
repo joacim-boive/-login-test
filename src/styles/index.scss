@@ -7,3 +7,18 @@
 @import '../features/authentication/style';
 @import '../features/customer/style';
 @import '../features/loan/style';
+
+@import '~@ecster/ecster-styles/v2/include/margins';
+@import '~@ecster/ecster-styles/v2/include/paddings';
+@import '~@ecster/ecster-styles/v2/include/color-classes';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+
+// TODO: remove, just temporary for routing / login tests /joli44
+.page {
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+    h1 {
+        color: $green;
+    }
+}
