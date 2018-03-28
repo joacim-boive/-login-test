@@ -40,9 +40,31 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_SUCCESS:
+
+        // {
+        //     "key": "AF470EEB42AD6F38C0BBF1C120C826DC",
+        //     "ttl": 1800,
+        //     "authentication": {
+        //         "eid": {
+        //             "type": "BANKID",
+        //                 "pollTime": 1000,
+        //                 "startURL": "bankid://"
+        //         },
+        //         "status": "IN_PROGRESS"
+        //     }
+        // }
+
             return {
                 ...state,
-                session: action.data,
+                loginStatus: {
+                    sessionKey: action.data.key,
+                },
+                loginProgress: {
+                    status: action.data.authentication.status,
+                    pollTime: action.data.authentication.eid.pollTime,
+                    startURL: action.data.authentication.eid.startURL
+                },
+
                 createSessionPending: false,
                 createSessionError: null,
             };

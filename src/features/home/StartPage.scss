@@ -12,4 +12,13 @@
     h1, button, p {
         margin-bottom: 20px;
     }
+
+    iframe.start-bankid {
+        position: absolute;
+        left: -10000px;
+        top: -10000px;
+        width: 2px;
+        height: 2px;
+        border: none;
+    }
 }
