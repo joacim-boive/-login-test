@@ -14,13 +14,6 @@
     "plugins": [],
     "css": "sass"
   },
-  "scripts": {
-    "start": "node ./tools/server.js",
-    "record": "node ./tools/server.js -record",
-    "mock": "node ./tools/server.js -mock",
-    "build": "node ./tools/build.js",
-    "test": "node ./tools/run_test.js"
-  },
   "devDependencies": {
     "@ecster/ecster-dev-server": "^1.0.9",
     "argparse": "^1.0.7",
@@ -89,5 +82,12 @@
     "@ecster/ecster-net": "^1.0.71",
     "@ecster/ecster-styles": "^1.0.0",
     "@ecster/ecster-util": "^2.0.0"
+  },
+  "scripts": {
+    "start": "node ./tools/server.js",
+    "record": "node ./tools/server.js -record",
+    "mock": "node ./tools/server.js -mock",
+    "build": "node ./tools/build.js",
+    "test": "node ./tools/run_test.js"
   }
 }

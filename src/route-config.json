@@ -1,0 +1,119 @@
+
+    [
+        {
+            "path": "/",
+            "childRoutes": [
+                {
+                    "path": "/",
+                    "name": "Home",
+                    "childRoutes": [
+                        {
+                            "path": "",
+                            "name": "Start page",
+                            "isIndex": true,
+                            "isPublic": true,
+                            "exact": true,
+                            "autoIndexRoute": true
+                        },
+                        {
+                            "path": "start",
+                            "name": "Start page",
+                            "isIndex": true,
+                            "isPublic": true
+                        }
+                    ]
+                },
+                {
+                    "path": "common",
+                    "name": "Common",
+                    "childRoutes": [
+                        {
+                            "path": "info",
+                            "name": "Info page",
+                            "isPublic": true
+                        }
+                    ]
+                },
+                {
+                    "path": "account",
+                    "name": "Account",
+                    "childRoutes": [
+                        {
+                            "path": "",
+                            "name": "Default page",
+                            "isIndex": true,
+                            "exact": true,
+                            "autoIndexRoute": true
+                        },
+                        {
+                            "path": "default-page",
+                            "name": "Default page",
+                            "isIndex": true
+                        },
+                        {
+                            "path": "overview",
+                            "name": "Overview page"
+                        }
+                    ]
+                },
+                {
+                    "path": "authentication",
+                    "name": "Authentication",
+                    "childRoutes": [
+                        {
+                            "path": "",
+                            "name": "Default page",
+                            "isIndex": true,
+                            "exact": true,
+                            "autoIndexRoute": true
+                        },
+                        {
+                            "path": "default-page",
+                            "name": "Default page",
+                            "isIndex": true
+                        }
+                    ]
+                },
+                {
+                    "path": "customer",
+                    "name": "Customer",
+                    "childRoutes": [
+                        {
+                            "path": "",
+                            "name": "Default page",
+                            "isIndex": true,
+                            "exact": true,
+                            "autoIndexRoute": true
+                        },
+                        {
+                            "path": "default-page",
+                            "name": "Default page",
+                            "isIndex": true
+                        }
+                    ]
+                },
+                {
+                    "path": "loan",
+                    "name": "Loan",
+                    "childRoutes": [
+                        {
+                            "path": "",
+                            "name": "Default page",
+                            "isIndex": true,
+                            "exact": true,
+                            "autoIndexRoute": true
+                        },
+                        {
+                            "path": "default-page",
+                            "name": "Default page",
+                            "isIndex": true
+                        }
+                    ]
+                },
+                {
+                    "path": "*",
+                    "name": "Page not found"
+                }
+            ]
+        }
+    ]

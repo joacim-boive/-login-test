@@ -18,7 +18,7 @@ module.exports = (type) => { // eslint-disable-line
 
   return {
     devtool: {
-      dev: 'eval',
+      dev: 'eval-source-map',
       dll: false,
       test: false,
       dist: false,

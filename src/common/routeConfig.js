@@ -23,7 +23,7 @@ const routes = [{
   component: App,
   childRoutes: [
     ...childRoutes,
-    { path: '*', name: 'Page not found', component: PageNotFound },
+    // { path: '*', name: 'Page not found', component: PageNotFound, isPublic: true },
   ].filter(r => r.component || (r.childRoutes && r.childRoutes.length > 0)),
 }];
 

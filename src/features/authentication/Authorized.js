@@ -7,20 +7,18 @@ import { getSession } from './redux/getSession';
 
 class Authorized extends React.Component {
     componentDidMount() {
-        console.log('Authorized did mount: isLoggedIn = ', this.props.loginStatus.isLoggedIn);
-        console.log('Authorized did mount: children = ', this.props.children);
-        if (!this.props.getSessionPending && !this.props.loginStatus.isLoggedIn) {
+        if (this.props.loginStatus.sessionKey && !this.props.getSessionPending && !this.props.loginStatus.isLoggedIn) {
             console.log('Authorized getSession');
             this.props.getSession(this.props.loginStatus.sessionKey);
         }
     }
 
     render() {
-        console.log('Authorized render: isLoggedIn', this.props.loginStatus.isLoggedIn);
         if (this.props.loginStatus.isLoggedIn === true) {
             return this.props.children;
         } else if (this.props.loginStatus.isLoggedIn === false) {
-            return <Redirect to="/" />;
+            console.log('not logged in, redirect to /start');
+            return <Redirect to="/start" />;
         }
         return <div />;
     }
@@ -34,8 +32,7 @@ Authorized.propTypes = {
     loginStatus: PropTypes.shape().isRequired,
 };
 
-Authorized.defaultProps = {
-};
+Authorized.defaultProps = {};
 
 const mapStateToProps = ({ authentication }) => ({
     // loginProgress: authentication.loginProgress,
