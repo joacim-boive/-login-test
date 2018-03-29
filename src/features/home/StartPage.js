@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Button, ButtonGroup, Input/* , DesktopDevice, TabletDevice, MobileDevice */ } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TabletDevice, MobileDevice, TouchDevice, FadeIn } from '@ecster/ecster-components';
 
 import { createSession, getSession } from '../authentication/redux/actions';
+
+// TODO: replace with some fancy transition component...
+const Visible = props => props.show && props.children;
 
 export class StartPage extends React.Component {
     constructor(props) {
@@ -20,8 +23,8 @@ export class StartPage extends React.Component {
         this.startMbidLogin = this.startMbidLogin.bind(this);
         this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
         this.startBidLogin = this.startBidLogin.bind(this);
-        this.showMbidOtherDeviceForm = this.showMbidOtherDeviceForm.bind(this);
-        this.showBidForm = this.showBidForm.bind(this);
+        this.toggleMbidOtherDeviceForm = this.toggleMbidOtherDeviceForm.bind(this);
+        this.toggleBidForm = this.toggleBidForm.bind(this);
         this.onSsnChange = this.onSsnChange.bind(this);
     }
 
@@ -57,32 +60,55 @@ export class StartPage extends React.Component {
     }
 
     // show ssn forms
-    showMbidOtherDeviceForm() {
-        this.setState({ showMbidOtherDevice: true });
+    toggleMbidOtherDeviceForm() {
+        this.setState({ showMbidOtherDevice: !this.state.showMbidOtherDevice });
     }
 
-    showBidForm() {
-        this.setState({ showBid: true });
+    toggleBidForm() {
+        this.setState({ showBid: !this.state.showBid });
     }
 
     render() {
         return (
             <div className="home-start-page">
-                <h1 className="e-green120">Logga in</h1>
-                {
-                  this.props.loginStatus.isLoggedIn &&
-                  <small className="e-green120">Inloggad</small>
-              }
-                {
-                  !this.props.loginStatus.isLoggedIn &&
-                  <small className="e-purple">Ej inloggad</small>
-              }
-                <div className="mt-4x">
-                    <Button onClick={this.startMbidLogin} round>Logga in med mobilt BankID</Button>
+
+                <DesktopDevice>Desktop browser</DesktopDevice>
+                <TabletDevice>Tablet device</TabletDevice>
+                <MobileDevice>Mobile device</MobileDevice>
+                <TouchDevice> - Touch device</TouchDevice>
+
+                <div className="mb-4x">
+                    { this.props.loginStatus.isLoggedIn && <small className="e-green120">Inloggad</small> }
+                    { !this.props.loginStatus.isLoggedIn && <small className="e-purple">Ej inloggad</small> }
                 </div>
-                <div>
-                    <Button onClick={this.showMbidOtherDeviceForm} transparent>Använd mobilt BankID från annan enhet</Button>
+
+                <div className="bankid-form">
+                    <h1 className="e-green120">Logga in</h1>
+
+                    <TouchDevice>
+                        <Visible show={!this.state.showMbidOtherDevice}>
+                            <Button onClick={this.startMbidLogin} block round>Logga in Med mobilt BankID</Button>
+                            <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                Använd Mobilt BankID från annan enhet
+                            </Button>
+                        </Visible>
+
+                        <Visible show={this.state.showMbidOtherDevice}>
+                            <Input label="Personnummer" placeholder="YYMMDD-XXXX" value={this.state.ssn} onChange={this.onSsnChange} />
+                            <Button onClick={this.startMbidOtherDeviceLogin} block round>Logga in med Mobilt BankID</Button>
+                            <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                Tillbaka till Mobilt BankID på denna enhet
+                            </Button>
+                        </Visible>
+                    </TouchDevice>
+
+                    <DesktopDevice>
+                        <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
+                        <Button onClick={this.startMbidOtherDeviceLogin}>Logga in med Mobilt BankID</Button>
+                    </DesktopDevice>
+
                 </div>
+
 
                 <h4 className="mt-5x mb-3x">Publika sidor</h4>
                 <div className="mb-2x">
@@ -101,27 +127,9 @@ export class StartPage extends React.Component {
                 </div>
 
                 {
-                this.state.showMbidOtherDevice &&
-                <div className="bankid-form startpage-mobile-bankid-form" >
-                    <Input label="Ange personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
-                    <ButtonGroup align="center">
-                        <Button secondary outline onClick={console.log}> Avbryt</Button>
-                        <Button secondary onClick={console.log} >Logga in</Button>
-                    </ButtonGroup>
-                </div>
-            }
-
-                {
-                this.state.showBid &&
-                <div className="bankid-form startpage-desktop-bankid-form" >
-                    Logga in med BankID
-                </div>
-            }
-
-                {
-              this.state.createIframe &&
-              <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
-            }
+                    this.state.createIframe &&
+                    <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
+                }
             </div>
         );
     }
@@ -145,8 +153,12 @@ function mapStateToProps({ authentication }) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        createSession: (data) => { dispatch(createSession(data)); },
-        getSession: (sessionKey) => { dispatch(getSession(sessionKey)); }
+        createSession: (data) => {
+            dispatch(createSession(data));
+        },
+        getSession: (sessionKey) => {
+            dispatch(getSession(sessionKey));
+        }
     };
 }
 
