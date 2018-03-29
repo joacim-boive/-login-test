@@ -84,17 +84,20 @@ export class StartPage extends React.Component {
                     <Button onClick={this.showMbidOtherDeviceForm} transparent>Använd mobilt BankID från annan enhet</Button>
                 </div>
 
+                <h4 className="mt-5x mb-3x">Publika sidor</h4>
                 <div className="mb-2x">
                     <a href="#/common/info">Gå till common / info</a>
                 </div>
+                <div className="mb-2x">
+                    <a href="#/customer">Gå till kundsida /customer</a>
+                </div>
+
+                <h4 className="mt-5x mb-3x">Kräver inloggning</h4>
                 <div className="mb-2x">
                     <a href="#/account">Gå till kontosida /account</a>
                 </div>
                 <div className="mb-2x">
                     <a href="#/account/overview">Gå till kontoöversikt /account/overview </a>
-                </div>
-                <div className="mb-2x">
-                    <a href="#/customer">Gå till kundsida /customer</a>
                 </div>
 
                 {
