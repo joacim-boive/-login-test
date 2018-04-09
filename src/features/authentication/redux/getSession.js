@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { get, setHeaders } from '../../../common/asyncAjax';
+import { get } from '../../../common/asyncAjax';
 
 import { GET_SESSION_URL } from './urls';
 
@@ -16,7 +16,6 @@ export const getSession = sessionKey => async (dispatch) => {
 
     try {
         const res = await get(GET_SESSION_URL(sessionKey));
-        setHeaders(res.response.key);
         dispatch({
             type: AUTHENTICATION_GET_SESSION_SUCCESS,
             data: res.response,

@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { post } from '../../../common/asyncAjax';
+import { post, setOrigin, setSessionKey } from '../../../common/asyncAjax';
 
 import { CREATE_SESSION_URL } from './urls';
 
@@ -15,7 +15,10 @@ export const createSession = data => async (dispatch) => {
     });
 
     try {
+        setOrigin('mypages'); // TODO: this is the first ajax call, but maybe move to app startup?
         const res = await post(CREATE_SESSION_URL(), data);
+        setSessionKey(res.response.key);
+
         dispatch({
             type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
             data: res.response,

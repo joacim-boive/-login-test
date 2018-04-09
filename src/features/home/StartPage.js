@@ -32,15 +32,16 @@ export class StartPage extends React.Component {
     componentWillReceiveProps(nextProps) {
         console.log('StartPage will receive props: ', nextProps);
 
-        if (nextProps.loginProgress.startUrl && nextProps.loginProgress.pollTime > 0 && !this.state.bidStarted) {
+        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0 && !this.state.bidStarted) {
+            this.setState({ createIframe: true });
             setTimeout(() => {
-                this.setState({ createIframe: true });
+                this.props.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
 
-        if (this.state.bidStarted) {
-            this.setState({ createIframe: false });
-        }
+        // if (this.state.bidStarted) {
+        //     this.setState({ createIframe: false });
+        // }
     }
 
     onSsnChange({ target }) {
@@ -49,7 +50,7 @@ export class StartPage extends React.Component {
 
     // start login
     startMbidLogin() {
-        this.props.createSession({ type: 'BANKID_MOBILE' });
+        this.props.createSession({ type: 'BANKID' });
     }
 
     startMbidOtherDeviceLogin() {

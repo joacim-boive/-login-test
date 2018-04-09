@@ -39,9 +39,12 @@ export const del = (url, data) =>
         .then(successHandler)
         .catch(errorHandler);
 
-export const setHeaders = (sessionKey) => {
-    Session.set('origin', 'mypages');
+export const setSessionKey = (sessionKey) => {
     Session.set('sessionKey', sessionKey);
+};
+
+export const setOrigin = (origin) => {
+    Session.set('origin', origin);
 };
 
 // export const findErrorText = (e) => {

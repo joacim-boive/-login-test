@@ -9,6 +9,7 @@ const http = require('http');
 const shell = require('shelljs');
 const crypto = require('crypto');
 const express = require('express');
+const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
 const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
@@ -78,6 +79,8 @@ function startDevServer() {
         publicPath: devConfig.output.publicPath,
         historyApiFallback: true,
     }));
+
+    app.use(bodyParser.json()); // added by joli44
 
     app.use(hotMiddleware(compiler));
 
