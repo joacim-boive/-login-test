@@ -30,18 +30,16 @@ export class StartPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('StartPage will receive props: ', nextProps);
+        console.log('StartPage will receive props: props =  ', nextProps);
+        console.log('StartPage will receive props: state = ', this.state);
 
         if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0 && !this.state.bidStarted) {
             this.setState({ createIframe: true });
             setTimeout(() => {
-                this.props.getSession(this.props.loginStatus.sessionKey);
+                nextProps.getSession(this.props.loginStatus.sessionKey);
+                this.setState({ createIframe: false });
             }, nextProps.loginProgress.pollTime);
         }
-
-        // if (this.state.bidStarted) {
-        //     this.setState({ createIframe: false });
-        // }
     }
 
     onSsnChange({ target }) {
@@ -126,6 +124,7 @@ export class StartPage extends React.Component {
 
 StartPage.propTypes = {
     createSession: PropTypes.func.isRequired,
+    getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
 };
