@@ -3,9 +3,6 @@
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
 .home-start-page {
-    max-width: 600px;
-    margin: 20px auto 0;
-    text-align: center;
 
     .bankid-form {
         max-width: 500px;
@@ -15,6 +12,7 @@
         border: 1px solid $beige40;
         border-radius: 6px;
         box-shadow: 0 0 8px $beige20;
+
         .text-input {
             max-width: 200px;
             margin-left: auto;
@@ -24,10 +22,18 @@
         @include mobile() {
             margin: 0 15px;
         }
-    }
 
-    h1, button, p, input {
-        margin-bottom: 20px;
+        @include tablet() {
+        }
+
+        @include desktop() {
+        }
+
+        h1, button.\--block, p, input {
+            margin-bottom: 20px;
+        }
+
+
     }
 
     iframe.start-bankid {

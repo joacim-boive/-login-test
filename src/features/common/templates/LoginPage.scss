@@ -1,0 +1,26 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-components/scss/MediaQuery";
+
+.common-login-page {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mobile() {
+        background: $beige10 url(../images/Ecster_00056_0-w450.png) no-repeat;
+        background-size: 100%;  
+    }
+
+    @include tablet() {
+
+    }
+
+    @include desktop() {
+
+    }
+
+}

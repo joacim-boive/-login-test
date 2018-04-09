@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Button, Input, DesktopDevice, TabletDevice, MobileDevice, TouchDevice, FadeIn } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
 
 import { createSession, getSession } from '../authentication/redux/actions';
+import LoginPage from '../common/templates/LoginPage';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.show && props.children;
@@ -70,67 +71,54 @@ export class StartPage extends React.Component {
 
     render() {
         return (
-            <div className="home-start-page">
+            <LoginPage>
+                <div className="home-start-page">
 
-                <DesktopDevice>Desktop browser</DesktopDevice>
-                <TabletDevice>Tablet device</TabletDevice>
-                <MobileDevice>Mobile device</MobileDevice>
-                <TouchDevice> - Touch device</TouchDevice>
+                    <div className="bankid-form">
+                        <h1 className="e-green120">Logga in</h1>
 
-                <div className="mb-4x">
-                    { this.props.loginStatus.isLoggedIn && <small className="e-green120">Inloggad</small> }
-                    { !this.props.loginStatus.isLoggedIn && <small className="e-purple">Ej inloggad</small> }
+                        <TouchDevice>
+                            <Visible show={!this.state.showMbidOtherDevice}>
+                                <Button onClick={this.startMbidLogin} block round>Logga in med Mobilt BankID</Button>
+                                <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                    Använd Mobilt BankID från annan enhet
+                                </Button>
+                            </Visible>
+
+                            <Visible show={this.state.showMbidOtherDevice}>
+                                <Input
+                                  label="Personnummer"
+                                  placeholder="YYMMDD-XXXX"
+                                  value={this.state.ssn}
+                                  onChange={this.onSsnChange}
+                                />
+                                <Button onClick={this.startMbidOtherDeviceLogin} block round>Logga in med Mobilt
+                                    BankID
+                                </Button>
+                                <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                    Tillbaka till Mobilt BankID på denna enhet
+                                </Button>
+                            </Visible>
+                        </TouchDevice>
+
+                        <DesktopDevice>
+                            <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
+                            <Button onClick={this.startMbidOtherDeviceLogin}>Logga in med Mobilt BankID</Button>
+                        </DesktopDevice>
+
+                        <div className="mb-4x">
+                            {this.props.loginStatus.isLoggedIn && <small className="e-green120">Inloggad</small>}
+                            {!this.props.loginStatus.isLoggedIn && <small className="e-purple">Ej inloggad</small>}
+                        </div>
+
+                    </div>
+
+                    {
+                        this.state.createIframe &&
+                        <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
+                    }
                 </div>
-
-                <div className="bankid-form">
-                    <h1 className="e-green120">Logga in</h1>
-
-                    <TouchDevice>
-                        <Visible show={!this.state.showMbidOtherDevice}>
-                            <Button onClick={this.startMbidLogin} block round>Logga in Med mobilt BankID</Button>
-                            <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
-                                Använd Mobilt BankID från annan enhet
-                            </Button>
-                        </Visible>
-
-                        <Visible show={this.state.showMbidOtherDevice}>
-                            <Input label="Personnummer" placeholder="YYMMDD-XXXX" value={this.state.ssn} onChange={this.onSsnChange} />
-                            <Button onClick={this.startMbidOtherDeviceLogin} block round>Logga in med Mobilt BankID</Button>
-                            <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
-                                Tillbaka till Mobilt BankID på denna enhet
-                            </Button>
-                        </Visible>
-                    </TouchDevice>
-
-                    <DesktopDevice>
-                        <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
-                        <Button onClick={this.startMbidOtherDeviceLogin}>Logga in med Mobilt BankID</Button>
-                    </DesktopDevice>
-
-                </div>
-
-
-                <h4 className="mt-5x mb-3x">Publika sidor</h4>
-                <div className="mb-2x">
-                    <a href="#/common/info">Gå till common / info</a>
-                </div>
-                <div className="mb-2x">
-                    <a href="#/customer">Gå till kundsida /customer</a>
-                </div>
-
-                <h4 className="mt-5x mb-3x">Kräver inloggning</h4>
-                <div className="mb-2x">
-                    <a href="#/account">Gå till kontosida /account</a>
-                </div>
-                <div className="mb-2x">
-                    <a href="#/account/overview">Gå till kontoöversikt /account/overview </a>
-                </div>
-
-                {
-                    this.state.createIframe &&
-                    <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
-                }
-            </div>
+            </LoginPage>
         );
     }
 }

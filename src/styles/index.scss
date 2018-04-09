@@ -13,8 +13,8 @@
 @import '~@ecster/ecster-styles/v2/include/color-classes';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
 
-body {
-    background: $beige10;
+html, body {
+    height: 100%;
 }
 
 // TODO: remove, just temporary for routing / login tests /joli44
