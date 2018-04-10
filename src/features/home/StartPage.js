@@ -30,8 +30,8 @@ export class StartPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('StartPage will receive props: props =  ', nextProps);
-        console.log('StartPage will receive props: state = ', this.state);
+        // console.log('StartPage will receive props: props =  ', nextProps);
+        // console.log('StartPage will receive props: state = ', this.state);
 
         if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0) {
             this.setState({ createIframe: true });
