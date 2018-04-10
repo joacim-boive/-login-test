@@ -71,8 +71,8 @@ module.exports = (type) => { // eslint-disable-line
 
             // Exposed asset path.
             // NOTE: the end '/' is necessary
-            // NOTE: leading ./ is important! /joli44
-            publicPath: './static/'
+            // NOTE: leading ./ is important for build (not local dev)! /joli44
+            publicPath: isDist ? './static/' : '/static/'
         },
 
         plugins: _.compact([

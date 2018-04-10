@@ -109,7 +109,7 @@ export class StartPage extends React.Component {
 
                         <DesktopDevice>
                             <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
-                            <Button onClick={this.startMbidOtherDeviceLogin}>Logga in med Mobilt BankID</Button>
+                            <Button onClick={this.startMbidOtherDeviceLogin} round>Logga in med Mobilt BankID</Button>
                         </DesktopDevice>
                     </div>
 
