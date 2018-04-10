@@ -66,7 +66,7 @@
               <OutArgument x:TypeArguments="x:String">[AppName]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">Loggain</InArgument>
+              <InArgument x:TypeArguments="x:String">Loggain-X</InArgument>
             </Assign.Value>
           </Assign>
           <Assign sap:VirtualizedContainerService.HintSize="242,60">
@@ -99,7 +99,7 @@
               <OutArgument x:TypeArguments="x:String">[AppName]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">Labs-Loggain</InArgument>
+              <InArgument x:TypeArguments="x:String">Labs-Loggain-X</InArgument>
             </Assign.Value>
           </Assign>
           <Assign sap:VirtualizedContainerService.HintSize="242,60">
@@ -151,9 +151,9 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <hwa:FileDelete CheckIfExists="True" DisplayName="Remove default index.html" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\index.html&quot;]" />
-        <hwa:FileCopy CheckVersion="False" DisplayName="Copy environment specific index.html" FromPath="[AppLib + &quot;\Environments\&quot; + Envir + &quot;\index.html&quot;]" sap:VirtualizedContainerService.HintSize="316,111" ToPath="[AppLib]" />
-        <hwa:FileDelete DisplayName="Remove environment specific source" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\Environments\&quot;]" />
+        <!--hwa:FileDelete CheckIfExists="True" DisplayName="Remove default index.html" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\index.html&quot;]" /-->
+        <!--hwa:FileCopy CheckVersion="False" DisplayName="Copy environment specific index.html" FromPath="[AppLib + &quot;\Environments\&quot; + Envir + &quot;\index.html&quot;]" sap:VirtualizedContainerService.HintSize="316,111" ToPath="[AppLib]" /-->
+        <!--hwa:FileDelete DisplayName="Remove environment specific source" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\Environments\&quot;]" /-->
       </Sequence>
       <hwa:Command Arguments="[AppLib + &quot; &quot; + AppName]" DisplayName="Create Version.txt" FilePath="[FromLib + &quot;\Scripts\CREATE_Version.cmd&quot;]" sap:VirtualizedContainerService.HintSize="486,86">
         <sap:WorkflowViewStateService.ViewState>
