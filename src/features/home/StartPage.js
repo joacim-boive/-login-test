@@ -111,12 +111,6 @@ export class StartPage extends React.Component {
                             <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
                             <Button onClick={this.startMbidOtherDeviceLogin}>Logga in med Mobilt BankID</Button>
                         </DesktopDevice>
-
-                        <div className="mb-4x">
-                            {this.props.loginStatus.isLoggedIn && <small className="e-green120">Inloggad</small>}
-                            {!this.props.loginStatus.isLoggedIn && <small className="e-purple">Ej inloggad</small>}
-                        </div>
-
                     </div>
 
                     {
