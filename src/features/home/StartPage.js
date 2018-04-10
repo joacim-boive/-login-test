@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router'
 
 import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
 
@@ -17,7 +18,6 @@ export class StartPage extends React.Component {
             showMbidOtherDevice: false,
             showBid: false,
             ssn: '',
-            bidStarted: false,
             createIframe: false
         };
 
@@ -33,7 +33,7 @@ export class StartPage extends React.Component {
         console.log('StartPage will receive props: props =  ', nextProps);
         console.log('StartPage will receive props: state = ', this.state);
 
-        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0 && !this.state.bidStarted) {
+        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0) {
             this.setState({ createIframe: true });
             setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
@@ -69,6 +69,9 @@ export class StartPage extends React.Component {
     }
 
     render() {
+        if (this.props.loginStatus.isLoggedIn) {
+            return <Redirect to="../account/overview" />;
+        }
         return (
             <LoginPage>
                 <div className="home-start-page">
@@ -127,6 +130,7 @@ StartPage.propTypes = {
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
+    history: PropTypes.shape().isRequired
 };
 
 /* istanbul ignore next */

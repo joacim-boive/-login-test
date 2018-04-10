@@ -85,6 +85,7 @@ export function reducer(state, action) {
             return {
                 ...state,
                 loginStatus: {
+                    sessionKey: action.data.key,
                     isLoggedIn,
                 },
                 loginProgress: {

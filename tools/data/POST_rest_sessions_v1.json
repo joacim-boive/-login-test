@@ -1,0 +1,16 @@
+{
+    "responseTime": 42,
+    "status": 201,
+    "response": {
+        "key": "AF470EEB42AD6F38C0BBF1C120C826DC",
+        "ttl": 1800,
+        "authentication": {
+            "eid": {
+                "type": "BANKID",
+                "pollTime": 3000,
+                "startURL": "bankid://foobar.se"
+            },
+            "status": "IN_PROGRESS"
+        }
+    }
+}
