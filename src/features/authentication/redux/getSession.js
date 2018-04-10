@@ -90,7 +90,7 @@ export function reducer(state, action) {
                 },
                 loginProgress: {
                     status: action.data.authentication.status,
-                    pollTime: isLoggedIn ? 0 : action.data.authentication.eid.pollTime
+                    pollTime: isLoggedIn && !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime
                 },
                 person: action.data.person,
                 getSessionPending: false,

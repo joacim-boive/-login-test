@@ -30,14 +30,18 @@ export class StartPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log('StartPage will receive props: props =  ', nextProps);
-        // console.log('StartPage will receive props: state = ', this.state);
+        console.log('StartPage will receive props: props =  ', nextProps);
+        console.log('StartPage will receive props: state = ', this.state);
 
         if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0) {
             this.setState({ createIframe: true });
             setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
                 this.setState({ createIframe: false });
+            }, nextProps.loginProgress.pollTime);
+        } else if (nextProps.loginProgress.status === 'IN_PROGRESS') {
+            setTimeout(() => {
+                nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
     }
