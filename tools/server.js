@@ -27,7 +27,8 @@ const parser = new ArgumentParser({
     description: 'Start an express server for webpack dev or build result.',
 });
 
-parser.addArgument(['--mode'], { // removed -m, interferes with -mock which is used by Ecster dev server /joli44
+parser.addArgument(['--mode'], {
+    // removed -m, interferes with -mock which is used by Ecster dev server /joli44
     help: 'Server mode, dev or build.',
     metavar: 'mode',
     choices: ['dev', 'build', 'studio'],
@@ -35,12 +36,12 @@ parser.addArgument(['--mode'], { // removed -m, interferes with -mock which is u
 
 parser.addArgument(['-mock'], {
     help: 'Run Ecster rest server in mock mode',
-    nargs: 0
+    nargs: 0,
 });
 
 parser.addArgument(['-record'], {
     help: 'Run Ecster rest server in recording mode',
-    nargs: 0
+    nargs: 0,
 });
 
 parser.addArgument(['--readonly'], {
@@ -68,16 +69,20 @@ function startDevServer() {
     const app = express();
     const devConfig = getConfig('dev');
 
-    devConfig.plugins.push(new webpack.DllReferencePlugin({
-        context: srcPath,
-        manifest: require(manifestPath),
-    }));
+    devConfig.plugins.push(
+        new webpack.DllReferencePlugin({
+            context: srcPath,
+            manifest: require(manifestPath),
+        })
+    );
 
     const compiler = webpack(devConfig);
-    app.use(devMiddleware(compiler, {
-        publicPath: devConfig.output.publicPath,
-        historyApiFallback: true,
-    }));
+    app.use(
+        devMiddleware(compiler, {
+            publicPath: devConfig.output.publicPath,
+            historyApiFallback: true,
+        })
+    );
 
     app.use(hotMiddleware(compiler));
 
@@ -104,23 +109,23 @@ function startDevServer() {
 
     const { rekit: { restPort } } = pkgJson;
     const proxyUrl = req => 'http://127.0.0.1:' + restPort + req.url;
-    const proxyHeaders = req => (
-        {
-            'X-ECSTER-origin': req.header('X-ECSTER-origin'),
-            'X-ECSTER-session': req.header('X-ECSTER-session'),
-            cookie: req.header('cookie')
-        });
+    const proxyHeaders = req => ({
+        'X-ECSTER-origin': req.header('X-ECSTER-origin'),
+        'X-ECSTER-session': req.header('X-ECSTER-session'),
+        cookie: req.header('cookie'),
+    });
 
     // TODO: is there a smarter way to do this? express proxy plugin or something... /joli44
     app.get('/rest/*', (req, res) => {
-        request.get({
-            url: proxyUrl(req),
-            rejectUnauthorized: false,
-            headers: proxyHeaders(req),
-            json: true
-        }).pipe(res);
+        request
+            .get({
+                url: proxyUrl(req),
+                rejectUnauthorized: false,
+                headers: proxyHeaders(req),
+                json: true,
+            })
+            .pipe(res);
     });
-
 
     app.post('/rest/*', (req, res) => {
         request
@@ -129,7 +134,7 @@ function startDevServer() {
                 rejectUnauthorized: false,
                 headers: proxyHeaders(req),
                 json: true,
-                body: req.body
+                body: req.body,
             })
             .pipe(res);
     });
@@ -141,7 +146,7 @@ function startDevServer() {
                 rejectUnauthorized: false,
                 headers: proxyHeaders(req),
                 json: true,
-                body: req.body
+                body: req.body,
             })
             .pipe(res);
     });
@@ -152,7 +157,7 @@ function startDevServer() {
                 url: proxyUrl(req),
                 rejectUnauthorized: false,
                 headers: proxyHeaders(req),
-                json: true
+                json: true,
             })
             .pipe(res);
     });
@@ -166,7 +171,7 @@ function startDevServer() {
         res.sendStatus(404);
     });
 
-    app.listen(pkgJson.rekit.devPort, (err) => {
+    app.listen(pkgJson.rekit.devPort, err => {
         if (err) {
             console.error(err);
         }
@@ -190,7 +195,7 @@ function startBuildServer() {
         res.sendStatus(404);
     });
 
-    app.listen(pkgJson.rekit.buildPort, (err) => {
+    app.listen(pkgJson.rekit.buildPort, err => {
         if (err) {
             console.error(err);
         }
@@ -216,7 +221,7 @@ function startStudioServer() {
     });
 
     const port = pkgJson.rekit.studioPort;
-    server.listen(port, (err) => {
+    server.listen(port, err => {
         if (err) {
             console.error(err);
         }
@@ -230,10 +235,12 @@ function buildDevDll() {
     const dllConfig = getConfig('dll');
 
     // Get snapshot hash for all dll entries versions.
-    const nameVersions = dllConfig.entry['dev-vendors'].map((pkgName) => {
-        const pkg = require(path.join(pkgName.split('/')[0], 'package.json'));
-        return `${pkg.name}_${pkg.version}`;
-    }).join('-');
+    const nameVersions = dllConfig.entry['dev-vendors']
+        .map(pkgName => {
+            const pkg = require(path.join(pkgName.split('/')[0], 'package.json'));
+            return `${pkg.name}_${pkg.version}`;
+        })
+        .join('-');
 
     const dllHash = crypto
         .createHash('md5')
@@ -242,24 +249,23 @@ function buildDevDll() {
     const dllName = `devVendors_${dllHash}`;
 
     // If dll doesn't exist or version changed, then rebuild it
-    if (
-        !shell.test('-e', manifestPath)
-        || require(manifestPath).name !== dllName
-    ) {
+    if (!shell.test('-e', manifestPath) || require(manifestPath).name !== dllName) {
         delete require.cache[manifestPath]; // force reload the new manifest
         console.log('Dev vendors have changed, rebuilding dll...');
         console.time('Dll build success');
 
         dllConfig.output.library = dllName;
         dllConfig.output.path = path.join(__dirname, '../.tmp');
-        dllConfig.plugins.push(new webpack.DllPlugin({
-            path: manifestPath,
-            name: dllName,
-            context: srcPath,
-        }));
+        dllConfig.plugins.push(
+            new webpack.DllPlugin({
+                path: manifestPath,
+                name: dllName,
+                context: srcPath,
+            })
+        );
 
         return new Promise((resolve, reject) => {
-            webpack(dllConfig, (err) => {
+            webpack(dllConfig, err => {
                 if (err) {
                     console.log('dll build failed:');
                     console.log(err.stack || err);

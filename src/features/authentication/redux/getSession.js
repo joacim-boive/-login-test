@@ -9,7 +9,7 @@ import { get, setHeaders } from '../../../common/asyncAjax';
 
 import { GET_SESSION_URL } from './urls';
 
-export const getSession = sessionKey => async (dispatch) => {
+export const getSession = sessionKey => async dispatch => {
     dispatch({
         type: AUTHENTICATION_GET_SESSION_BEGIN,
     });
