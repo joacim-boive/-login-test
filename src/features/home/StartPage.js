@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
+import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPage from '../common/templates/LoginPage';
+// import Spinner from '../common/Spinner';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.show && props.children;
+const i18n = Translate.getText;
 
 export class StartPage extends React.Component {
     constructor(props) {
@@ -79,37 +82,36 @@ export class StartPage extends React.Component {
         return (
             <LoginPage>
                 <div className="home-start-page">
-
                     <div className="bankid-form">
-                        <h1 className="e-green120">Logga in</h1>
+                        <h1 className="e-green120">{i18n('home.login.header')}</h1>
 
                         <TouchDevice>
                             <Visible show={!this.state.showMbidOtherDevice}>
-                                <Button onClick={this.startMbidLogin} block round>Logga in med Mobilt BankID</Button>
+                                <Button onClick={this.startMbidLogin} block round>{i18n('home.login.login-mbid')}</Button>
                                 <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
-                                    Använd Mobilt BankID från annan enhet
+                                    {i18n('home.login.login-mbid-other-device')}
                                 </Button>
                             </Visible>
 
                             <Visible show={this.state.showMbidOtherDevice}>
                                 <Input
-                                  label="Personnummer"
-                                  placeholder="YYMMDD-XXXX"
+                                  label={i18n('home.login.ssn')}
+                                  placeholder={i18n('home.login.ssn-placeholer')}
                                   value={this.state.ssn}
                                   onChange={this.onSsnChange}
                                 />
-                                <Button onClick={this.startMbidOtherDeviceLogin} block round>Logga in med Mobilt
-                                    BankID
+                                <Button onClick={this.startMbidOtherDeviceLogin} block round>
+                                    {i18n('home.login.login-mbid')}
                                 </Button>
                                 <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
-                                    Tillbaka till Mobilt BankID på denna enhet
+                                    {i18n('home.login.back-to-mbid-this-device')}
                                 </Button>
                             </Visible>
                         </TouchDevice>
 
                         <DesktopDevice>
-                            <Input label="Personnummer" value={this.state.ssn} onChange={this.onSsnChange} />
-                            <Button onClick={this.startMbidOtherDeviceLogin} round>Logga in med Mobilt BankID</Button>
+                            <Input label={i18n('home.login.ssn')} value={this.state.ssn} placeholder={i18n('home.login.ssn-placeholer')} onChange={this.onSsnChange} />
+                            <Button onClick={this.startMbidOtherDeviceLogin} round>{i18n('home.login.login-mbid')}</Button>
                         </DesktopDevice>
                     </div>
 
@@ -127,8 +129,7 @@ StartPage.propTypes = {
     createSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
-    loginStatus: PropTypes.shape().isRequired,
-    history: PropTypes.shape().isRequired
+    loginStatus: PropTypes.shape().isRequired
 };
 
 /* istanbul ignore next */

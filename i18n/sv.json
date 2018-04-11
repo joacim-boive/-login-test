@@ -1,0 +1,21 @@
+{
+    "general": {
+        "help": "Hjälp"
+    },
+    "account": {},
+    "authentication": {},
+    "common": {},
+    "customer": {},
+    "home": {
+        "login": {
+            "header": "Logga in",
+            "login-bid": "Logga in med BankID",
+            "login-mbid": "Logga in med Mobilt BankID",
+            "login-mbid-other-device": "Använd Mobilt BankID från annan enhet",
+            "ssn": "Personnummer",
+            "ssn-placeholer": "ÅÅMMDD-XXXX",
+            "back-to-mbid-this-device": "Tillbaka till Mobilt BankID på denna enhet"
+        }
+    },
+    "loan": {}
+}

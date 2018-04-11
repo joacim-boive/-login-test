@@ -8,8 +8,8 @@
 }
 
 .spinner {
-    $size: 100px;
-    $width: 12px;
+    $size: 45px;
+    $width: 8px;
 
     @mixin spinner-border() {
         position: absolute;
@@ -29,25 +29,25 @@
 
     &1 {
         @include spinner-border();
-        border-top: $green $width solid;
+        border-top: $green120 $width solid;
         //z-index: 1;
     }
 
     &2 {
         @include spinner-border();
-        border-right: $red $width solid;
+        border-right: $green120 $width solid;
         //z-index: 2;
     }
 
     &3 {
         @include spinner-border();
-        border-bottom: $blue $width solid;
+        border-bottom: $gray20 $width solid;
         //z-index: 3;
     }
 
     &4 {
         @include spinner-border();
-        border-left: $yellow $width solid;
+        border-left: $gray20 $width solid;
         //z-index: 4;
     }
 }

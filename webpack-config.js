@@ -7,6 +7,7 @@ const path = require('path');
 const _ = require('lodash');
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pkgJson = require('./package.json');
 
@@ -85,7 +86,17 @@ module.exports = (type) => { // eslint-disable-line
                 'process.env': {
                     NODE_ENV: JSON.stringify(type === 'dist' ? 'production' : type),
                 }
-            })
+            }),
+            new CopyWebpackPlugin(
+                [
+                    {   // language resources
+                        from: '../i18n', // todo: why ../ ? I dunno... /joli44
+                        to: 'i18n/',
+                        flatten: true,
+                    },
+                ]
+            ),
+
         ]),
 
         module: {

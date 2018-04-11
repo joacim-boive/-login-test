@@ -5,22 +5,27 @@ import 'babel-polyfill';
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
+import { Translate } from '@ecster/ecster-i18n';
+
 import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
 
 const store = configStore();
 
-function renderApp(app) {
+const renderApp = (app) => {
     render(
         <AppContainer>
             {app}
         </AppContainer>,
         document.getElementById('react-root')
     );
-}
+};
 
-renderApp(<Root store={store} routeConfig={routeConfig} />);
+// basePath, language, country
+Translate.init('i18n', 'sv', undefined).then(() => {
+    renderApp(<Root store={store} routeConfig={routeConfig} />);
+});
 
 // Hot Module Replacement API
 /* istanbul ignore if  */
