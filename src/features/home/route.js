@@ -1,7 +1,4 @@
-
-import {
-  StartPage,
-} from './';
+import { StartPage } from './';
 
 export default {
     path: '/',

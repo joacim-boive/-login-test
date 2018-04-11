@@ -27,13 +27,10 @@ export default class Root extends React.Component {
                 <HashRouter>
                     <Switch>
                         {routes.publicRoutes}
-                        <Authorized>
-                            {routes.authRoutes}
-                        </Authorized>
+                        <Authorized>{routes.authRoutes}</Authorized>
                     </Switch>
                 </HashRouter>
             </Provider>
         );
     }
 }
-

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { bindActionCreators } from 'redux';
@@ -8,21 +9,21 @@ import { Button, Input } from '@ecster/ecster-components';
 import { createSession, getSession } from '../authentication/redux/actions';
 
 export class StartPage extends Component {
-    static propTypes = {
+    /*    static propTypes = {
         home: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
     };
+*/
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            showMobileBankIdForm: false,
-            showDekstopBankIdForm: false,
-            ssn: '',
-        };
+    state = {
+        showMobileBankIdForm: false,
+        showDesktopBankIdForm: false,
+        ssn: '',
+    };
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
     }
-
-    componentWillReceiveProps(nextProps) {}
 
     onClickMobileBankId() {
         this.setState({ showMobileBankIdForm: true });
@@ -38,9 +39,13 @@ export class StartPage extends Component {
                 <h1>Logga in på Ecster!</h1>
                 <Button>Mobilt Bank-ID</Button>
                 this.state.showMobileBankIdForm &&
-                <div className="startpage-mobile-bankid-form">Logga in med mobilt bankid</div>
+                <button className="startpage-mobile-bankid-form" onClick={this.onClickMobileBankId}>
+                    Logga in med mobilt bankid
+                </button>
                 this.state.showDesktopBankIdForm &&
-                <div className="startpage-desktop-bankid-form">Logga in med bankid</div>
+                <button className="startpage-desktop-bankid-form" onClick={this.onClickDesktopBankId}>
+                    Logga in med bankid
+                </button>
             </div>
         );
     }
