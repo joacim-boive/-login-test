@@ -1,5 +1,6 @@
 {
-    "extends": "./node_modules/eslint-config-airbnb/.eslintrc",
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "plugins": ["react", "prettier"],
     "parser": "babel-eslint",
     "globals": {
         "document": true,
@@ -11,6 +12,7 @@
         }
     },
     "rules": {
+        "prettier/prettier": "warn",
         "strict": 0,
         "function-paren-newline": 0,
         "guard-for-in": 0,

@@ -13,13 +13,13 @@ import loanReducer from '../features/loan/redux/reducer';
 // So that it's easy for others to understand it and Rekit could manage theme.
 
 const reducerMap = {
-  router: routerReducer,
-  home: homeReducer,
-  common: commonReducer,
-  account: accountReducer,
-  authentication: authenticationReducer,
-  customer: customerReducer,
-  loan: loanReducer,
+    router: routerReducer,
+    home: homeReducer,
+    common: commonReducer,
+    account: accountReducer,
+    authentication: authenticationReducer,
+    customer: customerReducer,
+    loan: loanReducer,
 };
 
 export default combineReducers(reducerMap);
