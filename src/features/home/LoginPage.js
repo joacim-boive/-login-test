@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,13 +8,13 @@ import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-compon
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
-import LoginPage from '../common/templates/LoginPage';
+import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.show && props.children;
 const i18n = Translate.getText;
 
-export class StartPage extends React.Component {
+export class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -84,8 +84,8 @@ export class StartPage extends React.Component {
             return <Redirect to="../account/overview" />;
         }
         return (
-            <LoginPage>
-                <div className="home-start-page">
+            <LoginPageTemplate>
+                <div className="home-login-page">
                     <div className="bankid-form">
                         <h1 className="e-green120">{i18n('home.login.header')}</h1>
 
@@ -132,12 +132,12 @@ export class StartPage extends React.Component {
                         <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
                     )}
                 </div>
-            </LoginPage>
+            </LoginPageTemplate>
         );
     }
 }
 
-StartPage.propTypes = {
+LoginPage.propTypes = {
     createSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
@@ -164,4 +164,4 @@ function mapDispatchToProps(dispatch) {
         },
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(StartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

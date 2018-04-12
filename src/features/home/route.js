@@ -1,4 +1,4 @@
-import { StartPage } from './';
+import { LoginPage } from './';
 
 export default {
     path: '/',
@@ -6,8 +6,8 @@ export default {
     childRoutes: [
         {
             path: 'start',
-            name: 'Start page',
-            component: StartPage,
+            name: 'Login page',
+            component: LoginPage,
             isIndex: true,
             isPublic: true,
         },
