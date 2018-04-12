@@ -22,15 +22,6 @@ export const createSession = data => async (dispatch) => {
         dispatch({
             type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
             data: res.response,
-            // data: {
-            //     authentication: {
-            //         status: 'VERIFIED',
-            //         eid: {
-            //             pollTime: 0,
-            //             startUrl: undefined
-            //         }
-            //     }
-            // }
         });
     } catch (err) {
         dispatch({
@@ -52,19 +43,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_SUCCESS:
-
-            // {
-            //     "key": "AF470EEB42AD6F38C0BBF1C120C826DC",
-            //     "ttl": 1800,
-            //     "authentication": {
-            //         "eid": {
-            //             "type": "BANKID",
-            //             "pollTime": 1000,
-            //             "startURL": "bankid://"
-            //         },
-            //         "status": "IN_PROGRESS"
-            //     }
-            // }
 
             return {
                 ...state,

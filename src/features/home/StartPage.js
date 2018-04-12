@@ -8,7 +8,6 @@ import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPage from '../common/templates/LoginPage';
-// import Spinner from '../common/Spinner';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.show && props.children;

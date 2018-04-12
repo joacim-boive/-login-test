@@ -80,7 +80,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "@ecster/ecster-components": "^1.0.236",
+    "@ecster/ecster-components": "^1.0.237",
     "@ecster/ecster-i18n": "^2.0.40",
     "@ecster/ecster-net": "^1.0.71",
     "@ecster/ecster-styles": "^1.0.183",
