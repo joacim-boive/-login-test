@@ -6,21 +6,22 @@
 const path = require('path');
 const _ = require('lodash');
 const webpack = require('webpack');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pkgJson = require('./package.json');
 
-// type is one of [dev, dll, test, dist]
-// NOTE: for test, only module property is used.
-module.exports = (type) => { // eslint-disable-line
+module.exports = type => {
+    // type is one of [dev, dll, test, dist]
+    // NOTE: for test, only module property is used.
 
     const isDev = type === 'dev';
     const isDist = type === 'dist';
 
     return {
         devtool: {
-            dev: 'eval-source-map',
+            dev: 'eval',
             dll: false,
             test: false,
             dist: false,
@@ -77,6 +78,7 @@ module.exports = (type) => { // eslint-disable-line
         },
 
         plugins: _.compact([
+            new NpmInstallPlugin(),
             isDev && new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             isDist && new LodashModuleReplacementPlugin(),
@@ -123,6 +125,6 @@ module.exports = (type) => { // eslint-disable-line
                     loader: 'url-loader?limit=8192'
                 }
             ]
-        }
+        },
     };
 };

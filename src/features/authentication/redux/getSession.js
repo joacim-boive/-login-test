@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_SESSION_URL } from './urls';
 
-export const getSession = sessionKey => async (dispatch) => {
+export const getSession = sessionKey => async dispatch => {
     dispatch({
         type: AUTHENTICATION_GET_SESSION_BEGIN,
     });
@@ -31,8 +31,8 @@ export const getSession = sessionKey => async (dispatch) => {
 export const dismissGetSessionError = () => ({ type: AUTHENTICATION_GET_SESSION_DISMISS_ERROR });
 
 export function reducer(state, action) {
-
-    const isLoggedIn = action && action.data && action.data.authentication && action.data.authentication.status === 'VERIFIED';
+    const isLoggedIn =
+        action && action.data && action.data.authentication && action.data.authentication.status === 'VERIFIED';
 
     switch (action.type) {
         case AUTHENTICATION_GET_SESSION_BEGIN:
@@ -43,7 +43,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_GET_SESSION_SUCCESS:
-
             return {
                 ...state,
                 loginStatus: {
@@ -52,7 +51,8 @@ export function reducer(state, action) {
                 },
                 loginProgress: {
                     status: action.data.authentication.status,
-                    pollTime: isLoggedIn && !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime
+                    pollTime:
+                        isLoggedIn && !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime,
                 },
                 person: action.data.person,
                 getSessionPending: false,

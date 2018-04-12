@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
@@ -20,7 +21,7 @@ export class StartPage extends React.Component {
             showMbidOtherDevice: false,
             showBid: false,
             ssn: '',
-            createIframe: false
+            createIframe: false,
         };
 
         this.startMbidLogin = this.startMbidLogin.bind(this);
@@ -48,8 +49,8 @@ export class StartPage extends React.Component {
         }
     }
 
-    onSsnChange({ target }) {
-        this.setState({ ssn: target.value });
+    onClickMobileBankId() {
+        this.setState({ showMobileBankIdForm: true });
     }
 
     // start login
@@ -86,7 +87,9 @@ export class StartPage extends React.Component {
 
                         <TouchDevice>
                             <Visible show={!this.state.showMbidOtherDevice}>
-                                <Button onClick={this.startMbidLogin} block round>{i18n('home.login.login-mbid')}</Button>
+                                <Button onClick={this.startMbidLogin} block round>
+                                    {i18n('home.login.login-mbid')}
+                                </Button>
                                 <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
                                     {i18n('home.login.login-mbid-other-device')}
                                 </Button>
@@ -94,10 +97,10 @@ export class StartPage extends React.Component {
 
                             <Visible show={this.state.showMbidOtherDevice}>
                                 <Input
-                                  label={i18n('home.login.ssn')}
-                                  placeholder={i18n('home.login.ssn-placeholer')}
-                                  value={this.state.ssn}
-                                  onChange={this.onSsnChange}
+                                    label={i18n('home.login.ssn')}
+                                    placeholder={i18n('home.login.ssn-placeholer')}
+                                    value={this.state.ssn}
+                                    onChange={this.onSsnChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
@@ -109,15 +112,21 @@ export class StartPage extends React.Component {
                         </TouchDevice>
 
                         <DesktopDevice>
-                            <Input label={i18n('home.login.ssn')} value={this.state.ssn} placeholder={i18n('home.login.ssn-placeholer')} onChange={this.onSsnChange} />
-                            <Button onClick={this.startMbidOtherDeviceLogin} round>{i18n('home.login.login-mbid')}</Button>
+                            <Input
+                                label={i18n('home.login.ssn')}
+                                value={this.state.ssn}
+                                placeholder={i18n('home.login.ssn-placeholer')}
+                                onChange={this.onSsnChange}
+                            />
+                            <Button onClick={this.startMbidOtherDeviceLogin} round>
+                                {i18n('home.login.login-mbid')}
+                            </Button>
                         </DesktopDevice>
                     </div>
 
-                    {
-                        this.state.createIframe &&
+                    {this.state.createIframe && (
                         <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
-                    }
+                    )}
                 </div>
             </LoginPage>
         );
@@ -128,31 +137,27 @@ StartPage.propTypes = {
     createSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
-    loginStatus: PropTypes.shape().isRequired
+    loginStatus: PropTypes.shape().isRequired,
 };
 
 /* istanbul ignore next */
 function mapStateToProps({ authentication }) {
     return {
         // home: home,
-        loginProgress: authentication.loginProgress,
-        loginStatus: authentication.loginStatus,
+        session: authentication.session,
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        createSession: (data) => {
+        createSession: data => {
             dispatch(createSession(data));
         },
-        getSession: (sessionKey) => {
+        getSession: sessionKey => {
             dispatch(getSession(sessionKey));
-        }
+        },
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(StartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(StartPage);

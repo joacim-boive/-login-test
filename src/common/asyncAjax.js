@@ -14,28 +14,23 @@ const addQueryParams = (url, queryParams = []) =>
         .replace(/&$/, '')
         .replace(/\?$/, '')}`; // Remove trailing & and ?
 
-
 export const post = (url, data) =>
-    Ajax
-        .post({ url }, data)
+    Ajax.post({ url }, data)
         .then(successHandler)
         .catch(errorHandler);
 
 export const put = (url, data) =>
-    Ajax
-        .put({ url }, data)
+    Ajax.put({ url }, data)
         .then(successHandler)
         .catch(errorHandler);
 
 export const get = (url, queryParams) =>
-    Ajax
-        .get({ url: addQueryParams(url, queryParams) })
+    Ajax.get({ url: addQueryParams(url, queryParams) })
         .then(successHandler)
         .catch(errorHandler);
 
 export const del = (url, data) =>
-    Ajax
-        .delete({ url }, data)
+    Ajax.delete({ url }, data)
         .then(successHandler)
         .catch(errorHandler);
 
