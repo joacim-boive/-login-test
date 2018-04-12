@@ -120,6 +120,7 @@ function startDevServer() {
 
     // TODO: is there a smarter way to do this? express proxy plugin or something... /joli44
     app.get('/rest/*', (req, res) => {
+        console.log('Rekit dev server proxying GET: ' + req.url + ' => ' + proxyUrl(req));
         request
             .get({
                 url: proxyUrl(req),
@@ -131,6 +132,8 @@ function startDevServer() {
     });
 
     app.post('/rest/*', (req, res) => {
+        console.log('Rekit dev server proxying POST: ' + req.url + ' => ' + proxyUrl(req));
+        console.log('  body: ', req.body);
         request
             .post({
                 url: proxyUrl(req),
@@ -143,6 +146,8 @@ function startDevServer() {
     });
 
     app.put('/rest/*', (req, res) => {
+        console.log('Rekit dev server proxying PUT: ' + req.url + ' => ' + proxyUrl(req));
+        console.log('  body: ', req.body);
         request
             .put({
                 url: proxyUrl(req),
@@ -155,6 +160,7 @@ function startDevServer() {
     });
 
     app.delete('/rest/*', (req, res) => {
+        console.log('Rekit dev server proxying DELETE: ' + req.url + ' => ' + proxyUrl(req));
         request
             .delete({
                 url: proxyUrl(req),
