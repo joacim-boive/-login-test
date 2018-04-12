@@ -1,0 +1,21 @@
+{
+    "general": {
+        "help": "Help"
+    },
+    "account": {},
+    "authentication": {},
+    "common": {},
+    "customer": {},
+    "home": {
+        "login": {
+            "header": "Login",
+            "login-bid": "Login using BankID",
+            "login-mbid": "Login using Mobile BankID",
+            "login-mbid-other-device": "Login using Mobile BankID on another device",
+            "ssn": "SSN number",
+            "ssn-placeholer": "YYMMDD-XXXX",
+            "back-to-mbid-this-device": "Back to Mobile BankID on this device"
+        }
+    },
+    "loan": {}
+}

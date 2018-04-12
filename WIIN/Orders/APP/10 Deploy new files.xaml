@@ -1,0 +1,192 @@
+<Activity mc:Ignorable="sads sap" x:Class="Handelsbanken.WIIN.InstallerWorkflow" this:InstallerWorkflow.ToLib="E:\App\NETX\" this:InstallerWorkflow.WIINSystem="NETX" this:InstallerWorkflow.AppType="%AppType%"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:hwa="clr-namespace:Handelsbanken.WIIN.Activities;assembly=Handelsbanken.WIIN.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:mvc="clr-namespace:Microsoft.VisualBasic.CompilerServices;assembly=Microsoft.VisualBasic"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Core"
+ xmlns:s3="clr-namespace:System;assembly=System.ServiceModel"
+ xmlns:s4="clr-namespace:System;assembly=System.ComponentModel.Composition"
+ xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:this="clr-namespace:Handelsbanken.WIIN"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Runtime" Type="InArgument(hwa:Runtime)" />
+    <x:Property Name="Envir" Type="InArgument(x:String)" />
+    <x:Property Name="FromLib" Type="InArgument(x:String)" />
+    <x:Property Name="ToLib" Type="InArgument(x:String)" />
+    <x:Property Name="WIINSystem" Type="InArgument(x:String)" />
+    <x:Property Name="ComputerName" Type="InArgument(x:String)" />
+    <x:Property Name="Identities" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="AppLib" Type="InArgument(x:String)" />
+    <x:Property Name="AppName" Type="InArgument(x:String)" />
+    <x:Property Name="AppType" Type="InArgument(x:String)" />
+    <x:Property Name="Instance" Type="InArgument(x:String)" />
+    <x:Property Name="AppPoolName" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>731,2607</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence DisplayName="Deploy new files" sap:VirtualizedContainerService.HintSize="691,2567">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="669,60">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Instance]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[&quot;%InstanceNumber%&quot;]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[Envir &lt;&gt; &quot;FT&quot; AND Instance &lt;&gt; &quot;&quot;]" DisplayName="Check correct environment if instance is set" sap:VirtualizedContainerService.HintSize="669,208">
+      <If.Then>
+        <hwa:Command Arguments="/c exit 1" DisplayName="Fails because in wrong environment" FilePath="cmd" sap:VirtualizedContainerService.HintSize="322,86" />
+      </If.Then>
+      <If.Else>
+        <hwa:Command Arguments="/c exit 0" DisplayName="Ok environment" FilePath="cmd" sap:VirtualizedContainerService.HintSize="322,86" />
+      </If.Else>
+    </If>
+    <If Condition="[AppType = &quot;App&quot;]" sap:VirtualizedContainerService.HintSize="669,392">
+      <If.Then>
+        <Sequence DisplayName="App" sap:VirtualizedContainerService.HintSize="264,284">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="669,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">Loggain-X</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="242,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppLib]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["E:\APP\NETX\apps\ms" + Instance]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="242,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppPoolName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["APP-LOGGAIN" + Instance]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Labs" sap:VirtualizedContainerService.HintSize="264,284">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="669,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">Labs-Loggain-X</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="242,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppLib]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["E:\APP\NETX\labs\ms" + Instance]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="242,60">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AppPoolName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["APP-LABSMS" + Instance]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Start work" sap:VirtualizedContainerService.HintSize="669,1563">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Remove old files" sap:VirtualizedContainerService.HintSize="486,185">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <hwa:FileDelete DisplayName="Remove all files and folders" sap:VirtualizedContainerService.HintSize="261,61" Path="[AppLib + &quot;\*&quot;]" />
+      </Sequence>
+      <hwa:FileCopy CheckVersion="False" DisplayName="Copy files" FromPath="[FromLib + &quot;\build&quot;]" sap:VirtualizedContainerService.HintSize="486,111" ToPath="[AppLib]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </hwa:FileCopy>
+      <Sequence DisplayName="Environment specific fixes" sap:VirtualizedContainerService.HintSize="486,437">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <!--hwa:FileDelete CheckIfExists="True" DisplayName="Remove default index.html" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\index.html&quot;]" /-->
+        <!--hwa:FileCopy CheckVersion="False" DisplayName="Copy environment specific index.html" FromPath="[AppLib + &quot;\Environments\&quot; + Envir + &quot;\index.html&quot;]" sap:VirtualizedContainerService.HintSize="316,111" ToPath="[AppLib]" /-->
+        <!--hwa:FileDelete DisplayName="Remove environment specific source" sap:VirtualizedContainerService.HintSize="316,61" Path="[AppLib + &quot;\Environments\&quot;]" /-->
+      </Sequence>
+      <hwa:Command Arguments="[AppLib + &quot; &quot; + AppName]" DisplayName="Create Version.txt" FilePath="[FromLib + &quot;\Scripts\CREATE_Version.cmd&quot;]" sap:VirtualizedContainerService.HintSize="486,86">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </hwa:Command>
+      <hwa:Command Arguments="[AppLib + &quot; &quot; + AppName]" DisplayName="Update Index.html" FilePath="[FromLib + &quot;\Scripts\WRITE_Index.cmd&quot;]" sap:VirtualizedContainerService.HintSize="486,86">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </hwa:Command>
+      <If Condition="[Envir=&quot;PR&quot;]" sap:VirtualizedContainerService.HintSize="486,208">
+        <If.Then>
+          <hwa:FileDelete DisplayName="Remove build info in PR" sap:VirtualizedContainerService.HintSize="261,61" Path="[AppLib+&quot;\build-info.txt&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Keep build info" sap:VirtualizedContainerService.HintSize="200,99">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+      <hwa:Command Arguments="[&quot;recycle apppool /apppool.name:&quot; + AppPoolName]" DisplayName="Recycle App Pool " FilePath="C:\Windows\system32\inetsrv\AppCmd.exe" sap:VirtualizedContainerService.HintSize="486,86" />
+    </Sequence>
+  </Sequence>
+</Activity>

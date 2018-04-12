@@ -8,11 +8,11 @@ const _ = require('lodash');
 const webpack = require('webpack');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pkgJson = require('./package.json');
 
 module.exports = type => {
-    // eslint-disable-line
     // type is one of [dev, dll, test, dist]
     // NOTE: for test, only module property is used.
 
@@ -55,7 +55,11 @@ module.exports = type => {
                 ],
             },
             dist: {
-                main: ['babel-polyfill', './styles/index.scss', './index'],
+                main: [
+                    'babel-polyfill',
+                    './styles/index.scss',
+                    './index'
+                ],
             },
             test: null,
         }[type],
@@ -67,8 +71,10 @@ module.exports = type => {
             // Where to save your build result
             path: path.join(__dirname, 'build/static'),
 
-            // Exposed asset path. NOTE: the end '/' is necessary
-            publicPath: '/static/',
+            // Exposed asset path.
+            // NOTE: the end '/' is necessary
+            // NOTE: leading ./ is important for build (not local dev)! /joli44
+            publicPath: isDist ? './static/' : '/static/'
         },
 
         plugins: _.compact([
@@ -81,8 +87,18 @@ module.exports = type => {
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(type === 'dist' ? 'production' : type),
-                },
+                }
             }),
+            new CopyWebpackPlugin(
+                [
+                    {   // language resources
+                        from: '../i18n', // todo: why ../ ? I dunno... /joli44
+                        to: 'i18n/',
+                        flatten: true,
+                    },
+                ]
+            ),
+
         ]),
 
         module: {
@@ -90,31 +106,25 @@ module.exports = type => {
                 {
                     test: /\.jsx?$/,
                     exclude: /node_modules|build/,
-                    loader: 'babel-loader?cacheDirectory=true',
-                },
-                {
+                    loader: 'babel-loader?cacheDirectory=true'
+                }, {
                     test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    loader: 'file-loader',
-                },
-                {
+                    loader: 'file-loader'
+                }, {
                     test: /\.scss$/,
-                    loader: isDev
-                        ? 'style-loader!css-loader?sourceMap!sass-loader?sourceMap'
-                        : 'style-loader!css-loader!sass-loader',
-                },
-                {
+                    loader: isDev ? 'style-loader!css-loader?sourceMap!sass-loader?sourceMap'
+                        : 'style-loader!css-loader!sass-loader'
+                }, {
                     test: /\.css$/,
-                    loader: 'style-loader!css-loader',
-                },
-                {
+                    loader: 'style-loader!css-loader'
+                }, {
                     test: /\.json$/,
-                    loader: 'json-loader',
-                },
-                {
+                    loader: 'json-loader'
+                }, {
                     test: /\.(png|jpe?g|gif)$/,
-                    loader: 'url-loader?limit=8192',
-                },
-            ],
+                    loader: 'url-loader?limit=8192'
+                }
+            ]
         },
     };
 };

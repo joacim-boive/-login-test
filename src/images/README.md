@@ -1,0 +1,1 @@
+Note: temporary files, remove when cloudinary solves all our problems :-)

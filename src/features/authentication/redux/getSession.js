@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_GET_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { get, setHeaders } from '../../../common/asyncAjax';
+import { get } from '../../../common/asyncAjax';
 
 import { GET_SESSION_URL } from './urls';
 
@@ -16,7 +16,6 @@ export const getSession = sessionKey => async dispatch => {
 
     try {
         const res = await get(GET_SESSION_URL(sessionKey));
-        setHeaders(res.response.key);
         dispatch({
             type: AUTHENTICATION_GET_SESSION_SUCCESS,
             data: res.response,
@@ -32,6 +31,9 @@ export const getSession = sessionKey => async dispatch => {
 export const dismissGetSessionError = () => ({ type: AUTHENTICATION_GET_SESSION_DISMISS_ERROR });
 
 export function reducer(state, action) {
+    const isLoggedIn =
+        action && action.data && action.data.authentication && action.data.authentication.status === 'VERIFIED';
+
     switch (action.type) {
         case AUTHENTICATION_GET_SESSION_BEGIN:
             return {
@@ -43,8 +45,15 @@ export function reducer(state, action) {
         case AUTHENTICATION_GET_SESSION_SUCCESS:
             return {
                 ...state,
-                sessionKey: action.data.key,
-                isLoggedIn: action.data.authentication.status === 'VERIFIED',
+                loginStatus: {
+                    sessionKey: action.data.key,
+                    isLoggedIn,
+                },
+                loginProgress: {
+                    status: action.data.authentication.status,
+                    pollTime:
+                        isLoggedIn && !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime,
+                },
                 person: action.data.person,
                 getSessionPending: false,
                 getSessionError: null,
