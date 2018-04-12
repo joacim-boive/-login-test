@@ -18,7 +18,7 @@ const renderApp = app => {
 };
 
 // basePath, language, country
-Translate.init('i18n', 'sv', undefined).then(() => {
+Translate.init('static/i18n', 'sv', undefined).then(() => {
     renderApp(<Root store={store} routeConfig={routeConfig} />);
 });
 
