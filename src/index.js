@@ -13,13 +13,8 @@ import Root from './Root';
 
 const store = configStore();
 
-const renderApp = (app) => {
-    render(
-        <AppContainer>
-            {app}
-        </AppContainer>,
-        document.getElementById('react-root')
-    );
+const renderApp = app => {
+    render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
 };
 
 // basePath, language, country

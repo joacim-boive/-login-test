@@ -1,4 +1,3 @@
-
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
     // generated
@@ -12,14 +11,14 @@ const initialState = {
     // added
     loginStatus: {
         sessionKey: undefined,
-        isLoggedIn: false
+        isLoggedIn: false,
     },
     loginProgress: {
         status: undefined,
         pollTime: 0,
-        startURL: undefined
+        startURL: undefined,
     },
-    person: {}
+    person: {},
 };
 
 export default initialState;

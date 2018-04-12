@@ -49,6 +49,10 @@ export class StartPage extends React.Component {
         }
     }
 
+    onSsnChange({ target }) {
+        this.setState({ ssn: target.value });
+    }
+
     onClickMobileBankId() {
         this.setState({ showMobileBankIdForm: true });
     }
@@ -144,7 +148,8 @@ StartPage.propTypes = {
 function mapStateToProps({ authentication }) {
     return {
         // home: home,
-        session: authentication.session,
+        loginProgress: authentication.loginProgress,
+        loginStatus: authentication.loginStatus,
     };
 }
 
@@ -159,5 +164,4 @@ function mapDispatchToProps(dispatch) {
         },
     };
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(StartPage);
