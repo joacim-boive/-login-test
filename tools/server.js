@@ -118,57 +118,16 @@ function startDevServer() {
         cookie: req.header('cookie'),
     });
 
-    // TODO: is there a smarter way to do this? express proxy plugin or something... /joli44
-    app.get('/rest/*', (req, res) => {
-        console.log('Rekit dev server proxying GET: ' + req.url + ' => ' + proxyUrl(req));
-        request
-            .get({
-                url: proxyUrl(req),
-                rejectUnauthorized: false,
-                headers: proxyHeaders(req),
-                json: true,
-            })
-            .pipe(res);
-    });
-
-    app.post('/rest/*', (req, res) => {
-        console.log('Rekit dev server proxying POST: ' + req.url + ' => ' + proxyUrl(req));
-        console.log('  body: ', req.body);
-        request
-            .post({
-                url: proxyUrl(req),
-                rejectUnauthorized: false,
-                headers: proxyHeaders(req),
-                json: true,
-                body: req.body,
-            })
-            .pipe(res);
-    });
-
-    app.put('/rest/*', (req, res) => {
-        console.log('Rekit dev server proxying PUT: ' + req.url + ' => ' + proxyUrl(req));
-        console.log('  body: ', req.body);
-        request
-            .put({
-                url: proxyUrl(req),
-                rejectUnauthorized: false,
-                headers: proxyHeaders(req),
-                json: true,
-                body: req.body,
-            })
-            .pipe(res);
-    });
-
-    app.delete('/rest/*', (req, res) => {
-        console.log('Rekit dev server proxying DELETE: ' + req.url + ' => ' + proxyUrl(req));
-        request
-            .delete({
-                url: proxyUrl(req),
-                rejectUnauthorized: false,
-                headers: proxyHeaders(req),
-                json: true,
-            })
-            .pipe(res);
+    // proxy all rest requests to Ecster dev server
+    app.all('/rest/*', (req, res) => {
+        console.log(req.method + ' on ' + req.url);
+        request[req.method.toLowerCase()]({
+            url: proxyUrl(req),
+            rejectUnauthorized: false,
+            headers: proxyHeaders(req),
+            json: true,
+            body: req.body
+        }).pipe(res);
     });
 
     // History api fallback
