@@ -11,18 +11,28 @@ import loanRoute from '../features/loan/route';
 // This is used for Rekit cmds to register routes config for new features, and remove config when remove features, etc.
 const childRoutes = [homeRoute, commonRoute, accountRoute, authenticationRoute, customerRoute, loanRoute];
 
+// const routes = [
+//     {
+//         path: '/',
+//         component: App,
+//         childRoutes: [...childRoutes, { path: '*', name: 'Page not found', component: PageNotFound }].filter(
+//             r => r.component || (r.childRoutes && r.childRoutes.length > 0)
+//         ),
+//     },
+// ];
 const routes = [
     {
         path: '/',
         component: App,
-        childRoutes: [...childRoutes, { path: '*', name: 'Page not found', component: PageNotFound }].filter(
-            r => r.component || (r.childRoutes && r.childRoutes.length > 0)
-        ),
+        childRoutes: [
+            ...childRoutes,
+            // { path: '*', name: 'Page not found', component: PageNotFound, isPublic: true },
+        ].filter(r => r.component || (r.childRoutes && r.childRoutes.length > 0)),
     },
 ];
 
 // Handle isIndex property of route config:
-//  Dupicate it and put it as the first route rule.
+//  Duplicate it and put it as the first route rule.
 function handleIndexRoute(route) {
     if (!route.childRoutes || !route.childRoutes.length) {
         return;

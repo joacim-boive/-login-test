@@ -10,13 +10,13 @@ export class OverviewPage extends Component {
         actions: PropTypes.object.isRequired,
     };
 
-  render() {
-    return
-      <div className="pageaccount-overview-page">
-        <h1>Account / overview page</h1>
-      </div>;
-
-  }
+    render() {
+        return (
+            <div className="page account-overview-page">
+                <h1>Account / overview page</h1>
+            </div>
+        );
+    }
 }
 
 /* istanbul ignore next */
