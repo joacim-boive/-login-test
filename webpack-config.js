@@ -88,7 +88,7 @@ module.exports = type => {
             new CopyWebpackPlugin([
                 {
                     // language resources
-                    from: '../i18n', // todo: why ../ ? I dunno... /joli44
+                    from: './i18n',
                     to: 'i18n/',
                     flatten: true,
                 },

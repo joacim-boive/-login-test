@@ -37,11 +37,18 @@
     }
 
     iframe.start-bankid {
-        position: absolute;
-        left: -10000px;
-        top: -10000px;
-        width: 1px;
-        height: 1px;
+        //position: absolute;
+        //left: -10000px;
+        //top: -10000px;
+        width: 40px;
+        height: 4px;
         border: none;
+        &:after {
+            content: 'Starting BankID...';
+            display: block;
+            font-size: 10px;
+            width: 100px;
+            height: 20px;
+        }
     }
 }

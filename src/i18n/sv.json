@@ -12,6 +12,8 @@
             "login-bid": "Logga in med BankID",
             "login-mbid": "Logga in med Mobilt BankID",
             "login-mbid-other-device": "Använd Mobilt BankID från annan enhet",
+            "open-mbid": "Öppna Mobilt BankID",
+            "open-bid": "Öppna BankID",
             "ssn": "Personnummer",
             "ssn-placeholer": "ÅÅMMDD-XXXX",
             "back-to-mbid-this-device": "Tillbaka till Mobilt BankID på denna enhet"

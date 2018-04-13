@@ -4,31 +4,37 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TouchDevice, Spinner } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 
 // TODO: replace with some fancy transition component...
-const Visible = props => props.show && props.children;
+const Visible = props => props.if && props.children;
 const i18n = Translate.getText;
 
 export class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMbidOtherDevice: false,
-            showBid: false,
+            // Touch device forms
+            showMbidFormThisDevice: true,
+            showMbidFormOtherDevice: false,
+            // User feedback
+            showMBidSpinner: false,
+            showBidSpinner: false,
+            // Form data
             ssn: '',
+            // Other
             createIframe: false,
+            mbidOnOtherDevice: false,
         };
 
-        this.startMbidLogin = this.startMbidLogin.bind(this);
+        this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
         this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
         this.startBidLogin = this.startBidLogin.bind(this);
-        this.toggleMbidOtherDeviceForm = this.toggleMbidOtherDeviceForm.bind(this);
-        this.toggleBidForm = this.toggleBidForm.bind(this);
+        this.toggleMbidForms = this.toggleMbidForms.bind(this);
         this.onSsnChange = this.onSsnChange.bind(this);
     }
 
@@ -36,7 +42,7 @@ export class LoginPage extends React.Component {
         console.log('StartPage will receive props: props =  ', nextProps);
         console.log('StartPage will receive props: state = ', this.state);
 
-        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0) {
+        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0 && !this.state.mbidOnOtherDevice) {
             this.setState({ createIframe: true });
             setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
@@ -53,30 +59,27 @@ export class LoginPage extends React.Component {
         this.setState({ ssn: target.value });
     }
 
-    onClickMobileBankId() {
-        this.setState({ showMobileBankIdForm: true });
-    }
-
     // start login
-    startMbidLogin() {
+    startMbidThisDeviceLogin() {
+        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false });
         this.props.createSession({ type: 'BANKID' });
     }
 
     startMbidOtherDeviceLogin() {
+        this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnOtherDevice: true });
         this.props.createSession({ type: 'BANKID_MOBILE', ssn: this.state.ssn });
     }
 
     startBidLogin() {
+        this.setState({ showBidSpinner: true });
         this.props.createSession({ type: 'BANKID', ssn: this.state.ssn });
     }
 
-    // show ssn forms
-    toggleMbidOtherDeviceForm() {
-        this.setState({ showMbidOtherDevice: !this.state.showMbidOtherDevice });
-    }
-
-    toggleBidForm() {
-        this.setState({ showBid: !this.state.showBid });
+    toggleMbidForms() {
+        this.setState({
+            showMbidFormOtherDevice: !this.state.showMbidFormOtherDevice,
+            showMbidFormThisDevice: !this.state.showMbidFormThisDevice,
+        });
     }
 
     render() {
@@ -87,19 +90,31 @@ export class LoginPage extends React.Component {
             <LoginPageTemplate>
                 <div className="home-login-page">
                     <div className="bankid-form">
-                        <h1 className="e-green120">{i18n('home.login.header')}</h1>
+                        <Visible if={!this.state.showMBidSpinner && !this.state.showBidSpinner}>
+                            <h1 className="e-green120">{i18n('home.login.header')}</h1>
+                        </Visible>
+
+                        <Visible if={this.state.showMBidSpinner}>
+                            <h1 className="e-green120">{i18n('home.login.open-mbid')}</h1>
+                            <Spinner />
+                        </Visible>
+
+                        <Visible if={this.state.showBidSpinner}>
+                            <h1 className="e-green120">{i18n('home.login.open-bid')}</h1>
+                            <Spinner />
+                        </Visible>
 
                         <TouchDevice>
-                            <Visible show={!this.state.showMbidOtherDevice}>
-                                <Button onClick={this.startMbidLogin} block round>
+                            <Visible if={this.state.showMbidFormThisDevice}>
+                                <Button onClick={this.startMbidThisDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
                                 </Button>
-                                <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                <Button onClick={this.toggleMbidForms} transparent>
                                     {i18n('home.login.login-mbid-other-device')}
                                 </Button>
                             </Visible>
 
-                            <Visible show={this.state.showMbidOtherDevice}>
+                            <Visible if={this.state.showMbidFormOtherDevice}>
                                 <Input
                                     label={i18n('home.login.ssn')}
                                     placeholder={i18n('home.login.ssn-placeholer')}
@@ -109,27 +124,39 @@ export class LoginPage extends React.Component {
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
                                 </Button>
-                                <Button onClick={this.toggleMbidOtherDeviceForm} transparent>
+                                <Button onClick={this.toggleMbidForms} transparent>
                                     {i18n('home.login.back-to-mbid-this-device')}
                                 </Button>
                             </Visible>
                         </TouchDevice>
 
                         <DesktopDevice>
-                            <Input
-                                label={i18n('home.login.ssn')}
-                                value={this.state.ssn}
-                                placeholder={i18n('home.login.ssn-placeholer')}
-                                onChange={this.onSsnChange}
-                            />
-                            <Button onClick={this.startMbidOtherDeviceLogin} round>
-                                {i18n('home.login.login-mbid')}
-                            </Button>
+                            <Visible if={!this.state.showMBidSpinner && !this.state.showBidSpinner}>
+                                <Input
+                                    label={i18n('home.login.ssn')}
+                                    value={this.state.ssn}
+                                    placeholder={i18n('home.login.ssn-placeholer')}
+                                    onChange={this.onSsnChange}
+                                />
+                                <Button onClick={this.startMbidOtherDeviceLogin} block round>
+                                    {i18n('home.login.login-mbid')}
+                                </Button>
+                                <Button onClick={this.startBidLogin} transparent>
+                                    {i18n('home.login.login-bid')}
+                                </Button>
+                            </Visible>
                         </DesktopDevice>
                     </div>
 
                     {this.state.createIframe && (
-                        <iframe className="start-bankid" title="start-bankid" src={this.props.loginProgress.startURL} />
+                        <div>
+                            <iframe
+                                className="start-bankid"
+                                title="start-bankid"
+                                src={this.props.loginProgress.startURL}
+                            />
+                            <div style={{ fontSize: '11px', color: '#888' }}>Starting BankId...</div>
+                        </div>
                     )}
                 </div>
             </LoginPageTemplate>
