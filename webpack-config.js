@@ -103,7 +103,7 @@ module.exports = type => {
                     loader: 'babel-loader?cacheDirectory=true',
                 },
                 {
-                    test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loader: 'file-loader',
                 },
                 {

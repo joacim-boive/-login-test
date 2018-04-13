@@ -1,5 +1,9 @@
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
-const initialState = {
+import { loadByKey } from '../../../common/sessionStoredState';
+
+console.log('try get authentication state from session storage: ', loadByKey('authentication'));
+
+const initialState = loadByKey('authentication') || {
     // generated
     deleteSessionPending: false,
     deleteSessionError: null,
