@@ -28,7 +28,8 @@ export class LoginPage extends React.Component {
             ssn: '',
             // Other
             createIframe: false,
-            mbidOnOtherDevice: false,
+            bidOnThisDevice: false,
+            mbidOnThisDevice: false,
         };
 
         this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
@@ -42,7 +43,11 @@ export class LoginPage extends React.Component {
         console.log('StartPage will receive props: props =  ', nextProps);
         console.log('StartPage will receive props: state = ', this.state);
 
-        if (nextProps.loginProgress.startURL && nextProps.loginProgress.pollTime > 0 && !this.state.mbidOnOtherDevice) {
+        if (
+            nextProps.loginProgress.startURL &&
+            nextProps.loginProgress.pollTime > 0 &&
+            (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
+        ) {
             this.setState({ createIframe: true });
             setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
@@ -61,18 +66,18 @@ export class LoginPage extends React.Component {
 
     // start login
     startMbidThisDeviceLogin() {
-        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false });
+        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: <true>  </true> });
         this.props.createSession({ type: 'BANKID' });
     }
 
     startMbidOtherDeviceLogin() {
-        this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnOtherDevice: true });
+        this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false });
         this.props.createSession({ type: 'BANKID_MOBILE', ssn: this.state.ssn });
     }
 
     startBidLogin() {
-        this.setState({ showBidSpinner: true });
-        this.props.createSession({ type: 'BANKID', ssn: this.state.ssn });
+        this.setState({ showBidSpinner: true, bidOnThisDevice: true });
+        this.props.createSession({ type: 'BANKID' });
     }
 
     toggleMbidForms() {
