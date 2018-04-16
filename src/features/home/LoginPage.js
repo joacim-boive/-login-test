@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, DesktopDevice, TouchDevice, Spinner, Mobile } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TouchDevice, Spinner, Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
@@ -104,6 +104,12 @@ export class LoginPage extends React.Component {
                             <Spinner />
                         </Visible>
 
+                        <TabletOrDesktop>
+                            <div className="help-link-ctr">
+                                <a href="#/start/login-help">{i18n('general.help')} <i className="icon-alert-circle"/></a>
+                            </div>
+                        </TabletOrDesktop>
+
                         <TouchDevice>
                             <Visible if={this.state.showMbidFormThisDevice}>
                                 <h1>{i18n('home.login.header')}</h1>
@@ -150,6 +156,7 @@ export class LoginPage extends React.Component {
                             </Visible>
                         </DesktopDevice>
                     </div>
+
                     <Mobile>
                         <Navigation>
                             <NavigationItem target="#/start/about-mbid" text={i18n('home.login.about-mbid')} />

@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Translate } from '@ecster/ecster-i18n';
 import InfoPageTemplate from '../common/templates/InfoPageTemplate';
 
 const i18n = Translate.getText;
 
-export default class AboutMbid extends Component {
+export default class LoginHelp extends React.Component {
     static propTypes = {};
 
     render() {
         return (
             <InfoPageTemplate>
-                <div className="home-about-mbid">
-                    <h2>{i18n('home.login.about-mbid')}</h2>
+                <div className="home-login-help">
+                    <h2>Logga in va?</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In posuere sodales libero nec pharetra.
                         Praesent luctus ex tortor, id viverra erat tempor vel. Proin sit amet volutpat lectus.
