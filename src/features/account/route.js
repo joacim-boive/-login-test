@@ -1,8 +1,4 @@
-
-import {
-  DefaultPage,
-  OverviewPage,
-} from './';
+import { DefaultPage, OverviewPage } from './';
 
 export default {
     path: 'account',

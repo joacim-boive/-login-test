@@ -7,7 +7,7 @@
     .bankid-form {
         max-width: 500px;
         background: #fff;
-        margin: 0 auto;
+        margin: 0 auto 40px;
         padding: 30px 20px;
         border: 1px solid $beige40;
         border-radius: 6px;
@@ -20,7 +20,7 @@
         }
 
         @include mobile() {
-            margin: 0 15px;
+            margin: 0 15px 40px;
         }
 
         @include tablet() {
@@ -29,26 +29,19 @@
         @include desktop() {
         }
 
-        h1, button.\--block, p, input {
+        button.\--block, p, input {
             margin-bottom: 20px;
         }
-
-
     }
 
+    // tech iframe for starting native BankID apps
+    // don't show to user
     iframe.start-bankid {
-        //position: absolute;
-        //left: -10000px;
-        //top: -10000px;
-        width: 40px;
-        height: 4px;
+        position: absolute;
+        left: -10000px;
+        top: -10000px;
+        width: 1px;
+        height: 1px;
         border: none;
-        &:after {
-            content: 'Starting BankID...';
-            display: block;
-            font-size: 10px;
-            width: 100px;
-            height: 20px;
-        }
     }
 }

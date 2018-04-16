@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, DesktopDevice, TouchDevice, Spinner } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TouchDevice, Spinner, Mobile } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
+import Navigation from '../common/Navigation';
+import NavigationItem from '../common/NavigationItem';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.if && props.children;
@@ -63,7 +65,7 @@ export class LoginPage extends React.Component {
 
     // start login
     startMbidThisDeviceLogin() {
-        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: <true>  </true> });
+        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
         this.props.createSession({ type: 'BANKID' });
     }
 
@@ -92,22 +94,19 @@ export class LoginPage extends React.Component {
             <LoginPageTemplate>
                 <div className="home-login-page">
                     <div className="bankid-form">
-                        <Visible if={!this.state.showMBidSpinner && !this.state.showBidSpinner}>
-                            <h1 className="e-green120">{i18n('home.login.header')}</h1>
-                        </Visible>
-
                         <Visible if={this.state.showMBidSpinner}>
-                            <h1 className="e-green120">{i18n('home.login.open-mbid')}</h1>
+                            <h2>{i18n('home.login.open-mbid')}</h2>
                             <Spinner />
                         </Visible>
 
                         <Visible if={this.state.showBidSpinner}>
-                            <h1 className="e-green120">{i18n('home.login.open-bid')}</h1>
+                            <h2>{i18n('home.login.open-bid')}</h2>
                             <Spinner />
                         </Visible>
 
                         <TouchDevice>
                             <Visible if={this.state.showMbidFormThisDevice}>
+                                <h1>{i18n('home.login.header')}</h1>
                                 <Button onClick={this.startMbidThisDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
                                 </Button>
@@ -117,6 +116,7 @@ export class LoginPage extends React.Component {
                             </Visible>
 
                             <Visible if={this.state.showMbidFormOtherDevice}>
+                                <h3>{i18n('home.login.header-other-device')}</h3>
                                 <Input
                                     label={i18n('home.login.ssn')}
                                     placeholder={i18n('home.login.ssn-placeholer')}
@@ -127,13 +127,14 @@ export class LoginPage extends React.Component {
                                     {i18n('home.login.login-mbid')}
                                 </Button>
                                 <Button onClick={this.toggleMbidForms} transparent>
-                                    {i18n('home.login.back-to-mbid-this-device')}
+                                    <i className="icon-chevron-left" /> {i18n('general.back')}
                                 </Button>
                             </Visible>
                         </TouchDevice>
 
                         <DesktopDevice>
                             <Visible if={!this.state.showMBidSpinner && !this.state.showBidSpinner}>
+                                <h1>{i18n('home.login.header')}</h1>
                                 <Input
                                     label={i18n('home.login.ssn')}
                                     value={this.state.ssn}
@@ -149,6 +150,11 @@ export class LoginPage extends React.Component {
                             </Visible>
                         </DesktopDevice>
                     </div>
+                    <Mobile>
+                        <Navigation>
+                            <NavigationItem target="#/start/about-mbid" text={i18n('home.login.about-mbid')} />
+                        </Navigation>
+                    </Mobile>
 
                     {this.state.createIframe && (
                         <div>

@@ -1,14 +1,17 @@
 {
     "general": {
-        "help": "Hjälp"
+        "help": "Hjälp",
+        "back": "Tillbaka"
     },
     "account": {},
     "authentication": {},
-    "common": {},
+    "common": {
+    },
     "customer": {},
     "home": {
         "login": {
             "header": "Logga in",
+            "header-other-device": "Logga in med Mobilt BankId från annan enhet",
             "login-bid": "Logga in med BankID",
             "login-mbid": "Logga in med Mobilt BankID",
             "login-mbid-other-device": "Använd Mobilt BankID från annan enhet",
@@ -16,7 +19,8 @@
             "open-bid": "Öppna BankID",
             "ssn": "Personnummer",
             "ssn-placeholer": "ÅÅMMDD-XXXX",
-            "back-to-mbid-this-device": "Tillbaka till Mobilt BankID på denna enhet"
+            "back-to-mbid-this-device": "Tillbaka",
+            "about-mbid": "Om Mobilt BankID"
         }
     },
     "loan": {}

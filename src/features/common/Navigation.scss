@@ -1,0 +1,32 @@
+@import '~@ecster/ecster-styles/scss/v2/include/media-queries';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '../../styles/mixins';
+
+.common-navigation {
+    list-style: none;
+    padding-left: 0;
+}
+
+@include mobile() {
+    .common-navigation {
+        &__item {
+            padding: 12px 20px;
+            background: #fff;
+            border-top: 1px solid $beige40;
+            text-align: left;
+
+            &:last-child {
+                border-bottom: 1px solid $beige40;
+            }
+
+            a, a:visited {
+                color: $gray140;
+            }
+
+            i {
+                float: right;
+            }
+        }
+    }
+}
+

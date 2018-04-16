@@ -108,6 +108,15 @@ module.exports = type => {
                 },
                 {
                     test: /\.scss$/,
+                    loaders: [
+                        'style-loader',
+                        'css-loader?importLoaders=1',
+                        'resolve-url-loader',
+                        'sass-loader?sourceMap',
+                    ],
+                },
+                {
+                    test: /\.DISABLE-ORIGINAL-ascss$/,
                     loader: isDev
                         ? 'style-loader!css-loader?sourceMap!sass-loader?sourceMap'
                         : 'style-loader!css-loader!sass-loader',
