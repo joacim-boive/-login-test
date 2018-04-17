@@ -59,7 +59,7 @@ export class LoginPage extends React.Component {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
-    }
+    };
 
     prevState = undefined;
     pollTimer = undefined;
@@ -193,14 +193,14 @@ export class LoginPage extends React.Component {
                                 className="start-bankid"
                                 title="start-bankid"
                                 src={this.props.loginProgress.startURL}
+                                aria-hidden
                             />
-                            <div style={{ fontSize: '11px', color: '#888' }}>Starting BankId...</div>
                         </div>
                     )}
                 </div>
             </LoginPageTemplate>
         );
-    }
+    };
 }
 
 LoginPage.propTypes = {
