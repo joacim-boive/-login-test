@@ -10,7 +10,6 @@ class Authorized extends React.Component {
         const { loginStatus } = this.props;
 
         if (loginStatus.sessionKey && !this.props.getSessionPending && !loginStatus.isLoggedIn) {
-            console.log('Authorized getSession');
             this.props.getSession(loginStatus.sessionKey);
         }
     }

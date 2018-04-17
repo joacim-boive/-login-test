@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { LoginPage } from 'src/features/common';
+import { AboutMbid } from 'src/features/home';
 
-describe('common/LoginPageTemplate', () => {
+describe('home/AboutMbid', () => {
   it('renders node with correct class name', () => {
     const renderedComponent = shallow(
-      <LoginPage />
+      <AboutMbid />
     );
 
     expect(
-      renderedComponent.find('.common-login-page').getElement()
+      renderedComponent.find('.home-about-mbid').getElement()
     ).to.exist;
   });
 });

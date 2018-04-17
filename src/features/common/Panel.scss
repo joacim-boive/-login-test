@@ -1,0 +1,10 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/include/media-queries';
+@import '../../styles/mixins';
+
+.common-panel {
+    padding: 15px;
+    text-align: left;
+    background: #fff;
+    border: 1px solid $beige20;
+}

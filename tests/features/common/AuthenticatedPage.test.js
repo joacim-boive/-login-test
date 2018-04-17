@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import { AuthenticatedPage } from 'src/features/common';
 
-describe('common/AuthenticatedPage', () => {
+describe('common/AuthenticatedPageTemplate', () => {
   it('renders node with correct class name', () => {
     const renderedComponent = shallow(
       <AuthenticatedPage />

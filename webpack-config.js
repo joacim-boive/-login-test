@@ -88,7 +88,7 @@ module.exports = type => {
             new CopyWebpackPlugin([
                 {
                     // language resources
-                    from: '../i18n', // todo: why ../ ? I dunno... /joli44
+                    from: './i18n',
                     to: 'i18n/',
                     flatten: true,
                 },
@@ -103,11 +103,20 @@ module.exports = type => {
                     loader: 'babel-loader?cacheDirectory=true',
                 },
                 {
-                    test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loader: 'file-loader',
                 },
                 {
                     test: /\.scss$/,
+                    loaders: [
+                        'style-loader',
+                        'css-loader?importLoaders=1',
+                        'resolve-url-loader',
+                        'sass-loader?sourceMap',
+                    ],
+                },
+                {
+                    test: /\.DISABLE-ORIGINAL-ascss$/,
                     loader: isDev
                         ? 'style-loader!css-loader?sourceMap!sass-loader?sourceMap'
                         : 'style-loader!css-loader!sass-loader',

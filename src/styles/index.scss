@@ -8,6 +8,7 @@
 @import '../features/customer/style';
 @import '../features/loan/style';
 
+@import "~@ecster/ecster-styles/scss/v2/theme/theme"; // fonts incl icons
 @import '~@ecster/ecster-styles/v2/include/margins';
 @import '~@ecster/ecster-styles/v2/include/paddings';
 @import '~@ecster/ecster-styles/v2/include/color-classes';
@@ -15,6 +16,26 @@
 
 html, body {
     height: 100%;
+    font-family: 'PT Sans', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    color: $green120;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-weight: 700;
+    color: $green120;
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-weight: 600;
+    color: $green120;
+    margin-bottom: 30px;
+    line-height: 32px;
 }
 
 // TODO: remove, just temporary for routing / login tests /joli44

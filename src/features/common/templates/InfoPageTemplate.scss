@@ -1,0 +1,20 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-components/scss/MediaQuery";
+
+.common-info-page {
+    height: 100%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+    max-width: 600px;
+
+    @include mobile() {
+    }
+
+    @include tablet() {
+    }
+
+    @include desktop() {
+    }
+
+}

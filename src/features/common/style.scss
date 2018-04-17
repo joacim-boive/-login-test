@@ -2,5 +2,8 @@
 @import './SimpleNav';
 @import './PageNotFound';
 @import './InfoPage';
-@import 'templates/LoginPage';
-@import 'templates/AuthenticatedPage';
+@import 'templates/InfoPageTemplate';
+@import 'templates/LoginPageTemplate';
+@import 'templates/AuthenticatedPageTemplate';
+@import './Navigation';
+@import './Panel';

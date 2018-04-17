@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { LoginPage } from 'src/features/common';
+import { LoginHelp } from 'src/features/home';
 
-describe('common/LoginPageTemplate', () => {
+describe('home/LoginHelp', () => {
   it('renders node with correct class name', () => {
     const renderedComponent = shallow(
-      <LoginPage />
+      <LoginHelp />
     );
 
     expect(
-      renderedComponent.find('.common-login-page').getElement()
+      renderedComponent.find('.home-login-help').getElement()
     ).to.exist;
   });
 });

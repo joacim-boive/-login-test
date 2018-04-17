@@ -14,7 +14,6 @@ export default class Root extends React.Component {
     };
 
     render() {
-        console.log('route config = ', this.props.routeConfig);
         const routes = createRoutes(this.props.routeConfig);
         return (
             <Provider store={this.props.store}>
