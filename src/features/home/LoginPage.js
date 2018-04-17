@@ -16,30 +16,32 @@ import NavigationItem from '../common/NavigationItem';
 const Visible = props => props.if && props.children;
 const i18n = Translate.getText;
 
-export class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // Touch device forms
-            showMbidFormThisDevice: true,
-            showMbidFormOtherDevice: false,
-            // User feedback
-            showMBidSpinner: false,
-            showBidSpinner: false,
-            // Form data
-            ssn: '',
-            // Other
-            createIframe: false,
-            bidOnThisDevice: false,
-            mbidOnThisDevice: false,
-        };
+const LoginProgress = props => (
+    /* eslint-disable react/prop-types */
+    <Visible if={props.visible}>
+        <h2>{props.text}</h2>
+        <Spinner />
+        <Button outline round onClick={props.onCancel} className="mt-6x">
+            {i18n('general.cancel')}
+        </Button>
+    </Visible>
+);
 
-        this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
-        this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
-        this.startBidLogin = this.startBidLogin.bind(this);
-        this.toggleMbidForms = this.toggleMbidForms.bind(this);
-        this.onSsnChange = this.onSsnChange.bind(this);
-    }
+export class LoginPage extends React.Component {
+    state = {
+        // Touch device forms
+        showMbidFormThisDevice: true,
+        showMbidFormOtherDevice: false,
+        // User feedback
+        showMBidSpinner: false,
+        showBidSpinner: false,
+        // Form data
+        ssn: '',
+        // Other
+        createIframe: false,
+        bidOnThisDevice: false,
+        mbidOnThisDevice: false,
+    };
 
     componentWillReceiveProps(nextProps) {
         if (
@@ -48,65 +50,87 @@ export class LoginPage extends React.Component {
             (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
         ) {
             this.setState({ createIframe: true });
-            setTimeout(() => {
+            this.pollTimer = setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
                 this.setState({ createIframe: false });
             }, nextProps.loginProgress.pollTime);
         } else if (nextProps.loginProgress.status === 'IN_PROGRESS') {
-            setTimeout(() => {
+            this.pollTimer = setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
     }
 
-    onSsnChange({ target }) {
+    prevState = undefined;
+    pollTimer = undefined;
+
+    ssnFieldChange = ({ target }) => {
         this.setState({ ssn: target.value });
-    }
+    };
 
     // start login
-    startMbidThisDeviceLogin() {
+    startMbidThisDeviceLogin = () => {
+        this.prevState = { ...this.state };
         this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
         this.props.createSession({ type: 'BANKID' });
-    }
+    };
 
-    startMbidOtherDeviceLogin() {
+    startMbidOtherDeviceLogin = () => {
+        this.prevState = { ...this.state };
         this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false });
         this.props.createSession({ type: 'BANKID_MOBILE', ssn: this.state.ssn });
-    }
+    };
 
-    startBidLogin() {
+    startBidLogin = () => {
+        this.prevState = { ...this.state };
         this.setState({ showBidSpinner: true, bidOnThisDevice: true });
         this.props.createSession({ type: 'BANKID' });
-    }
+    };
 
-    toggleMbidForms() {
+    cancelLogin = () => {
+        if (this.pollTimer) {
+            clearTimeout(this.pollTimer);
+        }
+
+        this.setState({
+            ...this.prevState,
+        });
+        this.prevState = undefined;
+    };
+
+    toggleMbidForms = () => {
         this.setState({
             showMbidFormOtherDevice: !this.state.showMbidFormOtherDevice,
             showMbidFormThisDevice: !this.state.showMbidFormThisDevice,
         });
-    }
+    };
 
     render() {
         if (this.props.loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
         }
+
         return (
             <LoginPageTemplate>
                 <div className="home-login-page">
                     <div className="bankid-form">
-                        <Visible if={this.state.showMBidSpinner}>
-                            <h2>{i18n('home.login.open-mbid')}</h2>
-                            <Spinner />
-                        </Visible>
+                        <LoginProgress
+                            visible={this.state.showMBidSpinner}
+                            text={i18n('home.login.open-mbid')}
+                            onCancel={this.cancelLogin}
+                        />
 
-                        <Visible if={this.state.showBidSpinner}>
-                            <h2>{i18n('home.login.open-bid')}</h2>
-                            <Spinner />
-                        </Visible>
+                        <LoginProgress
+                            visible={this.state.showBidSpinner}
+                            text={i18n('home.login.open-bid')}
+                            onCancel={this.cancelLogin}
+                        />
 
                         <TabletOrDesktop>
                             <div className="help-link-ctr">
-                                <a href="#/start/login-help">{i18n('general.help')} <i className="icon-alert-circle"/></a>
+                                <a href="#/start/login-help">
+                                    {i18n('general.help')} <i className="icon-alert-circle" />
+                                </a>
                             </div>
                         </TabletOrDesktop>
 
@@ -127,7 +151,7 @@ export class LoginPage extends React.Component {
                                     label={i18n('home.login.ssn')}
                                     placeholder={i18n('home.login.ssn-placeholer')}
                                     value={this.state.ssn}
-                                    onChange={this.onSsnChange}
+                                    onChange={this.ssnFieldChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
@@ -145,7 +169,7 @@ export class LoginPage extends React.Component {
                                     label={i18n('home.login.ssn')}
                                     value={this.state.ssn}
                                     placeholder={i18n('home.login.ssn-placeholer')}
-                                    onChange={this.onSsnChange}
+                                    onChange={this.ssnFieldChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
