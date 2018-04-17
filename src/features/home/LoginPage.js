@@ -17,31 +17,29 @@ const Visible = props => props.if && props.children;
 const i18n = Translate.getText;
 
 export class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // Touch device forms
-            showMbidFormThisDevice: true,
-            showMbidFormOtherDevice: false,
-            // User feedback
-            showMBidSpinner: false,
-            showBidSpinner: false,
-            // Form data
-            ssn: '',
-            // Other
-            createIframe: false,
-            bidOnThisDevice: false,
-            mbidOnThisDevice: false,
-        };
+    state = {
+        // Touch device forms
+        showMbidFormThisDevice: true,
+        showMbidFormOtherDevice: false,
+        // User feedback
+        showMBidSpinner: false,
+        showBidSpinner: false,
+        // Form data
+        ssn: '',
+        // Other
+        createIframe: false,
+        bidOnThisDevice: false,
+        mbidOnThisDevice: false,
+    };
 
-        this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
-        this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
-        this.startBidLogin = this.startBidLogin.bind(this);
-        this.toggleMbidForms = this.toggleMbidForms.bind(this);
-        this.onSsnChange = this.onSsnChange.bind(this);
-    }
+    //     this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
+    //     this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
+    //     this.startBidLogin = this.startBidLogin.bind(this);
+    //     this.toggleMbidForms = this.toggleMbidForms.bind(this);
+    //     this.onSsnChange = this.onSsnChange.bind(this);
+    // }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps = nextProps => {
         if (
             nextProps.loginProgress.startURL &&
             nextProps.loginProgress.pollTime > 0 &&
@@ -57,36 +55,36 @@ export class LoginPage extends React.Component {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
-    }
+    };
 
-    onSsnChange({ target }) {
+    onSsnChange = ({ target }) => {
         this.setState({ ssn: target.value });
-    }
+    };
 
     // start login
-    startMbidThisDeviceLogin() {
+    startMbidThisDeviceLogin = () => {
         this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
         this.props.createSession({ type: 'BANKID' });
-    }
+    };
 
-    startMbidOtherDeviceLogin() {
+    startMbidOtherDeviceLogin = () => {
         this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false });
         this.props.createSession({ type: 'BANKID_MOBILE', ssn: this.state.ssn });
-    }
+    };
 
-    startBidLogin() {
+    startBidLogin = () => {
         this.setState({ showBidSpinner: true, bidOnThisDevice: true });
         this.props.createSession({ type: 'BANKID' });
-    }
+    };
 
-    toggleMbidForms() {
+    toggleMbidForms = () => {
         this.setState({
             showMbidFormOtherDevice: !this.state.showMbidFormOtherDevice,
             showMbidFormThisDevice: !this.state.showMbidFormThisDevice,
         });
-    }
+    };
 
-    render() {
+    render = () => {
         if (this.props.loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
         }
@@ -173,13 +171,12 @@ export class LoginPage extends React.Component {
                                 src={this.props.loginProgress.startURL}
                                 aria-hidden
                             />
-                            <div style={{ fontSize: '11px', color: '#888' }}>Starting BankId...</div>
                         </div>
                     )}
                 </div>
             </LoginPageTemplate>
         );
-    }
+    };
 }
 
 LoginPage.propTypes = {
