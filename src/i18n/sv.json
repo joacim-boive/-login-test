@@ -24,5 +24,14 @@
             "about-mbid": "Om Mobilt BankID"
         }
     },
-    "loan": {}
+    "loan": {},
+    "navigation": {
+        "account-overview": "Översikt",
+        "invoices": "Fakturor",
+        "loan": "Privatlån",
+        "more": "Mer",
+        "customer-support": "Kundservice",
+        "settings": "Inställningar",
+        "logout": "Logga ut"
+    }
 }

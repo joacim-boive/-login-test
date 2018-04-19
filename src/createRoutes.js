@@ -4,10 +4,12 @@ import { Route } from 'react-router-dom';
 const createRoutes = routeConfig => {
     const publicRoutes = [];
     const authRoutes = [];
+    let i = 0;
 
     const pushRoute = (item, path) => {
+        i++; // eslint-disable-line
         const cleanPath = path.replace(/\/+/, '/').replace(/^\^\/$/, '');
-        const route = <Route key={cleanPath} component={item.component} path={cleanPath} exact />;
+        const route = <Route key={`key-${i}`} component={item.component} path={cleanPath} exact />;
 
         if (item.isPublic) {
             publicRoutes.push(route);
