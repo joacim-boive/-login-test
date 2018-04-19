@@ -59,7 +59,7 @@ export class LoginPage extends React.Component {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
         }
-    };
+    }
 
     prevState = undefined;
     pollTimer = undefined;
@@ -69,22 +69,26 @@ export class LoginPage extends React.Component {
     };
 
     // start login
-    startMbidThisDeviceLogin = () => {
+    startLogin = (type, nextState, ssn) => {
         this.prevState = { ...this.state };
-        this.setState({ showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
-        this.props.createSession({ type: 'BANKID' });
+        this.setState(nextState);
+        this.props.createSession(ssn ? { type, ssn } : { type });
+    };
+
+    startMbidThisDeviceLogin = () => {
+        this.startLogin('BANKID', { showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
     };
 
     startMbidOtherDeviceLogin = () => {
-        this.prevState = { ...this.state };
-        this.setState({ showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false });
-        this.props.createSession({ type: 'BANKID_MOBILE', ssn: this.state.ssn });
+        this.startLogin(
+            'BANKID_MOBILE',
+            { showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false },
+            this.state.ssn
+        );
     };
 
     startBidLogin = () => {
-        this.prevState = { ...this.state };
-        this.setState({ showBidSpinner: true, bidOnThisDevice: true });
-        this.props.createSession({ type: 'BANKID' });
+        this.startLogin('BANKID', { showBidSpinner: true, bidOnThisDevice: true });
     };
 
     cancelLogin = () => {
@@ -200,7 +204,7 @@ export class LoginPage extends React.Component {
                 </div>
             </LoginPageTemplate>
         );
-    };
+    }
 }
 
 LoginPage.propTypes = {
