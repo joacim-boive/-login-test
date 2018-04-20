@@ -110,6 +110,7 @@ export class LoginPage extends React.Component {
     };
 
     render() {
+        console.log('LoginPage.render: ', this.state);
         if (this.props.loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
         }

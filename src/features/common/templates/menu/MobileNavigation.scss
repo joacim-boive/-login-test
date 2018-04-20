@@ -1,0 +1,23 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.mobile-navigation__wrapper {
+    position: fixed;
+    z-index: 9;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    &.dark {
+        background: #313935;
+        color: $gray20;
+    }
+    &.light {
+        background: #fff;
+        color: $gray140;
+    }
+}
+
+.mobile-navigation__menu {
+    display: flex;
+    height: 100%;
+    justify-content: center
+}
