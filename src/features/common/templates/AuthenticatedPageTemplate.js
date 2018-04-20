@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Mobile,
-    Button,
     //     MobileNavigation,
     //     MobileMenuItem,
     //     MobileSubNavigation,
@@ -53,6 +53,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
     render() {
         return (
             <div className="common-authenticated-page">
+                {this.props.children}
                 <Mobile>
                     <MobileNavigation light>
                         <MobileMenuItems>
@@ -80,3 +81,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
         );
     }
 }
+
+AuthenticatedPageTemplate.propTypes = {
+    children: PropTypes.node.isRequired
+};
