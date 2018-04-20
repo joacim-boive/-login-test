@@ -105,7 +105,7 @@ export class LoginPage extends React.Component {
                         <TabletOrDesktop>
                             <div className="help-link-ctr">
                                 <a href="#/start/login-help">
-                                    {i18n('general.help')} <i className="icon-alert-circle" />
+                                    {i18n('home.login.help')} <i className="icon-alert-circle" />
                                 </a>
                             </div>
                         </TabletOrDesktop>
@@ -171,6 +171,7 @@ export class LoginPage extends React.Component {
                                 src={this.props.loginProgress.startURL}
                                 aria-hidden
                             />
+                            <div style={{ fontSize: '12px', color: '#aaa' }}>Startar BankID applikation</div>
                         </div>
                     )}
                 </div>
