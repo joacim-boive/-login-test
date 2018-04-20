@@ -185,12 +185,6 @@ export class LoginPage extends React.Component {
                         </DesktopDevice>
                     </div>
 
-                    <Mobile>
-                        <Navigation>
-                            <NavigationItem target="#/start/about-mbid" text={i18n('home.login.about-mbid')} />
-                        </Navigation>
-                    </Mobile>
-
                     {this.state.createIframe && (
                         <div>
                             <iframe
