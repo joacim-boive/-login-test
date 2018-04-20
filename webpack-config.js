@@ -21,7 +21,7 @@ module.exports = type => {
 
     return {
         devtool: {
-            dev: 'eval',
+            dev: 'eval-source-map',
             dll: false,
             test: false,
             dist: false,
