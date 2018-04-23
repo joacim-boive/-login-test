@@ -1,21 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Mobile,
-    //     MobileNavigation,
-    //     MobileMenuItem,
-    //     MobileSubNavigation,
-    //     MobileSubNavigationItem,
-} from '@ecster/ecster-components';
+import { Mobile } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
-import {
-    MobileNavigation,
-    MobileMenuItem,
-    MobileMenuItems,
-    MobileSubNavigation,
-    MobileSubNavigationItem,
-} from './menu/index';
+import { StickyNavigation, MainMenu, MenuItem, SubMenu, SubMenuItem } from './menu/index';
 
 import iconOverview from '../../../common/images/icon-overview.svg';
 import iconInvoices from '../../../common/images/icon-invoices.svg';
@@ -28,7 +16,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMoreMenu: false,
+            showSubMenu: false,
         };
     }
 
@@ -36,16 +24,16 @@ export default class AuthenticatedPageTemplate extends React.Component {
         console.log('did update: ', this.state, prevProps, prevState);
     }
 
-    showMoreMenu = e => {
+    showSubMenu = e => {
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showMoreMenu: true }, () => {
+        this.setState({ showSubMenu: true }, () => {
             console.log('I setted de state');
         });
     };
 
-    closeMoreMenu = () => {
-        this.setState({ showMoreMenu: false }, () => {
+    closeSubMenu = () => {
+        this.setState({ showSubMenu: false }, () => {
             console.log('I setted de state');
         });
     };
@@ -55,27 +43,27 @@ export default class AuthenticatedPageTemplate extends React.Component {
             <div className="common-authenticated-page">
                 {this.props.children}
                 <Mobile>
-                    <MobileNavigation light>
-                        <MobileMenuItems>
-                            <MobileMenuItem linkTo="/account/overview" icon={iconOverview}>
+                    <StickyNavigation light showOverlay={this.state.showSubMenu}>
+                        <MainMenu>
+                            <MenuItem linkTo="/account/overview" icon={iconOverview}>
                                 {i18n('navigation.account-overview')}
-                            </MobileMenuItem>
+                            </MenuItem>
 
-                            <MobileMenuItem linkTo="/invoice" icon={iconInvoices}>
+                            <MenuItem linkTo="/invoice" icon={iconInvoices}>
                                 {i18n('navigation.invoices')}
-                            </MobileMenuItem>
-                            <MobileMenuItem linkTo="/loan" icon={iconLoan}>
+                            </MenuItem>
+                            <MenuItem linkTo="/loan" icon={iconLoan}>
                                 {i18n('navigation.loan')}
-                            </MobileMenuItem>
-                            <MobileMenuItem onClick={this.showMoreMenu} icon={iconHamburger}>
+                            </MenuItem>
+                            <MenuItem onClick={this.showSubMenu} icon={iconHamburger}>
                                 {i18n('navigation.more')}
-                            </MobileMenuItem>
-                        </MobileMenuItems>
-                        <MobileSubNavigation show={this.state.showMoreMenu} requestClose={this.closeMoreMenu}>
-                            <MobileSubNavigationItem>{i18n('navigation.customer-support')}</MobileSubNavigationItem>
-                            <MobileSubNavigationItem>{i18n('navigation.settings')}</MobileSubNavigationItem>
-                        </MobileSubNavigation>
-                    </MobileNavigation>
+                            </MenuItem>
+                        </MainMenu>
+                        <SubMenu show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
+                            <SubMenuItem>{i18n('navigation.customer-support')}</SubMenuItem>
+                            <SubMenuItem>{i18n('navigation.settings')}</SubMenuItem>
+                        </SubMenu>
+                    </StickyNavigation>
                 </Mobile>
             </div>
         );
@@ -83,5 +71,5 @@ export default class AuthenticatedPageTemplate extends React.Component {
 }
 
 AuthenticatedPageTemplate.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 };
