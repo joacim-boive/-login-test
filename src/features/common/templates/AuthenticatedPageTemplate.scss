@@ -1,5 +1,7 @@
 @import '../../../styles/mixins';
 
 .common-authenticated-page {
-
+    .page-content {
+        padding: 10px;
+    }
 }

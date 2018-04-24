@@ -14,7 +14,7 @@ export class OverviewPage extends Component {
     render() {
         return (
             <AuthenticatedPageTemplate>
-                <div className="page account-overview-page">
+                <div className="account-overview-page">
                     <h1>Account / overview page</h1>
                 </div>
             </AuthenticatedPageTemplate>

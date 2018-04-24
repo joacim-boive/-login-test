@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Mobile } from '@ecster/ecster-components';
-import { Translate } from '@ecster/ecster-i18n';
-
-import { StickyNavigation, MainMenu, MenuItem, SubMenu, SubMenuItem } from './menu/index';
-
-import iconOverview from '../../../common/images/icon-overview.svg';
-import iconInvoices from '../../../common/images/icon-invoices.svg';
-import iconLoan from '../../../common/images/icon-loan.svg';
-import iconHamburger from '../../../common/images/icon-hamburger.svg';
-
-const i18n = Translate.getText;
+import MobileNavigation from '../navigation/MobileNavigation';
 
 export default class AuthenticatedPageTemplate extends React.Component {
     constructor(props) {
@@ -28,7 +19,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
         e.stopPropagation();
         e.preventDefault();
         this.setState({ showMoreSubMenu: true }, () => {
-            console.log('I setted de state');
+            console.log('I setted de state', this.state);
         });
     };
 
@@ -41,30 +32,11 @@ export default class AuthenticatedPageTemplate extends React.Component {
     render() {
         return (
             <div className="common-authenticated-page">
-                {this.props.children}
+                <div className="page-content">
+                    {this.props.children}
+                </div>
                 <Mobile>
-                    <StickyNavigation light showOverlay={this.state.showMoreSubMenu}>
-                        <MainMenu>
-                            <MenuItem linkTo="/account/overview" icon={iconOverview}>
-                                {i18n('navigation.account-overview')}
-                            </MenuItem>
-
-                            <MenuItem linkTo="/invoice" icon={iconInvoices}>
-                                {i18n('navigation.invoices')}
-                            </MenuItem>
-                            <MenuItem linkTo="/loan" icon={iconLoan}>
-                                {i18n('navigation.loan')}
-                            </MenuItem>
-                            <MenuItem onClick={this.showSubMenu} icon={iconHamburger}>
-                                {i18n('navigation.more')}
-                            </MenuItem>
-                        </MainMenu>
-                        <SubMenu show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
-                            <SubMenuItem>{i18n('navigation.customer-support')}</SubMenuItem>
-                            <SubMenuItem>{i18n('navigation.settings')}</SubMenuItem>
-                            <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
-                        </SubMenu>
-                    </StickyNavigation>
+                    <MobileNavigation />
                 </Mobile>
             </div>
         );
