@@ -14,13 +14,23 @@ export class SubMenu extends React.Component {
 
     render() {
         const { show, requestClose, children } = this.props;
+        const noOfChildren = children.length;
+
+        // note: if changed, update values in StickyNavigation.scss
+        const itemHeight = 45;
+        const menuHeight = 66;
+
         const classes = classNames({
             submenu: true,
             show,
         });
 
+        // show? margin bottom equals to menu height
+        // don't show? pull down menu equal to height of no of items - main menu height
+        const marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
+
         return (
-            <div className={classes} onClick={requestClose}>
+            <div className={classes} style={{ marginBottom }} onClick={requestClose}>
                 {children}
             </div>
         );

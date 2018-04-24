@@ -9,8 +9,8 @@ import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
-import Navigation from '../common/Navigation';
-import NavigationItem from '../common/NavigationItem';
+// import Navigation from '../common/Navigation';
+// import NavigationItem from '../common/NavigationItem';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.if && props.children;

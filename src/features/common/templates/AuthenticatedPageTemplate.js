@@ -62,6 +62,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
                         <SubMenu show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
                             <SubMenuItem>{i18n('navigation.customer-support')}</SubMenuItem>
                             <SubMenuItem>{i18n('navigation.settings')}</SubMenuItem>
+                            <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                         </SubMenu>
                     </StickyNavigation>
                 </Mobile>

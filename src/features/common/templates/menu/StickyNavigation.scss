@@ -20,6 +20,8 @@
     visibility: visible;
 }
 
+// note: if changed, update values in SubMenu.js
+$item-height: 45px;
 $menu-height: 66px;
 
 .main-menu {
@@ -55,19 +57,20 @@ $menu-height: 66px;
     }
 }
 
+// menu shown / hidden with calculated inline css i SubMenu.js
 .submenu {
     width: 100%;
     bottom: 0;
     z-index: 2;
     position: fixed;
-    margin-bottom: -135px;  /* -1 x (45 x no of items - $menu-height) */
     transition: margin-bottom .2s ease-in-out;
 }
 
 .submenu.show {
-    margin-bottom: $menu-height; /* visible */}
+}
 
 .submenu-item {
+    height: $item-height;
     padding: 14px 24px;
     border-top: 1px solid #ccc;
     background: #fff;
