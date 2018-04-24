@@ -1,12 +1,14 @@
 
 import {
-    DefaultPage,
+  SettingsPage,
+  SupportPage,
 } from './';
 
 export default {
     path: 'customer',
     name: 'Customer',
     childRoutes: [
-        { path: 'default-page', name: 'Default page', component: DefaultPage, isIndex: true, isPublic: true },
+      { path: 'settings', name: 'Settings page', component: SettingsPage },
+      { path: 'support', name: 'Support page', component: SupportPage },
     ],
 };

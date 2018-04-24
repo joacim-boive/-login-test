@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { InfoPage } from 'src/features/common/InfoPage';
+import { OverviewPage } from 'src/features/loan/OverviewPage';
 
-describe('common/InfoPage', () => {
+describe('loan/OverviewPage', () => {
   it('renders node with correct class name', () => {
     const props = {
-      common: {},
+      loan: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <InfoPage {...props} />
+      <OverviewPage {...props} />
     );
 
     expect(
-      renderedComponent.find('.common-info-page').getElement()
+      renderedComponent.find('.loan-overview-page').getElement()
     ).to.exist;
   });
 });

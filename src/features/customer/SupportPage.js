@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import * as actions from './redux/actions';
 
-export class DefaultPage extends Component {
+export class SupportPage extends Component {
     static propTypes = {
         customer: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
@@ -12,9 +13,11 @@ export class DefaultPage extends Component {
 
     render() {
         return (
-            <div className="page customer-default-page">
-                <h1>Customer page</h1>
-            </div>
+            <AuthenticatedPageTemplate>
+                <div className="customer-support-page">
+                    <h1>Customer / support page</h1>
+                </div>
+            </AuthenticatedPageTemplate>
         );
     }
 }
@@ -29,11 +32,8 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch)
+        actions: bindActionCreators({ ...actions }, dispatch),
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DefaultPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SupportPage);

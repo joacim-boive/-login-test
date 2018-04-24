@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { DefaultPage } from 'src/features/customer/DefaultPage';
+import { SettingsPage } from 'src/features/customer/SettingsPage';
 
-describe('customer/DefaultPage', () => {
+describe('customer/SettingsPage', () => {
   it('renders node with correct class name', () => {
     const props = {
       customer: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <DefaultPage {...props} />
+      <SettingsPage {...props} />
     );
 
     expect(
-      renderedComponent.find('.customer-default-page').getElement()
+      renderedComponent.find('.customer-settings-page').getElement()
     ).to.exist;
   });
 });

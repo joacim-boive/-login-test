@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SimpleNav from '../common/SimpleNav';
 import routeConfig from '../../common/routeConfig';
 
 /*

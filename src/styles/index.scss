@@ -12,6 +12,7 @@
 @import '~@ecster/ecster-styles/v2/include/paddings';
 @import '~@ecster/ecster-styles/v2/include/color-classes';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '../features/invoice/style';
 
 html, body, #react-root {
     height: 100%;

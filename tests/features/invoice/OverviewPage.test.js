@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { DefaultPage } from 'src/features/authentication/DefaultPage';
+import { OverviewPage } from 'src/features/invoice/OverviewPage';
 
-describe('authentication/DefaultPage', () => {
+describe('invoice/OverviewPage', () => {
   it('renders node with correct class name', () => {
     const props = {
-      authentication: {},
+      invoice: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <DefaultPage {...props} />
+      <OverviewPage {...props} />
     );
 
     expect(
-      renderedComponent.find('.authentication-default-page').getElement()
+      renderedComponent.find('.invoice-overview-page').getElement()
     ).to.exist;
   });
 });

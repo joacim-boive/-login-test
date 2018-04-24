@@ -27,13 +27,13 @@ export default class AuthenticatedPageTemplate extends React.Component {
     showSubMenu = e => {
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showSubMenu: true }, () => {
+        this.setState({ showMoreSubMenu: true }, () => {
             console.log('I setted de state');
         });
     };
 
     closeSubMenu = () => {
-        this.setState({ showSubMenu: false }, () => {
+        this.setState({ showMoreSubMenu: false }, () => {
             console.log('I setted de state');
         });
     };
@@ -43,7 +43,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
             <div className="common-authenticated-page">
                 {this.props.children}
                 <Mobile>
-                    <StickyNavigation light showOverlay={this.state.showSubMenu}>
+                    <StickyNavigation light showOverlay={this.state.showMoreSubMenu}>
                         <MainMenu>
                             <MenuItem linkTo="/account/overview" icon={iconOverview}>
                                 {i18n('navigation.account-overview')}
@@ -59,7 +59,7 @@ export default class AuthenticatedPageTemplate extends React.Component {
                                 {i18n('navigation.more')}
                             </MenuItem>
                         </MainMenu>
-                        <SubMenu show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
+                        <SubMenu show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
                             <SubMenuItem>{i18n('navigation.customer-support')}</SubMenuItem>
                             <SubMenuItem>{i18n('navigation.settings')}</SubMenuItem>
                             <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>

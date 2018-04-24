@@ -6,6 +6,7 @@ import accountReducer from '../features/account/redux/reducer';
 import authenticationReducer from '../features/authentication/redux/reducer';
 import customerReducer from '../features/customer/redux/reducer';
 import loanReducer from '../features/loan/redux/reducer';
+import invoiceReducer from '../features/invoice/redux/reducer';
 
 // NOTE 1: DO NOT CHANGE the 'reducerMap' name and the declaration pattern.
 // This is used for Rekit cmds to register new features, remove features, etc.
@@ -20,6 +21,7 @@ const reducerMap = {
     authentication: authenticationReducer,
     customer: customerReducer,
     loan: loanReducer,
+  invoice: invoiceReducer,
 };
 
 export default combineReducers(reducerMap);

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import * as actions from './redux/actions';
 
-export class DefaultPage extends Component {
+export class OverviewPage extends Component {
     static propTypes = {
         loan: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
@@ -12,9 +13,11 @@ export class DefaultPage extends Component {
 
     render() {
         return (
-          <div className="loan-default-page">
-                Page Content: loan/DefaultPage
-          </div>
+            <AuthenticatedPageTemplate>
+                <div className="loan-overview-page">
+                    <h1>Loan / overview page</h1>
+                </div>
+            </AuthenticatedPageTemplate>
         );
     }
 }
@@ -29,11 +32,8 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch)
+        actions: bindActionCreators({ ...actions }, dispatch),
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DefaultPage);
+export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
