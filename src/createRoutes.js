@@ -8,7 +8,6 @@ const createRoutes = routeConfig => {
 
     const pushRoute = (item, path) => {
         const cleanPath = path.replace(/\/+/, '/').replace(/^\^\/$/, '');
-        console.log('pushRoute ', keyCount, cleanPath);
         // eslint-disable-next-line no-plusplus
         const route = <Route key={`route-${keyCount++}`} component={item.component} path={cleanPath} exact />;
 
