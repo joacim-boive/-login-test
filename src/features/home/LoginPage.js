@@ -28,16 +28,12 @@ export class LoginPage extends React.Component {
         ssn: '',
         // Other
         createIframe: false,
+        iframeUrlSet: false,
         bidOnThisDevice: false,
         mbidOnThisDevice: false,
     };
 
-    //     this.startMbidThisDeviceLogin = this.startMbidThisDeviceLogin.bind(this);
-    //     this.startMbidOtherDeviceLogin = this.startMbidOtherDeviceLogin.bind(this);
-    //     this.startBidLogin = this.startBidLogin.bind(this);
-    //     this.toggleMbidForms = this.toggleMbidForms.bind(this);
-    //     this.onSsnChange = this.onSsnChange.bind(this);
-    // }
+    iframeRef = React.createRef(); // eslint-disable-line
 
     componentWillReceiveProps = nextProps => {
         if (
@@ -54,6 +50,17 @@ export class LoginPage extends React.Component {
             setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
+        }
+    };
+
+    componentDidUpdate = prevProps => {
+        const { createIframe, iframeUrlSet } = this.state;
+        console.log('LoginPage did update: ', prevProps);
+        if (createIframe && !iframeUrlSet) {
+            console.log('LoginPage setting iframe URL: ', prevProps.startURL);
+            const iframe = this.iframeRef.current;
+            iframe.contentWindow.top.location = prevProps.startURL;
+            this.setState({ iframeUrlSet: true });
         }
     };
 
@@ -165,20 +172,19 @@ export class LoginPage extends React.Component {
 
                     {this.state.createIframe && (
                         <div>
-                            <iframe
-                                className="start-bankid"
-                                title="start-bankid"
-                                src={this.props.loginProgress.startURL}
-                                aria-hidden
-                            />
+                            <iframe className="start-bankid" title="start-bankid" aria-hidden ref={this.iframeRef} />
                             <div style={{ fontSize: '12px', color: '#aaa' }}>Startar BankID applikation</div>
+                            {this.state.iframeUrlSet && (
+                                <div style={{ fontSize: '12px', color: '#aaa' }}>Iframe URL set</div>
+                            )}
                         </div>
                     )}
                 </div>
             </LoginPageTemplate>
         );
-    };
+    }
 }
+// src={this.props.loginProgress.startURL}
 
 LoginPage.propTypes = {
     createSession: PropTypes.func.isRequired,
