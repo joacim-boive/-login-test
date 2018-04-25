@@ -9,7 +9,7 @@ import { post, setOrigin, setSessionKey } from '../../../common/asyncAjax';
 
 import { CREATE_SESSION_URL } from './urls';
 
-export const createSession = data => async (dispatch) => {
+export const createSession = data => async dispatch => {
     dispatch({
         type: AUTHENTICATION_CREATE_SESSION_BEGIN,
     });
@@ -43,7 +43,6 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_SUCCESS:
-
             return {
                 ...state,
                 loginStatus: {
@@ -52,7 +51,7 @@ export function reducer(state, action) {
                 loginProgress: {
                     status: action.data.authentication.status,
                     pollTime: action.data.authentication.eid.pollTime,
-                    startURL: action.data.authentication.eid.startURL
+                    startURL: action.data.authentication.eid.startURL,
                 },
 
                 createSessionPending: false,

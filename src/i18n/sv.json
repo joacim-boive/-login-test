@@ -1,7 +1,8 @@
 {
     "general": {
         "help": "Hjälp",
-        "back": "Tillbaka"
+        "back": "Tillbaka",
+        "cancel": "Avbryt"
     },
     "account": {},
     "authentication": {},
