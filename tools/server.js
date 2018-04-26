@@ -56,7 +56,7 @@ const srcPath = path.join(__dirname, '../src');
 const manifestPath = path.join(__dirname, '../.tmp/dev-vendors-manifest.json');
 
 function startEcsterServer() {
-    const ecsterBackend = initEcsterDevServer('https://secure4.ft.ecster.se', __dirname);
+    const ecsterBackend = initEcsterDevServer('https://secure5.ft.ecster.se', __dirname);
     const PORT = pkgJson.rekit.restPort;
 
     ecsterBackend.listen(PORT, () => {

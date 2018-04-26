@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, DesktopDevice, TouchDevice, Spinner, Mobile, TabletOrDesktop } from '@ecster/ecster-components';
+import { Button, Input, Spinner, DesktopDevice, TouchDevice, TabletOrDesktop } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
-import Navigation from '../common/Navigation';
-import NavigationItem from '../common/NavigationItem';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.if && props.children;
@@ -38,33 +36,19 @@ export class LoginPage extends React.Component {
         // Form data
         ssn: '',
         // Other
-        createIframe: false,
         bidOnThisDevice: false,
         mbidOnThisDevice: false,
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (
-            nextProps.loginProgress.startURL &&
-            nextProps.loginProgress.pollTime > 0 &&
-            (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
-        ) {
-            this.setState({ createIframe: true });
-            this.pollTimer = setTimeout(() => {
-                nextProps.getSession(this.props.loginStatus.sessionKey);
-                this.setState({ createIframe: false });
-            }, nextProps.loginProgress.pollTime);
-        } else if (nextProps.loginProgress.status === 'IN_PROGRESS') {
-            this.pollTimer = setTimeout(() => {
-                nextProps.getSession(this.props.loginStatus.sessionKey);
-            }, nextProps.loginProgress.pollTime);
+    iframeRef = React.createRef(); // eslint-disable-line
+
+    componentWillUnmount = () => {
+        if (this.pollTimer) {
+            clearTimeout(this.pollTimer);
         }
-    }
+    };
 
-    prevState = undefined;
-    pollTimer = undefined;
-
-    ssnFieldChange = ({ target }) => {
+    onSsnChange = ({ target }) => {
         this.setState({ ssn: target.value });
     };
 
@@ -109,9 +93,37 @@ export class LoginPage extends React.Component {
         });
     };
 
+    pollBankID = () => {
+        if (this.pollTimer) {
+            return;
+        }
+        this.pollTimer = setTimeout(() => {
+            delete this.pollTimer;
+            this.props.getSession(this.props.loginStatus.sessionKey);
+        }, this.props.loginProgress.pollTime);
+    };
+
+    setIframeUrl = url => {
+        if (!this.urlSet) {
+            this.iframeRef.current.contentWindow.location = url;
+            this.urlSet = true;
+        }
+    };
+
     render() {
-        if (this.props.loginStatus.isLoggedIn) {
+        const { loginProgress, loginStatus } = this.props;
+
+        if (loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
+        }
+
+        const { mbidOnThisDevice, bidOnThisDevice } = this.state;
+
+        if (loginProgress.startURL && loginProgress.pollTime > 0 && (mbidOnThisDevice || bidOnThisDevice)) {
+            this.setIframeUrl(loginProgress.startURL); // remove it later?
+            this.pollBankID();
+        } else if (loginProgress.status === 'IN_PROGRESS') {
+            this.pollBankID();
         }
 
         return (
@@ -155,7 +167,7 @@ export class LoginPage extends React.Component {
                                     label={i18n('home.login.ssn')}
                                     placeholder={i18n('home.login.ssn-placeholer')}
                                     value={this.state.ssn}
-                                    onChange={this.ssnFieldChange}
+                                    onChange={this.onSsnChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
@@ -173,7 +185,7 @@ export class LoginPage extends React.Component {
                                     label={i18n('home.login.ssn')}
                                     value={this.state.ssn}
                                     placeholder={i18n('home.login.ssn-placeholer')}
-                                    onChange={this.ssnFieldChange}
+                                    onChange={this.onSsnChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
                                     {i18n('home.login.login-mbid')}
@@ -185,22 +197,13 @@ export class LoginPage extends React.Component {
                         </DesktopDevice>
                     </div>
 
-                    {this.state.createIframe && (
-                        <div>
-                            <iframe
-                                className="start-bankid"
-                                title="start-bankid"
-                                src={this.props.loginProgress.startURL}
-                                aria-hidden
-                            />
-                            <div style={{ fontSize: '12px', color: '#aaa' }}>Startar BankID applikation</div>
-                        </div>
-                    )}
+                    <iframe className="start-bankid" title="start-bankid" aria-hidden ref={this.iframeRef} />
                 </div>
             </LoginPageTemplate>
         );
     }
 }
+// src={this.props.loginProgress.startURL}
 
 LoginPage.propTypes = {
     createSession: PropTypes.func.isRequired,
