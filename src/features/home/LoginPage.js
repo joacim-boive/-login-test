@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, DesktopDevice, TouchDevice, Spinner, Mobile, TabletOrDesktop } from '@ecster/ecster-components';
+import { Button, Input, Spinner, DesktopDevice, TouchDevice, TabletOrDesktop } from '@ecster/ecster-components';
 import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
@@ -41,6 +41,12 @@ export class LoginPage extends React.Component {
     };
 
     iframeRef = React.createRef(); // eslint-disable-line
+
+    componentWillUnmount = () => {
+        if (this.pollTimer) {
+            clearTimeout(this.pollTimer);
+        }
+    };
 
     onSsnChange = ({ target }) => {
         this.setState({ ssn: target.value });
