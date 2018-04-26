@@ -9,8 +9,6 @@ import { Translate } from '@ecster/ecster-i18n';
 
 import { createSession, getSession } from '../authentication/redux/actions';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
-import Navigation from '../common/Navigation';
-import NavigationItem from '../common/NavigationItem';
 
 // TODO: replace with some fancy transition component...
 const Visible = props => props.if && props.children;
@@ -38,48 +36,11 @@ export class LoginPage extends React.Component {
         // Form data
         ssn: '',
         // Other
-        // createIframe: false,
-        // iframeUrlSet: false,
-        // iframeStartUrl: undefined,
         bidOnThisDevice: false,
         mbidOnThisDevice: false,
     };
 
     iframeRef = React.createRef(); // eslint-disable-line
-
-    // TODO: can this logic be moved to render()? /joli44 2018-04-25
-    componentWillReceiveProps = nextProps => {
-        // if (
-        //     nextProps.loginProgress.startURL &&
-        //     nextProps.loginProgress.pollTime > 0 &&
-        //     (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
-        // ) {
-        //     this.setState({ createIframe: true, iframeStartUrl: nextProps.loginProgress.startURL });
-        //     this.pollTimer = setTimeout(() => {
-        //         nextProps.getSession(this.props.loginStatus.sessionKey);
-        //         this.setState({ createIframe: false });
-        //     }, nextProps.loginProgress.pollTime);
-        // } else
-        if (nextProps.loginProgress.status === 'IN_PROGRESS') {
-            this.pollTimer = setTimeout(() => {
-                nextProps.getSession(this.props.loginStatus.sessionKey);
-            }, nextProps.loginProgress.pollTime);
-        }
-    };
-
-    // TODO: can this logic be moved to render()? /joli44 2018-04-25
-    // note: setting iframe URL immediately with src attribute doesn't seem to work in all devices
-    // componentDidUpdate = () => {
-    //     const { createIframe, iframeUrlSet, iframeStartUrl } = this.state;
-    //     if (createIframe && !iframeUrlSet) {
-    //         const iframe = this.iframeRef.current;
-    //         iframe.contentWindow.location = iframeStartUrl;
-    //         this.setState({ iframeUrlSet: true });
-    //     }
-    // };
-
-    // prevState = undefined;
-    // pollTimer = undefined;
 
     onSsnChange = ({ target }) => {
         this.setState({ ssn: target.value });
@@ -137,8 +98,10 @@ export class LoginPage extends React.Component {
     };
 
     setIframeUrl = url => {
-        const iframe = this.iframeRef.current;
-        iframe.contentWindow.location = url;
+        if (!this.urlSet) {
+            this.iframeRef.current.contentWindow.location = url;
+            this.urlSet = true;
+        }
     };
 
     render() {
@@ -151,7 +114,6 @@ export class LoginPage extends React.Component {
         const { mbidOnThisDevice, bidOnThisDevice } = this.state;
 
         if (loginProgress.startURL && loginProgress.pollTime > 0 && (mbidOnThisDevice || bidOnThisDevice)) {
-            console.log('LoginPage setting iframe URL, ', loginProgress.startURL);
             this.setIframeUrl(loginProgress.startURL); // remove it later?
             this.pollBankID();
         } else if (loginProgress.status === 'IN_PROGRESS') {
