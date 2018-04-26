@@ -38,9 +38,9 @@ export class LoginPage extends React.Component {
         // Form data
         ssn: '',
         // Other
-        createIframe: false,
-        iframeUrlSet: false,
-        iframeStartUrl: undefined,
+        // createIframe: false,
+        // iframeUrlSet: false,
+        // iframeStartUrl: undefined,
         bidOnThisDevice: false,
         mbidOnThisDevice: false,
     };
@@ -49,17 +49,18 @@ export class LoginPage extends React.Component {
 
     // TODO: can this logic be moved to render()? /joli44 2018-04-25
     componentWillReceiveProps = nextProps => {
-        if (
-            nextProps.loginProgress.startURL &&
-            nextProps.loginProgress.pollTime > 0 &&
-            (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
-        ) {
-            this.setState({ createIframe: true, iframeStartUrl: nextProps.loginProgress.startURL });
-            this.pollTimer = setTimeout(() => {
-                nextProps.getSession(this.props.loginStatus.sessionKey);
-                this.setState({ createIframe: false });
-            }, nextProps.loginProgress.pollTime);
-        } else if (nextProps.loginProgress.status === 'IN_PROGRESS') {
+        // if (
+        //     nextProps.loginProgress.startURL &&
+        //     nextProps.loginProgress.pollTime > 0 &&
+        //     (this.state.mbidOnThisDevice || this.state.bidOnThisDevice)
+        // ) {
+        //     this.setState({ createIframe: true, iframeStartUrl: nextProps.loginProgress.startURL });
+        //     this.pollTimer = setTimeout(() => {
+        //         nextProps.getSession(this.props.loginStatus.sessionKey);
+        //         this.setState({ createIframe: false });
+        //     }, nextProps.loginProgress.pollTime);
+        // } else
+        if (nextProps.loginProgress.status === 'IN_PROGRESS') {
             this.pollTimer = setTimeout(() => {
                 nextProps.getSession(this.props.loginStatus.sessionKey);
             }, nextProps.loginProgress.pollTime);
@@ -68,14 +69,14 @@ export class LoginPage extends React.Component {
 
     // TODO: can this logic be moved to render()? /joli44 2018-04-25
     // note: setting iframe URL immediately with src attribute doesn't seem to work in all devices
-    componentDidUpdate = () => {
-        const { createIframe, iframeUrlSet, iframeStartUrl } = this.state;
-        if (createIframe && !iframeUrlSet) {
-            const iframe = this.iframeRef.current;
-            iframe.contentWindow.location = iframeStartUrl;
-            this.setState({ iframeUrlSet: true });
-        }
-    };
+    // componentDidUpdate = () => {
+    //     const { createIframe, iframeUrlSet, iframeStartUrl } = this.state;
+    //     if (createIframe && !iframeUrlSet) {
+    //         const iframe = this.iframeRef.current;
+    //         iframe.contentWindow.location = iframeStartUrl;
+    //         this.setState({ iframeUrlSet: true });
+    //     }
+    // };
 
     // prevState = undefined;
     // pollTimer = undefined;
@@ -125,9 +126,36 @@ export class LoginPage extends React.Component {
         });
     };
 
+    pollBankID = () => {
+        if (this.pollTimer) {
+            return;
+        }
+        this.pollTimer = setTimeout(() => {
+            delete this.pollTimer;
+            this.props.getSession(this.props.loginStatus.sessionKey);
+        }, this.props.loginProgress.pollTime);
+    };
+
+    setIframeUrl = url => {
+        const iframe = this.iframeRef.current;
+        iframe.contentWindow.location = url;
+    };
+
     render() {
-        if (this.props.loginStatus.isLoggedIn) {
+        const { loginProgress, loginStatus } = this.props;
+
+        if (loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
+        }
+
+        const { mbidOnThisDevice, bidOnThisDevice } = this.state;
+
+        if (loginProgress.startURL && loginProgress.pollTime > 0 && (mbidOnThisDevice || bidOnThisDevice)) {
+            console.log('LoginPage setting iframe URL, ', loginProgress.startURL);
+            this.setIframeUrl(loginProgress.startURL); // remove it later?
+            this.pollBankID();
+        } else if (loginProgress.status === 'IN_PROGRESS') {
+            this.pollBankID();
         }
 
         return (
@@ -201,15 +229,7 @@ export class LoginPage extends React.Component {
                         </DesktopDevice>
                     </div>
 
-                    {this.state.createIframe && (
-                        <div>
-                            <iframe className="start-bankid" title="start-bankid" aria-hidden ref={this.iframeRef} />
-                            <div style={{ fontSize: '12px', color: '#aaa' }}>Startar BankID applikation</div>
-                            {this.state.iframeUrlSet && (
-                                <div style={{ fontSize: '12px', color: '#aaa' }}>Iframe URL set</div>
-                            )}
-                        </div>
-                    )}
+                    <iframe className="start-bankid" title="start-bankid" aria-hidden ref={this.iframeRef} />
                 </div>
             </LoginPageTemplate>
         );
