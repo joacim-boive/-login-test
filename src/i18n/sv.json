@@ -13,7 +13,7 @@
         "login": {
             "header": "Logga in",
             "header-other-device": "Logga in med Mobilt BankId från annan enhet",
-            "login-bid": "BankID",
+            "login-bid": "Logga in med BankID",
             "login-mbid": "Mobilt BankID",
             "login-mbid-other-device": "Mobilt BankID på annan enhet",
             "open-mbid": "Öppna Mobilt BankID",
