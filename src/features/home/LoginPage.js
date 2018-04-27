@@ -41,12 +41,6 @@ export class LoginPage extends React.Component {
         bankIdStarted: false,
     };
 
-    componentWillMount = () => {
-        if (this.pollTimer) {
-            clearTimeout(this.pollTimer);
-        }
-    };
-
     componentWillUnmount = () => {
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
