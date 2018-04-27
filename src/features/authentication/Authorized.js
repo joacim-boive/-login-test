@@ -9,21 +9,14 @@ class Authorized extends React.Component {
     componentDidMount = () => {
         const { loginStatus } = this.props;
 
+        // TODO: is this call needed?? Handled by (bank-id) login?
         if (loginStatus.sessionKey && !this.props.getSessionPending && !loginStatus.isLoggedIn) {
             this.props.getSession(loginStatus.sessionKey);
         }
     };
 
-    componentDidUpdate = prevProps => {
-        console.log('Authorized did update:    isLoggedIn ', this.props.loginStatus.isLoggedIn);
-        console.log('Authorized did update: prev location ', prevProps.location);
-        console.log('Authorized did update:  new location ', this.props.location);
-        console.log();
-    };
-
     render() {
         if (this.props.loginStatus.isLoggedIn) {
-            console.log('Authorized render:  logged in, nextRoute = ', this.props.nextRoute);
             const { nextRoute } = this.props;
             if (nextRoute) {
                 this.props.clearNextRoute();
@@ -32,7 +25,7 @@ class Authorized extends React.Component {
             return this.props.children;
         }
 
-        console.log('Authorized render:  not logged in, trying location = ', this.props.location.pathname);
+        // remember route for redirect after login
         this.props.setNextRoute(this.props.location.pathname);
         return <Redirect to="/start" />;
     }
