@@ -111,7 +111,7 @@ export class LoginPage extends React.Component {
     startBankIdApp = url => {
         if (!this.state.bankIdStarted) {
             window.location.href = url;
-            this.setState = { bankIdStarted: true };
+            this.setState({ bankIdStarted: true });
         }
     };
 
