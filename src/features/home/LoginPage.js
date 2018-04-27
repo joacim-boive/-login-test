@@ -38,9 +38,14 @@ export class LoginPage extends React.Component {
         // Other
         bidOnThisDevice: false,
         mbidOnThisDevice: false,
+        bankIdStarted: false,
     };
 
-    iframeRef = React.createRef(); // eslint-disable-line
+    componentWillMount = () => {
+        if (this.pollTimer) {
+            clearTimeout(this.pollTimer);
+        }
+    };
 
     componentWillUnmount = () => {
         if (this.pollTimer) {
@@ -103,10 +108,10 @@ export class LoginPage extends React.Component {
         }, this.props.loginProgress.pollTime);
     };
 
-    setIframeUrl = url => {
-        if (!this.urlSet) {
-            this.iframeRef.current.contentWindow.location = url;
-            this.urlSet = true;
+    startBankIdApp = url => {
+        if (!this.state.bankIdStarted) {
+            window.location.href = url;
+            this.setState = { bankIdStarted: true };
         }
     };
 
@@ -120,7 +125,7 @@ export class LoginPage extends React.Component {
         const { mbidOnThisDevice, bidOnThisDevice } = this.state;
 
         if (loginProgress.startURL && loginProgress.pollTime > 0 && (mbidOnThisDevice || bidOnThisDevice)) {
-            this.setIframeUrl(loginProgress.startURL); // remove it later?
+            this.startBankIdApp(loginProgress.startURL);
             this.pollBankID();
         } else if (loginProgress.status === 'IN_PROGRESS') {
             this.pollBankID();
@@ -196,14 +201,11 @@ export class LoginPage extends React.Component {
                             </Visible>
                         </DesktopDevice>
                     </div>
-
-                    <iframe className="start-bankid" title="start-bankid" aria-hidden ref={this.iframeRef} />
                 </div>
             </LoginPageTemplate>
         );
     }
 }
-// src={this.props.loginProgress.startURL}
 
 LoginPage.propTypes = {
     createSession: PropTypes.func.isRequired,
