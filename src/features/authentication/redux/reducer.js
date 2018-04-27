@@ -10,11 +10,15 @@ import initialState from './initialState';
 import { reducer as deleteSessionReducer } from './deleteSession';
 import { reducer as createSessionReducer } from './createSession';
 import { reducer as getSessionReducer } from './getSession';
+import { reducer as setNextRouteReducer } from './setNextRoute';
+import { reducer as clearNextRouteReducer } from './clearNextRoute';
 
 const reducers = [
     deleteSessionReducer,
     createSessionReducer,
     getSessionReducer,
+  setNextRouteReducer,
+  clearNextRouteReducer,
 ];
 
 export default function reducer(state = initialState, action) {
