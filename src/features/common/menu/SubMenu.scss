@@ -6,7 +6,7 @@
     position: fixed;
     width: 100%;
     z-index: $z-submenu;
-    transition: margin-bottom .2s ease-in-out;
+    transition: margin-bottom .2s ease-in-out, margin-top .2s ease-in-out;
 
     &.from-top {
         top: 0;

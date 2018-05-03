@@ -29,12 +29,23 @@ export class SubMenu extends React.Component {
             'from-bottom': bottom,
         });
 
-        // show? margin bottom equals menu height
-        // don't show? pull down menu equal to height of no of items - main menu height
-        const marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
+        let marginBottom = 0;
+        let marginTop = 0;
+
+        if (top) {
+            // show? margin bottom equals menu height
+            // don't show? pull down menu equal to height of no of items - main menu height
+            marginTop = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
+        }
+
+        if (bottom) {
+            // show? margin bottom equals menu height
+            // don't show? pull down menu equal to height of no of items - main menu height
+            marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
+        }
 
         return (
-            <div className={classes} style={{ marginBottom }} onClick={requestClose}>
+            <div className={classes} style={{ marginTop, marginBottom }} onClick={requestClose}>
                 {children}
             </div>
         );
@@ -55,7 +66,6 @@ export const SubMenuItem = ({ children, linkTo, iconClass }) => {
 };
 
 const validatePosition = props => {
-    console.log(props);
     if (props.top && props.bottom) {
         return new Error('Only one of "top" and "bottom" can be true');
     }
