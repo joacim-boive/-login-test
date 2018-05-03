@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './BottomNavigation.scss';
 
-class StickyNavigation extends React.Component {
+class BottomNavigation extends React.Component {
     render() {
         return (
             <div className="bottom-navigation">
@@ -19,9 +19,11 @@ class StickyNavigation extends React.Component {
     }
 }
 
-StickyNavigation.propTypes = {
+BottomNavigation.propTypes = {
     children: PropTypes.node.isRequired,
     showOverlay: PropTypes.bool.isRequired,
 };
 
-export default StickyNavigation;
+BottomNavigation.defaultProps = {};
+
+export default BottomNavigation;

@@ -1,7 +1,7 @@
-$max-width: 960px;
+@import '../../../styles/constants';
 
 .top-menu-container {
-    max-width: $max-width;
+    max-width: $content-max-width-desktop;
     margin: 0 auto;
     padding: 16px 0 0;
 
@@ -19,7 +19,7 @@ $max-width: 960px;
 }
 
 .submenu-container {
-    max-width: $max-width;
+    max-width: $content-max-width-desktop;
     margin: 0 auto;
 }
 

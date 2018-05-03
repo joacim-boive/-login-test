@@ -1,7 +1,26 @@
 @import '../../../styles/mixins';
+@import '../../../styles/constants';
+@import '~@ecster/ecster-components/scss/MediaQuery';
 
 .common-authenticated-page {
     .page-content {
-        padding: 10px;
+
+        @mixin tabletOrDesktop() {
+            max-width: $content-max-width-desktop;
+            margin: 32px auto 0;
+        }
+
+        @include mobile() {
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        @include tablet() {
+            @include tabletOrDesktop();
+        }
+
+        @include desktop() {
+            @include tabletOrDesktop();
+        }
     }
 }

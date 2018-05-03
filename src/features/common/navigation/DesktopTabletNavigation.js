@@ -5,8 +5,6 @@ import { Translate } from '@ecster/ecster-i18n';
 import { Logo } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
 
-import iconHamburger from '../../../common/images/icon-hamburger.svg';
-
 import './DesktopTabletNavigation.scss';
 
 const i18n = Translate.getText;

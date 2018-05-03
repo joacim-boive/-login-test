@@ -34,8 +34,8 @@ export class SubMenu extends React.Component {
 
         if (top) {
             // show? margin bottom equals menu height
-            // don't show? pull down menu equal to height of no of items - main menu height
-            marginTop = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
+            // don't show? pull upp menu equal to height of no of items - main menu height + 4px for box shadow
+            marginTop = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight + 4);
         }
 
         if (bottom) {
