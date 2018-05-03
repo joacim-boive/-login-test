@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-export class MainMenu extends React.Component {
+export class BottomMenu extends React.Component {
     render() {
         return (
             <div
                 className={classNames({
-                    'main-menu': true,
+                    'bottom-menu': true,
                     dark: this.props.dark,
                     light: !this.props.dark,
                 })}
@@ -50,11 +50,11 @@ MenuItem.defaultProps = {
     onClick: () => {},
 };
 
-MainMenu.propTypes = {
+BottomMenu.propTypes = {
     children: PropTypes.node.isRequired,
     dark: PropTypes.bool,
 };
 
-MainMenu.defaultProps = {
+BottomMenu.defaultProps = {
     dark: false,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Translate } from '@ecster/ecster-i18n';
 
-import { StickyNavigation, MainMenu, MenuItem, SubMenu, SubMenuItem } from '../menu/index';
+import { BottomNavigation, BottomMenu, MenuItem, SubMenu, SubMenuItem } from '../menu/index';
 
 import iconOverview from '../../../common/images/icon-overview.svg';
 import iconInvoices from '../../../common/images/icon-invoices.svg';
@@ -35,8 +35,8 @@ export default class MobileNavigation extends React.Component {
 
     render() {
         return (
-            <StickyNavigation light showOverlay={this.state.showMoreSubMenu}>
-                <MainMenu>
+            <BottomNavigation light showOverlay={this.state.showMoreSubMenu}>
+                <BottomMenu>
                     <MenuItem linkTo="/account/overview" icon={iconOverview}>
                         {i18n('navigation.account-overview')}
                     </MenuItem>
@@ -50,13 +50,13 @@ export default class MobileNavigation extends React.Component {
                     <MenuItem onClick={this.showMoreSubMenu} icon={iconHamburger}>
                         {i18n('navigation.more')}
                     </MenuItem>
-                </MainMenu>
-                <SubMenu show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
+                </BottomMenu>
+                <SubMenu bottom show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
                     <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
                     <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
                     <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                 </SubMenu>
-            </StickyNavigation>
+            </BottomNavigation>
         );
     }
 }

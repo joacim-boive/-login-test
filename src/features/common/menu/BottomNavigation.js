@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './StickyNavigation.scss';
+import './BottomNavigation.scss';
 
 class StickyNavigation extends React.Component {
     render() {
         return (
-            <div className="sticky-navigation">
+            <div className="bottom-navigation">
                 {this.props.children}
                 <div
                     className={classNames({

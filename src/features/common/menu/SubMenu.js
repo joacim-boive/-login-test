@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+import './SubMenu.scss';
+
 export class SubMenu extends React.Component {
     componentDidMount() {
         window.document.body.addEventListener('click', () => {
@@ -13,7 +15,7 @@ export class SubMenu extends React.Component {
     }
 
     render() {
-        const { show, requestClose, children } = this.props;
+        const { show, requestClose, children, top, bottom } = this.props;
         const noOfChildren = children.length;
 
         // note: if changed, update values in StickyNavigation.scss
@@ -23,9 +25,11 @@ export class SubMenu extends React.Component {
         const classes = classNames({
             submenu: true,
             show,
+            'from-top': top,
+            'from-bottom': bottom,
         });
 
-        // show? margin bottom equals to menu height
+        // show? margin bottom equals menu height
         // don't show? pull down menu equal to height of no of items - main menu height
         const marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
 
@@ -50,14 +54,29 @@ export const SubMenuItem = ({ children, linkTo, iconClass }) => {
     );
 };
 
+const validatePosition = props => {
+    console.log(props);
+    if (props.top && props.bottom) {
+        return new Error('Only one of "top" and "bottom" can be true');
+    }
+    if (!props.top && !props.bottom) {
+        return new Error('One of "top" or "bottom" must be specified');
+    }
+    return undefined;
+};
+
 SubMenu.propTypes = {
     show: PropTypes.bool.isRequired,
     children: PropTypes.node, // SubMenuItems
     requestClose: PropTypes.func.isRequired,
+    top: validatePosition,
+    bottom: validatePosition,
 };
 
 SubMenu.defaultProps = {
     children: '',
+    top: false,
+    bottom: false,
 };
 
 SubMenuItem.propTypes = {

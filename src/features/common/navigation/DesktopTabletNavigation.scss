@@ -1,0 +1,21 @@
+.top-menu-items-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 12px 0;
+
+    a {
+        margin-left: 40px;
+        &.icon-link {
+            font-size: 24px;
+            position: relative;
+            top: 3px;
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.top-menu-links {
+    float: right;
+}
