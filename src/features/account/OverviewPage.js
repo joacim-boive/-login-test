@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
+import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 
 export class OverviewPage extends Component {
     static propTypes = {
@@ -12,9 +13,11 @@ export class OverviewPage extends Component {
 
     render() {
         return (
-            <div className="page account-overview-page">
-                <h1>Account / overview page</h1>
-            </div>
+            <AuthenticatedPageTemplate>
+                <div className="account-overview-page">
+                    <h1>Account / overview page</h1>
+                </div>
+            </AuthenticatedPageTemplate>
         );
     }
 }
