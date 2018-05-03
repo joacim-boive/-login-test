@@ -3,8 +3,43 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
 .common-authenticated-page {
-    .page-content {
 
+    $hero-height: 180px;
+    $hero-height-mobile: 120px;
+
+    $gradient-left: #6ab28a;
+    $gradient-right: #ddf8bb;
+
+    .hero-header {
+        background: $gradient-left;
+        background: -moz-linear-gradient(left, $gradient-left 0%, $gradient-right 100%);
+        background: -webkit-linear-gradient(left, $gradient-left 0%,$gradient-right 100%);
+        background: linear-gradient(to right, $gradient-left 0%,$gradient-right 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-left', endColorstr='$gradient-right',GradientType=1 );
+
+        height: $hero-height;
+
+        h1 {
+            display: block;
+            line-height: $hero-height * 0.8;
+            color: #fff;
+            margin: 0 auto;
+            max-width: $content-max-width-desktop;
+        }
+        @include mobile() {
+            height: $hero-height-mobile;
+            h1 {
+                line-height: $hero-height-mobile * 0.8;
+                margin: 0 15px;
+            }
+        }
+    };
+
+    .hero-header + .page-content {
+        margin-top: -55px;
+    }
+
+    .page-content {
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
             margin: 32px auto 0;

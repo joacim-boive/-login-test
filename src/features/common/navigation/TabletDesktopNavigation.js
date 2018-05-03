@@ -5,11 +5,11 @@ import { Translate } from '@ecster/ecster-i18n';
 import { Logo } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
 
-import './DesktopTabletNavigation.scss';
+import './TabletDesktopNavigation.scss';
 
 const i18n = Translate.getText;
 
-export default class DesktopTabletNavigation extends React.Component {
+export default class TabletDesktopNavigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

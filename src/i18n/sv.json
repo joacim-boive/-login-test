@@ -4,7 +4,9 @@
         "back": "Tillbaka",
         "cancel": "Avbryt"
     },
-    "account": {},
+    "account": {
+        "overview-header": "Översikt"
+    },
     "authentication": {},
     "common": {
     },

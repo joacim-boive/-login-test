@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import classNames from 'classnames';
 import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
-import TopNavigation from '../navigation/DesktopTabletNavigation';
+import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 
 export default class AuthenticatedPageTemplate extends React.Component {
     render() {
+        const header = this.props.header && (
+            <div className="hero-header">
+                <h1>{this.props.header}</h1>
+            </div>
+        );
+
         return (
             <div className="common-authenticated-page">
                 <TabletOrDesktop>
-                    <TopNavigation />
+                    <TabletDesktopNavigation />
                 </TabletOrDesktop>
+                {header}
                 <div className="page-content">{this.props.children}</div>
                 <Mobile>
                     <MobileNavigation />
@@ -21,5 +29,10 @@ export default class AuthenticatedPageTemplate extends React.Component {
 }
 
 AuthenticatedPageTemplate.propTypes = {
+    header: PropTypes.string,
     children: PropTypes.node.isRequired,
+};
+
+AuthenticatedPageTemplate.defaultProps = {
+    header: undefined,
 };
