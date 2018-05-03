@@ -1,5 +1,7 @@
-.top-menu-items-container {
-    max-width: 960px;
+$max-width: 960px;
+
+.top-menu-container {
+    max-width: $max-width;
     margin: 0 auto;
     padding: 16px 0 0;
 
@@ -14,6 +16,11 @@
             }
         }
     }
+}
+
+.submenu-container {
+    max-width: $max-width;
+    margin: 0 auto;
 }
 
 .top-menu-links {
