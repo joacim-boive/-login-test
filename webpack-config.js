@@ -31,6 +31,8 @@ module.exports = type => {
         entry: {
             dev: {
                 main: [
+                    'core-js/es6',
+                    'core-js/es7',
                     'react-hot-loader/patch',
                     `webpack-hot-middleware/client?http://0.0.0.0:${pkgJson.rekit.devPort}`,
                     './styles/index.scss',
@@ -55,7 +57,7 @@ module.exports = type => {
                 ],
             },
             dist: {
-                main: ['babel-polyfill', './styles/index.scss', './index'],
+                main: ['core-js/es6', 'core-js/es7', 'babel-polyfill', './styles/index.scss', './index'],
             },
             test: null,
         }[type],
