@@ -100,5 +100,3 @@ SubMenuItem.defaultProps = {
     iconClass: 'icon-chevron-right',
     linkTo: '',
 };
-
-export default SubMenu;

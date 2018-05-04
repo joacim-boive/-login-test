@@ -22,15 +22,11 @@ export default class MobileNavigation extends React.Component {
     showMoreSubMenu = e => {
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showMoreSubMenu: true }, () => {
-            console.log('I setted de state');
-        });
+        this.setState({ showMoreSubMenu: true });
     };
 
     closeMoreSubMenu = () => {
-        this.setState({ showMoreSubMenu: false }, () => {
-            console.log('I setted de state');
-        });
+        this.setState({ showMoreSubMenu: false });
     };
 
     render() {
