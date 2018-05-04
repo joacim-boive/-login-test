@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
+import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 
 export class OverviewPage extends Component {
     static propTypes = {
@@ -11,10 +12,26 @@ export class OverviewPage extends Component {
     };
 
     render() {
+        const styles = {
+            padding: '12px',
+            background: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '2px',
+            minHeight: '150px',
+        };
+
         return (
-            <div className="page account-overview-page">
-                <h1>Account / overview page</h1>
-            </div>
+            <AuthenticatedPageTemplate header="Översikt">
+                <div style={styles} className="account-overview-page">
+                    <h3>Account / overview page</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
+                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
+                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
+                        bibendum luctus.
+                    </p>
+                </div>
+            </AuthenticatedPageTemplate>
         );
     }
 }

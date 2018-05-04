@@ -1,0 +1,41 @@
+@import "./constants";
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+// menu shown / hidden with calculated inline css i SubMenu.js
+.submenu {
+    position: fixed;
+    width: 100%;
+    z-index: $z-submenu;
+    transition: margin-bottom .3s ease-in-out, margin-top .3s ease-in-out;
+
+    &.from-top {
+        top: 0;
+        max-width: 200px;
+        border: 1px solid $gray60;
+        border-top: none;
+        box-shadow: 0 0 4px $gray60;
+    }
+
+    &.from-bottom {
+        bottom: 0;
+    }
+}
+
+.submenu.show {
+}
+
+.submenu-item {
+    height: $item-height;
+    padding: 14px 24px;
+    border-top: 1px solid $gray60;
+    background: #fff;
+    i {
+        float: right;
+    }
+}
+
+.submenu-item a,
+.submenu-item a:visited {
+    color: $gray140;
+    text-decoration: none;
+}

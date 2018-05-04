@@ -1,0 +1,18 @@
+@import "./constants";
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.top-navigation {
+    width: 100%;
+    position: relative;
+}
+
+.top-menu {
+    position: relative;
+    z-index: $z-menu;
+    background: $green;
+    height: $menu-height;
+
+    a {
+        color: $white;
+    }
+}

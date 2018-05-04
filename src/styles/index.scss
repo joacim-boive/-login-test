@@ -1,6 +1,5 @@
 // index is the entry for all styles.
 @import './reset.css';
-@import './global';
 @import '../features/home/style';
 @import '../features/common/style';
 @import '../features/account/style';
@@ -13,10 +12,12 @@
 @import '~@ecster/ecster-styles/v2/include/paddings';
 @import '~@ecster/ecster-styles/v2/include/color-classes';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '../features/invoice/style';
 
-html, body {
+html, body, #react-root {
     height: 100%;
     font-family: 'PT Sans', sans-serif;
+    background: $beige10;
 }
 
 h1 {
@@ -36,14 +37,4 @@ h3 {
     color: $green120;
     margin-bottom: 25px;
     line-height: 32px;
-}
-
-// TODO: remove, just temporary for routing / login tests /joli44
-.page {
-    max-width: 900px;
-    margin: 40px auto;
-    text-align: center;
-    h1 {
-        color: $green;
-    }
 }
