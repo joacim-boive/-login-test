@@ -18,6 +18,7 @@ const LoginProgress = props => (
     /* eslint-disable react/prop-types */
     <Visible if={props.visible}>
         <h2>{props.text}</h2>
+        {props.info && <p>{props.info}</p>}
         <Spinner />
         <Button outline round onClick={props.onCancel} className="mt-6x">
             {i18n('general.cancel')}
@@ -132,6 +133,7 @@ export class LoginPage extends React.Component {
                         <LoginProgress
                             visible={this.state.showMBidSpinner}
                             text={i18n('home.login.open-mbid')}
+                            info={i18n('home.login.open-mbid-info')}
                             onCancel={this.cancelLogin}
                         />
 
@@ -169,7 +171,7 @@ export class LoginPage extends React.Component {
                                     onChange={this.onSsnChange}
                                 />
                                 <Button onClick={this.startMbidOtherDeviceLogin} block round>
-                                    {i18n('home.login.login-mbid')}
+                                    {i18n('home.login.login')}
                                 </Button>
                                 <Button onClick={this.toggleMbidForms} transparent>
                                     <i className="icon-chevron-left" /> {i18n('general.back')}
