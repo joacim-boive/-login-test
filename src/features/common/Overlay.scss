@@ -62,6 +62,7 @@ $button-size-large: 32px;
         &:before, &:after {
             position: absolute;
             top: 0;
+            left: 50%;
             content: ' ';
             height: $button-size-small;
             width: 2px;

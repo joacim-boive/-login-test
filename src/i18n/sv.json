@@ -34,14 +34,15 @@
                     "mobileBankId": "Mobilt BankID från annan enhet"
                 }
             },
-            "ssnPlaceholder": "ÅÅMMDDXXXX",
             "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
             "help": {
                 "header": "Hur loggar jag in?",
                 "body": [
                     "Inloggning sked med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
                     "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
-                    "Mer information hittar du på [link https://bankid.com 'BankID.com']"
+                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Länk till PUL']",
+                    "Mer information hittar du på [link https://bankid.com 'BankID.com']",
+                    "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
                 ]
             },
             "otherDevice": {
@@ -50,7 +51,7 @@
                     "ssn": "Personnummer"
                 },
                 "placeholders": {
-                    "ssn": "Personnummer"
+                    "ssn": "ÅÅMMDDXXXX"
                 },
                 "buttons": {
                     "login": "Logga in",

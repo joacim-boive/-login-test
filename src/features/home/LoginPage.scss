@@ -126,6 +126,16 @@ body {
         font-weight: 600;
     }
 
+    .text-input {
+        input {
+            width: 27rem;
+            height: 4.4rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            -moz-appearance: textfield;
+        }
+    }
+
     &__button {
         @include x-align(center);
         @include grid-cell(1,1,2,1);
@@ -183,6 +193,7 @@ body {
 
         .text-input{
             @include grid-cell(1, 1, 2, 1);
+            @include x-align(center);
 
             margin-top: 20px;
         }
@@ -335,14 +346,6 @@ and (hover: hover),
             span{
                 display: block; // div isn't allowed inside label
                 margin-left: 1rem;
-            }
-
-            input{
-                width: 28.8rem;
-                height: 4.4rem;
-                border-radius: 6px;
-                border: 1px solid #ccc;
-                -moz-appearance: textfield;
             }
 
             label{

@@ -41,7 +41,7 @@ export class LoginPage extends Component {
         isMobileBankIdOtherDeviceVisible: false,
         isBankIdStarted: false,
         isHelpVisible: false,
-        isLoggingIn: false,
+        isLoggingIn: null,
     };
 
     componentWillUnmount = () => {
@@ -151,7 +151,7 @@ export class LoginPage extends Component {
                                     <Button
                                         id="bankIdThisUnit"
                                         className="home-login-page__button"
-                                        onClick={() => this.startLogin('BANKID', { isLoggingIn: true })}
+                                        onClick={() => this.startLogin('BANKID', { isLoggingIn: 'BANKID' })}
                                         round
                                     >
                                         {!isLoggingIn ? (
@@ -215,7 +215,11 @@ export class LoginPage extends Component {
                                         id="bankIdOtherUnit"
                                         className="home-login-page__button"
                                         onClick={() =>
-                                            this.startLogin('BANKID_MOBILE', { isLoggingIn: true }, this.state.ssn)
+                                            this.startLogin(
+                                                'BANKID_MOBILE',
+                                                { isLoggingIn: 'BANKID_MOBILE' },
+                                                this.state.ssn
+                                            )
                                         }
                                         round
                                     >
