@@ -1,40 +1,126 @@
 // index is the entry for all styles.
-@import './reset.css';
+
+
+@import "~normalize-scss/sass/normalize";
+@import './mixins';
+
+@import "~@ecster/ecster-styles/scss/v2/theme/theme"; // fonts incl icons
+
 @import '../features/home/style';
 @import '../features/common/style';
 @import '../features/account/style';
 @import '../features/authentication/style';
 @import '../features/customer/style';
 @import '../features/loan/style';
-
-@import "~@ecster/ecster-styles/scss/v2/theme/theme"; // fonts incl icons
-@import '~@ecster/ecster-styles/v2/include/margins';
-@import '~@ecster/ecster-styles/v2/include/paddings';
-@import '~@ecster/ecster-styles/v2/include/color-classes';
-@import '~@ecster/ecster-styles/scss/v2/common/colors';
 @import '../features/invoice/style';
 
-html, body, #react-root {
-    height: 100%;
-    font-family: 'PT Sans', sans-serif;
-    background: $beige10;
+@import "~@ecster/ecster-components/Button/Button.css";
+
+$breakpoint: 28.125em;
+$small-screens: 20em;
+$max-width: 45rem;
+$background-color: $beige10;
+$ecster-logo-green: $green;
+$table-border-color: $gray40;
+$border-color: #e1dbd1;
+$border: 1px solid $border-color;
+$color-text: #333;
+
+
+*, *:before, *:after {
+    box-sizing: border-box;
 }
+
+html, body, #react-root {
+    /* everywhere grid is used both col and rows needs to be defined for IE11 to work */
+    @include grid((
+        cols: 1fr,
+        rows: 1fr
+    ));
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+// Remove number spinner in number-field
+input[type=number],
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+}
+
+// Remove blue outline on focus
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    color: $color-text;
+    font-size: 1.6rem;
+    min-width: 32rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+.font-loaded {
+    font-family: "PT Sans", sans-serif;
+
+    button, input, optgroup, select, textarea{
+        /* Need to override the normalize.css */
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    h1{
+        font-family: "Campton", sans-serif;
+    }
+}
+
+
+label{
+    cursor: pointer;
+}
+
+button{
+    font-size: 1.4rem;
+}
+
+a, button, input[type=submit] {
+    cursor: pointer;
+}
+
+ul, ol, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+input{
+    border-radius: 6px;
+    -moz-appearance: textfield;
+}
+
 
 h1 {
-    font-weight: 700;
-    color: $green120;
-    margin-bottom: 30px;
-}
-
-h2 {
-    font-weight: 700;
-    color: $green120;
-    margin-bottom: 30px;
-}
-
-h3 {
+    font-size: 3.6rem;
     font-weight: 600;
-    color: $green120;
-    margin-bottom: 25px;
-    line-height: 32px;
+}
+
+p{
+    margin-top: 1rem;
 }

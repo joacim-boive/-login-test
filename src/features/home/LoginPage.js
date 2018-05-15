@@ -1,45 +1,47 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* Handles lazyloading of images */
+import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
+import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
+import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
+import lazySizes from 'lazysizes';
+
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Button, Input, Spinner, DesktopDevice, TouchDevice, TabletOrDesktop } from '@ecster/ecster-components';
-import { Translate } from '@ecster/ecster-i18n';
+import Media from 'react-media';
+
+import { Button, Input } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+
+import { whyDidYouUpdate } from 'why-did-you-update';
 
 import { createSession, getSession } from '../authentication/redux/actions';
+
+import Overlay from '../common/Overlay';
+import Spinner from '../common/Spinner';
+
+import detectDevice from '../../common/util/detect-device';
+
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 
-// TODO: replace with some fancy transition component...
-const Visible = props => props.if && props.children;
-const i18n = Translate.getText;
+import '../../common/util/handle-scaling';
+import loadFont from '../../common/util/load-font';
 
-const LoginProgress = props => (
-    /* eslint-disable react/prop-types */
-    <Visible if={props.visible}>
-        <h2>{props.text}</h2>
-        {props.info && <p>{props.info}</p>}
-        <Spinner />
-        <Button outline round onClick={props.onCancel} className="mt-6x">
-            {i18n('general.cancel')}
-        </Button>
-    </Visible>
-);
+if (process.env.NODE_ENV !== 'production') {
+    whyDidYouUpdate(React);
+}
 
-export class LoginPage extends React.Component {
+loadFont('PT Sans');
+
+export class LoginPage extends Component {
     state = {
-        // Touch device forms
-        showMbidFormThisDevice: true,
-        showMbidFormOtherDevice: false,
-        // User feedback
-        showMBidSpinner: false,
-        showBidSpinner: false,
-        // Form data
         ssn: '',
-        // Other
-        bidOnThisDevice: false,
-        mbidOnThisDevice: false,
-        bankIdStarted: false,
+        isMobileBankIdOtherDeviceVisible: false,
+        isBankIdStarted: false,
+        isHelpVisible: false,
+        isLoggingIn: false,
     };
 
     componentWillUnmount = () => {
@@ -52,29 +54,33 @@ export class LoginPage extends React.Component {
         this.setState({ ssn: target.value });
     };
 
-    // start login
-    startLogin = (type, nextState, ssn) => {
+    /**
+     * Toggle a state from true to false and vice versa
+     * @param {string} toBeToggled - Existing state variable to be toggled
+     * @param {true|false} [force] - Force true or false
+     * */
+    toggleState = (toBeToggled, force) => {
+        this.setState({
+            [toBeToggled]: force === undefined ? !this.state[toBeToggled] : (this.state[toBeToggled] = force),
+        });
+    };
+
+    /**
+     * Initiate the login progress
+     * @param {'BANKID'|'BANKID_MOBILE'} type - One of the types to initiate login for
+     * @param {object} nextState - Refreshing state with this object
+     */
+    startLogin = (type, nextState) => {
+        const { ssn } = this.state;
+
         this.prevState = { ...this.state };
         this.setState(nextState);
-        this.props.createSession(ssn ? { type, ssn } : { type });
+        this.props.createSession(type === 'BANKID' ? { type, ssn } : { type });
     };
 
-    startMbidThisDeviceLogin = () => {
-        this.startLogin('BANKID', { showMBidSpinner: true, showMbidFormThisDevice: false, mbidOnThisDevice: true });
-    };
-
-    startMbidOtherDeviceLogin = () => {
-        this.startLogin(
-            'BANKID_MOBILE',
-            { showMBidSpinner: true, showMbidFormOtherDevice: false, mbidOnThisDevice: false },
-            this.state.ssn
-        );
-    };
-
-    startBidLogin = () => {
-        this.startLogin('BANKID', { showBidSpinner: true, bidOnThisDevice: true });
-    };
-
+    /**
+     * Abort the login, clear BankID pollTimer and return to previous state
+     */
     cancelLogin = () => {
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
@@ -84,13 +90,6 @@ export class LoginPage extends React.Component {
             ...this.prevState,
         });
         this.prevState = undefined;
-    };
-
-    toggleMbidForms = () => {
-        this.setState({
-            showMbidFormOtherDevice: !this.state.showMbidFormOtherDevice,
-            showMbidFormThisDevice: !this.state.showMbidFormThisDevice,
-        });
     };
 
     pollBankID = () => {
@@ -104,9 +103,9 @@ export class LoginPage extends React.Component {
     };
 
     startBankIdApp = url => {
-        if (!this.state.bankIdStarted) {
+        if (!this.state.isBankIdStarted) {
             window.location.href = url;
-            this.setState({ bankIdStarted: true });
+            this.toggleState('isBankIdStarted');
         }
     };
 
@@ -117,9 +116,9 @@ export class LoginPage extends React.Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const { mbidOnThisDevice, bidOnThisDevice } = this.state;
+        const { isHelpVisible, isLoggingIn, isMobileBankIdOtherDeviceVisible, ssn } = this.state;
 
-        if (loginProgress.startURL && loginProgress.pollTime > 0 && (mbidOnThisDevice || bidOnThisDevice)) {
+        if (loginProgress.startURL && loginProgress.pollTime > 0 && isLoggingIn) {
             this.startBankIdApp(loginProgress.startURL);
             this.pollBankID();
         } else if (loginProgress.status === 'IN_PROGRESS') {
@@ -127,78 +126,171 @@ export class LoginPage extends React.Component {
         }
 
         return (
-            <LoginPageTemplate>
-                <div className="home-login-page">
-                    <div className="bankid-form">
-                        <LoginProgress
-                            visible={this.state.showMBidSpinner}
-                            text={i18n('home.login.open-mbid')}
-                            info={i18n('home.login.open-mbid-info')}
-                            onCancel={this.cancelLogin}
-                        />
+            <React.Fragment>
+                <LoginPageTemplate>
+                    <section id="home-login-page" className="home-login-page__box">
+                        {!isMobileBankIdOtherDeviceVisible && (
+                            <React.Fragment>
+                                <article className="home-login-page__form">
+                                    <h1 className="home-login-page__header e-green120">{i18n('home.login.header')}</h1>
+                                    <Media query="(hover: hover),(not all and (-moz-touch-enabled: 1)),(-ms-high-contrast: active),(-ms-high-contrast: none)">
+                                        {/** TODO * use onBlur instead of onChange to not trigger unnecessary rerenders.
+                                         */}
+                                        <Input
+                                            id="ssn"
+                                            name="ssn"
+                                            label={i18n('home.login.labels.ssn')}
+                                            placeholder={i18n('home.login.placeholders.ssn')}
+                                            value={ssn}
+                                            onChange={this.onSsnChange}
+                                            pattern="[0-9]*"
+                                            type="tel"
+                                        />
+                                    </Media>
+                                    {/** TODO * Find a better way to pass variables to onClick * e.target.value? */}
+                                    <Button
+                                        id="bankIdThisUnit"
+                                        className="home-login-page__button"
+                                        onClick={() => this.startLogin('BANKID', { isLoggingIn: true })}
+                                        round
+                                    >
+                                        {!isLoggingIn ? (
+                                            i18n('home.login.buttons.mobileBankId')
+                                        ) : (
+                                            <Spinner
+                                                id="waiting-for-bankid"
+                                                isCenter={false}
+                                                isVisible
+                                                isFillParentHeight
+                                                strokeBackgroundWidth={14}
+                                                strokeForegroundWidth={14}
+                                            />
+                                        )}
+                                    </Button>
+                                    <Button
+                                        id="switchToBankIdOtherUnit"
+                                        className="home-login-page__link home-login-page__link--bankid"
+                                        onClick={() => this.toggleState('isMobileBankIdOtherDeviceVisible')}
+                                        link
+                                    >
+                                        {i18n(
+                                            `home.login.links.${
+                                                detectDevice().isDesktop ? 'desktop' : 'mobile'
+                                            }.mobileBankId`
+                                        )}
+                                    </Button>
+                                </article>
+                                <aside className="help">
+                                    <Button
+                                        id="help"
+                                        className="home-login-page__link home-login-page__link--help"
+                                        onClick={() => this.toggleState('isHelpVisible')}
+                                        link
+                                    >
+                                        {i18n('general.buttons.help')}
+                                        <span className="home-login-page__icon help__icon">&nbsp;</span>
+                                    </Button>
+                                </aside>
+                            </React.Fragment>
+                        )}
 
-                        <LoginProgress
-                            visible={this.state.showBidSpinner}
-                            text={i18n('home.login.open-bid')}
-                            onCancel={this.cancelLogin}
-                        />
+                        {isMobileBankIdOtherDeviceVisible && (
+                            <React.Fragment>
+                                <article className="home-login-page__form other-device">
+                                    <h1 className="home-login-page__header e-green120">
+                                        {i18n('home.login.otherDevice.header')}
+                                    </h1>
+                                    <Input
+                                        id="ssn"
+                                        name="ssn"
+                                        label={i18n('home.login.otherDevice.labels.ssn')}
+                                        placeholder={i18n('home.login.otherDevice.placeholders.ssn')}
+                                        value={ssn}
+                                        onChange={this.onSsnChange}
+                                        pattern="[0-9]*"
+                                        type="number"
+                                        inputmode="numeric"
+                                    />
+                                    <Button
+                                        id="bankIdOtherUnit"
+                                        className="home-login-page__button"
+                                        onClick={() =>
+                                            this.startLogin('BANKID_MOBILE', { isLoggingIn: true }, this.state.ssn)
+                                        }
+                                        round
+                                    >
+                                        {!isLoggingIn ? (
+                                            i18n('home.login.otherDevice.buttons.login')
+                                        ) : (
+                                            <Spinner
+                                                id="waiting-for-bankid-mobile"
+                                                isCenter={false}
+                                                isVisible
+                                                isFillParentHeight
+                                                strokeBackgroundWidth={14}
+                                                strokeForegroundWidth={14}
+                                            />
+                                        )}
+                                    </Button>
+                                    <Button
+                                        id="back"
+                                        className="home-login-page__link"
+                                        onClick={() => this.toggleState('isMobileBankIdOtherDeviceVisible')}
+                                        link
+                                    >
+                                        {i18n('home.login.otherDevice.links.back')}
+                                    </Button>
+                                </article>
+                                {isLoggingIn === 'BANKID_MOBILE' && (
+                                    <Overlay
+                                        header="home.login.otherDevice.help.header"
+                                        body="home.login.otherDevice.help.body"
+                                        isCompact
+                                        isNoClose
+                                        toggleOverlay={() => this.toggleState('isHelpVisible')}
+                                    >
+                                        <Button
+                                            id="buttonWaitingForOtherDeviceLogin"
+                                            onClick={() => {}}
+                                            className="home-login-page__button"
+                                            round
+                                            block
+                                        >
+                                            <Spinner
+                                                id="waiting-for-bankid"
+                                                isCenter={false}
+                                                isVisible
+                                                isFillParentHeight
+                                                strokeBackgroundWidth={14}
+                                                strokeForegroundWidth={14}
+                                            />
+                                        </Button>
+                                        <Button
+                                            flat
+                                            round
+                                            green
+                                            block
+                                            outline
+                                            className="home-login-page__button"
+                                            onClick={this.cancelLogin}
+                                        >
+                                            {i18n('home.login.otherDevice.buttons.abort')}
+                                        </Button>
+                                    </Overlay>
+                                )}
+                            </React.Fragment>
+                        )}
+                    </section>
+                </LoginPageTemplate>
 
-                        <TabletOrDesktop>
-                            <div className="help-link-ctr">
-                                <a href="#/start/login-help">
-                                    {i18n('home.login.help')} <i className="icon-alert-circle" />
-                                </a>
-                            </div>
-                        </TabletOrDesktop>
-
-                        <TouchDevice>
-                            <Visible if={this.state.showMbidFormThisDevice}>
-                                <h1>{i18n('home.login.header')}</h1>
-                                <Button onClick={this.startMbidThisDeviceLogin} block round>
-                                    {i18n('home.login.login-mbid')}
-                                </Button>
-                                <Button onClick={this.toggleMbidForms} transparent>
-                                    {i18n('home.login.login-mbid-other-device')}
-                                </Button>
-                            </Visible>
-
-                            <Visible if={this.state.showMbidFormOtherDevice}>
-                                <h3>{i18n('home.login.header-other-device')}</h3>
-                                <Input
-                                    label={i18n('home.login.ssn')}
-                                    placeholder={i18n('home.login.ssn-placeholer')}
-                                    value={this.state.ssn}
-                                    onChange={this.onSsnChange}
-                                />
-                                <Button onClick={this.startMbidOtherDeviceLogin} block round>
-                                    {i18n('home.login.login')}
-                                </Button>
-                                <Button onClick={this.toggleMbidForms} transparent>
-                                    <i className="icon-chevron-left" /> {i18n('general.back')}
-                                </Button>
-                            </Visible>
-                        </TouchDevice>
-
-                        <DesktopDevice>
-                            <Visible if={!this.state.showMBidSpinner && !this.state.showBidSpinner}>
-                                <h1>{i18n('home.login.header')}</h1>
-                                <Input
-                                    label={i18n('home.login.ssn')}
-                                    value={this.state.ssn}
-                                    placeholder={i18n('home.login.ssn-placeholer')}
-                                    onChange={this.onSsnChange}
-                                />
-                                <Button onClick={this.startMbidOtherDeviceLogin} block round>
-                                    {i18n('home.login.login-mbid')}
-                                </Button>
-                                <Button onClick={this.startBidLogin} transparent>
-                                    {i18n('home.login.login-bid')}
-                                </Button>
-                            </Visible>
-                        </DesktopDevice>
-                    </div>
-                </div>
-            </LoginPageTemplate>
+                {isHelpVisible && (
+                    <Overlay
+                        header="home.login.help.header"
+                        body="home.login.help.body"
+                        toggleOverlay={() => this.toggleState('isHelpVisible')}
+                    />
+                )}
+            </React.Fragment>
         );
     }
 }

@@ -1,0 +1,120 @@
+@import '../../styles/mixins';
+
+@import "~@ecster/ecster-styles/scss/v2/common/_colors.scss";
+
+$ecster-logo-green: $green;
+$button-size-small: 16px;
+$button-size-large: 32px;
+
+.overlay {
+    @include grid-cell(1,1,1,2);
+
+    @include grid((
+        rows: 1fr,
+        cols: 1fr
+    ));
+
+    /* This is needed for IE11 - otherwise other elements below, that are position relative, will shine thru */
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 20px;
+
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 500ms ease-in;
+
+    h1{
+        font-size: 3.5rem;
+        color: $ecster-logo-green;
+    }
+
+    &--compact.overlay{
+        padding: 0;
+
+        h1{
+            font-size: 3rem;
+        }
+    }
+
+    article{
+        @include grid-cell(1,1,1,1);
+        @include xy-align();
+
+        max-width: 60rem;
+    }
+
+    .close{
+        @include grid-cell(1,1,1,1);
+        @include x-align(end);
+    }
+
+    .icon-close {
+        position: relative;
+        padding: 0;
+        width: $button-size-small;
+        height: $button-size-small;
+
+        span{
+            display: block; // Needed for IE11 to correctly size the icon
+        }
+
+        &:before, &:after {
+            position: absolute;
+            top: 0;
+            content: ' ';
+            height: $button-size-small;
+            width: 2px;
+            background-color: $black;
+
+            opacity: 0;
+            will-change: opacity,transform;
+            transition: opacity 500ms ease-in, transform 1000ms cubic-bezier(0.6, -0.28, 0.74, 0.05);
+            transform: rotate(359deg);
+        }
+
+        &.show:before {
+            opacity: 1;
+            transform: rotate(45deg);
+        }
+        &.show:after {
+            opacity: 1;
+            transform: rotate(-45deg);
+        }
+    }
+
+    /////////////////
+    /*** TABLET ***/
+    ///////////////
+    //////////////////
+    /*** DESKTOP ***/
+    ////////////////
+
+    @media only screen
+    and (min-width: 768px)
+    and (orientation: portrait),
+    (min-width: 1024px)
+    and (orientation: landscape){
+
+        padding: 50px;
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        .icon-close {
+            width: $button-size-large;
+            height: $button-size-large;
+            &:before, &:after {
+                height: $button-size-large;
+            }
+        }
+    }
+}
+
+
+
+
+.show{
+    opacity: 1;
+}
