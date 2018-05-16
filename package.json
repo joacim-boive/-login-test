@@ -109,10 +109,10 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@ecster/ecster-components": "^1.0.256",
-        "@ecster/ecster-i18n": "^2.0.48",
+        "@ecster/ecster-components": "^1.0.258",
+        "@ecster/ecster-i18n": "^2.0.50",
         "@ecster/ecster-net": "^1.0.74",
-        "@ecster/ecster-styles": "^2.0.191",
+        "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.63",
         "ajv": "^6.5.0",
         "lazysizes": "^4.0.2",

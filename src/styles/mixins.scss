@@ -1,5 +1,7 @@
 // don't remove: imported in rekit generated components /joli44
-@import "~@ecster/ecster-styles/scss/v2/include/grid-utils.scss";
+@import "~@ecster/ecster-styles/scss/v2/include/grid-utils";
+@import "~@ecster/ecster-components/scss/MediaQuery";
+
 
 @mixin visually-hidden {
     /**Usage: Where you need the class:

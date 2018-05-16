@@ -123,8 +123,6 @@ body {
             width: 27rem;
             height: 4.4rem;
             border-radius: 6px;
-            border: 1px solid #ccc;
-            -moz-appearance: textfield;
         }
     }
 
@@ -203,7 +201,7 @@ body {
 
 }
 
-@media only screen and (orientation: landscape) {
+@media all and (orientation: landscape) {
     body {
         background-size: cover;
     }
@@ -227,9 +225,7 @@ body {
 /*** TABLET ***/
 ///////////////
 
-@media only screen and (min-width: 768px)
-    //and (max-device-width: 1024px)
-    //and (orientation: portrait)
+@media all and (min-width: 768px)
 {
     body {
         background-position: 0 bottom;
@@ -258,7 +254,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 768px) and (orientation: landscape) {
+@media all and (max-width: 768px) and (orientation: landscape) {
     .home-login-page {
         background-size: cover;
 
@@ -273,20 +269,11 @@ body {
     }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-height: 1024px) and (max-height: 922px) /* This is with the tab bar open (more then one page)*/
-and (orientation: portrait) and (min-device-pixel-ratio: 2) {
-
-}
-
 //////////////////
 /*** DESKTOP ***/
 ////////////////
 
-@media screen and (hover: hover),
-(min-width: 769px),
-(min--moz-device-pixel-ratio: 0),
-(-ms-high-contrast: active),
-(-ms-high-contrast: none) {
+@include isDesktop{
     .home-login-page {
         background-position: 0 0;
         background-size: cover;
