@@ -201,7 +201,7 @@ body {
 
 }
 
-@media all and (orientation: landscape) {
+@include isLandscape {
     body {
         background-size: cover;
     }
