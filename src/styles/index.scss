@@ -1,11 +1,8 @@
 // index is the entry for all styles.
-
-
 @import "~normalize-scss/sass/normalize";
 @import './mixins';
-
-@import "~@ecster/ecster-styles/scss/v2/theme/theme"; // fonts incl icons
-
+@import "~@ecster/ecster-styles/scss/v2/theme/theme";
+// fonts incl icons
 @import '../features/home/style';
 @import '../features/common/style';
 @import '../features/account/style';
@@ -13,21 +10,11 @@
 @import '../features/customer/style';
 @import '../features/loan/style';
 @import '../features/invoice/style';
-@import '../features/invoice/style';
-
 @import "~@ecster/ecster-components/Button/Button.css";
 
-
-$breakpoint: 28.125em;
-$small-screens: 20em;
-$max-width: 45rem;
-$background-color: $beige10;
-$ecster-logo-green: $green;
-$table-border-color: $gray40;
 $border-color: #e1dbd1;
 $border: 1px solid $border-color;
 $color-text: #333;
-
 
 *, *:before, *:after {
     box-sizing: border-box;
@@ -79,26 +66,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
+
 .font-loaded {
     font-family: "PT Sans", sans-serif;
 
-    button, input, optgroup, select, textarea{
+    button, input, optgroup, select, textarea {
         /* Need to override the normalize.css */
         font-family: inherit;
         font-size: inherit;
     }
 
-    h1{
+    h1 {
         font-family: "Campton", sans-serif;
     }
 }
 
-
-label{
+label {
     cursor: pointer;
 }
 
-button{
+button {
     font-size: 1.4rem;
 }
 
@@ -112,17 +99,16 @@ ul, ol, li {
     list-style: none;
 }
 
-input{
+input {
     border-radius: 6px;
     -moz-appearance: textfield;
 }
-
 
 h1 {
     font-size: 3.6rem;
     font-weight: 600;
 }
 
-p{
+p {
     margin-top: 1rem;
 }
