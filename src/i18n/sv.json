@@ -1,5 +1,8 @@
 {
     "general": {
+        "buttons": {
+            "help": "Hjälp"
+        },
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt"
@@ -14,19 +17,56 @@
     "home": {
         "login": {
             "header": "Logga in",
-            "header-other-device": "Logga in med Mobilt BankId från annan enhet",
-            "login-bid": "Logga in med BankID",
-            "login": "Logga in",
-            "login-mbid": "Mobilt BankID",
-            "login-mbid-other-device": "Mobilt BankID på annan enhet",
-            "open-mbid": "Öppna Mobilt BankID",
-            "open-mbid-info": "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen.",
-            "open-bid": "Öppna BankID",
-            "ssn": "Personnummer",
-            "ssn-placeholer": "ÅÅMMDD-XXXX",
-            "back-to-mbid-this-device": "Tillbaka",
-            "about-mbid": "Om Mobilt BankID",
-            "help": "Behöver du hjälp?"
+            "labels": {
+                "ssn": "Personnummer"
+            },
+            "placeholders": {
+                "ssn": "ÅÅMMDDXXXX"
+            },
+            "buttons": {
+                "mobileBankId": "Mobilt BankID"
+            },
+            "links": {
+                "desktop": {
+                    "mobileBankId": "Logga in med BankID"
+                },
+                "mobile": {
+                    "mobileBankId": "Mobilt BankID från annan enhet"
+                }
+            },
+            "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
+            "help": {
+                "header": "Hur loggar jag in?",
+                "body": [
+                    "Inloggning sked med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
+                    "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
+                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Länk till PUL']",
+                    "Mer information hittar du på [link https://bankid.com 'BankID.com']",
+                    "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
+                ]
+            },
+            "otherDevice": {
+                "header": "Logga in med Mobilt BankID från annan enhet",
+                "labels": {
+                    "ssn": "Personnummer"
+                },
+                "placeholders": {
+                    "ssn": "ÅÅMMDDXXXX"
+                },
+                "buttons": {
+                    "login": "Logga in",
+                    "abort": "Avbryt"
+                },
+                "links": {
+                    "back": "< Tillbaka"
+                },
+                "help": {
+                    "header": "Öppna Mobilt BankID",
+                    "body": [
+                        "Låt sidan vara öppen under tiden du loggar in med ditt Mobila BankID - Annars avbryts inloggningen"
+                    ]
+                }
+            }
         }
     },
     "loan": {},

@@ -1,0 +1,45 @@
+.spinner{
+    display: inline-block;
+    width: 200px; // Just override the width if you need a different size
+    height: auto;
+
+    &--center{
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    &--hidden{
+        display: none;
+    }
+
+    &--visible{
+
+    }
+
+    &--fill-parent-height{
+        // Use this when the spinner is contained within another element, like a button.
+        width: auto;
+        height: 100%;
+        padding: 8px;
+    }
+
+    &__svg{
+        width: inherit;
+        height: inherit;
+        will-change: transform;
+        transition-property: transform;
+        animation-name: rotate;
+        //animation-duration: 1.5s;
+        animation-duration: 1100ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        //animation-timing-function: cubic-bezier(0.42, 0.82, 0.07, 1.45);
+    }
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
