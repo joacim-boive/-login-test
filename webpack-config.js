@@ -21,10 +21,10 @@ module.exports = type => {
 
     return {
         devtool: {
-            dev: 'eval-source-map',
+            dev: 'source-map',
             dll: false,
             test: false,
-            dist: false,
+            dist: 'eval-source-map',
         }[type],
         cache: true,
         context: path.join(__dirname, 'src'),
