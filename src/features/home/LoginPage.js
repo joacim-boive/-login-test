@@ -118,7 +118,7 @@ export class LoginPage extends Component {
 
         const { isHelpVisible, isLoggingIn, isMobileBankIdOtherDeviceVisible, ssn } = this.state;
 
-        if (loginProgress.startURL && loginProgress.pollTime > 0 && isLoggingIn) {
+        if (loginProgress.startURL && loginProgress.pollTime > 0 && isLoggingIn === 'BANKID') {
             this.startBankIdApp(loginProgress.startURL);
             this.pollBankID();
         } else if (loginProgress.status === 'IN_PROGRESS') {
