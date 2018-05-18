@@ -126,7 +126,7 @@ function startDevServer() {
             rejectUnauthorized: false,
             headers: proxyHeaders(req),
             json: true,
-            body: req.body
+            body: req.body,
         }).pipe(res);
     });
 
