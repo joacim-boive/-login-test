@@ -7,11 +7,11 @@ const path = require('path');
 const _ = require('lodash');
 const { resolve } = require('path');
 const webpack = require('webpack');
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 // const crypto = require('crypto');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-//const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+// const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -19,6 +19,15 @@ const pkgJson = require('./package.json');
 
 // TODO: with cache bust thing in it's name
 const scriptName = 'main.js';
+
+const cspConfig = [
+    "default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'",
+    "style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com",
+    'media-src *',
+    "font-src 'self' http://fonts.gstatic.com https://fonts.gstatic.com",
+    "connect-src 'self' {{restUrl}}",
+    "img-src 'self' http://res.cloudinary.com https://res.cloudinary.com data: content:",
+];
 
 module.exports = type => {
     // type is one of [dev, dll, test, dist]
@@ -90,10 +99,10 @@ module.exports = type => {
         },
 
         plugins: _.compact([
-//            new CleanWebpackPlugin('build/', { verbose: true }),
+            //            new CleanWebpackPlugin('build/', { verbose: true }),
             new NpmInstallPlugin(),
             isDev && new webpack.HotModuleReplacementPlugin(),
-//            new ProgressPlugin(),
+            //            new ProgressPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             isDist && new LodashModuleReplacementPlugin(), // joli44, what does this on do??
             isDist && new webpack.optimize.UglifyJsPlugin(),
@@ -137,7 +146,7 @@ module.exports = type => {
                 filename: `${BASE_PATH.cordova}/index.html`, // Plugin specific
                 // Injected variables
                 analyticsId: 'UA-123456-1', // Injected variable
-                restBaseUrl: 'https://secure.ecster.se',
+                cspConfig: cspConfig.join('; ').replace(/{{restUrl}}/, 'https://secure.ecster.se'),
                 scriptName, // Injected variable
             }),
         ]),
