@@ -1,0 +1,22 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.svg-icon {
+    width: 28px;
+    height: 28px;
+    margin: 6px auto;
+    stroke: $gray;
+    transition: stroke .25s ease;
+
+    .fill {
+        fill: transparent;
+        transition: fill .25s ease;
+    }
+
+    .active & {
+        stroke: $green;
+        .fill {
+            fill: $green10;
+        }
+    }
+}
+
