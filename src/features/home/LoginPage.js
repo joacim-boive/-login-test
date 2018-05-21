@@ -238,7 +238,7 @@ export class LoginPage extends Component {
                                     </Button>
                                     <Button
                                         id="back"
-                                        className="home-login-page__link"
+                                        className="home-login-page__link home-login-page__link--back"
                                         onClick={() => this.toggleState('isMobileBankIdOtherDeviceVisible')}
                                         link
                                     >

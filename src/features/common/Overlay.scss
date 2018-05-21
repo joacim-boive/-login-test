@@ -2,7 +2,6 @@
 
 @import "~@ecster/ecster-styles/scss/v2/common/_colors.scss";
 
-$ecster-logo-green: $green;
 $button-size-small: 16px;
 $button-size-large: 32px;
 
@@ -25,16 +24,13 @@ $button-size-large: 32px;
     transition: opacity 500ms ease-in;
 
     h1{
-        font-size: 3.5rem;
-        color: $ecster-logo-green;
+        text-align: center;
+        font-size: 2.2rem;
+        color: $green120;
     }
 
     &--compact.overlay{
         padding: 0;
-
-        h1{
-            font-size: 3rem;
-        }
     }
 
     article{
