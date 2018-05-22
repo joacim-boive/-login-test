@@ -4,6 +4,8 @@
     max-width: $content-max-width-desktop;
     margin: 0 auto;
     padding: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
 
     .top-menu-links a {
         margin-left: 40px;
@@ -25,6 +27,6 @@
 }
 
 .top-menu-links {
-    float: right;
+    //float: right;
     margin-right: 20px;
 }
