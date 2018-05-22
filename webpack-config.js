@@ -45,7 +45,6 @@ module.exports = type => {
     return {
         devtool: {
             dev: 'source-map',
-            dll: false,
             test: false,
             dist: 'eval-source-map',
         }[type],
@@ -60,23 +59,6 @@ module.exports = type => {
                     `webpack-hot-middleware/client?http://0.0.0.0:${pkgJson.rekit.devPort}`,
                     './styles/index.scss',
                     './index',
-                ],
-            },
-            dll: {
-                // Here dll is only used for dev.
-                'dev-vendors': [
-                    'react-hot-loader',
-                    'react-proxy',
-                    'babel-polyfill',
-                    'lodash',
-                    'react',
-                    'react-dom',
-                    'react-router',
-                    'react-redux',
-                    'react-router-redux',
-                    'redux',
-                    'redux-logger',
-                    'redux-thunk',
                 ],
             },
             dist: {

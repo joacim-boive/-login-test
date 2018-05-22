@@ -21,6 +21,7 @@ import { createSession, getSession } from '../authentication/redux/actions';
 
 import Overlay from '../common/Overlay';
 import Spinner from '../common/Spinner';
+import { LoginOther } from './login-page';
 
 import detectDevice from '../../common/util/detect-device';
 
@@ -38,7 +39,7 @@ loadFont('PT Sans');
 export class LoginPage extends Component {
     state = {
         ssn: '',
-        isMobileBankIdOtherDeviceVisible: false,
+        isBankIdOtherDeviceVisible: false,
         isBankIdStarted: false,
         isHelpVisible: false,
         isLoggingIn: null,
@@ -75,7 +76,7 @@ export class LoginPage extends Component {
 
         this.prevState = { ...this.state };
         this.setState(nextState);
-        this.props.createSession(type === 'BANKID' ? { type, ssn } : { type });
+        this.props.createSession(type === 'BANKID_MOBILE' ? { type, ssn } : { type });
     };
 
     /**
@@ -116,7 +117,7 @@ export class LoginPage extends Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const { isHelpVisible, isLoggingIn, isMobileBankIdOtherDeviceVisible, ssn } = this.state;
+        const { isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn } = this.state;
 
         if (loginProgress.startURL && loginProgress.pollTime > 0 && isLoggingIn === 'BANKID') {
             this.startBankIdApp(loginProgress.startURL);
@@ -129,7 +130,7 @@ export class LoginPage extends Component {
             <React.Fragment>
                 <LoginPageTemplate>
                     <section id="home-login-page" className="home-login-page__box">
-                        {!isMobileBankIdOtherDeviceVisible && (
+                        {!isBankIdOtherDeviceVisible && (
                             <React.Fragment>
                                 <article className="home-login-page__form">
                                     <h1 className="home-login-page__header e-green120">{i18n('home.login.header')}</h1>
@@ -151,7 +152,9 @@ export class LoginPage extends Component {
                                     <Button
                                         id="bankIdThisUnit"
                                         className="home-login-page__button"
-                                        onClick={() => this.startLogin('BANKID', { isLoggingIn: 'BANKID' })}
+                                        onClick={() =>
+                                            this.startLogin('BANKID_MOBILE', { isLoggingIn: 'BANKID_MOBILE' })
+                                        }
                                         round
                                     >
                                         {!isLoggingIn ? (
@@ -170,7 +173,7 @@ export class LoginPage extends Component {
                                     <Button
                                         id="switchToBankIdOtherUnit"
                                         className="home-login-page__link home-login-page__link--bankid"
-                                        onClick={() => this.toggleState('isMobileBankIdOtherDeviceVisible')}
+                                        onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
                                         link
                                     >
                                         {i18n(
@@ -194,95 +197,16 @@ export class LoginPage extends Component {
                             </React.Fragment>
                         )}
 
-                        {isMobileBankIdOtherDeviceVisible && (
-                            <React.Fragment>
-                                <article className="home-login-page__form other-device">
-                                    <h1 className="home-login-page__header e-green120">
-                                        {i18n('home.login.otherDevice.header')}
-                                    </h1>
-                                    <Input
-                                        id="ssn"
-                                        name="ssn"
-                                        label={i18n('home.login.otherDevice.labels.ssn')}
-                                        placeholder={i18n('home.login.otherDevice.placeholders.ssn')}
-                                        value={ssn}
-                                        onChange={this.onSsnChange}
-                                        pattern="[0-9]*"
-                                        type="number"
-                                        inputmode="numeric"
-                                    />
-                                    <Button
-                                        id="bankIdOtherUnit"
-                                        className="home-login-page__button"
-                                        onClick={() =>
-                                            this.startLogin(
-                                                'BANKID_MOBILE',
-                                                { isLoggingIn: 'BANKID_MOBILE' },
-                                                this.state.ssn
-                                            )
-                                        }
-                                        round
-                                    >
-                                        {!isLoggingIn ? (
-                                            i18n('home.login.otherDevice.buttons.login')
-                                        ) : (
-                                            <Spinner
-                                                id="waiting-for-bankid-mobile"
-                                                isCenter={false}
-                                                isVisible
-                                                isFillParentHeight
-                                                strokeBackgroundWidth={14}
-                                                strokeForegroundWidth={14}
-                                            />
-                                        )}
-                                    </Button>
-                                    <Button
-                                        id="back"
-                                        className="home-login-page__link home-login-page__link--back"
-                                        onClick={() => this.toggleState('isMobileBankIdOtherDeviceVisible')}
-                                        link
-                                    >
-                                        {i18n('home.login.otherDevice.links.back')}
-                                    </Button>
-                                </article>
-                                {isLoggingIn === 'BANKID_MOBILE' && (
-                                    <Overlay
-                                        header="home.login.otherDevice.help.header"
-                                        body="home.login.otherDevice.help.body"
-                                        isCompact
-                                        isNoClose
-                                        toggleOverlay={() => this.toggleState('isHelpVisible')}
-                                    >
-                                        <Button
-                                            id="buttonWaitingForOtherDeviceLogin"
-                                            onClick={() => {}}
-                                            className="home-login-page__button"
-                                            round
-                                            block
-                                        >
-                                            <Spinner
-                                                id="waiting-for-bankid"
-                                                isCenter={false}
-                                                isVisible
-                                                isFillParentHeight
-                                                strokeBackgroundWidth={14}
-                                                strokeForegroundWidth={14}
-                                            />
-                                        </Button>
-                                        <Button
-                                            flat
-                                            round
-                                            green
-                                            block
-                                            outline
-                                            className="home-login-page__button"
-                                            onClick={this.cancelLogin}
-                                        >
-                                            {i18n('home.login.otherDevice.buttons.abort')}
-                                        </Button>
-                                    </Overlay>
-                                )}
-                            </React.Fragment>
+                        {isBankIdOtherDeviceVisible && (
+                            <LoginOther
+                                header={i18n('home.login.otherDevice.header')}
+                                ssn={ssn}
+                                isLoggingIn={isLoggingIn}
+                                cancelLogin={this.cancelLogin}
+                                onSsnChange={this.onSsnChange}
+                                startLogin={this.startLogin}
+                                toggleState={this.toggleState}
+                            />
                         )}
                     </section>
                 </LoginPageTemplate>
@@ -326,4 +250,5 @@ function mapDispatchToProps(dispatch) {
         },
     };
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
