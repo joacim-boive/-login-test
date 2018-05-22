@@ -9,13 +9,34 @@
 
     .fill {
         fill: transparent;
-        transition: fill .25s ease;
+        transition: fill 1.5s ease;
     }
 
     .active & {
         stroke: $green;
         .fill {
             fill: $green10;
+        }
+    }
+
+    &--hamburger {
+        svg {
+            width: 100%;
+        }
+    }
+    &--invoices {
+        svg {
+            height: 100%;
+        }
+    }
+    &--loan {
+        svg {
+            height: 100%;
+        }
+    }
+    &--overview {
+        svg {
+            width: 100%;
         }
     }
 }

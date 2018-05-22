@@ -33,7 +33,7 @@ export default class TabletDesktopNavigation extends React.Component {
                 <TopMenu>
                     <div className="top-menu-container">
                         <a href="#/account/overview">
-                            <Logo withName fill="#ffffff" width="120px" />
+                            <Logo withName fill="#fff" width="120px" />
                         </a>
                         <div className="top-menu-links">
                             <Link to="/account/overview">{i18n('navigation.account-overview')}</Link>

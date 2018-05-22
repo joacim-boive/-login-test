@@ -2,7 +2,7 @@ import React from 'react';
 
 export const SvgIconLoan = () => (
     <div className="svg-icon svg-icon--loan">
-        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 19 24">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 24">
             <g fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                 <path
                     className="fill"
