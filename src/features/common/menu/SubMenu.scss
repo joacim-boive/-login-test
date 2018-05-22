@@ -6,10 +6,12 @@
     position: fixed;
     width: 100%;
     z-index: $z-submenu;
-    transition: margin-bottom .3s ease-in-out, margin-top .3s ease-in-out;
+    transition: margin-bottom .25s ease-in-out, margin-top .25s ease-in-out;
 
     &.from-top {
-        top: 0;
+        position: absolute;
+        top: -1px; // compensate for top border
+        right: 0;
         max-width: 200px;
         border: 1px solid $gray60;
         border-top: none;
@@ -21,16 +23,32 @@
     }
 }
 
+.top-navigation .arrow {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border: 12px solid transparent;
+    border-bottom-color: #fff;
+    z-index: 3;
+    top: -24px;
+    right: 20px;
+}
+
 .submenu.show {
 }
 
 .submenu-item {
     height: $item-height;
-    padding: 14px 24px;
+    padding: 0;
     border-top: 1px solid $gray60;
     background: #fff;
+    a {
+        display: block;
+        padding: 14px 24px;
+    }
     i {
         float: right;
+        color: $green;
     }
 }
 

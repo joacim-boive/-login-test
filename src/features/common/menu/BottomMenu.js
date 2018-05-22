@@ -20,7 +20,7 @@ export class BottomMenu extends React.Component {
     }
 }
 
-export const MenuItem = ({ icon, active, children, linkTo, onClick }) => (
+export const MenuItem = ({ active, children, linkTo, onClick }) => (
     <div
         className={classNames({
             'menu-item': true,
@@ -28,26 +28,32 @@ export const MenuItem = ({ icon, active, children, linkTo, onClick }) => (
         })}
     >
         <Link to={linkTo} onClick={onClick}>
-            {icon && <img className="menu-item__icon" src={icon} alt="icon" />}
-            <div className="menu-item__text">{children}</div>
+            {children}
         </Link>
     </div>
 );
 
+export const MenuItemText = ({ children }) => <div className="menu-item__text">{children}</div>;
+
 MenuItem.propTypes = {
-    icon: PropTypes.string,
+    children: PropTypes.node.isRequired,
     active: PropTypes.bool,
-    children: PropTypes.node,
     linkTo: PropTypes.string,
     onClick: PropTypes.func,
 };
 
 MenuItem.defaultProps = {
-    icon: '',
     active: false,
-    children: '',
     linkTo: '',
     onClick: () => {},
+};
+
+MenuItemText.propTypes = {
+    children: PropTypes.string,
+};
+
+MenuItemText.defaultProps = {
+    children: '',
 };
 
 BottomMenu.propTypes = {

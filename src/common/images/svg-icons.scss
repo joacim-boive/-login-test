@@ -1,0 +1,43 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.svg-icon {
+    width: 28px;
+    height: 28px;
+    margin: 6px auto;
+    stroke: $gray;
+    transition: stroke .25s ease;
+
+    .fill {
+        fill: transparent;
+        transition: fill 1.5s ease;
+    }
+
+    .active & {
+        stroke: $green;
+        .fill {
+            fill: $green10;
+        }
+    }
+
+    &--hamburger {
+        svg {
+            width: 100%;
+        }
+    }
+    &--invoices {
+        svg {
+            height: 100%;
+        }
+    }
+    &--loan {
+        svg {
+            height: 100%;
+        }
+    }
+    &--overview {
+        svg {
+            width: 100%;
+        }
+    }
+}
+
