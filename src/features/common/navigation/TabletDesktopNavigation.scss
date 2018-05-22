@@ -4,8 +4,10 @@
     max-width: $content-max-width-desktop;
     margin: 0 auto;
     padding: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
 
-    a {
+    .top-menu-links a {
         margin-left: 40px;
         &.icon-link {
             font-size: 24px;
@@ -19,6 +21,7 @@
 }
 
 .submenu-container {
+    position: relative;
     max-width: $content-max-width-desktop;
     margin: 0 auto;
 }
