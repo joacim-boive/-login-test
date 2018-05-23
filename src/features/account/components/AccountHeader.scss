@@ -1,0 +1,50 @@
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+
+.account-header {
+    width: 100%;
+    background-color: #eff8f3;
+    font-family: 'PT Sans';
+    position: relative;
+    display: grid;
+    grid-template-columns: 220px auto auto;
+    grid-template-rows: 92px;
+    align-items: center;
+
+    &__card-icon {
+        position: relative;
+        top: -25px;
+        left: 20px;
+    }
+
+    &__card-number {
+        h3 {
+            font-family: 'Campton';
+            font-size: 30px;
+            color: #488e6e;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        div {
+            color: #5c5c5c;
+            font-size: 16px;
+        }
+    }
+
+    &__amount {
+        margin-right: 24px;
+        div {
+            font-family: 'Campton';
+            font-size: 40px;
+            font-weight: 400;
+            text-align: right;
+            color: #488e6e;
+        }
+        p {
+            font-family: 'PT Sans';
+            font-size: 14px;
+            text-align: right;
+            color: #5c5c5c;
+            margin: 0px;
+        }
+    }
+}

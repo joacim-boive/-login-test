@@ -1,0 +1,12 @@
+.latest-transactions {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 60px auto auto auto;
+    align-items: center;
+
+    h4 {
+        font-weight: 600;
+        color: #333333;
+        margin: 0px;
+    }
+}

@@ -4,6 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import { AccountHeader } from './components/AccountHeader';
+import { NextPaymentPanel } from './components/NextPaymentPanel';
+import { AccountLinksPanel } from './components/AccountLinksPanel';
+import { LatestTransactions } from './components/LatestTransactions';
 
 export class OverviewPage extends Component {
     static propTypes = {
@@ -13,47 +17,22 @@ export class OverviewPage extends Component {
 
     render() {
         const styles = {
-            padding: '12px',
+            padding: '8px',
             background: 'white',
             border: '1px solid #ccc',
-            borderRadius: '2px',
+            borderRadius: '6px',
             minHeight: '150px',
         };
 
         return (
             <AuthenticatedPageTemplate header="Översikt">
                 <div style={styles} className="account-overview-page">
-                    <h3>Account / overview page</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
+                    <AccountHeader />
+                    <section>
+                        <NextPaymentPanel className="account-overview-page__next-payment" />
+                        <AccountLinksPanel className="account-overview-page__account-links" />
+                        <LatestTransactions className="account-overview-page__latest" />
+                    </section>
                 </div>
             </AuthenticatedPageTemplate>
         );
