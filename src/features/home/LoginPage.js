@@ -42,8 +42,14 @@ export class LoginPage extends Component {
         isBankIdOtherDeviceVisible: false,
         isBankIdStarted: false,
         isHelpVisible: false,
-        isLoggingIn: null,
+        isOverlayVisible: false,
+        isLoggingIn: false,
+        isDesktop: detectDevice().isDesktop,
     };
+
+    // shouldComponentUpdate = (nextProps, nextState) => {
+    //     return !(event.inputType && event.inputType === 'insertText');
+    // };
 
     componentWillUnmount = () => {
         if (this.pollTimer) {
@@ -68,15 +74,26 @@ export class LoginPage extends Component {
 
     /**
      * Initiate the login progress
-     * @param {'BANKID'|'BANKID_MOBILE'} type - One of the types to initiate login for
-     * @param {object} nextState - Refreshing state with this object
+     * @param {object} config -
      */
-    startLogin = (type, nextState) => {
+    startLogin = config => {
         const { ssn } = this.state;
+        const { type, isOnThisDevice } = config;
+        const nextState = {
+            isLoggingIn: type,
+            isOnThisDevice: this.state.isDesktop && type.toString() === 'BANKID_MOBILE' ? false : isOnThisDevice,
+        };
+
+        const createSessionConfig = { type };
 
         this.prevState = { ...this.state };
         this.setState(nextState);
-        this.props.createSession(type === 'BANKID_MOBILE' ? { type, ssn } : { type });
+
+        if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
+            createSessionConfig.ssn = ssn;
+        }
+
+        this.props.createSession(createSessionConfig);
     };
 
     /**
@@ -90,6 +107,7 @@ export class LoginPage extends Component {
         this.setState({
             ...this.prevState,
         });
+
         this.prevState = undefined;
     };
 
@@ -97,10 +115,14 @@ export class LoginPage extends Component {
         if (this.pollTimer) {
             return;
         }
+
+        const { loginProgress } = this.props;
         this.pollTimer = setTimeout(() => {
+            const { getSession, loginStatus } = this.props;
+
             delete this.pollTimer;
-            this.props.getSession(this.props.loginStatus.sessionKey);
-        }, this.props.loginProgress.pollTime);
+            getSession(loginStatus.sessionKey);
+        }, loginProgress.pollTime);
     };
 
     startBankIdApp = url => {
@@ -111,19 +133,21 @@ export class LoginPage extends Component {
     };
 
     render() {
-        const { loginProgress, loginStatus } = this.props;
+        const { loginStatus, loginProgress } = this.props;
 
         if (loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
         }
 
-        const { isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn } = this.state;
+        const { isDesktop, isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn } = this.state;
 
-        if (loginProgress.startURL && loginProgress.pollTime > 0 && isLoggingIn === 'BANKID') {
-            this.startBankIdApp(loginProgress.startURL);
-            this.pollBankID();
-        } else if (loginProgress.status === 'IN_PROGRESS') {
-            this.pollBankID();
+        if(isLoggingIn){
+            if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
+                this.startBankIdApp(loginProgress.startURL);
+                this.pollBankID();
+            } else if (loginProgress.status === 'IN_PROGRESS') {
+                this.pollBankID();
+            }
         }
 
         return (
@@ -152,9 +176,7 @@ export class LoginPage extends Component {
                                     <Button
                                         id="bankIdThisUnit"
                                         className="home-login-page__button"
-                                        onClick={() =>
-                                            this.startLogin('BANKID_MOBILE', { isLoggingIn: 'BANKID_MOBILE' })
-                                        }
+                                        onClick={() => this.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: true })}
                                         round
                                     >
                                         {!isLoggingIn ? (
@@ -176,11 +198,7 @@ export class LoginPage extends Component {
                                         onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
                                         link
                                     >
-                                        {i18n(
-                                            `home.login.links.${
-                                                detectDevice().isDesktop ? 'desktop' : 'mobile'
-                                            }.mobileBankId`
-                                        )}
+                                        {i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`)}
                                     </Button>
                                 </article>
                                 <aside className="help">
@@ -199,14 +217,53 @@ export class LoginPage extends Component {
 
                         {isBankIdOtherDeviceVisible && (
                             <LoginOther
-                                header={i18n('home.login.otherDevice.header')}
+                                header={i18n(`home.login.otherDevice.header.${isDesktop ? 'desktop' : 'mobile'}`)}
+                                type={isDesktop ? 'BANKID' : 'BANKID_MOBILE'}
                                 ssn={ssn}
                                 isLoggingIn={isLoggingIn}
+                                isDesktop={isDesktop}
                                 cancelLogin={this.cancelLogin}
                                 onSsnChange={this.onSsnChange}
                                 startLogin={this.startLogin}
                                 toggleState={this.toggleState}
                             />
+                        )}
+                        {isLoggingIn === 'BANKID_MOBILE' && (
+                            <Overlay
+                                header="home.login.otherDevice.help.header"
+                                body="home.login.otherDevice.help.body"
+                                isCompact
+                                isNoClose
+                                toggleOverlay={() => this.toggleState('isOverlayVisible')}
+                            >
+                                <Button
+                                    id="buttonWaitingForOtherDeviceLogin"
+                                    onClick={() => {}}
+                                    className="home-login-page__button"
+                                    round
+                                    block
+                                >
+                                    <Spinner
+                                        id="waiting-for-bankid"
+                                        isCenter={false}
+                                        isVisible
+                                        isFillParentHeight
+                                        strokeBackgroundWidth={14}
+                                        strokeForegroundWidth={14}
+                                    />
+                                </Button>
+                                <Button
+                                    flat
+                                    round
+                                    green
+                                    block
+                                    outline
+                                    className="home-login-page__button"
+                                    onClick={this.cancelLogin}
+                                >
+                                    {i18n('home.login.otherDevice.buttons.abort')}
+                                </Button>
+                            </Overlay>
                         )}
                     </section>
                 </LoginPageTemplate>

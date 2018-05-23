@@ -46,7 +46,10 @@
                 ]
             },
             "otherDevice": {
-                "header": "Logga in med Mobilt BankID från annan enhet",
+                "header": {
+                    "mobile": "Logga in med Mobilt BankID från annan enhet",
+                    "desktop": "Logga in med BankID på fil"
+                },
                 "labels": {
                     "ssn": "Personnummer"
                 },
