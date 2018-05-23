@@ -1,4 +1,4 @@
-import { LoginPage, AboutMbid, LoginHelp } from './';
+import { LoginPage } from './';
 
 export default {
     path: '/',
@@ -11,8 +11,6 @@ export default {
             isIndex: true,
             isPublic: true,
             childRoutes: [
-              { path: 'about-mbid', name: 'About mbid', component: AboutMbid, isPublic: true },
-              { path: 'login-help', name: 'Login help', component: LoginHelp, isPublic: true },
               ],
         },
     ],

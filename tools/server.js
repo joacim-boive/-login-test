@@ -6,8 +6,6 @@
 
 const path = require('path');
 const http = require('http');
-const shell = require('shelljs');
-const crypto = require('crypto');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
@@ -52,9 +50,6 @@ parser.addArgument(['--readonly'], {
 
 const args = parser.parseArgs();
 
-const srcPath = path.join(__dirname, '../src');
-const manifestPath = path.join(__dirname, '../.tmp/dev-vendors-manifest.json');
-
 function startEcsterServer() {
     const ecsterBackend = initEcsterDevServer('https://secure5.ft.ecster.se', __dirname);
     const PORT = pkgJson.rekit.restPort;
@@ -69,13 +64,13 @@ function startEcsterServer() {
 function startDevServer() {
     const app = express();
     const devConfig = getConfig('dev');
-
-    devConfig.plugins.push(
-        new webpack.DllReferencePlugin({
-            context: srcPath,
-            manifest: require(manifestPath),
-        })
-    );
+    //
+    // devConfig.plugins.push(
+    //     new webpack.DllReferencePlugin({
+    //         context: srcPath,
+    //         manifest: require(manifestPath),
+    //     })
+    // );
 
     const compiler = webpack(devConfig);
     app.use(
@@ -198,62 +193,9 @@ function startStudioServer() {
     });
 }
 
-// Build dll to accerlarate webpack build performance for dev-time.
-function buildDevDll() {
-    const dllConfig = getConfig('dll');
-
-    // Get snapshot hash for all dll entries versions.
-    const nameVersions = dllConfig.entry['dev-vendors']
-        .map(pkgName => {
-            const pkg = require(path.join(pkgName.split('/')[0], 'package.json'));
-            return `${pkg.name}_${pkg.version}`;
-        })
-        .join('-');
-
-    const dllHash = crypto
-        .createHash('md5')
-        .update(nameVersions)
-        .digest('hex');
-    const dllName = `devVendors_${dllHash}`;
-
-    // If dll doesn't exist or version changed, then rebuild it
-    if (!shell.test('-e', manifestPath) || require(manifestPath).name !== dllName) {
-        delete require.cache[manifestPath]; // force reload the new manifest
-        console.log('Dev vendors have changed, rebuilding dll...');
-        console.time('Dll build success');
-
-        dllConfig.output.library = dllName;
-        dllConfig.output.path = path.join(__dirname, '../.tmp');
-        dllConfig.plugins.push(
-            new webpack.DllPlugin({
-                path: manifestPath,
-                name: dllName,
-                context: srcPath,
-            })
-        );
-
-        return new Promise((resolve, reject) => {
-            webpack(dllConfig, err => {
-                if (err) {
-                    console.log('dll build failed:');
-                    console.log(err.stack || err);
-                    reject();
-                    return;
-                }
-                console.timeEnd('Dll build success');
-                resolve();
-            });
-        });
-    }
-    console.log('The dev-vendors bundle is up to date, no need to rebuild.');
-    return Promise.resolve();
-}
-
 if (!args.mode || args.mode === 'build') startBuildServer();
 if (!args.mode || args.mode === 'dev') {
-    buildDevDll().then(() => {
-        startEcsterServer();
-        startDevServer();
-    });
+    startEcsterServer();
+    startDevServer();
 }
 if (!args.mode || args.mode === 'studio') startStudioServer();
