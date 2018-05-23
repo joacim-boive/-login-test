@@ -34,6 +34,20 @@
                     "mobileBankId": "Mobilt BankID från annan enhet"
                 }
             },
+            "inProgress": {
+                "mobile":{
+                    "header": "Öppna Mobilt BankID",
+                    "body": [
+                        "Låt sidan vara öppen under tiden du loggar in med Mobilt BankID - Annars avbryts inloggningen"
+                    ]
+                },
+                "desktop":{
+                    "header": "Öppna BankID",
+                    "body": [
+                        "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
+                    ]
+                }
+            },
             "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
             "help": {
                 "header": "Hur loggar jag in?",
@@ -63,11 +77,19 @@
                 "links": {
                     "back": "Tillbaka"
                 },
-                "help": {
-                    "header": "Öppna Mobilt BankID",
-                    "body": [
-                        "Låt sidan vara öppen under tiden du loggar in med ditt Mobila BankID - Annars avbryts inloggningen"
-                    ]
+                "inProgress": {
+                    "mobile":{
+                        "header": "Öppna Mobilt BankID",
+                        "body": [
+                            "Låt sidan vara öppen under tiden du loggar in med ditt Mobila BankID - Annars avbryts inloggningen"
+                        ]
+                    },
+                    "desktop":{
+                        "header": "Öppna Mobilt BankID",
+                        "body": [
+                            "Låt sidan vara öppen under tiden du loggar in med Mobilt BankID - Annars avbryts inloggningen"
+                        ]
+                    }
                 }
             }
         }

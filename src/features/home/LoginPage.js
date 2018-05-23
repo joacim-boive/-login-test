@@ -44,6 +44,7 @@ export class LoginPage extends Component {
         isHelpVisible: false,
         isOverlayVisible: false,
         isLoggingIn: false,
+        isOnThisDevice: false,
         isDesktop: detectDevice().isDesktop,
     };
 
@@ -141,7 +142,7 @@ export class LoginPage extends Component {
 
         const { isDesktop, isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn } = this.state;
 
-        if(isLoggingIn){
+        if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
                 this.startBankIdApp(loginProgress.startURL);
                 this.pollBankID();
@@ -174,7 +175,7 @@ export class LoginPage extends Component {
                                     </Media>
                                     {/** TODO * Find a better way to pass variables to onClick * e.target.value? */}
                                     <Button
-                                        id="bankIdThisUnit"
+                                        id="button-bankid-this-unit"
                                         className="home-login-page__button"
                                         onClick={() => this.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: true })}
                                         round
@@ -183,7 +184,7 @@ export class LoginPage extends Component {
                                             i18n('home.login.buttons.mobileBankId')
                                         ) : (
                                             <Spinner
-                                                id="waiting-for-bankid"
+                                                id="spinner-waiting-for-bankid"
                                                 isCenter={false}
                                                 isVisible
                                                 isFillParentHeight
@@ -193,7 +194,7 @@ export class LoginPage extends Component {
                                         )}
                                     </Button>
                                     <Button
-                                        id="switchToBankIdOtherUnit"
+                                        id="button-switch-to-bank-id-other"
                                         className="home-login-page__link home-login-page__link--bankid"
                                         onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
                                         link
@@ -228,23 +229,27 @@ export class LoginPage extends Component {
                                 toggleState={this.toggleState}
                             />
                         )}
-                        {isLoggingIn === 'BANKID_MOBILE' && (
+                        {isLoggingIn && (
                             <Overlay
-                                header="home.login.otherDevice.help.header"
-                                body="home.login.otherDevice.help.body"
+                                header={`home.login${!this.state.isOnThisDevice ? '.otherDevice' : ''}.inProgress.${
+                                    isDesktop ? 'desktop' : 'mobile'
+                                }.header`}
+                                body={`home.login${!this.state.isOnThisDevice ? '.otherDevice' : ''}.inProgress.${
+                                    isDesktop ? 'desktop' : 'mobile'
+                                }.body`}
                                 isCompact
                                 isNoClose
                                 toggleOverlay={() => this.toggleState('isOverlayVisible')}
                             >
                                 <Button
-                                    id="buttonWaitingForOtherDeviceLogin"
+                                    id="button-waiting-for-login"
                                     onClick={() => {}}
                                     className="home-login-page__button"
                                     round
                                     block
                                 >
                                     <Spinner
-                                        id="waiting-for-bankid"
+                                        id="spinner-waiting-for-bankid"
                                         isCenter={false}
                                         isVisible
                                         isFillParentHeight
