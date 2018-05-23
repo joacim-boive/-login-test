@@ -32,7 +32,9 @@ export default class TabletDesktopNavigation extends React.Component {
             <TopNavigation>
                 <TopMenu>
                     <div className="top-menu-container">
-                        <Logo withName fill="#ffffff" width="120px" />
+                        <a href="#/account/overview">
+                            <Logo withName fill="#fff" width="120px" />
+                        </a>
                         <div className="top-menu-links">
                             <Link to="/account/overview">{i18n('navigation.account-overview')}</Link>
 
@@ -48,8 +50,8 @@ export default class TabletDesktopNavigation extends React.Component {
                 </TopMenu>
                 <div className="submenu-container">
                     <SubMenu top show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
-                        <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
                         <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
+                        <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
                         <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                     </SubMenu>
                 </div>
