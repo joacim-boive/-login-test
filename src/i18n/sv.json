@@ -38,7 +38,7 @@
                 "mobile":{
                     "header": "Öppna Mobilt BankID",
                     "body": [
-                        "Låt sidan vara öppen under tiden du loggar in med Mobilt BankID - Annars avbryts inloggningen"
+                        "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                     ]
                 },
                 "desktop":{
@@ -81,7 +81,7 @@
                     "mobile":{
                         "header": "Öppna Mobilt BankID",
                         "body": [
-                            "Låt sidan vara öppen under tiden du loggar in med ditt Mobila BankID - Annars avbryts inloggningen"
+                            "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                         ]
                     },
                     "desktop":{
