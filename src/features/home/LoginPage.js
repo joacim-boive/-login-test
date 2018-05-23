@@ -173,7 +173,6 @@ export class LoginPage extends Component {
                                             type="tel"
                                         />
                                     </Media>
-                                    {/** TODO * Find a better way to pass variables to onClick * e.target.value? */}
                                     <Button
                                         id="button-bankid-this-unit"
                                         className="home-login-page__button"
