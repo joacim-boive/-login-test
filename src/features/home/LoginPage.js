@@ -1,8 +1,11 @@
-/* eslint-disable no-unused-vars */
 /* Handles lazyloading of images */
+// eslint-disable-next-line no-unused-vars
 import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
+// eslint-disable-next-line no-unused-vars
 import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
+// eslint-disable-next-line no-unused-vars
 import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
+// eslint-disable-next-line no-unused-vars
 import lazySizes from 'lazysizes';
 
 import React, { Component } from 'react';
@@ -48,10 +51,6 @@ export class LoginPage extends Component {
         isDesktop: detectDevice().isDesktop,
     };
 
-    // shouldComponentUpdate = (nextProps, nextState) => {
-    //     return !(event.inputType && event.inputType === 'insertText');
-    // };
-
     componentWillUnmount = () => {
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
@@ -78,7 +77,7 @@ export class LoginPage extends Component {
      * @param {object} config -
      */
     startLogin = config => {
-        const { ssn } = this.state;
+        const { ssn, isDesktop } = this.state;
         const { type, isOnThisDevice } = config;
         const nextState = {
             isLoggingIn: type,
@@ -90,7 +89,7 @@ export class LoginPage extends Component {
         this.prevState = { ...this.state };
         this.setState(nextState);
 
-        if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
+        if (config.type === 'BANKID_MOBILE' && (!isOnThisDevice || isDesktop)) {
             createSessionConfig.ssn = ssn;
         }
 
@@ -183,7 +182,7 @@ export class LoginPage extends Component {
                                             i18n('home.login.buttons.mobileBankId')
                                         ) : (
                                             <Spinner
-                                                id="spinner-waiting-for-bankid"
+                                                id="spinner-waiting-for-bankid-this-unit"
                                                 isCenter={false}
                                                 isVisible
                                                 isFillParentHeight
