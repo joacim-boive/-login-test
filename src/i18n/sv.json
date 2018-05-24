@@ -1,7 +1,8 @@
 {
     "general": {
         "buttons": {
-            "help": "Hjälp"
+            "help": "Hjälp",
+            "close": "Stäng"
         },
         "help": "Hjälp",
         "back": "Tillbaka",
