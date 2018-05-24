@@ -12,7 +12,7 @@ export const NextPaymentPanel = ({ className }) => {
     return (
         <div className={classes}>
             <h4>Nästa betalning</h4>
-            <div>Detaljerad faktura</div>
+            <p>Detaljerad faktura</p>
             <label>Att betala i juni:</label>
             <div>8 928 kr</div>
             <label>Förfallodatum:</label>
