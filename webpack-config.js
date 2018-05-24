@@ -123,7 +123,6 @@ module.exports = type => {
             // App - index.html
             new HtmlWebpackPlugin({
                 // Plugin specific
-                inject: false,
                 template: `${BASE_PATH.src}/index-app.ejs`,
                 filename: `${BASE_PATH.cordova}/index.html`, // Plugin specific
                 // Injected variables

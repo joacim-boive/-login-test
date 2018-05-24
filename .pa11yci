@@ -1,0 +1,18 @@
+{
+    "defaults": {
+        "standard": "WCAG2AA",
+        "rules": [],
+        "hideElements": "",
+        "ignore": [],
+        "includeWarnings": true,
+        "timeout": 5000,
+        "threshold": 0
+    },
+    "urls": [
+        {
+            "url": "http://localhost:6075",
+            "actions": [
+
+            ]
+        }]
+}
