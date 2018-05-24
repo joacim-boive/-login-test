@@ -25,7 +25,7 @@ export default class Overlay extends Component {
         isCompact: false,
         isNoClose: false,
         children: undefined,
-        buttonCloseLabel: i18n('general.buttons.close'),
+        buttonCloseLabel: undefined,
     };
 
     componentDidMount() {
