@@ -1,0 +1,108 @@
+{
+    "general": {
+        "buttons": {
+            "help": "Ohje",
+            "close": "Sulje"
+        },
+        "help": "Ohje",
+        "back": "takaisin",
+        "cancel": "Peruuta"
+    },
+    "account": {
+        "overview-header": "yleiskatsaus"
+    },
+    "authentication": {},
+    "common": {
+    },
+    "customer": {},
+    "home": {
+        "login": {
+            "header": "Kirjaudu sisään",
+            "labels": {
+                "ssn": "Henkilökohtainen numero"
+            },
+            "placeholders": {
+                "ssn": "ÅÅMMDDXXXX"
+            },
+            "buttons": {
+                "mobileBankId": "Mobile BankID"
+            },
+            "links": {
+                "desktop": {
+                    "mobileBankId": "Kirjaudu BankID: llä"
+                },
+                "mobile": {
+                    "mobileBankId": "Mobile BankID toisesta laitteesta"
+                }
+            },
+            "inProgress": {
+                "mobile": {
+                    "header": "Avaa Mobile BankID",
+                    "body": [
+                        "Käynnistä BankID Security App mobiililaitteellasi tai tablet-laitteellasi ja kirjoita koodi. Jätä tämä sivu auki, muuten kirjautumiset perutaan."
+                    ]
+                },
+                "desktop": {
+                    "header": "Avaa BankID",
+                    "body": [
+                        "Anna sivun olla auki, kun kirjaudut sisään BankID: llä. Muutoin kirjautumiset peruuntuvat"
+                    ]
+                }
+            },
+            "backToMobileBankIdForThisDevice": "Takaisin tämän laitteen Mobile BankID -palveluun",
+            "help": {
+                "header": "Miten kirjaudun sisään?",
+                "body": [
+                    "BankID on e-tunnus, jonka avulla yritykset, pankit, järjestöt ja viranomaiset voivat tunnistaa ja tehdä sopimuksia yksityishenkilöiden kanssa Internetissä.",
+                    "BankID-julkaisijoita on useita. Ota yhteyttä pankkiisi saadaksesi pankkitunnuksesi tietokoneellesi tai Mobile BankID: lle matkapuhelimelle / tablet-laitteelle.",
+                    "[link https://www.ecster.se/om-oss/hantering-of-personaldata 'Linkki PUL']",
+                    "Lisätietoja on kohdassa [link https://bankid.support.com 'BankID.com']",
+                    "[link https://www.ecster.se/om-oss/contact 'Linkki asiakaspalveluun']"
+                ]
+            },
+            "otherDevice": {
+                "header": {
+                    "mobile": "Kirjaudu sisään Mobile BankID: n toisesta laitteesta",
+                    "desktop": "Kirjaudu BankID-tiedostolla"
+                },
+                "labels": {
+                    "ssn": "Henkilökohtainen numero"
+                },
+                "placeholders": {
+                    "ssn": "ÅÅMMDDXXXX"
+                },
+                "buttons": {
+                    "login": "Kirjaudu sisään",
+                    "abort": "Peruuta"
+                },
+                "links": {
+                    "back": "takaisin"
+                },
+                "inProgress": {
+                    "mobile": {
+                        "header": "Avaa Mobile BankID",
+                        "body": [
+                            "Käynnistä BankID Security App mobiililaitteellasi tai tablet-laitteellasi ja kirjoita koodi. Jätä tämä sivu auki, muuten kirjautumiset perutaan."
+                        ]
+                    },
+                    "desktop": {
+                        "header": "Avaa Mobile BankID",
+                        "body": [
+                            "Anna sivun olla auki kirjautumalla sisään Mobile BankIDin kautta. Muutoin kirjautumiset peruuntuvat"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "loan": {},
+    "navigation": {
+        "account-overview": "Yleiskatsaus",
+        "invoices": "Fakturor",
+        "load": "yksityinen laina",
+        "more": "Lisää",
+        "customer-support": "asiakaspalvelu",
+        "settings": "profiili",
+        "logout": "Kirjaudu ulos"
+    }
+}
