@@ -4,16 +4,10 @@
     width: 100%;
     background-color: #eff8f3;
     font-family: 'PT Sans';
-    position: relative;
-    display: grid;
-    grid-template-columns: 220px auto auto;
-    grid-template-rows: 92px;
     align-items: center;
 
     &__card-icon {
-        position: relative;
-        top: -25px;
-        left: 20px;
+        margin-top: -40px;
     }
 
     &__card-number {

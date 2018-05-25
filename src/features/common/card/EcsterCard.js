@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './EcsterCard.scss';
 
-export const EcsterCard = ({ className }) => {
+export const EcsterCard = ({ className, ...rest }) => {
     const classes = classNames({
         'ecster-card': true,
         [className]: className,
     });
 
     return (
-        <div className={classes}>
-            <img alt="Ecster Pay Card" src="../../../images/ecster-card-bitmap.jpg" />
+        <div {...rest}>
+            <div className={classes}>
+                <img alt="Ecster Pay Card" src="../../../images/ecster-card-bitmap.jpg" />
+            </div>
         </div>
     );
 };

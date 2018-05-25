@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import { whyDidYouUpdate } from 'why-did-you-update';
 import PropTypes from 'prop-types';
-
-if (process.env.NODE_ENV !== 'production') {
-    whyDidYouUpdate(React);
-}
 
 /*
   This is the root component of your app. Here you define the overall layout
