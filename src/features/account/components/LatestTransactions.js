@@ -20,12 +20,30 @@ export const LatestTransactions = ({ className, ...rest }) => {
                         </Data>
                     </DataRow>
                     <DataRow>
-                        <Data weak left>
+                        <Data weak left className="latest-transactions__date">
                             29 Juni
                         </Data>
                         <Data left>K-Rauta</Data>
                         <Data strong right>
                             499 kr
+                        </Data>
+                    </DataRow>
+                    <DataRow>
+                        <Data weak left className="latest-transactions__date">
+                            31 Maj
+                        </Data>
+                        <Data left>Elgiganten</Data>
+                        <Data strong right>
+                            499 kr
+                        </Data>
+                    </DataRow>
+                    <DataRow>
+                        <Data weak left className="latest-transactions__date">
+                            30 April
+                        </Data>
+                        <Data left>ICA Bromma</Data>
+                        <Data strong right>
+                            -12 334 kr
                         </Data>
                     </DataRow>
                 </DataColumn>

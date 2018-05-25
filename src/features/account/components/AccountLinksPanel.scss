@@ -1,3 +1,12 @@
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+
 .account-links-panel {
-    
+    &> * {
+        padding: 10px 15px;
+        border-bottom: 1px solid #ccc;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
 }

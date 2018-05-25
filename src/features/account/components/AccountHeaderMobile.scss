@@ -1,6 +1,6 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
-.account-header {
+.account-header-mobile {
     width: 100%;
     background-color: #eff8f3;
     font-family: 'PT Sans';
@@ -8,47 +8,53 @@
 
     display: flex;
     flex: 0 1 100%;
+    flex-direction: column;
+    justify-content: space-between;
 
-    padding: 10px;
+    padding: 15px 20px;
 
     &__card-icon {
-        width: 166px;
-        margin-top: -40px;
+        margin-top: -30px;
+
+        img {
+            width: 112px;
+        }
     }
 
     &__panel {
         display: flex;
         flex: 0 1 100%;
         justify-content: space-between;
-        margin-left: 20px;
+        width: 100%;
     }
 
     &__card-number {
         h3 {
             font-family: 'Campton';
-            font-size: 30px;
+            font-size: 24px;
             color: #488e6e;
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-weight: 800;
+            margin-bottom: 0px;
         }
         div {
             color: #5c5c5c;
             font-size: 16px;
-            white-space: pre;
         }
     }
-
+    
     &__amount {
+        margin: 30px 0px;
+
         div {
             font-family: 'Campton';
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 400;
-            text-align: right;
-            color: #488e6e;
+            text-align: center;
+            color: $gray140;
         }
         p {
             font-size: 14px;
-            text-align: right;
+            text-align: center;
             color: #5c5c5c;
             margin: 0px;
         }

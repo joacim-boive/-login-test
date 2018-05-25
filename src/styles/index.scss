@@ -2,6 +2,8 @@
 @import "~normalize-scss/sass/normalize";
 @import './mixins';
 @import "~@ecster/ecster-styles/scss/v2/theme/theme";
+@import "~@ecster/ecster-styles/scss/v2/include/paddings";
+@import "~@ecster/ecster-styles/scss/v2/include/margins";
 // fonts incl icons
 @import '../features/home/style';
 @import '../features/common/style';
