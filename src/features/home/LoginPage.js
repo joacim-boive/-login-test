@@ -77,11 +77,11 @@ export class LoginPage extends Component {
      * @param {object} config -
      */
     startLogin = config => {
-        const { ssn, isDesktop } = this.state;
+        const { ssn } = this.state;
         const { type, isOnThisDevice } = config;
         const nextState = {
             isLoggingIn: type,
-            isOnThisDevice: this.state.isDesktop && type.toString() === 'BANKID_MOBILE' ? false : isOnThisDevice,
+            isOnThisDevice,
         };
 
         const createSessionConfig = { type };
@@ -89,7 +89,7 @@ export class LoginPage extends Component {
         this.prevState = { ...this.state };
         this.setState(nextState);
 
-        if (config.type === 'BANKID_MOBILE' && (!isOnThisDevice || isDesktop)) {
+        if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
             createSessionConfig.ssn = ssn;
         }
 
@@ -175,7 +175,13 @@ export class LoginPage extends Component {
                                     <Button
                                         id="button-bankid-this-unit"
                                         className="home-login-page__button"
-                                        onClick={() => this.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: true })}
+                                        onClick={() =>
+                                            this.startLogin(
+                                                isDesktop
+                                                    ? { type: 'BANKID_MOBILE', isOnThisDevice: false }
+                                                    : { type: 'BANKID', isOnThisDevice: true }
+                                            )
+                                        }
                                         round
                                     >
                                         {!isLoggingIn ? (
