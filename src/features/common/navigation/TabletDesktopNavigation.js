@@ -1,6 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { Translate } from '@ecster/ecster-i18n';
 import { Logo } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
@@ -9,7 +11,7 @@ import './TabletDesktopNavigation.scss';
 
 const i18n = Translate.getText;
 
-export default class TabletDesktopNavigation extends React.Component {
+class TabletDesktopNavigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,6 +30,11 @@ export default class TabletDesktopNavigation extends React.Component {
     };
 
     render() {
+        const submenuIsActive = this.state.showMoreSubMenu;
+        const overviewIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.account.overview/);
+        const invoiceIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.invoice.overview/);
+        const loanIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.loan.overview/);
+
         return (
             <TopNavigation>
                 <TopMenu>
@@ -36,13 +43,41 @@ export default class TabletDesktopNavigation extends React.Component {
                             <Logo withName fill="#fff" width="120px" />
                         </a>
                         <div className="top-menu-links">
-                            <Link to="/account/overview">{i18n('navigation.account-overview')}</Link>
+                            <Link
+                                className={classNames({
+                                    active: overviewIsActive,
+                                })}
+                                to="/account/overview"
+                            >
+                                {i18n('navigation.account-overview')}
+                            </Link>
 
-                            <Link to="/invoice/overview">{i18n('navigation.invoices')}</Link>
+                            <Link
+                                className={classNames({
+                                    active: invoiceIsActive,
+                                })}
+                                to="/invoice/overview"
+                            >
+                                {i18n('navigation.invoices')}
+                            </Link>
 
-                            <Link to="/loan/overview">{i18n('navigation.loan')}</Link>
+                            <Link
+                                className={classNames({
+                                    active: loanIsActive,
+                                })}
+                                to="/loan/overview"
+                            >
+                                {i18n('navigation.loan')}
+                            </Link>
 
-                            <Link className="icon-link" to="" onClick={this.showMoreSubMenu}>
+                            <Link
+                                className={classNames({
+                                    'icon-link': true,
+                                    active: submenuIsActive,
+                                })}
+                                to=""
+                                onClick={this.showMoreSubMenu}
+                            >
                                 <i className="icon-menu" />
                             </Link>
                         </div>
@@ -59,3 +94,5 @@ export default class TabletDesktopNavigation extends React.Component {
         );
     }
 }
+
+export default withRouter(TabletDesktopNavigation);
