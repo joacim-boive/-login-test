@@ -40,7 +40,7 @@ class TabletDesktopNavigation extends React.Component {
                 <TopMenu>
                     <div className="top-menu-container">
                         <a href="#/account/overview">
-                            <Logo withName fill="#fff" width="120px" />
+                            <Logo withName fill="#fff" width="120px" height="32px" />
                         </a>
                         <div className="top-menu-links">
                             <Link
