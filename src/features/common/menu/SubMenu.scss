@@ -50,6 +50,9 @@
         float: right;
         color: $green;
     }
+    &.active {
+        font-weight: bold;
+    }
 }
 
 .submenu-item a,

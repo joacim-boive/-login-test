@@ -34,11 +34,11 @@ export const del = (url, data) =>
         .then(successHandler)
         .catch(errorHandler);
 
-export const setSessionKey = (sessionKey) => {
+export const setSessionKey = sessionKey => {
     Session.set('sessionKey', sessionKey);
 };
 
-export const setOrigin = (origin) => {
+export const setOrigin = origin => {
     Session.set('origin', origin);
 };
 

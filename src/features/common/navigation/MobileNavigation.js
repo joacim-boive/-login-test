@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
 import { Translate } from '@ecster/ecster-i18n';
@@ -18,13 +19,15 @@ class MobileNavigation extends React.Component {
         };
     }
 
-    showMoreSubMenu = e => {
+    toggleSubMenu = e => {
+        console.log('MobileNavigation.toggleSubMenu: this.state = ', this.state);
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showMoreSubMenu: true });
+        this.setState({ showMoreSubMenu: !this.state.showMoreSubMenu });
     };
 
-    closeMoreSubMenu = () => {
+    closeSubMenu = () => {
+        console.log('MobileNavigation.closeSubMenu: this.state = ', this.state);
         this.setState({ showMoreSubMenu: false });
     };
 
@@ -32,9 +35,22 @@ class MobileNavigation extends React.Component {
         console.log('MobileNavigation history.location.pathname = ', this.props.history.location.pathname);
 
         const submenuIsActive = this.state.showMoreSubMenu;
-        const overviewIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.loan.overview/);
+
+        // three visible menu items, don't indicate active if submenu is visible, double !! => true or false not array
+        const overviewIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.account.overview/);
+        const invoiceIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.invoice.overview/);
+        const loanIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.loan.overview/);
+        // submenu items, indicate active when submenu is visible
+        const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
+        const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
+
+        console.log('location.pathname: ', this.props.history.location.pathname);
+        console.log('subMenuIsActive: ', submenuIsActive);
+        console.log('overviewIsActive: ', overviewIsActive);
+        console.log('invoiceIsActive: ', invoiceIsActive);
+        console.log('loanIsActive: ', loanIsActive);
+        console.log('customerSettingsIsActive: ', customerSettingsIsActive);
+        console.log('customerSupportIsActive: ', customerSupportIsActive);
 
         return (
             <BottomNavigation light showOverlay={this.state.showMoreSubMenu}>
@@ -52,15 +68,27 @@ class MobileNavigation extends React.Component {
                         <SvgIconLoan />
                         <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
                     </MenuItem>
-                    <MenuItem onClick={this.showMoreSubMenu} active={submenuIsActive}>
+                    <div
+                        onClick={this.toggleSubMenu}
+                        className={classNames({
+                            'menu-item': true,
+                            active: submenuIsActive,
+                        })}
+                    >
                         <SvgIconHamburger />
                         <MenuItemText>{i18n('navigation.more')}</MenuItemText>
-                    </MenuItem>
+                    </div>
                 </BottomMenu>
-                <SubMenu bottom show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
-                    <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
-                    <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
-                    <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
+                <SubMenu bottom show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
+                    <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>
+                        {i18n('navigation.settings')}
+                    </SubMenuItem>
+                    <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
+                        {i18n('navigation.customer-support')}
+                    </SubMenuItem>
+                    <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">
+                        {i18n('navigation.logout')}
+                    </SubMenuItem>
                 </SubMenu>
             </BottomNavigation>
         );

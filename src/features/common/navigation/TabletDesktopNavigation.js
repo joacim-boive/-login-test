@@ -1,7 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { Translate } from '@ecster/ecster-i18n';
 import { Logo } from '@ecster/ecster-components';
@@ -19,21 +18,24 @@ class TabletDesktopNavigation extends React.Component {
         };
     }
 
-    showMoreSubMenu = e => {
+    toggleSubMenu = e => {
+        console.log('toggleSubMenu... ', this.state, e);
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showMoreSubMenu: true });
+        this.setState({ showMoreSubMenu: !this.state.showMoreSubMenu });
     };
 
-    closeMoreSubMenu = () => {
+    closeSubMenu = () => {
         this.setState({ showMoreSubMenu: false });
     };
 
     render() {
         const submenuIsActive = this.state.showMoreSubMenu;
-        const overviewIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !submenuIsActive && this.props.history.location.pathname.match(/.loan.overview/);
+        const overviewIsActive = this.props.history.location.pathname.match(/.account.overview/);
+        const invoiceIsActive = this.props.history.location.pathname.match(/.invoice.overview/);
+        const loanIsActive = this.props.history.location.pathname.match(/.loan.overview/);
+
+        console.log('render: ', this.state);
 
         return (
             <TopNavigation>
@@ -70,29 +72,33 @@ class TabletDesktopNavigation extends React.Component {
                                 {i18n('navigation.loan')}
                             </Link>
 
-                            <Link
+                            <div
                                 className={classNames({
                                     'icon-link': true,
                                     'menu-item--is-active': submenuIsActive,
                                 })}
-                                to=""
-                                onClick={this.showMoreSubMenu}
+                                onClick={this.toggleSubMenu}
+                                role="link"
                             >
                                 <i className="icon-menu" />
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </TopMenu>
                 <div className="submenu-container">
-                    <SubMenu top show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
+                    <SubMenu top show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
                         <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
                         <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
-                        <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
+                        <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                     </SubMenu>
                 </div>
             </TopNavigation>
         );
     }
 }
+
+TabletDesktopNavigation.propTypes = {
+    history: PropTypes.shape().isRequired,
+};
 
 export default withRouter(TabletDesktopNavigation);
