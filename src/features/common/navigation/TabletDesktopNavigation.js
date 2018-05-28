@@ -45,7 +45,7 @@ class TabletDesktopNavigation extends React.Component {
                         <div className="top-menu-links">
                             <Link
                                 className={classNames({
-                                    active: overviewIsActive,
+                                    'menu-item--is-active': overviewIsActive,
                                 })}
                                 to="/account/overview"
                             >
@@ -54,7 +54,7 @@ class TabletDesktopNavigation extends React.Component {
 
                             <Link
                                 className={classNames({
-                                    active: invoiceIsActive,
+                                    'menu-item--is-active': invoiceIsActive,
                                 })}
                                 to="/invoice/overview"
                             >
@@ -63,7 +63,7 @@ class TabletDesktopNavigation extends React.Component {
 
                             <Link
                                 className={classNames({
-                                    active: loanIsActive,
+                                    'menu-item--is-active': loanIsActive,
                                 })}
                                 to="/loan/overview"
                             >
@@ -73,7 +73,7 @@ class TabletDesktopNavigation extends React.Component {
                             <Link
                                 className={classNames({
                                     'icon-link': true,
-                                    active: submenuIsActive,
+                                    'menu-item--is-active': submenuIsActive,
                                 })}
                                 to=""
                                 onClick={this.showMoreSubMenu}
