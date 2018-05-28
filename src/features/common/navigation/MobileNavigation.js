@@ -60,7 +60,7 @@ class MobileNavigation extends React.Component {
                 <SubMenu bottom show={this.state.showMoreSubMenu} requestClose={this.closeMoreSubMenu}>
                     <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
                     <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
-                    <SubMenuItem iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
+                    <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                 </SubMenu>
             </BottomNavigation>
         );

@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { post, setOrigin, setSessionKey } from '../../../common/asyncAjax';
+import { post, setSession } from '../../../common/asyncAjax';
 
 import { CREATE_SESSION_URL } from './urls';
 
@@ -15,9 +15,9 @@ export const createSession = data => async dispatch => {
     });
 
     try {
-        setOrigin('mypages'); // TODO: this is the first ajax call, but maybe move to app startup?
+        // setOrigin('mypages'); // TODO: this is the first ajax call, but maybe move to app startup?
         const res = await post(CREATE_SESSION_URL(), data);
-        setSessionKey(res.response.key);
+        setSession(res.response.key);
 
         dispatch({
             type: AUTHENTICATION_CREATE_SESSION_SUCCESS,
@@ -47,6 +47,7 @@ export function reducer(state, action) {
                 ...state,
                 loginStatus: {
                     sessionKey: action.data.key,
+                    isLoggedIn: true,
                 },
                 loginProgress: {
                     status: action.data.authentication.status,

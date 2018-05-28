@@ -7,17 +7,22 @@ import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
 import { Translate } from '@ecster/ecster-i18n';
 import Ajax from '@ecster/ecster-net/lib/Ajax';
+import Session from '@ecster/ecster-net/lib/Session';
 
 import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
+
+export const store = configStore();
+
+Session.set('sessionKey', window.sessionStorage.getItem('sessionKey')); // Remove when API uses sessionStorage instead
 
 const renderApp = app => {
     render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
 };
 
 const initApplication = config => {
-    const store = configStore();
+    Session.set('origin', 'mypages');
 
     if (config && config.ajaxBaseUrl) {
         Ajax.setBaseUrl(config.ajaxBaseUrl);

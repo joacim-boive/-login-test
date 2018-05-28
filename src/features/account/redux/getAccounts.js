@@ -9,13 +9,12 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNTS_URL } from './urls';
 
-export const getAccounts = customerId => async (dispatch) => {
+export const getAccounts = customerId => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNTS_BEGIN,
     });
-
     try {
-        const res = await get(GET_ACCOUNTS_URL(customerId));
+        const res = await get(GET_ACCOUNTS_URL(customerId), {}, null, () => {});
         dispatch({
             type: ACCOUNT_GET_ACCOUNTS_SUCCESS,
             data: res.response,

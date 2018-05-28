@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { getSession, setNextRoute, clearNextRoute } from './redux/actions';
+import history from './../../common/history';
 
 class Authorized extends React.Component {
     componentDidMount() {
         const { loginStatus } = this.props;
 
         // TODO: is this call needed?? Handled by (bank-id) login?
-        if (loginStatus.sessionKey && !this.props.getSessionPending && !loginStatus.isLoggedIn) {
+        if (loginStatus.sessionKey && !this.props.getSessionPending && loginStatus.isLoggedIn) {
             this.props.getSession(loginStatus.sessionKey);
         }
     }
+
+    checkBlacklistedRoutes = () => {
+        const blacklistedRoutes = ['/', 'start'];
+        return blacklistedRoutes.find(route => history.location.pathname.search(route) === 1);
+    };
 
     render() {
         if (this.props.loginStatus.isLoggedIn) {
@@ -26,8 +31,8 @@ class Authorized extends React.Component {
         }
 
         // remember route for redirect after login
-        this.props.setNextRoute(this.props.location.pathname);
-        return <Redirect to="/start" />;
+        // this.props.setNextRoute(this.props.location.pathname);
+        return <Redirect to="/" />;
     }
 }
 

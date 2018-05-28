@@ -3,9 +3,13 @@
 
 import Ajax from '@ecster/ecster-net/lib/Ajax';
 import Session from '@ecster/ecster-net/lib/Session';
+import history from './history';
 
 const successHandler = (xhr, body) => Promise.resolve(body);
-const errorHandler = (xhr, body) => Promise.reject(body);
+const errorHandler = (xhr, body) => {
+    if (body.status === 401) history.push('/authentication/logout');
+    return Promise.reject(body);
+};
 
 const addQueryParams = (url, queryParams = []) =>
     `${url}?${Object.keys(queryParams)
@@ -14,31 +18,39 @@ const addQueryParams = (url, queryParams = []) =>
         .replace(/&$/, '')
         .replace(/\?$/, '')}`; // Remove trailing & and ?
 
-export const post = (url, data) =>
+export const post = (url, data, successCall = successHandler, errorCall = errorHandler) =>
     Ajax.post({ url }, data)
-        .then(successHandler)
-        .catch(errorHandler);
+        .then(successCall)
+        .catch(errorCall);
 
-export const put = (url, data) =>
+export const put = (url, data, successCall = successHandler, errorCall = errorHandler) =>
     Ajax.put({ url }, data)
-        .then(successHandler)
-        .catch(errorHandler);
+        .then(successCall)
+        .catch(errorCall);
 
-export const get = (url, queryParams) =>
-    Ajax.get({ url: addQueryParams(url, queryParams) })
-        .then(successHandler)
-        .catch(errorHandler);
+export const get = (url, data, successCall = successHandler, errorCall = errorHandler) =>
+    Ajax.get({
+        url: addQueryParams(url, data),
+    })
+        .then(successCall)
+        .catch(errorCall);
 
-export const del = (url, data) =>
+export const del = (url, data, successCall = successHandler, errorCall = errorHandler) =>
     Ajax.delete({ url }, data)
-        .then(successHandler)
-        .catch(errorHandler);
+        .then(successCall)
+        .catch(errorCall);
 
-export const setSessionKey = (sessionKey) => {
+export const setSession = sessionKey => {
+    window.sessionStorage.setItem('sessionKey', sessionKey);
     Session.set('sessionKey', sessionKey);
 };
 
-export const setOrigin = (origin) => {
+export const removeSession = () => {
+    window.sessionStorage.removeItem('sessionKey');
+    Session.set('sessionKey');
+};
+
+export const setOrigin = origin => {
     Session.set('origin', origin);
 };
 

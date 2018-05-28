@@ -24,6 +24,12 @@ export default class Overlay extends Component {
         children: undefined,
     };
 
+    constructor(props) {
+        super(props);
+
+        this.animationFrameRef = null; // Used to delete by reference on unmount
+    }
+
     componentDidMount() {
         // eslint-disable-next-line no-unused-expressions
         !this.props.isNoClose && document.addEventListener('keydown', this.onEscape, false);
@@ -31,10 +37,12 @@ export default class Overlay extends Component {
 
         this.showWindow();
     }
+
     componentWillUnmount() {
         // eslint-disable-next-line no-unused-expressions
         !this.props.isNoClose && document.removeEventListener('keydown', this.onEscape, false);
         document.removeEventListener('transitionend', this.removeComponent, false);
+        if (this.animationFrameRef) window.cancelAnimationFrame(this.animationFrameRef);
     }
 
     onEscape = event => {
@@ -45,17 +53,7 @@ export default class Overlay extends Component {
     };
 
     showWindow = () => {
-        setTimeout(() => {
-            const overlay = document.querySelector('.overlay');
-
-            if (overlay) {
-                overlay.classList.add('show');
-            } else {
-                console.log('Retry');
-                this.props.toggleOverlay(true);
-                window.requestAnimationFrame(this.showWindow);
-            }
-        }, 100);
+        this.overlayRef.classList.add('show');
     };
 
     hideWindow = () => {
@@ -80,7 +78,7 @@ export default class Overlay extends Component {
             : i18nBody.map(row => `<p>${row}</p>`).join('');
 
         return (
-            <div className={`overlay${isCompact ? ' overlay--compact' : ''}`}>
+            <div ref={ref => (this.overlayRef = ref)} className={`overlay${isCompact ? ' overlay--compact' : ''}`}>
                 <article>
                     <h1>{i18n(header)}</h1>
                     <div dangerouslySetInnerHTML={{ __html: thisBody }} />
