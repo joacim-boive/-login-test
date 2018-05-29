@@ -15,7 +15,7 @@ export class SettingsPage extends Component {
         return (
             <AuthenticatedPageTemplate>
                 <div className="customer-settings-page">
-                    <h1>Customer / settings page</h1>
+                    <h1>Profil</h1>
                 </div>
             </AuthenticatedPageTemplate>
         );

@@ -6,13 +6,32 @@ import classNames from 'classnames';
 import './SubMenu.scss';
 
 export class SubMenu extends React.Component {
-    componentDidMount() {
-        window.document.body.addEventListener('click', () => {
-            if (this.props.show) {
-                this.props.requestClose();
-            }
-        });
-    }
+    closeMenu = e => {
+        if (this.props.show) {
+            e.stopPropagation();
+            this.props.requestClose();
+        }
+    };
+
+    handleClick = e => {
+        this.closeMenu(e);
+    };
+
+    handleEscape = e => {
+        if (e.which === 27) {
+            this.closeMenu(e);
+        }
+    };
+
+    addListeners = () => {
+        window.document.body.addEventListener('click', this.handleClick);
+        window.document.body.addEventListener('keyup', this.handleEscape);
+    };
+
+    removeListeners = () => {
+        window.document.body.removeEventListener('click', this.handleClick);
+        window.document.body.removeEventListener('keyup', this.handleEscape);
+    };
 
     render() {
         const { show, requestClose, children, top, bottom } = this.props;
@@ -28,6 +47,12 @@ export class SubMenu extends React.Component {
             'from-top': top,
             'from-bottom': bottom,
         });
+
+        if (show) {
+            this.addListeners();
+        } else {
+            this.removeListeners();
+        }
 
         let marginBottom = 0;
         let marginTop = 0;
@@ -57,11 +82,16 @@ export class SubMenu extends React.Component {
     }
 }
 
-export const SubMenuItem = ({ children, linkTo, iconClass }) => {
+export const SubMenuItem = ({ children, linkTo, iconClass, active }) => {
     const icon = iconClass ? <i className={`e-green ${iconClass}`} /> : undefined;
 
     return (
-        <div className="submenu-item">
+        <div
+            className={classNames({
+                'submenu-item': true,
+                active,
+            })}
+        >
             <Link to={linkTo}>
                 <span className="submenu-item__text">{children}</span>
                 {icon}
@@ -98,10 +128,12 @@ SubMenuItem.propTypes = {
     children: PropTypes.node, // Link text
     iconClass: PropTypes.string,
     linkTo: PropTypes.string,
+    active: PropTypes.bool,
 };
 
 SubMenuItem.defaultProps = {
     children: '',
     iconClass: 'icon-chevron-right',
     linkTo: '',
+    active: false,
 };

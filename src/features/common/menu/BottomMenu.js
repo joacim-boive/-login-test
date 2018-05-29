@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid, react/no-multi-comp */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -32,6 +32,29 @@ export const MenuItem = ({ active, children, linkTo, onClick }) => (
         </Link>
     </div>
 );
+
+// export class MenuItem extends React.Component {
+//     onClick = e => {
+//         e.stopPropagation();
+//         this.props.onClick();
+//     };
+//
+//     render() {
+//         const { active, children, linkTo, onClick } = this.props;
+//         return (
+//             <div
+//                 className={classNames({
+//                     'menu-item': true,
+//                     active,
+//                 })}
+//             >
+//                 <Link to={linkTo} onClick={this.onClick}>
+//                     {children}
+//                 </Link>
+//             </div>
+//         );
+//     }
+// }
 
 export const MenuItemText = ({ children }) => <div className="menu-item__text">{children}</div>;
 
