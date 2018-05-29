@@ -15,7 +15,7 @@ class MobileNavigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMoreSubMenu: false,
+            showSubMenu: false,
         };
     }
 
@@ -23,37 +23,29 @@ class MobileNavigation extends React.Component {
         console.log('MobileNavigation.toggleSubMenu: this.state = ', this.state);
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showMoreSubMenu: !this.state.showMoreSubMenu });
+        this.setState({ showSubMenu: !this.state.showSubMenu });
     };
 
     closeSubMenu = () => {
         console.log('MobileNavigation.closeSubMenu: this.state = ', this.state);
-        this.setState({ showMoreSubMenu: false });
+        this.setState({ showSubMenu: false });
     };
 
     render() {
         console.log('MobileNavigation history.location.pathname = ', this.props.history.location.pathname);
 
-        const submenuIsActive = this.state.showMoreSubMenu;
+        const { showSubMenu } = this.state;
 
         // three visible menu items, don't indicate active if submenu is visible, double !! => true or false not array
-        const overviewIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !submenuIsActive && !!this.props.history.location.pathname.match(/.loan.overview/);
+        const overviewIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.account.overview/);
+        const invoiceIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.invoice.overview/);
+        const loanIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.loan.overview/);
         // submenu items, indicate active when submenu is visible
         const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
         const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
 
-        console.log('location.pathname: ', this.props.history.location.pathname);
-        console.log('subMenuIsActive: ', submenuIsActive);
-        console.log('overviewIsActive: ', overviewIsActive);
-        console.log('invoiceIsActive: ', invoiceIsActive);
-        console.log('loanIsActive: ', loanIsActive);
-        console.log('customerSettingsIsActive: ', customerSettingsIsActive);
-        console.log('customerSupportIsActive: ', customerSupportIsActive);
-
         return (
-            <BottomNavigation light showOverlay={this.state.showMoreSubMenu}>
+            <BottomNavigation light showOverlay={this.state.showSubMenu}>
                 <BottomMenu>
                     <MenuItem linkTo="/account/overview" active={overviewIsActive}>
                         <SvgIconOverview />
@@ -72,14 +64,14 @@ class MobileNavigation extends React.Component {
                         onClick={this.toggleSubMenu}
                         className={classNames({
                             'menu-item': true,
-                            active: submenuIsActive,
+                            active: showSubMenu,
                         })}
                     >
                         <SvgIconHamburger />
                         <MenuItemText>{i18n('navigation.more')}</MenuItemText>
                     </div>
                 </BottomMenu>
-                <SubMenu bottom show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
+                <SubMenu bottom show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
                     <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>
                         {i18n('navigation.settings')}
                     </SubMenuItem>
