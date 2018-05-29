@@ -42,9 +42,14 @@
     padding: 0;
     border-top: 1px solid $gray60;
     background: #fff;
-    a {
+    a, a:visited {
         display: block;
         padding: 14px 24px;
+        color: $gray140;
+        text-decoration: none;
+    }
+    &.active a {
+        color: $gray120;
     }
     i {
         float: right;
@@ -53,10 +58,4 @@
     &.active {
         font-weight: bold;
     }
-}
-
-.submenu-item a,
-.submenu-item a:visited {
-    color: $gray140;
-    text-decoration: none;
 }

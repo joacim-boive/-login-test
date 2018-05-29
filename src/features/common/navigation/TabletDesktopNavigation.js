@@ -34,6 +34,8 @@ class TabletDesktopNavigation extends React.Component {
         const overviewIsActive = this.props.history.location.pathname.match(/.account.overview/);
         const invoiceIsActive = this.props.history.location.pathname.match(/.invoice.overview/);
         const loanIsActive = this.props.history.location.pathname.match(/.loan.overview/);
+        const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
+        const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
 
         console.log('render: ', this.state);
 
@@ -87,8 +89,8 @@ class TabletDesktopNavigation extends React.Component {
                 </TopMenu>
                 <div className="submenu-container">
                     <SubMenu top show={this.state.showMoreSubMenu} requestClose={this.closeSubMenu}>
-                        <SubMenuItem linkTo="/customer/settings">{i18n('navigation.settings')}</SubMenuItem>
-                        <SubMenuItem linkTo="/customer/support">{i18n('navigation.customer-support')}</SubMenuItem>
+                        <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>{i18n('navigation.settings')}</SubMenuItem>
+                        <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>{i18n('navigation.customer-support')}</SubMenuItem>
                         <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">{i18n('navigation.logout')}</SubMenuItem>
                     </SubMenu>
                 </div>
