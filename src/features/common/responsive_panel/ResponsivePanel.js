@@ -6,19 +6,18 @@ import { Row, Col } from '@ecster/ecster-components';
 import './ResponsivePanel.scss';
 
 class ResponsivePanel extends React.Component {
-    constructor(props) {
-        super(props);
-
-        const { reverseStack, children } = this.props;
-        const childs = reverseStack ? children.slice().reverse() : children;
-
-        this.state = {
-            childs,
-        };
-    }
-
     render() {
-        const { className, desktop, tablet, mobile, verticalPadding, horizontalPadding } = this.props;
+        const {
+            className,
+            desktop,
+            tablet,
+            mobile,
+            verticalPadding,
+            horizontalPadding,
+            reverseStack,
+            children,
+        } = this.props;
+
         const wrapperClasses = classNames({
             'responsive-panel': true,
             [className]: className,
@@ -39,12 +38,14 @@ class ResponsivePanel extends React.Component {
             l: desktop !== 1 ? `1/${desktop}` : '1',
         };
 
+        const childs = reverseStack ? children.slice().reverse() : children;
+
         return (
             <div className={wrapperClasses}>
                 {
                     <Row className={rowClasses}>
-                        {this.state.childs.map(obj => (
-                            <Col className={colClasses} key={Math.random()} {...colProps}>
+                        {childs.map(obj => (
+                            <Col className={colClasses} key={obj.key || Math.random()} {...colProps}>
                                 {obj}
                             </Col>
                         ))}

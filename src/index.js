@@ -24,12 +24,22 @@ const renderApp = app => {
 const initApplication = config => {
     Session.set('origin', 'mypages');
 
+    /** TODO
+     *
+     * Temporary implementation of multilanguage - fix this properly after demo!
+     */
+    let lang = window.location.hash.split('?lang=')[1];
+
+    if (!lang) {
+        lang = 'sv';
+    }
+
     if (config && config.ajaxBaseUrl) {
         Ajax.setBaseUrl(config.ajaxBaseUrl);
     }
 
     // basePath, language, country
-    Translate.init('static/i18n', 'sv', undefined).then(() => {
+    Translate.init('static/i18n', lang, undefined).then(() => {
         renderApp(<Root store={store} routeConfig={routeConfig} />);
     });
 

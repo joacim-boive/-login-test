@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { TabletOrDesktop, Mobile } from '@ecster/ecster-components';
 import * as actions from './redux/actions';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
-import { AccountHeader } from './components/AccountHeader';
-import { NextPaymentPanel } from './components/NextPaymentPanel';
-import { AccountLinksPanel } from './components/AccountLinksPanel';
-import { LatestTransactions } from './components/LatestTransactions';
-import ResponsivePanel from './../common/responsive_panel/ResponsivePanel';
-import { AccountHeaderMobile } from './components/AccountHeaderMobile';
 import { getAccounts } from './redux/getAccounts';
+import AccountPanel from './components/AccountPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
-        account: PropTypes.object.isRequired,
+        accounts: PropTypes.array.isRequired,
+        accountsActive: PropTypes.array.isRequired,
         actions: PropTypes.object.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
     };
+
+    constructor(props) {
+        super(props);
+        this.props.getAccounts(this.props.user.id);
+    }
 
     componentWillReceiveProps(nextProps) {
         const nextUser = nextProps.user;
@@ -30,25 +30,14 @@ export class OverviewPage extends Component {
     }
 
     render() {
+        const { accountsActive, user } = this.props;
         return (
             <AuthenticatedPageTemplate header="Översikt">
-                <section className="account-overview-page">
-                    <TabletOrDesktop>
-                        <AccountHeader />
-                    </TabletOrDesktop>
-                    <Mobile>
-                        <AccountHeaderMobile />
-                    </Mobile>
-                    <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-overview-page__body">
-                        <div>
-                            <TabletOrDesktop>
-                                <LatestTransactions className="account-overview-page__latest" />
-                            </TabletOrDesktop>
-                            <NextPaymentPanel className="account-overview-page__next-payment" />
-                        </div>
-                        <AccountLinksPanel className="account-overview-page__account-links" />
-                    </ResponsivePanel>
-                </section>
+                <div className="overview-page">
+                    {accountsActive.map(account => (
+                        <AccountPanel key={account.reference} account={account} user={user} />
+                    ))}
+                </div>
             </AuthenticatedPageTemplate>
         );
     }
@@ -56,9 +45,9 @@ export class OverviewPage extends Component {
 
 /* istanbul ignore next */
 function mapStateToProps(state) {
-    console.log(state);
     return {
-        account: state.account,
+        accounts: state.account.accounts,
+        accountsActive: state.account.accountsActive,
         user: state.authentication.person,
     };
 }

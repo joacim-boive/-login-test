@@ -110,7 +110,7 @@ $button-size-large: 32px;
 }
 
 
-
+@include visually-hidden;
 
 .show{
     opacity: 1;

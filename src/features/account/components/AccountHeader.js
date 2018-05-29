@@ -3,26 +3,28 @@ import PropTypes from 'prop-types';
 import './AccountHeader.scss';
 import { EcsterCard } from './../../common/card/EcsterCard';
 
-export const AccountHeader = ({ noCard }) => (
-    <div className="account-header">
-        {!noCard ? <EcsterCard className="account-header__card-icon" /> : null}
-        <div className="account-header__panel">
-            <div className="account-header__card-number">
-                <h3>Ecster</h3>
-                <div>1234 1234 1234 1234</div>
-            </div>
-            <div className="account-header__amount">
-                <div>5 188 kr</div>
-                <p>kvar att handla för</p>
+export const AccountHeader = ({ account }) => {
+    const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+    const amountLeft = account.limit - account.used;
+    const noCard = account.numberOfCards === 0;
+
+    return (
+        <div className="account-header">
+            {!noCard ? <EcsterCard className="account-header__card-icon" /> : null}
+            <div className="account-header__panel">
+                <div className="account-header__card-number">
+                    <h3>{account.product.name}</h3>
+                    <div>{accountNumber}</div>
+                </div>
+                <div className="account-header__amount">
+                    <div>{amountLeft}</div>
+                    <p>kvar att handla för</p>
+                </div>
             </div>
         </div>
-    </div>
-);
-
-AccountHeader.propTypes = {
-    noCard: PropTypes.bool,
+    );
 };
 
-AccountHeader.defaultProps = {
-    noCard: false,
+AccountHeader.propTypes = {
+    account: PropTypes.shape().isRequired,
 };

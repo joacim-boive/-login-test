@@ -1,6 +1,8 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Button } from '@ecster/ecster-components';
 
@@ -16,12 +18,14 @@ export default class Overlay extends Component {
         isCompact: PropTypes.bool,
         isNoClose: PropTypes.bool,
         children: PropTypes.array,
+        buttonCloseLabel: PropTypes.string,
     };
 
     static defaultProps = {
         isCompact: false,
         isNoClose: false,
         children: undefined,
+        buttonCloseLabel: undefined,
     };
 
     constructor(props) {
@@ -77,8 +81,10 @@ export default class Overlay extends Component {
             ? `<p>${i18nBody}</p>`
             : i18nBody.map(row => `<p>${row}</p>`).join('');
 
+        const className = classNames('overlay', { 'overlay--compact': isCompact });
+
         return (
-            <div ref={ref => (this.overlayRef = ref)} className={`overlay${isCompact ? ' overlay--compact' : ''}`}>
+            <div ref={ref => (this.overlayRef = ref)} className={className}>
                 <article>
                     <h1>{i18n(header)}</h1>
                     <div dangerouslySetInnerHTML={{ __html: thisBody }} />
@@ -86,7 +92,11 @@ export default class Overlay extends Component {
                 </article>
                 {!this.props.isNoClose && (
                     <aside className="close">
-                        <Button id="closeOverlay" className="icon-close" onClick={this.hideWindow} transparent />
+                        <Button id="closeOverlay" className="icon-close" onClick={this.hideWindow} transparent>
+                            <span className="visually-hidden">
+                                {this.props.buttonCloseLabel || i18n('general.buttons.help')}
+                            </span>
+                        </Button>
                     </aside>
                 )}
             </div>

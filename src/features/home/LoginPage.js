@@ -1,8 +1,11 @@
-/* eslint-disable no-unused-vars */
 /* Handles lazyloading of images */
+// eslint-disable-next-line no-unused-vars
 import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
+// eslint-disable-next-line no-unused-vars
 import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
+// eslint-disable-next-line no-unused-vars
 import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
+// eslint-disable-next-line no-unused-vars
 import lazySizes from 'lazysizes';
 
 import React, { Component } from 'react';
@@ -42,10 +45,6 @@ export class LoginPage extends Component {
         isDesktop: detectDevice().isDesktop,
     };
 
-    // shouldComponentUpdate = (nextProps, nextState) => {
-    //     return !(event.inputType && event.inputType === 'insertText');
-    // };
-
     componentWillUnmount = () => {
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
@@ -76,7 +75,7 @@ export class LoginPage extends Component {
         const { type, isOnThisDevice } = config;
         const nextState = {
             isLoggingIn: type,
-            isOnThisDevice: this.state.isDesktop && type.toString() === 'BANKID_MOBILE' ? false : isOnThisDevice,
+            isOnThisDevice,
         };
 
         const createSessionConfig = { type };
@@ -170,14 +169,20 @@ export class LoginPage extends Component {
                                     <Button
                                         id="button-bankid-this-unit"
                                         className="home-login-page__button"
-                                        onClick={() => this.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: true })}
+                                        onClick={() =>
+                                            this.startLogin(
+                                                isDesktop
+                                                    ? { type: 'BANKID_MOBILE', isOnThisDevice: false }
+                                                    : { type: 'BANKID', isOnThisDevice: true }
+                                            )
+                                        }
                                         round
                                     >
                                         {!isLoggingIn ? (
                                             i18n('home.login.buttons.mobileBankId')
                                         ) : (
                                             <Spinner
-                                                id="spinner-waiting-for-bankid"
+                                                id="spinner-waiting-for-bankid-this-unit"
                                                 isCenter={false}
                                                 isVisible
                                                 isFillParentHeight

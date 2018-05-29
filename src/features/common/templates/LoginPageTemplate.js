@@ -14,7 +14,7 @@ const LoginPage = props => {
         >
             <header className="home-login-page__logo">
                 <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
-                    <Logo withName width="auto"/>
+                    <Logo withName isNoWrap />
                 </a>
             </header>
             {children}

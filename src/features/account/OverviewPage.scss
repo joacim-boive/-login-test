@@ -1,54 +1,9 @@
-@import '~@ecster/ecster-components/scss/MediaQuery';
-
-.account-overview-page {
-    padding: 10px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    min-height: 150px;
-    
-    @include mobile() {
-        padding: 0px;
-    }
-
-    &__body {
-        padding: 20px;
-
-        @include mobile() {
-            padding: 0px;
-        }
-    }
-
-    &__latest {
-        padding-bottom: 30px;
-        border-bottom: 1px solid #ccc;
+.overview-page {
+    &> * {
+        margin-top: 100px;
         
-        @include mobile() {
-            padding-bottom: 30px;
-            border-bottom: none;
-        }
-    }
-    
-    &__next-payment {
-        padding-top: 20px;
-        
-        @include mobile() {
-            padding: 20px;
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-        }
-    }
-
-    &__account-links {
-        height: 100%;
-        padding-left: 30px;
-        margin-left: 30px;
-        border-left: 1px solid #ccc;
-        
-        @include mobile() {
-            padding-left: 0px;
-            border-left: none;
-            margin: 0px;
+        &:first-child {
+            margin-top: 0px;
         }
     }
 }
