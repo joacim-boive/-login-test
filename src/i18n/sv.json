@@ -91,7 +91,8 @@
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                         ]
                     }
-                }
+                },
+                "ssn-validation": "Ange ett korrekt personnummer (ååmmdd-xxxx)"
             }
         }
     },

@@ -39,7 +39,7 @@ const LoginOther = props => {
                     round
                 >
                     {!isLoggingIn ? (
-                        i18n('home.login.otherDevice.buttons.login')
+                        i18n('home.login.otherDevice.buttons.login') + ':4'
                     ) : (
                         <Spinner
                             id="waiting-for-bankid-mobile"
@@ -57,7 +57,7 @@ const LoginOther = props => {
                     onClick={() => toggleState('isBankIdOtherDeviceVisible')}
                     link
                 >
-                    {i18n('home.login.otherDevice.links.back')}
+                    {i18n('home.login.otherDevice.links.back') + ':7'}
                 </Button>
             </article>
         </React.Fragment>

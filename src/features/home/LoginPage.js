@@ -18,6 +18,8 @@ import Media from 'react-media';
 import { Button, Input } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
+import validateSsn from '@ecster/ecster-components/Input/validators/persNr';
+
 import { whyDidYouUpdate } from 'why-did-you-update';
 
 import { createSession, getSession } from '../authentication/redux/actions';
@@ -49,6 +51,7 @@ export class LoginPage extends Component {
         isLoggingIn: false,
         isOnThisDevice: false,
         isDesktop: detectDevice().isDesktop,
+        ssnIsValid: false,
     };
 
     componentWillUnmount = () => {
@@ -59,6 +62,10 @@ export class LoginPage extends Component {
 
     onSsnChange = ({ target }) => {
         this.setState({ ssn: target.value });
+    };
+
+    onSsnValidation = (name, isValid) => {
+        this.setState({ ssnIsValid: isValid });
     };
 
     /**
@@ -141,7 +148,7 @@ export class LoginPage extends Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const { isDesktop, isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn } = this.state;
+        const { isDesktop, isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn, ssnIsValid } = this.state;
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
@@ -170,7 +177,9 @@ export class LoginPage extends Component {
                                             placeholder={i18n('home.login.placeholders.ssn')}
                                             value={ssn}
                                             onChange={this.onSsnChange}
-                                            pattern="[0-9]*"
+                                            onValidation={this.onSsnValidation}
+                                            validator={validateSsn}
+                                            validationMessage={i18n('home.login.otherDevice.ssn-validation')}
                                             type="tel"
                                         />
                                     </Media>
@@ -187,7 +196,7 @@ export class LoginPage extends Component {
                                         round
                                     >
                                         {!isLoggingIn ? (
-                                            i18n('home.login.buttons.mobileBankId')
+                                            i18n('home.login.buttons.mobileBankId') + ':1'
                                         ) : (
                                             <Spinner
                                                 id="spinner-waiting-for-bankid-this-unit"
@@ -205,7 +214,7 @@ export class LoginPage extends Component {
                                         onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
                                         link
                                     >
-                                        {i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`)}
+                                        {i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`) + ':2'}
                                     </Button>
                                 </article>
                                 <aside className="help">
@@ -215,7 +224,7 @@ export class LoginPage extends Component {
                                         onClick={() => this.toggleState('isHelpVisible')}
                                         link
                                     >
-                                        {i18n('general.buttons.help')}
+                                        {i18n('general.buttons.help') + ':3'}
                                         <span className="home-login-page__icon help__icon">&nbsp;</span>
                                     </Button>
                                 </aside>
@@ -262,6 +271,7 @@ export class LoginPage extends Component {
                                         strokeBackgroundWidth={14}
                                         strokeForegroundWidth={14}
                                     />
+                                    <span>:6</span>
                                 </Button>
                                 <Button
                                     flat
@@ -272,7 +282,7 @@ export class LoginPage extends Component {
                                     className="home-login-page__button"
                                     onClick={this.cancelLogin}
                                 >
-                                    {i18n('home.login.otherDevice.buttons.abort')}
+                                    {i18n('home.login.otherDevice.buttons.abort') + ':5'}
                                 </Button>
                             </Overlay>
                         )}

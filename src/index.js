@@ -12,6 +12,8 @@ import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
 
+import { setApplicationCountry, setSelectedLanguage } from './features/home/redux/actions';
+
 const renderApp = app => {
     render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
 };
@@ -19,15 +21,11 @@ const renderApp = app => {
 const initApplication = config => {
     const store = configStore();
 
-    /** TODO
-     *
-     * Temporary implementation of multilanguage - fix this properly after demo!
-     */
-    let lang = window.location.hash.split('?lang=')[1];
+    // TODO: tmp solution, fix later
+    const lang = window.location.hash.split('?lang=')[1] || 'sv';
 
-    if (!lang) {
-        lang = 'sv';
-    }
+    store.dispatch(setApplicationCountry('SE'));
+    store.dispatch(setSelectedLanguage(lang));
 
     if (config && config.ajaxBaseUrl) {
         Ajax.setBaseUrl(config.ajaxBaseUrl);
