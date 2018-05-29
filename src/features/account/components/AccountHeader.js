@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { formatAmountCurrency } from '@ecster/ecster-util';
 import './AccountHeader.scss';
 import { EcsterCard } from './../../common/card/EcsterCard';
 
@@ -17,7 +18,7 @@ export const AccountHeader = ({ account }) => {
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{amountLeft}</div>
+                    <div>{formatAmountCurrency(amountLeft, 'sv-SE', 'SEK')}</div>
                     <p>kvar att handla för</p>
                 </div>
             </div>

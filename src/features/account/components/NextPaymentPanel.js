@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { formatAmountCurrency } from '@ecster/ecster-util';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 
@@ -16,7 +17,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
     }
-    console.log(bills);
+
     return (
         <div className={classes}>
             <DataColumns>
@@ -31,7 +32,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <div>Att betala i Juni:</div>
                         </Data>
                         <Data strong right>
-                            <div>{amount}</div>
+                            <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK')}</div>
                         </Data>
                     </DataRow>
                     <DataRow>
