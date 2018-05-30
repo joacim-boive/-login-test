@@ -1,10 +1,11 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .latest-transactions {
     align-items: center;
 
     h4 {
-        font-weight: 600;
+        font-weight: $weight-semibold;
         color: $gray140;
         margin: 0px 0px 10px 0px;
         text-align: left

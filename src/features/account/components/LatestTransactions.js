@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { formatAmountCurrency } from '@ecster/ecster-util';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
+import { formatDateShort } from './../../../common/util/format-date';
 
 export const LatestTransactions = ({ className, transactions, ...rest }) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
     });
-
-    console.log(transactions);
 
     return (
         <div {...rest} className={classes}>
@@ -21,33 +21,17 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             <h4>Senaste händelser</h4>
                         </Data>
                     </DataRow>
-                    <DataRow>
-                        <Data weak left className="latest-transactions__date">
-                            29 Juni
-                        </Data>
-                        <Data left>K-Rauta</Data>
-                        <Data strong right>
-                            499 kr
-                        </Data>
-                    </DataRow>
-                    <DataRow>
-                        <Data weak left className="latest-transactions__date">
-                            31 Maj
-                        </Data>
-                        <Data left>Elgiganten</Data>
-                        <Data strong right>
-                            499 kr
-                        </Data>
-                    </DataRow>
-                    <DataRow>
-                        <Data weak left className="latest-transactions__date">
-                            30 April
-                        </Data>
-                        <Data left>ICA Bromma</Data>
-                        <Data strong right>
-                            -12 334 kr
-                        </Data>
-                    </DataRow>
+                    {transactions.map(trans => (
+                        <DataRow key={trans.id}>
+                            <Data weak left className="latest-transactions__date">
+                                {formatDateShort(trans.date)}
+                            </Data>
+                            <Data left>{trans.description}</Data>
+                            <Data strong right>
+                                {formatAmountCurrency(trans.amount, 'sv-SE', trans.currency, true)}
+                            </Data>
+                        </DataRow>
+                    ))}
                 </DataColumn>
             </DataColumns>
         </div>
@@ -56,7 +40,7 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
 
 LatestTransactions.propTypes = {
     className: PropTypes.string,
-    transactions: PropTypes.shape().isRequired,
+    transactions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 LatestTransactions.defaultProps = {

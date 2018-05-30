@@ -1,4 +1,5 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .next-payment-panel {
     font-family: 'PT Sans';
@@ -7,7 +8,7 @@
 
     h4 {
         color: $gray140;
-        font-weight: 600;
+        font-weight: $weight-semibold;
         margin: 0px 0px 10px 0px;
     }
 }

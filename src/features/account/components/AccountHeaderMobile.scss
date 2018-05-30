@@ -1,4 +1,5 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .account-header-mobile {
     width: 100%;
@@ -32,7 +33,7 @@
             font-family: 'Campton';
             font-size: 24px;
             color: #488e6e;
-            font-weight: 700;
+            font-weight: $weight-semibold;
             margin-bottom: 0px;
         }
         div {
@@ -47,7 +48,7 @@
         div {
             font-family: 'Campton';
             font-size: 30px;
-            font-weight: 400;
+            font-weight: $weight-book;
             text-align: center;
             color: $gray140;
         }
