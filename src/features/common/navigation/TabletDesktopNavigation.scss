@@ -3,16 +3,25 @@
 .top-menu-container {
     max-width: $content-max-width-desktop;
     margin: 0 auto;
-    padding: 16px 0 0;
+    padding: 16px 20px 0;
     display: flex;
     justify-content: space-between;
 
-    .top-menu-links a {
-        margin-left: 40px;
-        &.icon-link {
+    .top-menu-links {
+        a {
+            margin-left: 40px;
+            &.menu-item--is-active {
+                font-weight: bold;
+            }
+        }
+        .icon-link { // div tag
+            margin-left: 40px;
             font-size: 24px;
+            color: #fff;
+            display: inline-block;
             position: relative;
-            top: 3px;
+            top: 4px;
+            cursor: pointer;
             &:hover, &:active, &:focus {
                 text-decoration: none;
             }
@@ -24,8 +33,4 @@
     position: relative;
     max-width: $content-max-width-desktop;
     margin: 0 auto;
-}
-
-.top-menu-links {
-    margin-right: 20px;
 }

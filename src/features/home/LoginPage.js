@@ -130,6 +130,8 @@ export class LoginPage extends Component {
         const { loginStatus, loginProgress } = this.props;
 
         if (loginStatus.isLoggedIn) {
+            console.log('LoginPage redirect to /account/overview');
+            console.log('    props = ', this.props);
             return <Redirect to="../account/overview" />;
         }
 

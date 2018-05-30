@@ -15,7 +15,7 @@ export class SupportPage extends Component {
         return (
             <AuthenticatedPageTemplate>
                 <div className="customer-support-page">
-                    <h1>Customer / support page</h1>
+                    <h1>Kundservice</h1>
                 </div>
             </AuthenticatedPageTemplate>
         );
