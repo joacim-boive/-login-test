@@ -169,6 +169,7 @@ export class LoginPage extends Component {
                                     <h1 className="home-login-page__header e-green120">{i18n('home.login.header')}</h1>
                                     <Media query="all and (hover: hover), not all and (-moz-touch-enabled: 1), (-ms-high-contrast: active), (-ms-high-contrast: none)">
                                         {/** TODO * use onBlur instead of onChange to not trigger unnecessary rerenders.
+                                         No... must validate on each key.
                                          */}
                                         <Input
                                             id="ssn"

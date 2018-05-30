@@ -3,19 +3,15 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import {LoginFormFI, LoginFormSE} from './index';
 
-export class LoginForm extends Component {
+export class LoginFormFI extends Component {
     static propTypes = {
         authentication: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
     };
 
     render() {
-        const { applicationCountry } = this.props;
-        return (
-            <div>LoginForm...</div>
-        );
+        return <div className="authentication-login-form-fi">Page Content: authentication/LoginFormFi</div>;
     }
 }
 
@@ -23,7 +19,6 @@ export class LoginForm extends Component {
 function mapStateToProps(state) {
     return {
         authentication: state.authentication,
-        applicationCountry: state.home.applicationCountry,
     };
 }
 
@@ -34,4 +29,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFormFI);
