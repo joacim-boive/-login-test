@@ -1,9 +1,10 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
 .account-panel {
     padding: 10px;
     background: white;
-    border: 1px solid #ccc;
+    border: 1px solid $beige40;
     border-radius: 6px;
     min-height: 150px;
     
@@ -21,7 +22,7 @@
 
     &__latest {
         padding-bottom: 30px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $beige40;
         
         @include mobile() {
             padding-bottom: 30px;
@@ -34,8 +35,8 @@
         
         @include mobile() {
             padding: 20px;
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
+            border-top: 1px solid $beige40;
+            border-bottom: 1px solid $beige40;
         }
     }
 
@@ -43,7 +44,7 @@
         height: 100%;
         padding-left: 30px;
         margin-left: 30px;
-        border-left: 1px solid #ccc;
+        border-left: 1px solid $beige40;
         
         @include mobile() {
             padding-left: 0px;

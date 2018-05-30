@@ -4,11 +4,13 @@ import classNames from 'classnames';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
 
-export const LatestTransactions = ({ className, ...rest }) => {
+export const LatestTransactions = ({ className, transactions, ...rest }) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
     });
+
+    console.log(transactions);
 
     return (
         <div {...rest} className={classes}>
@@ -54,6 +56,7 @@ export const LatestTransactions = ({ className, ...rest }) => {
 
 LatestTransactions.propTypes = {
     className: PropTypes.string,
+    transactions: PropTypes.shape().isRequired,
 };
 
 LatestTransactions.defaultProps = {

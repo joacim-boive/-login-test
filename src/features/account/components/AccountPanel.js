@@ -25,12 +25,15 @@ class AccountPanel extends Component {
             account,
             account: { reference },
             accountBills,
+            accountTransactions,
         } = this.props;
 
         const classes = classNames({
             'account-panel': true,
             [className]: className,
         });
+
+        if (!accountTransactions[reference]) return null;
 
         return (
             <section className={classes}>
@@ -43,7 +46,10 @@ class AccountPanel extends Component {
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body">
                     <div>
                         <TabletOrDesktop>
-                            <LatestTransactions className="account-panel__latest" />
+                            <LatestTransactions
+                                transactions={accountTransactions[reference].transactions}
+                                className="account-panel__latest"
+                            />
                         </TabletOrDesktop>
                         <NextPaymentPanel bills={accountBills[reference]} className="account-panel__next-payment" />
                     </div>

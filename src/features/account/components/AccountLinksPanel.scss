@@ -3,7 +3,7 @@
 .account-links-panel {
     &> * {
         padding: 10px 15px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $beige40;
 
         &:last-child {
             border-bottom: none;

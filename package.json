@@ -33,8 +33,7 @@
     "jest": {
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-            "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
-            "@ecster/ecster-net": "<rootDir>/__mocks__/ecster-net.js"
+            "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
         },
         "collectCoverageFrom": [
             "src/**/*.(js|jsx)",
@@ -98,7 +97,7 @@
         "file-loader": "^1.1.11",
         "history": "^4.7.2",
         "html-webpack-plugin": "^3.2.0",
-        "jest": "^20.0.4",
+        "jest": "^23.0.1",
         "jsdom": "^11.11.0",
         "lodash": "^4.17.10",
         "lodash-webpack-plugin": "^0.11.5",

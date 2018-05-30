@@ -33,7 +33,7 @@ export class OverviewPage extends Component {
         const { accountsActive, user } = this.props;
         return (
             <AuthenticatedPageTemplate header="Översikt">
-                <div className="overview-page">
+                <div className="account-overview-page">
                     {accountsActive.map(account => (
                         <AccountPanel key={account.reference} account={account} user={user} />
                     ))}

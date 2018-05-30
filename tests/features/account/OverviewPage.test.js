@@ -3,13 +3,14 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { OverviewPage } from 'src/features/account/OverviewPage';
-import accountJSON from '../../../src/features/account/components/__tests__/__mocks__/account.json';
+import accountsJSON from '../../../src/features/account/components/__tests__/__mocks__/accounts.json';
+import accountsActiveJSON from '../../../src/features/account/components/__tests__/__mocks__/accountsActive.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const defaultProps = {
-    accounts: accountJSON.accounts,
-    accountsActive: [],
+    accounts: accountsJSON.accounts,
+    accountsActive: accountsActiveJSON.accounts,
     actions: {},
     user: {},
     getAccounts: () => {},
@@ -22,5 +23,12 @@ describe('account/OverviewPage', () => {
         const wrapper = shallowRender();
 
         expect(wrapper.find('.account-overview-page').exists());
+    });
+
+    it('renders all Accounts as children', () => {
+        const wrapper = shallowRender();
+        const container = wrapper.find('.account-overview-page');
+
+        expect(container.children()).toHaveLength(2);
     });
 });
