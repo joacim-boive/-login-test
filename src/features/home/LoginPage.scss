@@ -2,39 +2,38 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
 @import "~@ecster/ecster-components/Button/Button.css";
 
-$background-color: $beige10;
-$border-color: #e1dbd1;
-$border: 1px solid $border-color;
-$box-padding: 17px;
+//$border-color: #e1dbd1;
+//$border: 1px solid $border-color;
+//$box-padding: 17px;
 
 body {
-    background: 0 11rem no-repeat $background-color;
+    background: 0 11rem no-repeat $beige10;
     background-size: contain;
 }
 
-.home-login-page {
-    /* Overrides from imported stylesheet(s) */
-    & .button {
-        font-size: 1.8rem; // REM is more accessible than PX
-
-        &.--round {
-            & > span:first-child {
-                padding: 0 25px;
-                line-height: 44px; // Make the text to center vertically as the button height is 44px;
-                height: 100%;
-                display: inline-block;
-
-                .spinner {
-                    max-width: 44px; // Needed for IE11 to size the button with a spinner correctly
-                }
-            }
-        }
-    }
-
-    & .home-login-page__link {
-        font-size: 1.4rem;
-    }
-}
+//.home-login-page {
+//    /* Overrides from imported stylesheet(s) */
+//    & .button {
+//        //font-size: 1.8rem; // REM is more accessible than PX
+//
+//        //&.--round {
+//        //    & > span:first-child {
+//        //        //padding: 0 25px;
+//        //        //line-height: 44px; // Make the text to center vertically as the button height is 44px;
+//        //        //height: 100%;
+//        //        //display: inline-block;
+//        //
+//        //        //.spinner {
+//        //        //    max-width: 44px; // Needed for IE11 to size the button with a spinner correctly
+//        //        //}
+//        //    }
+//        //}
+//    }
+//
+//    & .home-login-page__link {
+//        //font-size: 1.4rem;
+//    }
+//}
 
 .home-login-page {
     @include grid-cell(1, 1, 1, 1);
@@ -52,13 +51,13 @@ body {
         cols: 1fr
     ));
 
-    label {
-        padding: 0 0 0 1rem;
-    }
+    //label {
+    //    padding: 0 0 0 1rem;
+    //}
 
     .overlay--compact {
         .button {
-            margin-top: 40px;
+            //margin-top: 40px;
         }
     }
 
@@ -85,13 +84,13 @@ body {
         @include xy-align();
 
         overflow: hidden;
-        padding: $box-padding;
+        padding: 20px;
         max-width: 50rem;
         background: #fff;
         width: 100%;
         border-radius: 6px;
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, .1);
-        border: $border;
+        border: 1px solid $beige40;
     }
 
     &__form {
@@ -116,30 +115,46 @@ body {
         }
     }
 
-    &__header {
+    h1, h2 { // , &__header
         @include x-align(center);
         @include grid-cell(1, -1, 1, 1);
 
-        margin: 70px - $box-padding 0 0 0;
-
+        //margin: 0 0 20px;
         color: $green120;
-        font-size: 3.6rem;
-        font-weight: 600;
+        font-weight: 700;
+        //font-size: 3.6rem;
+        //font-weight: 600;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin: 40px 0;
+    }
+
+    h2 {
+        font-size: 26px;
+        margin: 20px 0 30px;
     }
 
     .text-input {
-        input {
+        //input {
             width: 27rem;
-            height: 4.4rem;
-            border-radius: 6px;
-        }
+            //height: 4.4rem;
+            //border-radius: 6px;
+        //}
+        margin-bottom: 20px;
+    }
+
+    .button.--round {
+        margin-bottom: 20px;
     }
 
     &__button {
         @include x-align(center);
         @include grid-cell(1, 1, 2, 1);
 
-        margin: 50px 0 0 0;
+        //margin: 50px 0 0 0;
     }
 
     &__link {
@@ -156,7 +171,7 @@ body {
             @include x-align(center);
             @include grid-cell(1, 1, 3, 1);
 
-            margin: 30px 0 0 0;
+            //margin: 30px 0 0 0;
         }
         &--back {
             &:before {
@@ -192,25 +207,25 @@ body {
 
     & .other-device {
         .home-login-page__header {
-            text-align: center;
-            font-size: 2.2rem;
+            //text-align: center;
+            //font-size: 2.2rem;
         }
 
         .text-input {
             @include grid-cell(1, 1, 2, 1);
             @include x-align(center);
 
-            margin-top: 20px;
+            //margin-bottom: 20px;
         }
         .home-login-page__button {
             @include grid-cell(1, 1, 3, 1);
 
-            margin-top: 20px;
+            //margin-top: 20px;
         }
         .home-login-page__link {
             @include grid-cell(1, 1, 4, 1);
 
-            margin-top: 40px;
+            //margin-top: 40px;
         }
     }
 
@@ -223,16 +238,27 @@ body {
 
     .home-login-page {
         &__form {
-            margin-bottom: 20px;
+            //margin-bottom: 20px;
         }
 
         &__header {
-            margin-top: 20px;
+            //margin-top: 20px;
         }
 
         &__button {
-            margin-top: 40px;
+            //margin-top: 40px;
         }
+    }
+}
+
+
+@mixin tabletDesktopH1H2() {
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
     }
 }
 
@@ -246,6 +272,9 @@ body {
     }
 
     .home-login-page {
+
+        @include tabletDesktopH1H2();
+
         &__logo {
             & svg {
                 width: 320px;
@@ -254,16 +283,16 @@ body {
         }
 
         &__form {
-            margin-bottom: 60 - $box-padding;
+            //margin-bottom: 60 - $box-padding;
         }
 
         &__header {
-            font-size: 5rem;
-            margin-top: 23px;
+            //font-size: 5rem;
+            //margin-top: 23px;
         }
 
         &__button, &link--bankid {
-            margin-top: 30px;
+            //margin-top: 30px;
         }
     }
 }
@@ -289,6 +318,9 @@ body {
 
 @include isDesktop {
     .home-login-page {
+
+        @include tabletDesktopH1H2();
+
         background-position: 0 0;
         background-size: cover;
 
@@ -307,18 +339,18 @@ body {
         }
 
         &__form {
-            margin-bottom: 80 - $box-padding;
+            //margin-bottom: 80 - $box-padding;
         }
 
         &__header {
-            margin-top: 60 - $box-padding;
+            //margin-top: 60 - $box-padding;
         }
 
         .text-input {
             @include grid-row(2);
             @include x-align(center);
 
-            margin-top: 40px;
+            //margin-top: 40px;
 
             span {
                 display: block; // div isn't allowed inside label
@@ -333,14 +365,14 @@ body {
         &__button {
             @include grid-row(3);
 
-            margin-top: 30px;
+            //margin-top: 30px;
         }
 
         &__link {
             &--bankid {
                 @include grid-row(4);
 
-                margin-top: 30px;
+                //margin-top: 30px;
             }
         }
     }

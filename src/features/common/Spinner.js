@@ -79,7 +79,7 @@ Spinner.defaultProps = {
     radius: 45,
     strokeForegroundWidth: 8,
     strokeBackgroundWidth: 8,
-    isCenter: true,
+    isCenter: false,
     isVisible: false,
     isFillParentHeight: false,
 };

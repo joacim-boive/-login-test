@@ -1,24 +1,24 @@
-.spinner{
+.spinner {
     display: inline-block;
-    width: 200px; // Just override the width if you need a different size
+    width: 100%; // Just override the width if you need a different size
     height: auto;
 
-    &--center{
+    &--center {
         transform: translate(-50%, -50%);
         position: absolute;
         top: 50%;
         left: 50%;
     }
 
-    &--hidden{
+    &--hidden {
         display: none;
     }
 
-    &--visible{
+    &--visible {
 
     }
 
-    &--fill-parent-height{
+    &--fill-parent-height {
         // Use this when the spinner is contained within another element, like a button.
         width: auto;
         height: 100%;
@@ -32,7 +32,7 @@
         transition-property: transform;
         animation-name: rotate;
         //animation-duration: 1.5s;
-        animation-duration: 1100ms;
+        animation-duration: 1400ms;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         //animation-timing-function: cubic-bezier(0.42, 0.82, 0.07, 1.45);

@@ -11,8 +11,8 @@ const LoginOther = props => {
 
     return (
         <React.Fragment>
-            <article className="home-login-page__form other-device">
-                <h1 className="home-login-page__header e-green120">{header}</h1>
+            <section className="home-login-page__form other-device">
+                <h2 className="home-login-page__header">{header}</h2>
                 {!isDesktop && (
                     <Input
                         id="ssn"
@@ -59,7 +59,7 @@ const LoginOther = props => {
                 >
                     {i18n('home.login.otherDevice.links.back') + ':7'}
                 </Button>
-            </article>
+            </section>
         </React.Fragment>
     );
 };

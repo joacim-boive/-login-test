@@ -162,11 +162,20 @@ export class LoginPage extends Component {
         return (
             <React.Fragment>
                 <LoginPageTemplate>
-                    <section id="home-login-page" className="home-login-page__box">
+                    <div id="home-login-page" className="home-login-page__box">
                         {!isBankIdOtherDeviceVisible && (
                             <React.Fragment>
-                                <article className="home-login-page__form">
-                                    <h1 className="home-login-page__header e-green120">{i18n('home.login.header')}</h1>
+                                <section className="home-login-page__form">
+                                    <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
+                                    <div style={{ width: '40px', height: '40px' }}>
+                                        <Spinner
+                                            id="spinner-waiting-for-bankid"
+                                            isVisible
+                                            strokeBackgroundWidth={14}
+                                            strokeForegroundWidth={14}
+                                        />
+                                    </div>
+
                                     <Media query="all and (hover: hover), not all and (-moz-touch-enabled: 1), (-ms-high-contrast: active), (-ms-high-contrast: none)">
                                         {/** TODO * use onBlur instead of onChange to not trigger unnecessary rerenders.
                                          No... must validate on each key.
@@ -197,7 +206,7 @@ export class LoginPage extends Component {
                                         round
                                     >
                                         {!isLoggingIn ? (
-                                            i18n('home.login.buttons.mobileBankId') + ':1'
+                                            `${i18n('home.login.buttons.mobileBankId')}:1`
                                         ) : (
                                             <Spinner
                                                 id="spinner-waiting-for-bankid-this-unit"
@@ -215,9 +224,11 @@ export class LoginPage extends Component {
                                         onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
                                         link
                                     >
-                                        {i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`) + ':2'}
+                                        {`${i18n(
+                                            `home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`
+                                        )}:2`}
                                     </Button>
-                                </article>
+                                </section>
                                 <aside className="help">
                                     <Button
                                         id="help"
@@ -225,7 +236,7 @@ export class LoginPage extends Component {
                                         onClick={() => this.toggleState('isHelpVisible')}
                                         link
                                     >
-                                        {i18n('general.buttons.help') + ':3'}
+                                        {`${i18n('general.buttons.help')}:3`}
                                         <span className="home-login-page__icon help__icon">&nbsp;</span>
                                     </Button>
                                 </aside>
@@ -283,11 +294,11 @@ export class LoginPage extends Component {
                                     className="home-login-page__button"
                                     onClick={this.cancelLogin}
                                 >
-                                    {i18n('home.login.otherDevice.buttons.abort') + ':5'}
+                                    {`${i18n('home.login.otherDevice.buttons.abort')}:5`}
                                 </Button>
                             </Overlay>
                         )}
-                    </section>
+                    </div>
                 </LoginPageTemplate>
 
                 {isHelpVisible && (

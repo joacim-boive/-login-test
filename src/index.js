@@ -12,7 +12,7 @@ import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
 
-import { setApplicationCountry, setSelectedLanguage } from './features/home/redux/actions';
+import { setApplicationCountry, setLocale } from './features/home/redux/actions';
 
 const renderApp = app => {
     render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
@@ -25,7 +25,7 @@ const initApplication = config => {
     const lang = window.location.hash.split('?lang=')[1] || 'sv';
 
     store.dispatch(setApplicationCountry('SE'));
-    store.dispatch(setSelectedLanguage(lang));
+    store.dispatch(setLocale('sv-SE'));
 
     if (config && config.ajaxBaseUrl) {
         Ajax.setBaseUrl(config.ajaxBaseUrl);
