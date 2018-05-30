@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ArrowLink } from './../../common/arrow_link/ArrowLink';
+import { ArrowLink } from './../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
 export const AccountLinksPanel = ({ className, ...rest }) => {

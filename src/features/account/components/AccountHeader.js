@@ -18,7 +18,7 @@ export const AccountHeader = ({ account }) => {
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{formatAmountCurrency(amountLeft, 'sv-SE', 'SEK')}</div>
+                    <div>{formatAmountCurrency(amountLeft, 'sv-SE', 'SEK', true)}</div>
                     <p>kvar att handla för</p>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './ArrowLink.scss';
-import { ButtonPanel } from './../button_panel/ButtonPanel';
+import { ButtonPanel } from './../button-panel/ButtonPanel';
 
 export const ArrowLink = ({ className, icon, text, onClick, ...rest }) => {
     const classes = classNames({

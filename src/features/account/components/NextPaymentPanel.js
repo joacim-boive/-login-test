@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { formatAmountCurrency } from '@ecster/ecster-util';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
+import { formatDate } from '../../../common/util/format-date';
 
 export const NextPaymentPanel = ({ className, bills }) => {
     const classes = classNames({
@@ -11,11 +12,15 @@ export const NextPaymentPanel = ({ className, bills }) => {
         [className]: className,
     });
 
+    let date = '';
     let amount = 0;
     let fullPayment = {};
     if (bills.ocrNumber) {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
+        date = bills.payment.dueDate;
+    } else {
+        return null;
     }
 
     return (
@@ -38,7 +43,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                     <DataRow>
                         <Data left>Förfallodatum:</Data>
                         <Data strong right>
-                            <div>2018-06-01</div>
+                            <div>{formatDate(date)}</div>
                         </Data>
                     </DataRow>
                 </DataColumn>

@@ -7,7 +7,7 @@ import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
 import { LatestTransactions } from './LatestTransactions';
-import ResponsivePanel from './../../common/responsive_panel/ResponsivePanel';
+import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
 import { getAccountTransactions } from './../redux/getAccountTransactions';
 import { getAccountBills } from './../redux/getAccountBills';
