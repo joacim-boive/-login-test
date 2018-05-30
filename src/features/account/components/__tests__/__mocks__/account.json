@@ -1,0 +1,544 @@
+{
+    "accounts": [
+        {
+            "accountNumber": "9752238000080223",
+            "reference": "CHMNc3UHD1FUCXQKQ3lnQARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 22000000,
+            "used": 20788164,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000080306",
+            "reference": "CHMNc3UHD1FUCXQKQ3hlRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 1000000,
+            "used": 1523003,
+            "maxLimit": 18000000,
+            "overDrawn": true,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000085453",
+            "reference": "CHMNc3UHD1FUCXQKRn9gQARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD111",
+                "name": "Inlåning mastercard 111",
+                "cardName": "MULTICARD MASTERCARD            "
+            },
+            "limit": 20000000,
+            "used": 9632611,
+            "maxLimit": 20000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "other",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000319050",
+            "reference": "CHMNc3UHD1FUCXcDSntgQwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 500000,
+            "used": 831139,
+            "maxLimit": 18000000,
+            "overDrawn": true,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000333788",
+            "reference": "CHMNc3UHD1FUCXcBQHxtSwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 1000000,
+            "used": 585415,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000382595",
+            "reference": "CHMNc3UHD1FUCXcKQX5sRgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 600000,
+            "used": 594728,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": true,
+            "status": "ACTIVE",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 1
+        },
+        {
+            "accountNumber": "9752238000399177",
+            "reference": "CHMNc3UHD1FUCXcLSnpiRARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 500000,
+            "used": 2013303,
+            "maxLimit": 18000000,
+            "overDrawn": true,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000399243",
+            "reference": "CHMNc3UHD1FUCXcLSnlhQARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 500000,
+            "used": 465096,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000419439",
+            "reference": "CHMNc3UHD1FUCXADSn9mSgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 400000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000421393",
+            "reference": "CHMNc3UHD1FUCXAAQnhsQARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD001",
+                "name": "MultiCard 001",
+                "cardName": "bricka chip                     "
+            },
+            "limit": 3500000,
+            "used": 3448856,
+            "maxLimit": 5000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": true,
+            "status": "ACTIVE",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 1
+        },
+        {
+            "accountNumber": "9752238000421781",
+            "reference": "CHMNc3UHD1FUCXAAQnxtQgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 200000,
+            "used": 422947,
+            "maxLimit": 15000000,
+            "overDrawn": true,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000428737",
+            "reference": "CHMNc3UHD1FUCXAAS3xmRARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 403994,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000428984",
+            "reference": "CHMNc3UHD1FUCXAAS3JtRwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000429065",
+            "reference": "CHMNc3UHD1FUCXAASntjRgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000429602",
+            "reference": "CHMNc3UHD1FUCXAASn1lQQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 3500000,
+            "used": 305213,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000429776",
+            "reference": "CHMNc3UHD1FUCXAASnxiRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 6900000,
+            "used": 1426424,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000429842",
+            "reference": "CHMNc3UHD1FUCXAASnNhQQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 4000000,
+            "used": 4478883,
+            "maxLimit": 15000000,
+            "overDrawn": true,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000435104",
+            "reference": "CHMNc3UHD1FUCXABRnplRwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1200000,
+            "used": 312794,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000436391",
+            "reference": "CHMNc3UHD1FUCXABRXhsQgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 3800000,
+            "used": 343920,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000437571",
+            "reference": "CHMNc3UHD1FUCXABRH5iQgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 1000000,
+            "used": 489680,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000446556",
+            "reference": "CHMNc3UHD1FUCXAGRX5gRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 10000000,
+            "used": 1927834,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000449006",
+            "reference": "CHMNc3UHD1FUCXAGSntlRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1200000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000449246",
+            "reference": "CHMNc3UHD1FUCXAGSnlhRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000449709",
+            "reference": "CHMNc3UHD1FUCXAGSnxlSgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 4600000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000449881",
+            "reference": "CHMNc3UHD1FUCXAGSnNtQgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 3700000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000449956",
+            "reference": "CHMNc3UHD1FUCXAGSnJgRQRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 3700000,
+            "used": 305213,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000450301",
+            "reference": "CHMNc3UHD1FUCXAHQ3hlQgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1500000,
+            "used": 305213,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000451804",
+            "reference": "CHMNc3UHD1FUCXAHQnNlRwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000453248",
+            "reference": "CHMNc3UHD1FUCXAHQHlhSwRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        },
+        {
+            "accountNumber": "9752238000454675",
+            "reference": "CHMNc3UHD1FUCXAHR31iRgRWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD002",
+                "name": "HX KONTO",
+                "cardName": "MASTERCCARD ICKE CHIP           "
+            },
+            "limit": 1000000,
+            "used": 347717,
+            "maxLimit": 15000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": false,
+            "status": "TERMINATED",
+            "cardProfile": "ecster",
+            "reserved": false,
+            "numberOfCards": 0
+        }
+    ]
+}

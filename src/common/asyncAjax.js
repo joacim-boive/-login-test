@@ -29,9 +29,7 @@ export const put = (url, data, successCall = successHandler, errorCall = errorHa
         .catch(errorCall);
 
 export const get = (url, data, successCall = successHandler, errorCall = errorHandler) =>
-    Ajax.get({
-        url: addQueryParams(url, data),
-    })
+    Ajax.get({ url }, data)
         .then(successCall)
         .catch(errorCall);
 
