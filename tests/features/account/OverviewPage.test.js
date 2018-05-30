@@ -1,20 +1,25 @@
+/* eslint-disable no-undef,import/no-extraneous-dependencies */
 import React from 'react';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { OverviewPage } from 'src/features/account/OverviewPage';
 
-describe('account/OverviewPage', () => {
-  it('renders node with correct class name', () => {
-    const props = {
-      account: {},
-      actions: {},
-    };
-    const renderedComponent = shallow(
-      <OverviewPage {...props} />
-    );
+Enzyme.configure({ adapter: new Adapter() });
 
-    expect(
-      renderedComponent.find('.account-overview-page').getElement()
-    ).to.exist;
-  });
+const defaultProps = {
+    accounts: [],
+    accountsActive: [],
+    actions: {},
+    user: {},
+    getAccounts: () => {},
+};
+
+const shallowRender = props => shallow(<OverviewPage {...defaultProps} {...props} />);
+
+describe('account/OverviewPage', () => {
+    it('renders node with correct class name', () => {
+        const wrapper = shallowRender();
+
+        expect(wrapper.find('.account-overview-page').exists());
+    });
 });
