@@ -15,7 +15,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
     let date = '';
     let amount = 0;
     let fullPayment = {};
-    if (bills.ocrNumber) {
+    if (bills.ocrNumber && bills.payment) {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
         date = bills.payment.dueDate;
