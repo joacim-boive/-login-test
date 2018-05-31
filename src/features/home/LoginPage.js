@@ -163,18 +163,13 @@ export class LoginPage extends Component {
             <React.Fragment>
                 <LoginPageTemplate>
                     <div id="home-login-page" className="home-login-page__box">
+                        States
+                        {this.state.isOnThisDevice ? 'On this device' : 'On other device'}
+                        {this.state.ssnIsValid ? 'Ssn is valid' : 'Ssn is not valid'}
                         {!isBankIdOtherDeviceVisible && (
                             <React.Fragment>
                                 <section className="home-login-page__form">
                                     <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
-                                    <div style={{ width: '40px', height: '40px' }}>
-                                        <Spinner
-                                            id="spinner-waiting-for-bankid"
-                                            isVisible
-                                            strokeBackgroundWidth={14}
-                                            strokeForegroundWidth={14}
-                                        />
-                                    </div>
 
                                     <Media query="all and (hover: hover), not all and (-moz-touch-enabled: 1), (-ms-high-contrast: active), (-ms-high-contrast: none)">
                                         {/** TODO * use onBlur instead of onChange to not trigger unnecessary rerenders.
@@ -183,7 +178,7 @@ export class LoginPage extends Component {
                                         <Input
                                             id="ssn"
                                             name="ssn"
-                                            label={i18n('home.login.labels.ssn')}
+                                            label={`${i18n('home.login.labels.ssn')} (1)`}
                                             placeholder={i18n('home.login.placeholders.ssn')}
                                             value={ssn}
                                             onChange={this.onSsnChange}
@@ -204,6 +199,7 @@ export class LoginPage extends Component {
                                             )
                                         }
                                         round
+                                        disabled={this.state.isOnThisDevice && !ssnIsValid}
                                     >
                                         {!isLoggingIn ? (
                                             `${i18n('home.login.buttons.mobileBankId')}:1`
@@ -213,8 +209,6 @@ export class LoginPage extends Component {
                                                 isCenter={false}
                                                 isVisible
                                                 isFillParentHeight
-                                                strokeBackgroundWidth={14}
-                                                strokeForegroundWidth={14}
                                             />
                                         )}
                                     </Button>
@@ -242,7 +236,6 @@ export class LoginPage extends Component {
                                 </aside>
                             </React.Fragment>
                         )}
-
                         {isBankIdOtherDeviceVisible && (
                             <LoginOther
                                 header={i18n(`home.login.otherDevice.header.${isDesktop ? 'desktop' : 'mobile'}`)}
@@ -280,8 +273,6 @@ export class LoginPage extends Component {
                                         isCenter={false}
                                         isVisible
                                         isFillParentHeight
-                                        strokeBackgroundWidth={14}
-                                        strokeForegroundWidth={14}
                                     />
                                     <span>:6</span>
                                 </Button>

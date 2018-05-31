@@ -1,10 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { lighten } from '@ecster/ecster-util/lib/rgb-tools';
+
 const Spinner = props => {
-    const { id, isVisible, isCenter, isFillParentHeight, radius, strokeForegroundWidth, strokeBackgroundWidth } = props;
+    const {
+        id,
+        isVisible,
+        isCenter,
+        isFillParentHeight,
+        radius,
+        strokeForegroundWidth,
+        strokeBackgroundWidth,
+        bgColor,
+    } = props;
 
     let thisRadius = radius;
+
+    const baseColor = bgColor ? '#fff' : '#59b189';
+    const strokeColor = bgColor ? lighten(bgColor, 0.15) : '#eff8f3';
 
     if (strokeBackgroundWidth > 11) {
         /* The stroke won fit the box if bigger then 11 so we must reduce the radius with half the stroke width. */
@@ -36,8 +50,8 @@ const Spinner = props => {
 
                     {/* The gradient in the spinner */}
                     <linearGradient id={`spinner__${id}-gradient`}>
-                        <stop offset="0" stopColor="#59b189" />
-                        <stop offset="100%" stopColor="#59b189" stopOpacity="0" />
+                        <stop offset="0" stopColor={baseColor} />
+                        <stop offset="100%" stopColor={baseColor} stopOpacity="0" />
                     </linearGradient>
                 </defs>
                 {/* This is the solid background ring */}
@@ -45,7 +59,7 @@ const Spinner = props => {
                     cx="50"
                     cy="50"
                     r={thisRadius}
-                    stroke="#eff8f3"
+                    stroke={strokeColor}
                     strokeWidth={strokeBackgroundWidth}
                     fill="none"
                     opacity="1"
@@ -73,15 +87,17 @@ Spinner.propTypes = {
     isCenter: PropTypes.bool,
     isVisible: PropTypes.bool,
     isFillParentHeight: PropTypes.bool,
+    bgColor: PropTypes.string,
 };
 
 Spinner.defaultProps = {
     radius: 45,
-    strokeForegroundWidth: 8,
-    strokeBackgroundWidth: 8,
+    strokeForegroundWidth: 14,
+    strokeBackgroundWidth: 14,
     isCenter: false,
     isVisible: false,
     isFillParentHeight: false,
+    bgColor: undefined,
 };
 
 export default Spinner;

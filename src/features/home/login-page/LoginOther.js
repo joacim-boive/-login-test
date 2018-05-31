@@ -17,7 +17,7 @@ const LoginOther = props => {
                     <Input
                         id="ssn"
                         name="ssn"
-                        label={i18n('home.login.otherDevice.labels.ssn')}
+                        label={`${i18n('home.login.otherDevice.labels.ssn')} (2)`}
                         placeholder={i18n('home.login.otherDevice.placeholders.ssn')}
                         value={ssn}
                         onChange={onSsnChange}
@@ -39,25 +39,19 @@ const LoginOther = props => {
                     round
                 >
                     {!isLoggingIn ? (
-                        i18n('home.login.otherDevice.buttons.login') + ':4'
+                        `${i18n('home.login.otherDevice.buttons.login')}:4`
                     ) : (
-                        <Spinner
-                            id="waiting-for-bankid-mobile"
-                            isCenter={false}
-                            isVisible
-                            isFillParentHeight
-                            strokeBackgroundWidth={14}
-                            strokeForegroundWidth={14}
-                        />
+                        <Spinner id="waiting-for-bankid-mobile" isCenter={false} isVisible isFillParentHeight />
                     )}
                 </Button>
                 <Button
                     id="back"
-                    className="home-login-page__link home-login-page__link--back"
+                    className="home-login-page__link"
                     onClick={() => toggleState('isBankIdOtherDeviceVisible')}
                     link
+                    iconLeft="icon-chevron-left"
                 >
-                    {i18n('home.login.otherDevice.links.back') + ':7'}
+                    {`${i18n('home.login.otherDevice.links.back')}:7`}
                 </Button>
             </section>
         </React.Fragment>
