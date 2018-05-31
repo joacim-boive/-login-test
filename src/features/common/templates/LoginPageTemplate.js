@@ -2,6 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '@ecster/ecster-components/Logo';
 
+// eslint-disable-next-line no-unused-vars
+import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
+// eslint-disable-next-line no-unused-vars
+import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
+// eslint-disable-next-line no-unused-vars
+import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
+// eslint-disable-next-line no-unused-vars
+import lazySizes from 'lazysizes';
+
 const LoginPage = props => {
     const { children } = props;
 

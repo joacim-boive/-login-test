@@ -1,3 +1,4 @@
-export { default as LoginFormSE } from './LoginFormSE';
-export { default as LoginFormFI } from './LoginFormFI';
+export { default as LoginFormSE } from './SE/LoginForm';
+export { default as LoginFormFI } from './FI/LoginForm';
 export { default as LoginForm } from './LoginForm';
+export { default as LoginInProgress } from './SE/LoginInProgress';

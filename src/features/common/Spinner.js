@@ -1,100 +1,106 @@
+// /* eslint-disable react/self-closing-comp */
+// import React from 'react';
+// import './Spinner.css';
+//
+// export default function Spinner() {
+//     return (
+//         <span className="spinner">
+//             <div className="spinner__ctr" >
+//                 <div/>
+//             </div>
+//         </span>
+//     );
+// }
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { lighten } from '@ecster/ecster-util/lib/rgb-tools';
 
 const Spinner = props => {
-    const {
-        id,
-        isVisible,
-        isCenter,
-        isFillParentHeight,
-        radius,
-        strokeForegroundWidth,
-        strokeBackgroundWidth,
-        bgColor,
-    } = props;
-
-    let thisRadius = radius;
+    const { id, isVisible, isCenter, isCenterX, isFillParentHeight, radius, strokeWidth, bgColor } = props;
 
     const baseColor = bgColor ? '#fff' : '#59b189';
     const strokeColor = bgColor ? lighten(bgColor, 0.15) : '#eff8f3';
 
-    if (strokeBackgroundWidth > 11) {
-        /* The stroke won fit the box if bigger then 11 so we must reduce the radius with half the stroke width. */
-        thisRadius = radius - strokeBackgroundWidth / 2;
-    }
+    // adjust actual radius so everything fits in the viewBox
+    const thisRadius = strokeWidth > 11 ? radius - strokeWidth / 2 : radius;
+    const containerStyle = isFillParentHeight ? {} : { width: `${radius * 2}px`, height: `${radius * 2}px` };
 
     return (
-        <span
-            id={`spinner__${id}`}
-            className={`spinner
-                ${isCenter ? 'spinner--center' : ''}
-                ${isVisible ? 'spinner--visible' : 'spinner--hidden'}
-                ${isFillParentHeight ? 'spinner--fill-parent-height' : ''}
-            `}
-        >
-            <svg
-                className="spinner__svg"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="xMidYMid meet"
-                width="100"
-                height="100"
+        isVisible && (
+            <span
+                id={`spinner__${id}`}
+                className={classNames({
+                    spinner: true,
+                    'spinner--center': isCenter,
+                    'spinner--center-x': isCenterX,
+                    'spinner--fill-parent-height': isFillParentHeight,
+                })}
+                style={containerStyle}
             >
-                <title>Var vänlig vänta - nästa funktion laddas.</title>
-                <defs>
-                    {/* Cuts the gradient short, so we get a solid color at the start of the spinner. */}
-                    <clipPath id={`spinner__${id}-clip-path`}>
-                        <rect x="0" y="50" width="100" height="100" />
-                    </clipPath>
+                <svg
+                    className="spinner__svg"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="xMidYMid meet"
+                    width="100"
+                    height="100"
+                >
+                    <title>Var vänlig vänta - nästa funktion laddas.</title>
+                    <defs>
+                        {/* Cuts the gradient short, so we get a solid color at the start of the spinner. */}
+                        <clipPath id={`spinner__${id}-clip-path`}>
+                            <rect x="0" y="50" width="100" height="100" />
+                        </clipPath>
 
-                    {/* The gradient in the spinner */}
-                    <linearGradient id={`spinner__${id}-gradient`}>
-                        <stop offset="0" stopColor={baseColor} />
-                        <stop offset="100%" stopColor={baseColor} stopOpacity="0" />
-                    </linearGradient>
-                </defs>
-                {/* This is the solid background ring */}
-                <circle
-                    cx="50"
-                    cy="50"
-                    r={thisRadius}
-                    stroke={strokeColor}
-                    strokeWidth={strokeBackgroundWidth}
-                    fill="none"
-                    opacity="1"
-                />
-                {/* This is the gradient part */}
-                <circle
-                    cx="50"
-                    cy="50"
-                    r={thisRadius}
-                    stroke={`url(#spinner__${id}-gradient)`}
-                    strokeWidth={strokeForegroundWidth}
-                    fill="none"
-                    clipPath={`url(#spinner__${id}-clip-path)`}
-                />
-            </svg>
-        </span>
+                        {/* The gradient in the spinner */}
+                        <linearGradient id={`spinner__${id}-gradient`}>
+                            <stop offset="0" stopColor={baseColor} />
+                            <stop offset="100%" stopColor={baseColor} stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+                    {/* This is the solid background ring */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r={thisRadius}
+                        stroke={strokeColor}
+                        strokeWidth={strokeWidth}
+                        fill="none"
+                        opacity="1"
+                    />
+                    {/* This is the gradient part */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r={thisRadius}
+                        stroke={`url(#spinner__${id}-gradient)`}
+                        strokeWidth={strokeWidth}
+                        fill="none"
+                        clipPath={`url(#spinner__${id}-clip-path)`}
+                    />
+                </svg>
+            </span>
+        )
     );
 };
 
 Spinner.propTypes = {
     id: PropTypes.string.isRequired,
     radius: PropTypes.number,
-    strokeForegroundWidth: PropTypes.number,
-    strokeBackgroundWidth: PropTypes.number,
+    strokeWidth: PropTypes.number,
     isCenter: PropTypes.bool,
+    isCenterX: PropTypes.bool,
     isVisible: PropTypes.bool,
     isFillParentHeight: PropTypes.bool,
     bgColor: PropTypes.string,
 };
 
 Spinner.defaultProps = {
-    radius: 45,
-    strokeForegroundWidth: 14,
-    strokeBackgroundWidth: 14,
+    radius: 32,
+    strokeWidth: 12,
     isCenter: false,
+    isCenterX: false,
     isVisible: false,
     isFillParentHeight: false,
     bgColor: undefined,

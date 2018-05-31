@@ -1,0 +1,23 @@
+Loggan får inte hamna under vita boxen
+
+Boxarna - 20px padding
+
+Mobilt bankid annan enhet
+20px mellan allt (eller 30?)
+
+Avstånd jämnt och snyggt mellan element
+
+
+Mobilmeny
+Ta inte bort bold på val vid fälla upp submeny
+
+
+Spinner
+
+Snurra medurs
+Fade åt rätt håll
+Ingen knapp vid inloggning
+Grön
+
+
+

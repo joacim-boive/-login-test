@@ -1,6 +1,7 @@
+
 .spinner {
     display: inline-block;
-    width: 100%; // Just override the width if you need a different size
+    width: 100%;
     height: auto;
 
     &--center {
@@ -10,12 +11,8 @@
         left: 50%;
     }
 
-    &--hidden {
-        display: none;
-    }
-
-    &--visible {
-
+    &--center-x {
+        margin: 0 auto;
     }
 
     &--fill-parent-height {
@@ -31,7 +28,6 @@
         will-change: transform;
         transition-property: transform;
         animation-name: rotate;
-        //animation-duration: 1.5s;
         animation-duration: 1400ms;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
