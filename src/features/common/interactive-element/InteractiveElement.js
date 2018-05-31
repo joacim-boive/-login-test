@@ -23,4 +23,4 @@ InteractiveElement.propTypes = {
 InteractiveElement.defaultProps = {
     className: '',
     children: <div />,
-}
+};
