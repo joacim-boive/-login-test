@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatAmountCurrency } from '@ecster/ecster-util';
+import { Translate } from '@ecster/ecster-i18n';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
 import { formatDateShort } from './../../../common/util/format-date';
+
+const i18n = Translate.getText;
 
 export const LatestTransactions = ({ className, transactions, ...rest }) => {
     const classes = classNames({
@@ -18,7 +21,7 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                 <DataColumn>
                     <DataRow>
                         <Data stronger>
-                            <h4>Senaste händelser</h4>
+                            <h4>{i18n('account.latest-transactions.header')}</h4>
                         </Data>
                     </DataRow>
                     {transactions.map(trans => (

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Translate } from '@ecster/ecster-i18n';
 import { ArrowLink } from './../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
+
+const i18n = Translate.getText;
 
 export const AccountLinksPanel = ({ className, ...rest }) => {
     const classes = classNames({
@@ -12,12 +15,12 @@ export const AccountLinksPanel = ({ className, ...rest }) => {
 
     return (
         <div {...rest} className={classes}>
-            <ArrowLink text="Kontohändelser" icon="icon-minimize-2" onClick={() => {}} />
-            <ArrowLink text="Höj kredit" icon="icon-layers" onClick={() => {}} />
-            <ArrowLink text="Delbetalningar" icon="icon-arrow-up" onClick={() => {}} />
-            <ArrowLink text="Månadsfakturor" icon="icon-file" onClick={() => {}} />
-            <ArrowLink text="Hantera Kort" icon="icon-info" onClick={() => {}} />
-            <ArrowLink text="Kontovillkor" icon="icon-book" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.event')} icon="icon-minimize-2" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.bills')} icon="icon-file" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.card')} icon="icon-book" onClick={() => {}} />
+            <ArrowLink text={i18n('account.links.terms')} icon="icon-info" onClick={() => {}} />
         </div>
     );
 };
