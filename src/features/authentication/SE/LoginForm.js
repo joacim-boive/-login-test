@@ -13,6 +13,7 @@ import LoginHelp from './LoginHelp';
 // import LoginOther from './LoginOther';
 
 import MobileBankIdOtherDevice from './MobileBankIdOtherDevice';
+import MobileBankIdThisDevice from './MobileBankIdThisDevice';
 import BankIdThisDevice from './BankIdThisDevice';
 
 class LoginFormSE extends Component {
@@ -127,15 +128,7 @@ class LoginFormSE extends Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const {
-            isOnThisDevice,
-            isDesktop,
-            isHelpVisible,
-            isLoggingIn,
-            isBankIdOtherDeviceVisible,
-            ssn,
-            ssnIsValid,
-        } = this.state;
+        const { isOnThisDevice, isDesktop, isHelpVisible, isLoggingIn, ssn, ssnIsValid } = this.state;
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
@@ -151,34 +144,47 @@ class LoginFormSE extends Component {
                 <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
 
                 <DesktopDevice>
-                    {!isOnThisDevice && (
-                        <MobileBankIdOtherDevice
-                            ssn={ssn}
-                            ssnIsValid={ssnIsValid}
-                            startLogin={this.startLogin}
-                            validateSsn={validateSsn}
-                            onSsnChange={this.onSsnChange}
-                            onSsnValidation={this.onSsnValidation}
-                            toggleState={this.toggleState}
-                        />
-                    )}
+                    <span className="debug-small">desktop device</span>
 
-                    {isOnThisDevice && <BankIdThisDevice startLogin={this.startLogin} toggleState={this.toggleState} />}
+                    <MobileBankIdOtherDevice
+                        isVisible={!isOnThisDevice}
+                        ssn={ssn}
+                        ssnIsValid={ssnIsValid}
+                        startLogin={this.startLogin}
+                        validateSsn={validateSsn}
+                        onSsnChange={this.onSsnChange}
+                        onSsnValidation={this.onSsnValidation}
+                        toggleState={this.toggleState}
+                    />
+
+                    <BankIdThisDevice
+                        isVisible={isOnThisDevice}
+                        startLogin={this.startLogin}
+                        toggleState={this.toggleState}
+                    />
                 </DesktopDevice>
 
                 <TouchDevice>
-                    {isOnThisDevice && (
-                        <MobileBankIdOtherDevice
-                            ssn={ssn}
-                            ssnIsValid={ssnIsValid}
-                            startLogin={this.startLogin}
-                            validateSsn={validateSsn}
-                            onSsnChange={this.onSsnChange}
-                            onSsnValidation={this.onSsnValidation}
-                            toggleState={this.toggleState}
-                        />
-                    )}
+                    <span className="debug-small">touch device</span>
+
+                    <MobileBankIdOtherDevice
+                        isVisible={!isOnThisDevice}
+                        ssn={ssn}
+                        ssnIsValid={ssnIsValid}
+                        startLogin={this.startLogin}
+                        validateSsn={validateSsn}
+                        onSsnChange={this.onSsnChange}
+                        onSsnValidation={this.onSsnValidation}
+                        toggleState={this.toggleState}
+                    />
+
+                    <MobileBankIdThisDevice
+                        isVisible={isOnThisDevice}
+                        startLogin={this.startLogin}
+                        toggleState={this.toggleState}
+                    />
                 </TouchDevice>
+
                 <aside className="help">
                     <Button
                         id="help"
@@ -186,13 +192,13 @@ class LoginFormSE extends Component {
                         onClick={() => this.toggleState('isHelpVisible')}
                         link
                     >
-                        {`${i18n('general.buttons.help')}:3`}
+                        {i18n('general.buttons.help')}
                         <span className="home-login-page__icon help__icon">&nbsp;</span>
                     </Button>
                 </aside>
                 {isLoggingIn && (
                     <LoginInProgress
-                        isDesktop
+                        isDesktop={isDesktop}
                         isOnThisDevice={this.state.isOnThisDevice}
                         toggleState={this.toggleState}
                         cancelLogin={this.cancelLogin}

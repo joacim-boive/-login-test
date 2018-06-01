@@ -22,14 +22,26 @@ body {
 
     padding: 10px;
 
+    // TODO remove later
     .debug {
-        color: #c4dcf2;
+        color: #cde3f2;
         position: absolute;
         top: 4px;
         left: 4px;
         font-family: verdana, sans-serif;
         font-weight: bold;
         font-size: 24px;
+    }
+
+    // TODO remove later
+    .debug-small {
+        color: #cde3f2;
+        position: absolute;
+        top: 32px;
+        left: 4px;
+        font-family: verdana, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
     }
 
     @include grid((
