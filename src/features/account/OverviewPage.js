@@ -16,8 +16,7 @@ export class OverviewPage extends Component {
         getAccounts: PropTypes.func.isRequired,
     };
 
-    constructor(props) {
-        super(props);
+    componentWillMount() {
         this.props.getAccounts(this.props.user.id);
     }
 
