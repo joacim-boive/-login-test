@@ -3,6 +3,7 @@
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da
 
 import { AUTHENTICATION_REMOVE_SESSION } from './constants';
+import { loginStatus, loginProgress } from './initialState';
 
 export function removeSession() {
     return {
@@ -15,8 +16,8 @@ export function reducer(state, action) {
         case AUTHENTICATION_REMOVE_SESSION:
             return {
                 ...state,
-                loginStatus: {},
-                loginProgress: {},
+                loginStatus,
+                loginProgress,
             };
 
         default:
