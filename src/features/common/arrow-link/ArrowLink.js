@@ -14,7 +14,7 @@ export const ArrowLink = ({ className, icon, text, onClick, ...rest }) => {
         <ButtonPanel {...rest} className={classes} onClick={onClick}>
             {icon ? <i className={icon} /> : null}
             <div className="arrow-link__wrapper">
-                <label>{text}</label>
+                <div>{text}</div>
                 <i className="icon-chevron-right" />
             </div>
         </ButtonPanel>
