@@ -8,17 +8,18 @@ import { LoginFormFI, LoginFormSE } from './index';
 
 class LoginForm extends Component {
     render() {
-        // const { country } = this.props;
         const { country, ...rest } = this.props;
+        let loginForm = <div>LoginForm: Oops... unknown country config {country}</div>;
+
         if (country === 'SE') {
-            // return <div>LoginSE</div>;
-            return <LoginFormSE {...rest} />;
+            loginForm = <LoginFormSE {...rest} />;
         }
+
         if (country === 'FI') {
-            // return <div>LoginFI</div>;
-            return <LoginFormFI {...rest} />;
+            loginForm = <LoginFormFI {...rest} />;
         }
-        return <div>LoginForm: Ooops... unknown country config {country}</div>;
+
+        return <section className="home-login-page__form">{loginForm}</section>;
     }
 }
 

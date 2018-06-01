@@ -11,29 +11,6 @@ body {
     background-size: contain;
 }
 
-//    /* Overrides from imported stylesheet(s) */
-//    & .button {
-//        //font-size: 1.8rem; // REM is more accessible than PX
-//
-//        //&.--round {
-//        //    & > span:first-child {
-//        //        //padding: 0 25px;
-//        //        //line-height: 44px; // Make the text to center vertically as the button height is 44px;
-//        //        //height: 100%;
-//        //        //display: inline-block;
-//        //
-//        //        //.spinner {
-//        //        //    max-width: 44px; // Needed for IE11 to size the button with a spinner correctly
-//        //        //}
-//        //    }
-//        //}
-//    }
-//
-//    & .home-login-page__link {
-//        //font-size: 1.4rem;
-//    }
-//}
-
 .home-login-page {
     @include grid-cell(1, 1, 1, 1);
 
@@ -50,16 +27,6 @@ body {
         cols: 1fr
     ));
 
-    //label {
-    //    padding: 0 0 0 1rem;
-    //}
-
-    .overlay--compact {
-        .button {
-            //margin-top: 40px;
-        }
-    }
-
     &__logo {
         @include grid-cell(1, 1, 1, 1); /* We need to specify the row as well, since we use the row position for other items */
         @include x-align(center);
@@ -75,11 +42,12 @@ body {
 
     &__box {
         @include grid-cell(1, 1, 1, 1); /* We need to specify the row as well, since we use the row positon for other items */
-        //
-        //@include grid((
-        //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-        //    rows: 2rem 1fr
-        //));
+
+        @include grid((
+            cols: 1fr, // Needed for IE11 to correctly center the items, otherwise they will center around the longest item.
+            rows: 2rem 1fr
+        ));
+
         @include xy-align();
 
         overflow: hidden;
@@ -96,65 +64,62 @@ body {
         @include grid-cell(1, 1, 1, -1);
         margin-bottom: 30px;
 
-        @include grid((
-            cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-            rows: 1fr
-        ));
+        //@include grid((
+        //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
+        //    rows: 1fr
+        //));
 
         &--help {
-            @include grid-cell(1, 1, 1, 1);
+            //@include grid-cell(1, 1, 1, 1);
 
-            @include grid((
-                cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-                rows: 1fr
-            ));
+            //@include grid((
+            //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
+            //    rows: 1fr
+            //));
 
             transform: translateX(100%);
             will-change: transform;
         }
-    }
 
-    h1, h2 { // , &__header
-        @include x-align(center);
-        @include grid-cell(1, -1, 1, 1);
+        h1, h2 { // , &__header
+            //@include x-align(center);
+            //@include grid-cell(1, -1, 1, 1);
 
-        //margin: 0 0 20px;
-        color: $green120;
-        font-weight: 700;
-        //font-size: 3.6rem;
-        //font-weight: 600;
-        text-align: center;
-    }
+            //margin: 0 0 20px;
+            color: $green120;
+            font-weight: 700;
+            //font-size: 3.6rem;
+            //font-weight: 600;
+            text-align: center;
+        }
 
-    h1 {
-        font-size: 36px;
-        margin: 40px 0;
-    }
+        h1 {
+            font-size: 36px;
+            margin: 40px 0;
+        }
 
-    h2 {
-        font-size: 26px;
-        margin: 20px 0 30px;
-    }
+        h2 {
+            font-size: 26px;
+            margin: 20px 0 30px;
+        }
 
-    .text-input {
-        //input {
+        .text-input {
+            //input {
             width: 27rem;
             //height: 4.4rem;
             //border-radius: 6px;
-        //}
-        margin-bottom: 20px;
+            //}
+            margin: 0 auto 30px auto;
+        }
+
+        .button.--round {
+            display: block;
+            margin: 0 auto 30px auto;
+        }
+
     }
 
-    .button.--round {
-        margin-bottom: 20px;
-    }
 
-    &__button {
-        @include x-align(center);
-        @include grid-cell(1, 1, 2, 1);
-
-        //margin: 50px 0 0 0;
-    }
 
     &__link {
         color: $green;
@@ -167,8 +132,8 @@ body {
 
         &--bankid {
             display: block; // Needed for IE11 to get the correct stack order
-            @include x-align(center);
-            @include grid-cell(1, 1, 3, 1);
+            //@include x-align(center);
+            //@include grid-cell(1, 1, 3, 1);
 
             //margin: 30px 0 0 0;
         }
@@ -181,8 +146,8 @@ body {
     }
 
     & .help {
-        @include grid-cell(1, 1, 1, 1);
-        @include x-align(end);
+        //@include grid-cell(1, 1, 1, 1);
+        //@include x-align(end);
 
         &__icon:after {
             border: 1px solid;
@@ -211,18 +176,18 @@ body {
         }
 
         .text-input {
-            @include grid-cell(1, 1, 2, 1);
-            @include x-align(center);
+            //@include grid-cell(1, 1, 2, 1);
+            //@include x-align(center);
 
             //margin-bottom: 20px;
         }
         .home-login-page__button {
-            @include grid-cell(1, 1, 3, 1);
+            //@include grid-cell(1, 1, 3, 1);
 
             //margin-top: 20px;
         }
         .home-login-page__link {
-            @include grid-cell(1, 1, 4, 1);
+            //@include grid-cell(1, 1, 4, 1);
 
             //margin-top: 40px;
         }
@@ -337,42 +302,42 @@ body {
             @include grid-row(1);
         }
 
-        &__form {
-            //margin-bottom: 80 - $box-padding;
-        }
+        //&__form {
+        //    //margin-bottom: 80 - $box-padding;
+        //}
+        //
+        //&__header {
+        //    //margin-top: 60 - $box-padding;
+        //}
+        //
+        //.text-input {
+        //    //@include grid-row(2);
+        //    //@include x-align(center);
+        //
+        //    //margin-top: 40px;
+        //
+        //    //span {
+        //    //    display: block; // div isn't allowed inside label
+        //    //    margin-left: 1rem;
+        //    //}
+        //    //
+        //    //label {
+        //    //    //font-size: 1.4rem;
+        //    //}
+        //}
 
-        &__header {
-            //margin-top: 60 - $box-padding;
-        }
-
-        .text-input {
-            @include grid-row(2);
-            @include x-align(center);
-
-            //margin-top: 40px;
-
-            span {
-                display: block; // div isn't allowed inside label
-                margin-left: 1rem;
-            }
-
-            label {
-                font-size: 1.4rem;
-            }
-        }
-
-        &__button {
-            @include grid-row(3);
-
-            //margin-top: 30px;
-        }
-
-        &__link {
-            &--bankid {
-                @include grid-row(4);
-
-                //margin-top: 30px;
-            }
-        }
+        //&__button {
+        //    //@include grid-row(3);
+        //
+        //    //margin-top: 30px;
+        //}
+        //
+        //&__link {
+        //    &--bankid {
+        //        //@include grid-row(4);
+        //
+        //        //margin-top: 30px;
+        //    }
+        //}
     }
 }

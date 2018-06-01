@@ -14,6 +14,19 @@ class LoginFormFI extends Component {
         return (
             <div className="authentication-login-form-fi">
                 <h1>Tupas Login</h1>
+                <strong>Välj bank</strong>
+                <ul>
+                    <li>Handelsbanken</li>
+                    <li>Nordea</li>
+                    <li>OP Bank Group</li>
+                    <li>Danske Bank</li>
+                    <li>Aktia</li>
+                    <li>Savings Bank</li>
+                    <li>POP Bank</li>
+                    <li>Bank of Åland</li>
+                    <li>S-Bank</li>
+                    <li>OmaSP</li>
+                </ul>
             </div>
         );
     }

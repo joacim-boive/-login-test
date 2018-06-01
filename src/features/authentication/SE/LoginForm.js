@@ -15,6 +15,8 @@ import LoginInProgress from './LoginInProgress';
 import LoginHelp from './LoginHelp';
 import LoginOther from './LoginOther';
 
+import MobileBankidOtherUnit from './MobileBankidOtherUnit';
+
 class LoginFormSE extends Component {
     state = {
         ssn: '',
@@ -137,49 +139,53 @@ class LoginFormSE extends Component {
             <React.Fragment>
                 {!isBankIdOtherDeviceVisible && (
                     <React.Fragment>
-                        <section className="home-login-page__form">
-                            <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
+                        <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
 
-                            <DesktopDevice>
-                                <Input
-                                    id="ssn"
-                                    name="ssn"
-                                    label={`${i18n('home.login.labels.ssn')} (1)`}
-                                    placeholder={i18n('home.login.placeholders.ssn')}
-                                    value={ssn}
-                                    onChange={this.onSsnChange}
-                                    onValidation={this.onSsnValidation}
-                                    validator={validateSsn}
-                                    validationMessage={i18n('home.login.otherDevice.ssn-validation')}
-                                    type="tel"
-                                />
-                            </DesktopDevice>
-                            <Button
-                                id="button-bankid-this-unit"
-                                className="home-login-page__button"
-                                onClick={() =>
-                                    this.startLogin(
-                                        isDesktop
-                                            ? { type: 'BANKID_MOBILE', isOnThisDevice: false }
-                                            : { type: 'BANKID', isOnThisDevice: true }
-                                    )
-                                }
-                                round
-                                disabled={this.state.isOnThisDevice && !ssnIsValid}
-                            >
-                                {`${i18n('home.login.buttons.mobileBankId')}:1`}
-                            </Button>
-                            <Button
-                                id="button-switch-to-bank-id-other"
-                                className="home-login-page__link home-login-page__link--bankid"
-                                onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
-                                link
-                            >
-                                {`${i18n(
-                                    `home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`
-                                )}:2`}
-                            </Button>
-                        </section>
+                        <DesktopDevice>
+                            {/* <Input */}
+                            {/* id="ssn" */}
+                            {/* name="ssn" */}
+                            {/* label={`${i18n('home.login.labels.ssn')} (1)`} */}
+                            {/* placeholder={i18n('home.login.placeholders.ssn')} */}
+                            {/* value={ssn} */}
+                            {/* onChange={this.onSsnChange} */}
+                            {/* onValidation={this.onSsnValidation} */}
+                            {/* validator={validateSsn} */}
+                            {/* validationMessage={i18n('home.login.otherDevice.ssn-validation')} */}
+                            {/* type="tel" */}
+                            {/* /> */}
+                            <MobileBankidOtherUnit
+                                ssn={ssn}
+                                ssnIsValid={ssnIsValid}
+                                startLogin={this.startLogin}
+                                validateSsn={validateSsn}
+                                onSsnChange={this.onSsnChange}
+                                onSsnValidation={this.onSsnValidation}
+                            />
+                        </DesktopDevice>
+                        <Button
+                            id="button-bankid-this-unit"
+                            className="home-login-page__button"
+                            onClick={() =>
+                                this.startLogin(
+                                    isDesktop
+                                        ? { type: 'BANKID_MOBILE', isOnThisDevice: false }
+                                        : { type: 'BANKID', isOnThisDevice: true }
+                                )
+                            }
+                            round
+                            disabled={this.state.isOnThisDevice && !ssnIsValid}
+                        >
+                            {`${i18n('home.login.buttons.mobileBankId')}:1`}
+                        </Button>
+                        <Button
+                            id="button-switch-to-bank-id-other"
+                            className="home-login-page__link home-login-page__link--bankid"
+                            onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
+                            link
+                        >
+                            {`${i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`)}:2`}
+                        </Button>
                         <aside className="help">
                             <Button
                                 id="help"
