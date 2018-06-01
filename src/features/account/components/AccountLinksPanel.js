@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Translate } from '@ecster/ecster-i18n';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ArrowLink } from './../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
-
-const i18n = Translate.getText;
 
 export const AccountLinksPanel = ({ className, ...rest }) => {
     const classes = classNames({
