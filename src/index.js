@@ -24,7 +24,7 @@ const initApplication = config => {
     // TODO: tmp solution, fix later
     const lang = window.location.hash.split('?lang=')[1] || 'sv';
 
-    store.dispatch(setApplicationCountry('FI'));
+    store.dispatch(setApplicationCountry('SE'));
     store.dispatch(setLocale('sv-SE'));
 
     if (config && config.ajaxBaseUrl) {

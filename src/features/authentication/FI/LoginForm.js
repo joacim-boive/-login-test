@@ -25,3 +25,5 @@ LoginFormFI.propTypes = {
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
 };
+
+export default LoginFormFI;

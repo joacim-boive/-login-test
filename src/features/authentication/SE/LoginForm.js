@@ -15,7 +15,7 @@ import LoginInProgress from './LoginInProgress';
 import LoginHelp from './LoginHelp';
 import LoginOther from './LoginOther';
 
-export class LoginFormSE extends Component {
+class LoginFormSE extends Component {
     state = {
         ssn: '',
         isBankIdOtherDeviceVisible: false,
@@ -226,3 +226,5 @@ LoginFormSE.propTypes = {
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
 };
+
+export default LoginFormSE;

@@ -75,11 +75,11 @@ body {
 
     &__box {
         @include grid-cell(1, 1, 1, 1); /* We need to specify the row as well, since we use the row positon for other items */
-
-        @include grid((
-            cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-            rows: 2rem 1fr
-        ));
+        //
+        //@include grid((
+        //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
+        //    rows: 2rem 1fr
+        //));
         @include xy-align();
 
         overflow: hidden;
