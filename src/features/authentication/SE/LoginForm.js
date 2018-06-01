@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
-// import * as actions from '../redux/actions';
 
 import { Redirect } from 'react-router';
 
-import { Button, Input, detectDevice, DesktopDevice } from '@ecster/ecster-components';
+import { Button, detectDevice, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
 import validateSsn from '@ecster/ecster-components/Input/validators/persNr';
 
 import LoginInProgress from './LoginInProgress';
 import LoginHelp from './LoginHelp';
-import LoginOther from './LoginOther';
+// import LoginOther from './LoginOther';
 
-import MobileBankidOtherUnit from './MobileBankidOtherUnit';
+import MobileBankIdOtherDevice from './MobileBankIdOtherDevice';
+import BankIdThisDevice from './BankIdThisDevice';
 
 class LoginFormSE extends Component {
     state = {
@@ -25,8 +23,13 @@ class LoginFormSE extends Component {
         isHelpVisible: false,
         isOverlayVisible: false,
         isLoggingIn: false,
-        isOnThisDevice: false,
+
+        // these two states describes which view to show
+        //   Desktop - mbid other device (default) or bid this device
+        //   Touch - mbid this device (default) or mbid other device
         isDesktop: detectDevice().isDesktop,
+        isOnThisDevice: !detectDevice().isDesktop,
+
         ssnIsValid: false,
     };
 
@@ -124,7 +127,15 @@ class LoginFormSE extends Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const { isDesktop, isHelpVisible, isLoggingIn, isBankIdOtherDeviceVisible, ssn, ssnIsValid } = this.state;
+        const {
+            isOnThisDevice,
+            isDesktop,
+            isHelpVisible,
+            isLoggingIn,
+            isBankIdOtherDeviceVisible,
+            ssn,
+            ssnIsValid,
+        } = this.state;
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
@@ -137,81 +148,48 @@ class LoginFormSE extends Component {
 
         return (
             <React.Fragment>
-                {!isBankIdOtherDeviceVisible && (
-                    <React.Fragment>
-                        <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
+                <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
 
-                        <DesktopDevice>
-                            {/* <Input */}
-                            {/* id="ssn" */}
-                            {/* name="ssn" */}
-                            {/* label={`${i18n('home.login.labels.ssn')} (1)`} */}
-                            {/* placeholder={i18n('home.login.placeholders.ssn')} */}
-                            {/* value={ssn} */}
-                            {/* onChange={this.onSsnChange} */}
-                            {/* onValidation={this.onSsnValidation} */}
-                            {/* validator={validateSsn} */}
-                            {/* validationMessage={i18n('home.login.otherDevice.ssn-validation')} */}
-                            {/* type="tel" */}
-                            {/* /> */}
-                            <MobileBankidOtherUnit
-                                ssn={ssn}
-                                ssnIsValid={ssnIsValid}
-                                startLogin={this.startLogin}
-                                validateSsn={validateSsn}
-                                onSsnChange={this.onSsnChange}
-                                onSsnValidation={this.onSsnValidation}
-                            />
-                        </DesktopDevice>
-                        <Button
-                            id="button-bankid-this-unit"
-                            className="home-login-page__button"
-                            onClick={() =>
-                                this.startLogin(
-                                    isDesktop
-                                        ? { type: 'BANKID_MOBILE', isOnThisDevice: false }
-                                        : { type: 'BANKID', isOnThisDevice: true }
-                                )
-                            }
-                            round
-                            disabled={this.state.isOnThisDevice && !ssnIsValid}
-                        >
-                            {`${i18n('home.login.buttons.mobileBankId')}:1`}
-                        </Button>
-                        <Button
-                            id="button-switch-to-bank-id-other"
-                            className="home-login-page__link home-login-page__link--bankid"
-                            onClick={() => this.toggleState('isBankIdOtherDeviceVisible')}
-                            link
-                        >
-                            {`${i18n(`home.login.links.${isDesktop ? 'desktop' : 'mobile'}.mobileBankId`)}:2`}
-                        </Button>
-                        <aside className="help">
-                            <Button
-                                id="help"
-                                className="home-login-page__link home-login-page__link--help"
-                                onClick={() => this.toggleState('isHelpVisible')}
-                                link
-                            >
-                                {`${i18n('general.buttons.help')}:3`}
-                                <span className="home-login-page__icon help__icon">&nbsp;</span>
-                            </Button>
-                        </aside>
-                    </React.Fragment>
-                )}
-                {isBankIdOtherDeviceVisible && (
-                    <LoginOther
-                        header={i18n(`home.login.otherDevice.header.${isDesktop ? 'desktop' : 'mobile'}`)}
-                        type={isDesktop ? 'BANKID' : 'BANKID_MOBILE'}
-                        ssn={ssn}
-                        isLoggingIn={isLoggingIn}
-                        isDesktop={isDesktop}
-                        cancelLogin={this.cancelLogin}
-                        onSsnChange={this.onSsnChange}
-                        startLogin={this.startLogin}
-                        toggleState={this.toggleState}
-                    />
-                )}
+                <DesktopDevice>
+                    {!isOnThisDevice && (
+                        <MobileBankIdOtherDevice
+                            ssn={ssn}
+                            ssnIsValid={ssnIsValid}
+                            startLogin={this.startLogin}
+                            validateSsn={validateSsn}
+                            onSsnChange={this.onSsnChange}
+                            onSsnValidation={this.onSsnValidation}
+                            toggleState={this.toggleState}
+                        />
+                    )}
+
+                    {isOnThisDevice && <BankIdThisDevice startLogin={this.startLogin} toggleState={this.toggleState} />}
+                </DesktopDevice>
+
+                <TouchDevice>
+                    {isOnThisDevice && (
+                        <MobileBankIdOtherDevice
+                            ssn={ssn}
+                            ssnIsValid={ssnIsValid}
+                            startLogin={this.startLogin}
+                            validateSsn={validateSsn}
+                            onSsnChange={this.onSsnChange}
+                            onSsnValidation={this.onSsnValidation}
+                            toggleState={this.toggleState}
+                        />
+                    )}
+                </TouchDevice>
+                <aside className="help">
+                    <Button
+                        id="help"
+                        className="home-login-page__link home-login-page__link--help"
+                        onClick={() => this.toggleState('isHelpVisible')}
+                        link
+                    >
+                        {`${i18n('general.buttons.help')}:3`}
+                        <span className="home-login-page__icon help__icon">&nbsp;</span>
+                    </Button>
+                </aside>
                 {isLoggingIn && (
                     <LoginInProgress
                         isDesktop
