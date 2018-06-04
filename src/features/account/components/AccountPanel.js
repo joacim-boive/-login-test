@@ -53,7 +53,7 @@ class AccountPanel extends Component {
                         </TabletOrDesktop>
                         <NextPaymentPanel bills={accountBills[reference]} className="account-panel__next-payment" />
                     </div>
-                    <AccountLinksPanel className="account-panel__account-links" />
+                    <AccountLinksPanel account={account} className="account-panel__account-links" />
                 </ResponsivePanel>
             </section>
         );

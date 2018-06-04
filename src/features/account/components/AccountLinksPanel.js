@@ -5,28 +5,36 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ArrowLink } from './../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
-export const AccountLinksPanel = ({ className, ...rest }) => {
+export const AccountLinksPanel = ({ className, account, ...rest }) => {
     const classes = classNames({
         'account-links-panel': true,
         [className]: className,
     });
 
+    if (!account) return null;
+
     return (
         <div {...rest} className={classes}>
-            <ArrowLink text={i18n('account.links.event')} icon="icon-minimize-2" onClick={() => {}} />
-            <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" onClick={() => {}} />
-            <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" onClick={() => {}} />
-            <ArrowLink text={i18n('account.links.bills')} icon="icon-file" onClick={() => {}} />
-            <ArrowLink text={i18n('account.links.card')} icon="icon-book" onClick={() => {}} />
-            <ArrowLink text={i18n('account.links.terms')} icon="icon-info" onClick={() => {}} />
+            <ArrowLink
+                text={i18n('account.links.event')}
+                icon="icon-minimize-2"
+                to={`/account/${account.accountNumber}/transactions`}
+            />
+            <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" />
+            <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" />
+            <ArrowLink text={i18n('account.links.bills')} icon="icon-file" />
+            <ArrowLink text={i18n('account.links.card')} icon="icon-book" />
+            <ArrowLink text={i18n('account.links.terms')} icon="icon-info" />
         </div>
     );
 };
 
 AccountLinksPanel.propTypes = {
     className: PropTypes.string,
+    account: PropTypes.shape(),
 };
 
 AccountLinksPanel.defaultProps = {
     className: '',
+    account: '',
 };
