@@ -37,8 +37,6 @@ class TabletDesktopNavigation extends React.Component {
         const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
         const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
 
-        console.log('render: ', this.state);
-
         return (
             <TopNavigation>
                 <TopMenu>

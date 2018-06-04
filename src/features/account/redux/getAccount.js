@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_URL } from './urls';
 
-export const getAccount = (customerId, refcode) => async (dispatch) => {
+export const getAccount = (customerId, refcode) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_BEGIN,
     });
@@ -18,12 +18,12 @@ export const getAccount = (customerId, refcode) => async (dispatch) => {
         const res = await get(GET_ACCOUNT_URL(customerId, refcode));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_SUCCESS,
-            data: res.response
+            data: res.response,
         });
     } catch (err) {
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_FAILURE,
-            data: { error: err }
+            data: { error: err },
         });
     }
 };

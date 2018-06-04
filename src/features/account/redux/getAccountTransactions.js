@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_TRANSACTIONS_URL } from './urls';
 
-export const getAccountTransactions = (customerId, referenceId, offset, maxRecords) => async (dispatch) => {
+export const getAccountTransactions = (customerId, referenceId, offset, maxRecords) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
     });
@@ -19,6 +19,7 @@ export const getAccountTransactions = (customerId, referenceId, offset, maxRecor
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
             data: res.response,
+            referenceId,
         });
     } catch (err) {
         dispatch({
@@ -42,7 +43,7 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
-                accountTransactions: action.data,
+                accountTransactions: { ...state.accountTransactions, [action.referenceId]: action.data },
                 getAccountTransactionsPending: false,
                 getAccountTransactionsError: null,
             };

@@ -28,6 +28,12 @@ export default class Overlay extends Component {
         buttonCloseLabel: undefined,
     };
 
+    constructor(props) {
+        super(props);
+
+        this.animationFrameRef = null; // Used to delete by reference on unmount
+    }
+
     componentDidMount() {
         // eslint-disable-next-line no-unused-expressions
         !this.props.isNoClose && document.addEventListener('keydown', this.onEscape, false);
@@ -40,6 +46,7 @@ export default class Overlay extends Component {
         // eslint-disable-next-line no-unused-expressions
         !this.props.isNoClose && document.removeEventListener('keydown', this.onEscape, false);
         document.removeEventListener('transitionend', this.removeComponent, false);
+        if (this.animationFrameRef) window.cancelAnimationFrame(this.animationFrameRef);
     }
 
     onEscape = event => {
@@ -50,17 +57,7 @@ export default class Overlay extends Component {
     };
 
     showWindow = () => {
-        setTimeout(() => {
-            const overlay = document.querySelector('.overlay');
-
-            if (overlay) {
-                overlay.classList.add('show');
-            } else {
-                console.log('Retry');
-                this.props.toggleOverlay(true);
-                window.requestAnimationFrame(this.showWindow);
-            }
-        }, 100);
+        this.overlayRef.classList.add('show');
     };
 
     hideWindow = () => {
@@ -87,7 +84,7 @@ export default class Overlay extends Component {
         const className = classNames('overlay', { 'overlay--compact': isCompact });
 
         return (
-            <div className={className}>
+            <div ref={ref => (this.overlayRef = ref)} className={className}>
                 <article>
                     <h1>{i18n(header)}</h1>
                     <div dangerouslySetInnerHTML={{ __html: thisBody }} />

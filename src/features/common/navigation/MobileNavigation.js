@@ -8,6 +8,7 @@ import { Translate } from '@ecster/ecster-i18n';
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
 import { SvgIconHamburger, SvgIconInvoices, SvgIconLoan, SvgIconOverview } from '../../../common/images/index';
 import './MobileNavigation.scss';
+import { InteractiveElement } from '../interactive-element/InteractiveElement';
 
 const i18n = Translate.getText;
 
@@ -60,16 +61,17 @@ class MobileNavigation extends React.Component {
                         <SvgIconLoan />
                         <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
                     </MenuItem>
-                    <div
-                        onClick={this.toggleSubMenu}
-                        className={classNames({
-                            'menu-item': true,
-                            active: showSubMenu,
-                        })}
-                    >
-                        <SvgIconHamburger />
-                        <MenuItemText>{i18n('navigation.more')}</MenuItemText>
-                    </div>
+                    <InteractiveElement onClick={this.toggleSubMenu}>
+                        <div
+                            className={classNames({
+                                'menu-item': true,
+                                active: showSubMenu,
+                            })}
+                        >
+                            <SvgIconHamburger />
+                            <MenuItemText>{i18n('navigation.more')}</MenuItemText>
+                        </div>
+                    </InteractiveElement>
                 </BottomMenu>
                 <SubMenu bottom show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
                     <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>

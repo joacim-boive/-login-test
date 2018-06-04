@@ -4,56 +4,38 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import { getAccounts } from './redux/getAccounts';
+import AccountPanel from './components/AccountPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
-        account: PropTypes.object.isRequired,
+        accounts: PropTypes.array.isRequired,
+        accountsActive: PropTypes.array.isRequired,
         actions: PropTypes.object.isRequired,
+        user: PropTypes.object.isRequired,
+        getAccounts: PropTypes.func.isRequired,
     };
 
-    render() {
-        const styles = {
-            padding: '12px',
-            background: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '2px',
-            minHeight: '150px',
-        };
+    componentWillMount() {
+        this.props.getAccounts(this.props.user.id);
+    }
 
+    componentWillReceiveProps(nextProps) {
+        const nextUser = nextProps.user;
+        const currUser = this.props.user;
+        if (nextUser && nextUser.id !== currUser.id) {
+            this.props.getAccounts(nextUser.id);
+        }
+    }
+
+    render() {
+        const { accountsActive, user } = this.props;
         return (
             <AuthenticatedPageTemplate header="Översikt">
-                <div style={styles} className="account-overview-page">
-                    <h3>Account / overview page</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur dolor nec nibh
-                        iaculis porttitor. Vestibulum magna lacus, placerat id erat sed, hendrerit eleifend erat. Proin
-                        convallis vel diam consequat condimentum. Aliquam pretium elementum leo, ac accumsan enim
-                        bibendum luctus.
-                    </p>
+                <div className="account-overview-page">
+                    {accountsActive.map(account => (
+                        <AccountPanel key={account.reference} account={account} user={user} />
+                    ))}
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -63,7 +45,9 @@ export class OverviewPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        account: state.account,
+        accounts: state.account.accounts,
+        accountsActive: state.account.accountsActive,
+        user: state.authentication.person,
     };
 }
 
@@ -71,6 +55,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({ ...actions }, dispatch),
+        getAccounts: userId => dispatch(getAccounts(userId)),
     };
 }
 

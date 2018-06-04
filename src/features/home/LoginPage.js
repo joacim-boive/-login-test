@@ -18,8 +18,6 @@ import Media from 'react-media';
 import { Button, Input } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
-import { whyDidYouUpdate } from 'why-did-you-update';
-
 import { createSession, getSession } from '../authentication/redux/actions';
 
 import Overlay from '../common/Overlay';
@@ -32,10 +30,6 @@ import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 
 import '../../common/util/handle-scaling';
 import loadFont from '../../common/util/load-font';
-
-if (process.env.NODE_ENV !== 'production') {
-    whyDidYouUpdate(React);
-}
 
 loadFont('PT Sans');
 

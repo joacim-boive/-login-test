@@ -1,5 +1,9 @@
-@import '../../styles/mixins';
-
 .account-overview-page {
-
+    &> * {
+        margin-top: 100px;
+        
+        &:first-child {
+            margin-top: 0px;
+        }
+    }
 }

@@ -21,6 +21,7 @@
         "no_underscore_dangle": 0,
         "no-console": 0,
         "no-shadow": 0,
+        "no-return-assign": [1, "except-parens"],
         "object-curly-newline": 0,
         "global-require": 0,
         "new-cap": 0,

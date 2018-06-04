@@ -4,11 +4,12 @@ const initialState = {
     accountTerms: {}, // TODO: array?
     account: {},
     accountAllowedPartPayments: [],
-    accountBills: [],
+    accountBills: {},
     accountCampaignPurchases: [],
     accountCards: [],
-    accountTransactions: [],
+    accountTransactions: {},
     accounts: [],
+    accountsActive: [],
     accountPaymentTerms: {},
     accountLimitRaiseTerms: {},
 

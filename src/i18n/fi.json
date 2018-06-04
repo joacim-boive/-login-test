@@ -9,7 +9,23 @@
         "cancel": "Peruuta"
     },
     "account": {
-        "overview-header": "yleiskatsaus"
+        "overview-header": "yleiskatsaus",
+        "next-payment": {
+            "header": "",
+            "deadline": "",
+            "pay-in": ""
+        },
+        "latest-transactions": {
+            "header": ""
+        },
+        "links": {
+            "event": "",
+            "credit": "",
+            "part-payment": "",
+            "bills": "",
+            "card": "",
+            "terms": ""
+        }
     },
     "authentication": {},
     "common": {
