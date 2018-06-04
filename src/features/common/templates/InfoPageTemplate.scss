@@ -1,20 +1,55 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
 @import "~@ecster/ecster-components/scss/MediaQuery";
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+@import '../../../styles/mixins';
+@import '../../../styles/constants';
 
 .common-info-page {
-    height: 100%;
-    margin: 0 auto;
-    text-align: left;
-    padding: 20px;
-    max-width: 600px;
+    .hero-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-    @include mobile() {
+        height: 40px;
+
+        a {
+            font-size: 24px;
+            color: $beige140;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Campton';
+            color: $beige140;
+            font-weight: $weight-medium;
+            font-size: 20px;
+            text-align: center;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
     }
+    
+    .page-content {
+        @mixin tabletOrDesktop() {
+            max-width: $content-max-width-desktop;
+            margin: 14px auto 0;
+        }
 
-    @include tablet() {
+        @include mobile() {
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 66px;
+        }
+
+        @include tablet() {
+            @include tabletOrDesktop();
+        }
+
+        @include desktop() {
+            @include tabletOrDesktop();
+
+        }
     }
-
-    @include desktop() {
-    }
-
 }

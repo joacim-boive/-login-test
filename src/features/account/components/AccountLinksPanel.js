@@ -5,7 +5,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ArrowLink } from './../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
-export const AccountLinksPanel = ({ className, account, ...rest }) => {
+export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
     const classes = classNames({
         'account-links-panel': true,
         [className]: className,
@@ -18,7 +18,7 @@ export const AccountLinksPanel = ({ className, account, ...rest }) => {
             <ArrowLink
                 text={i18n('account.links.event')}
                 icon="icon-minimize-2"
-                to={`/account/${account.accountNumber}/transactions`}
+                to={`/customer/${user.id}/account/${account.reference}/transactions`}
             />
             <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" />
             <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" />
@@ -31,10 +31,10 @@ export const AccountLinksPanel = ({ className, account, ...rest }) => {
 
 AccountLinksPanel.propTypes = {
     className: PropTypes.string,
-    account: PropTypes.shape(),
+    account: PropTypes.shape().isRequired,
+    user: PropTypes.shape().isRequired,
 };
 
 AccountLinksPanel.defaultProps = {
     className: '',
-    account: '',
 };

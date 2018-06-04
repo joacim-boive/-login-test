@@ -26,6 +26,7 @@ class AccountPanel extends Component {
             account: { reference },
             accountBills,
             accountTransactions,
+            user,
         } = this.props;
 
         const classes = classNames({
@@ -53,7 +54,7 @@ class AccountPanel extends Component {
                         </TabletOrDesktop>
                         <NextPaymentPanel bills={accountBills[reference]} className="account-panel__next-payment" />
                     </div>
-                    <AccountLinksPanel account={account} className="account-panel__account-links" />
+                    <AccountLinksPanel account={account} user={user} className="account-panel__account-links" />
                 </ResponsivePanel>
             </section>
         );
