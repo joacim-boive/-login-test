@@ -25,6 +25,11 @@
             "bills": "",
             "card": "",
             "terms": ""
+        },
+        "summary": {
+            "left": "",
+            "used": "",
+            "total": ""
         }
     },
     "authentication": {},

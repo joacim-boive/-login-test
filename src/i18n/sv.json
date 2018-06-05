@@ -25,6 +25,11 @@
             "bills": "Månadsfakturor",
             "card": "Hantera kort",
             "terms": "Kontovillkor"
+        },
+        "summary": {
+            "left": "Kvar att handla för:",
+            "used": "Använd kredit:",
+            "total": "Total kredit:"
         }
     },
     "authentication": {},
