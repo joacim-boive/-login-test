@@ -10,18 +10,18 @@ export const AccountSummary = ({ account }) => {
     return (
         <div className="account-summary">
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
-                <div className="row">
+                <article>
                     <div>Kvar att handla för:</div>
                     <div>{formatAmountCurrency(spendableMoney, 'sv-SE', 'SEK')}</div>
-                </div>
-                <div className="row">
+                </article>
+                <article className="border-left">
                     <div>Använd kredit:</div>
                     <div>{formatAmountCurrency(account.used, 'sv-SE', 'SEK')}</div>
-                </div>
-                <div className="row">
+                </article>
+                <article className="border-left">
                     <div>Total kredit:</div>
                     <div>{formatAmountCurrency(account.limit, 'sv-SE', 'SEK')}</div>
-                </div>
+                </article>
             </ResponsivePanel>
         </div>
     );

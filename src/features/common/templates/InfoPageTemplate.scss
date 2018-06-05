@@ -1,25 +1,41 @@
-@import "~@ecster/ecster-styles/scss/v2/common/colors";
-@import "~@ecster/ecster-components/scss/MediaQuery";
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 @import '../../../styles/mixins';
 @import '../../../styles/constants';
 
 .common-info-page {
     .hero-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        margin: 10px 0px 10px 0px;
+        
+        @include mobile() {
+            margin: 0px 0px 30px 0px;
 
-        height: 40px;
+            color: white;
+            background-color: $green;
+        }
+
+        div {
+            position: relative;
+            height: 40px;
+            width: 100%;
+        }
 
         a {
+            position: absolute;
+            left: 0;
             font-size: 24px;
             color: $beige140;
             z-index: 1;
+            margin-left: 20px;
+            @include mobile() {
+                color: white;
+            }
         }
 
         h1 {
+            position: absolute;
+            left: 0;
             font-family: 'Campton';
             color: $beige140;
             font-weight: $weight-medium;
@@ -28,18 +44,23 @@
             width: 100%;
             margin: 0px;
             padding: 0px;
+            @include mobile() {
+                color: white;
+                font-weight: $weight-book;
+            }
         }
+
     }
-    
+
     .page-content {
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
-            margin: 14px auto 0;
+            margin: 5px auto 10px;
         }
 
         @include mobile() {
-            padding: 10px;
-            margin-top: 20px;
+            padding: 0px;
+            margin-top: 0px;
             margin-bottom: 66px;
         }
 
@@ -49,7 +70,6 @@
 
         @include desktop() {
             @include tabletOrDesktop();
-
         }
     }
 }

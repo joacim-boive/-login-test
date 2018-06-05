@@ -21,10 +21,12 @@ export default class InfoPageTemplate extends React.Component {
 
         const renderHeader = header && (
             <div className="hero-header">
-                <Link to={linkTo} href={linkTo}>
-                    <i className="icon-arrow-left" />
-                </Link>
-                <h1>{header}</h1>
+                <div>
+                    <Link to={linkTo} href={linkTo}>
+                        <i className="icon-arrow-left" />
+                    </Link>
+                    <h1>{header}</h1>
+                </div>
             </div>
         );
 
