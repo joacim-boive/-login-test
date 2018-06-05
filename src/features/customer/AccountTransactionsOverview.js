@@ -33,7 +33,6 @@ export class AccountTransactionsOverview extends Component {
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 <AccountTransactions transactions={transactions} />
-                <div className="customer-account-transactions-overview">Page Content: account/TransactionsOverview</div>
             </InfoPageTemplate>
         );
     }
