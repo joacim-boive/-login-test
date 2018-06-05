@@ -8,7 +8,7 @@ import { formatDateShort } from './../../../common/util/format-date';
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
-export const TransactionsPanel = ({ transactions }) => {
+export const TransactionsPanel = ({ transactions, header }) => {
     if (transactions.length === 0) return null;
 
     const year = moment(transactions[0].date).format('YYYY');
@@ -17,8 +17,14 @@ export const TransactionsPanel = ({ transactions }) => {
     return (
         <div className="transactions-panel">
             <h2>
-                <span>{month}</span>
-                <span>{year}</span>
+                {header ? (
+                    <span>{header}</span>
+                ) : (
+                    <React.Fragment>
+                        <span>{month}</span>
+                        <span>{year}</span>
+                    </React.Fragment>
+                )}
             </h2>
             <section>
                 {transactions.map(trans => (
@@ -41,4 +47,9 @@ export const TransactionsPanel = ({ transactions }) => {
 
 TransactionsPanel.propTypes = {
     transactions: PropTypes.array.isRequired,
+    header: PropTypes.string,
+};
+
+TransactionsPanel.defaultProps = {
+    header: '',
 };

@@ -59,6 +59,8 @@
         @include mobile() {
             padding: 0px;
             border-radius: 0px;
+            border-left: none;
+            border-right: none;
         }
     }
 }
