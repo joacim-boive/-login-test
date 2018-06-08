@@ -72,8 +72,9 @@ AccountPanel.defaultProps = {
 
 /* istanbul ignore next */
 function mapStateToProps(state, ownProps) {
+    const transactions = state.account.accountTransactions[ownProps.account.reference];
     return {
-        transactions: state.account.accountTransactions[ownProps.account.reference].slice(0, 3), // Only first 3
+        transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
         bills: state.account.accountBills[ownProps.account.reference],
     };
 }
@@ -86,5 +87,7 @@ function mapDispatchToProps(dispatch) {
         getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
     };
 }
+
+export { AccountPanel as Component };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPanel);

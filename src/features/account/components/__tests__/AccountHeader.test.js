@@ -8,7 +8,7 @@ import accountsActiveJSON from './__mocks__/accountsActive.json';
 Enzyme.configure({ adapter: new Adapter() });
 
 const defaultProps = {
-    account: accountsActiveJSON.accounts[0],
+    account: accountsActiveJSON[0],
 };
 
 const shallowRender = props => shallow(<AccountHeader {...defaultProps} {...props} />);

@@ -10,7 +10,7 @@ import userJSON from './__mocks__/user.json';
 Enzyme.configure({ adapter: new Adapter() });
 
 const defaultProps = {
-    account: accountsActiveJSON.accounts[0],
+    account: accountsActiveJSON[0],
     user: userJSON,
     className: '',
 };

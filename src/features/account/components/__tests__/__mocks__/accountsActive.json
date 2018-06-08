@@ -1,40 +1,38 @@
-{
-    "accounts": [
-        {
-            "accountNumber": "9752238000382595",
-            "reference": "CHMNc3UHD1FUCXcKQX5sRgRWNzdGVyLVNIQgxxxxx",
-            "product": {
-                "id": "MCARD004",
-                "name": "Ecster",
-                "cardName": "Ecster kortet"
-            },
-            "limit": 600000,
-            "used": 594728,
-            "maxLimit": 18000000,
-            "overDrawn": false,
-            "allowIncreaseLimit": true,
-            "status": "ACTIVE",
-            "cardProfile": "ecster",
-            "reserved": false,
-            "numberOfCards": 1
+[
+    {
+        "accountNumber": "9752238000382595",
+        "reference": "CHMNc3UHD1FUCXcKQX5sRgRWNzdGVyLVNIQgxxxxx",
+        "product": {
+            "id": "MCARD004",
+            "name": "Ecster",
+            "cardName": "Ecster kortet"
         },
-        {
-            "accountNumber": "9752238000421393",
-            "reference": "CHMNc3UHD1FUCXAAQnhsQARWNzdGVyLVNIQgxxxxx",
-            "product": {
-                "id": "MCARD001",
-                "name": "MultiCard 001",
-                "cardName": "bricka chip"
-            },
-            "limit": 3500000,
-            "used": 3448856,
-            "maxLimit": 5000000,
-            "overDrawn": false,
-            "allowIncreaseLimit": true,
-            "status": "ACTIVE",
-            "cardProfile": "ecster",
-            "reserved": false,
-            "numberOfCards": 1
-        }
-    ]
-}
+        "limit": 600000,
+        "used": 594728,
+        "maxLimit": 18000000,
+        "overDrawn": false,
+        "allowIncreaseLimit": true,
+        "status": "ACTIVE",
+        "cardProfile": "ecster",
+        "reserved": false,
+        "numberOfCards": 1
+    },
+    {
+        "accountNumber": "9752238000421393",
+        "reference": "CHMNc3UHD1FUCXAAQnhsQARWNzdGVyLVNIQgxxxxx",
+        "product": {
+            "id": "MCARD001",
+            "name": "MultiCard 001",
+            "cardName": "bricka chip"
+        },
+        "limit": 3500000,
+        "used": 3448856,
+        "maxLimit": 5000000,
+        "overDrawn": false,
+        "allowIncreaseLimit": true,
+        "status": "ACTIVE",
+        "cardProfile": "ecster",
+        "reserved": false,
+        "numberOfCards": 1
+    }
+]
