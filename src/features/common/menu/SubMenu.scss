@@ -6,7 +6,9 @@
     position: fixed;
     width: 100%;
     z-index: $z-submenu;
-    transition: margin-bottom .25s ease-in-out, margin-top .25s ease-in-out;
+    transform: translateY(-100%);
+    will-change: transform;
+    transition: transform .5s cubic-bezier(1, 0, 0, 1);
 
     &.from-top {
         position: absolute;
@@ -20,6 +22,10 @@
 
     &.from-bottom {
         bottom: 0;
+    }
+
+    &.show{
+        transform: translateY(0);
     }
 }
 

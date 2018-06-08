@@ -35,11 +35,6 @@ export class SubMenu extends React.Component {
 
     render() {
         const { show, requestClose, children, top, bottom } = this.props;
-        const noOfChildren = children.length;
-
-        // note: if changed, update values in StickyNavigation.scss
-        const itemHeight = 45;
-        const menuHeight = 66;
 
         const classes = classNames({
             submenu: true,
@@ -54,30 +49,13 @@ export class SubMenu extends React.Component {
             this.removeListeners();
         }
 
-        let marginBottom = 0;
-        let marginTop = 0;
-
-        if (top) {
-            // show? margin bottom equals menu height
-            // don't show? pull upp menu equal to height of no of items - main menu height + 4px for box shadow
-            // marginTop = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight + 4);
-            marginTop = show ? 0 : -1 * (itemHeight * noOfChildren + 4);
-        }
-
-        if (bottom) {
-            // show? margin bottom equals menu height
-            // don't show? pull down menu equal to height of no of items - main menu height
-            // marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
-            marginBottom = show ? menuHeight : -1 * (itemHeight * noOfChildren - menuHeight);
-        }
-
         return (
-            <div>
+            <React.Fragment>
                 {top && show && <div className="arrow" />}
-                <div className={classes} style={{ marginTop, marginBottom }} onClick={requestClose}>
+                <div role="presentation" className={classes} onClick={requestClose}>
                     {children}
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
@@ -92,7 +70,7 @@ export const SubMenuItem = ({ children, linkTo, iconClass, active }) => {
                 active,
             })}
         >
-            <Link to={linkTo}>
+            <Link to={linkTo} href={linkTo}>
                 <span className="submenu-item__text">{children}</span>
                 {icon}
             </Link>
