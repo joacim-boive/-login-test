@@ -35,7 +35,7 @@
                     "mobileBankId": "Mobilt BankID från annan enhet"
                 }
             },
-            "inProgress": {
+            "in-progress": {
                 "mobile":{
                     "header": "Öppna Mobilt BankID",
                     "body": [
@@ -78,7 +78,7 @@
                 "links": {
                     "back": "Tillbaka"
                 },
-                "inProgress": {
+                "in-progress": {
                     "mobile":{
                         "header": "Öppna Mobilt BankID",
                         "body": [

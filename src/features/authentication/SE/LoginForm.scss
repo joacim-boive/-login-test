@@ -1,5 +1,9 @@
 @import '../../../styles/mixins';
 
-.authentication-login-form-se {
-
+.home-login-page__form {
+    aside.help {
+        .button  {
+            margin-right: 0;
+        }
+    }
 }

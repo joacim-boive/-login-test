@@ -17,11 +17,11 @@ class BankIdThisDevice extends React.Component {
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                         round
                     >
-                        `${i18n('home.login.otherDevice.buttons.login')} (bid this)`
+                        {i18n('home.login.otherDevice.buttons.login')}
                     </Button>
 
                     <Button id="back" onClick={() => toggleState('isOnThisDevice')} link iconLeft="icon-chevron-left">
-                        {`${i18n('home.login.otherDevice.links.back')} (bid this)`}
+                        {i18n('home.login.otherDevice.links.back')}
                     </Button>
                 </React.Fragment>
             )

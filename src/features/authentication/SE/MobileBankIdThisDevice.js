@@ -21,7 +21,7 @@ class BankIdThisDevice extends React.Component {
                     </Button>
 
                     <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
-                        {`${i18n(`home.login.links.mobile.mobileBankId`)}:2`}
+                        {i18n(`home.login.links.mobile.mobileBankId`)}
                     </Button>
                 </React.Fragment>
             )

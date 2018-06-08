@@ -141,13 +141,29 @@ class LoginFormSE extends Component {
 
         return (
             <React.Fragment>
-                <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
+                {!isLoggingIn && (
+                    <React.Fragment>
+                        <aside className="help">
+                            <Button
+                                id="help"
+                                className="home-login-page__link home-login-page__link--help"
+                                onClick={() => this.toggleState('isHelpVisible')}
+                                link
+                            >
+                                {i18n('general.buttons.help')}
+                                <span className="home-login-page__icon help__icon">&nbsp;</span>
+                            </Button>
+                        </aside>
+
+                        <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
+                    </React.Fragment>
+                )}
 
                 <DesktopDevice>
                     <span className="debug-small">desktop device</span>
 
                     <MobileBankIdOtherDevice
-                        isVisible={!isOnThisDevice}
+                        isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}
                         ssnIsValid={ssnIsValid}
                         startLogin={this.startLogin}
@@ -158,7 +174,7 @@ class LoginFormSE extends Component {
                     />
 
                     <BankIdThisDevice
-                        isVisible={isOnThisDevice}
+                        isVisible={isOnThisDevice && !isLoggingIn}
                         startLogin={this.startLogin}
                         toggleState={this.toggleState}
                     />
@@ -168,7 +184,7 @@ class LoginFormSE extends Component {
                     <span className="debug-small">touch device</span>
 
                     <MobileBankIdOtherDevice
-                        isVisible={!isOnThisDevice}
+                        isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}
                         ssnIsValid={ssnIsValid}
                         startLogin={this.startLogin}
@@ -179,31 +195,19 @@ class LoginFormSE extends Component {
                     />
 
                     <MobileBankIdThisDevice
-                        isVisible={isOnThisDevice}
+                        isVisible={isOnThisDevice && !isLoggingIn}
                         startLogin={this.startLogin}
                         toggleState={this.toggleState}
                     />
                 </TouchDevice>
 
-                <aside className="help">
-                    <Button
-                        id="help"
-                        className="home-login-page__link home-login-page__link--help"
-                        onClick={() => this.toggleState('isHelpVisible')}
-                        link
-                    >
-                        {i18n('general.buttons.help')}
-                        <span className="home-login-page__icon help__icon">&nbsp;</span>
-                    </Button>
-                </aside>
-                {isLoggingIn && (
-                    <LoginInProgress
-                        isDesktop={isDesktop}
-                        isOnThisDevice={this.state.isOnThisDevice}
-                        toggleState={this.toggleState}
-                        cancelLogin={this.cancelLogin}
-                    />
-                )}
+                <LoginInProgress
+                    isVisible={!!isLoggingIn}
+                    isDesktop={isDesktop}
+                    isOnThisDevice={this.state.isOnThisDevice}
+                    // toggleState={this.toggleState}
+                    cancelLogin={this.cancelLogin}
+                />
                 {isHelpVisible && <LoginHelp toggleState={this.toggleState} />}
             </React.Fragment>
         );
