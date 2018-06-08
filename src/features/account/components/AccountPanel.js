@@ -20,21 +20,14 @@ class AccountPanel extends Component {
     }
 
     render() {
-        const {
-            className,
-            account,
-            account: { reference },
-            accountBills,
-            accountTransactions,
-            user,
-        } = this.props;
+        const { className, account, bills, transactions, user } = this.props;
 
         const classes = classNames({
             'account-panel': true,
             [className]: className,
         });
 
-        if (!accountTransactions[reference]) return null;
+        if (!transactions) return null;
 
         return (
             <section className={classes}>
@@ -47,12 +40,9 @@ class AccountPanel extends Component {
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body">
                     <div>
                         <TabletOrDesktop>
-                            <LatestTransactions
-                                transactions={accountTransactions[reference].transactions}
-                                className="account-panel__latest"
-                            />
+                            <LatestTransactions transactions={transactions} className="account-panel__latest" />
                         </TabletOrDesktop>
-                        <NextPaymentPanel bills={accountBills[reference]} className="account-panel__next-payment" />
+                        <NextPaymentPanel bills={bills} className="account-panel__next-payment" />
                     </div>
                     <AccountLinksPanel account={account} user={user} className="account-panel__account-links" />
                 </ResponsivePanel>
@@ -64,8 +54,8 @@ class AccountPanel extends Component {
 AccountPanel.propTypes = {
     className: PropTypes.string,
     account: PropTypes.shape().isRequired,
-    accountTransactions: PropTypes.shape(),
-    accountBills: PropTypes.shape(),
+    transactions: PropTypes.array,
+    bills: PropTypes.shape(),
     getAccountTransactions: PropTypes.func.isRequired,
     getAccountBills: PropTypes.func.isRequired,
     user: PropTypes.shape().isRequired,
@@ -73,15 +63,15 @@ AccountPanel.propTypes = {
 
 AccountPanel.defaultProps = {
     className: '',
-    accountTransactions: {},
-    accountBills: {},
+    transactions: [],
+    bills: {},
 };
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
-        accountTransactions: state.account.accountTransactions,
-        accountBills: state.account.accountBills,
+        transactions: state.account.accountTransactions[ownProps.account.reference],
+        bills: state.account.accountBills[ownProps.account.reference],
     };
 }
 

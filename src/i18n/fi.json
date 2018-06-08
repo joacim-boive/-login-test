@@ -30,6 +30,9 @@
             "left": "",
             "used": "",
             "total": ""
+        },
+        "transactions": {
+            "reserved-amount": ""
         }
     },
     "authentication": {},

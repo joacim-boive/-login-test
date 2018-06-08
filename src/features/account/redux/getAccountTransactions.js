@@ -16,9 +16,12 @@ export const getAccountTransactions = (customerId, referenceId, offset, maxRecor
 
     try {
         const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords));
+        const reservedTransactions = res.response.transactions.filter(trans => trans.type === 'RESERVED_AMOUNT');
+        const transactions = res.response.transactions.filter(trans => trans.type !== 'RESERVED_AMOUNT');
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
-            data: res.response,
+            transactions,
+            reservedTransactions,
             referenceId,
         });
     } catch (err) {
@@ -43,7 +46,11 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
-                accountTransactions: { ...state.accountTransactions, [action.referenceId]: action.data },
+                accountTransactions: { ...state.accountTransactions, [action.referenceId]: action.transactions },
+                accountReservedTransactions: {
+                    ...state.accountReservedTransactions,
+                    [action.referenceId]: action.reservedTransactions,
+                },
                 getAccountTransactionsPending: false,
                 getAccountTransactionsError: null,
             };

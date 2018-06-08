@@ -8,7 +8,7 @@ export const parseTransactionsOnMonth = transactions => {
     const result = [];
     transactions.forEach((trans, index) => {
         if (index === 0 || moment(transactions[index].date).month() !== moment(transactions[index - 1].date).month()) {
-            result.push([]);
+            result.push([trans]);
         } else {
             result[result.length - 1].push(trans);
         }

@@ -8,6 +8,7 @@ const initialState = {
     accountCampaignPurchases: [],
     accountCards: [],
     accountTransactions: {},
+    accountReservedTransactions: {},
     accounts: [],
     accountsActive: [],
     accountPaymentTerms: {},

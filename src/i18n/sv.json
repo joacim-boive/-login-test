@@ -30,6 +30,9 @@
             "left": "Kvar att handla för:",
             "used": "Använd kredit:",
             "total": "Total kredit:"
+        },
+        "transactions": {
+            "reserved-amount": "Reserverat belopp"
         }
     },
     "authentication": {},
