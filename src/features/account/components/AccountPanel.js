@@ -12,10 +12,13 @@ import { AccountHeaderMobile } from './AccountHeaderMobile';
 import { getAccountTransactions } from './../redux/getAccountTransactions';
 import { getAccountBills } from './../redux/getAccountBills';
 import './AccountPanel.scss';
+import initialState from './../redux/initialState';
+
+const defaultFilter = initialState.accountTransactionsFilter;
 
 class AccountPanel extends Component {
     componentDidMount() {
-        this.props.getAccountTransactions(this.props.user.id, this.props.account.reference, 0, 3);
+        this.props.getAccountTransactions(this.props.user.id, this.props.account.reference, defaultFilter);
         this.props.getAccountBills(this.props.user.id, this.props.account.reference);
     }
 
@@ -70,7 +73,7 @@ AccountPanel.defaultProps = {
 /* istanbul ignore next */
 function mapStateToProps(state, ownProps) {
     return {
-        transactions: state.account.accountTransactions[ownProps.account.reference],
+        transactions: state.account.accountTransactions[ownProps.account.reference].slice(0, 3), // Only first 3
         bills: state.account.accountBills[ownProps.account.reference],
     };
 }
@@ -78,8 +81,8 @@ function mapStateToProps(state, ownProps) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        getAccountTransactions: (userId, reference, offset, limit) =>
-            dispatch(getAccountTransactions(userId, reference, offset, limit)),
+        getAccountTransactions: (userId, reference, filter) =>
+            dispatch(getAccountTransactions(userId, reference, filter)),
         getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
     };
 }

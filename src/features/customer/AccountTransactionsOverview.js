@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './redux/actions';
 import { getAccount } from './../account/redux/getAccount';
 import InfoPageTemplate from './../common/templates/InfoPageTemplate';
 import { AccountSummary } from './components/AccountSummary';
 import { getAccountTransactions } from '../account/redux/actions';
 import { AccountTransactions } from './components/AccountTransactions';
 import { TransactionsPanel } from './components/TransactionsPanel';
+import { ScrollPaginate } from './../common/scroll-paginate/ScrollPaginate';
+import initialState from './../account/redux/initialState';
+
+const defaultFilter = initialState.accountTransactionsFilter;
 
 export class AccountTransactionsOverview extends Component {
     componentWillMount() {
-        this.props.getAccount();
+        const { account, getTransactions, getAccount } = this.props;
+        if (account.product) {
+            getTransactions(defaultFilter);
+        } else {
+            getAccount();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
+        const { getTransactions } = this.props;
         if (nextProps.account.accountNumber !== this.props.account.accountNumber) {
-            this.props.getTransactions();
+            getTransactions(defaultFilter);
         }
     }
+
+    onScrollBottom = () => {
+        const { getTransactions, filter } = this.props;
+        getTransactions({ ...filter, maxRecords: filter.maxRecords + filter.stepSize });
+    };
 
     render() {
         const { account, transactions, reservedTransactions } = this.props;
@@ -38,7 +51,9 @@ export class AccountTransactionsOverview extends Component {
                         header={i18n('account.transactions.reserved-amount')}
                     />
                 )}
-                <AccountTransactions transactions={transactions} />
+                <ScrollPaginate onScrollBottom={this.onScrollBottom}>
+                    <AccountTransactions transactions={transactions} />
+                </ScrollPaginate>
             </InfoPageTemplate>
         );
     }
@@ -50,7 +65,7 @@ AccountTransactionsOverview.propTypes = {
     account: PropTypes.shape(),
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
-    actions: PropTypes.object.isRequired,
+    filter: PropTypes.shape().isRequired,
 };
 
 AccountTransactionsOverview.defaultProps = {
@@ -66,6 +81,7 @@ function mapStateToProps(state, route) {
         account: state.account.account,
         transactions: state.account.accountTransactions[ref],
         reservedTransactions: state.account.accountReservedTransactions[ref],
+        filter: state.account.accountTransactionsFilter,
     };
 }
 
@@ -73,9 +89,8 @@ function mapStateToProps(state, route) {
 function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
         getAccount: () => dispatch(getAccount(id, ref)),
-        getTransactions: () => dispatch(getAccountTransactions(id, ref, 0, 120)),
+        getTransactions: filter => dispatch(getAccountTransactions(id, ref, filter)),
     };
 }
 

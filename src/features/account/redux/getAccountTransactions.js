@@ -3,16 +3,26 @@ import {
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS,
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_FAILURE,
     ACCOUNT_GET_ACCOUNT_TRANSACTIONS_DISMISS_ERROR,
+    APPLY_ACCOUNT_TRANSACTIONS_FILTER,
 } from './constants';
 
 import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_TRANSACTIONS_URL } from './urls';
 
-export const getAccountTransactions = (customerId, referenceId, offset, maxRecords) => async dispatch => {
+const applyAccountTransactionsFilter = filter => ({
+    type: APPLY_ACCOUNT_TRANSACTIONS_FILTER,
+    filter,
+});
+
+export const getAccountTransactions = (customerId, referenceId, filter) => async (dispatch, getState) => {
+    await dispatch(applyAccountTransactionsFilter(filter));
+
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
     });
+
+    const { offset, maxRecords } = getState().account.accountTransactionsFilter;
 
     try {
         const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords));
@@ -36,6 +46,11 @@ export const dismissGetAccountTransactionsError = () => ({ type: ACCOUNT_GET_ACC
 
 export function reducer(state, action) {
     switch (action.type) {
+        case APPLY_ACCOUNT_TRANSACTIONS_FILTER:
+            return {
+                ...state,
+                accountTransactionsFilter: { ...state.accountTransactionsFilter, ...action.filter },
+            };
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN:
             return {
                 ...state,
