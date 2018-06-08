@@ -18,14 +18,21 @@
         border: 1px solid $gray60;
         border-top: none;
         box-shadow: 0 0 4px $gray60;
+
+        &.show{
+            transform: translateY(0);
+        }
     }
 
     &.from-bottom {
         bottom: 0;
-    }
+        margin-bottom: 66px;
+        transform: translateY(100%);
 
-    &.show{
-        transform: translateY(0);
+        &.show{
+            transform: translateY(0);
+        }
+
     }
 }
 
@@ -44,7 +51,7 @@
 }
 
 .submenu-item {
-    height: $item-height;
+    // height: $item-height; // No need for height, handled thru font size and padding.
     padding: 0;
     border-top: 1px solid $gray60;
     background: #fff;
