@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Input, Spinner } from '@ecster/ecster-components';
+import { Button, Input } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
 class MobileBankIdOtherDevice extends React.Component {
@@ -33,8 +33,6 @@ class MobileBankIdOtherDevice extends React.Component {
                         validationMessage={i18n('home.login.otherDevice.ssn-validation')}
                         type="tel"
                     />
-
-                    <Spinner id="spinner-waiting-for-bankid" isVisible isCenterX />
 
                     <Button
                         id="button-bankid-this-unit"

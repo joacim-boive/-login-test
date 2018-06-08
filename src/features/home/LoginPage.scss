@@ -2,10 +2,6 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
 @import "~@ecster/ecster-components/Button/Button.css";
 
-//$border-color: #e1dbd1;
-//$border: 1px solid $border-color;
-//$box-padding: 17px;
-
 body {
     background: 0 11rem no-repeat $beige10;
     background-size: contain;
@@ -87,32 +83,14 @@ body {
         @include grid-cell(1, 1, 1, -1);
         margin-bottom: 30px;
 
-        //@include grid((
-        //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-        //    rows: 1fr
-        //));
-
         &--help {
-            //@include grid-cell(1, 1, 1, 1);
-
-            //@include grid((
-            //    cols: 1fr, // Needed for IE11 to correctly center the items, otherwise the'll center around the longest item.
-            //    rows: 1fr
-            //));
-
             transform: translateX(100%);
             will-change: transform;
         }
 
-        h1, h2 { // , &__header
-            //@include x-align(center);
-            //@include grid-cell(1, -1, 1, 1);
-
-            //margin: 0 0 20px;
+        h1, h2 {
             color: $green120;
             font-weight: 700;
-            //font-size: 3.6rem;
-            //font-weight: 600;
             text-align: center;
         }
 
@@ -127,11 +105,7 @@ body {
         }
 
         .text-input {
-            //input {
             width: 27rem;
-            //height: 4.4rem;
-            //border-radius: 6px;
-            //}
             margin: 0 auto 30px auto;
         }
 
@@ -147,8 +121,6 @@ body {
 
     }
 
-
-
     &__link {
         color: $green;
         font-weight: 900;
@@ -160,22 +132,10 @@ body {
 
         &--bankid {
             display: block; // Needed for IE11 to get the correct stack order
-            //@include x-align(center);
-            //@include grid-cell(1, 1, 3, 1);
-
-            //margin: 30px 0 0 0;
         }
-        //&--back {
-        //    &:before {
-        //        font-family: "Ecster Icons";
-        //        content: "\e921";
-        //    }
-        //}
     }
 
     & .help {
-        //@include grid-cell(1, 1, 1, 1);
-        //@include x-align(end);
 
         &__icon:after {
             border: 1px solid;
@@ -196,53 +156,7 @@ body {
     &__body {
         @include grid-row(2);
     }
-
-    & .other-device {
-        .home-login-page__header {
-            //text-align: center;
-            //font-size: 2.2rem;
-        }
-
-        .text-input {
-            //@include grid-cell(1, 1, 2, 1);
-            //@include x-align(center);
-
-            //margin-bottom: 20px;
-        }
-        .home-login-page__button {
-            //@include grid-cell(1, 1, 3, 1);
-
-            //margin-top: 20px;
-        }
-        .home-login-page__link {
-            //@include grid-cell(1, 1, 4, 1);
-
-            //margin-top: 40px;
-        }
-    }
-
 }
-
-@include isLandscape {
-    body {
-        background-size: cover;
-    }
-
-    .home-login-page {
-        &__form {
-            //margin-bottom: 20px;
-        }
-
-        &__header {
-            //margin-top: 20px;
-        }
-
-        &__button {
-            //margin-top: 40px;
-        }
-    }
-}
-
 
 @mixin tabletDesktopH1H2() {
     h1 {
@@ -272,19 +186,6 @@ body {
                 width: 320px;
                 height: inherit;
             }
-        }
-
-        &__form {
-            //margin-bottom: 60 - $box-padding;
-        }
-
-        &__header {
-            //font-size: 5rem;
-            //margin-top: 23px;
-        }
-
-        &__button, &link--bankid {
-            //margin-top: 30px;
         }
     }
 }
@@ -329,43 +230,5 @@ body {
             @include xy-align();
             @include grid-row(1);
         }
-
-        //&__form {
-        //    //margin-bottom: 80 - $box-padding;
-        //}
-        //
-        //&__header {
-        //    //margin-top: 60 - $box-padding;
-        //}
-        //
-        //.text-input {
-        //    //@include grid-row(2);
-        //    //@include x-align(center);
-        //
-        //    //margin-top: 40px;
-        //
-        //    //span {
-        //    //    display: block; // div isn't allowed inside label
-        //    //    margin-left: 1rem;
-        //    //}
-        //    //
-        //    //label {
-        //    //    //font-size: 1.4rem;
-        //    //}
-        //}
-
-        //&__button {
-        //    //@include grid-row(3);
-        //
-        //    //margin-top: 30px;
-        //}
-        //
-        //&__link {
-        //    &--bankid {
-        //        //@include grid-row(4);
-        //
-        //        //margin-top: 30px;
-        //    }
-        //}
     }
 }
