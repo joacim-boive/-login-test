@@ -33,6 +33,7 @@ export class AccountTransactionsOverview extends Component {
                 <AccountSummary account={account} />
                 {reservedTransactions && (
                     <TransactionsPanel
+                        weak
                         transactions={reservedTransactions}
                         header={i18n('account.transactions.reserved-amount')}
                     />
@@ -74,7 +75,7 @@ function mapDispatchToProps(dispatch, state) {
     return {
         actions: bindActionCreators({ ...actions }, dispatch),
         getAccount: () => dispatch(getAccount(id, ref)),
-        getTransactions: () => dispatch(getAccountTransactions(id, ref, 0, 60)),
+        getTransactions: () => dispatch(getAccountTransactions(id, ref, 0, 120)),
     };
 }
 
