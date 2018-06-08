@@ -5,7 +5,6 @@
 .submenu {
     position: fixed;
     width: 100%;
-    z-index: $z-submenu;
     transform: translateY(-100%);
     will-change: transform;
     transition: transform .5s cubic-bezier(1, 0, 0, 1);
@@ -42,7 +41,6 @@
     height: 1px;
     border: 12px solid transparent;
     border-bottom-color: #fff;
-    z-index: 3;
     top: -24px;
     right: 20px;
 }
@@ -51,12 +49,13 @@
 }
 
 .submenu-item {
-    // height: $item-height; // No need for height, handled thru font size and padding.
+    // height: $item-height; // No need for height, handled by font size and padding.
     padding: 0;
     border-top: 1px solid $gray60;
     background: #fff;
     a, a:visited {
-        display: block;
+        display: flex;
+        justify-content: space-between;
         padding: 14px 24px;
         color: $gray140;
         text-decoration: none;
@@ -65,7 +64,6 @@
         color: $gray120;
     }
     i {
-        float: right;
         color: $green;
     }
     &.active {
