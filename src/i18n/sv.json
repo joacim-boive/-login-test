@@ -16,7 +16,8 @@
             "pay-in": "Att betala i"
         },
         "latest-transactions": {
-            "header": "Senaste händelser"
+            "header": "Senaste händelser",
+            "missing": "Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."
         },
         "links": {
             "event": "Kontohändelser",

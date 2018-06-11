@@ -15,6 +15,8 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
         [className]: className,
     });
 
+    const hasTransactions = transactions.length !== 0;
+    console.log(hasTransactions);
     return (
         <div {...rest} className={classes}>
             <DataColumns>
@@ -24,22 +26,28 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             <h4>{i18n('account.latest-transactions.header')}</h4>
                         </Data>
                     </DataRow>
-                    {transactions.map(trans => (
-                        <DataRow key={trans.id}>
-                            <Data weak left className="latest-transactions__date">
-                                {formatDateShort(trans.date)}
-                            </Data>
-                            <Data left>{trans.description}</Data>
-                            <Data strong right>
-                                {formatAmountCurrency(
-                                    trans.type === 'CREDIT' ? trans.amount : -trans.amount,
-                                    'sv-SE',
-                                    trans.currency,
-                                    true
-                                )}
-                            </Data>
+                    {hasTransactions &&
+                        transactions.map(trans => (
+                            <DataRow key={trans.id}>
+                                <Data weak left className="latest-transactions__date">
+                                    {formatDateShort(trans.date)}
+                                </Data>
+                                <Data left>{trans.description}</Data>
+                                <Data strong right>
+                                    {formatAmountCurrency(
+                                        trans.type === 'CREDIT' ? trans.amount : -trans.amount,
+                                        'sv-SE',
+                                        trans.currency,
+                                        true
+                                    )}
+                                </Data>
+                            </DataRow>
+                        ))}
+                    {!hasTransactions && (
+                        <DataRow>
+                            <Data>{i18n('account.latest-transactions.missing')}</Data>
                         </DataRow>
-                    ))}
+                    )}
                 </DataColumn>
             </DataColumns>
         </div>
