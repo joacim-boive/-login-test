@@ -1,6 +1,7 @@
 @import '../../../styles/mixins';
 @import '../../../styles/constants';
 @import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .common-authenticated-page {
 
@@ -23,6 +24,7 @@
         h1 {
             display: block;
             line-height: $hero-height * 0.8;
+            font-weight: $weight-bold;
             color: #fff;
             margin: 0 auto;
             padding: 0 10px;
