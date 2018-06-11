@@ -56,13 +56,15 @@ export const NextPaymentPanel = ({ className, bills }) => {
                     ) : (
                         <React.Fragment>
                             <DataRow>
-                                <Data className="word-wrap" left>{i18n('account.next-payment.missing1')}</Data>
+                                <Data className="word-wrap" left>
+                                    {i18n('account.next-payment.missing1')}
+                                </Data>
                             </DataRow>
                             <DataRow>
                                 <Data left>{i18n('account.next-payment.missing2')}</Data>
                             </DataRow>
                             <DataRow>
-                                <Data left>{i18n('account.next-payment.missing3')}</Data>
+                                <Data left>{i18n('account.next-payment.missing3', { nr: bills.ocrNumber })}</Data>
                             </DataRow>
                         </React.Fragment>
                     )}
