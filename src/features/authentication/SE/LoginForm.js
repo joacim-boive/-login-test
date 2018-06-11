@@ -119,6 +119,16 @@ class LoginFormSE extends Component {
         }
     };
 
+    showHelp = () => {
+        // const body = (
+        //     <React.Fragment>
+        //         <h1>Help..!!</h1>
+        //         <p>Foobar monkeys!</p>
+        //     </React.Fragment>
+        // );
+        this.props.showFullscreenDialog(<LoginHelp />);
+    };
+
     render() {
         const { loginStatus, loginProgress } = this.props;
 
@@ -147,7 +157,7 @@ class LoginFormSE extends Component {
                             <Button
                                 id="help"
                                 className="home-login-page__link home-login-page__link--help"
-                                onClick={() => this.toggleState('isHelpVisible')}
+                                onClick={() => this.showHelp('isHelpVisible')}
                                 link
                             >
                                 {i18n('general.buttons.help')}
@@ -208,13 +218,15 @@ class LoginFormSE extends Component {
                     // toggleState={this.toggleState}
                     cancelLogin={this.cancelLogin}
                 />
-                {isHelpVisible && <LoginHelp toggleState={this.toggleState} />}
             </React.Fragment>
         );
     }
 }
 
+// after <LoginProgress ... />                {isHelpVisible && <LoginHelp toggleState={this.toggleState} />}
+
 LoginFormSE.propTypes = {
+    showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,

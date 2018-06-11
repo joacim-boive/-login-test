@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import * as actions from './redux/actions';
 import { createSession, getSession } from './redux/actions';
+import { showFullscreenDialog } from '../common/redux/actions';
 import { LoginFormFI, LoginFormSE } from './index';
 
 class LoginForm extends Component {
@@ -43,6 +44,9 @@ function mapStateToProps({ authentication, home }) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
+        showFullscreenDialog: body => {
+            dispatch(showFullscreenDialog(body));
+        },
         createSession: data => {
             dispatch(createSession(data));
         },
