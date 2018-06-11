@@ -2,11 +2,17 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
-import { AccountPanel } from './../AccountLinksPanel';
+import { Component as AccountPanel } from './../AccountPanel';
+import accountsActiveJSON from './__mocks__/accountsActive.json';
+import userJSON from './__mocks__/user.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const defaultProps = {
+    account: accountsActiveJSON[0],
+    user: userJSON,
+    getAccountTransactions: () => {},
+    getAccountBills: () => {},
     className: '',
 };
 
@@ -16,10 +22,5 @@ describe('AccountPanel', () => {
     it('renders correctly', () => {
         const component = shallowRender();
         expect(component.exists());
-    });
-
-    it('shows 6 ArrowLinks by default', () => {
-        const component = shallowRender();
-        expect(component.find(ArrowLink).length).toBe(6);
     });
 });

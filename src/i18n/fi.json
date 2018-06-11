@@ -25,6 +25,14 @@
             "bills": "",
             "card": "",
             "terms": ""
+        },
+        "summary": {
+            "left": "",
+            "used": "",
+            "total": ""
+        },
+        "transactions": {
+            "reserved-amount": ""
         }
     },
     "authentication": {},

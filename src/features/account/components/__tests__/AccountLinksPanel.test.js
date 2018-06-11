@@ -4,10 +4,14 @@ import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import { AccountLinksPanel } from './../AccountLinksPanel';
 import { ArrowLink } from './../../../common/arrow-link/ArrowLink';
+import accountsActiveJSON from './__mocks__/accountsActive.json';
+import userJSON from './__mocks__/user.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const defaultProps = {
+    account: accountsActiveJSON[0],
+    user: userJSON,
     className: '',
 };
 

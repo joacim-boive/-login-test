@@ -1,0 +1,18 @@
+{
+    "accountNumber": "9752238000382595",
+    "reference": "CHMNc3UHD1FUCXcKQX5sRgRWNzdGVyLVNIQgxxxxx",
+    "product": {
+        "id": "MCARD004",
+        "name": "Ecster",
+        "cardName": "Ecster kortet"
+    },
+    "limit": 600000,
+    "used": 594728,
+    "maxLimit": 18000000,
+    "overDrawn": false,
+    "allowIncreaseLimit": true,
+    "status": "ACTIVE",
+    "cardProfile": "ecster",
+    "reserved": false,
+    "numberOfCards": 1
+}

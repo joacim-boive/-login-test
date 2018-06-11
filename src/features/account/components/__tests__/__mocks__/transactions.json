@@ -1,0 +1,272 @@
+[
+    {
+        "id": "ACSX_156338_129",
+        "date": "2012-01-07T00:00:00+01:00",
+        "description": "Stuff AB",
+        "amount": 500,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156338_130",
+        "date": "2012-01-07T00:00:00+01:00",
+        "description": "Stuff AB",
+        "amount": 200,
+        "currency": "SEK",
+        "type": "CREDIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156338_4",
+        "date": "2012-01-07T00:00:00+01:00",
+        "description": "Sofas N Stuff",
+        "amount": 100000,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156337_5",
+        "date": "2012-01-07T00:00:00+01:00",
+        "description": "BÄSTA elka03",
+        "amount": 100000,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156297_46",
+        "date": "2012-01-06T00:00:00+01:00",
+        "description": "Sofas N Stuff",
+        "amount": 64890,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156322_18",
+        "date": "2012-01-06T00:00:00+01:00",
+        "description": "BG-inbetalning man.",
+        "amount": 100000,
+        "currency": "SEK",
+        "type": "CREDIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156286_1240",
+        "date": "2012-01-05T00:00:00+01:00",
+        "description": "Förseningsavgift",
+        "amount": 13200,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156293_3836",
+        "date": "2011-12-31T00:00:00+01:00",
+        "description": "Månadsränta",
+        "amount": 5332,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156293_3835",
+        "date": "2011-12-31T00:00:00+01:00",
+        "description": "Dröjsmålsränta",
+        "amount": 130,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156293_3837",
+        "date": "2011-12-31T00:00:00+01:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156256_3495",
+        "date": "2011-11-30T00:00:00+01:00",
+        "description": "Månadsränta",
+        "amount": 5226,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156256_3496",
+        "date": "2011-11-30T00:00:00+01:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156201_1268",
+        "date": "2011-11-04T00:00:00+01:00",
+        "description": "Förseningsavgift",
+        "amount": 13200,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156244_98",
+        "date": "2011-11-01T00:00:00+01:00",
+        "description": "BG-inbetalning man.",
+        "amount": 162500,
+        "currency": "SEK",
+        "type": "CREDIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156208_3645",
+        "date": "2011-10-31T00:00:00+01:00",
+        "description": "Månadsränta",
+        "amount": 7041,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156208_3644",
+        "date": "2011-10-31T00:00:00+01:00",
+        "description": "Dröjsmålsränta",
+        "amount": 492,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156208_3646",
+        "date": "2011-10-31T00:00:00+01:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156183_1259",
+        "date": "2011-10-06T00:00:00+02:00",
+        "description": "Förseningsavgift",
+        "amount": 13200,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156190_3529",
+        "date": "2011-09-30T00:00:00+02:00",
+        "description": "Månadsränta",
+        "amount": 6738,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156190_3528",
+        "date": "2011-09-30T00:00:00+02:00",
+        "description": "Dröjsmålsränta",
+        "amount": 311,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156190_3530",
+        "date": "2011-09-30T00:00:00+02:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156145_1161",
+        "date": "2011-09-06T00:00:00+02:00",
+        "description": "Förseningsavgift",
+        "amount": 13200,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156152_3491",
+        "date": "2011-08-31T00:00:00+02:00",
+        "description": "Månadsränta",
+        "amount": 6442,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156152_3490",
+        "date": "2011-08-31T00:00:00+02:00",
+        "description": "Dröjsmålsränta",
+        "amount": 136,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156152_3492",
+        "date": "2011-08-31T00:00:00+02:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156121_3236",
+        "date": "2011-07-31T00:00:00+02:00",
+        "description": "Månadsränta",
+        "amount": 6171,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156121_3237",
+        "date": "2011-07-31T00:00:00+02:00",
+        "description": "Månadsränta",
+        "amount": 150,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156121_3238",
+        "date": "2011-07-31T00:00:00+02:00",
+        "description": "Administrativ avgift",
+        "amount": 2900,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156061_31",
+        "date": "2011-07-11T00:00:00+02:00",
+        "description": "Sofas N Stuff",
+        "amount": 100000,
+        "currency": "SEK",
+        "type": "DEBIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    },
+    {
+        "id": "ACSX_156079_42",
+        "date": "2011-07-11T00:00:00+02:00",
+        "description": "BG-inbetalning man.",
+        "amount": 124900,
+        "currency": "SEK",
+        "type": "CREDIT",
+        "partPaymentStatus": "NOT_ALLOWED"
+    }
+]

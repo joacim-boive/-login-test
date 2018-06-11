@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.account-transactions-overview {
+    h1 {
+        font-size: 36px;
+        font-weight: $weight-bold;
+        color: $green120;
+        text-align: center;
+    }
+}
