@@ -42,7 +42,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <div>{`${i18n('account.next-payment.pay-in')} ${month}`}</div>
                         </Data>
                         <Data strong right>
-                            <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK')}</div>
+                            <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}</div>
                         </Data>
                     </DataRow>
                     <DataRow>
