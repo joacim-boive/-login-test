@@ -23,12 +23,14 @@ class MobileBankIdOtherDevice extends React.Component {
                     <Input
                         id="ssn"
                         name="ssn"
+                        autoComplete="off"
                         label={i18n('home.login.labels.ssn')}
                         placeholder={i18n('home.login.placeholders.ssn')}
                         value={ssn}
                         onChange={onSsnChange}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
+                        required
                         validationMessage={i18n('home.login.otherDevice.ssn-validation')}
                         type="tel"
                     />
@@ -37,7 +39,7 @@ class MobileBankIdOtherDevice extends React.Component {
                         id="button-bankid-this-unit"
                         onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
                         round
-                        disabled={!ssnIsValid && !!ssn}
+                        disabled={!ssnIsValid || !ssn}
                     >
                         {i18n('home.login.buttons.mobileBankId')}
                     </Button>
