@@ -19,20 +19,19 @@
 
         height: $hero-height;
 
-        padding: 0 20px;
-
+        
         h1 {
             display: block;
             line-height: $hero-height * 0.8;
             color: #fff;
             margin: 0 auto;
+            padding: 0 10px;
             max-width: $content-max-width-desktop;
         }
         @include mobile() {
             height: $hero-height-mobile;
             h1 {
                 line-height: $hero-height-mobile * 0.8;
-                margin: 0 15px;
             }
         }
     };
@@ -45,6 +44,7 @@
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
             margin: 32px auto 0;
+            padding: 0px 10px;
         }
 
         @include mobile() {
