@@ -9,7 +9,23 @@
         "cancel": "Avbryt"
     },
     "account": {
-        "overview-header": "Översikt"
+        "overview-header": "Översikt",
+        "next-payment": {
+            "header": "Nästa betalning",
+            "deadline": "Förfallodatum:",
+            "pay-in": "Att betala i"
+        },
+        "latest-transactions": {
+            "header": "Senaste händelser"
+        },
+        "links": {
+            "event": "Kontohändelser",
+            "credit": "Höj kredit",
+            "part-payment": "Delbetalningar",
+            "bills": "Månadsfakturor",
+            "card": "Hantera kort",
+            "terms": "Kontovillkor"
+        }
     },
     "authentication": {},
     "common": {

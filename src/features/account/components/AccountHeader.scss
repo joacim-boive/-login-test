@@ -1,0 +1,57 @@
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.account-header {
+    width: 100%;
+    background-color: $green10;
+    font-family: 'PT Sans';
+    align-items: center;
+
+    display: flex;
+    flex: 0 1 100%;
+
+    padding: 10px 20px;
+
+    &__card-icon {
+        width: 166px;
+        margin-top: -40px;
+    }
+
+    &__panel {
+        display: flex;
+        flex: 0 1 100%;
+        justify-content: space-between;
+        margin-left: 20px;
+    }
+
+    &__card-number {
+        h3 {
+            font-family: 'Campton';
+            font-size: 30px;
+            color: $green120;
+            font-weight: $weight-semibold;
+            margin-bottom: 5px;
+        }
+        div {
+            color: $gray120;
+            font-size: 16px;
+            white-space: pre;
+        }
+    }
+
+    &__amount {
+        div {
+            font-family: 'Campton';
+            font-size: 40px;
+            font-weight: $weight-book;
+            text-align: right;
+            color: $green120;
+        }
+        p {
+            font-size: 14px;
+            text-align: right;
+            color: $gray120;
+            margin: 0px;
+        }
+    }
+}

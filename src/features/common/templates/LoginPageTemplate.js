@@ -19,7 +19,7 @@ const LoginPage = props => {
         <React.Fragment>
             <article
                 className="home-login-page lazyload"
-                data-bgset="//res.cloudinary.com/ecster/f_auto,o_40,q_auto:good,dpr_auto,{scaling}/v1/login.jpg"
+                data-bgset="//res.cloudinary.com/ecster/f_auto,o_40,q_auto:good,dpr_auto,{scaling}/v1/backgrounds/login.jpg"
                 data-absurl="false"
                 data-sizes="auto"
             >

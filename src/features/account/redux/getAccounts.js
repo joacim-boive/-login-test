@@ -9,16 +9,15 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNTS_URL } from './urls';
 
-export const getAccounts = customerId => async (dispatch) => {
+export const getAccounts = customerId => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNTS_BEGIN,
     });
-
     try {
-        const res = await get(GET_ACCOUNTS_URL(customerId));
+        const res = await get(GET_ACCOUNTS_URL(customerId), undefined, undefined, () => {});
         dispatch({
             type: ACCOUNT_GET_ACCOUNTS_SUCCESS,
-            data: res.response,
+            data: res.response.accounts,
         });
     } catch (err) {
         dispatch({
@@ -43,6 +42,7 @@ export function reducer(state, action) {
             return {
                 ...state,
                 accounts: action.data,
+                accountsActive: action.data.filter(a => a.status === 'ACTIVE'),
                 getAccountsPending: false,
                 getAccountsError: null,
             };

@@ -1,6 +1,17 @@
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 import { loadByKey } from '../../../common/sessionStoredState';
 
+export const loginStatus = {
+    sessionKey: undefined,
+    isLoggedIn: false,
+}
+
+export const loginProgress = {
+    status: undefined,
+    pollTime: 0,
+    startURL: undefined,
+}
+
 const initialState = loadByKey('authentication') || {
     // generated
     deleteSessionPending: false,
@@ -11,15 +22,8 @@ const initialState = loadByKey('authentication') || {
     getSessionError: null,
 
     // added
-    loginStatus: {
-        sessionKey: undefined,
-        isLoggedIn: false,
-    },
-    loginProgress: {
-        status: undefined,
-        pollTime: 0,
-        startURL: undefined,
-    },
+    loginStatus,
+    loginProgress,
     person: {},
 };
 

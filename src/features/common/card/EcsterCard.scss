@@ -1,0 +1,8 @@
+.ecster-card {
+    img {
+        /* Set Width for parent and it will retain ratio scale */
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
