@@ -30,12 +30,12 @@
         color: $gray80;
     }
 
-    &__date {
+    .date {
         max-width: 80px;
         font-size: 16px;
     }
 
-    &__row {
+    .row {
         border-bottom: 1px solid $beige40;
         margin: 0px;
         padding: 10px 15px;
@@ -45,7 +45,7 @@
         }
     }
 
-    &__column-row {
+    .column-row {
 
         &::before {
             flex: none;

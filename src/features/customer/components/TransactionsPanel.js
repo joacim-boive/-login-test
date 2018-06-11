@@ -34,10 +34,10 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
             </h2>
             <section>
                 {transactions.map(trans => (
-                    <DataColumns key={trans.id} className="transactions-panel__row">
+                    <DataColumns key={trans.id} className="row">
                         <DataColumn>
-                            <DataRow className="transactions-panel__column-row">
-                                <Data left className="transactions-panel__date">
+                            <DataRow className="column-row">
+                                <Data left className="date">
                                     {formatDateShort(trans.date)}
                                 </Data>
                                 <Data left>{trans.description}</Data>
