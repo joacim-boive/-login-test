@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import * as actions from './redux/actions';
 import { createSession, getSession } from './redux/actions';
 import { showFullscreenDialog } from '../common/redux/actions';
 import { LoginFormFI, LoginFormSE } from './index';

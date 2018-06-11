@@ -21,11 +21,10 @@ class LoginFormSE extends Component {
         ssn: '',
         isBankIdOtherDeviceVisible: false,
         isBankIdStarted: false,
-        isHelpVisible: false,
         isOverlayVisible: false,
         isLoggingIn: false,
 
-        // these two states describes which view to show
+        // these two states describe which view to show
         //   Desktop - mbid other device (default) or bid this device
         //   Touch - mbid this device (default) or mbid other device
         isDesktop: detectDevice().isDesktop,
@@ -132,7 +131,7 @@ class LoginFormSE extends Component {
             return <Redirect to="../account/overview" />;
         }
 
-        const { isOnThisDevice, isDesktop, isHelpVisible, isLoggingIn, ssn, ssnIsValid } = this.state;
+        const { isOnThisDevice, isDesktop, isLoggingIn, ssn, ssnIsValid } = this.state;
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
@@ -212,8 +211,6 @@ class LoginFormSE extends Component {
         );
     }
 }
-
-// after <LoginProgress ... />                {isHelpVisible && <LoginHelp toggleState={this.toggleState} />}
 
 LoginFormSE.propTypes = {
     showFullscreenDialog: PropTypes.func.isRequired,
