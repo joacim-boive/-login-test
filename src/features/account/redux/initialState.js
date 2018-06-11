@@ -7,7 +7,7 @@ const initialState = {
     accountCampaignPurchases: [],
     accountCards: [],
     accountTransactions: {},
-    accountTransactionsFilter: { offset: 0, maxRecords: 30, stepSize: 30 },
+    accountTransactionsFilter: { offset: 0, maxRecords: 20, stepSize: 20 },
     accountReservedTransactions: {},
     accounts: [],
     accountsActive: [],
