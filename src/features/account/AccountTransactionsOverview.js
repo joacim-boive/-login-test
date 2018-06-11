@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
-import { getAccount } from './../account/redux/getAccount';
 import InfoPageTemplate from './../common/templates/InfoPageTemplate';
 import { AccountSummary } from './components/AccountSummary';
-import { getAccountTransactions } from '../account/redux/actions';
 import { AccountTransactions } from './components/AccountTransactions';
 import { TransactionsPanel } from './components/TransactionsPanel';
 import { ScrollPaginate } from './../common/scroll-paginate/ScrollPaginate';
-import initialState from './../account/redux/initialState';
+import initialState from './redux/initialState';
+import { getAccountTransactions } from './redux/getAccountTransactions';
+import { getAccount } from './redux/getAccount';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 

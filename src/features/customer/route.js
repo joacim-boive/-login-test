@@ -1,4 +1,4 @@
-import { SettingsPage, SupportPage, AccountTransactionsOverview } from './';
+import { SettingsPage, SupportPage } from './';
 
 export default {
     path: 'customer',
@@ -6,10 +6,5 @@ export default {
     childRoutes: [
         { path: 'settings', name: 'Settings page', component: SettingsPage },
         { path: 'support', name: 'Support page', component: SupportPage },
-        {
-            path: ':id/account/:ref/transactions',
-            name: 'Account transactions overview',
-            component: AccountTransactionsOverview,
-        },
     ],
 };

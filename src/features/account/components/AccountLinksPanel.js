@@ -18,7 +18,7 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
             <ArrowLink
                 text={i18n('account.links.event')}
                 icon="icon-minimize-2"
-                to={`/customer/${user.id}/account/${account.reference}/transactions`}
+                to={`/account/${account.reference}/customer/${user.id}/transactions`}
             />
             <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" />
             <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" />
