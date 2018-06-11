@@ -12,7 +12,7 @@
         "overview-header": "Översikt",
         "next-payment": {
             "header": "Nästa betalning",
-            "deadline": "Förfallodatum:",
+            "deadline": "Förfallodatum",
             "pay-in": "Att betala i"
         },
         "latest-transactions": {

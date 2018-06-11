@@ -39,7 +39,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                     </DataRow>
                     <DataRow>
                         <Data left>
-                            <div>{`${i18n('account.next-payment.pay-in')} ${month}:`}</div>
+                            <div>{`${i18n('account.next-payment.pay-in')} ${month}`}</div>
                         </Data>
                         <Data strong right>
                             <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK')}</div>
