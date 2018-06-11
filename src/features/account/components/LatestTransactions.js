@@ -31,7 +31,12 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             </Data>
                             <Data left>{trans.description}</Data>
                             <Data strong right>
-                                {formatAmountCurrency(trans.amount, 'sv-SE', trans.currency, true)}
+                                {formatAmountCurrency(
+                                    trans.type === 'CREDIT' ? trans.amount : -trans.amount,
+                                    'sv-SE',
+                                    trans.currency,
+                                    true
+                                )}
                             </Data>
                         </DataRow>
                     ))}
