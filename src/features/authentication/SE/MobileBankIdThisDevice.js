@@ -11,7 +11,6 @@ class BankIdThisDevice extends React.Component {
         return (
             isVisible && (
                 <React.Fragment>
-                    <span className="debug">MBID This Device</span>
                     <Button
                         id="mobileBankidThisUnit"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}

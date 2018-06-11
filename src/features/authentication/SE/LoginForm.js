@@ -170,8 +170,6 @@ class LoginFormSE extends Component {
                 )}
 
                 <DesktopDevice>
-                    <span className="debug-small">desktop device</span>
-
                     <MobileBankIdOtherDevice
                         isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}
@@ -191,8 +189,6 @@ class LoginFormSE extends Component {
                 </DesktopDevice>
 
                 <TouchDevice>
-                    <span className="debug-small">touch device</span>
-
                     <MobileBankIdOtherDevice
                         isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}

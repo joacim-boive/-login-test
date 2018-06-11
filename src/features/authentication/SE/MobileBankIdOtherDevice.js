@@ -20,7 +20,6 @@ class MobileBankIdOtherDevice extends React.Component {
         return (
             isVisible && (
                 <React.Fragment>
-                    <span className="debug">MBID Other Device</span>
                     <Input
                         id="ssn"
                         name="ssn"

@@ -1,6 +1,4 @@
-@import '../../styles/mixins';
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
-@import "~@ecster/ecster-components/Button/Button.css";
 
 body {
     background: 0 11rem no-repeat $beige10;
@@ -15,30 +13,7 @@ body {
     background-position: bottom;
     height: 100%;
     width: 100%;
-
     padding: 10px;
-
-    // TODO remove later
-    .debug {
-        color: #cde3f2;
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        font-family: verdana, sans-serif;
-        font-weight: bold;
-        font-size: 24px;
-    }
-
-    // TODO remove later
-    .debug-small {
-        color: #cde3f2;
-        position: absolute;
-        top: 32px;
-        left: 4px;
-        font-family: verdana, sans-serif;
-        font-weight: bold;
-        font-size: 16px;
-    }
 
     @include grid((
         rows: 1fr,
