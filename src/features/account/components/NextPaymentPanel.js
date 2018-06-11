@@ -18,12 +18,11 @@ export const NextPaymentPanel = ({ className, bills }) => {
     let date = '';
     let amount = 0;
     let fullPayment = {};
-    if (bills.ocrNumber && bills.payment) {
+    const hasBills = bills.ocrNumber && bills.payment;
+    if (hasBills) {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
         date = bills.payment.dueDate;
-    } else {
-        return null;
     }
 
     const month = formatDateMonth(date);
@@ -37,20 +36,36 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <h4>{i18n('account.next-payment.header')}</h4>
                         </Data>
                     </DataRow>
-                    <DataRow>
-                        <Data left>
-                            <div>{`${i18n('account.next-payment.pay-in')} ${month}`}</div>
-                        </Data>
-                        <Data strong right>
-                            <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}</div>
-                        </Data>
-                    </DataRow>
-                    <DataRow>
-                        <Data left>{i18n('account.next-payment.deadline')}</Data>
-                        <Data strong right>
-                            <div>{formatDate(date)}</div>
-                        </Data>
-                    </DataRow>
+                    {hasBills ? (
+                        <React.Fragment>
+                            <DataRow>
+                                <Data left>
+                                    <div>{`${i18n('account.next-payment.pay-in')} ${month}`}</div>
+                                </Data>
+                                <Data strong right>
+                                    <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}</div>
+                                </Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data left>{i18n('account.next-payment.deadline')}</Data>
+                                <Data strong right>
+                                    <div>{formatDate(date)}</div>
+                                </Data>
+                            </DataRow>
+                        </React.Fragment>
+                    ) : (
+                        <React.Fragment>
+                            <DataRow>
+                                <Data className="word-wrap" left>{i18n('account.next-payment.missing1')}</Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data left>{i18n('account.next-payment.missing2')}</Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data left>{i18n('account.next-payment.missing3')}</Data>
+                            </DataRow>
+                        </React.Fragment>
+                    )}
                 </DataColumn>
             </DataColumns>
         </div>

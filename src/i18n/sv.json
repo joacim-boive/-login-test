@@ -13,7 +13,10 @@
         "next-payment": {
             "header": "Nästa betalning",
             "deadline": "Förfallodatum",
-            "pay-in": "Att betala i"
+            "pay-in": "Att betala i",
+            "missing1": "Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
+            "missing2": "Bankgiro: 847-2425",
+            "missing3": "OCR: XXXX"
         },
         "latest-transactions": {
             "header": "Senaste händelser",

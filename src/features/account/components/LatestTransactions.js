@@ -26,7 +26,7 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             <h4>{i18n('account.latest-transactions.header')}</h4>
                         </Data>
                     </DataRow>
-                    {hasTransactions &&
+                    {hasTransactions ? (
                         transactions.map(trans => (
                             <DataRow key={trans.id}>
                                 <Data weak left className="latest-transactions__date">
@@ -42,8 +42,8 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                                     )}
                                 </Data>
                             </DataRow>
-                        ))}
-                    {!hasTransactions && (
+                        ))
+                    ) : (
                         <DataRow>
                             <Data>{i18n('account.latest-transactions.missing')}</Data>
                         </DataRow>
