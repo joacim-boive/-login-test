@@ -120,12 +120,6 @@ class LoginFormSE extends Component {
     };
 
     showHelp = () => {
-        // const body = (
-        //     <React.Fragment>
-        //         <h1>Help..!!</h1>
-        //         <p>Foobar monkeys!</p>
-        //     </React.Fragment>
-        // );
         this.props.showFullscreenDialog(<LoginHelp />);
     };
 
@@ -157,7 +151,7 @@ class LoginFormSE extends Component {
                             <Button
                                 id="help"
                                 className="home-login-page__link home-login-page__link--help"
-                                onClick={() => this.showHelp('isHelpVisible')}
+                                onClick={this.showHelp}
                                 link
                             >
                                 {i18n('general.buttons.help')}
