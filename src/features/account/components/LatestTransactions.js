@@ -16,7 +16,7 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
     });
 
     const hasTransactions = transactions.length !== 0;
-    console.log(hasTransactions);
+
     return (
         <div {...rest} className={classes}>
             <DataColumns>
