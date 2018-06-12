@@ -6,10 +6,12 @@
 // Learn more from the introduction of this approach:
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
-
 import initialState from './initialState';
+import { reducer as setApplicationCountryReducer } from './setApplicationCountry';
+import { reducer as setLocaleReducer } from './setLocale';
+import { reducer as setCurrencyReducer } from './setCurrency';
 
-const reducers = [];
+const reducers = [setApplicationCountryReducer, setLocaleReducer, setCurrencyReducer];
 
 export default function reducer(state = initialState, action) {
     let newState;

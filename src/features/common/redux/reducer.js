@@ -8,9 +8,21 @@
 
 import initialState from './initialState';
 import { reducer as getTextReducer } from './getText';
+import { reducer as showSnackbarReducer } from './showSnackbar';
+import { reducer as hideSnackbarReducer } from './hideSnackbar';
+import { reducer as showModalMessageReducer } from './showModalMessage';
+import { reducer as hideModalMessageReducer } from './hideModalMessage';
+import { reducer as showFullscreenDialogReducer } from './showFullscreenDialog';
+import { reducer as hideFullscreenDialogReducer } from './hideFullscreenDialog';
 
 const reducers = [
     getTextReducer,
+  showSnackbarReducer,
+  hideSnackbarReducer,
+  showModalMessageReducer,
+  hideModalMessageReducer,
+  showFullscreenDialogReducer,
+  hideFullscreenDialogReducer,
 ];
 
 export default function reducer(state = initialState, action) {

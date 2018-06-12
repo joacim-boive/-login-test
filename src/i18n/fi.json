@@ -115,7 +115,8 @@
                             "Anna sivun olla auki kirjautumalla sisään Mobile BankIDin kautta. Muutoin kirjautumiset peruuntuvat"
                         ]
                     }
-                }
+                },
+                "ssn-validation": "Anna oikea sosiaaliturvatunnus"
             }
         }
     },
