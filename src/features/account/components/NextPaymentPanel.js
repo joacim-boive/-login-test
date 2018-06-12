@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Translate } from '@ecster/ecster-i18n/';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
-
-const i18n = Translate.getText;
 
 export const NextPaymentPanel = ({ className, bills }) => {
     const classes = classNames({

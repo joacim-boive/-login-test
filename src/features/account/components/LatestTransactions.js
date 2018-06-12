@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Translate } from '@ecster/ecster-i18n';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
 import { formatDateShort } from './../../../common/util/format-date';
 import { formatAmount } from './../../../common/util/format-amount';
-
-const i18n = Translate.getText;
 
 export const LatestTransactions = ({ className, transactions, ...rest }) => {
     const classes = classNames({

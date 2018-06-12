@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
-
-import { Translate } from '@ecster/ecster-i18n';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
 import { SvgIconHamburger, SvgIconInvoices, SvgIconLoan, SvgIconOverview } from '../../../common/images/index';
 import './MobileNavigation.scss';
 import { InteractiveElement } from '../interactive-element/InteractiveElement';
-
-const i18n = Translate.getText;
 
 class MobileNavigation extends React.Component {
     constructor(props) {
