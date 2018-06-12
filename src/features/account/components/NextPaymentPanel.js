@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatAmountCurrency } from '@ecster/ecster-util';
-import { Translate } from '@ecster/ecster-i18n';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
-
-const i18n = Translate.getText;
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const NextPaymentPanel = ({ className, bills }) => {
     const classes = classNames({
@@ -18,12 +16,11 @@ export const NextPaymentPanel = ({ className, bills }) => {
     let date = '';
     let amount = 0;
     let fullPayment = {};
-    if (bills.ocrNumber && bills.payment) {
+    const hasBills = bills.ocrNumber && bills.payment;
+    if (hasBills) {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
         date = bills.payment.dueDate;
-    } else {
-        return null;
     }
 
     const month = formatDateMonth(date);
@@ -37,20 +34,30 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <h4>{i18n('account.next-payment.header')}</h4>
                         </Data>
                     </DataRow>
-                    <DataRow>
-                        <Data left>
-                            <div>{`${i18n('account.next-payment.pay-in')} ${month}:`}</div>
-                        </Data>
-                        <Data strong right>
-                            <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK')}</div>
-                        </Data>
-                    </DataRow>
-                    <DataRow>
-                        <Data left>{i18n('account.next-payment.deadline')}</Data>
-                        <Data strong right>
-                            <div>{formatDate(date)}</div>
-                        </Data>
-                    </DataRow>
+                    {hasBills ? (
+                        <React.Fragment>
+                            <DataRow>
+                                <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
+                                <Data strong right>
+                                    {formatAmount(amount)}
+                                </Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data left>{i18n('account.next-payment.deadline')}</Data>
+                                <Data strong right>
+                                    {formatDate(date)}
+                                </Data>
+                            </DataRow>
+                        </React.Fragment>
+                    ) : (
+                        <React.Fragment>
+                            {i18n('account.next-payment.missing', {
+                                returnObjects: true,
+                                nr: bills.ocrNumber,
+                                wrapper: { tag: Data },
+                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
+                        </React.Fragment>
+                    )}
                 </DataColumn>
             </DataColumns>
         </div>

@@ -9,14 +9,22 @@
         "cancel": "Avbryt"
     },
     "account": {
+        "header": {
+            "left-to-buy": "kvar att handla för"
+        },
         "overview-header": "Översikt",
         "next-payment": {
             "header": "Nästa betalning",
-            "deadline": "Förfallodatum:",
-            "pay-in": "Att betala i"
+            "deadline": "Förfallodatum",
+            "pay-in": "Att betala i",
+            "missing": ["Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
+                "Bankgiro: 847-2425",
+                "OCR: {{nr}}"
+            ]
         },
         "latest-transactions": {
-            "header": "Senaste händelser"
+            "header": "Senaste händelser",
+            "missing": ["Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."]
         },
         "links": {
             "event": "Kontohändelser",
@@ -36,8 +44,7 @@
         }
     },
     "authentication": {},
-    "common": {
-    },
+    "common": {},
     "customer": {},
     "home": {
         "login": {
@@ -66,7 +73,7 @@
                         "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                     ]
                 },
-                "desktop":{
+                "desktop": {
                     "header": "Öppna BankID",
                     "body": [
                         "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
@@ -109,7 +116,7 @@
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                         ]
                     },
-                    "desktop":{
+                    "desktop": {
                         "header": "Öppna Mobilt BankID",
                         "body": [
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."

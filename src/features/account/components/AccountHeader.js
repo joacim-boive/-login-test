@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatAmountCurrency } from '@ecster/ecster-util';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountHeader.scss';
 import { EcsterCard } from './../../common/card/EcsterCard';
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountHeader = ({ account }) => {
     const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
@@ -18,8 +19,8 @@ export const AccountHeader = ({ account }) => {
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{formatAmountCurrency(amountLeft, 'sv-SE', 'SEK', true)}</div>
-                    <p>kvar att handla för</p>
+                    <div>{formatAmount(amountLeft)}</div>
+                    <p>{i18n('account.header.left-to-buy')}</p>
                 </div>
             </div>
         </div>
