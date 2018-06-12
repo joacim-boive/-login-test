@@ -14,13 +14,14 @@
             "header": "Nästa betalning",
             "deadline": "Förfallodatum",
             "pay-in": "Att betala i",
-            "missing1": "Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
-            "missing2": "Bankgiro: 847-2425",
-            "missing3": "OCR: {{nr}}"
+            "missing": ["Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
+                "Bankgiro: 847-2425",
+                "OCR: {{nr}}"
+            ]
         },
         "latest-transactions": {
             "header": "Senaste händelser",
-            "missing": "Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."
+            "missing": ["Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."]
         },
         "links": {
             "event": "Kontohändelser",
@@ -32,8 +33,7 @@
         }
     },
     "authentication": {},
-    "common": {
-    },
+    "common": {},
     "customer": {},
     "home": {
         "login": {
@@ -56,13 +56,13 @@
                 }
             },
             "inProgress": {
-                "mobile":{
+                "mobile": {
                     "header": "Öppna Mobilt BankID",
                     "body": [
                         "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                     ]
                 },
-                "desktop":{
+                "desktop": {
                     "header": "Öppna BankID",
                     "body": [
                         "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
@@ -99,13 +99,13 @@
                     "back": "Tillbaka"
                 },
                 "inProgress": {
-                    "mobile":{
+                    "mobile": {
                         "header": "Öppna Mobilt BankID",
                         "body": [
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                         ]
                     },
-                    "desktop":{
+                    "desktop": {
                         "header": "Öppna Mobilt BankID",
                         "body": [
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."

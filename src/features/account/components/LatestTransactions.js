@@ -44,9 +44,12 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             </DataRow>
                         ))
                     ) : (
-                        <DataRow>
-                            <Data>{i18n('account.latest-transactions.missing')}</Data>
-                        </DataRow>
+                        <React.Fragment>
+                            {i18n('account.latest-transactions.missing', {
+                                returnObjects: true,
+                                wrapper: { tag: Data },
+                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
+                        </React.Fragment>
                     )}
                 </DataColumn>
             </DataColumns>

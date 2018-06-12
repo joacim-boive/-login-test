@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatAmountCurrency } from '@ecster/ecster-util';
-import { Translate } from '@ecster/ecster-i18n';
+import { Translate } from '@ecster/ecster-i18n/';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
@@ -39,33 +39,25 @@ export const NextPaymentPanel = ({ className, bills }) => {
                     {hasBills ? (
                         <React.Fragment>
                             <DataRow>
-                                <Data left>
-                                    <div>{`${i18n('account.next-payment.pay-in')} ${month}`}</div>
-                                </Data>
+                                <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
                                 <Data strong right>
-                                    <div>{formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}</div>
+                                    {formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}
                                 </Data>
                             </DataRow>
                             <DataRow>
                                 <Data left>{i18n('account.next-payment.deadline')}</Data>
                                 <Data strong right>
-                                    <div>{formatDate(date)}</div>
+                                    {formatDate(date)}
                                 </Data>
                             </DataRow>
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
-                            <DataRow>
-                                <Data className="word-wrap" left>
-                                    {i18n('account.next-payment.missing1')}
-                                </Data>
-                            </DataRow>
-                            <DataRow>
-                                <Data left>{i18n('account.next-payment.missing2')}</Data>
-                            </DataRow>
-                            <DataRow>
-                                <Data left>{i18n('account.next-payment.missing3', { nr: bills.ocrNumber })}</Data>
-                            </DataRow>
+                            {i18n('account.next-payment.missing', {
+                                returnObjects: true,
+                                nr: bills.ocrNumber,
+                                wrapper: { tag: Data },
+                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
                         </React.Fragment>
                     )}
                 </DataColumn>
