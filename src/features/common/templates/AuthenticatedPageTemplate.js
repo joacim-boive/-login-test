@@ -27,8 +27,10 @@ export default class AuthenticatedPageTemplate extends React.Component {
                     <TabletOrDesktop>
                         <TabletDesktopNavigation />
                     </TabletOrDesktop>
-                    {header}
-                    <div className="page-content">{this.props.children}</div>
+                    <div className="page-container">
+                        {header}
+                        <div className="page-content">{this.props.children}</div>
+                    </div>
                     <Mobile>
                         <MobileNavigation />
                     </Mobile>

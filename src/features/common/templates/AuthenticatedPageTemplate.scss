@@ -41,6 +41,16 @@
         margin-top: -55px;
     }
 
+    .page-container {
+        @include tablet() {
+            margin-top: $navigation-height;
+        }
+
+        @include desktop() {
+            margin-top: $navigation-height;
+        }
+    }
+
     .page-content {
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
@@ -50,7 +60,7 @@
         @include mobile() {
             padding: 10px;
             margin-top: 20px;
-            margin-bottom: 66px;
+            margin-bottom: $navigation-height;
         }
 
         @include tablet() {
@@ -59,7 +69,6 @@
 
         @include desktop() {
             @include tabletOrDesktop();
-
         }
     }
 }

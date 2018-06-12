@@ -1,5 +1,6 @@
-@import "./constants";
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "./constants";
+@import "../../../styles/constants";
 
 .bottom-navigation {
     width: 100%;
@@ -27,7 +28,7 @@
     background: #fff;
     box-shadow: 0 0 4px $gray40;
     width: 100%;
-    height: $menu-height;
+    height: $navigation-height;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
