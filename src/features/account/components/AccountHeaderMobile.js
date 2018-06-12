@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatAmountCurrency } from '@ecster/ecster-util';
 import './AccountHeaderMobile.scss';
 import { EcsterCard } from './../../common/card/EcsterCard';
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountHeaderMobile = ({ account }) => {
     const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
@@ -19,7 +19,7 @@ export const AccountHeaderMobile = ({ account }) => {
                 {!noCard ? <EcsterCard className="account-header-mobile__card-icon" /> : null}
             </div>
             <div className="account-header-mobile__amount">
-                <div>{formatAmountCurrency(amountLeft, 'sv-SE', 'SEK', true)}</div>
+                <div>{formatAmount(amountLeft)}</div>
                 <p>Kvar att handla för</p>
             </div>
         </div>

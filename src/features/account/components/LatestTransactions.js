@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatAmountCurrency } from '@ecster/ecster-util';
 import { Translate } from '@ecster/ecster-i18n';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
 import { formatDateShort } from './../../../common/util/format-date';
+import { formatAmount } from './../../../common/util/format-amount';
 
 const i18n = Translate.getText;
 
@@ -34,11 +34,10 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                                 </Data>
                                 <Data left>{trans.description}</Data>
                                 <Data strong right>
-                                    {formatAmountCurrency(
+                                    {formatAmount(
                                         trans.type === 'CREDIT' ? trans.amount : -trans.amount,
-                                        'sv-SE',
-                                        trans.currency,
-                                        true
+                                        undefined,
+                                        trans.currency
                                     )}
                                 </Data>
                             </DataRow>

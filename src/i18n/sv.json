@@ -9,6 +9,9 @@
         "cancel": "Avbryt"
     },
     "account": {
+        "header": {
+            "left-to-buy": "kvar att handla för"
+        },
         "overview-header": "Översikt",
         "next-payment": {
             "header": "Nästa betalning",

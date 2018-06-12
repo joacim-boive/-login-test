@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatAmountCurrency } from '@ecster/ecster-util';
 import { Translate } from '@ecster/ecster-i18n/';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
+import { formatAmount } from '../../../common/util/format-amount';
 
 const i18n = Translate.getText;
 
@@ -41,7 +41,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <DataRow>
                                 <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
                                 <Data strong right>
-                                    {formatAmountCurrency(amount, 'sv-SE', 'SEK', true)}
+                                    {formatAmount(amount)}
                                 </Data>
                             </DataRow>
                             <DataRow>
