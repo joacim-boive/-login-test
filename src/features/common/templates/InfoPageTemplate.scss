@@ -1,20 +1,78 @@
-@import "~@ecster/ecster-styles/scss/v2/common/colors";
-@import "~@ecster/ecster-components/scss/MediaQuery";
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+@import '../../../styles/mixins';
+@import '../../../styles/constants';
 
 .common-info-page {
-    height: 100%;
-    margin: 0 auto;
-    text-align: left;
-    padding: 20px;
-    max-width: 600px;
+    .hero-header {
+        margin: 10px 0px 10px 0px;
+        
+        @include mobile() {
+            margin: 0px 0px 30px 0px;
 
-    @include mobile() {
+            color: white;
+            background-color: $green;
+        }
+
+        div {
+            position: relative;
+            height: 40px;
+            width: 100%;
+            @include mobile() {
+                padding-top: 5px;
+            }
+        }
+
+        a {
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            color: $beige140;
+            z-index: 1;
+            margin-left: 20px;
+            @include mobile() {
+                color: white;
+            }
+        }
+
+        h1 {
+            position: absolute;
+            left: 0;
+            font-family: 'Campton';
+            color: $beige140;
+            font-weight: $weight-medium;
+            font-size: 20px;
+            text-align: center;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            @include mobile() {
+                color: white;
+                font-weight: $weight-book;
+            }
+        }
+
     }
 
-    @include tablet() {
-    }
+    .page-content {
+        @mixin tabletOrDesktop() {
+            max-width: $content-max-width-desktop;
+            margin: 5px auto 10px;
+        }
 
-    @include desktop() {
-    }
+        @include mobile() {
+            padding: 0px;
+            margin-top: 0px;
+            margin-bottom: 66px;
+        }
 
+        @include tablet() {
+            @include tabletOrDesktop();
+        }
+
+        @include desktop() {
+            @include tabletOrDesktop();
+        }
+    }
 }

@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './redux/actions';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
-        accounts: PropTypes.array.isRequired,
         accountsActive: PropTypes.array.isRequired,
-        actions: PropTypes.object.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
     };
@@ -54,7 +50,6 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
         getAccounts: userId => dispatch(getAccounts(userId)),
     };
 }

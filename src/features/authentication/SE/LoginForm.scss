@@ -1,0 +1,14 @@
+@import '../../../styles/mixins';
+
+.home-login-page__form {
+    aside.help {
+        .button  {
+            margin-right: 0;
+        }
+    }
+
+    .spinner--center-x {
+        margin-top: 18px;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,71 @@
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.transactions-panel {
+    font-size: 18px;
+    color: $gray140;
+    margin-top: 40px;
+
+    h2 {
+        font-size: 20px;
+        margin: 0px 0px 10px 35px;
+
+        span:last-child {
+            color: $beige120;
+            margin-left: 10px;
+        }
+        span:first-child {
+            font-weight: $weight-bold;
+            color: $gray140;
+            margin-left: 0px;
+        }
+
+        @include mobile() {
+            margin-left: 15px;
+        }
+    }
+
+    &__weak {
+        color: $gray80;
+    }
+
+    .date {
+        max-width: 80px;
+        font-size: 16px;
+    }
+
+    .row {
+        border-bottom: 1px solid $beige40;
+        margin: 0px;
+        padding: 10px 15px;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .column-row {
+
+        &::before {
+            flex: none;
+        }
+        &::after {
+            flex: none;
+        }
+    }
+
+    section {
+        background-color: white;
+        border: 1px solid $beige40;
+        border-radius: 4px;
+        padding: 0px 20px;
+
+        @include mobile() {
+            padding: 0px;
+            border-radius: 0px;
+            border-left: none;
+            border-right: none;
+        }
+    }
+}

@@ -25,6 +25,14 @@
             "bills": "",
             "card": "",
             "terms": ""
+        },
+        "summary": {
+            "left": "",
+            "used": "",
+            "total": ""
+        },
+        "transactions": {
+            "reserved-amount": ""
         }
     },
     "authentication": {},
@@ -107,7 +115,8 @@
                             "Anna sivun olla auki kirjautumalla sisään Mobile BankIDin kautta. Muutoin kirjautumiset peruuntuvat"
                         ]
                     }
-                }
+                },
+                "ssn-validation": "Anna oikea sosiaaliturvatunnus"
             }
         }
     },

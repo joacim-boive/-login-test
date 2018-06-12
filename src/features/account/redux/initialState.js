@@ -1,4 +1,3 @@
-
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
     accountTerms: {}, // TODO: array?
@@ -8,6 +7,8 @@ const initialState = {
     accountCampaignPurchases: [],
     accountCards: [],
     accountTransactions: {},
+    accountTransactionsFilter: { offset: 0, maxRecords: 20, stepSize: 20 },
+    accountReservedTransactions: {},
     accounts: [],
     accountsActive: [],
     accountPaymentTerms: {},

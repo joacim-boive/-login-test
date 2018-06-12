@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
+import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 
@@ -21,16 +22,19 @@ export default class AuthenticatedPageTemplate extends React.Component {
         );
 
         return (
-            <div className={classes}>
-                <TabletOrDesktop>
-                    <TabletDesktopNavigation />
-                </TabletOrDesktop>
-                {header}
-                <div className="page-content">{this.props.children}</div>
-                <Mobile>
-                    <MobileNavigation />
-                </Mobile>
-            </div>
+            <React.Fragment>
+                <div className={classes}>
+                    <TabletOrDesktop>
+                        <TabletDesktopNavigation />
+                    </TabletOrDesktop>
+                    {header}
+                    <div className="page-content">{this.props.children}</div>
+                    <Mobile>
+                        <MobileNavigation />
+                    </Mobile>
+                </div>
+                <MessagePanel />
+            </React.Fragment>
         );
     }
 }

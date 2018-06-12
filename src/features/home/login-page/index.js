@@ -1,1 +1,0 @@
-export LoginOther from './LoginOther';

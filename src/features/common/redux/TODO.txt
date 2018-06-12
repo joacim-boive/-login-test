@@ -1,0 +1,6 @@
+Suggestion
+
+Actions and reducers for fullscreen dialog, modal message and snackbar
+could be moved to a "redux layer" of ecster-components/MessagePanel
+
+For re-use in this app and other apps (Dashboard X and more)

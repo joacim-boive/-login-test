@@ -33,6 +33,14 @@
             "bills": "Månadsfakturor",
             "card": "Hantera kort",
             "terms": "Kontovillkor"
+        },
+        "summary": {
+            "left": "Kvar att handla för:",
+            "used": "Använd kredit:",
+            "total": "Total kredit:"
+        },
+        "transactions": {
+            "reserved-amount": "Reserverat belopp"
         }
     },
     "authentication": {},
@@ -58,8 +66,8 @@
                     "mobileBankId": "Mobilt BankID från annan enhet"
                 }
             },
-            "inProgress": {
-                "mobile": {
+            "in-progress": {
+                "mobile":{
                     "header": "Öppna Mobilt BankID",
                     "body": [
                         "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
@@ -76,9 +84,9 @@
             "help": {
                 "header": "Hur loggar jag in?",
                 "body": [
-                    "Inloggning sked med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
+                    "Inloggning sker med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
                     "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
-                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Länk till PUL']",
+                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Hantering av personuppgifter']",
                     "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
                     "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
                 ]
@@ -101,8 +109,8 @@
                 "links": {
                     "back": "Tillbaka"
                 },
-                "inProgress": {
-                    "mobile": {
+                "in-progress": {
+                    "mobile":{
                         "header": "Öppna Mobilt BankID",
                         "body": [
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
@@ -114,7 +122,8 @@
                             "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                         ]
                     }
-                }
+                },
+                "ssn-validation": "Ange ett korrekt personnummer (ååmmdd-xxxx)"
             }
         }
     },

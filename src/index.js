@@ -12,6 +12,7 @@ import Session from '@ecster/ecster-net/lib/Session';
 import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
+import { setApplicationCountry, setLocale } from './features/home/redux/actions';
 
 export const store = configStore();
 
@@ -22,17 +23,15 @@ const renderApp = app => {
 };
 
 const initApplication = config => {
+//    const store = configStore();
     Session.set('origin', 'mypages');
 
-    /** TODO
-     *
-     * Temporary implementation of multilanguage - fix this properly after demo!
-     */
-    let lang = window.location.hash.split('?lang=')[1];
+    // TODO: tmp solution, fix later
+    const lang = window.location.hash.split('?lang=')[1] || 'sv';
 
-    if (!lang) {
-        lang = 'sv';
-    }
+    store.dispatch(setApplicationCountry('SE'));
+    // store.dispatch(setApplicationCountry('FI'));
+    store.dispatch(setLocale('sv-SE'));
 
     if (config && config.ajaxBaseUrl) {
         Ajax.setBaseUrl(config.ajaxBaseUrl);
