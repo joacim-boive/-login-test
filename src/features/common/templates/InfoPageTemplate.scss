@@ -58,12 +58,12 @@
     .page-content {
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
-            margin: 5px auto 10px;
+            margin: ($navigation-height + 10) auto 10px;
         }
 
         @include mobile() {
             padding: 0px;
-            margin-top: 0px;
+            margin-top: $navigation-height;
             margin-bottom: 66px;
         }
 
