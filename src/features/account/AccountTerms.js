@@ -8,6 +8,8 @@ import WhiteBox from '../common/white-box';
 import { getAccountTerms } from './redux/actions';
 
 export class AccountTerms extends Component {
+    componentWillMount() {}
+
     render() {
         return (
             <AuthenticatedSubPageTemplate header="Kontovillkor">
@@ -28,15 +30,15 @@ AccountTerms.propTypes = {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        account: state.account,
+        account: state.account.account,
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
-    // return {
-    //     actions: bindActionCreators({ ...actions }, dispatch),
-    // };
+    return {
+        getAccountTerms: (customerId, refCode) => dispatch(getAccountTerms(customerId, refCode)),
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountTerms);
