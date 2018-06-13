@@ -24,7 +24,7 @@ export default class LoginInProgress extends Component {
                 <React.Fragment>
                     <h1>{i18n(headerI18nKey)}</h1>
                     {thisBody}
-                    <Spinner id="spinner-waiting-for-bankid" isVisible isCenterX />
+                    <Spinner id="spinner-waiting-for-bankid" isVisible isCenterX strokeWidth={8} />
 
                     <Button flat round green block outline className="home-login-page__button" onClick={cancelLogin}>
                         {i18n('home.login.otherDevice.buttons.abort')}
