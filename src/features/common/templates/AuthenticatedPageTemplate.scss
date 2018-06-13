@@ -73,4 +73,6 @@
             @include tabletOrDesktop();
         }
     }
+
+    z-index: 2; // above .message-panel
 }

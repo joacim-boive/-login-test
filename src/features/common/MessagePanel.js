@@ -9,6 +9,8 @@ import {
     hideFullscreenDialog as hideFullscreenDialogAction,
 } from './redux/actions';
 
+import './MessagePanel.scss';
+
 const MessagePanelWrapper = ({
     showSnackbar,
     snackbarMessage,
