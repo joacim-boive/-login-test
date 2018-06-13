@@ -22,5 +22,5 @@
     @include desktop() {
 
     }
-
+    z-index: 2; // above .message-panel
 }

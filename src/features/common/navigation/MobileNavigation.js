@@ -34,10 +34,10 @@ class MobileNavigation extends React.Component {
 
         const { showSubMenu } = this.state;
 
-        // three visible menu items, don't indicate active if submenu is visible, double !! => true or false not array
-        const overviewIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !showSubMenu && !!this.props.history.location.pathname.match(/.loan.overview/);
+        // double !! => true or false not array
+        const overviewIsActive = !!this.props.history.location.pathname.match(/.account.overview/);
+        const invoiceIsActive = !!this.props.history.location.pathname.match(/.invoice.overview/);
+        const loanIsActive = !!this.props.history.location.pathname.match(/.loan.overview/);
         // submenu items, indicate active when submenu is visible
         const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
         const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
@@ -62,7 +62,7 @@ class MobileNavigation extends React.Component {
                         <div
                             className={classNames({
                                 'menu-item': true,
-                                active: showSubMenu,
+                                active: false,
                             })}
                         >
                             <SvgIconHamburger />

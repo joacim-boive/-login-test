@@ -24,6 +24,7 @@
     }
 
     &.from-bottom {
+        z-index: $z-submenu;
         bottom: 0;
         margin-bottom: 66px;
         transform: translateY(100%);

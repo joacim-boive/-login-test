@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import MessagePanel from '../MessagePanel';
 
 export default class InfoPageTemplate extends React.Component {
     static propTypes = {
@@ -31,18 +32,21 @@ export default class InfoPageTemplate extends React.Component {
         );
 
         return (
-            <div className={classes}>
-                <TabletOrDesktop>
-                    <TabletDesktopNavigation />
-                </TabletOrDesktop>
-                <div className="page-content">
-                    {renderHeader}
-                    {this.props.children}
+            <React.Fragment>
+                <div className={classes}>
+                    <TabletOrDesktop>
+                        <TabletDesktopNavigation />
+                    </TabletOrDesktop>
+                    <div className="page-content">
+                        {renderHeader}
+                        {this.props.children}
+                    </div>
+                    <Mobile>
+                        <MobileNavigation />
+                    </Mobile>
                 </div>
-                <Mobile>
-                    <MobileNavigation />
-                </Mobile>
-            </div>
+                <MessagePanel />
+            </React.Fragment>
         );
     }
 }
