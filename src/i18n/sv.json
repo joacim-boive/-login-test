@@ -60,8 +60,8 @@
             "account-terms-pdf": "Fullständiga villkor (pdf)",
             "account-agreement-pdf": "Kontoavtal (pdf)",
 
-            "atm-withdrawal-fee-value": "{{percentValue}}% av uttaget belopp, minst {{feeValue}}",
-            "withdrawal-fee-value": "{{percentValue}}% av uttaget belopp, minst {{feeValue}}",
+            "atm-withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
+            "withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
 
             "account-number-description": "Används som OCR-nummer",
             "account-name-description": "",
@@ -87,9 +87,9 @@
 
             "terminate-account": "Avsluta konto",
             "info-text": [
-                "Lorem ipsum",
-                "Lorem ipsum",
-                "Lerom upsim"
+                "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
+                "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
+                "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."
             ]
         }
     },

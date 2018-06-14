@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, ButtonGroup, ConfirmButton } from '@ecster/ecster-components';
+import { Button, ButtonGroup, ConfirmButton, Panel } from '@ecster/ecster-components';
+
+import { formatAmount } from '../../common/util/format-amount';
 
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
-import Panel from '../common/panel/Panel';
-// import * as actions from './redux/actions';
 import { getAccountTerms } from './redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
@@ -59,63 +58,63 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.account-name-description')}
                     />
                     <InfoItem
-                        value={terms.creditLimit}
+                        value={formatAmount(terms.creditLimit / 100)}
                         label={i18n('account.terms.total-credit')}
                         description={i18n('account.terms.total-credit-description')}
                     />
                     <InfoItem
-                        value={terms.interestRate}
+                        value={`${terms.interestRate}%`}
                         label={i18n('account.terms.interest')}
                         description={i18n('account.terms.interest-description')}
                     />
                     <InfoItem
-                        value={terms.adminFee}
+                        value={formatAmount(terms.adminFee / 100)}
                         label={i18n('account.terms.admin-fee')}
                         description={i18n('account.terms.admin-fee-description')}
                     />
                     <InfoItem
-                        value={terms.yearlyFee}
+                        value={formatAmount(terms.yearlyFee / 100)}
                         label={i18n('account.terms.yearly-fee')}
                         description={i18n('account.terms.yearly-fee-description')}
                     />
                     <InfoItem
-                        value={terms.cardFee}
+                        value={formatAmount(terms.cardFee / 100)}
                         label={i18n('account.terms.extra-card-fee')}
                         description={i18n('account.terms.extra-card-fee-description')}
                     />
                     <InfoItem
                         value={i18n('account.terms.atm-withdrawal-fee-value', {
-                            percentValue: terms.withdrawalFeePercent,
-                            feeValue: terms.withdrawalFee,
+                            percentValue: `${terms.withdrawalFeePercent}%`,
+                            feeValue: formatAmount(terms.withdrawalFee / 100),
                         })}
                         label={i18n('account.terms.atm-withdrawal-fee')}
                         description={i18n('account.terms.atm-withdrawal-fee-description')}
                     />
                     <InfoItem
                         value={i18n('account.terms.withdrawal-fee-value', {
-                            percentValue: terms.withdrawalFeePercent,
-                            feeValue: terms.withdrawalFee,
+                            percentValue: `${terms.withdrawalFeePercent}%`,
+                            feeValue: formatAmount(terms.withdrawalFee / 100),
                         })}
                         label={i18n('account.terms.withdrawal-fee')}
                         description={i18n('account.terms.withdrawal-fee-description')}
                     />
                     <InfoItem
-                        value={terms.withdrawalFeeForeignCurrencyRate}
+                        value={`${terms.withdrawalFeeForeignCurrencyRate}%`}
                         label={i18n('account.terms.withdrawal-fee-foreign-currency')}
                         description={i18n('account.terms.withdrawal-fee-foreign-currency-description')}
                     />
                     <InfoItem
-                        value={terms.currencyExchangeFeeRate}
+                        value={`${terms.currencyExchangeFeeRate}%`}
                         label={i18n('account.terms.exchange-fee')}
                         description={i18n('account.terms.exchange-fee-description')}
                     />
                     <InfoItem
-                        value={terms.lateFee}
+                        value={formatAmount(terms.lateFee / 100)}
                         label={i18n('account.terms.late-payment-fee')}
                         description={i18n('account.terms.late-payment-fee-description')}
                     />
                     <InfoItem
-                        value={terms.overdraft}
+                        value={formatAmount(terms.overdraft / 100)}
                         label={i18n('account.terms.overdraft-fee')}
                         description={i18n('account.terms.overdraft-fee-description')}
                     />
@@ -149,7 +148,6 @@ export class AccountTerms extends Component {
                             confirmCancel={i18n('account.terminate.confirm-cancel')}
                             outline
                             round
-                            red
                             onClick={this.onClickTerminateAccount}
                         >
                             {i18n('account.terminate.terminate-account')}
@@ -163,7 +161,7 @@ export class AccountTerms extends Component {
 
 AccountTerms.propTypes = {
     getAccountTerms: PropTypes.func.isRequired,
-    debug: PropTypes.func.isRequired,
+    terms: PropTypes.object.isRequired,
     // actions: PropTypes.object.isRequired,
 };
 
@@ -179,7 +177,6 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
-        debug: () => console.log(id, ref),
     };
 }
 
