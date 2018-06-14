@@ -6,7 +6,8 @@
         },
         "help": "Hjälp",
         "back": "Tillbaka",
-        "cancel": "Avbryt"
+        "cancel": "Avbryt",
+        "download": "Ladda ner"
     },
     "account": {
         "header": {
@@ -59,6 +60,9 @@
             "account-terms-pdf": "Fullständiga villkor (pdf)",
             "account-agreement-pdf": "Kontoavtal (pdf)",
 
+            "atm-withdrawal-fee-value": "{{percentValue}}% av uttaget belopp, minst {{feeValue}}",
+            "withdrawal-fee-value": "{{percentValue}}% av uttaget belopp, minst {{feeValue}}",
+
             "account-number-description": "Används som OCR-nummer",
             "account-name-description": "",
             "total-credit-description": "Din nuvarande kreditgräns",
@@ -74,6 +78,19 @@
             "overdraft-fee-description": "Debiteras om kontot övertrasseras",
             "account-terms-pdf-description": "",
             "account-agreement-pdf-description": ""
+        },
+        "terminate": {
+            "confirm-header": "Avsluta konto",
+            "confirm-text": "Vill du verkligen avsluta kontot? Du kan inte ångra i efterhand.",
+            "confirm-ok": "Ja, avsluta kontot",
+            "confirm-cancel": "Avbryt",
+
+            "terminate-account": "Avsluta konto",
+            "info-text": [
+                "Lorem ipsum",
+                "Lorem ipsum",
+                "Lerom upsim"
+            ]
         }
     },
     "authentication": {},

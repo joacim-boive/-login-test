@@ -4,13 +4,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './WhiteBox.scss';
+import './Panel.scss';
 
-const WhiteBox = ({ children, className, ...rest }) => (
+const Panel = ({ children, className, ...rest }) => (
     <section
         {...rest}
         className={classNames({
-            'white-box': true,
+            panel: true,
             [className]: true,
         })}
     >
@@ -18,13 +18,13 @@ const WhiteBox = ({ children, className, ...rest }) => (
     </section>
 );
 
-export default WhiteBox;
+export default Panel;
 
-WhiteBox.propTypes = {
+Panel.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
 };
 
-WhiteBox.defaultProps = {
+Panel.defaultProps = {
     className: '',
 };
