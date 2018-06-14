@@ -13,6 +13,7 @@ import { getAccountTransactions } from './../redux/getAccountTransactions';
 import { getAccountBills } from './../redux/getAccountBills';
 import './AccountPanel.scss';
 import initialState from './../redux/initialState';
+import { AccountSalesPanel } from './AccountSalesPanel';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -42,10 +43,14 @@ class AccountPanel extends Component {
                     <AccountHeaderMobile account={account} />
                 </Mobile>
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
-                    <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter>
-                        <TabletOrDesktop>
-                            <LatestTransactions transactions={transactions} />
-                        </TabletOrDesktop>
+                    <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
+                        {noCard ? (
+                            <AccountSalesPanel />
+                        ) : (
+                            <TabletOrDesktop>
+                                <LatestTransactions transactions={transactions} />
+                            </TabletOrDesktop>
+                        )}
                         <NextPaymentPanel bills={bills} />
                     </ResponsivePanel>
                     <AccountLinksPanel account={account} user={user} />

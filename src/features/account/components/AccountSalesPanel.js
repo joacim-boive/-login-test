@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '@ecster/ecster-components/Button';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './AccountSalesPanel.scss';
@@ -19,12 +20,14 @@ export const AccountSalesPanel = ({ className }) => {
                         <Data stronger>
                             <h4>{i18n('account.sales-panel.header')}</h4>
                         </Data>
-                        <React.Fragment>
-                            {i18n('account.sales-panel.body', {
-                                returnObjects: true,
-                                wrapper: { tag: Data },
-                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
-                        </React.Fragment>
+                    </DataRow>
+                    <DataRow>
+                        <Data>{i18n('account.sales-panel.body')}</Data>
+                        <Data className="button-column">
+                            <Button outline round onClick={() => {}} name="ansök">
+                                {i18n('account.sales-panel.button')}
+                            </Button>
+                        </Data>
                     </DataRow>
                 </DataColumn>
             </DataColumns>
