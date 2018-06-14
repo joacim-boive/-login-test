@@ -21,7 +21,7 @@ const WhiteBox = ({ children, className, ...rest }) => (
 export default WhiteBox;
 
 WhiteBox.propTypes = {
-    children: PropTypes.shape().isRequired,
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
 };
 

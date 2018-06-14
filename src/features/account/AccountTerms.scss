@@ -3,18 +3,33 @@
 
 .account-account-terms {
 
-    .info-line {
-        .item {
-            display: inli<ne-block;
+    .info-item {
+        padding: 15px;
+        border-bottom: 1px solid $gray40;
+
+        &:first-child {
+            padding-top: 0;
         }
+
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        & > div {
+            display: inline-block;
+        }
+
         .label {
-            color: $gray;
             width: 30%;
         }
         .value {
             width: 30%;
+            font-weight: bold;
         }
-        .descripion {
+        .description {
+            color: $gray80;
+            font-size: 14px;
             width: 40%;
         }
 
@@ -25,7 +40,7 @@
             .value {
                 width: 50%;
             }
-            .descripion {
+            .description {
                 width: 100%;
             }
         }
