@@ -123,7 +123,7 @@
         "redux-mock-store": "^1.5.3",
         "redux-thunk": "^2.3.0",
         "rekit-core": "^2.3.3",
-        "rekit-studio": "^2.3.9",
+        "rekit-studio": "^2.4.0",
         "request": "^2.87.0",
         "resolve-url-loader": "^2.3.0",
         "sass-loader": "^6.0.7",
@@ -138,8 +138,8 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@ecster/ecster-components": "^1.0.326",
-        "@ecster/ecster-i18n": "^3.0.57",
+        "@ecster/ecster-components": "^1.0.331",
+        "@ecster/ecster-i18n": "^3.0.62",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.67",
@@ -150,6 +150,7 @@
         "lazysizes": "^4.0.4",
         "normalize-scss": "^7.0.1",
         "npm-install-webpack-plugin": "^4.0.5",
+        "rc-slider": "^8.6.1",
         "react-grid-layout": "^0.16.6",
         "react-media": "^1.8.0",
         "react-router": "^4.3.1",

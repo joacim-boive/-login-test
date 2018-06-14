@@ -32,7 +32,8 @@
             "part-payment": "Delbetalningar",
             "bills": "Månadsfakturor",
             "card": "Hantera kort",
-            "terms": "Kontovillkor"
+            "terms": "Kontovillkor",
+            "loan": "Låneansökan"
         },
         "summary": {
             "left": "Kvar att handla för",
@@ -132,7 +133,23 @@
             }
         }
     },
-    "loan": {},
+    "loan": {
+        "overview-header": "Låneansökan",
+        "header": {
+            "header": "Låna till stort eller smått?",
+            "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
+        },
+        "body": {
+            "header": "Ansök om privatlån",
+            "amount": "Lånebelopp",
+            "payback": "Återbetalningstid",
+            "cost": "Månadskostnad",
+            "rent": "Ränta: {{rent}}",
+            "effective-rent": "Effektiva räntan: {{rent}}",
+            "submit": "Gå vidare",
+            "details": "Specifikation"
+        }
+    },
     "navigation": {
         "account-overview": "Översikt",
         "invoices": "Fakturor",

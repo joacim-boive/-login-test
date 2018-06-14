@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
@@ -27,7 +28,7 @@ export class OverviewPage extends Component {
     render() {
         const { accountsActive, user } = this.props;
         return (
-            <AuthenticatedPageTemplate header="Översikt">
+            <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
                     {accountsActive.map(account => (
                         <AccountPanel key={account.reference} account={account} user={user} />

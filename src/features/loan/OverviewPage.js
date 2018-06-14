@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import * as actions from './redux/actions';
+import LoanHeaderPanel from './components/LoanHeaderPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
@@ -13,9 +15,9 @@ export class OverviewPage extends Component {
 
     render() {
         return (
-            <AuthenticatedPageTemplate>
+            <AuthenticatedPageTemplate header={i18n('loan.overview-header')}>
                 <div className="loan-overview-page">
-                    <h1>Loan / overview page</h1>
+                    <LoanHeaderPanel />
                 </div>
             </AuthenticatedPageTemplate>
         );
