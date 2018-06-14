@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Row, Col } from '@ecster/ecster-components';
+import withMediaQueries from '@ecster/ecster-components/MediaQuery/withMediaQueries';
 import './ResponsivePanel.scss';
 
 class ResponsivePanel extends React.Component {
@@ -16,6 +17,9 @@ class ResponsivePanel extends React.Component {
             horizontalPadding,
             reverseStack,
             children,
+            verticalGutter,
+            horizontalGutter,
+            media,
         } = this.props;
 
         const wrapperClasses = classNames({
@@ -28,8 +32,14 @@ class ResponsivePanel extends React.Component {
         });
 
         const colClasses = classNames({
+            column: true,
             [`plr-${horizontalPadding}x`]: horizontalPadding !== 0,
             [`ptb-${verticalPadding}x`]: verticalPadding !== 0,
+        });
+
+        const elementClasses = classNames({
+            'gutter-vertical': verticalGutter || media.onMobile,
+            'gutter-horizontal': horizontalGutter && !media.onMobile,
         });
 
         const colProps = {
@@ -46,7 +56,7 @@ class ResponsivePanel extends React.Component {
                     <Row className={rowClasses}>
                         {childs.map(obj => (
                             <Col className={colClasses} key={obj.key || Math.random()} {...colProps}>
-                                {obj}
+                                <div className={elementClasses}>{obj}</div>
                             </Col>
                         ))}
                     </Row>
@@ -72,6 +82,9 @@ ResponsivePanel.propTypes = {
     reverseStack: PropTypes.bool,
     verticalPadding: spacePropValidation,
     horizontalPadding: spacePropValidation,
+    verticalGutter: PropTypes.bool,
+    horizontalGutter: PropTypes.bool,
+    media: PropTypes.shape().isRequired,
 };
 
 ResponsivePanel.defaultProps = {
@@ -82,6 +95,8 @@ ResponsivePanel.defaultProps = {
     reverseStack: false,
     verticalPadding: 0,
     horizontalPadding: 0,
+    verticalGutter: false,
+    horizontalGutter: false,
 };
 
-export default ResponsivePanel;
+export default withMediaQueries(ResponsivePanel);
