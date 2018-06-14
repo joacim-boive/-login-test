@@ -41,6 +41,14 @@
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp"
+        },
+        "terms": {
+            "": "Kontonummer",
+            "": "Kontonamn",
+            "": "Total kredit",
+            "": "Ränta",
+            "": "",
+            "": "",
         }
     },
     "authentication": {},

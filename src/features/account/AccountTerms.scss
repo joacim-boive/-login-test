@@ -1,5 +1,33 @@
-@import '../../styles/mixins';
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-components/scss/MediaQuery";
 
 .account-account-terms {
 
+    .info-line {
+        .item {
+            display: inli<ne-block;
+        }
+        .label {
+            color: $gray;
+            width: 30%;
+        }
+        .value {
+            width: 30%;
+        }
+        .descripion {
+            width: 40%;
+        }
+
+        @include mobile() {
+            .label {
+                width: 50%;
+            }
+            .value {
+                width: 50%;
+            }
+            .descripion {
+                width: 100%;
+            }
+        }
+    }
 }
