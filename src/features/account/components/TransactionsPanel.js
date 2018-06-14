@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { formatAmountCurrency } from '@ecster/ecster-util';
 import classNames from 'classnames';
 import { Data, DataColumns, DataColumn, DataRow } from '@ecster/ecster-components/DataColumns';
 import './TransactionsPanel.scss';
 import { formatDateShort } from './../../../common/util/format-date';
+import { formatAmount } from './../../../common/util/format-amount';
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -41,7 +41,13 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
                                     {formatDateShort(trans.date)}
                                 </Data>
                                 <Data left>{trans.description}</Data>
-                                <Data right>{formatAmountCurrency(trans.amount, 'sv-SE', 'SEK', true)}</Data>
+                                <Data right>
+                                    {formatAmount(
+                                        trans.type === 'CREDIT' ? trans.amount : -trans.amount,
+                                        undefined,
+                                        false
+                                    )}
+                                </Data>
                             </DataRow>
                         </DataColumn>
                     </DataColumns>
