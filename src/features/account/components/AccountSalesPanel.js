@@ -24,7 +24,7 @@ export const AccountSalesPanel = ({ className }) => {
                     <DataRow>
                         <Data>{i18n('account.sales-panel.body')}</Data>
                         <Data className="button-column">
-                            <Button outline round onClick={() => {}} name="ansök">
+                            <Button outline round onClick={() => {}} name="submit">
                                 {i18n('account.sales-panel.button')}
                             </Button>
                         </Data>
