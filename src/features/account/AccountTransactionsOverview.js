@@ -18,9 +18,8 @@ export class AccountTransactionsOverview extends Component {
         const { account, getTransactions, getAccount } = this.props;
         if (account.product) {
             getTransactions(defaultFilter);
-        } else {
-            getAccount();
         }
+        getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -94,4 +93,7 @@ function mapDispatchToProps(dispatch, state) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountTransactionsOverview);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AccountTransactionsOverview);

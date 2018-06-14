@@ -2,16 +2,9 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
-.next-payment-panel {
-    font-family: 'PT Sans';
-    font-size: 16px;
-    color: $gray140;
-
+.account-sales-panel {
     @include mobile() {
         padding: 0px 20px;
-        padding-top: 20px;
-        margin-top: 20px;
-        border-top: 1px solid $beige40;
     }
 
     h4 {
@@ -20,11 +13,8 @@
         margin: 0px 0px 10px 0px;
     }
 
-    .word-wrap {
-        word-break: inherit;
-    }
-
-    p {
-        margin: 0px;
+    .button-column {
+        max-width: 150px;
+        text-align: right;
     }
 }

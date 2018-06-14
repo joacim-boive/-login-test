@@ -41,6 +41,11 @@
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp"
+        },
+        "sales-panel": {
+            "header": "Ett kort för alla dina inköp ",
+            "body": "Delbetala köp, även i efterhand. 34 miljoner inköpsställen.",
+            "button": "Ansök"
         }
     },
     "authentication": {},
