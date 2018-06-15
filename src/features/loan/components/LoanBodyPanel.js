@@ -52,6 +52,7 @@ class LoanBodyPanel extends Component {
                             onChange={this.onChangeAmount}
                             min={promissory.minCreditAmount}
                             max={promissory.maxCreditAmount}
+                            step={100000}
                             defaultValue={promissory.defaultCreditAmount}
                             value={this.state.amount}
                             displayedValue={this.state.displayedAmount}
