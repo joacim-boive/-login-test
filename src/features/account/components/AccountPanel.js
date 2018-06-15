@@ -13,6 +13,7 @@ import { getAccountTransactions } from './../redux/getAccountTransactions';
 import { getAccountBills } from './../redux/getAccountBills';
 import './AccountPanel.scss';
 import initialState from './../redux/initialState';
+import { AccountSalesPanel } from './AccountSalesPanel';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -31,6 +32,7 @@ class AccountPanel extends Component {
         });
 
         if (!transactions) return null;
+        const noCard = account.numberOfCards === 0;
 
         return (
             <section className={classes}>
@@ -40,14 +42,18 @@ class AccountPanel extends Component {
                 <Mobile>
                     <AccountHeaderMobile account={account} />
                 </Mobile>
-                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body">
-                    <div>
-                        <TabletOrDesktop>
-                            <LatestTransactions transactions={transactions} className="account-panel__latest" />
-                        </TabletOrDesktop>
-                        <NextPaymentPanel bills={bills} className="account-panel__next-payment" />
-                    </div>
-                    <AccountLinksPanel account={account} user={user} className="account-panel__account-links" />
+                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
+                    <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
+                        {noCard ? (
+                            <AccountSalesPanel />
+                        ) : (
+                            <TabletOrDesktop>
+                                <LatestTransactions transactions={transactions} />
+                            </TabletOrDesktop>
+                        )}
+                        <NextPaymentPanel bills={bills} />
+                    </ResponsivePanel>
+                    <AccountLinksPanel account={account} user={user} />
                 </ResponsivePanel>
             </section>
         );
@@ -90,4 +96,7 @@ function mapDispatchToProps(dispatch) {
 
 export { AccountPanel as Component };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPanel);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AccountPanel);

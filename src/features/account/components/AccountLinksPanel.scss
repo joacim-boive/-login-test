@@ -1,6 +1,11 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
 .account-links-panel {
+    @include mobile() {
+        margin-top: -20px;
+    }
+
     &> * {
         padding: 10px 15px;
         border-bottom: 1px solid $beige40;

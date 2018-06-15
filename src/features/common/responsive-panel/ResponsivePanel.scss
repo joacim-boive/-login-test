@@ -1,2 +1,39 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+
 .responsive-panel {
+    .column {
+        .gutter-vertical {
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid $beige40;
+        }
+
+        .gutter-horizontal {
+            height: 100%;
+            padding-right: 30px;
+            margin-right: 30px;
+            border-right: 1px solid $beige40;
+
+            @include mobile() {
+                padding-right: 0px;
+                border-right: none;
+                margin: 0px;
+            }
+        }
+
+        &:last-child {
+            .gutter-vertical {
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+                border-bottom: none;
+            }
+
+            .gutter-horizontal {
+                padding-right: 0px;
+                margin-right: 0px;
+                border-right: none;
+            }
+        }
+    }
 }
