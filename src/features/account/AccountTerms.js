@@ -112,7 +112,13 @@ export class AccountTerms extends Component {
                     />
                     <InfoItem
                         value={
-                            <LinkButton outline round small to={terms.termsPDFURL}>
+                            <LinkButton
+                                outline
+                                round
+                                small
+                                to={terms.termsPDFURL}
+                                target="_blank"
+                            >
                                 {i18n('general.download')}
                             </LinkButton>
                         }
@@ -122,7 +128,13 @@ export class AccountTerms extends Component {
                     {terms.agreementPDFURL && (
                         <InfoItem
                             value={
-                                <LinkButton outline round small to={terms.agreementPDFURL}>
+                                <LinkButton
+                                    outline
+                                    round
+                                    small
+                                    to={terms.agreementPDFURL}
+                                    target="_blank"
+                                >
                                     {i18n('general.download')}
                                 </LinkButton>
                             }
