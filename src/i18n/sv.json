@@ -76,8 +76,8 @@
             "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta",
             "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
             "overdraft-fee-description": "Debiteras om kontot övertrasseras",
-            "account-terms-pdf-description": "",
-            "account-agreement-pdf-description": ""
+            "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
+            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
         },
         "terminate": {
             "confirm-header": "Avsluta konto",
@@ -87,6 +87,7 @@
 
             "terminate-account": "Avsluta konto",
             "info-text": [
+                "NOT YET IMPLEMENTED...",
                 "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
                 "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
                 "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."

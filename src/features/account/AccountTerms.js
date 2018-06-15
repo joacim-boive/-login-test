@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, ButtonGroup, ConfirmButton, Panel } from '@ecster/ecster-components';
+import { Button, ButtonGroup, ConfirmButton, LinkButton, Panel } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -27,14 +27,6 @@ export class AccountTerms extends Component {
     componentWillMount() {
         this.props.getAccountTerms();
     }
-
-    onClickDownloadTerms = () => {
-        console.log('Download terms not implemented...');
-    };
-
-    onClickDownloadAgreement = () => {
-        console.log('Download agreement not implemented...');
-    };
 
     onClickTerminateAccount = () => {
         console.log('Terminate account not implemented...');
@@ -120,22 +112,24 @@ export class AccountTerms extends Component {
                     />
                     <InfoItem
                         value={
-                            <Button outline round small onClick={this.onClickDownloadTerms}>
+                            <LinkButton outline round small to={terms.termsPDFURL}>
                                 {i18n('general.download')}
-                            </Button>
+                            </LinkButton>
                         }
                         label={i18n('account.terms.account-terms-pdf')}
                         description={i18n('account.terms.account-terms-pdf-description')}
                     />
-                    <InfoItem
-                        value={
-                            <Button outline round small onClick={this.onClickDownloadAgreement}>
-                                {i18n('general.download')}
-                            </Button>
-                        }
-                        label={i18n('account.terms.account-agreement-pdf')}
-                        description={i18n('account.terms.account-agreement-pdf-description')}
-                    />
+                    {terms.agreementPDFURL && (
+                        <InfoItem
+                            value={
+                                <LinkButton outline round small to={terms.agreementPDFURL}>
+                                    {i18n('general.download')}
+                                </LinkButton>
+                            }
+                            label={i18n('account.terms.account-agreement-pdf')}
+                            description={i18n('account.terms.account-agreement-pdf-description')}
+                        />
+                    )}
                 </Panel>
                 <h1>{i18n('account.terminate.terminate-account')}</h1>
                 <Panel key="account-terminate-panel" className="account-terminate-panel">
