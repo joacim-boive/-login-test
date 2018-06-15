@@ -1,41 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
-import * as actions from './redux/actions';
 import LoanHeaderPanel from './components/LoanHeaderPanel';
+import LoanBodyPanel from './components/LoanBodyPanel';
+import { getPromissoryNoteDefaultParameters } from './redux/getPromissoryNoteDefaultParameters';
 
 export class OverviewPage extends Component {
-    static propTypes = {
-        loan: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
-    };
+    componentWillMount() {
+        this.props.getPromissoryDefaultInfo();
+    }
+
+    onSubmit = e => {
+        console.log(e);
+    }
 
     render() {
         return (
             <AuthenticatedPageTemplate header={i18n('loan.overview-header')}>
                 <div className="loan-overview-page">
                     <LoanHeaderPanel />
+                    <LoanBodyPanel onSubmit={this.onSubmit} promissory={this.props.promissoryDefaultInfo} />
                 </div>
             </AuthenticatedPageTemplate>
         );
     }
 }
 
+OverviewPage.propTypes = {
+    user: PropTypes.shape().isRequired,
+    getPromissoryDefaultInfo: PropTypes.func.isRequired,
+    promissoryDefaultInfo: PropTypes.shape(),
+};
+
+OverviewPage.defaultProps = {
+    promissoryDefaultInfo: {},
+};
+
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        loan: state.loan,
+        user: state.authentication.person,
+        promissoryDefaultInfo: state.loan.promissoryNoteDefaultParameters,
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
+        getPromissoryDefaultInfo: () => dispatch(getPromissoryNoteDefaultParameters()),
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OverviewPage);

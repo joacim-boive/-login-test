@@ -33,13 +33,6 @@ const LoanHeaderPanel = ({ className, media }) => {
                     <section className="image">{SvgIconLoanHeader()}</section>
                 </ResponsivePanel>
             </Panel>
-            <Panel className="body">
-                <h2>{i18n('loan.body.header')}</h2>
-                <div className="sliders">
-                    <SliderPanel header="loan.body.amount" />
-                    <SliderPanel header="loan.body.payback" />
-                </div>
-            </Panel>
         </div>
     );
 };

@@ -147,7 +147,8 @@
             "rent": "Ränta: {{rent}}",
             "effective-rent": "Effektiva räntan: {{rent}}",
             "submit": "Gå vidare",
-            "details": "Specifikation"
+            "details": "Specifikation",
+            "year": "{{year}} år"
         }
     },
     "navigation": {
