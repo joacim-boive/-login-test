@@ -1,25 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Input } from '@ecster/ecster-components';
+import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
-class MobileBankIdOtherDevice extends React.Component {
+class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     render() {
-        const {
-            isVisible,
-            ssn,
-            ssnIsValid,
-            startLogin,
-            validateSsn,
-            onSsnChange,
-            onSsnValidation,
-            toggleState,
-        } = this.props;
+        const { isVisible, ssn, startLogin, validateSsn, onSsnChange, onSsnValidation, toggleState } = this.props;
 
         return (
             isVisible && (
-                <React.Fragment>
+                <form>
+                    <h2>{i18n('home.login.other-device.header.mobile')}</h2>
                     <Input
                         id="ssn"
                         name="ssn"
@@ -31,7 +23,7 @@ class MobileBankIdOtherDevice extends React.Component {
                         onValidation={onSsnValidation}
                         validator={validateSsn}
                         required
-                        validationMessage={i18n('home.login.otherDevice.ssn-validation')}
+                        validationMessage={i18n('home.login.other-device.ssn-validation')}
                         type="tel"
                     />
 
@@ -39,7 +31,7 @@ class MobileBankIdOtherDevice extends React.Component {
                         id="button-bankid-this-unit"
                         onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
                         round
-                        disabled={!ssnIsValid || !ssn}
+                        type="submit"
                     >
                         {i18n('home.login.buttons.mobileBankId')}
                     </Button>
@@ -47,16 +39,15 @@ class MobileBankIdOtherDevice extends React.Component {
                     <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
                         {i18n(`home.login.links.desktop.mobileBankId`)}
                     </Button>
-                </React.Fragment>
+                </form>
             )
         );
     }
 }
 
-MobileBankIdOtherDevice.propTypes = {
+MobileBankIdOtherDeviceForTouchDevice.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     ssn: PropTypes.string.isRequired,
-    ssnIsValid: PropTypes.bool.isRequired,
     startLogin: PropTypes.func.isRequired,
     validateSsn: PropTypes.func.isRequired,
     onSsnChange: PropTypes.func.isRequired,
@@ -64,4 +55,4 @@ MobileBankIdOtherDevice.propTypes = {
     toggleState: PropTypes.func.isRequired,
 };
 
-export default MobileBankIdOtherDevice;
+export default MobileBankIdOtherDeviceForTouchDevice;

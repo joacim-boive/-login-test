@@ -11,6 +11,7 @@ class BankIdThisDevice extends React.Component {
         return (
             isVisible && (
                 <React.Fragment>
+                    <h1>{i18n('home.login.header')}</h1>
                     <Button
                         id="mobileBankidThisUnit"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}

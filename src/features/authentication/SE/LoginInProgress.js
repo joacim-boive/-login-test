@@ -8,11 +8,11 @@ export default class LoginInProgress extends Component {
     render() {
         const { isVisible, isDesktop, isOnThisDevice, cancelLogin } = this.props;
 
-        const headerI18nKey = `home.login${isOnThisDevice ? '' : '.otherDevice'}.in-progress.${
+        const headerI18nKey = `home.login${isOnThisDevice ? '' : '.other-device'}.in-progress.${
             isDesktop ? 'desktop' : 'mobile'
         }.header`;
 
-        const bodyI18nKey = `home.login${isOnThisDevice ? '' : '.otherDevice'}.in-progress.${
+        const bodyI18nKey = `home.login${isOnThisDevice ? '' : '.other-device'}.in-progress.${
             isDesktop ? 'desktop' : 'mobile'
         }.body`;
 
@@ -27,7 +27,7 @@ export default class LoginInProgress extends Component {
                     <Spinner id="spinner-waiting-for-bankid" isVisible isCenterX />
 
                     <Button flat round green block outline className="home-login-page__button" onClick={cancelLogin}>
-                        {i18n('home.login.otherDevice.buttons.abort')}
+                        {i18n('home.login.other-device.buttons.abort')}
                     </Button>
                 </React.Fragment>
             )

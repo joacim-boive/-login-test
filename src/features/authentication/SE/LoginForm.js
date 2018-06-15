@@ -10,9 +10,9 @@ import validateSsn from '@ecster/ecster-components/Input/validators/persNr';
 
 import LoginInProgress from './LoginInProgress';
 import LoginHelp from './LoginHelp';
-// import LoginOther from './LoginOther';
 
-import MobileBankIdOtherDevice from './MobileBankIdOtherDevice';
+import MobileBankIdOtherDeviceForTouchDevice from './MobileBankIdOtherDeviceForTouchDevice';
+import MobileBankIdOtherDeviceForDesktopDevice from './MobileBankIdOtherDeviceForDesktopDevice';
 import MobileBankIdThisDevice from './MobileBankIdThisDevice';
 import BankIdThisDevice from './BankIdThisDevice';
 
@@ -63,8 +63,12 @@ class LoginFormSE extends Component {
      * @param {object} config -
      */
     startLogin = config => {
-        const { ssn } = this.state;
+        const { ssn, ssnIsValid } = this.state;
         const { type, isOnThisDevice } = config;
+
+        if (!isOnThisDevice && !ssnIsValid) {
+            return;
+        }
         const nextState = {
             isLoggingIn: type,
             isOnThisDevice,
@@ -145,28 +149,17 @@ class LoginFormSE extends Component {
         return (
             <React.Fragment>
                 {!isLoggingIn && (
-                    <React.Fragment>
-                        <aside className="help">
-                            <Button
-                                id="help"
-                                className="home-login-page__link home-login-page__link--help"
-                                onClick={this.showHelp}
-                                link
-                            >
-                                {i18n('general.buttons.help')}
-                                <span className="home-login-page__icon help__icon">&nbsp;</span>
-                            </Button>
-                        </aside>
-
-                        <h1 className="home-login-page__header">{i18n('home.login.header')}</h1>
-                    </React.Fragment>
+                    <aside className="help">
+                        <Button id="help" onClick={this.showHelp} link>
+                            {i18n('general.buttons.help')}
+                        </Button>
+                    </aside>
                 )}
 
                 <DesktopDevice>
-                    <MobileBankIdOtherDevice
+                    <MobileBankIdOtherDeviceForDesktopDevice
                         isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}
-                        ssnIsValid={ssnIsValid}
                         startLogin={this.startLogin}
                         validateSsn={validateSsn}
                         onSsnChange={this.onSsnChange}
@@ -182,10 +175,9 @@ class LoginFormSE extends Component {
                 </DesktopDevice>
 
                 <TouchDevice>
-                    <MobileBankIdOtherDevice
+                    <MobileBankIdOtherDeviceForTouchDevice
                         isVisible={!isOnThisDevice && !isLoggingIn}
                         ssn={ssn}
-                        ssnIsValid={ssnIsValid}
                         startLogin={this.startLogin}
                         validateSsn={validateSsn}
                         onSsnChange={this.onSsnChange}

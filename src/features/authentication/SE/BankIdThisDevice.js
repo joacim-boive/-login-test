@@ -11,16 +11,17 @@ class BankIdThisDevice extends React.Component {
         return (
             isVisible && (
                 <React.Fragment>
+                    <h1>{i18n('home.login.header')}</h1>
                     <Button
                         id="bankIdOtherUnit"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                         round
                     >
-                        {i18n('home.login.otherDevice.buttons.login')}
+                        {i18n('home.login.other-device.buttons.login')}
                     </Button>
 
                     <Button id="back" onClick={() => toggleState('isOnThisDevice')} link iconLeft="icon-chevron-left">
-                        {i18n('home.login.otherDevice.links.back')}
+                        {i18n('home.login.other-device.links.back')}
                     </Button>
                 </React.Fragment>
             )

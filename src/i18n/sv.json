@@ -53,6 +53,22 @@
     "customer": {},
     "home": {
         "login": {
+            "desktop": {
+                "bid-this-device": {
+
+                },
+                "mbid-other-device": {
+
+                }
+            },
+            "touch": {
+                "mbid-other-device": {
+
+                },
+                "mbid-this-device": {
+
+                }
+            },
             "header": "Logga in",
             "labels": {
                 "ssn": "Personnummer"
@@ -85,7 +101,6 @@
                     ]
                 }
             },
-            "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
             "help": {
                 "header": "Hur loggar jag in?",
                 "body": [
@@ -96,7 +111,7 @@
                     "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
                 ]
             },
-            "otherDevice": {
+            "other-device": {
                 "header": {
                     "mobile": "Logga in med Mobilt BankID från annan enhet",
                     "desktop": "Logga in med BankID på fil"
@@ -128,7 +143,7 @@
                         ]
                     }
                 },
-                "ssn-validation": "Ange ett korrekt personnummer (ååmmdd-xxxx)"
+                "ssn-validation": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)"
             }
         }
     },
