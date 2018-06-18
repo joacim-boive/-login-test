@@ -14,7 +14,9 @@ export class OverviewPage extends Component {
     };
 
     componentWillMount() {
-        this.props.getAccounts(this.props.user.id);
+        if (this.props.user.id) {
+            this.props.getAccounts(this.props.user.id);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,4 +57,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OverviewPage);

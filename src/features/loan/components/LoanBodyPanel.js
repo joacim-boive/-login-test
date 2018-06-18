@@ -6,6 +6,7 @@ import Panel from '@ecster/ecster-components/Panel/Panel';
 import './LoanBodyPanel.scss';
 import { SliderPanel } from './SliderPanel';
 import { formatAmount } from './../../../common/util/format-amount';
+import { LoanCost } from './LoanCost';
 
 class LoanBodyPanel extends Component {
     state = {
@@ -20,9 +21,12 @@ class LoanBodyPanel extends Component {
 
         if (promissory.minCreditAmount && this.state.displayedAmount === '') {
             this.setState({
+                amount: promissory.defaultCreditAmount,
+                year: promissory.defaultPaymentPeriodYear,
                 displayedAmount: formatAmount(promissory.defaultCreditAmount),
                 displayedYear: i18n('loan.body.year', { year: promissory.defaultPaymentPeriodYear }),
             });
+            this.props.getTerms(promissory.defaultCreditAmount, promissory.defaultPaymentPeriodYear);
         }
     }
 
@@ -34,13 +38,17 @@ class LoanBodyPanel extends Component {
         this.setState({ year, displayedYear: i18n('loan.body.year', { year }) });
     };
 
+    onChangeAfter = (val, name) => {
+        this.setState({ [name]: val }, () => this.props.getTerms(this.state.amount, this.state.year));
+    };
+
     render() {
-        const { className, promissory, onSubmit } = this.props;
+        const { className, promissory, onSubmit, terms } = this.props;
         const classes = classNames({
             'loan-body-panel': true,
             [className]: className,
         });
-        console.log(promissory);
+
         return (
             <div className={classes}>
                 <Panel className="wrapper">
@@ -50,6 +58,7 @@ class LoanBodyPanel extends Component {
                             name="amount"
                             header="loan.body.amount"
                             onChange={this.onChangeAmount}
+                            onAfterChange={val => this.onChangeAfter(val, 'amount')}
                             min={promissory.minCreditAmount}
                             max={promissory.maxCreditAmount}
                             step={100000}
@@ -58,9 +67,10 @@ class LoanBodyPanel extends Component {
                             displayedValue={this.state.displayedAmount}
                         />
                         <SliderPanel
-                            name="years"
+                            name="year"
                             header="loan.body.payback"
                             onChange={this.onChangeYear}
+                            onAfterChange={val => this.onChangeAfter(val, 'year')}
                             min={promissory.minPaymentPeriodYear}
                             max={promissory.maxPaymentPeriodYear}
                             defaultValue={promissory.defaultPaymentPeriodYear}
@@ -68,6 +78,7 @@ class LoanBodyPanel extends Component {
                             displayedValue={this.state.displayedYear}
                         />
                     </div>
+                    <LoanCost className="loan-cost-panel" terms={terms} />
                 </Panel>
             </div>
         );
@@ -77,12 +88,15 @@ class LoanBodyPanel extends Component {
 LoanBodyPanel.propTypes = {
     className: PropTypes.string,
     promissory: PropTypes.shape(),
+    terms: PropTypes.shape(),
     onSubmit: PropTypes.func.isRequired,
+    getTerms: PropTypes.func.isRequired,
 };
 
 LoanBodyPanel.defaultProps = {
     className: '',
     promissory: {},
+    terms: {},
 };
 
 export default LoanBodyPanel;

@@ -6,12 +6,22 @@ import 'rc-slider/assets/index.css';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './SliderPanel.scss';
 
-export const SliderPanel = ({ className, header, onChange, min, max, defaultValue, value, displayedValue, step }) => {
+export const SliderPanel = ({
+    className,
+    header,
+    onChange,
+    onAfterChange,
+    min,
+    max,
+    defaultValue,
+    value,
+    displayedValue,
+    step,
+}) => {
     const classes = classNames({
         'slider-panel': true,
         [className]: className,
     });
-    console.log(min, max, defaultValue, value);
 
     return (
         <div className={classes}>
@@ -26,6 +36,7 @@ export const SliderPanel = ({ className, header, onChange, min, max, defaultValu
                     defaultValue={defaultValue}
                     value={value || defaultValue}
                     onChange={onChange}
+                    onAfterChange={onAfterChange}
                 />
                 <span>+</span>
             </div>
@@ -37,6 +48,7 @@ SliderPanel.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string.isRequired,
     onChange: PropTypes.func,
+    onAfterChange: PropTypes.func,
     min: PropTypes.number,
     max: PropTypes.number,
     defaultValue: PropTypes.number,
@@ -48,6 +60,7 @@ SliderPanel.propTypes = {
 SliderPanel.defaultProps = {
     className: '',
     onChange: () => {},
+    onAfterChange: () => {},
     min: 0,
     max: 100000,
     defaultValue: 0,

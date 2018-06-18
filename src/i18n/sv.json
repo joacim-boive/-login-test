@@ -144,11 +144,16 @@
             "amount": "Lånebelopp",
             "payback": "Återbetalningstid",
             "cost": "Månadskostnad",
-            "rent": "Ränta: {{rent}}",
-            "effective-rent": "Effektiva räntan: {{rent}}",
+            "rent": "Ränta: {{rent}}%",
+            "effective-rent": "Effektiva räntan: {{rent}}%",
             "submit": "Gå vidare",
             "details": "Specifikation",
             "year": "{{year}} år"
+        },
+        "cost": {
+            "header": "Månadskostnad",
+            "rate": "Ränta: {{rate}}",
+            "effective-rate": "Effektiva räntan: {{rate}}"
         }
     },
     "navigation": {

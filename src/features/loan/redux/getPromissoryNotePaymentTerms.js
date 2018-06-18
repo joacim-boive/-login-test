@@ -9,13 +9,13 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_PROMISSORY_NOTE_PAYMENT_TERMS_URL } from './urls';
 
-export const getPromissoryNotePaymentTerms = (paymentPeriodYear, makePaymentPlan) => async (dispatch) => {
+export const getPromissoryNotePaymentTerms = (amount, paymentPeriodYear, makePaymentPlan) => async dispatch => {
     dispatch({
         type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_BEGIN,
     });
 
     try {
-        const res = await get(GET_PROMISSORY_NOTE_PAYMENT_TERMS_URL(paymentPeriodYear, makePaymentPlan));
+        const res = await get(GET_PROMISSORY_NOTE_PAYMENT_TERMS_URL(amount, paymentPeriodYear, makePaymentPlan));
         dispatch({
             type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_SUCCESS,
             data: res.response,
@@ -28,7 +28,9 @@ export const getPromissoryNotePaymentTerms = (paymentPeriodYear, makePaymentPlan
     }
 };
 
-export const dismissGetPromissoryNotePaymentTermsError = () => ({ type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_DISMISS_ERROR });
+export const dismissGetPromissoryNotePaymentTermsError = () => ({
+    type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {
