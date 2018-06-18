@@ -7,12 +7,22 @@ import { getText } from '@ecster/ecster-i18n/lib/Translate';
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
+    onKeyUp = ({ which }) => {
+        if (which === 13) {
+            this.startLogin();
+        }
+    };
+
+    startLogin = () => {
+        this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+    };
+
     render() {
-        const { isVisible, ssn, startLogin, validateSsn, onSsnChange, onSsnValidation, toggleState } = this.props;
+        const { isVisible, ssn, validateSsn, onSsnChange, onSsnValidation, toggleState } = this.props;
 
         return (
             isVisible && (
-                <form className="login-se-touch-mbid-other-device">
+                <div className="login-se-touch-mbid-other-device">
                     <h2>{i18n('header')}</h2>
                     <Input
                         name="ssn"
@@ -21,6 +31,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         placeholder={i18n('ssn-placeholder')}
                         value={ssn}
                         onChange={onSsnChange}
+                        onKeyUp={this.onKeyUp}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
                         required
@@ -28,12 +39,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         type="tel"
                     />
 
-                    <Button
-                        onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
-                        round
-                        type="submit"
-                        name="login-button"
-                    >
+                    <Button onClick={this.startLogin} round name="login-button">
                         {i18n('login-button')}
                     </Button>
 
@@ -45,7 +51,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     >
                         {i18n(`to-mbid-this-device-button`)}
                     </Button>
-                </form>
+                </div>
             )
         );
     }
