@@ -37,13 +37,24 @@
 }
 
 .top-navigation .arrow {
+    $arrow-height: 12px;
     position: absolute;
     width: 1px;
     height: 1px;
-    border: 12px solid transparent;
+    border: $arrow-height solid transparent;
     border-bottom-color: #fff;
-    top: -24px;
     right: 20px;
+
+    // transition props
+    border-bottom-width: 0;
+    top: -$arrow-height;
+    transition: border-bottom-width .3s ease, top .3s ease;
+
+    &.show {
+        top: -2 * $arrow-height;
+        border-bottom-width: $arrow-height;
+        z-index: 3;
+    }
 }
 
 .submenu.show {

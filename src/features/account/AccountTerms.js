@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, ButtonGroup, ConfirmButton, LinkButton, Panel } from '@ecster/ecster-components';
+import { ButtonGroup, ConfirmButton, LinkButton, Panel } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -112,13 +112,7 @@ export class AccountTerms extends Component {
                     />
                     <InfoItem
                         value={
-                            <LinkButton
-                                outline
-                                round
-                                small
-                                to={terms.termsPDFURL}
-                                target="_blank"
-                            >
+                            <LinkButton outline round small to={terms.termsPDFURL} target="_blank">
                                 {i18n('general.download')}
                             </LinkButton>
                         }
@@ -128,13 +122,7 @@ export class AccountTerms extends Component {
                     {terms.agreementPDFURL && (
                         <InfoItem
                             value={
-                                <LinkButton
-                                    outline
-                                    round
-                                    small
-                                    to={terms.agreementPDFURL}
-                                    target="_blank"
-                                >
+                                <LinkButton outline round small to={terms.agreementPDFURL} target="_blank">
                                     {i18n('general.download')}
                                 </LinkButton>
                             }

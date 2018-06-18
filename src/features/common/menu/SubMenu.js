@@ -6,6 +6,10 @@ import classNames from 'classnames';
 import './SubMenu.scss';
 
 export class SubMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.arrowRef = React.createRef();
+    }
     closeMenu = e => {
         if (this.props.show) {
             e.stopPropagation();
@@ -33,6 +37,13 @@ export class SubMenu extends React.Component {
         window.document.body.removeEventListener('keyup', this.handleEscape);
     };
 
+    animateArrow = () => {
+        const arrow = this.arrowRef.current;
+        if (this.props.show) {
+            arrow.classList.add('show');
+        }
+    };
+
     render() {
         const { show, requestClose, children, top, bottom } = this.props;
 
@@ -50,12 +61,12 @@ export class SubMenu extends React.Component {
         }
 
         return (
-            <React.Fragment>
-                {top && show && <div className="arrow" />}
-                <div role="presentation" className={classes} onClick={requestClose}>
+            <div className="submenu-wrap">
+                {top && show && <div className="arrow" ref={this.arrowRef} />}
+                <div role="presentation" className={classes} onClick={requestClose} onTransitionEnd={this.animateArrow}>
                     {children}
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
