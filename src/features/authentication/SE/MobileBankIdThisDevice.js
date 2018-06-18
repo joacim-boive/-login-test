@@ -23,7 +23,7 @@ class BankIdThisDevice extends React.Component {
                     </Button>
 
                     <Button
-                        id="login-se-mbid-this-device-on-touch-back-button"
+                        id="login-se-mbid-this-device-on-touch-to-other-device-button"
                         onClick={() => toggleState('isOnThisDevice')}
                         link
                     >

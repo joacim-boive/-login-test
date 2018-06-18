@@ -20,7 +20,7 @@ BankID this device
     #login-se-bid-this-device-button
 
     Back button
-    #login-se-bid-this-device-back-button
+    #login-se-bid-this-device-to-mbid-button
 
 
 Mobile BankID other device (default view)
@@ -40,7 +40,7 @@ Mobile BankId this device (default view)
     #login-se-mbid-this-device-on-touch-button
 
     Back button
-    #login-se-mbid-this-device-on-touch-back-button
+    #login-se-mbid-this-device-on-touch-to-other-device-button
 
 Mobile BankId other device
     Input field
