@@ -12,25 +12,25 @@ class BankIdThisDevice extends React.Component {
 
         return (
             isVisible && (
-                <React.Fragment>
+                <div className="login-se-desktop-bid-this-device">
                     <h2>{i18n('header')}</h2>
                     <Button
-                        id="login-se-bid-this-device-button"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                         round
+                        name="login-button"
                     >
                         {i18n('login-button')}
                     </Button>
 
                     <Button
-                        id="login-se-bid-this-device-to-mbid-button"
                         onClick={() => toggleState('isOnThisDevice')}
                         link
                         iconLeft="icon-chevron-left"
+                        name="to-mbid-other-device-button"
                     >
                         {i18n('to-mbid-button')}
                     </Button>
-                </React.Fragment>
+                </div>
             )
         );
     }

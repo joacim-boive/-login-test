@@ -20,23 +20,23 @@ export default class LoginInProgress extends Component {
 
         return (
             isVisible && (
-                <React.Fragment>
+                <div className="login-se-login-in-progress">
                     <h1>{i18n(headerI18nKey)}</h1>
                     {thisBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible isCenterX />
 
                     <Button
-                        id="login-se-login-in-progress-cancel-button"
                         flat
                         round
                         green
                         block
                         outline
                         onClick={cancelLogin}
+                        name="cancel-login-button"
                     >
                         {i18n('general.cancel')}
                     </Button>
-                </React.Fragment>
+                </div>
             )
         );
     }

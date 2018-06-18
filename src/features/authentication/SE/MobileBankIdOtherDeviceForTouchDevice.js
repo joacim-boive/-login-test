@@ -12,10 +12,9 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
 
         return (
             isVisible && (
-                <form>
+                <form className="login-se-touch-mbid-other-device">
                     <h2>{i18n('header')}</h2>
                     <Input
-                        id="login-se-mbid-other-device-on-touch-input"
                         name="ssn"
                         autoComplete="off"
                         label={i18n('ssn-label')}
@@ -30,19 +29,19 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     />
 
                     <Button
-                        id="login-se-mbid-other-device-on-touch-button"
                         onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
                         round
                         type="submit"
+                        name="login-button"
                     >
                         {i18n('login-button')}
                     </Button>
 
                     <Button
-                        id="login-se-mbid-other-device-on-touch-back-button"
                         onClick={() => toggleState('isOnThisDevice')}
                         link
                         iconLeft="icon-chevron-left"
+                        name="to-mbid-this-device-button"
                     >
                         {i18n(`to-mbid-this-device-button`)}
                     </Button>
