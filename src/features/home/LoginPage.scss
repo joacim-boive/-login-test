@@ -58,11 +58,6 @@ body {
         @include grid-cell(1, 1, 1, -1);
         margin-bottom: 30px;
 
-        &--help {
-            transform: translateX(100%);
-            will-change: transform;
-        }
-
         h1, h2 {
             color: $green120;
             font-weight: 700;
@@ -108,24 +103,6 @@ body {
         &--bankid {
             display: block; // Needed for IE11 to get the correct stack order
         }
-    }
-
-    & .help {
-
-        &__icon:after {
-            border: 1px solid;
-            content: '?';
-            font-weight: 400;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 2rem;
-            display: inline-block;
-            text-align: center;
-        }
-    }
-
-    .help__icon:hover:after {
-        text-decoration: none;
     }
 
     &__body {

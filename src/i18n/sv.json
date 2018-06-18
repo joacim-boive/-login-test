@@ -104,82 +104,77 @@
     "customer": {},
     "home": {
         "login": {
-            "header": "Logga in",
-            "labels": {
-                "ssn": "Personnummer"
-            },
-            "placeholders": {
-                "ssn": "ÅÅMMDDXXXX"
-            },
-            "buttons": {
-                "mobileBankId": "Mobilt BankID"
-            },
-            "links": {
+            "SE": {
                 "desktop": {
-                    "mobileBankId": "Logga in med BankID"
-                },
-                "mobile": {
-                    "mobileBankId": "Mobilt BankID från annan enhet"
-                }
-            },
-            "in-progress": {
-                "mobile":{
-                    "header": "Öppna Mobilt BankID",
-                    "body": [
-                        "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                    ]
-                },
-                "desktop": {
-                    "header": "Öppna BankID",
-                    "body": [
-                        "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
-                    ]
-                }
-            },
-            "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
-            "help": {
-                "header": "Hur loggar jag in?",
-                "body": [
-                    "Inloggning sker med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
-                    "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
-                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Hantering av personuppgifter']",
-                    "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
-                    "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
-                ]
-            },
-            "otherDevice": {
-                "header": {
-                    "mobile": "Logga in med Mobilt BankID från annan enhet",
-                    "desktop": "Logga in med BankID på fil"
-                },
-                "labels": {
-                    "ssn": "Personnummer"
-                },
-                "placeholders": {
-                    "ssn": "ÅÅMMDDXXXX"
-                },
-                "buttons": {
-                    "login": "Logga in",
-                    "abort": "Avbryt"
-                },
-                "links": {
-                    "back": "Tillbaka"
-                },
-                "in-progress": {
-                    "mobile":{
-                        "header": "Öppna Mobilt BankID",
-                        "body": [
-                            "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                        ]
+                    "bid-this-device": {
+                        "header": "Logga in med BankID på fil",
+                        "login-button": "Logga in",
+                        "to-mbid-button": "Tillbaka"
                     },
-                    "desktop": {
-                        "header": "Öppna Mobilt BankID",
-                        "body": [
-                            "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                        ]
+                    "mbid-other-device": {
+                        "header": "Logga in",
+                        "ssn-label": "Personnummer",
+                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "login-button": "Mobilt BankID",
+                        "to-bid-button": "Logga in med BankID"
                     }
                 },
-                "ssn-validation": "Ange ett korrekt personnummer (ååmmdd-xxxx)"
+                "touch": {
+                    "mbid-other-device": {
+                        "header": "Logga in med Mobilt BankID från annan enhet",
+                        "ssn-label": "Personnummer",
+                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "login-button": "Logga in",
+                        "to-mbid-this-device-button": "Tillbaka"
+                    },
+                    "mbid-this-device": {
+                        "header": "Logga in",
+                        "login-button": "Mobilt BankID",
+                        "to-mbid-button": "Mobilt BankID från annan enhet"
+                    }
+                },
+                "in-progress": {
+                    "desktop": {
+                        "this-device": {
+                            "header": "Öppna BankID",
+                            "body": [
+                                "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
+                            ]
+                        },
+                        "other-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        }
+                    },
+                    "touch": {
+                        "this-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        },
+                        "other-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        }
+                    }
+                },
+                "help": {
+                    "header": "Hur loggar jag in?",
+                    "body": [
+                        "Inloggning sker med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
+                        "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
+                        "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Hantering av personuppgifter']",
+                        "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
+                        "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
+                    ]
+                }
             }
         }
     },

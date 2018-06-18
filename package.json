@@ -138,7 +138,7 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@ecster/ecster-components": "^1.0.334",
+        "@ecster/ecster-components": "^1.0.336",
         "@ecster/ecster-i18n": "^3.0.63",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",

@@ -8,28 +8,35 @@ export default class LoginInProgress extends Component {
     render() {
         const { isVisible, isDesktop, isOnThisDevice, cancelLogin } = this.props;
 
-        const headerI18nKey = `home.login${isOnThisDevice ? '' : '.otherDevice'}.in-progress.${
-            isDesktop ? 'desktop' : 'mobile'
-        }.header`;
+        const whichDevice = isOnThisDevice ? 'this-device' : 'other-device';
+        const deviceType = isDesktop ? 'desktop' : 'touch';
 
-        const bodyI18nKey = `home.login${isOnThisDevice ? '' : '.otherDevice'}.in-progress.${
-            isDesktop ? 'desktop' : 'mobile'
-        }.body`;
+        const headerI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.header`;
+
+        const bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
 
         const i18nBody = i18n(bodyI18nKey, { returnObjects: true });
         const thisBody = Array.isArray(i18nBody) ? i18nBody.map(row => <p key={row}>{row}</p>) : <p>{i18nBody}</p>;
 
         return (
             isVisible && (
-                <React.Fragment>
+                <div className="login-se-login-in-progress">
                     <h1>{i18n(headerI18nKey)}</h1>
                     {thisBody}
-                    <Spinner id="spinner-waiting-for-bankid" isVisible isCenterX strokeWidth={8} />
+                    <Spinner id="login-se-login-in-progress-spinner" isVisible isCenterX />
 
-                    <Button flat round green block outline className="home-login-page__button" onClick={cancelLogin}>
-                        {i18n('home.login.otherDevice.buttons.abort')}
+                    <Button
+                        flat
+                        round
+                        green
+                        block
+                        outline
+                        onClick={cancelLogin}
+                        name="cancel-login-button"
+                    >
+                        {i18n('general.cancel')}
                     </Button>
-                </React.Fragment>
+                </div>
             )
         );
     }
