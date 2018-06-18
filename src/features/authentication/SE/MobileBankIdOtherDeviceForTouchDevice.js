@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { getText } from '@ecster/ecster-i18n/lib/Translate';
+
+const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     render() {
@@ -11,19 +13,19 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
         return (
             isVisible && (
                 <form>
-                    <h2>{i18n('home.login.other-device.header.mobile')}</h2>
+                    <h2>{i18n('header')}</h2>
                     <Input
                         id="ssn"
                         name="ssn"
                         autoComplete="off"
-                        label={i18n('home.login.labels.ssn')}
-                        placeholder={i18n('home.login.placeholders.ssn')}
+                        label={i18n('ssn-label')}
+                        placeholder={i18n('ssn-placeholder')}
                         value={ssn}
                         onChange={onSsnChange}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
                         required
-                        validationMessage={i18n('home.login.other-device.ssn-validation')}
+                        validationMessage={i18n('ssn-validation-message')}
                         type="tel"
                     />
 
@@ -33,11 +35,16 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         round
                         type="submit"
                     >
-                        {i18n('home.login.buttons.mobileBankId')}
+                        {i18n('login-button')}
                     </Button>
 
-                    <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
-                        {i18n(`home.login.links.desktop.mobileBankId`)}
+                    <Button
+                        id="button-switch-to-bank-id-other"
+                        onClick={() => toggleState('isOnThisDevice')}
+                        link
+                        iconLeft="icon-chevron-left"
+                    >
+                        {i18n(`to-mbid-this-device-button`)}
                     </Button>
                 </form>
             )
