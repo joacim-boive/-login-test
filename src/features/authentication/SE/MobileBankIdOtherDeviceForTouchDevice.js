@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Input, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
+import { Button, Input } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
 
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
@@ -15,7 +15,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                 <form>
                     <h2>{i18n('header')}</h2>
                     <Input
-                        id="ssn"
+                        id="login-se-mbid-other-device-on-touch-input"
                         name="ssn"
                         autoComplete="off"
                         label={i18n('ssn-label')}
@@ -30,7 +30,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     />
 
                     <Button
-                        id="button-bankid-this-unit"
+                        id="login-se-mbid-other-device-on-touch-button"
                         onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
                         round
                         type="submit"
@@ -39,7 +39,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     </Button>
 
                     <Button
-                        id="button-switch-to-bank-id-other"
+                        id="login-se-mbid-other-device-on-touch-back-button"
                         onClick={() => toggleState('isOnThisDevice')}
                         link
                         iconLeft="icon-chevron-left"

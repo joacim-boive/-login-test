@@ -150,7 +150,7 @@ class LoginFormSE extends Component {
             <React.Fragment>
                 {!isLoggingIn && (
                     <aside className="help">
-                        <Button id="help" onClick={this.showHelp} link>
+                        <Button id="login-se-help-button" onClick={this.showHelp} link>
                             {i18n('general.buttons.help')}
                         </Button>
                     </aside>

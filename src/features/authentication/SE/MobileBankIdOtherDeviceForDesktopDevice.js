@@ -15,7 +15,7 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
                 <form>
                     <h1>{i18n('header')}</h1>
                     <Input
-                        id="ssn"
+                        id="login-se-mbid-other-device-on-desktop-input"
                         name="ssn"
                         autoComplete="off"
                         label={i18n('ssn-label')}
@@ -30,7 +30,7 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
                     />
 
                     <Button
-                        id="button-bankid-this-unit"
+                        id="login-se-mbid-other-device-on-desktop-button"
                         onClick={() => startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false })}
                         round
                         type="submit"
@@ -38,7 +38,11 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
                         {i18n('login-button')}
                     </Button>
 
-                    <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
+                    <Button
+                        id="login-se-mbid-other-device-on-desktop-back-button"
+                        onClick={() => toggleState('isOnThisDevice')}
+                        link
+                    >
                         {i18n(`to-bid-button`)}
                     </Button>
                 </form>

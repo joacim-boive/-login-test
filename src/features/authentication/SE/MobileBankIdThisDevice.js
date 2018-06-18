@@ -15,14 +15,18 @@ class BankIdThisDevice extends React.Component {
                 <React.Fragment>
                     <h1>{i18n('header')}</h1>
                     <Button
-                        id="mobileBankidThisUnit"
+                        id="login-se-mbid-this-device-on-touch-button"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                         round
                     >
                         {i18n('login-button')}
                     </Button>
 
-                    <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
+                    <Button
+                        id="login-se-mbid-this-device-on-touch-back-button"
+                        onClick={() => toggleState('isOnThisDevice')}
+                        link
+                    >
                         {i18n('to-mbid-button')}
                     </Button>
                 </React.Fragment>

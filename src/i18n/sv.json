@@ -59,13 +59,12 @@
                         "header": "Logga in med BankID på fil",
                         "login-button": "Logga in",
                         "to-mbid-button": "Tillbaka"
-
                     },
                     "mbid-other-device": {
-                        "header": "Logga in med Mobilt BankID från annan enhet",
+                        "header": "Logga in",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)"
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Mobilt BankID",
                         "to-bid-button": "Logga in med BankID"
                     }
@@ -75,7 +74,7 @@
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)"
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -86,28 +85,28 @@
                     }
                 },
                 "in-progress": {
-                    "this-device": {
-                        "touch":{
-                            "header": "Öppna Mobilt BankID",
-                            "body": [
-                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                            ]
-                        },
-                        "desktop": {
+                    "desktop": {
+                        "this-device": {
                             "header": "Öppna BankID",
                             "body": [
                                 "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
                             ]
+                        },
+                        "other-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
                         }
                     },
-                    "other-device": {
-                        "touch":{
+                    "touch": {
+                        "this-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ]
                         },
-                        "desktop": {
+                        "other-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
@@ -124,9 +123,6 @@
                         "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
                         "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
                     ]
-                },
-                "other-device": {
-                    "in-progress": ""
                 }
             }
         }
