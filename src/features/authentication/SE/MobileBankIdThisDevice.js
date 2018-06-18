@@ -10,8 +10,7 @@ class BankIdThisDevice extends React.Component {
     render() {
         const { isVisible, startLogin, toggleState } = this.props;
 
-        return (
-            isVisible && (
+        return (isVisible && (
                 <React.Fragment>
                     <h1>{i18n('header')}</h1>
                     <Button

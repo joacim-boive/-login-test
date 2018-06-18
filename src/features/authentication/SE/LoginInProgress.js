@@ -32,10 +32,9 @@ export default class LoginInProgress extends Component {
                         green
                         block
                         outline
-                        className="home-login-page__button"
                         onClick={cancelLogin}
                     >
-                        {i18n('home.general.cancel')}
+                        {i18n('general.cancel')}
                     </Button>
                 </React.Fragment>
             )

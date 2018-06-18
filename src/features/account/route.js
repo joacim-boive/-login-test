@@ -1,4 +1,4 @@
-import { OverviewPage, AccountTransactionsOverview } from './';
+import { OverviewPage, AccountTransactionsOverview, AccountTerms } from './';
 
 export default {
     path: 'account',
@@ -10,5 +10,6 @@ export default {
             name: 'Account transactions overview',
             component: AccountTransactionsOverview,
         },
+        { path: ':ref/customer/:id/terms', name: 'Account terms', component: AccountTerms },
     ],
 };

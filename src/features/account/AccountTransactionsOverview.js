@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
-import InfoPageTemplate from './../common/templates/InfoPageTemplate';
+import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
 import { AccountSummary } from './components/AccountSummary';
 import { AccountTransactions } from './components/AccountTransactions';
 import { TransactionsPanel } from './components/TransactionsPanel';
@@ -40,7 +40,7 @@ export class AccountTransactionsOverview extends Component {
         if (!account.product || !transactions) return null;
 
         return (
-            <InfoPageTemplate header="Kontohändelser" className="account-transactions-overview">
+            <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 {reservedTransactions && (
@@ -53,7 +53,7 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
-            </InfoPageTemplate>
+            </AuthenticatedSubPageTemplate>
         );
     }
 }

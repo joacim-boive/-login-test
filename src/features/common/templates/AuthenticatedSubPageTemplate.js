@@ -7,7 +7,7 @@ import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
 
-export default class InfoPageTemplate extends React.Component {
+export default class AuthenticatedSubPageTemplate extends React.Component {
     static propTypes = {
         children: PropTypes.node.isRequired,
     };
@@ -16,7 +16,7 @@ export default class InfoPageTemplate extends React.Component {
         const { className, linkTo, header } = this.props;
 
         const classes = classNames({
-            'common-info-page': true,
+            'common-authenticated-sub-page': true,
             [className]: className,
         });
 
@@ -51,14 +51,14 @@ export default class InfoPageTemplate extends React.Component {
     }
 }
 
-InfoPageTemplate.propTypes = {
+AuthenticatedSubPageTemplate.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string,
     linkTo: PropTypes.string,
     children: PropTypes.node.isRequired,
 };
 
-InfoPageTemplate.defaultProps = {
+AuthenticatedSubPageTemplate.defaultProps = {
     className: '',
     header: undefined,
     linkTo: '',
