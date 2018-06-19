@@ -1,0 +1,32 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.login-help-se {
+    max-width: 675px;
+    margin-top: 100px;
+    padding: 0 20px;
+
+    h1 {
+        color: $green120;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-family: "PT Sans", sans-serif;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    li {
+        font-size: 16px;
+    }
+
+    p, ul {
+        margin-bottom: 30px;
+    }
+
+}
