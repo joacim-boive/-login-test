@@ -28,7 +28,9 @@ const LoginHelp = () => (
             <li>Aktivera kort</li>
         </ul>
 
-        <p><em>För att använda tjänsterna behöver du ett konto hos Ecster.</em></p>
+        <p>
+            <em>För att använda tjänsterna behöver du ett konto hos Ecster.</em>
+        </p>
 
         <h2>Hantering av personuppgifter</h2>
 
@@ -48,8 +50,10 @@ const LoginHelp = () => (
         <h2>Vill du prata med oss?</h2>
 
         <p>
-            Om du behöver hjälp med att logga in eller har andra frågor är du välkommen att ringa vår kundservice på
-            <a href="tel:+4687014667">08 701 46 67</a>, vardagar kl. 9–18.
+            Om du behöver hjälp med att logga in eller har andra frågor är du välkommen att ringa vår kundservice på{' '}
+            <a className="tel" href="tel:+4687014667">
+                08 701 46 67
+            </a>, vardagar kl. 9–18.
         </p>
     </div>
 );
