@@ -14,6 +14,10 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     };
 
     startLogin = () => {
+        if (!this.props.ssn) {
+            this.inputRef.getInputEl().focus();
+            this.inputRef.getInputEl().blur(); // force field validation
+        }
         this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
     };
 
@@ -25,6 +29,9 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                 <div className="login-se-touch-mbid-other-device">
                     <h2>{i18n('header')}</h2>
                     <Input
+                        ref={input => {
+                            this.inputRef = input;
+                        }}
                         name="ssn"
                         autoComplete="off"
                         label={i18n('ssn-label')}

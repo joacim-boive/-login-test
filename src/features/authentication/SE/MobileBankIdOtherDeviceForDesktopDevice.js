@@ -6,7 +6,7 @@ import { getText } from '@ecster/ecster-i18n/lib/Translate';
 
 const i18n = keySuffix => getText(`home.login.SE.desktop.mbid-other-device.${keySuffix}`);
 
-class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
+class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
     onKeyUp = ({ which }) => {
         if (which === 13) {
             this.startLogin();
@@ -14,6 +14,10 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
     };
 
     startLogin = () => {
+        if (!this.props.ssn) {
+            this.inputRef.getInputEl().focus();
+            this.inputRef.getInputEl().blur(); // force field validation
+        }
         this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
     };
 
@@ -25,6 +29,9 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
                 <div className="login-se-dekstop-mbid-other-device">
                     <h1>{i18n('header')}</h1>
                     <Input
+                        ref={input => {
+                            this.inputRef = input;
+                        }}
                         name="ssn"
                         autoComplete="off"
                         label={i18n('ssn-label')}
@@ -52,7 +59,7 @@ class MobileBankIdOtherDeviceForTouchDevices extends React.Component {
     }
 }
 
-MobileBankIdOtherDeviceForTouchDevices.propTypes = {
+MobileBankIdOtherDeviceForDesktopDevice.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     ssn: PropTypes.string.isRequired,
     startLogin: PropTypes.func.isRequired,
@@ -62,4 +69,4 @@ MobileBankIdOtherDeviceForTouchDevices.propTypes = {
     toggleState: PropTypes.func.isRequired,
 };
 
-export default MobileBankIdOtherDeviceForTouchDevices;
+export default MobileBankIdOtherDeviceForDesktopDevice;
