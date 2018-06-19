@@ -12,7 +12,7 @@ const Li = ({ children }) => (
 );
 
 Li.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export const SETermsWorks = ({ className, promissory }) => {
@@ -24,13 +24,12 @@ export const SETermsWorks = ({ className, promissory }) => {
         <div className={classes}>
             <h4>Så här fungerar lånet</h4>
             <ul>
-                <Li>Låna upp till {formatAmount(promissory.maxCreditAmount)}</Li>
+                <Li>{`Låna upp till ${formatAmount(promissory.maxCreditAmount)}`}</Li>
                 <Li>
-                    Välj den betalningstakt som passar dig ({promissory.minPaymentPeriodYear} -{' '}
-                    {promissory.maxPaymentPeriodYear} år)
+                    {`Välj den betalningstakt som passar dig (${promissory.minPaymentPeriodYear} - ${promissory.maxPaymentPeriodYear} år)`}
                 </Li>
-                <Li>Ränta {promissory.interestRate}%</Li>
-                <Li>Uppläggningsavgift {formatAmount(promissory.startFee)}</Li>
+                <Li>{`Ränta ${promissory.interestRate}%`}</Li>
+                <Li>{`Uppläggningsavgift {formatAmount(promissory.startFee)}`}</Li>
                 <Li>Lös lånet när du vill</Li>
             </ul>
         </div>

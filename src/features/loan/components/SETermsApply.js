@@ -11,7 +11,7 @@ const Li = ({ children, label }) => (
 );
 
 Li.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     label: PropTypes.string.isRequired,
 };
 
@@ -23,7 +23,7 @@ export const SETermsApply = ({ className }) => {
     return (
         <div className={classes}>
             <h4>Så här går det till att ansöka om lånet</h4>
-            <ol start="1" type="1">
+            <ol>
                 <Li label="1.">Fyll i ansökan här på webben</Li>
                 <Li label="2.">Skriv under det skuldebrev du får med posten och returnera svarskuvert</Li>
                 <Li label="3.">Vi betalar ut pengarna till ditt konto</Li>
