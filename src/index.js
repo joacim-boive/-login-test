@@ -1,7 +1,6 @@
 // Summary:
 //   This is the entry of the application, works together with index.html.
 
-import 'babel-polyfill';
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';

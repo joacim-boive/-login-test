@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<%
+var lang = htmlWebpackPlugin.options.language || 'sv';
+var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.files.manifest"' : '';
+%>
+<html lang="<%= lang %>" <%= manifest %>>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+    <% if(htmlWebpackPlugin.options.isDontIndexThisPage === true){ %>
+    <meta name="robots" content="noindex">
+    <% } %>
+
+    <title><%= htmlWebpackPlugin.options.title || 'Ecster' %></title>
+
+    <% if(htmlWebpackPlugin.options.isGoogleFonts) { %>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" crossorigin href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" crossorigin href="//fonts.gstatic.com">
+    <% } %>
+    <% if(htmlWebpackPlugin.options.googleAnalytics) { %>
+    <script>
+        window.GAConf = {
+            "id": "<%= htmlWebpackPlugin.options.googleAnalytics.id %>",
+            "v": "<%= htmlWebpackPlugin.options.googleAnalytics.checksum %>",
+            "env": "<%= htmlWebpackPlugin.options.env %>"
+        };
+    </script>
+    <script async defer src="<%= htmlWebpackPlugin.options.googleAnalytics.script %>"></script>
+    <% } %>
+    <% if(htmlWebpackPlugin.options.env) { %>
+    <script>
+        window.ECSTER_CONFIG_ENVIRONMENT = '<%= htmlWebpackPlugin.options.env %>';
+    </script>
+    <% } %>
+</head>
+<body class="web-app">
+<div id="react-root" role="main"></div>
+<noscript>
+    <style>
+        #react-root {
+            filter: blur(5px);
+        }
+    </style>
+    <div id="no-js">
+        <h1>Sorry!</h1>
+        <p>You need to have JavaScript</p>
+        <p>enabled for this page to work.</p>
+    </div>
+</noscript>
+<% if(htmlWebpackPlugin.options.dll) { %>
+<script src="<%= htmlWebpackPlugin.options.dll %>.js"></script>
+<% } %>
+</body>
+</html>
