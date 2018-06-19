@@ -164,16 +164,6 @@
                             ]
                         }
                     }
-                },
-                "help": {
-                    "header": "Hur loggar jag in?",
-                    "body": [
-                        "Inloggning sker med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
-                        "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
-                        "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Hantering av personuppgifter']",
-                        "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
-                        "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
-                    ]
                 }
             }
         }
