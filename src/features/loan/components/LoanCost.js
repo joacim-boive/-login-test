@@ -5,11 +5,13 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './LoanCost.scss';
 import { formatAmount } from './../../../common/util/format-amount';
 
-export const LoanCost = ({ className, terms }) => {
+export const LoanCost = ({ className, terms, interestRate }) => {
     const classes = classNames({
         'loan-cost': true,
         [className]: className,
     });
+
+    if (!terms.averageMonthlyCost) return null;
 
     return (
         <div className={classes}>
@@ -17,7 +19,7 @@ export const LoanCost = ({ className, terms }) => {
             <div className="row">
                 <h5>{formatAmount(terms.averageMonthlyCost)}</h5>
                 <div>
-                    <div>{i18n('loan.cost.rate', { rate: '5,56%' })}</div>
+                    <div>{i18n('loan.cost.rate', { rate: interestRate })}</div>
                     <div>{i18n('loan.cost.effective-rate', { rate: terms.effectiveRate })}</div>
                 </div>
             </div>
@@ -28,9 +30,11 @@ export const LoanCost = ({ className, terms }) => {
 LoanCost.propTypes = {
     className: PropTypes.string,
     terms: PropTypes.shape(),
+    interestRate: PropTypes.number,
 };
 
 LoanCost.defaultProps = {
     className: '',
     terms: {},
+    interestRate: 0,
 };

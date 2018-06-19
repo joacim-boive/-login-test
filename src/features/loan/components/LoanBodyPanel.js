@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '@ecster/ecster-components/Button';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import Panel from '@ecster/ecster-components/Panel/Panel';
 import './LoanBodyPanel.scss';
@@ -51,7 +52,7 @@ class LoanBodyPanel extends Component {
 
         return (
             <div className={classes}>
-                <Panel className="wrapper">
+                <Panel className="body-wrapper">
                     <h2>{i18n('loan.body.header')}</h2>
                     <div className="sliders">
                         <SliderPanel
@@ -78,7 +79,8 @@ class LoanBodyPanel extends Component {
                             displayedValue={this.state.displayedYear}
                         />
                     </div>
-                    <LoanCost className="loan-cost-panel" terms={terms} />
+                    <LoanCost className="loan-cost-panel" terms={terms} interestRate={promissory.interestRate} />
+                    <Button className="submit" green round onClick={onSubmit}>{i18n('loan.body.submit')}</Button>
                 </Panel>
             </div>
         );

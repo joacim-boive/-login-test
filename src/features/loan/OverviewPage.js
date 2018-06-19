@@ -7,6 +7,9 @@ import LoanHeaderPanel from './components/LoanHeaderPanel';
 import LoanBodyPanel from './components/LoanBodyPanel';
 import { getPromissoryNoteDefaultParameters } from './redux/getPromissoryNoteDefaultParameters';
 import { getPromissoryNotePaymentTerms } from './redux/getPromissoryNotePaymentTerms';
+import { SETermsWorks } from './components/SETermsWorks';
+import { SETermsApply } from './components/SETermsApply';
+import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 
 export class OverviewPage extends Component {
     componentWillMount() {
@@ -31,6 +34,10 @@ export class OverviewPage extends Component {
                         terms={terms}
                         promissory={promissoryDefaultInfo}
                     />
+                    <ResponsivePanel className="terms" desktop={2} tablet={2} mobile={1}>
+                        <SETermsWorks promissory={promissoryDefaultInfo} />
+                        <SETermsApply />
+                    </ResponsivePanel>
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -39,15 +46,20 @@ export class OverviewPage extends Component {
 
 OverviewPage.propTypes = {
     user: PropTypes.shape().isRequired,
+    locale: PropTypes.string.isRequired,
     terms: PropTypes.shape(),
+    accountLimitRaiseTerms: PropTypes.shape(),
     getPromissoryDefaultInfo: PropTypes.func.isRequired,
     getPaymentTerms: PropTypes.func.isRequired,
     promissoryDefaultInfo: PropTypes.shape(),
+    accountPaymentTerms: PropTypes.shape(),
 };
 
 OverviewPage.defaultProps = {
-    promissoryDefaultInfo: {},
     terms: {},
+    promissoryDefaultInfo: {},
+    accountLimitRaiseTerms: {},
+    accountPaymentTerms: {},
 };
 
 /* istanbul ignore next */
@@ -56,6 +68,9 @@ function mapStateToProps(state) {
         user: state.authentication.person,
         promissoryDefaultInfo: state.loan.promissoryNoteDefaultParameters,
         terms: state.loan.promissoryNotePaymentTerms,
+        accountLimitRaiseTerms: state.account.accountLimitRaiseTerms,
+        accountPaymentTerms: state.account.accountPaymentTerms,
+        locale: state.home.locale,
     };
 }
 

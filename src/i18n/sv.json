@@ -152,8 +152,8 @@
         },
         "cost": {
             "header": "Månadskostnad",
-            "rate": "Ränta: {{rate}}",
-            "effective-rate": "Effektiva räntan: {{rate}}"
+            "rate": "Ränta: {{rate}} %",
+            "effective-rate": "Effektiva räntan: {{rate}} %"
         }
     },
     "navigation": {
