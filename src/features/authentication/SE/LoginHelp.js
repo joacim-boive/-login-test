@@ -5,16 +5,13 @@ import React from 'react';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
 const LoginHelp = () => {
-    const header = i18n('home.login.help.header');
-    const i18nBody = i18n('home.login.help.body', { returnObjects: true });
-    const thisBody = {
-        __html: Array.isArray(i18nBody) ? i18nBody.map(row => `<p>${row}</p>`).join('') : `<p>${i18nBody}</p>`,
-    };
+    const header = i18n('home.login.SE.help.header');
+    const body = i18n('home.login.SE.help.body', { returnObjects: true, wrapper: { tag: 'p' } });
 
     return (
         <div className="login-help">
             <h1>{header}</h1>
-            <div dangerouslySetInnerHTML={thisBody} />
+            {body}
         </div>
     );
 };
