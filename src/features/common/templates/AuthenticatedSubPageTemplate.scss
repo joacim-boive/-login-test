@@ -1,8 +1,8 @@
+@import '../../../styles/mixins';
+@import '../../../styles/constants';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
 @import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
-@import '../../../styles/mixins';
-@import '../../../styles/constants';
 
 .common-authenticated-sub-page {
     h1 {
@@ -61,15 +61,26 @@
 
     }
 
+    .page-container {
+        @include tablet() {
+            margin-top: $navigation-height + 10;
+        }
+
+        @include desktop() {
+            margin-top: $navigation-height + 10;
+        }
+    }
+
     .page-content {
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
-            margin: ($navigation-height + 10) auto 10px;
+            margin: 0 auto 10px;
+            padding: 0 15px;
         }
 
         @include mobile() {
             padding: 0;
-            margin-bottom: 66px;
+            margin-bottom: $navigation-height;
         }
 
         @include tablet() {

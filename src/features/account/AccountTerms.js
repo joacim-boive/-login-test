@@ -38,7 +38,7 @@ export class AccountTerms extends Component {
         return (
             <AuthenticatedSubPageTemplate header="Kontovillkor">
                 <h1>Villkor</h1>
-                <Panel key="account-terms-panel" className="account-terms-panel">
+                <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     <InfoItem
                         value={terms.accountNumber}
                         label={i18n('account.terms.account-number')}
@@ -132,7 +132,7 @@ export class AccountTerms extends Component {
                     )}
                 </Panel>
                 <h1>{i18n('account.terminate.terminate-account')}</h1>
-                <Panel key="account-terminate-panel" className="account-terminate-panel">
+                <Panel key="account-terminate-panel" className="account-terminate-panel" sideBordersMobile={false}>
                     {i18n('account.terminate.info-text', { returnObjects: true, wrapper: { tag: 'p' } })}
                     <ButtonGroup>
                         <ConfirmButton
