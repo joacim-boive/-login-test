@@ -43,20 +43,18 @@
         width: 100%;
         padding: 20px 0px;
         cursor: pointer;
+        border-top: 1px solid $beige40;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            border-top: 1px solid $beige40;
-            height: 1px;
-            width: 100%;
-            margin: 0;
+        &:focus {
+            .panel-expander__show-more-text {
+                text-decoration: underline;
+            }
         }
 
         .panel-expander__show-more-text {
             font-weight: 400;
             font-size: 16px;
+
         }
     }
 
@@ -67,10 +65,13 @@
         text-align: center;
         justify-self: center;
         transition: transform 0.2s 0s ease-in-out;
+        transform-origin: 50% 50%;
+        text-decoration: none;
     }
-
+    
     &__arrow--expanded {
         transform: rotate(180deg);
+        transform-origin: 50% 50%;
         margin-top: 0px;
     }
 }
