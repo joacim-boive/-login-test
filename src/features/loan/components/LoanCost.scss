@@ -13,25 +13,34 @@
         color: $gray140;
     }
 
-    .row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
+    h5 {
+        margin: 0px;
+        font-size: 50px;
+        font-weight: $weight-bold;
+        color: $gray140;
+    }
 
-        h5 {
-            margin: 0px;
-            font-size: 50px;
-            font-weight: $weight-bold;
-            color: $gray140;
+    .column {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin: 15px 0px 0px 20px;
+        white-space: nowrap;
+
+        @include mobile() {
+            display: inline-flex;
+            margin: 15px 0px 0px 0px;
         }
 
-        div {
+        span {
             margin: 2px 0px 0px 15px;
             text-align: left;
             font-size: 14px;
             color: $gray;
+
+            @include mobile() {
+                font-size: 16px;
+            }
         }
     }
 }

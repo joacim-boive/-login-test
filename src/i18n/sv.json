@@ -148,12 +148,24 @@
             "effective-rent": "Effektiva räntan: {{rent}}%",
             "submit": "Gå vidare",
             "details": "Specifikation",
-            "year": "{{year}} år"
+            "year": "{{year}} år",
+            "show-more": "Specifikationer",
+            "show-less": "Visa mindre"
         },
         "cost": {
             "header": "Månadskostnad",
             "rate": "Ränta: {{rate}} %",
             "effective-rate": "Effektiva räntan: {{rate}} %"
+        },
+        "spec": {
+            "count": "Antal betalningar",
+            "credit-amount": "Kreditbelopp",
+            "credit-cost": "Kreditkostnad",
+            "rate-cost": "Räntekostnad",
+            "start-fee": "Uppläggningsavgift",
+            "admin-fee": "Administrativ avgift",
+            "sum-admin-fee": "Summa administrativ avgift",
+            "amount": "Totalt belopp att betala"
         }
     },
     "navigation": {

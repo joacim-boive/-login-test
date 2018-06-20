@@ -26,10 +26,10 @@ export const SETermsWorks = ({ className, promissory }) => {
             <ul>
                 <Li>{`Låna upp till ${formatAmount(promissory.maxCreditAmount)}`}</Li>
                 <Li>
-                    {`Välj den betalningstakt som passar dig (${promissory.minPaymentPeriodYear} - ${promissory.maxPaymentPeriodYear} år)`}
+                    {`Välj den återbetalningstid som passar dig (${promissory.minPaymentPeriodYear} - ${promissory.maxPaymentPeriodYear} år)`}
                 </Li>
-                <Li>{`Ränta ${promissory.interestRate}%`}</Li>
-                <Li>{`Uppläggningsavgift {formatAmount(promissory.startFee)}`}</Li>
+                <Li>{`Rörlig ränta ${promissory.interestRate}%`}</Li>
+                <Li>{`Uppläggningsavgift ${formatAmount(promissory.startFee)}`}</Li>
                 <Li>Lös lånet när du vill</Li>
             </ul>
         </div>

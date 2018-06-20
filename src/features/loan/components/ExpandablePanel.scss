@@ -1,0 +1,76 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+
+.expandable-panel {
+    background: $white;
+    width: 100%;
+
+    @include mobile() {
+        margin: 0;
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+    }
+
+    &.panel--no-bottom-padding {
+        padding-bottom: 0;
+    }
+
+    &--padded {
+        padding: 30px;
+    }
+
+    &--compact {
+        padding: 20px;
+    }
+
+    &--bordered {
+        border-radius: 4px;
+        border: solid 1px $gray20;
+    }
+
+    &__content {
+        transition: height 218ms cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+    }
+
+    &__expander {
+        outline: none;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 40px;
+        width: 100%;
+        padding: 20px 0px;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            border-top: 1px solid $beige40;
+            height: 1px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .panel-expander__show-more-text {
+            font-weight: 400;
+            font-size: 16px;
+        }
+    }
+
+    &__arrow {
+        width: 40px;
+        margin-top: 2px;
+        flex: 0 0 auto;
+        text-align: center;
+        justify-self: center;
+        transition: transform 0.2s 0s ease-in-out;
+    }
+
+    &__arrow--expanded {
+        transform: rotate(180deg);
+        margin-top: 0px;
+    }
+}

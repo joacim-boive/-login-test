@@ -5,6 +5,7 @@ import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './SliderPanel.scss';
+import { InteractiveElement } from './../../common/interactive-element/InteractiveElement';
 
 export const SliderPanel = ({
     className,
@@ -28,7 +29,7 @@ export const SliderPanel = ({
             <h4>{i18n(header)}</h4>
             <h5>{displayedValue}</h5>
             <div className="wrapper">
-                <span>-</span>
+                <InteractiveElement>-</InteractiveElement>
                 <Slider
                     min={min}
                     max={max}
@@ -38,7 +39,7 @@ export const SliderPanel = ({
                     onChange={onChange}
                     onAfterChange={onAfterChange}
                 />
-                <span>+</span>
+                <InteractiveElement>+</InteractiveElement>
             </div>
         </div>
     );

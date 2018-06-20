@@ -36,7 +36,7 @@ export class OverviewPage extends Component {
                     />
                     <ResponsivePanel className="terms" desktop={2} tablet={2} mobile={1}>
                         <SETermsWorks promissory={promissoryDefaultInfo} />
-                        <SETermsApply />
+                        <SETermsApply className="terms-last" />
                     </ResponsivePanel>
                 </div>
             </AuthenticatedPageTemplate>

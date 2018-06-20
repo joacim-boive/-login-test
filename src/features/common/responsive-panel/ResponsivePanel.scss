@@ -2,7 +2,7 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
 .responsive-panel {
-    .column {
+    .responsive-column {
         .gutter-vertical {
             padding-bottom: 20px;
             margin-bottom: 20px;
@@ -36,7 +36,7 @@
             }
         }
 
-        .no-border {
+        .responsive-no-border {
             border-bottom: none;
             border-right: none;
         }

@@ -22,11 +22,11 @@ export const SETermsApply = ({ className }) => {
     });
     return (
         <div className={classes}>
-            <h4>Så här går det till att ansöka om lånet</h4>
+            <h4>Så här ansöker du om lånet</h4>
             <ol>
-                <Li label="1.">Fyll i ansökan här på webben</Li>
-                <Li label="2.">Skriv under det skuldebrev du får med posten och returnera svarskuvert</Li>
-                <Li label="3.">Vi betalar ut pengarna till ditt konto</Li>
+                <Li label="1.">Fyll i ansökan</Li>
+                <Li label="2.">Vid godkännd ansökan, signera skuldebrevet och skicka till oss</Li>
+                <Li label="3.">När vi fått skuldebrevet har du normalt sett pengarna på ditt konto inom ca tre bankdagar</Li>
             </ol>
             <section>
                 <h5>För att kunna ansöka måste du uppfylla följande</h5>

@@ -8,6 +8,9 @@ import './LoanBodyPanel.scss';
 import { SliderPanel } from './SliderPanel';
 import { formatAmount } from './../../../common/util/format-amount';
 import { LoanCost } from './LoanCost';
+import ExpandablePanel from './ExpandablePanel';
+import SpecificationPanel from './SpecificationPanel';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 
 class LoanBodyPanel extends Component {
     state = {
@@ -55,32 +58,52 @@ class LoanBodyPanel extends Component {
                 <Panel className="body-wrapper">
                     <h2>{i18n('loan.body.header')}</h2>
                     <div className="sliders">
-                        <SliderPanel
-                            name="amount"
-                            header="loan.body.amount"
-                            onChange={this.onChangeAmount}
-                            onAfterChange={val => this.onChangeAfter(val, 'amount')}
-                            min={promissory.minCreditAmount}
-                            max={promissory.maxCreditAmount}
-                            step={100000}
-                            defaultValue={promissory.defaultCreditAmount}
-                            value={this.state.amount}
-                            displayedValue={this.state.displayedAmount}
-                        />
-                        <SliderPanel
-                            name="year"
-                            header="loan.body.payback"
-                            onChange={this.onChangeYear}
-                            onAfterChange={val => this.onChangeAfter(val, 'year')}
-                            min={promissory.minPaymentPeriodYear}
-                            max={promissory.maxPaymentPeriodYear}
-                            defaultValue={promissory.defaultPaymentPeriodYear}
-                            value={this.state.year}
-                            displayedValue={this.state.displayedYear}
-                        />
+                        <ResponsivePanel className="full-width" desktop={2} tablet={2} mobile={1}>
+                            <SliderPanel
+                                key="1"
+                                name="amount"
+                                header="loan.body.amount"
+                                onChange={this.onChangeAmount}
+                                onAfterChange={val => this.onChangeAfter(val, 'amount')}
+                                min={promissory.minCreditAmount}
+                                max={promissory.maxCreditAmount}
+                                step={100000}
+                                defaultValue={promissory.defaultCreditAmount}
+                                value={this.state.amount}
+                                displayedValue={this.state.displayedAmount}
+                            />
+                            <SliderPanel
+                                key="2"
+                                name="year"
+                                header="loan.body.payback"
+                                onChange={this.onChangeYear}
+                                onAfterChange={val => this.onChangeAfter(val, 'year')}
+                                min={promissory.minPaymentPeriodYear}
+                                max={promissory.maxPaymentPeriodYear}
+                                defaultValue={promissory.defaultPaymentPeriodYear}
+                                value={this.state.year}
+                                displayedValue={this.state.displayedYear}
+                            />
+                        </ResponsivePanel>
                     </div>
                     <LoanCost className="loan-cost-panel" terms={terms} interestRate={promissory.interestRate} />
-                    <Button className="submit" green round onClick={onSubmit}>{i18n('loan.body.submit')}</Button>
+                    <Button className="submit" green round onClick={onSubmit}>
+                        {i18n('loan.body.submit')}
+                    </Button>
+                    <ExpandablePanel
+                        noPadding
+                        noBorder
+                        collapse
+                        showMoreLabel={i18n('loan.body.show-more')}
+                        showLessLabel={i18n('loan.body.show-less')}
+                    >
+                        <SpecificationPanel
+                            className="specs"
+                            terms={terms}
+                            promissory={promissory}
+                            loanAmount={this.state.amount}
+                        />
+                    </ExpandablePanel>
                 </Panel>
             </div>
         );
