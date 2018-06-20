@@ -3,6 +3,9 @@ const devServers = require('./tools/dev-servers');
 
 compile();
 
-devServers.backend();
-devServers.proxy();
-devServers.studio();
+if (process.argv.indexOf('--dev')) {
+    // Only run servers during development
+    devServers.backend();
+    devServers.proxy();
+    devServers.studio();
+}
