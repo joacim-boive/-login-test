@@ -149,8 +149,7 @@
             "submit": "Gå vidare",
             "details": "Specifikation",
             "year": "{{year}} år",
-            "show-more": "Specifikationer",
-            "show-less": "Visa mindre"
+            "show-more": "Specifikationer"
         },
         "cost": {
             "header": "Månadskostnad",

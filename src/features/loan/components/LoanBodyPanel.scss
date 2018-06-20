@@ -3,6 +3,10 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-body-panel {
+    .panel {
+        padding: 15px 0px;
+    }
+
     @include mobile() {
         margin: 0px -10px;
     }
@@ -24,9 +28,10 @@
             color: $green120;
             font-size: 44px;
             margin: 35px 0px;
-
+            
             @include mobile() {
                 margin: 35px 0px 0px 0px;
+                font-size: 30px;
             }
         }
 

@@ -45,32 +45,22 @@ export class OverviewPage extends Component {
 }
 
 OverviewPage.propTypes = {
-    user: PropTypes.shape().isRequired,
-    locale: PropTypes.string.isRequired,
     terms: PropTypes.shape(),
-    accountLimitRaiseTerms: PropTypes.shape(),
     getPromissoryDefaultInfo: PropTypes.func.isRequired,
     getPaymentTerms: PropTypes.func.isRequired,
     promissoryDefaultInfo: PropTypes.shape(),
-    accountPaymentTerms: PropTypes.shape(),
 };
 
 OverviewPage.defaultProps = {
     terms: {},
     promissoryDefaultInfo: {},
-    accountLimitRaiseTerms: {},
-    accountPaymentTerms: {},
 };
 
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        user: state.authentication.person,
         promissoryDefaultInfo: state.loan.promissoryNoteDefaultParameters,
         terms: state.loan.promissoryNotePaymentTerms,
-        accountLimitRaiseTerms: state.account.accountLimitRaiseTerms,
-        accountPaymentTerms: state.account.accountPaymentTerms,
-        locale: state.home.locale,
     };
 }
 

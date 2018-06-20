@@ -80,6 +80,7 @@ class LoanBodyPanel extends Component {
                                 onAfterChange={val => this.onChangeAfter(val, 'year')}
                                 min={promissory.minPaymentPeriodYear}
                                 max={promissory.maxPaymentPeriodYear}
+                                step={1}
                                 defaultValue={promissory.defaultPaymentPeriodYear}
                                 value={this.state.year}
                                 displayedValue={this.state.displayedYear}
@@ -95,7 +96,7 @@ class LoanBodyPanel extends Component {
                         noBorder
                         collapse
                         showMoreLabel={i18n('loan.body.show-more')}
-                        showLessLabel={i18n('loan.body.show-less')}
+                        showLessLabel={i18n('loan.body.show-more')}
                     >
                         <SpecificationPanel
                             className="specs"

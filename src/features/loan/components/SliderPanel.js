@@ -24,12 +24,26 @@ export const SliderPanel = ({
         [className]: className,
     });
 
+    const onIncrease = () => {
+        const nextValue = value + step;
+        const newValue = nextValue > max ? max : nextValue;
+        onChange(newValue);
+        onAfterChange(newValue);
+    }
+
+    const onDecrease = () => {
+        const nextValue = value - step;
+        const newValue = nextValue < min ? min : nextValue;
+        onChange(newValue);
+        onAfterChange(newValue);
+    }
+
     return (
         <div className={classes}>
             <h4>{i18n(header)}</h4>
             <h5>{displayedValue}</h5>
             <div className="wrapper">
-                <InteractiveElement>-</InteractiveElement>
+                <InteractiveElement onClick={onDecrease}>-</InteractiveElement>
                 <Slider
                     min={min}
                     max={max}
@@ -39,7 +53,7 @@ export const SliderPanel = ({
                     onChange={onChange}
                     onAfterChange={onAfterChange}
                 />
-                <InteractiveElement>+</InteractiveElement>
+                <InteractiveElement onClick={onIncrease}>+</InteractiveElement>
             </div>
         </div>
     );

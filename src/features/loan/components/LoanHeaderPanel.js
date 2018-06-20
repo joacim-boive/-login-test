@@ -7,7 +7,7 @@ import Panel from '@ecster/ecster-components/Panel/Panel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import './LoanHeaderPanel.scss';
 import { SvgIconLoanHeader } from './../../../common/images/SvgIconLoanHeader';
-import { SliderPanel } from './SliderPanel';
+import { SvgIconLoanHeaderMobile } from './../../../common/images/SvgIconLoanHeaderMobile';
 
 const LoanHeaderPanel = ({ className, media }) => {
     const classes = classNames({
@@ -30,7 +30,9 @@ const LoanHeaderPanel = ({ className, media }) => {
                         <h2>{i18n('loan.header.header')}</h2>
                         <p>{i18n('loan.header.body')}</p>
                     </section>
-                    <section className="image">{SvgIconLoanHeader()}</section>
+                    <section className="image">
+                        {media.onMobile ? SvgIconLoanHeaderMobile() : SvgIconLoanHeader()}
+                    </section>
                 </ResponsivePanel>
             </Panel>
         </div>

@@ -75,6 +75,12 @@ class ExpandablePanel extends React.Component {
 
         return (
             <div style={style} className={rootClasses}>
+                <InteractiveElement tabIndex="0" className="expandable-panel__expander" onClick={this.toggleExpansion}>
+                    <span className="panel-expander__show-more-text">{collapsed ? showMoreLabel : showLessLabel}</span>
+                    <span className={arrowClasses}>
+                        <i className={icon} alt="expand" />
+                    </span>
+                </InteractiveElement>
                 <div
                     className="expandable-panel__content"
                     ref={el => {
@@ -83,12 +89,6 @@ class ExpandablePanel extends React.Component {
                 >
                     {children}
                 </div>
-                <InteractiveElement tabIndex="0" className="expandable-panel__expander" onClick={this.toggleExpansion}>
-                    <span className="panel-expander__show-more-text">{collapsed ? showMoreLabel : showLessLabel}</span>
-                    <span className={arrowClasses}>
-                        <i className={icon} alt="expand" />
-                    </span>
-                </InteractiveElement>
             </div>
         );
     }
