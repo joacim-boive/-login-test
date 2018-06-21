@@ -20,6 +20,7 @@ class ResponsivePanel extends React.Component {
             verticalGutter,
             horizontalGutter,
             media,
+            noBorder,
         } = this.props;
 
         const wrapperClasses = classNames({
@@ -32,14 +33,15 @@ class ResponsivePanel extends React.Component {
         });
 
         const colClasses = classNames({
-            column: true,
+            'responsive-column': true,
             [`plr-${horizontalPadding}x`]: horizontalPadding !== 0,
             [`ptb-${verticalPadding}x`]: verticalPadding !== 0,
         });
 
         const elementClasses = classNames({
-            'gutter-vertical': verticalGutter || media.onMobile,
+            'gutter-vertical': verticalGutter || (media.onMobile && horizontalGutter),
             'gutter-horizontal': horizontalGutter && !media.onMobile,
+            'responsive-no-border': noBorder,
         });
 
         const colProps = {
@@ -84,6 +86,7 @@ ResponsivePanel.propTypes = {
     horizontalPadding: spacePropValidation,
     verticalGutter: PropTypes.bool,
     horizontalGutter: PropTypes.bool,
+    noBorder: PropTypes.bool,
     media: PropTypes.shape().isRequired,
 };
 
@@ -97,6 +100,7 @@ ResponsivePanel.defaultProps = {
     horizontalPadding: 0,
     verticalGutter: false,
     horizontalGutter: false,
+    noBorder: false,
 };
 
 export default withMediaQueries(ResponsivePanel);
