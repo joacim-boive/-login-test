@@ -8,9 +8,9 @@ import './LoanBodyPanel.scss';
 import { SliderPanel } from './SliderPanel';
 import { formatAmount } from './../../../common/util/format-amount';
 import { LoanCost } from './LoanCost';
-import ExpandablePanel from './ExpandablePanel';
 import SpecificationPanel from './SpecificationPanel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
 class LoanBodyPanel extends Component {
     state = {
