@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { getText } from '@ecster/ecster-i18n/lib/Translate';
+
+const i18n = keySuffix => getText(`home.login.SE.touch.mbid-this-device.${keySuffix}`);
 
 class BankIdThisDevice extends React.Component {
     render() {
@@ -10,19 +12,24 @@ class BankIdThisDevice extends React.Component {
 
         return (
             isVisible && (
-                <React.Fragment>
+                <div className="login-se-touch-mbid-this-device">
+                    <h1>{i18n('header')}</h1>
                     <Button
-                        id="mobileBankidThisUnit"
                         onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                         round
+                        name="login-button"
                     >
-                        {i18n('home.login.buttons.mobileBankId')}
+                        {i18n('login-button')}
                     </Button>
 
-                    <Button id="button-switch-to-bank-id-other" onClick={() => toggleState('isOnThisDevice')} link>
-                        {i18n(`home.login.links.mobile.mobileBankId`)}
+                    <Button
+                        onClick={() => toggleState('isOnThisDevice')}
+                        link
+                        name="to-mbid-other-device-button"
+                    >
+                        {i18n('to-mbid-button')}
                     </Button>
-                </React.Fragment>
+                </div>
             )
         );
     }

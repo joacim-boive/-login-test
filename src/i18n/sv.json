@@ -6,7 +6,8 @@
         },
         "help": "Hjälp",
         "back": "Tillbaka",
-        "cancel": "Avbryt"
+        "cancel": "Avbryt",
+        "download": "Ladda ner"
     },
     "account": {
         "header": {
@@ -36,9 +37,9 @@
             "loan": "Låneansökan"
         },
         "summary": {
-            "left": "Kvar att handla för",
-            "used": "Använd kredit",
-            "total": "Total kredit"
+            "left": "Kvar att handla för:",
+            "used": "Använd kredit:",
+            "total": "Total kredit:"
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp"
@@ -47,6 +48,56 @@
             "header": "Ett kort för alla dina inköp ",
             "body": "Delbetala köp, även i efterhand. 34 miljoner inköpsställen.",
             "button": "Ansök"
+        },
+        "terms": {
+            "account-number": "Kontonummer",
+            "account-name": "Kontonamn",
+            "total-credit": "Total kredit",
+            "interest": "Ränta",
+            "admin-fee": "Administrativ avgift",
+            "yearly-fee": "Årsavgift kort",
+            "extra-card-fee": "Extrakortsavgift",
+            "atm-withdrawal-fee": "Bankomatuttagsavgift",
+            "withdrawal-fee": "Kontantuttagsavgift",
+            "withdrawal-fee-foreign-currency": "Kontantuttagsavgift utländsk valuta",
+            "exchange-fee": "Valutaväxlingsavgift",
+            "late-payment-fee": "Förseniningsavgift",
+            "overdraft-fee": "Övertrasseringsavgift",
+            "account-terms-pdf": "Fullständiga villkor (pdf)",
+            "account-agreement-pdf": "Kontoavtal (pdf)",
+
+            "atm-withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
+            "withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
+
+            "account-number-description": "Används som OCR-nummer",
+            "account-name-description": "",
+            "total-credit-description": "Din nuvarande kreditgräns",
+            "interest-description": "Aktiv om du delbetalar fakturan",
+            "admin-fee-description": "Avgift för administration av din betalningar",
+            "yearly-fee-description": "",
+            "extra-card-fee-description": "",
+            "atm-withdrawal-fee-description": "Du kan ta ut upp till 500 kr per dag",
+            "withdrawal-fee-description": "Du kan ta ut upp till 500 kr per dag",
+            "withdrawal-fee-foreign-currency-description": "Avgift om du gör uttag av utländsk valuta",
+            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta",
+            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
+            "overdraft-fee-description": "Debiteras om kontot övertrasseras",
+            "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
+            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
+        },
+        "terminate": {
+            "confirm-header": "Avsluta konto",
+            "confirm-text": "Vill du verkligen avsluta kontot? Du kan inte ångra i efterhand.",
+            "confirm-ok": "Ja, avsluta kontot",
+            "confirm-cancel": "Avbryt",
+
+            "terminate-account": "Avsluta konto",
+            "info-text": [
+                "NOT YET IMPLEMENTED...",
+                "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
+                "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
+                "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."
+            ]
         }
     },
     "authentication": {},
@@ -54,82 +105,67 @@
     "customer": {},
     "home": {
         "login": {
-            "header": "Logga in",
-            "labels": {
-                "ssn": "Personnummer"
-            },
-            "placeholders": {
-                "ssn": "ÅÅMMDDXXXX"
-            },
-            "buttons": {
-                "mobileBankId": "Mobilt BankID"
-            },
-            "links": {
+            "SE": {
                 "desktop": {
-                    "mobileBankId": "Logga in med BankID"
-                },
-                "mobile": {
-                    "mobileBankId": "Mobilt BankID från annan enhet"
-                }
-            },
-            "in-progress": {
-                "mobile":{
-                    "header": "Öppna Mobilt BankID",
-                    "body": [
-                        "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                    ]
-                },
-                "desktop": {
-                    "header": "Öppna BankID",
-                    "body": [
-                        "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
-                    ]
-                }
-            },
-            "backToMobileBankIdForThisDevice": "Tillbaka till Mobilt BankID på denna enhet",
-            "help": {
-                "header": "Hur loggar jag in?",
-                "body": [
-                    "Inloggning sker med hjälp av BankID. BankID är en e-legitimation som gör det möjligt för företag, banker, organisationer och myndigheter att både identifiera och ingå avtal med privatpersoner på Internet.",
-                    "Det finns flera utgivare av BankID. Kontakta din bank för att skaffa BankID till din dator eller Mobilt BankID till din mobil/surfplatta.",
-                    "[link https://www.ecster.se/om-oss/hantering-av-personuppgifter 'Hantering av personuppgifter']",
-                    "Mer information hittar du på [link https://bankid.support.com 'BankID.com']",
-                    "[link https://www.ecster.se/om-oss/kontakt 'Länk till kundservice']"
-                ]
-            },
-            "otherDevice": {
-                "header": {
-                    "mobile": "Logga in med Mobilt BankID från annan enhet",
-                    "desktop": "Logga in med BankID på fil"
-                },
-                "labels": {
-                    "ssn": "Personnummer"
-                },
-                "placeholders": {
-                    "ssn": "ÅÅMMDDXXXX"
-                },
-                "buttons": {
-                    "login": "Logga in",
-                    "abort": "Avbryt"
-                },
-                "links": {
-                    "back": "Tillbaka"
-                },
-                "in-progress": {
-                    "mobile":{
-                        "header": "Öppna Mobilt BankID",
-                        "body": [
-                            "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                        ]
+                    "bid-this-device": {
+                        "header": "Logga in med BankID på fil",
+                        "login-button": "Logga in",
+                        "to-mbid-button": "Tillbaka"
                     },
-                    "desktop": {
-                        "header": "Öppna Mobilt BankID",
-                        "body": [
-                            "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
-                        ]
+                    "mbid-other-device": {
+                        "header": "Logga in",
+                        "ssn-label": "Personnummer",
+                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "login-button": "Mobilt BankID",
+                        "to-bid-button": "Logga in med BankID"
                     }
                 },
-                "ssn-validation": "Ange ett korrekt personnummer (ååmmdd-xxxx)"
+                "touch": {
+                    "mbid-other-device": {
+                        "header": "Logga in med Mobilt BankID från annan enhet",
+                        "ssn-label": "Personnummer",
+                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "login-button": "Logga in",
+                        "to-mbid-this-device-button": "Tillbaka"
+                    },
+                    "mbid-this-device": {
+                        "header": "Logga in",
+                        "login-button": "Mobilt BankID",
+                        "to-mbid-button": "Mobilt BankID från annan enhet"
+                    }
+                },
+                "in-progress": {
+                    "desktop": {
+                        "this-device": {
+                            "header": "Öppna BankID",
+                            "body": [
+                                "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
+                            ]
+                        },
+                        "other-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        }
+                    },
+                    "touch": {
+                        "this-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        },
+                        "other-device": {
+                            "header": "Öppna Mobilt BankID",
+                            "body": [
+                                "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ]
+                        }
+                    }
+                }
             }
         }
     },

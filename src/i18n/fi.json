@@ -84,7 +84,7 @@
                     "[link https://www.ecster.se/om-oss/contact 'Linkki asiakaspalveluun']"
                 ]
             },
-            "otherDevice": {
+            "other-device": {
                 "header": {
                     "mobile": "Kirjaudu sisään Mobile BankID: n toisesta laitteesta",
                     "desktop": "Kirjaudu BankID-tiedostolla"

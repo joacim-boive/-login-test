@@ -114,7 +114,7 @@
         "prop-types": "^15.5.10",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
-        "react-hot-loader": "^4.3.2",
+        "react-hot-loader": "^4.3.3",
         "react-redux": "^5.0.5",
         "react-router-dom": "^4.3.1",
         "react-router-redux": "5.0.0-alpha.9",
@@ -138,8 +138,8 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@ecster/ecster-components": "^1.0.331",
-        "@ecster/ecster-i18n": "^3.0.62",
+        "@ecster/ecster-components": "^1.0.337",
+        "@ecster/ecster-i18n": "^3.0.63",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.67",
