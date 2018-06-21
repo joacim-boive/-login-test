@@ -7,7 +7,7 @@ import './ScrollPaginate.scss';
 export class ScrollPaginate extends Component {
     state = {
         bottom: false,
-        showLink: false,
+        showMoreButton: false,
     };
 
     componentDidMount() {
@@ -30,7 +30,7 @@ export class ScrollPaginate extends Component {
             this.setState({ bottom });
         } else {
             // IE
-            this.setState({ showLink: true });
+            this.setState({ showMoreButton: true });
         }
     };
 
@@ -38,7 +38,7 @@ export class ScrollPaginate extends Component {
         return (
             <div ref={ref => (this.container = ref)} className="scroll-paginate">
                 {this.props.children}
-                {this.state.showLink && (
+                {this.state.showMoreButton && (
                     <ButtonGroup align="center">
                         <Button round outline small onClick={this.props.onScrollBottom}>
                             {i18n('account.transactions.show-more')}
