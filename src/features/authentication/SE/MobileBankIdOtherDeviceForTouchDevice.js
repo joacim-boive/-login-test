@@ -10,6 +10,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     onKeyUp = ({ which }) => {
         if (which === 13) {
             this.startLogin();
+            this.inputRef.getInputEl().blur(); // force field validation
         }
     };
 
