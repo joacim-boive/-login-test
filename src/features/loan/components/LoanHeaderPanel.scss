@@ -1,0 +1,30 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-header-panel {
+    .header {
+        padding: 35px 50px;
+
+        h2 {
+            font-weight: $weight-light;
+            color: $green120;
+            font-size: 50px;
+            margin: 0px;
+            
+            @include mobile() {
+                margin: -20px 0px 0px 0px;
+                font-size: 38px;
+                line-height: 1;
+            }
+        }
+    }
+
+    .image {
+        padding: 20px 0px;
+
+        @include mobile() {
+            padding: 20px 0px 0px 0px;
+        }
+    }
+}

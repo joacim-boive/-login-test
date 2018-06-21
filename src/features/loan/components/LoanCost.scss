@@ -1,0 +1,47 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-cost {
+    text-align: center;
+    white-space: nowrap;
+
+    h4 {
+        margin: 0px;
+        font-size: 18px;
+        font-weight: $weight-medium;
+        text-align: center;
+        color: $gray140;
+    }
+
+    h5 {
+        margin: 0px;
+        font-size: 50px;
+        font-weight: $weight-bold;
+        color: $gray140;
+    }
+
+    .column {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin: 15px 0px 0px 20px;
+        white-space: nowrap;
+
+        @include mobile() {
+            display: inline-flex;
+            margin: 15px 0px 0px 0px;
+        }
+
+        span {
+            margin: 2px 0px 0px 15px;
+            text-align: left;
+            font-size: 14px;
+            color: $gray;
+
+            @include mobile() {
+                font-size: 16px;
+            }
+        }
+    }
+}
