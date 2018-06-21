@@ -59,13 +59,14 @@
     }
 
     &__arrow {
+        position: absolute;                             // IE11 fix for roatation origin to be center
         width: 40px;
         margin-top: 2px;
         flex: 0 0 auto;
         text-align: center;
         justify-self: center;
         transition: transform 0.2s 0s ease-in-out;
-        transform-origin: 50% 50%;
+        transform-origin: 50% 50%;                      // Does not work for IE11 with SVG
         text-decoration: none;
     }
     
