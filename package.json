@@ -142,7 +142,7 @@
         "@ecster/ecster-i18n": "^3.0.63",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
-        "@ecster/ecster-util": "^2.0.68",
+        "@ecster/ecster-util": "^2.0.70",
         "ajv": "^6.5.1",
         "classnames": "^2.2.6",
         "features": "^0.1.0",

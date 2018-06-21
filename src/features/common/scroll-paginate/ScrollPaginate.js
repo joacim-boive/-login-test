@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ButtonGroup, Button } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './ScrollPaginate.scss';
 
 export class ScrollPaginate extends Component {
     state = {
         bottom: false,
-    }
+        showLink: false,
+    };
 
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll);
@@ -16,19 +19,32 @@ export class ScrollPaginate extends Component {
     }
 
     onScroll = e => {
-        const el = e.target.scrollingElement;
-        const bottom = el.scrollHeight - el.scrollTop < el.clientHeight + this.props.offset;
-        if (bottom && !this.state.bottom) {
-            // Trigger once when entering trigger threshold
-            this.props.onScrollBottom();
+        if (e.target.scrollingElement) {
+            // normal browsers
+            const el = e.target.scrollingElement;
+            const bottom = el.scrollHeight - el.scrollTop < el.clientHeight + this.props.offset;
+            if (bottom && !this.state.bottom) {
+                // Trigger once when entering trigger threshold
+                this.props.onScrollBottom();
+            }
+            this.setState({ bottom });
+        } else {
+            // IE
+            this.setState({ showLink: true });
         }
-        this.setState({ bottom });
     };
 
     render() {
         return (
             <div ref={ref => (this.container = ref)} className="scroll-paginate">
                 {this.props.children}
+                {this.state.showLink && (
+                    <ButtonGroup align="center">
+                        <Button round outline small onClick={this.props.onScrollBottom}>
+                            {i18n('account.transactions.show-more')}
+                        </Button>
+                    </ButtonGroup>
+                )}
             </div>
         );
     }
