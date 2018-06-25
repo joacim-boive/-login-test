@@ -1,0 +1,52 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.account-terminate-account {
+
+    &.panel {
+        padding: 30px;
+    }
+
+    h1 {
+        color: $gray140;
+        @include mobile() {
+            font-size: 30px;
+            font-weight: 700;
+        }
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .choices {
+        padding: 45px 0;
+        max-width: 550px;
+        margin: 0 auto;
+
+        @include mobile() {
+            padding: 20px 0 0;
+            max-width: 320px;
+        }
+    }
+
+    .checkbox-group {
+        margin-left: 30px;
+        @include mobile() {
+            margin-left: 0;
+        }
+    }
+
+    .e-checkbox {
+        margin-bottom: 20px;
+        &__label {
+            margin-left: 15px;
+        }
+    }
+
+    .dialog__content button {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+}

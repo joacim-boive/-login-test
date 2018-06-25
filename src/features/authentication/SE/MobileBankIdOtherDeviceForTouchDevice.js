@@ -8,7 +8,7 @@ const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySu
 
 class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     componentDidMount() {
-        this.inputRef.getInputEl().focus();
+        this.inputRef && this.inputRef.getInputEl().focus();
     }
 
     onKeyUp = ({ which }) => {

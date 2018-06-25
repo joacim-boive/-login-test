@@ -48,7 +48,7 @@
             font-family: 'Campton', sans-serif;
             color: $beige140;
             font-weight: $weight-medium;
-            font-size: 20px;
+            font-size: 26px;
             text-align: center;
             width: 100%;
             margin: 0;
@@ -57,6 +57,10 @@
                 color: white;
                 font-weight: $weight-book;
             }
+        }
+
+        .icon-arrow-left {
+            font-size: 26px;
         }
 
     }

@@ -9,7 +9,7 @@ import { del } from '../../../common/asyncAjax';
 
 import { DELETE_ACCOUNT_URL } from './urls';
 
-export const deleteAccount = (customerId, referenceId) => async (dispatch) => {
+export const deleteAccount = (customerId, referenceId) => async dispatch => {
     dispatch({
         type: ACCOUNT_DELETE_ACCOUNT_BEGIN,
     });

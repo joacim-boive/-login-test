@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ButtonGroup, ConfirmButton, LinkButton, Panel } from '@ecster/ecster-components';
+import { LinkButton, Panel } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
+import TerminateAccountIntro from './TerminateAccountIntro';
 import { getAccountTerms } from './redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
@@ -33,15 +34,11 @@ export class AccountTerms extends Component {
         this.props.getAccountTerms();
     }
 
-    onClickTerminateAccount = () => {
-        console.log('Terminate account not implemented...');
-    };
-
     render() {
-        const { terms } = this.props;
+        const { terms, getAccountRef, getCustomerId } = this.props;
 
         return (
-            <AuthenticatedSubPageTemplate header="Kontovillkor">
+            <AuthenticatedSubPageTemplate header={i18n('account.terms.account-terms')}>
                 <h1>Villkor</h1>
                 <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     <InfoItem
@@ -136,23 +133,7 @@ export class AccountTerms extends Component {
                         />
                     )}
                 </Panel>
-                <h1>{i18n('account.terminate.terminate-account')}</h1>
-                <Panel key="account-terminate-panel" className="account-terminate-panel" sideBordersMobile={false}>
-                    {i18n('account.terminate.info-text', { returnObjects: true, wrapper: { tag: 'p' } })}
-                    <ButtonGroup>
-                        <ConfirmButton
-                            confirmHeader={i18n('account.terminate.confirm-header')}
-                            confirmText={i18n('account.terminate.confirm-text')}
-                            confirmOk={i18n('account.terminate.confirm-ok')}
-                            confirmCancel={i18n('account.terminate.confirm-cancel')}
-                            outline
-                            round
-                            onClick={this.onClickTerminateAccount}
-                        >
-                            {i18n('account.terminate.terminate-account')}
-                        </ConfirmButton>
-                    </ButtonGroup>
-                </Panel>
+                <TerminateAccountIntro accountRef={getAccountRef()} customerId={getCustomerId()} />
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -160,14 +141,16 @@ export class AccountTerms extends Component {
 
 AccountTerms.propTypes = {
     getAccountTerms: PropTypes.func.isRequired,
+    getAccountRef: PropTypes.func.isRequired,
+    getCustomerId: PropTypes.func.isRequired,
     terms: PropTypes.object.isRequired,
     // actions: PropTypes.object.isRequired,
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ account }) {
+function mapStateToProps(state) {
     return {
-        terms: account.accountTerms,
+        terms: state.account.accountTerms,
     };
 }
 
@@ -176,6 +159,8 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
+        getAccountRef: () => ref,
+        getCustomerId: () => id,
     };
 }
 
