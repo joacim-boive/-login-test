@@ -98,7 +98,17 @@
             "q4": "Missnöjd med era villkor",
             "q5": "Missnöjd med er service",
             "q6": "Annan anledning",
-            "confirmation-message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+            "success": {
+                "header": "Konto avslutat",
+                "message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+                "back": "Tillbaka till kontoöversikt"
+            },
+
+            "failure": {
+                "header": "Kontot kunde inte avslutas",
+                "message": "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                "back": "Tillbaka till kontoöversikt"
+            },
 
             "confirm-header": "Avsluta konto",
             "confirm-text": "Är du helt säker?",
@@ -109,7 +119,7 @@
                 "info-text": [
                     "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
                     "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
-                    "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."
+                    "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
                 ]
             }
         }
