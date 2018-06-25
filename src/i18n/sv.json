@@ -42,7 +42,8 @@
             "total": "Total kredit:"
         },
         "transactions": {
-            "reserved-amount": "Reserverat belopp"
+            "reserved-amount": "Reserverat belopp",
+            "show-more": "Visa fler"
         },
         "sales-panel": {
             "header": "Ett kort för alla dina inköp ",

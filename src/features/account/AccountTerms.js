@@ -18,9 +18,14 @@ const InfoItem = ({ label, value, description }) => (
 );
 
 InfoItem.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    description: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    description: PropTypes.string,
+};
+InfoItem.defaultProps = {
+    label: '',
+    value: '',
+    description: '',
 };
 
 export class AccountTerms extends Component {
@@ -38,7 +43,7 @@ export class AccountTerms extends Component {
         return (
             <AuthenticatedSubPageTemplate header="Kontovillkor">
                 <h1>Villkor</h1>
-                <Panel key="account-terms-panel" className="account-terms-panel">
+                <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     <InfoItem
                         value={terms.accountNumber}
                         label={i18n('account.terms.account-number')}
@@ -50,7 +55,7 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.account-name-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.creditLimit / 100)}
+                        value={formatAmount(terms.creditLimit)}
                         label={i18n('account.terms.total-credit')}
                         description={i18n('account.terms.total-credit-description')}
                     />
@@ -60,24 +65,24 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.interest-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.adminFee / 100)}
+                        value={formatAmount(terms.adminFee)}
                         label={i18n('account.terms.admin-fee')}
                         description={i18n('account.terms.admin-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.yearlyFee / 100)}
+                        value={formatAmount(terms.yearlyFee)}
                         label={i18n('account.terms.yearly-fee')}
                         description={i18n('account.terms.yearly-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.cardFee / 100)}
+                        value={formatAmount(terms.cardFee)}
                         label={i18n('account.terms.extra-card-fee')}
                         description={i18n('account.terms.extra-card-fee-description')}
                     />
                     <InfoItem
                         value={i18n('account.terms.atm-withdrawal-fee-value', {
                             percentValue: `${terms.withdrawalFeePercent}%`,
-                            feeValue: formatAmount(terms.withdrawalFee / 100),
+                            feeValue: formatAmount(terms.withdrawalFee),
                         })}
                         label={i18n('account.terms.atm-withdrawal-fee')}
                         description={i18n('account.terms.atm-withdrawal-fee-description')}
@@ -85,7 +90,7 @@ export class AccountTerms extends Component {
                     <InfoItem
                         value={i18n('account.terms.withdrawal-fee-value', {
                             percentValue: `${terms.withdrawalFeePercent}%`,
-                            feeValue: formatAmount(terms.withdrawalFee / 100),
+                            feeValue: formatAmount(terms.withdrawalFee),
                         })}
                         label={i18n('account.terms.withdrawal-fee')}
                         description={i18n('account.terms.withdrawal-fee-description')}
@@ -101,12 +106,12 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.exchange-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.lateFee / 100)}
+                        value={formatAmount(terms.lateFee)}
                         label={i18n('account.terms.late-payment-fee')}
                         description={i18n('account.terms.late-payment-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.overdraft / 100)}
+                        value={formatAmount(terms.overdraft)}
                         label={i18n('account.terms.overdraft-fee')}
                         description={i18n('account.terms.overdraft-fee-description')}
                     />
@@ -132,7 +137,7 @@ export class AccountTerms extends Component {
                     )}
                 </Panel>
                 <h1>{i18n('account.terminate.terminate-account')}</h1>
-                <Panel key="account-terminate-panel" className="account-terminate-panel">
+                <Panel key="account-terminate-panel" className="account-terminate-panel" sideBordersMobile={false}>
                     {i18n('account.terminate.info-text', { returnObjects: true, wrapper: { tag: 'p' } })}
                     <ButtonGroup>
                         <ConfirmButton

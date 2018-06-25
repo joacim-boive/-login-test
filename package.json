@@ -111,7 +111,7 @@
         "npm-run": "^4.1.2",
         "nyc": "^11.9.0",
         "postcss-loader": "^2.1.5",
-        "prop-types": "^15.5.10",
+        "prop-types": "^15.6.2",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-hot-loader": "^4.3.3",
@@ -138,11 +138,11 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@ecster/ecster-components": "^1.0.337",
+        "@ecster/ecster-components": "^1.0.338",
         "@ecster/ecster-i18n": "^3.0.63",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
-        "@ecster/ecster-util": "^2.0.67",
+        "@ecster/ecster-util": "^2.0.70",
         "ajv": "^6.5.1",
         "classnames": "^2.2.6",
         "features": "^0.1.0",
