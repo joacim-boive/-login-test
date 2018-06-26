@@ -17,8 +17,8 @@ export class TerminateAccount extends Component {
         this.state = {
             checkCount: 0,
             deleteAccountPending: false,
-            accountDeleteSuccess: false,
-            accountDeleteFailure: false,
+            deleteAccountSuccess: false,
+            deleteAccountFailure: false,
             'terminate-account-q1': false,
             'terminate-account-q2': false,
             'terminate-account-q3': false,
@@ -38,7 +38,7 @@ export class TerminateAccount extends Component {
         if (nextProps.deleteAccountPending === false && this.state.deleteAccountPending) {
             if (!nextProps.deleteAccountError) {
                 // delete succeeded
-                this.setState({ deleteAccountPending: false, accountDeleteSuccess: true });
+                this.setState({ deleteAccountPending: false, deleteAccountSuccess: true });
                 gaActionEvent('Delete account|Succeeded');
                 for (let i = 1; i < 7; i++) { // eslint-disable-line
                     if (this.state[`terminate-account-q${i}`]) {
@@ -47,7 +47,7 @@ export class TerminateAccount extends Component {
                 }
             } else {
                 // delete failed
-                this.setState({ deleteAccountPending: false, accountDeleteFailure: true });
+                this.setState({ deleteAccountPending: false, deleteAccountFailure: true });
                 gaActionEvent('Delete account|Failed');
             }
         }
@@ -143,10 +143,11 @@ export class TerminateAccount extends Component {
         </div>
     );
 
+    /* eslint-disable react/no-danger */
     renderFailureMessage = backUrl => (
         <div>
             <h1>{i18n('account.terminate.failure.header')}</h1>
-            <p>{i18n('account.terminate.failure.message')}</p>
+            <p dangerouslySetInnerHTML={{ __html: i18n('account.terminate.failure.message') }} />
             <ButtonGroup align="center">
                 <Link to={backUrl}>{i18n('account.terminate.failure.back')}</Link>
             </ButtonGroup>
@@ -156,13 +157,13 @@ export class TerminateAccount extends Component {
     render() {
         const backUrl = `/account/${this.props.getAccountRef()}/customer/${this.props.getCustomerId()}/terms`;
 
-        const { accountDeleteSuccess, accountDeleteFailure } = this.state;
+        const { deleteAccountSuccess, deleteAccountFailure } = this.state;
         return (
             <AuthenticatedSubPageTemplate header={i18n('account.terminate.terminate-account')}>
                 <Panel className="account-terminate-account">
-                    {!accountDeleteSuccess && !accountDeleteFailure && this.renderForm(backUrl)}
-                    {accountDeleteSuccess && !accountDeleteFailure && this.renderSuccessMessage(backUrl)}
-                    {!accountDeleteSuccess && accountDeleteFailure && this.renderFailureMessage(backUrl)}
+                    {!deleteAccountSuccess && !deleteAccountFailure && this.renderForm(backUrl)}
+                    {deleteAccountSuccess && !deleteAccountFailure && this.renderSuccessMessage(backUrl)}
+                    {!deleteAccountSuccess && deleteAccountFailure && this.renderFailureMessage(backUrl)}
                 </Panel>
             </AuthenticatedSubPageTemplate>
         );
