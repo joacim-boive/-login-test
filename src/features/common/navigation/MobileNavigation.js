@@ -43,7 +43,7 @@ class MobileNavigation extends React.Component {
         const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
 
         return (
-            <BottomNavigation light showOverlay={this.state.showSubMenu}>
+            <BottomNavigation light showOverlay={showSubMenu}>
                 <BottomMenu>
                     <MenuItem linkTo="/account/overview" active={overviewIsActive}>
                         <SvgIconOverview />
@@ -70,8 +70,11 @@ class MobileNavigation extends React.Component {
                         </div>
                     </InteractiveElement>
                 </BottomMenu>
-                <SubMenu bottom show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
-                    <SubMenuItem linkTo="/customer/profile" active={customerSettingsIsActive}>
+                <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
+                    <SubMenuItem
+                        linkTo={`/customer/${this.props.customerId}/profile`}
+                        active={customerSettingsIsActive}
+                    >
                         {i18n('navigation.settings')}
                     </SubMenuItem>
                     <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
@@ -87,6 +90,7 @@ class MobileNavigation extends React.Component {
 }
 
 MobileNavigation.propTypes = {
+    customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
 };
 

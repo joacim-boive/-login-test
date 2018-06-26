@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Panel, Button } from '@ecster/ecster-components';
+import { Panel, Button, Input } from '@ecster/ecster-components';
 import ResponsivePanel from './../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
-import * as actions from './redux/actions';
+import { getCustomer, updateCustomerContactInfo } from '../customer/redux/actions';
+import capWords from '../../common/cap-words';
 
-export class ProfilePage extends Component {
+// import * as actions from './redux/actions';
+
+class ProfilePage extends Component {
     state = {
         isEditingPhone: false,
         isEditingEmail: false,
     };
+
+    componentWillMount() {
+        this.props.getCustomer();
+    }
 
     toggleEditPhone = () => {
         this.setState({ isEditingPhone: !this.state.isEditingPhone });
@@ -23,40 +30,64 @@ export class ProfilePage extends Component {
 
     render() {
         const { isEditingPhone, isEditingEmail } = this.state;
+        const { person } = this.props;
 
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
                     <Panel padding="50px">
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
-                            <div>
-                                <h2>Sara Israelsson</h2>
+                            <div className="summary-panel">
+                                <h2>{person.name}</h2>
                                 <p>
                                     Fyll i ditt mobilnummer ... lorem ipsum dolor sit amet lorem ipsum dolor sit amet
                                     lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
                                     lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet{' '}
                                 </p>
                             </div>
-                            <div>
-                                <dl>
-                                    <dt>Adress</dt>
-                                    <dd>
-                                        <div>Stora vägen 1</div>
-                                        <div>112 12 Stockholm</div>
-                                    </dd>
-                                    <dt>Mobil</dt>
-                                    {!isEditingEmail && (
-                                        <dd>
-                                            <div>+46 070 355 50 21</div>
-                                            <Button outline small round onClick={this.}>
-                                                Ändra
-                                            </Button>
-                                        </dd>
-                                    )}
+                            <div className="profile-panel">
+                                <h5>Adress</h5>
+                                <section>
+                                    <div>{capWords(person.address)}</div>
+                                    <div>
+                                        {person.zip} {capWords(person.city)}
+                                    </div>
+                                </section>
+                                <h5>Mobil</h5>
+                                {!isEditingPhone && (
+                                    <section className="flex">
+                                        <div>
+                                            {person.contactInformation.phoneNumber.countryCallingCode}{' '}
+                                            {person.contactInformation.phoneNumber.number}
+                                        </div>
+                                        <Button outline small round onClick={this.toggleEditPhone}>
+                                            Ändra
+                                        </Button>
+                                    </section>
+                                )}
+                                {isEditingPhone && (
+                                    <section className="flex">
+                                        <div>EDIT +46 070 355 50 21</div>
+                                        <Button outline small round onClick={this.toggleEditPhone}>
+                                            Ändra
+                                        </Button>
+                                    </section>
+                                )}
 
-                                    <dt>E-post</dt>
-                                    {!isEditingPhone && <dd>sara.israelsson@mail.com</dd>}
-                                </dl>
+                                <h5>E-post</h5>
+                                {!isEditingEmail && (
+                                    <section className="flex">
+                                        <div>{person.contactInformation.email}</div>
+                                        <Button outline small round onClick={this.toggleEditEmail}>
+                                            Ändra
+                                        </Button>
+                                    </section>
+                                )}
+                                {isEditingEmail && (
+                                    <section className="flex">
+                                        <div>EDIT sara.israelsson@mail.com</div>
+                                    </section>
+                                )}
                             </div>
                         </ResponsivePanel>
                     </Panel>
@@ -67,22 +98,26 @@ export class ProfilePage extends Component {
 }
 
 ProfilePage.propTypes = {
-    customer: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
+    person: PropTypes.shape.isRequired,
 };
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps({ customer }) {
     return {
-        customer: state.customer,
+        person: customer.customer,
     };
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, state) {
+    const { customerId } = state.match.params;
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
+        getCustomer: () => dispatch(getCustomer(customerId)),
+        updateCustomerContactInfo: data => dispatch(updateCustomerContactInfo(customerId, data)),
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProfilePage);

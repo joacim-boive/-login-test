@@ -9,7 +9,7 @@ import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_CUSTOMER_CONTACT_INFO_URL } from './urls';
 
-export const updateCustomerContactInfo = (customerId, data) => async (dispatch) => {
+export const updateCustomerContactInfo = (customerId, data) => async dispatch => {
     dispatch({
         type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
     });
@@ -28,7 +28,9 @@ export const updateCustomerContactInfo = (customerId, data) => async (dispatch) 
     }
 };
 
-export const dismissUpdateCustomerContactInfoError = () => ({ type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR });
+export const dismissUpdateCustomerContactInfoError = () => ({
+    type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {

@@ -126,7 +126,9 @@
     },
     "authentication": {},
     "common": {},
-    "customer": {},
+    "customer": {
+        "profile": {}
+    },
     "home": {
         "login": {
             "SE": {
