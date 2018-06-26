@@ -25,16 +25,11 @@ export class TerminateAccount extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        // delete account pending?
-        if (nextProps.deleteAccountPending) {
-            // remember until next state update (after delete success or failure)
-            this.setState({ deleteAccountPending: true });
-        }
-        // delete account succeeded?
-        if (nextProps.deleteAccountPending === false && this.state.deleteAccountPending) {
+        // delete account succeeded when pending === true => pending === false
+        if (this.props.deleteAccountPending && nextProps.deleteAccountPending === false) {
             if (!nextProps.deleteAccountError) {
                 // delete succeeded
-                this.setState({ deleteAccountPending: false, deleteAccountSuccess: true });
+                this.setState({ deleteAccountSuccess: true });
                 gaActionEvent('Delete account|Succeeded');
                 for (let i = 1; i < 7; i++) { // eslint-disable-line
                     if (this.state[`terminate-account-q${i}`]) {
@@ -43,7 +38,7 @@ export class TerminateAccount extends Component {
                 }
             } else {
                 // delete failed
-                this.setState({ deleteAccountPending: false, deleteAccountFailure: true });
+                this.setState({ deleteAccountFailure: true });
                 gaActionEvent('Delete account|Failed');
             }
         }
@@ -158,8 +153,8 @@ export class TerminateAccount extends Component {
             <AuthenticatedSubPageTemplate header={i18n('account.terminate.terminate-account')}>
                 <Panel className="account-terminate-account">
                     {!deleteAccountSuccess && !deleteAccountFailure && this.renderForm(backUrl)}
-                    {deleteAccountSuccess && !deleteAccountFailure && this.renderSuccessMessage(backUrl)}
-                    {!deleteAccountSuccess && deleteAccountFailure && this.renderFailureMessage(backUrl)}
+                    {deleteAccountSuccess && this.renderSuccessMessage(backUrl)}
+                    {deleteAccountFailure && this.renderFailureMessage(backUrl)}
                 </Panel>
             </AuthenticatedSubPageTemplate>
         );

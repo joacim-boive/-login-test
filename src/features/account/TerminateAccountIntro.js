@@ -7,7 +7,7 @@ import './TerminateAccountIntro.scss';
 
 class TerminateAccountIntro extends React.Component {
     render() {
-        const url = `#/account/${this.props.accountRef}/customer/${this.props.customerId}/terminate`;
+        const url = `/account/${this.props.accountRef}/customer/${this.props.customerId}/terminate`;
         return (
             <div className="account-terminate-intro">
                 <h1>{i18n('account.terminate.terminate-account')}</h1>
