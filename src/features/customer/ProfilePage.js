@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Button, Input } from '@ecster/ecster-components';
 import ResponsivePanel from './../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
@@ -31,65 +32,71 @@ class ProfilePage extends Component {
     render() {
         const { isEditingPhone, isEditingEmail } = this.state;
         const { person } = this.props;
+        console.log('personaa = ', person);
 
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
                     <Panel padding="50px">
-                        <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
-                            <div className="summary-panel">
-                                <h2>{person.name}</h2>
-                                <p>
-                                    Fyll i ditt mobilnummer ... lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                                    lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                                    lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet{' '}
-                                </p>
-                            </div>
-                            <div className="profile-panel">
-                                <h5>Adress</h5>
-                                <section>
-                                    <div>{capWords(person.address)}</div>
-                                    <div>
-                                        {person.zip} {capWords(person.city)}
+                        {person &&
+                            person.contactInformation && (
+                                <ResponsivePanel
+                                    desktop={2}
+                                    tablet={2}
+                                    mobile={1}
+                                    horizontalGutter
+                                    horizontalPadding={20}
+                                >
+                                    <div className="summary-panel">
+                                        <h2>{person.name}</h2>
+                                        <p>{i18n('customer.profile.info-text')}</p>
                                     </div>
-                                </section>
-                                <h5>Mobil</h5>
-                                {!isEditingPhone && (
-                                    <section className="flex">
-                                        <div>
-                                            {person.contactInformation.phoneNumber.countryCallingCode}{' '}
-                                            {person.contactInformation.phoneNumber.number}
-                                        </div>
-                                        <Button outline small round onClick={this.toggleEditPhone}>
-                                            Ändra
-                                        </Button>
-                                    </section>
-                                )}
-                                {isEditingPhone && (
-                                    <section className="flex">
-                                        <div>EDIT +46 070 355 50 21</div>
-                                        <Button outline small round onClick={this.toggleEditPhone}>
-                                            Ändra
-                                        </Button>
-                                    </section>
-                                )}
+                                    <div className="profile-panel">
+                                        <h5>{i18n('general.address')}</h5>
+                                        <section>
+                                            <div>{capWords(person.address)}</div>
+                                            <div>
+                                                {person.zip} {capWords(person.city)}
+                                            </div>
+                                        </section>
+                                        <h5>{i18n('general.cell-phone')}</h5>
+                                        {!isEditingPhone && (
+                                            <section className="flex">
+                                                <div>
+                                                    {person.contactInformation.phoneNumber.countryCallingCode}{' '}
+                                                    {person.contactInformation.phoneNumber.number}
+                                                </div>
+                                                <Button outline small round onClick={this.toggleEditPhone}>
+                                                    Ändra
+                                                </Button>
+                                            </section>
+                                        )}
+                                        {isEditingPhone && (
+                                            <section className="flex">
+                                                <div>EDIT +46 070 355 50 21</div>
+                                                <Button outline small round onClick={this.toggleEditPhone}>
+                                                    Ändra
+                                                </Button>
+                                            </section>
+                                        )}
 
-                                <h5>E-post</h5>
-                                {!isEditingEmail && (
-                                    <section className="flex">
-                                        <div>{person.contactInformation.email}</div>
-                                        <Button outline small round onClick={this.toggleEditEmail}>
-                                            Ändra
-                                        </Button>
-                                    </section>
-                                )}
-                                {isEditingEmail && (
-                                    <section className="flex">
-                                        <div>EDIT sara.israelsson@mail.com</div>
-                                    </section>
-                                )}
-                            </div>
-                        </ResponsivePanel>
+                                        <h5>{i18n('general.email')}</h5>
+                                        {!isEditingEmail && (
+                                            <section className="flex">
+                                                <div>{person.contactInformation.email}</div>
+                                                <Button outline small round onClick={this.toggleEditEmail}>
+                                                    Ändra
+                                                </Button>
+                                            </section>
+                                        )}
+                                        {isEditingEmail && (
+                                            <section className="flex">
+                                                <div>EDIT sara.israelsson@mail.com</div>
+                                            </section>
+                                        )}
+                                    </div>
+                                </ResponsivePanel>
+                            )}
                     </Panel>
                 </div>
             </AuthenticatedPageTemplate>

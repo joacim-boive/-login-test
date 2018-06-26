@@ -7,7 +7,10 @@
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
-        "download": "Ladda ner"
+        "download": "Ladda ner",
+        "address": "Adress",
+        "cell-phone": "Mobil",
+        "email": "E-post"
     },
     "account": {
         "header": {
@@ -127,7 +130,9 @@
     "authentication": {},
     "common": {},
     "customer": {
-        "profile": {}
+        "profile": {
+            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto"
+        }
     },
     "home": {
         "login": {
