@@ -4,7 +4,7 @@ export default {
     path: 'customer',
     name: 'Customer',
     childRoutes: [
-        { path: 'settings', name: 'Settings page', component: SettingsPage },
+        { path: 'profile', name: 'Profile page', component: SettingsPage },
         { path: 'support', name: 'Support page', component: SupportPage },
     ],
 };

@@ -71,7 +71,7 @@ class MobileNavigation extends React.Component {
                     </InteractiveElement>
                 </BottomMenu>
                 <SubMenu bottom show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
-                    <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>
+                    <SubMenuItem linkTo="/customer/profile" active={customerSettingsIsActive}>
                         {i18n('navigation.settings')}
                     </SubMenuItem>
                     <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>

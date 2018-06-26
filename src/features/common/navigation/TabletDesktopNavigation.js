@@ -85,7 +85,7 @@ class TabletDesktopNavigation extends React.Component {
                 </TopMenu>
                 <div className="submenu-container">
                     <SubMenu top show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
-                        <SubMenuItem linkTo="/customer/settings" active={customerSettingsIsActive}>
+                        <SubMenuItem linkTo="/customer/profile" active={customerSettingsIsActive}>
                             {i18n('navigation.settings')}
                         </SubMenuItem>
                         <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
