@@ -51,6 +51,7 @@
             "button": "Ansök"
         },
         "terms": {
+            "account-terms": "Kontovillkor",
             "account-number": "Kontonummer",
             "account-name": "Kontonamn",
             "total-credit": "Total kredit",
@@ -87,18 +88,40 @@
             "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
         },
         "terminate": {
+            "terminate-account": "Avsluta konto",
+            "terminate-my-account": "Avsluta mitt konto",
+            "header": "Hjälp oss bli bättre",
+            "info-text": "Berätta gärna varför du vill avsluta ditt konto",
+            "q1": "Har betalat av min skuld",
+            "q2": "Använder inte kontot längre",
+            "q3": "Vill samla allt på ett annat konto",
+            "q4": "Missnöjd med era villkor",
+            "q5": "Missnöjd med er service",
+            "q6": "Annan anledning",
+            "success": {
+                "header": "Konto avslutat",
+                "message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+                "back": "Tillbaka"
+            },
+
+            "failure": {
+                "header": "Kontot kunde inte avslutas",
+                "message": "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                "back": "Tillbaka till kontoöversikt"
+            },
+
             "confirm-header": "Avsluta konto",
-            "confirm-text": "Vill du verkligen avsluta kontot? Du kan inte ångra i efterhand.",
-            "confirm-ok": "Ja, avsluta kontot",
+            "confirm-text": "Är du helt säker?",
+            "confirm-ok": "Ja, avsluta konto",
             "confirm-cancel": "Avbryt",
 
-            "terminate-account": "Avsluta konto",
-            "info-text": [
-                "NOT YET IMPLEMENTED...",
-                "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
-                "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
-                "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."
-            ]
+            "intro": {
+                "info-text": [
+                    "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
+                    "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
+                    "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
+                ]
+            }
         }
     },
     "authentication": {},
