@@ -11,22 +11,18 @@ import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPa
 import { deleteAccount } from './redux/actions';
 
 export class TerminateAccount extends Component {
-    constructor(props) {
-        super(props);
-        /* eslint-disable react/no-unused-state */
-        this.state = {
-            checkCount: 0,
-            deleteAccountPending: false,
-            deleteAccountSuccess: false,
-            deleteAccountFailure: false,
-            'terminate-account-q1': false,
-            'terminate-account-q2': false,
-            'terminate-account-q3': false,
-            'terminate-account-q4': false,
-            'terminate-account-q5': false,
-            'terminate-account-q6': false,
-        };
-    }
+    state = {
+        checkCount: 0,
+        deleteAccountPending: false,
+        deleteAccountSuccess: false,
+        deleteAccountFailure: false,
+        'terminate-account-q1': false,
+        'terminate-account-q2': false,
+        'terminate-account-q3': false,
+        'terminate-account-q4': false,
+        'terminate-account-q5': false,
+        'terminate-account-q6': false,
+    };
 
     componentWillReceiveProps(nextProps) {
         // delete account pending?
