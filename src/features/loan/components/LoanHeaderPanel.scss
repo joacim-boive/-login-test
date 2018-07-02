@@ -22,9 +22,12 @@
 
     .image {
         padding: 20px 0px;
+        height: 100%;
 
         @include mobile() {
             padding: 20px 0px 0px 0px;
+            display: flex;
+            justify-content: center;
         }
     }
 }
