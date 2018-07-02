@@ -21,7 +21,7 @@ export const SETermsWorks = ({ className, promissory }) => {
         'se-terms': true,
         [className]: className,
     });
-    console.log(promissory);
+
     return (
         <div className={classes}>
             <h4>Så här fungerar lånet</h4>
