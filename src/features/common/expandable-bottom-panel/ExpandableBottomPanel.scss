@@ -1,8 +1,7 @@
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
 @import '~@ecster/ecster-components/scss/MediaQuery';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
-.expandable-panel {
+.expandable-bottom-panel {
     background: $white;
     width: 100%;
 
@@ -15,6 +14,14 @@
 
     &.panel--no-bottom-padding {
         padding-bottom: 0;
+    }
+
+    &--padded {
+        padding: 30px;
+    }
+
+    &--compact {
+        padding: 20px;
     }
 
     &--bordered {
@@ -30,44 +37,42 @@
     &__expander {
         outline: none;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         position: relative;
         height: 40px;
         width: 100%;
+        padding: 20px 0px;
         cursor: pointer;
+        border-top: 1px solid $beige40;
 
         &:focus {
-            .panel-expander__show-more-text {
+            .bottom-panel-expander__show-more-text {
                 text-decoration: underline;
             }
         }
-    }
 
-    &__show-more-text {
-        text-align: left;
-        font-weight: $weight-semibold;
-        font-size: 24px;
-        color: $gray140;
-    }
+        .bottom-panel-expander__show-more-text {
+            font-weight: 400;
+            font-size: 16px;
 
-    &__arrow-wrapper {
-        position: relative;
-        width: 50px;
+        }
     }
 
     &__arrow {
-        position: absolute; // IE11 fix for roatation origin to be center
-        margin-top: -10px;
-        font-size: 40px;
+        position: absolute;                             // IE11 fix for roatation origin to be center
+        width: 40px;
+        margin-top: 2px;
+        flex: 0 0 auto;
         text-align: center;
-        color: $green;
+        justify-self: center;
         transition: transform 0.2s 0s ease-in-out;
-        transform-origin: 50% 50%; // Does not work for IE11 with SVG
+        transform-origin: 50% 50%;                      // Does not work for IE11 with SVG
         text-decoration: none;
     }
-
+    
     &__arrow--expanded {
         transform: rotate(180deg);
         transform-origin: 50% 50%;
+        margin-top: 0px;
     }
 }

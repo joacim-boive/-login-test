@@ -6,6 +6,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import * as actions from './redux/actions';
 import AuthenticatedSubPageTemplate from './../common/templates/AuthenticatedSubPageTemplate';
 import LoanSummaryPanel from './components/LoanSummaryPanel';
+import LoanPersonalInformationPanel from './components/LoanPersonalInformationPanel';
 
 export class LoanSummary extends Component {
     static propTypes = {
@@ -21,6 +22,7 @@ export class LoanSummary extends Component {
             <AuthenticatedSubPageTemplate linkTo="/loan/overview" header={i18n('loan.summary.header')}>
                 <div className="loan-summary">
                     <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
+                    <LoanPersonalInformationPanel className="personal-panel" />
                 </div>
             </AuthenticatedSubPageTemplate>
         );

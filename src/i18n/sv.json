@@ -215,6 +215,15 @@
             "rate": "Ränta: {{rate}} %",
             "effective-rate": "Effektiv ränta: {{rate}} %"
         },
+        "personal": {
+            "header": "Personuppgifter",
+            "name": "Namn",
+            "pn": "Personnummer",
+            "adress": "Adress",
+            "zip": "Postnummer",
+            "city": "Ort",
+            "info": "Dina uppgifter hämtas från Skatteverket."
+        },
         "spec": {
             "count": "Antal betalningar",
             "credit-amount": "Kreditbelopp",

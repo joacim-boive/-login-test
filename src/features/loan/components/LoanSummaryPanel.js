@@ -6,7 +6,7 @@ import Panel from '@ecster/ecster-components/Panel/Panel';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LoanSummaryPanel.scss';
 import { formatAmount } from './../../../common/util/format-amount';
-import ExpandablePanel from './../../common/expandable-panel/ExpandablePanel';
+import ExpandableBottomPanel from './../../common/expandable-bottom-panel/ExpandableBottomPanel';
 import SpecificationPanel from './SpecificationPanel';
 
 const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {
@@ -55,7 +55,7 @@ const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {
                         </DataRow>
                     </DataColumn>
                 </DataColumns>
-                <ExpandablePanel
+                <ExpandableBottomPanel
                     className="expander"
                     noPadding
                     noBorder
@@ -69,7 +69,7 @@ const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {
                         promissory={promissory}
                         loanAmount={searchTerms.amount}
                     />
-                </ExpandablePanel>
+                </ExpandableBottomPanel>
             </Panel>
         </div>
     );

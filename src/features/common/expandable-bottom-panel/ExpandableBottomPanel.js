@@ -2,25 +2,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Panel from '@ecster/ecster-components/Panel/Panel';
-import './ExpandablePanel.scss';
+import './ExpandableBottomPanel.scss';
 import { InteractiveElement } from './../interactive-element/InteractiveElement';
 
 const MIN_COLLAPSABLE_HEIGHT = 5;
 const COLLAPSED_HEIGHT = 0;
 
-class ExpandablePanel extends React.Component {
+class ExpandableBottomPanel extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = { collapsed: true };
     }
 
     componentDidMount() {
         this.checkHeight();
-        if (!this.props.collapse) {
-            this.toggleExpansion();
-        }
     }
 
     checkHeight = () => {
@@ -51,48 +46,59 @@ class ExpandablePanel extends React.Component {
     };
 
     render() {
-        const { icon, style, children, noBorder, showMoreLabel, showLessLabel, className } = this.props;
+        const {
+            icon,
+            style,
+            children,
+            noPadding,
+            compact,
+            noBorder,
+            showMoreLabel,
+            showLessLabel,
+            className,
+        } = this.props;
         const { collapsed } = this.state;
 
         const rootClasses = classNames({
-            'expandable-panel': true,
-            'expandable-panel--bordered': !noBorder,
-            'expandable-panel--no-bottom-padding': collapsed,
+            'expandable-bottom-panel': true,
+            'expandable-bottom-panel--padded': !noPadding,
+            'expandable-bottom-panel--compact': compact,
+            'expandable-bottom-panel--bordered': !noBorder,
+            'expandable-bottom-panel--no-bottom-padding': collapsed,
             [className]: className,
         });
 
         const arrowClasses = classNames({
-            'expandable-panel__arrow': true,
-            'expandable-panel__arrow--expanded': !collapsed,
+            'expandable-bottom-panel__arrow': true,
+            'expandable-bottom-panel__arrow--expanded': !collapsed,
         });
 
         return (
-            <Panel style={style} padding="10px 30px" className={rootClasses}>
-                <InteractiveElement tabIndex="0" className="expandable-panel__expander" onClick={this.toggleExpansion}>
-                    <span className="expandable-panel__show-more-text">
-                        {collapsed ? showMoreLabel : showLessLabel}
-                    </span>
-                    <div className="expandable-panel__arrow-wrapper">
+            <div style={style} className={rootClasses}>
+                <InteractiveElement tabIndex="0" className="expandable-bottom-panel__expander" onClick={this.toggleExpansion}>
+                    <span className="bottom-panel-expander__show-more-text">{collapsed ? showMoreLabel : showLessLabel}</span>
+                    <div>
                         <span className={arrowClasses}>
                             <i className={icon} alt="expand" />
                         </span>
                     </div>
                 </InteractiveElement>
                 <div
-                    className="expandable-panel__content"
+                    className="expandable-bottom-panel__content"
                     ref={el => {
                         this.el = el;
                     }}
                 >
                     {children}
                 </div>
-            </Panel>
+            </div>
         );
     }
 }
-ExpandablePanel.propTypes = {
+ExpandableBottomPanel.propTypes = {
     children: PropTypes.node.isRequired,
-    collapse: PropTypes.bool,
+    compact: PropTypes.bool,
+    noPadding: PropTypes.bool,
     noBorder: PropTypes.bool,
     style: PropTypes.shape(),
     icon: PropTypes.string,
@@ -101,8 +107,9 @@ ExpandablePanel.propTypes = {
     className: PropTypes.string,
 };
 
-ExpandablePanel.defaultProps = {
-    collapse: true,
+ExpandableBottomPanel.defaultProps = {
+    noPadding: false,
+    compact: false,
     noBorder: false,
     style: {},
     icon: 'icon-chevron-down',
@@ -111,4 +118,4 @@ ExpandablePanel.defaultProps = {
     className: '',
 };
 
-export default ExpandablePanel;
+export default ExpandableBottomPanel;
