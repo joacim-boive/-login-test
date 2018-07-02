@@ -33,8 +33,7 @@
             "part-payment": "Delbetalningar",
             "bills": "Månadsfakturor",
             "card": "Hantera kort",
-            "terms": "Kontovillkor",
-            "loan": "Låneansökan"
+            "terms": "Kontovillkor"
         },
         "summary": {
             "left": "Kvar att handla för:",
@@ -170,7 +169,7 @@
         }
     },
     "loan": {
-        "overview-header": "Låneansökan",
+        "overview-header": "Privatlån",
         "header": {
             "header": "Låna till stort eller smått?",
             "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
@@ -181,7 +180,6 @@
             "payback": "Återbetalningstid",
             "cost": "Månadskostnad",
             "rent": "Ränta: {{rent}}%",
-            "effective-rent": "Effektiva räntan: {{rent}}%",
             "submit": "Gå vidare",
             "details": "Specifikation",
             "year": "{{year}} år",
@@ -190,7 +188,7 @@
         "cost": {
             "header": "Månadskostnad",
             "rate": "Ränta: {{rate}} %",
-            "effective-rate": "Effektiva räntan: {{rate}} %"
+            "effective-rate": "Effektiv ränta: {{rate}} %"
         },
         "spec": {
             "count": "Antal betalningar",
@@ -201,6 +199,14 @@
             "admin-fee": "Administrativ avgift",
             "sum-admin-fee": "Summa administrativ avgift",
             "amount": "Totalt belopp att betala"
+        },
+        "terms": {
+            "loan": "Låna upp till {{amount}}",
+            "payback": "Välj den återbetalningstid som passar dig ({{min}} - {{max}} år)",
+            "rate": "Rörlig ränta {{rate}}%",
+            "fee": "Uppläggningsavgift {{amount}}",
+            "admin-fee": "Administrativ avgift {{amount}}/mån",
+            "finish": "Lös lånet när du vill"
         }
     },
     "navigation": {

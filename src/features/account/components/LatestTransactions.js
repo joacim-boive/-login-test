@@ -34,7 +34,6 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                                 <Data strong right>
                                     {formatAmount(
                                         trans.type === 'CREDIT' ? trans.amount : -trans.amount,
-                                        undefined,
                                         trans.currency
                                     )}
                                 </Data>
