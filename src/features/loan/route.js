@@ -1,6 +1,7 @@
 
 import {
   OverviewPage,
+  LoanSummary,
 } from './';
 
 export default {
@@ -8,5 +9,6 @@ export default {
     name: 'Loan',
     childRoutes: [
       { path: 'overview', name: 'Overview page', component: OverviewPage },
+      { path: 'summary', name: 'Loan summary', component: LoanSummary },
     ],
 };

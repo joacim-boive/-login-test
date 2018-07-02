@@ -232,6 +232,19 @@
             "fee": "Uppläggningsavgift {{amount}}",
             "admin-fee": "Administrativ avgift {{amount}}/mån",
             "finish": "Lös lånet när du vill"
+        },
+        "summary": {
+            "header": "Låneansökan",
+            "panel": {
+                "header": "Valt lånebelopp och återbetalningstid",
+                "amount": "Lånebelopp",
+                "payback-time": "Återbetalningstid",
+                "cost-per-month": "Kostnad/månad",
+                "rate": "Ränta",
+                "effective-rate": "Effektiv ränta",
+                "years": "{{year}} år",
+                "rate-value": "{{rate}} %"
+            }
         }
     },
     "navigation": {
