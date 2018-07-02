@@ -33,7 +33,7 @@ class AccountPanel extends Component {
 
         if (!transactions) return null;
         const noCard = account.numberOfCards === 0;
-
+console.log(account);
         return (
             <section className={classes}>
                 <TabletOrDesktop>
