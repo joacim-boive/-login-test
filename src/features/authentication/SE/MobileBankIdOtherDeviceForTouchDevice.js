@@ -7,9 +7,14 @@ import { getText } from '@ecster/ecster-i18n/lib/Translate';
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
+    componentDidMount() {
+        this.inputRef && this.inputRef.getInputEl().focus();
+    }
+
     onKeyUp = ({ which }) => {
         if (which === 13) {
             this.startLogin();
+            this.inputRef.getInputEl().blur(); // force field validation
         }
     };
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ButtonGroup, ConfirmButton, LinkButton, Panel } from '@ecster/ecster-components';
+import { LinkButton, Panel } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
+import TerminateAccountIntro from './TerminateAccountIntro';
 import { getAccountTerms } from './redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
@@ -18,9 +19,14 @@ const InfoItem = ({ label, value, description }) => (
 );
 
 InfoItem.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    description: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    description: PropTypes.string,
+};
+InfoItem.defaultProps = {
+    label: '',
+    value: '',
+    description: '',
 };
 
 export class AccountTerms extends Component {
@@ -28,17 +34,13 @@ export class AccountTerms extends Component {
         this.props.getAccountTerms();
     }
 
-    onClickTerminateAccount = () => {
-        console.log('Terminate account not implemented...');
-    };
-
     render() {
-        const { terms } = this.props;
+        const { terms, getAccountRef, getCustomerId } = this.props;
 
         return (
-            <AuthenticatedSubPageTemplate header="Kontovillkor">
+            <AuthenticatedSubPageTemplate header={i18n('account.terms.account-terms')}>
                 <h1>Villkor</h1>
-                <Panel key="account-terms-panel" className="account-terms-panel">
+                <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     <InfoItem
                         value={terms.accountNumber}
                         label={i18n('account.terms.account-number')}
@@ -50,7 +52,7 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.account-name-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.creditLimit / 100)}
+                        value={formatAmount(terms.creditLimit)}
                         label={i18n('account.terms.total-credit')}
                         description={i18n('account.terms.total-credit-description')}
                     />
@@ -60,24 +62,24 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.interest-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.adminFee / 100)}
+                        value={formatAmount(terms.adminFee)}
                         label={i18n('account.terms.admin-fee')}
                         description={i18n('account.terms.admin-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.yearlyFee / 100)}
+                        value={formatAmount(terms.yearlyFee)}
                         label={i18n('account.terms.yearly-fee')}
                         description={i18n('account.terms.yearly-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.cardFee / 100)}
+                        value={formatAmount(terms.cardFee)}
                         label={i18n('account.terms.extra-card-fee')}
                         description={i18n('account.terms.extra-card-fee-description')}
                     />
                     <InfoItem
                         value={i18n('account.terms.atm-withdrawal-fee-value', {
                             percentValue: `${terms.withdrawalFeePercent}%`,
-                            feeValue: formatAmount(terms.withdrawalFee / 100),
+                            feeValue: formatAmount(terms.withdrawalFee),
                         })}
                         label={i18n('account.terms.atm-withdrawal-fee')}
                         description={i18n('account.terms.atm-withdrawal-fee-description')}
@@ -85,7 +87,7 @@ export class AccountTerms extends Component {
                     <InfoItem
                         value={i18n('account.terms.withdrawal-fee-value', {
                             percentValue: `${terms.withdrawalFeePercent}%`,
-                            feeValue: formatAmount(terms.withdrawalFee / 100),
+                            feeValue: formatAmount(terms.withdrawalFee),
                         })}
                         label={i18n('account.terms.withdrawal-fee')}
                         description={i18n('account.terms.withdrawal-fee-description')}
@@ -101,12 +103,12 @@ export class AccountTerms extends Component {
                         description={i18n('account.terms.exchange-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.lateFee / 100)}
+                        value={formatAmount(terms.lateFee)}
                         label={i18n('account.terms.late-payment-fee')}
                         description={i18n('account.terms.late-payment-fee-description')}
                     />
                     <InfoItem
-                        value={formatAmount(terms.overdraft / 100)}
+                        value={formatAmount(terms.overdraft)}
                         label={i18n('account.terms.overdraft-fee')}
                         description={i18n('account.terms.overdraft-fee-description')}
                     />
@@ -131,23 +133,7 @@ export class AccountTerms extends Component {
                         />
                     )}
                 </Panel>
-                <h1>{i18n('account.terminate.terminate-account')}</h1>
-                <Panel key="account-terminate-panel" className="account-terminate-panel">
-                    {i18n('account.terminate.info-text', { returnObjects: true, wrapper: { tag: 'p' } })}
-                    <ButtonGroup>
-                        <ConfirmButton
-                            confirmHeader={i18n('account.terminate.confirm-header')}
-                            confirmText={i18n('account.terminate.confirm-text')}
-                            confirmOk={i18n('account.terminate.confirm-ok')}
-                            confirmCancel={i18n('account.terminate.confirm-cancel')}
-                            outline
-                            round
-                            onClick={this.onClickTerminateAccount}
-                        >
-                            {i18n('account.terminate.terminate-account')}
-                        </ConfirmButton>
-                    </ButtonGroup>
-                </Panel>
+                <TerminateAccountIntro accountRef={getAccountRef()} customerId={getCustomerId()} />
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -155,14 +141,16 @@ export class AccountTerms extends Component {
 
 AccountTerms.propTypes = {
     getAccountTerms: PropTypes.func.isRequired,
+    getAccountRef: PropTypes.func.isRequired,
+    getCustomerId: PropTypes.func.isRequired,
     terms: PropTypes.object.isRequired,
     // actions: PropTypes.object.isRequired,
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ account }) {
+function mapStateToProps(state) {
     return {
-        terms: account.accountTerms,
+        terms: state.account.accountTerms,
     };
 }
 
@@ -171,6 +159,8 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
+        getAccountRef: () => ref,
+        getCustomerId: () => id,
     };
 }
 
