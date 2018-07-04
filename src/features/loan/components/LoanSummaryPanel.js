@@ -17,7 +17,7 @@ const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {
 
     return (
         <div className={classes}>
-            <Panel className="panel">
+            <Panel className="panel" padding="20px 40px">
                 <h2>{i18n('loan.summary.panel.header')}</h2>
                 <DataColumns className="loan-data-columns">
                     <DataColumn>
