@@ -5,7 +5,8 @@
             "close": "Stäng",
             "edit": "Ändra",
             "save": "Spara",
-            "cancel": "Avbryt"
+            "cancel": "Avbryt",
+            "next": "Nästa"
         },
         "help": "Hjälp",
         "back": "Tillbaka",
@@ -225,7 +226,10 @@
             "address": "Adress",
             "zip": "Postnummer",
             "city": "Ort",
-            "info": "Dina uppgifter hämtas från Skatteverket."
+            "info": "Dina uppgifter hämtas från Skatteverket.",
+            "mobile": "Mobil",
+            "email": "Email",
+            "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
         },
         "spec": {
             "count": "Antal betalningar",

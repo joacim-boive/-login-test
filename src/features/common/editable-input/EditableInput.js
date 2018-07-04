@@ -24,8 +24,12 @@ export class EditableInput extends Component {
         this.setState({ disabled: true });
     };
 
+    onSave = () => {
+        this.props.onSave(this.state.value);
+    }
+
     render() {
-        const { className } = this.props;
+        const { className, label } = this.props;
         const { disabled, value } = this.state;
 
         const classes = classNames({
@@ -35,18 +39,18 @@ export class EditableInput extends Component {
 
         return (
             <div className={classes}>
-                <Input label="Email" value={value} disabled={disabled} small onChange={() => {}} />
+                <Input label={label} value={value} disabled={disabled} small onChange={() => {}} />
                 {disabled ? (
                     <Button name="edit" onClick={this.onClick} small round outline>
                         {i18n('general.buttons.edit')}
                     </Button>
                 ) : (
                     <div className="button-wrapper">
-                        <Button name="save" onClick={() => {}} small round>
-                            {i18n('general.buttons.save')}
-                        </Button>
                         <Button name="cancel" onClick={this.onCancel} small round transparent>
                             {i18n('general.buttons.cancel')}
+                        </Button>
+                        <Button name="save" onClick={this.onSave} small round>
+                            {i18n('general.buttons.save')}
                         </Button>
                     </div>
                 )}
@@ -56,11 +60,14 @@ export class EditableInput extends Component {
 }
 
 EditableInput.propTypes = {
+    onSave: PropTypes.func.isRequired,
     className: PropTypes.string,
     value: PropTypes.string,
+    label: PropTypes.string,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
+    label: '',
 };

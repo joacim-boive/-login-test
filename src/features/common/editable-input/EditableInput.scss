@@ -6,7 +6,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     input[disabled] {
         padding: 0px;
@@ -16,16 +16,11 @@
         font-size: 18px;
     }
 
-    label {
-        margin: 0px;
-    }
-
     .button-wrapper {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
 
         button:last-child {
-            margin-top: 10px;
         }
     }
 }

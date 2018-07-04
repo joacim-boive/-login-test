@@ -67,7 +67,7 @@ class ExpandablePanel extends React.Component {
         });
 
         return (
-            <Panel style={style} padding="10px 30px" className={rootClasses}>
+            <Panel style={style} className={rootClasses}>
                 <InteractiveElement tabIndex="0" className="expandable-panel__expander" onClick={this.toggleExpansion}>
                     <span className="expandable-panel__show-more-text">
                         {collapsed ? showMoreLabel : showLessLabel}

@@ -5,6 +5,7 @@
 .expandable-panel {
     background: $white;
     width: 100%;
+    padding: 10px 30px;
 
     @include mobile() {
         margin: 0;
@@ -19,7 +20,7 @@
 
     &--bordered {
         border-radius: 8px;
-        border: solid 1px $gray20;
+        border: solid 1px $beige40;
     }
 
     &__content {
@@ -53,6 +54,10 @@
     &__arrow-wrapper {
         position: relative;
         width: 50px;
+
+        @include mobile() {
+            margin-right: 10px;
+        }
     }
 
     &__arrow {
