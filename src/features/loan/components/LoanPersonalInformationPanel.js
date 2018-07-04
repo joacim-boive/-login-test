@@ -5,8 +5,9 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LoanPersonalInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
+import { EditableInput } from '../../common/editable-input/EditableInput';
 
-const LoanPersonalInformationPanel = ({ className }) => {
+const LoanPersonalInformationPanel = ({ className, person }) => {
     const classes = classNames({
         'loan-personal-information-panel': true,
         [className]: className,
@@ -22,48 +23,47 @@ const LoanPersonalInformationPanel = ({ className }) => {
                 showLessLabel={i18n('loan.personal.header')}
             >
                 <h3>{i18n('loan.personal.panel.header')}</h3>
-                <DataColumns>
+                <DataColumns className="loan-personal-information-panel__body">
                     <DataColumn>
                         <DataRow>
                             <Data weak>{i18n('loan.personal.name')}</Data>
                             <Data right strong>
-                                {123}
+                                {person.name}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data weak>{i18n('loan.personal.pn')}</Data>
+                            <Data weak>{i18n('loan.personal.ssn')}</Data>
                             <Data right strong>
-                                {123}
+                                {person.ssn}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data weak>{i18n('loan.personal.adress')}</Data>
+                            <Data weak>{i18n('loan.personal.address')}</Data>
                             <Data right strong>
-                                {123}
+                                {person.address}
                             </Data>
                         </DataRow>
                         <DataRow>
                             <Data weak>{i18n('loan.personal.zip')}</Data>
                             <Data right strong>
-                                {123}
+                                {person.zip}
                             </Data>
                         </DataRow>
                         <DataRow>
                             <Data weak>{i18n('loan.personal.city')}</Data>
                             <Data right strong>
-                                {123}
+                                {person.city}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data className="text" right>{i18n('loan.personal.info')}</Data>
+                            <Data className="text" right>
+                                {i18n('loan.personal.info')}
+                            </Data>
                         </DataRow>
                     </DataColumn>
                     <DataColumn>
                         <DataRow>
-                            <Data>{i18n('loan.summary.panel.rate')}</Data>
-                            <Data right strong>
-                                {123}
-                            </Data>
+                            <EditableInput />
                         </DataRow>
                     </DataColumn>
                 </DataColumns>
@@ -73,6 +73,7 @@ const LoanPersonalInformationPanel = ({ className }) => {
 };
 
 LoanPersonalInformationPanel.propTypes = {
+    person: PropTypes.object.isRequired,
     className: PropTypes.string,
 };
 

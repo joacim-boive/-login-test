@@ -2,7 +2,10 @@
     "general": {
         "buttons": {
             "help": "Hjälp",
-            "close": "Stäng"
+            "close": "Stäng",
+            "edit": "Ändra",
+            "save": "Spara",
+            "cancel": "Avbryt"
         },
         "help": "Hjälp",
         "back": "Tillbaka",
@@ -218,8 +221,8 @@
         "personal": {
             "header": "Personuppgifter",
             "name": "Namn",
-            "pn": "Personnummer",
-            "adress": "Adress",
+            "ssn": "Personnummer",
+            "address": "Adress",
             "zip": "Postnummer",
             "city": "Ort",
             "info": "Dina uppgifter hämtas från Skatteverket."
