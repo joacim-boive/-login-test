@@ -15,6 +15,7 @@ export function reducer(state, action) {
             return {
                 ...state,
                 locale: action.locale,
+                language: action.locale.split('-')[0],
             };
         default:
             return state;

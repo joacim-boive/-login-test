@@ -28,13 +28,15 @@ export class LoanSummaryPage extends Component {
 
     render() {
         const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo } = this.props;
+        const { contactInformation } = customer;
+
         return (
             <AuthenticatedSubPageTemplate linkTo="/loan/overview" header={i18n('loan.summary.header')}>
                 <div className="loan-summary-page">
                     <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
                     <LoanPersonalInformationPanel
                         onUpdateContactInfo={updateCustomerContactInfo}
-                        contactInformation={customer.contactInformation}
+                        contactInformation={contactInformation}
                         person={person}
                         className="personal-panel"
                     />

@@ -16,6 +16,10 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
         [className]: className,
     });
 
+    if (Object.keys(contactInformation).length === 0) return null;
+
+    const isValid = () => !!contactInformation.phoneNumber && !!contactInformation.email;
+
     return (
         <div className={classes}>
             <ExpandablePanel
@@ -72,6 +76,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                                 className="edit-input"
                                 label={i18n('loan.personal.mobile')}
                                 value={contactInformation.phoneNumber}
+                                editMode={!contactInformation.phoneNumber}
                                 onSave={() => console.log('Saving mobile')}
                             />
                         </DataRow>
@@ -80,6 +85,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                                 className="edit-input"
                                 label={i18n('loan.personal.email')}
                                 value={contactInformation.email}
+                                editMode={!contactInformation.email}
                                 onSave={val => onUpdateContactInfo({ email: val })}
                             />
                         </DataRow>
@@ -87,7 +93,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                     </DataColumn>
                 </DataColumns>
                 <div className="next-button">
-                    <Button onClick={() => {}} round>
+                    <Button onClick={() => {}} round disable={!isValid()}>
                         {i18n('general.buttons.next')}
                     </Button>
                 </div>

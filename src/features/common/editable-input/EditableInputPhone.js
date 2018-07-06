@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { Input, Button } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
-import { CountryCodeSelect } from './CountryCodeSelect';
+import CountrySelect from './CountryCodeSelect';
 
 export class EditableInputPhone extends Component {
     state = {
-        disabled: true,
+        disabled: !this.props.editMode,
         value: this.props.value,
     };
 
@@ -22,12 +22,12 @@ export class EditableInputPhone extends Component {
         this.setState({ value: { ...value, countryCallingCode: val } });
     };
 
-    onClick = () => {
+    onEdit = () => {
         this.setState({ disabled: false });
     };
 
     onCancel = () => {
-        this.setState({ disabled: true });
+        this.setState({ disabled: true, value: this.props.value });
     };
 
     onSave = () => {
@@ -46,7 +46,7 @@ export class EditableInputPhone extends Component {
         return (
             <div className={classes}>
                 <div className="input-wrapper">
-                    <CountryCodeSelect
+                    <CountrySelect
                         label={label}
                         value={value.countryCallingCode}
                         disabled={disabled}
@@ -55,7 +55,7 @@ export class EditableInputPhone extends Component {
                     <Input value={value.number} disabled={disabled} small onChange={() => {}} />
                 </div>
                 {disabled ? (
-                    <Button name="edit" onClick={this.onClick} small round outline>
+                    <Button name="edit" onClick={this.onEdit} small round outline>
                         {i18n('general.buttons.edit')}
                     </Button>
                 ) : (
@@ -79,6 +79,7 @@ EditableInputPhone.propTypes = {
     value: PropTypes.shape(),
     countryCode: PropTypes.string,
     label: PropTypes.string,
+    editMode: PropTypes.bool,
 };
 
 EditableInputPhone.defaultProps = {
@@ -86,4 +87,5 @@ EditableInputPhone.defaultProps = {
     value: {},
     countryCode: '',
     label: '',
+    editMode: false,
 };

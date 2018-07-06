@@ -7,7 +7,7 @@ import './EditableInput.scss';
 
 export class EditableInput extends Component {
     state = {
-        disabled: true,
+        disabled: !this.props.editMode,
         value: this.props.value || '',
     };
 
@@ -16,7 +16,7 @@ export class EditableInput extends Component {
         this.setState({ value });
     };
 
-    onClick = () => {
+    onEdit = () => {
         this.setState({ disabled: false });
     };
 
@@ -41,7 +41,7 @@ export class EditableInput extends Component {
             <div className={classes}>
                 <Input label={label} value={value} disabled={disabled} small onChange={() => {}} />
                 {disabled ? (
-                    <Button name="edit" onClick={this.onClick} small round outline>
+                    <Button name="edit" onClick={this.onEdit} small round outline>
                         {i18n('general.buttons.edit')}
                     </Button>
                 ) : (
@@ -64,10 +64,12 @@ EditableInput.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
     label: PropTypes.string,
+    editMode: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
+    editMode: false,
 };
