@@ -1,14 +1,10 @@
-
-import {
-  OverviewPage,
-  LoanSummary,
-} from './';
+import { OverviewPage, LoanSummaryPage } from './';
 
 export default {
     path: 'loan',
     name: 'Loan',
     childRoutes: [
-      { path: 'overview', name: 'Overview page', component: OverviewPage },
-      { path: 'summary', name: 'Loan summary', component: LoanSummary },
+        { path: 'overview', name: 'Overview page', component: OverviewPage },
+        { path: 'summary', name: 'Loan summary', component: LoanSummaryPage },
     ],
 };

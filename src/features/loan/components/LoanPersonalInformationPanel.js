@@ -8,8 +8,9 @@ import { Button } from '@ecster/ecster-components';
 import './LoanPersonalInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import { EditableInput } from '../../common/editable-input/EditableInput';
+import { EditableInputPhone } from '../../common/editable-input/EditableInputPhone';
 
-const LoanPersonalInformationPanel = ({ className, person, media }) => {
+const LoanPersonalInformationPanel = ({ className, person, media, contactInformation, onUpdateContactInfo }) => {
     const classes = classNames({
         'loan-personal-information-panel': true,
         [className]: className,
@@ -67,10 +68,10 @@ const LoanPersonalInformationPanel = ({ className, person, media }) => {
                     </DataColumn>
                     <DataColumn>
                         <DataRow className="column-first">
-                            <EditableInput
+                            <EditableInputPhone
                                 className="edit-input"
                                 label={i18n('loan.personal.mobile')}
-                                value={person.cellular}
+                                value={contactInformation.phoneNumber}
                                 onSave={() => console.log('Saving mobile')}
                             />
                         </DataRow>
@@ -78,8 +79,8 @@ const LoanPersonalInformationPanel = ({ className, person, media }) => {
                             <EditableInput
                                 className="edit-input"
                                 label={i18n('loan.personal.email')}
-                                value={person.email}
-                                onSave={() => console.log('Saving email')}
+                                value={contactInformation.email}
+                                onSave={val => onUpdateContactInfo({ email: val })}
                             />
                         </DataRow>
                         <DataRow>{i18n('loan.personal.contact-text')}</DataRow>
@@ -98,10 +99,13 @@ const LoanPersonalInformationPanel = ({ className, person, media }) => {
 LoanPersonalInformationPanel.propTypes = {
     media: PropTypes.shape().isRequired,
     person: PropTypes.object.isRequired,
+    contactInformation: PropTypes.object,
+    onUpdateContactInfo: PropTypes.func.isRequired,
     className: PropTypes.string,
 };
 
 LoanPersonalInformationPanel.defaultProps = {
+    contactInformation: {},
     className: '',
 };
 

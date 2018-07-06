@@ -1,2 +1,2 @@
 export { default as OverviewPage } from './OverviewPage';
-export { default as LoanSummary } from './LoanSummary';
+export { default as LoanSummaryPage } from './LoanSummaryPage';
