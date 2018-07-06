@@ -45,13 +45,15 @@ export class EditableInputPhone extends Component {
 
         return (
             <div className={classes}>
-                <CountryCodeSelect
-                    label={label}
-                    value={value.countryCallingCode}
-                    disabled={disabled}
-                    onChange={this.onChangeCountryCode}
-                />
-                <Input value={value.number} disabled={disabled} small onChange={() => {}} />
+                <div className="input-wrapper">
+                    <CountryCodeSelect
+                        label={label}
+                        value={value.countryCallingCode}
+                        disabled={disabled}
+                        onChange={this.onChangeCountryCode}
+                    />
+                    <Input value={value.number} disabled={disabled} small onChange={() => {}} />
+                </div>
                 {disabled ? (
                     <Button name="edit" onClick={this.onClick} small round outline>
                         {i18n('general.buttons.edit')}
