@@ -2,7 +2,11 @@
     "general": {
         "buttons": {
             "help": "Hjälp",
-            "close": "Stäng"
+            "close": "Stäng",
+            "edit": "Ändra",
+            "save": "Spara",
+            "cancel": "Avbryt",
+            "next": "Nästa"
         },
         "help": "Hjälp",
         "back": "Tillbaka",
@@ -215,6 +219,18 @@
             "rate": "Ränta: {{rate}} %",
             "effective-rate": "Effektiv ränta: {{rate}} %"
         },
+        "personal": {
+            "header": "Personuppgifter",
+            "name": "Namn",
+            "ssn": "Personnummer",
+            "address": "Adress",
+            "zip": "Postnummer",
+            "city": "Ort",
+            "info": "Dina uppgifter hämtas från Skatteverket.",
+            "mobile": "Mobil",
+            "email": "Email",
+            "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
+        },
         "spec": {
             "count": "Antal betalningar",
             "credit-amount": "Kreditbelopp",
@@ -232,6 +248,19 @@
             "fee": "Uppläggningsavgift {{amount}}",
             "admin-fee": "Administrativ avgift {{amount}}/mån",
             "finish": "Lös lånet när du vill"
+        },
+        "summary": {
+            "header": "Låneansökan",
+            "panel": {
+                "header": "Valt lånebelopp och återbetalningstid",
+                "amount": "Lånebelopp",
+                "payback-time": "Återbetalningstid",
+                "cost-per-month": "Kostnad/månad",
+                "rate": "Ränta",
+                "effective-rate": "Effektiv ränta",
+                "years": "{{year}} år",
+                "rate-value": "{{rate}} %"
+            }
         }
     },
     "navigation": {

@@ -1,0 +1,55 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-summary-panel {
+    @include mobile() {
+        padding: 20px 15px;
+    }
+    .panel {
+        background-color: $green20;
+        border: 1px solid $green40;
+        padding: 20px 40px;
+
+        @include mobile() {
+            padding: 20px 20px;
+        }
+
+        .loan-data-columns {
+            margin: 0px -20px;
+
+            @include mobile() {
+                margin: 0px -30px;
+            }
+        }
+
+        .data-columns__section--bordered {
+            border-right: 1px solid $green40;
+        }
+    }
+
+    h2 {
+        color: $green140;
+        text-align: center;
+        font-weight: $weight-semibold;
+
+        @include mobile() {
+            text-align: left;
+            font-size: 30px;
+        }
+    }
+
+    .expander {
+        width: auto;
+        margin: 20px -20px 0px -20px;
+        background: none;
+
+        .expandable-bottom-panel__expander {
+            border-top: 1px solid $green40;
+        }
+
+        .specs {
+            margin: 20px;
+        }
+    }
+}

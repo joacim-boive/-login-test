@@ -10,7 +10,7 @@ import { formatAmount } from './../../../common/util/format-amount';
 import { LoanCost } from './LoanCost';
 import SpecificationPanel from './SpecificationPanel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
-import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
+import ExpandableBottomPanel from '../../common/expandable-bottom-panel/ExpandableBottomPanel';
 
 class LoanBodyPanel extends Component {
     state = {
@@ -91,7 +91,7 @@ class LoanBodyPanel extends Component {
                     <Button className="submit" green round onClick={onSubmit}>
                         {i18n('loan.body.submit')}
                     </Button>
-                    <ExpandablePanel
+                    <ExpandableBottomPanel
                         noPadding
                         noBorder
                         collapse
@@ -104,7 +104,7 @@ class LoanBodyPanel extends Component {
                             promissory={promissory}
                             loanAmount={this.state.amount}
                         />
-                    </ExpandablePanel>
+                    </ExpandableBottomPanel>
                 </Panel>
             </div>
         );

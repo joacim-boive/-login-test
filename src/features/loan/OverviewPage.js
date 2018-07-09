@@ -17,9 +17,8 @@ export class OverviewPage extends Component {
         this.props.getPaymentTerms(2000000, 10, false);
     }
 
-    onSubmit = e => {
-        console.log(e);
-        // this.props.getPaymentTerms(2000000, 10, true);
+    onSubmit = () => {
+        this.props.history.push('/loan/summary');
     };
 
     render() {
@@ -49,6 +48,7 @@ OverviewPage.propTypes = {
     getPromissoryDefaultInfo: PropTypes.func.isRequired,
     getPaymentTerms: PropTypes.func.isRequired,
     promissoryDefaultInfo: PropTypes.shape(),
+    history: PropTypes.shape().isRequired,
 };
 
 OverviewPage.defaultProps = {

@@ -1,0 +1,12 @@
+@import '../../styles/mixins';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+
+.loan-summary-page {
+    .personal-panel {
+        margin-top: 30px;
+
+        @include mobile() {
+            margin-top: 0px;
+        }
+    }
+}

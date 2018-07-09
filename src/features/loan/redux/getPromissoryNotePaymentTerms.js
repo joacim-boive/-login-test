@@ -19,6 +19,8 @@ export const getPromissoryNotePaymentTerms = (amount, paymentPeriodYear, makePay
         dispatch({
             type: LOAN_GET_PROMISSORY_NOTE_PAYMENT_TERMS_SUCCESS,
             data: res.response,
+            amount,
+            paymentPeriodYear,
         });
     } catch (err) {
         dispatch({
@@ -45,6 +47,7 @@ export function reducer(state, action) {
             return {
                 ...state,
                 promissoryNotePaymentTerms: action.data,
+                promissorySearchTerms: { amount: action.amount, paymentPeriodYear: action.paymentPeriodYear },
                 getPromissoryNotePaymentTermsPending: false,
                 getPromissoryNotePaymentTermsError: null,
             };
