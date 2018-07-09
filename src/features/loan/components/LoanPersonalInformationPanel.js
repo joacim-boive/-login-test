@@ -18,7 +18,11 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
 
     if (Object.keys(contactInformation).length === 0) return null;
 
-    const isValid = () => !!contactInformation.phoneNumber && !!contactInformation.email;
+    const isValid = () =>
+        !!contactInformation.phoneNumber &&
+        !!contactInformation.phoneNumber.countryCallingCode &&
+        !!contactInformation.phoneNumber.number &&
+        !!contactInformation.email;
 
     return (
         <div className={classes}>
@@ -93,7 +97,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                     </DataColumn>
                 </DataColumns>
                 <div className="next-button">
-                    <Button onClick={() => {}} round disable={!isValid()}>
+                    <Button onClick={() => console.log('Pressy pressy')} round disabled={!isValid()}>
                         {i18n('general.buttons.next')}
                     </Button>
                 </div>
