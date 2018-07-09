@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_CUSTOMER_URL } from './urls';
 
-export const getCustomer = customerId => async (dispatch) => {
+export const getCustomer = customerId => async dispatch => {
     dispatch({
         type: CUSTOMER_GET_CUSTOMER_BEGIN,
     });

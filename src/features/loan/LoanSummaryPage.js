@@ -35,7 +35,7 @@ export class LoanSummaryPage extends Component {
                 <div className="loan-summary-page">
                     <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
                     <LoanPersonalInformationPanel
-                        onUpdateContactInfo={updateCustomerContactInfo}
+                        onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
                         contactInformation={contactInformation}
                         person={person}
                         className="personal-panel"

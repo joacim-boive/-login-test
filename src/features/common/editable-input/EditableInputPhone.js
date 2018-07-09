@@ -12,9 +12,15 @@ export class EditableInputPhone extends Component {
         value: this.props.value,
     };
 
+    componentWillReceiveProps(nextProps) {
+        const nextValue = nextProps.value;
+        const { value } = this.state;
+        if (nextValue.number !== value.number) this.setState({ value: nextValue });
+    }
+
     onChange = e => {
         const { value } = e.target;
-        this.setState({ value });
+        this.setState({ value: { ...this.state.value, number: value } });
     };
 
     onChangeCountryCode = val => {
@@ -32,6 +38,7 @@ export class EditableInputPhone extends Component {
 
     onSave = () => {
         this.props.onSave(this.state.value);
+        this.setState({ disabled: true });
     };
 
     render() {
@@ -52,7 +59,7 @@ export class EditableInputPhone extends Component {
                         disabled={disabled}
                         onChange={this.onChangeCountryCode}
                     />
-                    <Input value={value.number} disabled={disabled} small onChange={() => {}} />
+                    <Input value={value.number} disabled={disabled} small onChange={this.onChange} />
                 </div>
                 {disabled ? (
                     <Button name="edit" onClick={this.onEdit} small round outline>

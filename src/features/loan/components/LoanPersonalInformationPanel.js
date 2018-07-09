@@ -77,7 +77,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                                 label={i18n('loan.personal.mobile')}
                                 value={contactInformation.phoneNumber}
                                 editMode={!contactInformation.phoneNumber}
-                                onSave={() => console.log('Saving mobile')}
+                                onSave={val => onUpdateContactInfo({ phoneNumber: val })}
                             />
                         </DataRow>
                         <DataRow>

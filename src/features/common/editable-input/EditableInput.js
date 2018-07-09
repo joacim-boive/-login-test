@@ -11,6 +11,12 @@ export class EditableInput extends Component {
         value: this.props.value || '',
     };
 
+    componentWillReceiveProps(nextProps) {
+        const nextValue = nextProps.value;
+        const { value } = this.state;
+        if (nextValue !== value) this.setState({ value: nextValue });
+    }
+
     onChange = e => {
         const { value } = e.target;
         this.setState({ value });
@@ -26,7 +32,8 @@ export class EditableInput extends Component {
 
     onSave = () => {
         this.props.onSave(this.state.value);
-    }
+        this.setState({ disabled: true });
+    };
 
     render() {
         const { className, label } = this.props;
@@ -39,7 +46,7 @@ export class EditableInput extends Component {
 
         return (
             <div className={classes}>
-                <Input label={label} value={value} disabled={disabled} small onChange={() => {}} />
+                <Input label={label} value={value} disabled={disabled} small onChange={this.onChange} />
                 {disabled ? (
                     <Button name="edit" onClick={this.onEdit} small round outline>
                         {i18n('general.buttons.edit')}

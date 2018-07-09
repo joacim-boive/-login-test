@@ -9,7 +9,6 @@ import './CountryCodeSelect.scss';
 export class CountryCodeSelect extends Component {
     componentWillMount() {
         this.countryCodes = require(`./countrycodes-${this.props.language}`); // eslint-disable-line
-        console.log(this.countryCodes);
     }
 
     onChange = e => {
