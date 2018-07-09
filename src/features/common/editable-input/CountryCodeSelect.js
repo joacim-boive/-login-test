@@ -13,7 +13,6 @@ export class CountryCodeSelect extends Component {
 
     onChange = e => {
         const { value } = e.target;
-        console.log('onChange Select', value);
         this.props.onChange(value);
     };
 
