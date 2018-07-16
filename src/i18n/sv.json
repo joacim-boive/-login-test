@@ -199,6 +199,22 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "economy": {
+            "header": "Ekonomi",
+            "default-label": "Välj",
+            "occupation": "Sysselsättning",
+            "occupation-label": "Vad är din huvudsakliga sysselsättning?",
+            "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "others": "Bolån och övriga lån/krediter",
+            "others-checkbox": "Jag har inga bolån",
+            "others-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
+            "household": "Hushåll",
+            "living-label": "Hur bor du?",
+            "adults-label": "Hur många vuxna finns det i hushållet?",
+            "children-label": "Hur många barn finns det i hushållet?",
+            "other-loan-checkbox": "Jag har inga övriga lån",
+            "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter"
+        },
         "header": {
             "header": "Låna till stort eller smått?",
             "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
