@@ -11,6 +11,7 @@ class LoanEconomyPanel extends Component {
     state = {
         occupation: '',
         income: 0,
+        'gross-income': 0,
         hasLoan: false,
         others: 0,
         living: 0,
@@ -63,56 +64,76 @@ class LoanEconomyPanel extends Component {
                                     value={this.state.occupation}
                                     onChange={e => this.onChange('occupation', e)}
                                 >
-                                    <Option label={i18n('loan.economy.options.occupation.fulltime')} value="123" />
-                                    <Option label={i18n('loan.economy.options.occupation.solo')} value="234" />
-                                    <Option label={i18n('loan.economy.options.occupation.parttime')} value="345" />
-                                    <Option label={i18n('loan.economy.options.occupation.tryout')} value="456" />
-                                    <Option label={i18n('loan.economy.options.occupation.pension')} value="567" />
-                                    <Option label={i18n('loan.economy.options.occupation.student')} value="678" />
-                                    <Option label={i18n('loan.economy.options.occupation.searching')} value="789" />
+                                    <Option label={i18n('loan.economy.options.occupation.fulltime')} value="1" />
+                                    <Option label={i18n('loan.economy.options.occupation.solo')} value="2" />
+                                    <Option label={i18n('loan.economy.options.occupation.parttime')} value="3" />
+                                    <Option label={i18n('loan.economy.options.occupation.tryout')} value="4" />
+                                    <Option label={i18n('loan.economy.options.occupation.pension')} value="5" />
+                                    <Option label={i18n('loan.economy.options.occupation.student')} value="6" />
+                                    <Option label={i18n('loan.economy.options.occupation.searching')} value="7" />
                                 </Select>
-                                <Input
-                                    label={i18n('loan.economy.income-label')}
-                                    value={this.state.income}
-                                    onChange={e => this.onChange('income', e)}
-                                    required
-                                    minLength={1}
-                                    maxLength={7}
-                                />
-                                <Input
-                                    label={i18n('loan.economy.employer')}
-                                    value={this.state.employer}
-                                    onChange={e => this.onChange('employer', e)}
-                                    required
-                                    minLength={1}
-                                    maxLength={40}
-                                />
-                                <Select
-                                    label={i18n('loan.economy.12month')}
-                                    value={this.state['12month']}
-                                    onChange={e => this.onChange('12month', e)}
-                                    required
-                                >
-                                    <Option label={i18n('general.answer.yes')} value="yes" />
-                                    <Option label={i18n('general.answer.no')} value="no" />
-                                </Select>
-                                <Input
-                                    label={i18n('loan.economy.company-name')}
-                                    value={this.state['company-name']}
-                                    onChange={e => this.onChange('company-name', e)}
-                                    required
-                                    minLength={1}
-                                    maxLength={40}
-                                />
-                                <Select
-                                    label={i18n('loan.economy.12month-company')}
-                                    value={this.state['12month-company']}
-                                    onChange={e => this.onChange('12month-company', e)}
-                                    required
-                                >
-                                    <Option label={i18n('general.answer.yes')} value="yes" />
-                                    <Option label={i18n('general.answer.no')} value="no" />
-                                </Select>
+                                {['5', '6', '7'].includes(this.state.occupation) && (
+                                    <Input
+                                        label={i18n('loan.economy.income-label')}
+                                        value={this.state.income}
+                                        onChange={e => this.onChange('income', e)}
+                                        required
+                                        minLength={1}
+                                        maxLength={7}
+                                    />
+                                )}
+                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                    <Input
+                                        label={i18n('loan.economy.gross-income-label')}
+                                        value={this.state['gross-income']}
+                                        onChange={e => this.onChange('gross-income', e)}
+                                        required
+                                        minLength={1}
+                                        maxLength={7}
+                                    />
+                                )}
+                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                    <Input
+                                        label={i18n('loan.economy.employer')}
+                                        value={this.state.employer}
+                                        onChange={e => this.onChange('employer', e)}
+                                        required
+                                        minLength={1}
+                                        maxLength={40}
+                                    />
+                                )}
+                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                    <Select
+                                        label={i18n('loan.economy.12month')}
+                                        value={this.state['12month']}
+                                        onChange={e => this.onChange('12month', e)}
+                                        required
+                                    >
+                                        <Option label={i18n('general.answer.yes')} value="yes" />
+                                        <Option label={i18n('general.answer.no')} value="no" />
+                                    </Select>
+                                )}
+                                {['2'].includes(this.state.occupation) && (
+                                    <Input
+                                        label={i18n('loan.economy.company-name')}
+                                        value={this.state['company-name']}
+                                        onChange={e => this.onChange('company-name', e)}
+                                        required
+                                        minLength={1}
+                                        maxLength={40}
+                                    />
+                                )}
+                                {['2'].includes(this.state.occupation) && (
+                                    <Select
+                                        label={i18n('loan.economy.12month-company')}
+                                        value={this.state['12month-company']}
+                                        onChange={e => this.onChange('12month-company', e)}
+                                        required
+                                    >
+                                        <Option label={i18n('general.answer.yes')} value="yes" />
+                                        <Option label={i18n('general.answer.no')} value="no" />
+                                    </Select>
+                                )}
                             </section>
                             <section className="economy-bottom">
                                 <h4 className="economy-loan-header">{i18n('loan.economy.others')}</h4>

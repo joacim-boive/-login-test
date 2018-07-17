@@ -215,6 +215,7 @@
             "household": "Hushåll",
             "house-label": "Vad är bostadens dirftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
             "living-label": "Hur bor du?",
             "living-other-label": "Fyll i vilken boendeform",
             "occupation": "Sysselsättning",
