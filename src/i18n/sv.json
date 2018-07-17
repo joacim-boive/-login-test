@@ -11,7 +11,11 @@
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
-        "download": "Ladda ner"
+        "download": "Ladda ner",
+        "answer": {
+            "yes": "Ja",
+            "no": "Nej"
+        }
     },
     "account": {
         "header": {
@@ -200,20 +204,51 @@
     "loan": {
         "overview-header": "Privatlån",
         "economy": {
-            "header": "Ekonomi",
+            "12month": "Anställd längre än 12 månader?",
+            "12month-company": "Har du haft företaget längre än 12mån?",
+            "adults-label": "Hur många vuxna finns det i hushållet?",
+            "children-label": "Hur många barn finns det i hushållet?",
+            "company-name": "Företagsnamn",
             "default-label": "Välj",
+            "employer": "Arbetsgivare",
+            "header": "Ekonomi",
+            "household": "Hushåll",
+            "house-label": "Vad är bostadens dirftkostnader/mån?",
+            "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "living-label": "Hur bor du?",
+            "living-other-label": "Fyll i vilken boendeform",
             "occupation": "Sysselsättning",
             "occupation-label": "Vad är din huvudsakliga sysselsättning?",
-            "income-label": "Månadsinkomst efter skatt (kr/mån)",
             "others": "Bolån och övriga lån/krediter",
             "others-checkbox": "Jag har inga bolån",
             "others-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
-            "household": "Hushåll",
-            "living-label": "Hur bor du?",
-            "adults-label": "Hur många vuxna finns det i hushållet?",
-            "children-label": "Hur många barn finns det i hushållet?",
             "other-loan-checkbox": "Jag har inga övriga lån",
-            "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter"
+            "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter",
+            "options": {
+                "occupation": {
+                    "fulltime": "Tillsvidareanställd",
+                    "solo": "Egenföretagare",
+                    "parttime": "Visstidsanställd (tex vikarie/projektanställd)",
+                    "tryout": "Provanställd",
+                    "pension": "Pensionär",
+                    "student": "Student",
+                    "searching": "Arbetssökande"
+                },
+                "living": {
+                    "rental": "Hyresrätt",
+                    "owned": "Bostadsrätt",
+                    "house": "Villa",
+                    "other": "Annat"
+                },
+                "rent": {
+                    "span1": "2000 kr - 3000 kr",
+                    "span2": "3001 kr - 4000 kr",
+                    "span3": "4001 kr - 5000 kr",
+                    "span4": "5000 kr eller mer"
+                }
+            },
+            "owned-label": "Vad är avgiften till föreningen/mån?",
+            "rent-label": "Vad är bostadens hyra/mån?"
         },
         "header": {
             "header": "Låna till stort eller smått?",
