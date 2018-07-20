@@ -7,36 +7,71 @@ import './LoanEconomyPanel.scss';
 import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
+const validBoolean = str => str === 'yes';
+
 class LoanEconomyPanel extends Component {
     state = {
-        occupation: '',
-        income: 0,
-        'gross-income': 0,
-        hasLoan: false,
-        others: 0,
-        living: 0,
-        adults: 0,
-        children: 0,
+        employmentForm: '',
+        monthlyNetIncome: '',
+        monthlyGrossIncome: '',
+        hasMortageLoan: false,
+        monthlyMortgageCost: '',
+        residenceType: '',
+        numberOfAdultsInResidence: '',
+        numberOfChildrenInResidence: '',
         hasOtherLoan: false,
-        otherLoanCost: 0,
+        monthlyCostOtherLoans: '',
         employer: '',
-        '12month': '',
-        '12month-company': '',
-        'company-name': '',
-        rent: 0,
-        'owned-rent': 0,
-        'house-rent': 0,
-        'living-other': '',
+        employedMoreThan1Year: '',
+        ownedCompanyMoreThan1Year: '',
+        ownedCompanyName: '',
+        monthlyResidenceCost: '',
+        residenceDescription: '',
     };
 
     onChange = (name, e) => {
         const { target } = e;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ [name]: value });
+        console.log('Valid form: ', this.validForm());
     };
 
     validForm = () => {
-        return false;
+        const {
+            employmentForm,
+            monthlyNetIncome,
+            monthlyGrossIncome,
+            hasMortageLoan,
+            monthlyMortgageCost,
+            residenceType,
+            numberOfAdultsInResidence,
+            numberOfChildrenInResidence,
+            hasOtherLoan,
+            monthlyCostOtherLoans,
+            employer,
+            employedMoreThan1Year,
+            ownedCompanyMoreThan1Year,
+            ownedCompanyName,
+            monthlyResidenceCost,
+            residenceDescription,
+        } = this.state;
+
+        let result = true;
+
+        if (['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm)) {
+            result = result && !!monthlyGrossIncome && !!employer && !!validBoolean(employedMoreThan1Year);
+        } else if (['SELFEMPLOYED'].includes(employmentForm)) {
+            result = result && !!monthlyGrossIncome && !!ownedCompanyName && !!validBoolean(ownedCompanyMoreThan1Year);
+        } else if (['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(this.state.employmentForm)) {
+            result = result && !!monthlyNetIncome;
+        } else {
+            result = false;
+        }
+
+        result = result && !!numberOfAdultsInResidence && !!numberOfChildrenInResidence;
+
+        console.log(!!monthlyGrossIncome && !!employer && !!validBoolean(employedMoreThan1Year));
+        return result;
     };
 
     render() {
@@ -61,73 +96,99 @@ class LoanEconomyPanel extends Component {
                                 <h4>{i18n('loan.economy.occupation')}</h4>
                                 <Select
                                     label={i18n('loan.economy.occupation-label')}
-                                    value={this.state.occupation}
-                                    onChange={e => this.onChange('occupation', e)}
+                                    value={this.state.employmentForm}
+                                    onChange={e => this.onChange('employmentForm', e)}
+                                    required
+                                    name="employmentForm"
                                 >
-                                    <Option label={i18n('loan.economy.options.occupation.fulltime')} value="1" />
-                                    <Option label={i18n('loan.economy.options.occupation.solo')} value="2" />
-                                    <Option label={i18n('loan.economy.options.occupation.parttime')} value="3" />
-                                    <Option label={i18n('loan.economy.options.occupation.tryout')} value="4" />
-                                    <Option label={i18n('loan.economy.options.occupation.pension')} value="5" />
-                                    <Option label={i18n('loan.economy.options.occupation.student')} value="6" />
-                                    <Option label={i18n('loan.economy.options.occupation.searching')} value="7" />
+                                    <Option
+                                        label={i18n('loan.economy.options.occupation.fulltime')}
+                                        value="PERMANENT"
+                                    />
+                                    <Option label={i18n('loan.economy.options.occupation.solo')} value="SELFEMPLOYED" />
+                                    <Option
+                                        label={i18n('loan.economy.options.occupation.parttime')}
+                                        value="TEMPORARY_EMPLOYMENT"
+                                    />
+                                    <Option
+                                        label={i18n('loan.economy.options.occupation.tryout')}
+                                        value="TRYOUT_EMPLOYED"
+                                    />
+                                    <Option label={i18n('loan.economy.options.occupation.pension')} value="RETIRED" />
+                                    <Option label={i18n('loan.economy.options.occupation.student')} value="STUDENT" />
+                                    <Option
+                                        label={i18n('loan.economy.options.occupation.searching')}
+                                        value="SEEKING_EMPLOYMENT"
+                                    />
                                 </Select>
-                                {['5', '6', '7'].includes(this.state.occupation) && (
+                                {['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(this.state.employmentForm) && (
                                     <Input
                                         label={i18n('loan.economy.income-label')}
-                                        value={this.state.income}
-                                        onChange={e => this.onChange('income', e)}
+                                        value={this.state.monthlyNetIncome}
+                                        onChange={e => this.onChange('monthlyNetIncome', e)}
+                                        name="monthlyNetIncome"
                                         required
                                         minLength={1}
                                         maxLength={7}
                                     />
                                 )}
-                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(
+                                    this.state.employmentForm
+                                ) && (
                                     <Input
                                         label={i18n('loan.economy.gross-income-label')}
-                                        value={this.state['gross-income']}
-                                        onChange={e => this.onChange('gross-income', e)}
+                                        value={this.state.monthlyGrossIncome}
+                                        onChange={e => this.onChange('monthlyGrossIncome', e)}
+                                        name="monthlyGrossIncome"
                                         required
                                         minLength={1}
                                         maxLength={7}
                                     />
                                 )}
-                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(
+                                    this.state.employmentForm
+                                ) && (
                                     <Input
                                         label={i18n('loan.economy.employer')}
                                         value={this.state.employer}
                                         onChange={e => this.onChange('employer', e)}
+                                        name="employer"
                                         required
                                         minLength={1}
                                         maxLength={40}
                                     />
                                 )}
-                                {['1', '3', '4'].includes(this.state.occupation) && (
+                                {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(
+                                    this.state.employmentForm
+                                ) && (
                                     <Select
                                         label={i18n('loan.economy.12month')}
-                                        value={this.state['12month']}
-                                        onChange={e => this.onChange('12month', e)}
+                                        value={this.state.employedMoreThan1Year}
+                                        onChange={e => this.onChange('employedMoreThan1Year', e)}
+                                        name="employedMoreThan1Year"
                                         required
                                     >
                                         <Option label={i18n('general.answer.yes')} value="yes" />
                                         <Option label={i18n('general.answer.no')} value="no" />
                                     </Select>
                                 )}
-                                {['2'].includes(this.state.occupation) && (
+                                {['SELFEMPLOYED'].includes(this.state.employmentForm) && (
                                     <Input
                                         label={i18n('loan.economy.company-name')}
-                                        value={this.state['company-name']}
-                                        onChange={e => this.onChange('company-name', e)}
+                                        value={this.state.ownedCompanyName}
+                                        onChange={e => this.onChange('ownedCompanyName', e)}
+                                        name="ownedCompanyName"
                                         required
                                         minLength={1}
                                         maxLength={40}
                                     />
                                 )}
-                                {['2'].includes(this.state.occupation) && (
+                                {['SELFEMPLOYED'].includes(this.state.employmentForm) && (
                                     <Select
                                         label={i18n('loan.economy.12month-company')}
-                                        value={this.state['12month-company']}
-                                        onChange={e => this.onChange('12month-company', e)}
+                                        value={this.state.ownedCompanyMoreThan1Year}
+                                        onChange={e => this.onChange('ownedCompanyMoreThan1Year', e)}
+                                        name="ownedCompanyMoreThan1Year"
                                         required
                                     >
                                         <Option label={i18n('general.answer.yes')} value="yes" />
@@ -139,18 +200,27 @@ class LoanEconomyPanel extends Component {
                                 <h4 className="economy-loan-header">{i18n('loan.economy.others')}</h4>
                                 <div className="economy-row">
                                     <Checkbox
-                                        checked={this.state.hasLoan}
-                                        onChange={e => this.onChange('hasLoan', e)}
+                                        checked={this.state.hasMortageLoan}
+                                        onChange={e => this.onChange('hasMortageLoan', e)}
+                                        name="hasMortageLoan"
                                     />
                                     <div>{i18n('loan.economy.others-checkbox')}</div>
                                 </div>
-                                <Select
-                                    label={i18n('loan.economy.others-label')}
-                                    value={this.state.others}
-                                    onChange={e => this.onChange('others', e)}
-                                >
-                                    <Option label={i18n('loan.economy.default-label')} value="" />
-                                </Select>
+                                {!this.state.hasMortageLoan && (
+                                    <Select
+                                        label={i18n('loan.economy.others-label')}
+                                        value={this.state.monthlyMortgageCost}
+                                        onChange={e => this.onChange('monthlyMortgageCost', e)}
+                                        name="monthlyMortgageCost"
+                                    >
+                                        <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span4')} value="4" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span5')} value="5" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span6')} value="6" />
+                                    </Select>
+                                )}
                             </section>
                         </div>
                         <div className="economy-column">
@@ -158,56 +228,86 @@ class LoanEconomyPanel extends Component {
                                 <h4>{i18n('loan.economy.household')}</h4>
                                 <Select
                                     label={i18n('loan.economy.living-label')}
-                                    value={this.state.living}
-                                    onChange={e => this.onChange('living', e)}
-                                >
-                                    <Option label={i18n('loan.economy.options.living.rental')} value="rental" />
-                                    <Option label={i18n('loan.economy.options.living.owned')} value="owned" />
-                                    <Option label={i18n('loan.economy.options.living.house')} value="house" />
-                                    <Option label={i18n('loan.economy.options.living.other')} value="other" />
-                                </Select>
-                                <Select
-                                    label={i18n('loan.economy.rent-label')}
-                                    value={this.state.rent}
-                                    onChange={e => this.onChange('rent', e)}
-                                >
-                                    <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
-                                    <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
-                                    <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
-                                    <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
-                                </Select>
-                                <Select
-                                    label={i18n('loan.economy.owned-label')}
-                                    value={this.state['owned-rent']}
-                                    onChange={e => this.onChange('owned-rent', e)}
-                                >
-                                    <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
-                                    <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
-                                    <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
-                                    <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
-                                </Select>
-                                <Select
-                                    label={i18n('loan.economy.house-label')}
-                                    value={this.state['house-rent']}
-                                    onChange={e => this.onChange('house-rent', e)}
-                                >
-                                    <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
-                                    <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
-                                    <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
-                                    <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
-                                </Select>
-                                <Input
-                                    label={i18n('loan.economy.living-other-label')}
-                                    value={this.state['living-other']}
-                                    onChange={e => this.onChange('living-other', e)}
+                                    value={this.state.residenceType}
+                                    onChange={e => this.onChange('residenceType', e)}
+                                    name="residenceType"
                                     required
-                                    minLength={1}
-                                    maxLength={40}
-                                />
+                                >
+                                    <Option label={i18n('loan.economy.options.living.rental')} value="TENANT" />
+                                    <Option label={i18n('loan.economy.options.living.owned')} value="CONDOMINIUM" />
+                                    <Option label={i18n('loan.economy.options.living.house')} value="DETACHED_HOUSE" />
+                                    <Option label={i18n('loan.economy.options.living.other')} value="OTHER" />
+                                </Select>
+                                {['TENANT'].includes(this.state.residenceType) && (
+                                    <Select
+                                        label={i18n('loan.economy.rent-label')}
+                                        value={this.state.monthlyResidenceCost}
+                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        name="tenant"
+                                    >
+                                        <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
+                                    </Select>
+                                )}
+                                {['CONDOMINIUM'].includes(this.state.residenceType) && (
+                                    <Select
+                                        label={i18n('loan.economy.owned-label')}
+                                        value={this.state.monthlyResidenceCost}
+                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        name="condominium"
+                                    >
+                                        <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
+                                    </Select>
+                                )}
+                                {['DETACHED_HOUSE'].includes(this.state.residenceType) && (
+                                    <Select
+                                        label={i18n('loan.economy.house-label')}
+                                        value={this.state.monthlyResidenceCost}
+                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        name="detached_house"
+                                        required
+                                    >
+                                        <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
+                                    </Select>
+                                )}
+                                {['OTHER'].includes(this.state.residenceType) && (
+                                    <Input
+                                        label={i18n('loan.economy.living-other-label')}
+                                        value={this.state.residenceDescription}
+                                        onChange={e => this.onChange('residenceDescription', e)}
+                                        name="residenceDescription"
+                                        required
+                                        minLength={1}
+                                        maxLength={40}
+                                    />
+                                )}
+                                {['OTHER'].includes(this.state.residenceType) && (
+                                    <Select
+                                        label={i18n('loan.economy.others-living-label')}
+                                        value={this.state.monthlyResidenceCost}
+                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        name="monthlyResidenceCost"
+                                        required
+                                    >
+                                        <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.rent.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
+                                    </Select>
+                                )}
                                 <Select
                                     label={i18n('loan.economy.adults-label')}
-                                    value={this.state.adults}
-                                    onChange={e => this.onChange('adults', e)}
+                                    value={this.state.numberOfAdultsInResidence}
+                                    onChange={e => this.onChange('numberOfAdultsInResidence', e)}
+                                    name="numberOfAdultsInResidence"
                                     required
                                 >
                                     <Option label="1" value="1" />
@@ -215,8 +315,10 @@ class LoanEconomyPanel extends Component {
                                 </Select>
                                 <Select
                                     label={i18n('loan.economy.children-label')}
-                                    value={this.state.children}
-                                    onChange={e => this.onChange('children', e)}
+                                    value={this.state.numberOfChildrenInResidence}
+                                    onChange={e => this.onChange('numberOfChildrenInResidence', e)}
+                                    name="numberOfChildrenInResidence"
+                                    required
                                 >
                                     <Option label="0" value="0" />
                                     <Option label="1" value="1" />
@@ -238,13 +340,20 @@ class LoanEconomyPanel extends Component {
                                     />
                                     <div>{i18n('loan.economy.other-loan-checkbox')}</div>
                                 </div>
-                                <Select
-                                    label={i18n('loan.economy.other-loan-cost-label')}
-                                    value={this.state.otherLoanCost}
-                                    onChange={e => this.onChange('otherLoanCost', e)}
-                                >
-                                    <Option label={i18n('loan.economy.default-label')} value="" />
-                                </Select>
+                                {!this.state.hasOtherLoan && (
+                                    <Select
+                                        label={i18n('loan.economy.other-loan-cost-label')}
+                                        value={this.state.monthlyCostOtherLoans}
+                                        onChange={e => this.onChange('monthlyCostOtherLoans', e)}
+                                    >
+                                        <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span4')} value="4" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span5')} value="5" />
+                                        <Option label={i18n('loan.economy.options.otherLoan.span6')} value="6" />
+                                    </Select>
+                                )}
                             </section>
                         </div>
                     </ResponsivePanel>
