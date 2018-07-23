@@ -5,7 +5,7 @@ compile();
 
 if (process.argv.indexOf('--dev') > 0) {
     // Only run servers during development
-    devServers.backend();
-    devServers.proxy();
+    // devServers.backend();
+    // devServers.proxy();
     devServers.studio();
 }
