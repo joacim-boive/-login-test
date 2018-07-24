@@ -22,7 +22,6 @@ const renderApp = app => {
 };
 
 const initApplication = config => {
-//    const store = configStore();
     Session.set('origin', 'mypages');
 
     // TODO: tmp solution, fix later

@@ -4,8 +4,9 @@ const initialState = {
     customerPromissoryNote: {},
     customerPromissoryNotes: [],
     activePromissoryNoteCampaigns: [],
-    promissoryNoteDefaultParameters: [],
+    promissoryNoteDefaultParameters: {},
     promissoryNotePaymentTerms: {},
+    promissorySearchTerms: { amount: 0, paymentPeriodYear: 0 },
 
     // generated
     getCustomerPromissoryNotesPending: false,

@@ -8,10 +8,6 @@ import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
 
 export default class AuthenticatedSubPageTemplate extends React.Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-    };
-
     render() {
         const { className, linkTo, header } = this.props;
 
@@ -37,9 +33,9 @@ export default class AuthenticatedSubPageTemplate extends React.Component {
                     <TabletOrDesktop>
                         <TabletDesktopNavigation />
                     </TabletOrDesktop>
-                    <div className="page-content">
+                    <div className="page-container">
                         {renderHeader}
-                        {this.props.children}
+                        <div className="page-content">{this.props.children}</div>
                     </div>
                     <Mobile>
                         <MobileNavigation />

@@ -25,7 +25,7 @@ export const AccountHeader = ({ account }) => {
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{formatAmount(amountLeft)}</div>
+                    <div>{formatAmount(amountLeft, undefined, { roundDown: true })}</div>
                     <p>{i18n('account.header.left-to-buy')}</p>
                 </div>
             </div>

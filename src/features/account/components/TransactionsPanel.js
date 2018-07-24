@@ -42,11 +42,11 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
                                 </Data>
                                 <Data left>{trans.description}</Data>
                                 <Data right>
-                                    {formatAmount(
-                                        trans.type === 'CREDIT' ? trans.amount : -trans.amount,
-                                        undefined,
-                                        false
-                                    )}
+                                    {formatAmount(trans.type === 'CREDIT' ? trans.amount : -trans.amount, undefined, {
+                                        strip00: false,
+                                        style: 'decimal',
+                                        decimals: 2,
+                                    })}
                                 </Data>
                             </DataRow>
                         </DataColumn>

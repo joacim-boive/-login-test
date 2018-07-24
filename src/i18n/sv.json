@@ -2,7 +2,11 @@
     "general": {
         "buttons": {
             "help": "Hjälp",
-            "close": "Stäng"
+            "close": "Stäng",
+            "edit": "Ändra",
+            "save": "Spara",
+            "cancel": "Avbryt",
+            "next": "Nästa"
         },
         "help": "Hjälp",
         "back": "Tillbaka",
@@ -33,6 +37,7 @@
             "part-payment": "Delbetalningar",
             "bills": "Månadsfakturor",
             "card": "Hantera kort",
+            "apply-card": "Ansök om kort",
             "terms": "Kontovillkor"
         },
         "summary": {
@@ -41,7 +46,8 @@
             "total": "Total kredit:"
         },
         "transactions": {
-            "reserved-amount": "Reserverat belopp"
+            "reserved-amount": "Reserverat belopp",
+            "show-more": "Visa fler"
         },
         "sales-panel": {
             "header": "Ett kort för alla dina inköp ",
@@ -49,6 +55,7 @@
             "button": "Ansök"
         },
         "terms": {
+            "account-terms": "Kontovillkor",
             "account-number": "Kontonummer",
             "account-name": "Kontonamn",
             "total-credit": "Total kredit",
@@ -85,18 +92,40 @@
             "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
         },
         "terminate": {
+            "terminate-account": "Avsluta konto",
+            "terminate-my-account": "Avsluta mitt konto",
+            "header": "Hjälp oss bli bättre",
+            "info-text": "Berätta gärna varför du vill avsluta ditt konto",
+            "q1": "Har betalat av min skuld",
+            "q2": "Använder inte kontot längre",
+            "q3": "Vill samla allt på ett annat konto",
+            "q4": "Missnöjd med era villkor",
+            "q5": "Missnöjd med er service",
+            "q6": "Annan anledning",
+            "success": {
+                "header": "Konto avslutat",
+                "message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+                "back": "Tillbaka"
+            },
+
+            "failure": {
+                "header": "Kontot kunde inte avslutas",
+                "message": "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                "back": "Tillbaka till kontoöversikt"
+            },
+
             "confirm-header": "Avsluta konto",
-            "confirm-text": "Vill du verkligen avsluta kontot? Du kan inte ångra i efterhand.",
-            "confirm-ok": "Ja, avsluta kontot",
+            "confirm-text": "Är du helt säker?",
+            "confirm-ok": "Ja, avsluta konto",
             "confirm-cancel": "Avbryt",
 
-            "terminate-account": "Avsluta konto",
-            "info-text": [
-                "NOT YET IMPLEMENTED...",
-                "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
-                "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
-                "Har du ett tillgodo på kontot? Ring oss gärna på 08-701 46 67 så hjälper vi till."
-            ]
+            "intro": {
+                "info-text": [
+                    "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
+                    "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
+                    "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
+                ]
+            }
         }
     },
     "authentication": {},
@@ -168,7 +197,72 @@
             }
         }
     },
-    "loan": {},
+    "loan": {
+        "overview-header": "Privatlån",
+        "header": {
+            "header": "Låna till stort eller smått?",
+            "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
+        },
+        "body": {
+            "header": "Ansök om privatlån",
+            "amount": "Lånebelopp",
+            "payback": "Återbetalningstid",
+            "cost": "Månadskostnad",
+            "rent": "Ränta: {{rent}}%",
+            "submit": "Gå vidare",
+            "details": "Specifikation",
+            "year": "{{year}} år",
+            "show-more": "Specifikationer"
+        },
+        "cost": {
+            "header": "Månadskostnad",
+            "rate": "Ränta: {{rate}} %",
+            "effective-rate": "Effektiv ränta: {{rate}} %"
+        },
+        "personal": {
+            "header": "Personuppgifter",
+            "name": "Namn",
+            "ssn": "Personnummer",
+            "address": "Adress",
+            "zip": "Postnummer",
+            "city": "Ort",
+            "info": "Dina uppgifter hämtas från Skatteverket.",
+            "mobile": "Mobil",
+            "email": "Email",
+            "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
+        },
+        "spec": {
+            "count": "Antal betalningar",
+            "credit-amount": "Kreditbelopp",
+            "credit-cost": "Kreditkostnad",
+            "rate-cost": "Räntekostnad",
+            "start-fee": "Uppläggningsavgift",
+            "admin-fee": "Administrativ avgift",
+            "sum-admin-fee": "Summa administrativ avgift",
+            "amount": "Totalt belopp att betala"
+        },
+        "terms": {
+            "loan": "Låna upp till {{amount}}",
+            "payback": "Välj den återbetalningstid som passar dig ({{min}} - {{max}} år)",
+            "rate": "Rörlig ränta {{rate}}%",
+            "fee": "Uppläggningsavgift {{amount}}",
+            "admin-fee": "Administrativ avgift {{amount}}/mån",
+            "finish": "Lös lånet när du vill"
+        },
+        "summary": {
+            "header": "Låneansökan",
+            "panel": {
+                "header": "Valt lånebelopp och återbetalningstid",
+                "amount": "Lånebelopp",
+                "payback-time": "Återbetalningstid",
+                "cost-per-month": "Kostnad/månad",
+                "rate": "Ränta",
+                "effective-rate": "Effektiv ränta",
+                "years": "{{year}} år",
+                "rate-value": "{{rate}} %"
+            }
+        }
+    },
     "navigation": {
         "account-overview": "Översikt",
         "invoices": "Fakturor",
