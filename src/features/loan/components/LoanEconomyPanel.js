@@ -92,7 +92,7 @@ class LoanEconomyPanel extends Component {
                     showLessLabel={i18n('loan.economy.header')}
                 >
                     <ResponsivePanel desktop={2} tablet={2} mobile={1}>
-                        <div className="economy-column">
+                        <div className="economy-column" key="1">
                             <section>
                                 <h4>{i18n('loan.economy.occupation')}</h4>
                                 <Select
@@ -222,7 +222,7 @@ class LoanEconomyPanel extends Component {
                                 )}
                             </section>
                         </div>
-                        <div className="economy-column">
+                        <div className="economy-column" key="2">
                             <section>
                                 <h4>{i18n('loan.economy.household')}</h4>
                                 <Select
