@@ -33,7 +33,6 @@ class LoanEconomyPanel extends Component {
         const { target } = e;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ [name]: value });
-        console.log('Valid form: ', this.validForm());
     };
 
     validForm = () => {
@@ -51,7 +50,6 @@ class LoanEconomyPanel extends Component {
             employer,
             employedMoreThan1Year,
             ownedCompanyMoreThan1Year,
-            ownedCompanyName,
             monthlyResidenceCost,
             residenceDescription,
         } = this.state;
@@ -61,7 +59,7 @@ class LoanEconomyPanel extends Component {
         if (['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm)) {
             result = result && !!monthlyGrossIncome && !!employer && !!validBoolean(employedMoreThan1Year);
         } else if (['SELFEMPLOYED'].includes(employmentForm)) {
-            result = result && !!monthlyGrossIncome && !!ownedCompanyName && !!validBoolean(ownedCompanyMoreThan1Year);
+            result = result && !!monthlyGrossIncome && !!validBoolean(ownedCompanyMoreThan1Year);
         } else if (['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(this.state.employmentForm)) {
             result = result && !!monthlyNetIncome;
         } else {
@@ -70,7 +68,8 @@ class LoanEconomyPanel extends Component {
 
         result = result && !!numberOfAdultsInResidence && !!numberOfChildrenInResidence;
 
-        console.log(!!monthlyGrossIncome && !!employer && !!validBoolean(employedMoreThan1Year));
+        result = result && (!!hasMortageLoan || !!monthlyMortgageCost) && (!!hasOtherLoan || !!monthlyCostOtherLoans);
+
         return result;
     };
 
@@ -132,7 +131,7 @@ class LoanEconomyPanel extends Component {
                                         maxLength={7}
                                     />
                                 )}
-                                {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(
+                                {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED', 'SELFEMPLOYED'].includes(
                                     this.state.employmentForm
                                 ) && (
                                     <Input
@@ -153,7 +152,6 @@ class LoanEconomyPanel extends Component {
                                         value={this.state.employer}
                                         onChange={e => this.onChange('employer', e)}
                                         name="employer"
-                                        required
                                         minLength={1}
                                         maxLength={40}
                                     />
@@ -178,7 +176,6 @@ class LoanEconomyPanel extends Component {
                                         value={this.state.ownedCompanyName}
                                         onChange={e => this.onChange('ownedCompanyName', e)}
                                         name="ownedCompanyName"
-                                        required
                                         minLength={1}
                                         maxLength={40}
                                     />
