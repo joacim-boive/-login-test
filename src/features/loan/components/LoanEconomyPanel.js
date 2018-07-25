@@ -70,6 +70,8 @@ class LoanEconomyPanel extends Component {
 
         result = result && (!!hasMortageLoan || !!monthlyMortgageCost) && (!!hasOtherLoan || !!monthlyCostOtherLoans);
 
+        result = result && !!residenceType && !!monthlyResidenceCost;
+
         return result;
     };
 
@@ -241,6 +243,7 @@ class LoanEconomyPanel extends Component {
                                         value={this.state.monthlyResidenceCost}
                                         onChange={e => this.onChange('monthlyResidenceCost', e)}
                                         name="tenant"
+                                        required
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
@@ -254,6 +257,7 @@ class LoanEconomyPanel extends Component {
                                         value={this.state.monthlyResidenceCost}
                                         onChange={e => this.onChange('monthlyResidenceCost', e)}
                                         name="condominium"
+                                        required
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
