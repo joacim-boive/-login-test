@@ -98,6 +98,10 @@
             {
                 "from": "ga",
                 "to": "ga"
+            },
+            {
+                "from": "images",
+                "to":   "images"
             }
         ],
         "template": "template.ejs",
