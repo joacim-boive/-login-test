@@ -31,6 +31,9 @@
         "not bb 7-99"
     ],
     "jest": {
+        "verbose": true,
+        "testEnvironment": "jsdom",
+        "testURL": "http://localhost",
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
@@ -161,7 +164,7 @@
         "eslint-plugin-react": "^7.10.0",
         "express-history-api-fallback": "^2.2.1",
         "history": "^4.7.2",
-        "jest": "^23.4.1",
+        "jest": "^23.4.2",
         "jest-teamcity-reporter": "^0.9.0",
         "jsdom": "^11.12.0",
         "mocha": "^4.1.0",
@@ -182,8 +185,9 @@
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.71",
-        "@ecster/ecster-webpack": "^2.0.145",
+        "@ecster/ecster-webpack": "^2.0.150",
         "ajv": "^6.5.1",
+        "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "classnames": "^2.2.6",
         "features": "^0.1.0",
         "lazysizes": "^4.0.4",
