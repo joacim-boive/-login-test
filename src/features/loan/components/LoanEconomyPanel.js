@@ -72,6 +72,8 @@ class LoanEconomyPanel extends Component {
 
         result = result && !!residenceType && !!monthlyResidenceCost;
 
+        if (['OTHER'].includes(residenceType)) result = result && !!residenceDescription;
+
         return result;
     };
 
