@@ -306,7 +306,7 @@ class LoanEconomyPanel extends Component {
                     </ResponsivePanel>
                     <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                         <section key="3">
-                            <h4 className="economy-loan-header">{i18n('loan.economy.others')}</h4>
+                            <h4>{i18n('loan.economy.others')}</h4>
                             <div className="economy-row">
                                 <Checkbox
                                     checked={this.state.hasMortageLoan}
