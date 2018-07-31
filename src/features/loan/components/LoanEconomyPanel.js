@@ -331,7 +331,7 @@ class LoanEconomyPanel extends Component {
                                 </Select>
                             )}
                         </section>
-                        <section key="4">
+                        <section className="economy-bottom" key="4">
                             <div className="economy-row">
                                 <Checkbox
                                     checked={this.state.hasOtherLoan}
