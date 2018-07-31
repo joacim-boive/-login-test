@@ -3,6 +3,14 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-economy-panel {
+    @include mobile() {
+        .panel {
+            border-left: none;
+            border-right: none;
+            border-radius: 0px;
+        }
+    }
+
     h4 {
         color: $green;
         font-weight: $weight-semibold;
@@ -13,17 +21,26 @@
         display: flex;
         flex-direction: column;
         align-content: space-between;
-    }
 
-    section .responsive-column {
         & > div {
-            height: 100%;
+            margin-top: 10px;
         }
-        &:first-child {
-            padding-right: 30px;
-        }
-        &:last-child {
-            padding-left: 30px;
+
+        & .responsive-column {
+            & > div {
+            }
+            &:first-child {
+                padding-right: 30px;
+                @include mobile() {
+                    padding-right: 0px;
+                }
+            }
+            &:last-child {
+                padding-left: 30px;
+                @include mobile() {
+                    padding-left: 0px;
+                }
+            }
         }
     }
 
@@ -38,10 +55,6 @@
         }
     }
 
-    .economy-bottom {
-        margin-top: 100px;
-    }
-
     .economy-row {
         display: flex;
         flex-direction: row;
@@ -49,17 +62,6 @@
 
         div {
             margin-left: 5px;
-        }
-    }
-
-    .economy-column {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-content: space-between;
-
-        & > section > div {
-            margin-top: 10px;
         }
     }
 
