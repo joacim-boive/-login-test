@@ -307,14 +307,14 @@ class LoanEconomyPanel extends Component {
                     <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                         <section key="3">
                             <h4>{i18n('loan.economy.others')}</h4>
-                            <div className="economy-row">
+                            <span className="economy-row">
                                 <Checkbox
                                     checked={this.state.hasMortageLoan}
                                     onChange={e => this.onChange('hasMortageLoan', e)}
                                     name="hasMortageLoan"
                                 />
                                 <div>{i18n('loan.economy.others-checkbox')}</div>
-                            </div>
+                            </span>
                             {!this.state.hasMortageLoan && (
                                 <Select
                                     label={i18n('loan.economy.others-label')}
@@ -332,13 +332,13 @@ class LoanEconomyPanel extends Component {
                             )}
                         </section>
                         <section className="economy-bottom" key="4">
-                            <div className="economy-row">
+                            <span className="economy-row">
                                 <Checkbox
                                     checked={this.state.hasOtherLoan}
                                     onChange={e => this.onChange('hasOtherLoan', e)}
                                 />
                                 <div>{i18n('loan.economy.other-loan-checkbox')}</div>
-                            </div>
+                            </span>
                             {!this.state.hasOtherLoan && (
                                 <Select
                                     label={i18n('loan.economy.other-loan-cost-label')}
