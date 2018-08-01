@@ -336,6 +336,7 @@ class LoanEconomyPanel extends Component {
                                 <Checkbox
                                     checked={this.state.hasOtherLoan}
                                     onChange={e => this.onChange('hasOtherLoan', e)}
+                                    name="hasOtherLoan"
                                 />
                                 <div>{i18n('loan.economy.other-loan-checkbox')}</div>
                             </span>
@@ -344,6 +345,7 @@ class LoanEconomyPanel extends Component {
                                     label={i18n('loan.economy.other-loan-cost-label')}
                                     value={this.state.monthlyCostOtherLoans}
                                     onChange={e => this.onChange('monthlyCostOtherLoans', e)}
+                                    name="monthlyCostOtherLoans"
                                 >
                                     <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
                                     <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
@@ -356,7 +358,12 @@ class LoanEconomyPanel extends Component {
                         </section>
                     </ResponsivePanel>
                     <div className="next-button">
-                        <Button onClick={() => console.log('Pressy pressy')} round disabled={!this.validForm()}>
+                        <Button
+                            onClick={() => console.log('Pressy pressy')}
+                            round
+                            disabled={!this.validForm()}
+                            name="economyNextButton"
+                        >
                             {i18n('general.buttons.next')}
                         </Button>
                     </div>
