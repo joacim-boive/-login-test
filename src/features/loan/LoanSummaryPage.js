@@ -9,6 +9,7 @@ import LoanSummaryPanel from './components/LoanSummaryPanel';
 import LoanPersonalInformationPanel from './components/LoanPersonalInformationPanel';
 import { updateCustomerContactInfo } from '../customer/redux/updateCustomerContactInfo';
 import { getCustomer } from './../customer/redux/getCustomer';
+import LoanEconomyPanel from './components/LoanEconomyPanel';
 
 export class LoanSummaryPage extends Component {
     static propTypes = {
@@ -38,8 +39,9 @@ export class LoanSummaryPage extends Component {
                         onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
                         contactInformation={contactInformation}
                         person={person}
-                        className="personal-panel"
+                        className="loan-panel"
                     />
+                    <LoanEconomyPanel className="loan-panel" />
                 </div>
             </AuthenticatedSubPageTemplate>
         );
