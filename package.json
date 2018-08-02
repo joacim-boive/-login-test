@@ -63,7 +63,7 @@
         "build:vendor:debug": "node --inspect-brk ./compile.js --vendor --debug",
         "build:vendor:dev": "node ./compile.js --vendor --dev",
         "build:vendor:dev:debug": "node --inspect-brk ./compile.js --vendor --dev --debug",
-        "start": "nodemon ./compile.js --watch ./src/lib --dev",
+        "start": "node ./compile.js --dev",
         "start:debug": "nodemon --inspect-brk ./compile.js --watch ./src/lib/node-start.js --debug --dev",
         "test": "jest --coverage",
         "test:watch": "jest --watch",
@@ -74,79 +74,81 @@
         "android": "cd cordova && cordova run android",
         "ios": "cd cordova && cordova run ios"
     },
-    "appConfig": {
-        "title": "Ecster - Inloggat X",
-        "description": "Välkommen till Ecster",
-        "buildCatalog": "build",
-        "sourceCatalog": "src",
-        "isDontIndexThisPage": false,
-        "isGoogleFonts": false,
-        "isInjectReferences": true,
-        "isOptimizeCSS": false,
-        "cssWhiteList": [],
-        "language": "sv",
-        "googleAnalytics": {
-            "id": "UA-123456-1",
-            "script": "ga/analytics.js"
-        },
-        "entries": [
-            "index.js",
-            "styles/index.scss"
-        ],
-        "copy": [
-            {
-                "from": "i18n",
-                "to": "static/i18n"
+    "appConfig": [
+        {
+            "title": "Ecster - Inloggat X",
+            "description": "Välkommen till Ecster",
+            "buildCatalog": "build",
+            "sourceCatalog": "src",
+            "isDontIndexThisPage": false,
+            "isGoogleFonts": false,
+            "isInjectReferences": true,
+            "isOptimizeCSS": false,
+            "cssWhiteList": [],
+            "language": "sv",
+            "googleAnalytics": {
+                "id": "UA-123456-1",
+                "script": "ga/analytics.js"
             },
-            {
-                "from": "ga",
-                "to": "ga"
-            },
-            {
-                "from": "images",
-                "to": "images"
-            }
-        ],
-        "template": "template.ejs",
-        "favicon": "favicon.png",
-        "dll": [
-            "react",
-            "react-dom",
-            "react-redux",
-            "react-router-dom",
-            "react-router-redux",
-            "redux",
-            "redux-thunk",
-            "moment",
-            "classnames",
-            "lazysizes/plugins/respimg/ls.respimg.min",
-            "lazysizes/plugins/bgset/ls.bgset.min",
-            "lazysizes/plugins/rias/ls.rias.min",
-            "lazysizes",
-            "jquery-param",
-            "pikaday",
-            "mobile-detect",
-            "qwest"
-        ],
-        "proxies": [
-            {
-                "contexts": [
-                    "/rest/"
-                ],
-                "target": "https://secure5.ft.ecster.se",
-                "headers": [
-                    [
-                        "X-ECSTER-Origin",
-                        "mypages"
+            "entries": [
+                "index.js",
+                "styles/index.scss"
+            ],
+            "copy": [
+                {
+                    "from": "i18n",
+                    "to": "static/i18n"
+                },
+                {
+                    "from": "ga",
+                    "to": "ga"
+                },
+                {
+                    "from": "images",
+                    "to": "images"
+                }
+            ],
+            "template": "template.ejs",
+            "favicon": "favicon.png",
+            "dll": [
+                "react",
+                "react-dom",
+                "react-redux",
+                "react-router-dom",
+                "react-router-redux",
+                "redux",
+                "redux-thunk",
+                "moment",
+                "classnames",
+                "lazysizes/plugins/respimg/ls.respimg.min",
+                "lazysizes/plugins/bgset/ls.bgset.min",
+                "lazysizes/plugins/rias/ls.rias.min",
+                "lazysizes",
+                "jquery-param",
+                "pikaday",
+                "mobile-detect",
+                "qwest"
+            ],
+            "proxies": [
+                {
+                    "contexts": [
+                        "/rest/"
                     ],
-                    [
-                        "Content-Type",
-                        "application/json"
+                    "target": "https://secure5.ft.ecster.se",
+                    "headers": [
+                        [
+                            "X-ECSTER-Origin",
+                            "mypages"
+                        ],
+                        [
+                            "Content-Type",
+                            "application/json"
+                        ]
                     ]
-                ]
-            }
-        ]
-    },
+                }
+            ]
+        }
+    ],
     "devDependencies": {
         "argparse": "^1.0.7",
         "chai": "^4.1.2",
@@ -168,7 +170,7 @@
         "jest-teamcity-reporter": "^0.9.0",
         "jsdom": "^11.12.0",
         "mocha": "^4.1.0",
-        "nock": "^9.4.3",
+        "nock": "^9.4.4",
         "npm-run": "^4.1.2",
         "nyc": "^11.9.0",
         "redux-logger": "^3.0.6",
@@ -185,7 +187,7 @@
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.71",
-        "@ecster/ecster-webpack": "^2.0.150",
+        "@ecster/ecster-webpack": "^2.0.154",
         "ajv": "^6.5.1",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "classnames": "^2.2.6",
@@ -194,8 +196,8 @@
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
         "rc-slider": "^8.6.1",
-        "react": "^16.4.1",
-        "react-dom": "^16.4.1",
+        "react": "^16.4.2",
+        "react-dom": "^16.4.2",
         "react-grid-layout": "^0.16.6",
         "react-hot-loader": "^4.3.4",
         "react-media": "^1.8.0",
