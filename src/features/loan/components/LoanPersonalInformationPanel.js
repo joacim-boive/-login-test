@@ -29,7 +29,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
             <ExpandablePanel
                 className="expander"
                 compact
-                collapse={false}
+                collapse
                 showMoreLabel={i18n('loan.personal.header')}
                 showLessLabel={i18n('loan.personal.header')}
             >

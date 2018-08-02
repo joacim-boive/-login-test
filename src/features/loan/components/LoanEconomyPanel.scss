@@ -27,10 +27,6 @@
         flex-direction: column;
         align-content: space-between;
 
-        & > div {
-            margin-top: 10px;
-        }
-
         & .responsive-column {
             &:first-child {
                 padding-right: 30px;
@@ -47,6 +43,10 @@
                 }
             }
         }
+    }
+
+    .input-field {
+        margin-top: 10px;
     }
 
     .next-button {

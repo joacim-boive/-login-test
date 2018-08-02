@@ -15,6 +15,9 @@
         "answer": {
             "yes": "Ja",
             "no": "Nej"
+        },
+        "currency": {
+            "se": "kr"
         }
     },
     "account": {
@@ -211,7 +214,18 @@
         "general": {
             "about": "Om lånet",
             "header": "Låneinformation",
-            "withdrawal": "Utbetalning"
+            "purpose": "Vad lånet skall användas till?",
+            "withdrawal": "Utbetalning",
+            "apply": "Skicka ansökan",
+            "resolve-other": "Ange belopp du avser lösa",
+            "other-usage": "Definiera vad",
+            "resolve": "Samla andra lån/krediter",
+            "residence": "Köp av bostad/fastighet",
+            "residence-other": "Övrigt till bostad (renovering etc)",
+            "vehicle": "Köp av fordon",
+            "consumer-goods": "Resor, hemelektronik eller andra konsumtionsvaror",
+            "other": "Annat"
+
         },
         "economy": {
             "12month": "Anställd längre än 12 månader?",

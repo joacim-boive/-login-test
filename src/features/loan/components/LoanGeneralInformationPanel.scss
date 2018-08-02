@@ -7,4 +7,42 @@
         color: $green;
         font-weight: $weight-semibold;
     }
+
+    .body {
+        margin-top: 20px;
+    }
+
+    .input-field {
+        margin-top: 10px;
+    }
+
+    .apply-button {
+        width: 100%;
+        margin: 50px 0px 40px 0px;
+        display: flex;
+        justify-content: center;
+
+        @include mobile() {
+            margin: 25px 0px 15px 0px;
+        }
+    }
+
+    section {
+        & .responsive-column {
+            &:first-child {
+                padding-right: 30px;
+
+                @include mobile() {
+                    padding-right: 0px;
+                }
+            }
+            &:last-child {
+                padding-left: 30px;
+
+                @include mobile() {
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
 }
