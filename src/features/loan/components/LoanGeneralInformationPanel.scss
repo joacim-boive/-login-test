@@ -1,0 +1,10 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-general-information-panel {
+    h4 {
+        color: $green;
+        font-weight: $weight-semibold;
+    }
+}

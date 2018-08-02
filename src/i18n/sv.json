@@ -208,6 +208,11 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "general": {
+            "about": "Om lånet",
+            "header": "Låneinformation",
+            "withdrawal": "Utbetalning"
+        },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
             "12month-company": "Har du haft företaget längre än 12mån?",
