@@ -60,6 +60,7 @@
         "build": "node ./compile.js --prod --port 8081",
         "build:ci": "node ./compile.js --prod --ci",
         "build:vendor": "node ./compile.js --vendor",
+        "build:vendor:ci": "node ./compile.js --vendor --ci",
         "build:vendor:debug": "node --inspect-brk ./compile.js --vendor --debug",
         "build:vendor:dev": "node ./compile.js --vendor --dev",
         "build:vendor:dev:debug": "node --inspect-brk ./compile.js --vendor --dev --debug",
