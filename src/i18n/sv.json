@@ -11,7 +11,11 @@
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
-        "download": "Ladda ner"
+        "download": "Ladda ner",
+        "answer": {
+            "yes": "Ja",
+            "no": "Nej"
+        }
     },
     "account": {
         "header": {
@@ -22,7 +26,8 @@
             "header": "Nästa betalning",
             "deadline": "Förfallodatum",
             "pay-in": "Att betala i",
-            "missing": ["Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
+            "missing": [
+                "Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
                 "Bankgiro: 847-2425",
                 "OCR: {{nr}}"
             ]
@@ -104,13 +109,15 @@
             "q6": "Annan anledning",
             "success": {
                 "header": "Konto avslutat",
-                "message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+                "message":
+                    "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
                 "back": "Tillbaka"
             },
 
             "failure": {
                 "header": "Kontot kunde inte avslutas",
-                "message": "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                "message":
+                    "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
                 "back": "Tillbaka till kontoöversikt"
             },
 
@@ -144,7 +151,8 @@
                         "header": "Logga in",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "ssn-validation-message":
+                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Mobilt BankID",
                         "to-bid-button": "Logga in med BankID"
                     }
@@ -154,7 +162,8 @@
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+                        "ssn-validation-message":
+                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -199,9 +208,67 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "economy": {
+            "12month": "Anställd längre än 12 månader?",
+            "12month-company": "Har du haft företaget längre än 12mån?",
+            "adults-label": "Hur många vuxna finns det i hushållet?",
+            "children-label": "Hur många barn finns det i hushållet?",
+            "company-name": "Företagsnamn",
+            "default-label": "Välj",
+            "employer": "Arbetsgivare",
+            "header": "Ekonomi",
+            "household": "Hushåll",
+            "house-label": "Vad är bostadens dirftkostnader/mån?",
+            "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
+            "living-label": "Hur bor du?",
+            "living-other-label": "Fyll i vilken boendeform",
+            "occupation": "Sysselsättning",
+            "occupation-label": "Vad är din huvudsakliga sysselsättning?",
+            "others": "Bolån och övriga lån/krediter",
+            "others-living-label": "Vad är bostadens kostnader/mån?",
+            "others-checkbox": "Jag har inga bolån",
+            "others-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
+            "other-loan-checkbox": "Jag har inga övriga lån",
+            "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter",
+            "options": {
+                "occupation": {
+                    "fulltime": "Tillsvidareanställd",
+                    "solo": "Egenföretagare",
+                    "parttime": "Visstidsanställd (tex vikarie/projektanställd)",
+                    "tryout": "Provanställd",
+                    "pension": "Pensionär",
+                    "student": "Student",
+                    "searching": "Arbetssökande"
+                },
+                "living": {
+                    "rental": "Hyresrätt",
+                    "owned": "Bostadsrätt",
+                    "house": "Villa",
+                    "other": "Annat"
+                },
+                "rent": {
+                    "span1": "2000 kr - 3000 kr",
+                    "span2": "3001 kr - 4000 kr",
+                    "span3": "4001 kr - 5000 kr",
+                    "span4": "5000 kr eller mer"
+                },
+                "otherLoan": {
+                    "span1": "500 kr - 1000 kr",
+                    "span2": "1001 kr - 2000 kr",
+                    "span3": "2001 kr - 3000 kr",
+                    "span4": "3001 kr - 4000 kr",
+                    "span5": "4001 kr - 5000 kr",
+                    "span6": "5001 kr eller mer"
+                }
+            },
+            "owned-label": "Vad är avgiften till föreningen/mån?",
+            "rent-label": "Vad är bostadens hyra/mån?"
+        },
         "header": {
             "header": "Låna till stort eller smått?",
-            "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
+            "body":
+                "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
         },
         "body": {
             "header": "Ansök om privatlån",
