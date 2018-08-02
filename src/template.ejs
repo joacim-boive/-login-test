@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <%
 var lang = htmlWebpackPlugin.options.language || 'sv';
@@ -54,6 +53,12 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
 </noscript>
 <% if(htmlWebpackPlugin.options.dll) { %>
 <script src="<%= htmlWebpackPlugin.options.dll %>.js"></script>
+<% } %>
+<% if(htmlWebpackPlugin.options.stamp) { %>
+<noscript>
+    <!-- Use a noscript-tag for the stamp as HTML comments might be removed during build -->
+    <%= htmlWebpackPlugin.options.stamp %>
+</noscript>
 <% } %>
 </body>
 </html>
