@@ -3,6 +3,16 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-general-information-panel {
+    @include mobile() {
+        .panel {
+            border-left: none;
+            border-right: none;
+            border-radius: 0px;
+            padding: 10px 15px;
+            margin-top: 20px;
+        }
+    }
+
     h4 {
         color: $green;
         font-weight: $weight-semibold;
