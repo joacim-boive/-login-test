@@ -17,6 +17,8 @@ class LoanGeneralInformationPanel extends Component {
         bank: '',
         clearingNumber: '',
         accountNumber: '',
+        clearingNumberValid: false,
+        accountNumberValid: false,
         agreedTerms: false,
     };
 
@@ -31,6 +33,11 @@ class LoanGeneralInformationPanel extends Component {
         this.setState({ agreedTerms: target.checked });
     };
 
+    onValidate = (name, val) => {
+        console.log(name, val);
+        this.setState({ [name]: val });
+    };
+
     validForm = () => {
         const {
             loanUsage,
@@ -38,14 +45,14 @@ class LoanGeneralInformationPanel extends Component {
             loanDescription,
             loanAmountToResolve,
             bank,
-            clearingNumber,
-            accountNumber,
+            clearingNumberValid,
+            accountNumberValid,
             agreedTerms,
         } = this.state;
 
         let result = true;
 
-        result = result && !!clearingNumber && !!accountNumber;
+        result = result && clearingNumberValid && accountNumberValid;
 
         return result;
     };
@@ -105,7 +112,7 @@ class LoanGeneralInformationPanel extends Component {
                                     name="loanUsageDescription"
                                     required
                                     minLength={1}
-                                    maxLength={7}
+                                    maxLength={50}
                                     className="input-field"
                                 />
                             )}
@@ -123,6 +130,7 @@ class LoanGeneralInformationPanel extends Component {
                                     minLength={4}
                                     maxLength={5}
                                     className="clearing-field"
+                                    onValidation={(name, val) => this.onValidate('clearingNumberValid', val)}
                                 />
                                 <Input
                                     value={this.state.accountNumber}
@@ -133,6 +141,7 @@ class LoanGeneralInformationPanel extends Component {
                                     minLength={7}
                                     maxLength={10}
                                     style={{ width: '100%' }}
+                                    onValidation={(name, val) => this.onValidate('accountNumberValid', val)}
                                 />
                             </span>
                         </section>
