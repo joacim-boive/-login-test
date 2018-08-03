@@ -18,6 +18,12 @@
         },
         "currency": {
             "se": "kr"
+        },
+        "banks": {
+            "seb": "SEB",
+            "nordea": "Nordea",
+            "swedbank": "Swedbank",
+            "handelsbanken": "Handelsbanken"
         }
     },
     "account": {
@@ -213,6 +219,9 @@
         "overview-header": "Privatlån",
         "general": {
             "about": "Om lånet",
+            "account": "Ange kontonummer för utbetalning",
+            "account-number": "Kontonummer",
+            "clearing-number": "Clearingnummer",
             "header": "Låneinformation",
             "purpose": "Vad lånet skall användas till?",
             "withdrawal": "Utbetalning",

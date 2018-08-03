@@ -26,6 +26,11 @@
         margin-top: 10px;
     }
 
+    .clearing-field {
+        width: 150px;
+        margin-right: 10px;
+    }
+
     .apply-button {
         width: 100%;
         margin: 50px 0px 40px 0px;
@@ -35,6 +40,18 @@
         @include mobile() {
             margin: 25px 0px 15px 0px;
         }
+    }
+
+    .account-number {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .account-number-label {
+        display: block;
+        margin: 0 0 4px 0;
+        font-size: 14px;
+        font-weight: normal;
     }
 
     section {

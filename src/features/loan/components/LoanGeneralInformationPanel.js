@@ -6,6 +6,7 @@ import { Button, Select, Option, Input } from '@ecster/ecster-components';
 import './LoanGeneralInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import ClearingNumberInput from './ClearingNumberInput';
 
 class LoanGeneralInformationPanel extends Component {
     state = {
@@ -86,6 +87,29 @@ class LoanGeneralInformationPanel extends Component {
                         </section>
                         <section key="2">
                             <h4>{i18n('loan.general.withdrawal')}</h4>
+                            <label className="account-number-label">{i18n('loan.general.account')}</label>
+                            <span className="account-number">
+                                <ClearingNumberInput
+                                    value={this.state.clearingNumber}
+                                    onChange={e => this.onChange('clearingNumber', e)}
+                                    placeholder={i18n('loan.general.clearing-number')}
+                                    name="clearingNumber"
+                                    required
+                                    minLength={4}
+                                    maxLength={5}
+                                    className="clearing-field"
+                                />
+                                <Input
+                                    value={this.state.accountNumber}
+                                    onChange={e => this.onChange('accountNumber', e)}
+                                    placeholder={i18n('loan.general.account-number')}
+                                    name="accountNumber"
+                                    required
+                                    minLength={7}
+                                    maxLength={10}
+                                    style={{ width: '100%' }}
+                                />
+                            </span>
                         </section>
                     </ResponsivePanel>
 
