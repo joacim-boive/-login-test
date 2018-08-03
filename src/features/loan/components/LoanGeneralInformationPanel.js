@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, Select, Option, Input } from '@ecster/ecster-components';
+import { Button, Select, Option, Input, Checkbox } from '@ecster/ecster-components';
 import './LoanGeneralInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
@@ -17,12 +17,37 @@ class LoanGeneralInformationPanel extends Component {
         bank: '',
         clearingNumber: '',
         accountNumber: '',
+        agreedTerms: false,
     };
 
     onChange = (name, e) => {
         const { target } = e;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ [name]: value });
+    };
+
+    onChangeTerms = e => {
+        const { target } = e;
+        this.setState({ agreedTerms: target.checked });
+    };
+
+    validForm = () => {
+        const {
+            loanUsage,
+            loanUsageDescription,
+            loanDescription,
+            loanAmountToResolve,
+            bank,
+            clearingNumber,
+            accountNumber,
+            agreedTerms,
+        } = this.state;
+
+        let result = true;
+
+        result = result && !!clearingNumber && !!accountNumber;
+
+        return result;
     };
 
     render() {
@@ -113,8 +138,13 @@ class LoanGeneralInformationPanel extends Component {
                         </section>
                     </ResponsivePanel>
 
+                    <label className="terms-section">
+                        <Checkbox checked={this.state.agreedTerms} onChange={this.onChangeTerms} name="agreedTerms" />
+                        <div className="text">{i18n('loan.general.terms')}</div>
+                    </label>
+
                     <div className="apply-button">
-                        <Button onClick={() => console.log('Pressy pressy')} round>
+                        <Button onClick={() => console.log('Pressy pressy')} round disabled={!this.validForm()}>
                             {i18n('loan.general.apply')}
                         </Button>
                     </div>

@@ -72,4 +72,17 @@
             }
         }
     }
+
+    .terms-section {
+        display: flex;
+        flex-direction: row;
+        margin-top: 50px;
+
+        .text {
+            font-size: 14px;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+    }
+
 }
