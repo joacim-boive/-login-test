@@ -14,7 +14,12 @@ class ClearingNumberInput extends Component {
         const { target } = e;
         let value = parseInt(target.value, 10);
         if (Number.isNaN(value)) value = 0;
-        this.setState({ label: this.checkBank(value) });
+
+        const bank = this.checkBank(value);
+        if (bank) {
+            this.props.onFoundBank(bank);
+            this.setState({ label: bank });
+        }
         this.props.onChange(e);
     };
 
@@ -53,10 +58,12 @@ class ClearingNumberInput extends Component {
 ClearingNumberInput.propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onFoundBank: PropTypes.func,
 };
 
 ClearingNumberInput.defaultProps = {
     className: '',
+    onFoundBank: () => {},
 };
 
 export default ClearingNumberInput;

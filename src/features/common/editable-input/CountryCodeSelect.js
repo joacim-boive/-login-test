@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Select, Option } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './CountryCodeSelect.scss';
 
 export class CountryCodeSelect extends Component {
@@ -27,7 +26,7 @@ export class CountryCodeSelect extends Component {
         });
 
         const classesSelect = classNames({
-            select: true,
+            'select-country': true,
             disabled,
         });
 

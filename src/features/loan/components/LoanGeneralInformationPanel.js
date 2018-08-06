@@ -12,14 +12,19 @@ class LoanGeneralInformationPanel extends Component {
     state = {
         loanUsage: '',
         loanUsageDescription: '',
-        loanDescription: '',
+        loanUsageDescriptionValid: false,
         loanAmountToResolve: '',
+        loanAmountToResolveValid: false,
         bank: '',
         clearingNumber: '',
         accountNumber: '',
         clearingNumberValid: false,
         accountNumberValid: false,
         agreedTerms: false,
+    };
+
+    onFoundBank = bank => {
+        this.setState({ bank });
     };
 
     onChange = (name, e) => {
@@ -34,16 +39,14 @@ class LoanGeneralInformationPanel extends Component {
     };
 
     onValidate = (name, val) => {
-        console.log(name, val);
         this.setState({ [name]: val });
     };
 
     validForm = () => {
         const {
             loanUsage,
-            loanUsageDescription,
-            loanDescription,
-            loanAmountToResolve,
+            loanUsageDescriptionValid,
+            loanAmountToResolveValid,
             bank,
             clearingNumberValid,
             accountNumberValid,
@@ -52,7 +55,10 @@ class LoanGeneralInformationPanel extends Component {
 
         let result = true;
 
-        result = result && clearingNumberValid && accountNumberValid;
+        if (['OTHER'].includes(loanUsage)) result = result && loanUsageDescriptionValid;
+        if (['RESOLVE_OTHER_LOAN'].includes(loanUsage)) result = result && loanAmountToResolveValid;
+
+        result = result && !!loanUsage && clearingNumberValid && accountNumberValid && agreedTerms && !!bank;
 
         return result;
     };
@@ -102,6 +108,8 @@ class LoanGeneralInformationPanel extends Component {
                                     minLength={1}
                                     maxLength={7}
                                     className="input-field"
+                                    onValidation={(name, val) => this.onValidate('loanAmountToResolveValid', val)}
+                                    validator={val => /^\d{1,7}$/.test(val)}
                                 />
                             )}
                             {['OTHER'].includes(this.state.loanUsage) && (
@@ -111,9 +119,11 @@ class LoanGeneralInformationPanel extends Component {
                                     onChange={e => this.onChange('loanUsageDescription', e)}
                                     name="loanUsageDescription"
                                     required
-                                    minLength={1}
-                                    maxLength={50}
+                                    minLength={3}
+                                    maxLength={30}
                                     className="input-field"
+                                    onValidation={(name, val) => this.onValidate('loanUsageDescriptionValid', val)}
+                                    validator={val => /^[a-zA-ZäöåÄÖÅ]{3,30}$/.test(val)}
                                 />
                             )}
                         </section>
@@ -124,13 +134,15 @@ class LoanGeneralInformationPanel extends Component {
                                 <ClearingNumberInput
                                     value={this.state.clearingNumber}
                                     onChange={e => this.onChange('clearingNumber', e)}
+                                    onFoundBank={this.onFoundBank}
                                     placeholder={i18n('loan.general.clearing-number')}
                                     name="clearingNumber"
                                     required
                                     minLength={4}
-                                    maxLength={5}
+                                    maxLength={6}
                                     className="clearing-field"
                                     onValidation={(name, val) => this.onValidate('clearingNumberValid', val)}
+                                    validator={val => /^\d{4}(-\d{1}){0,1}$/.test(val)}
                                 />
                                 <Input
                                     value={this.state.accountNumber}
@@ -142,6 +154,7 @@ class LoanGeneralInformationPanel extends Component {
                                     maxLength={10}
                                     style={{ width: '100%' }}
                                     onValidation={(name, val) => this.onValidate('accountNumberValid', val)}
+                                    validator={val => /^\d{7,10}$/.test(val)}
                                 />
                             </span>
                         </section>
