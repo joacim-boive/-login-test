@@ -8,6 +8,8 @@ import ResponsivePanel from './../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getCustomer, updateCustomerContactInfo } from '../customer/redux/actions';
 import capWords from '../../common/cap-words';
+import { EditableInput } from '../common/editable-input/EditableInput';
+import { EditableInputPhone } from '../common/editable-input/EditableInputPhone';
 
 class ProfilePage extends Component {
     constructor(props) {
@@ -87,6 +89,10 @@ class ProfilePage extends Component {
                             {person.zip} {capWords(person.city)}
                         </div>
                     </section>
+
+                    <EditableInputPhone onSave={console.log}/>
+                    <EditableInput onSave={console.log}/>
+
                     <h5>{i18n('general.cell-phone')}</h5>
                     {!isEditingPhone && (
                         <section className="flex">
