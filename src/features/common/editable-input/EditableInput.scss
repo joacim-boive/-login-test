@@ -8,19 +8,19 @@
     justify-content: space-between;
     align-items: flex-end;
 
+    &.edit-mode {
+        flex-direction: column;
+    }
+
     input[disabled] {
-        padding: 0px;
+        padding: 0;
         background: none;
         border: none;
         font-weight: $weight-semibold;
         font-size: 18px;
     }
 
-    .button-wrapper {
-        display: flex;
-        flex-direction: row;
-
-        button:last-child {
-        }
+    .text-input {
+        width: 100%;
     }
 }

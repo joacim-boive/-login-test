@@ -1,23 +1,47 @@
 {
     "general": {
-        "buttons": {
-            "help": "Hjälp",
-            "close": "Stäng",
-            "edit": "Ändra",
-            "save": "Spara",
-            "cancel": "Avbryt",
-            "next": "Nästa"
-        },
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
         "download": "Ladda ner",
-        "address": "Adress",
-        "cell-phone": "Mobil",
-        "email": "E-post",
+        "close": "Stäng",
+        "edit": "Ändra",
+        "save": "Spara",
+        "next": "Nästa",
+        "previous": "Föregående",
+        "ssn": "Personnummer",
+
+        "address": {
+            "name": "Namn",
+            "address": "Adress",
+            "mobile": "Mobil",
+            "country-code": "Landskod",
+            "email": "E-post",
+            "zip": "Postnummer",
+            "city": "Stad",
+            "country": "Land"
+        },
+
+        "validation": {
+            "ssn":
+                "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "email": "Ange en korrekt e-postadress",
+            "phone": "Ange ett korrekt telefonnummer, 9 siffror eller 10 siffror med inledande '0'"
+        },
         "answer": {
             "yes": "Ja",
             "no": "Nej"
+        },
+
+        "currency": {
+            "se": "kr"
+        },
+
+        "banks": {
+            "seb": "SEB",
+            "nordea": "Nordea",
+            "swedbank": "Swedbank",
+            "handelsbanken": "Handelsbanken"
         }
     },
     "account": {
@@ -158,8 +182,6 @@
                         "header": "Logga in",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Mobilt BankID",
                         "to-bid-button": "Logga in med BankID"
                     }
@@ -169,8 +191,6 @@
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -215,6 +235,26 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "general": {
+            "about": "Om lånet",
+            "account": "Ange kontonummer för utbetalning",
+            "account-number": "Kontonummer",
+            "apply": "Skicka ansökan",
+            "clearing-number": "Clearingnummer",
+            "consumer-goods": "Resor, hemelektronik eller andra konsumtionsvaror",
+            "header": "Låneinformation",
+            "other": "Annat",
+            "other-usage": "Definiera vad",
+            "purpose": "Vad lånet skall användas till?",
+            "resolve-other": "Ange belopp du avser lösa",
+            "resolve": "Samla andra lån/krediter",
+            "residence": "Köp av bostad/fastighet",
+            "residence-other": "Övrigt till bostad (renovering etc)",
+            "vehicle": "Köp av fordon",
+            "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",
+            "withdrawal": "Utbetalning"
+
+        },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
             "12month-company": "Har du haft företaget längre än 12mån?",
@@ -295,14 +335,7 @@
         },
         "personal": {
             "header": "Personuppgifter",
-            "name": "Namn",
-            "ssn": "Personnummer",
-            "address": "Adress",
-            "zip": "Postnummer",
-            "city": "Ort",
             "info": "Dina uppgifter hämtas från Skatteverket.",
-            "mobile": "Mobil",
-            "email": "Email",
             "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
         },
         "spec": {

@@ -2,31 +2,19 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
+@import './EditableInput';
+
 .editable-input {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    
-    input[disabled] {
-        padding: 0px;
-        background: none;
-        border: none;
-        font-weight: $weight-semibold;
-        font-size: 18px;
-    }
-    
     .input-wrapper {
         display: flex;
         flex-direction: row;
         align-items: flex-end;
+        width: 100%;
     }
+}
 
-    .button-wrapper {
-        display: flex;
-        flex-direction: row;
-
-        button:last-child {
-        }
+.editable-input-phone {
+    .input-wrapper > div {
+        width: 50%;
     }
 }

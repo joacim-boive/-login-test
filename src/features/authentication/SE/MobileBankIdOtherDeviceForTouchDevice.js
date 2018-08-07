@@ -47,7 +47,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         onValidation={onSsnValidation}
                         validator={validateSsn}
                         required
-                        validationMessage={i18n('ssn-validation-message')}
+                        validationMessage={getText('general.validation.ssn')}
                         type="tel"
                     />
 

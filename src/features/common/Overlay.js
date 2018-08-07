@@ -94,7 +94,7 @@ export default class Overlay extends Component {
                     <aside className="close">
                         <Button id="closeOverlay" className="icon-close" onClick={this.hideWindow} transparent>
                             <span className="visually-hidden">
-                                {this.props.buttonCloseLabel || i18n('general.buttons.help')}
+                                {this.props.buttonCloseLabel || i18n('general.help')}
                             </span>
                         </Button>
                     </aside>

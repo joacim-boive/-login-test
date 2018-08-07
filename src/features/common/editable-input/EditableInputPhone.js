@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button } from '@ecster/ecster-components';
+import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
@@ -42,11 +42,13 @@ export class EditableInputPhone extends Component {
     };
 
     render() {
-        const { className, label } = this.props;
+        const { className, label, ...rest } = this.props;
         const { disabled, value } = this.state;
 
         const classes = classNames({
             'editable-input': true,
+            'editable-input-phone': true,
+            'edit-mode': !disabled,
             [className]: className,
         });
 
@@ -59,21 +61,21 @@ export class EditableInputPhone extends Component {
                         disabled={disabled}
                         onChange={this.onChangeCountryCode}
                     />
-                    <Input value={value.number} disabled={disabled} small onChange={this.onChange} />
+                    <Input {...rest} value={value.number} disabled={disabled} small onChange={this.onChange} />
                 </div>
                 {disabled ? (
                     <Button name="edit" onClick={this.onEdit} small round outline>
-                        {i18n('general.buttons.edit')}
+                        {i18n('general.edit')}
                     </Button>
                 ) : (
-                    <div className="button-wrapper">
+                    <ButtonGroup align="right">
                         <Button name="cancel" onClick={this.onCancel} small round transparent>
-                            {i18n('general.buttons.cancel')}
+                            {i18n('general.cancel')}
                         </Button>
                         <Button name="save" onClick={this.onSave} small round>
-                            {i18n('general.buttons.save')}
+                            {i18n('general.save')}
                         </Button>
-                    </div>
+                    </ButtonGroup>
                 )}
             </div>
         );
