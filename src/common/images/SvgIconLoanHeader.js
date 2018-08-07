@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SvgIconLoanHeader = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="407" height="239">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 407 239">
         <g fill="none" fillRule="evenodd" stroke="#59B189" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
             <path
                 fill="#EFF8F3"

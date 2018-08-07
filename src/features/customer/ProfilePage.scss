@@ -18,16 +18,29 @@
         padding-bottom: $padding;
         margin: 0;
         border-bottom: 1px solid $gray40;
-        font-weight: bold;
         font-size: 18px;
 
         &:last-child {
             padding-bottom: 0;
             border: none;
         }
+
+        &.flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &.email-form {
+            flex-direction: column;
+        }
+
+        &.phone-form {
+            flex-direction: column;
+        }
     }
-    section.flex {
-        display: flex;
-        justify-content: space-between;
+
+
+    .strong {
+        font-weight: bold;
     }
 }

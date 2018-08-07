@@ -1,0 +1,80 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-economy-panel {
+    @include mobile() {
+        .panel {
+            border-left: none;
+            border-right: none;
+            border-radius: 0px;
+            padding: 10px 15px;
+        }
+    }
+
+    h4 {
+        color: $green;
+        font-weight: $weight-semibold;
+
+        @include mobile() {
+            margin-top: 20px;
+        }
+    }
+
+    section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+
+        & > div {
+            margin-top: 10px;
+        }
+
+        & .responsive-column {
+            &:first-child {
+                padding-right: 30px;
+
+                @include mobile() {
+                    padding-right: 0px;
+                }
+            }
+            &:last-child {
+                padding-left: 30px;
+
+                @include mobile() {
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
+
+    .next-button {
+        width: 100%;
+        margin: 50px 0px 40px 0px;
+        display: flex;
+        justify-content: center;
+
+        @include mobile() {
+            margin: 25px 0px 15px 0px;
+        }
+    }
+
+    .economy-bottom {
+        padding-top: 50px;
+
+        @include mobile() {
+            padding-top: 0px;
+        }
+    }
+
+    .economy-row {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+
+        div {
+            margin-left: 5px;
+        }
+    }
+}

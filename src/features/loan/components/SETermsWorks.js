@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './SETerms.scss';
 import { formatAmount } from './../../../common/util/format-amount';
 
@@ -20,17 +21,22 @@ export const SETermsWorks = ({ className, promissory }) => {
         'se-terms': true,
         [className]: className,
     });
+
     return (
         <div className={classes}>
             <h4>Så här fungerar lånet</h4>
             <ul>
-                <Li>{`Låna upp till ${formatAmount(promissory.maxCreditAmount)}`}</Li>
+                <Li>{i18n('loan.terms.loan', { amount: formatAmount(promissory.maxCreditAmount) })}</Li>
                 <Li>
-                    {`Välj den återbetalningstid som passar dig (${promissory.minPaymentPeriodYear} - ${promissory.maxPaymentPeriodYear} år)`}
+                    {i18n('loan.terms.payback', {
+                        min: promissory.minPaymentPeriodYear,
+                        max: promissory.maxPaymentPeriodYear,
+                    })}
                 </Li>
-                <Li>{`Rörlig ränta ${promissory.interestRate}%`}</Li>
-                <Li>{`Uppläggningsavgift ${formatAmount(promissory.startFee)}`}</Li>
-                <Li>Lös lånet när du vill</Li>
+                <Li>{i18n('loan.terms.rate', { rate: promissory.interestRate })}</Li>
+                <Li>{i18n('loan.terms.fee', { amount: formatAmount(promissory.startFee) })}</Li>
+                <Li>{i18n('loan.terms.admin-fee', { amount: formatAmount(promissory.adminFee) })}</Li>
+                <Li>{i18n('loan.terms.finish')}</Li>
             </ul>
         </div>
     );

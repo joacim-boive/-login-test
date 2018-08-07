@@ -1,0 +1,54 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+
+.loan-personal-information-panel {
+    @include mobile() {
+        .panel {
+            border-left: none;
+            border-right: none;
+        }
+
+        .expander {
+            padding: 15px;
+            border-radius: 0px;
+        }
+    }
+
+    .text {
+        margin-top: 20px;
+    }
+
+    .body {
+        margin: 0px -10px;
+
+        @include mobile() {
+            margin: 0px -30px;
+        }
+    }
+
+    .edit-input {
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid $beige20;
+    }
+
+    @include mobile() {
+        .column-first {
+            padding-top: 10px;
+            margin-top: 5px;
+            border-top: 1px solid $beige20;
+        }
+    }
+
+    .next-button {
+        width: 100%;
+        margin: 50px 0px 40px 0px;
+        display: flex;
+        justify-content: center;
+
+        @include mobile() {
+            margin: 25px 0px 15px 0px;
+        }
+    }
+}

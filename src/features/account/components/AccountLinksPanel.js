@@ -13,6 +13,8 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
 
     if (!account) return null;
 
+    const hasCard = account.numberOfCards > 0;
+
     return (
         <div {...rest} className={classes}>
             <ArrowLink
@@ -23,8 +25,11 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
             <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" />
             <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" />
             <ArrowLink text={i18n('account.links.bills')} icon="icon-file" />
-            <ArrowLink text={i18n('account.links.loan')} icon="icon-plus-circle" to="/loan/overview" />
-            <ArrowLink text={i18n('account.links.card')} icon="icon-book" />
+            {hasCard ? (
+                <ArrowLink text={i18n('account.links.card')} icon="icon-book" />
+            ) : (
+                <ArrowLink text={i18n('account.links.apply-card')} icon="icon-book" />
+            )}
             <ArrowLink
                 text={i18n('account.links.terms')}
                 icon="icon-info"
