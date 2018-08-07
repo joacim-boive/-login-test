@@ -15,6 +15,15 @@
         "answer": {
             "yes": "Ja",
             "no": "Nej"
+        },
+        "currency": {
+            "se": "kr"
+        },
+        "banks": {
+            "seb": "SEB",
+            "nordea": "Nordea",
+            "swedbank": "Swedbank",
+            "handelsbanken": "Handelsbanken"
         }
     },
     "account": {
@@ -208,6 +217,26 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "general": {
+            "about": "Om lånet",
+            "account": "Ange kontonummer för utbetalning",
+            "account-number": "Kontonummer",
+            "apply": "Skicka ansökan",
+            "clearing-number": "Clearingnummer",
+            "consumer-goods": "Resor, hemelektronik eller andra konsumtionsvaror",
+            "header": "Låneinformation",
+            "other": "Annat",
+            "other-usage": "Definiera vad",
+            "purpose": "Vad lånet skall användas till?",
+            "resolve-other": "Ange belopp du avser lösa",
+            "resolve": "Samla andra lån/krediter",
+            "residence": "Köp av bostad/fastighet",
+            "residence-other": "Övrigt till bostad (renovering etc)",
+            "vehicle": "Köp av fordon",
+            "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",
+            "withdrawal": "Utbetalning"
+
+        },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
             "12month-company": "Har du haft företaget längre än 12mån?",
