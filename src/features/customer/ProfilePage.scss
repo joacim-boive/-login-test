@@ -25,4 +25,11 @@
         font-size: 13px;
         color: $gray80;
     }
+
+    .summary-panel {
+        align-items: flex-start;
+        img {
+            margin-right: 20px;
+        }
+    }
 }

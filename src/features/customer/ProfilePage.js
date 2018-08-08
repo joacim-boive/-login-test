@@ -10,6 +10,7 @@ import { getCustomer, updateCustomerContactInfo } from '../customer/redux/action
 import capWords from '../../common/cap-words';
 import { EditableInput } from '../common/editable-input/EditableInput';
 import { EditableInputPhone } from '../common/editable-input/EditableInputPhone';
+import profileSvg from '../../common/images/icn-profil.svg';
 
 class ProfilePage extends Component {
     componentWillMount() {
@@ -19,9 +20,12 @@ class ProfilePage extends Component {
     renderPanel(person) {
         return (
             <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
-                <div key={1} className="summary-panel">
-                    <h2>{person.name}</h2>
-                    <p>{i18n('customer.profile.info-text')}</p>
+                <div key={1} className="summary-panel flex-row">
+                    <img src={profileSvg} alt="profile icon" />
+                    <div>
+                        <h2>{person.name}</h2>
+                        <p>{i18n('customer.profile.info-text')}</p>
+                    </div>
                 </div>
                 <div key={2} className="profile-panel">
                     <section>
