@@ -32,6 +32,7 @@ class ProfilePage extends Component {
                                 {person.zip} {capWords(person.city)}
                             </div>
                         </div>
+                        <small>{i18n('general.address.info')}</small>
                     </section>
 
                     <section>

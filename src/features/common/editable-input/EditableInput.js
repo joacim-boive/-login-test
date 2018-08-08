@@ -7,8 +7,7 @@ import './EditableInput.scss';
 
 export class EditableInput extends Component {
     state = {
-        disabled: !this.props.editMode,
-        editMode: this.props.editMode,
+        editMode: false,
         value: this.props.value || '',
         valueUnedited: this.props.value || '',
     };
@@ -25,23 +24,23 @@ export class EditableInput extends Component {
     };
 
     onEdit = () => {
-        this.setState({ editMode: true, disabled: false }, () => {
+        this.setState({ editMode: true }, () => {
             this.inputRef.getInputEl().focus();
         });
     };
 
     onCancel = () => {
-        this.setState({ editMode: false, disabled: true, value: this.state.valueUnedited });
+        this.setState({ editMode: false, value: this.state.valueUnedited });
     };
 
     onSave = () => {
         this.props.onSave(this.state.value);
-        this.setState({ editMode: false, disabled: true });
+        this.setState({ editMode: false });
     };
 
     render() {
         const { className, label, ...rest } = this.props;
-        const { disabled, value, editMode } = this.state;
+        const { value, editMode } = this.state;
 
         const classes = classNames({
             'editable-input': true,
@@ -87,12 +86,10 @@ EditableInput.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
     label: PropTypes.string,
-    editMode: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
-    editMode: false,
 };

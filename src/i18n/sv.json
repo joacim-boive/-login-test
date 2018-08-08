@@ -20,7 +20,8 @@
             "email": "E-post",
             "zip": "Postnummer",
             "city": "Stad",
-            "country": "Land"
+            "country": "Land",
+            "info": "Din adress uppdateras automatiskt om du flyttar"
         },
 
         "validation": {

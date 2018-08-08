@@ -8,7 +8,7 @@ import CountrySelect from './CountryCodeSelect';
 
 export class EditableInputPhone extends Component {
     state = {
-        editMode: this.props.editMode,
+        editMode: false,
         value: this.props.value,
         valueUnedited: this.props.value,
     };
@@ -36,12 +36,13 @@ export class EditableInputPhone extends Component {
     };
 
     onCancel = () => {
-        this.setState({ editMode: false, value: this.props.value });
+        this.setState({ editMode: false, value: this.state.valueUnedited });
     };
 
     onSave = () => {
-        this.props.onSave(this.state.value);
-        this.setState({ editMode: false, value: this.state.valueUnedited });
+        const { countryCallingCode, number } = this.state.value;
+        this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
+        this.setState({ editMode: false });
     };
 
     render() {
@@ -86,7 +87,7 @@ export class EditableInputPhone extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>
-                        {value.countryCallingCode} {value.number}
+                        {value.countryCallingCode} (0) {value.number}
                     </strong>
                     <Button name="edit" onClick={this.onEdit} small round outline>
                         {i18n('general.edit')}
@@ -103,7 +104,6 @@ EditableInputPhone.propTypes = {
     value: PropTypes.shape(),
     countryCode: PropTypes.string,
     label: PropTypes.string,
-    editMode: PropTypes.bool,
 };
 
 EditableInputPhone.defaultProps = {
@@ -111,5 +111,4 @@ EditableInputPhone.defaultProps = {
     value: {},
     countryCode: '',
     label: '',
-    editMode: false,
 };
