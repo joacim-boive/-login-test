@@ -8,6 +8,7 @@ import './EditableInput.scss';
 export class EditableInput extends Component {
     state = {
         disabled: !this.props.editMode,
+        editMode: this.props.editMode,
         value: this.props.value || '',
         valueUnedited: this.props.value || '',
     };
@@ -24,45 +25,58 @@ export class EditableInput extends Component {
     };
 
     onEdit = () => {
-        this.setState({ disabled: false });
+        this.setState({ editMode: true, disabled: false }, () => {
+            this.inputRef.getInputEl().focus();
+        });
     };
 
     onCancel = () => {
-        this.setState({ disabled: true, value: this.state.valueUnedited });
+        this.setState({ editMode: false, disabled: true, value: this.state.valueUnedited });
     };
 
     onSave = () => {
         this.props.onSave(this.state.value);
-        this.setState({ disabled: true });
+        this.setState({ editMode: false, disabled: true });
     };
 
     render() {
         const { className, label, ...rest } = this.props;
-        const { disabled, value } = this.state;
+        const { disabled, value, editMode } = this.state;
 
         const classes = classNames({
             'editable-input': true,
-            'edit-mode': !disabled,
+            'edit-mode': editMode,
             [className]: className,
         });
 
-        return (
+        return editMode ? (
             <div className={classes}>
-                <Input {...rest} label={label} value={value} disabled={disabled} small onChange={this.onChange} />
-                {disabled ? (
+                <Input
+                    {...rest}
+                    label={label}
+                    value={value}
+                    small
+                    onChange={this.onChange}
+                    ref={input => (this.inputRef = input)}
+                />
+                <ButtonGroup align="right">
+                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                        {i18n('general.cancel')}
+                    </Button>
+                    <Button name="save" onClick={this.onSave} small round>
+                        {i18n('general.save')}
+                    </Button>
+                </ButtonGroup>
+            </div>
+        ) : (
+            <div className={classes}>
+                <label>{label}</label>
+                <div className="flex-row">
+                    <strong>{value}</strong>
                     <Button name="edit" onClick={this.onEdit} small round outline>
                         {i18n('general.edit')}
                     </Button>
-                ) : (
-                    <ButtonGroup align="right">
-                        <Button name="cancel" onClick={this.onCancel} small round transparent>
-                            {i18n('general.cancel')}
-                        </Button>
-                        <Button name="save" onClick={this.onSave} small round>
-                            {i18n('general.save')}
-                        </Button>
-                    </ButtonGroup>
-                )}
+                </div>
             </div>
         );
     }

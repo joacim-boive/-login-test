@@ -1,23 +1,11 @@
-@import '~@ecster/ecster-styles/scss/v2/common/colors';
-@import '~@ecster/ecster-components/scss/MediaQuery';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
-
 .editable-input {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
 
-    &.edit-mode {
-        flex-direction: column;
-    }
-
-    input[disabled] {
-        padding: 0;
-        background: none;
-        border: none;
-        font-weight: $weight-semibold;
-        font-size: 18px;
+    label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+        width: 100%;
     }
 
     .text-input {

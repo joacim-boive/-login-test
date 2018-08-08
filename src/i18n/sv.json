@@ -15,6 +15,7 @@
             "name": "Namn",
             "address": "Adress",
             "mobile": "Mobil",
+            "number": "Nummer",
             "country-code": "Landskod",
             "email": "E-post",
             "zip": "Postnummer",
