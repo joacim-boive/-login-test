@@ -9,6 +9,7 @@ export class EditableInput extends Component {
     state = {
         disabled: !this.props.editMode,
         value: this.props.value || '',
+        valueUnedited: this.props.value || '',
     };
 
     componentWillReceiveProps(nextProps) {
@@ -27,7 +28,7 @@ export class EditableInput extends Component {
     };
 
     onCancel = () => {
-        this.setState({ disabled: true });
+        this.setState({ disabled: true, value: this.state.valueUnedited });
     };
 
     onSave = () => {

@@ -15,12 +15,6 @@ export const updateCustomerContactInfo = (customerId, data) => async dispatch =>
         type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
     });
 
-    // PUT data:
-    //     <email> (String) [0-1]: customers new email address
-    //     phoneNumber [0-1]:
-    //         <countryCallingCode> [1]: String
-    //         <number> [1]: String
-
     try {
         const res = await put(UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId), data);
         dispatch({

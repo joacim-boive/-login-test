@@ -10,6 +10,7 @@ export class EditableInputPhone extends Component {
     state = {
         disabled: !this.props.editMode,
         value: this.props.value,
+        valueUnedited: this.props.value,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -38,7 +39,7 @@ export class EditableInputPhone extends Component {
 
     onSave = () => {
         this.props.onSave(this.state.value);
-        this.setState({ disabled: true });
+        this.setState({ disabled: true, value: this.state.valueUnedited });
     };
 
     render() {
