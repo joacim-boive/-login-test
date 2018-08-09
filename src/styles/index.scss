@@ -114,3 +114,30 @@ h1 {
 p {
     margin-top: 1rem;
 }
+
+.strong, strong {
+    font-weight: bold;
+}
+
+.flex-row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.info-i {
+    $size: 48px;
+    background: #ef942e;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    margin-right: 15px;
+    &:after {
+        content: "!";
+        color: $white;
+        font-size: $size * .75;
+        font-weight: bold;
+        display: block;
+        width: $size;
+        text-align: center;
+    }}
