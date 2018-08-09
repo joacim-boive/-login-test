@@ -21,14 +21,14 @@
             "zip": "Postnummer",
             "city": "Stad",
             "country": "Land",
-            "info": "Din adress uppdateras automatiskt om du flyttar"
+            "info": "Vi använder din folkbokföringsadress som uppdateras automatiskt om du flyttar"
         },
 
         "validation": {
             "ssn":
                 "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
-            "email": "Ange en korrekt e-postadress",
-            "phone": "Ange ett korrekt telefonnummer, 9 siffror eller 10 siffror med inledande '0'"
+            "email": "Kolla att e-postadressen blev rätt och försök igen",
+            "phone": "Kolla att numret blev rätt och försök igen"
         },
         "answer": {
             "yes": "Ja",

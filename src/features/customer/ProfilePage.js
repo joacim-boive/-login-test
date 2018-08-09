@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Spinner } from '@ecster/ecster-components';
+import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
+import Tooltip from 'react-tooltip'; // https://github.com/wwayne/react-tooltip
 import ResponsivePanel from './../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getCustomer, updateCustomerContactInfo } from '../customer/redux/actions';
@@ -29,7 +31,20 @@ class ProfilePage extends Component {
                 </div>
                 <div key={2} className="profile-panel">
                     <section>
-                        <label>{i18n('general.address.address')}</label>
+                        <label>
+                            {i18n('general.address.address')}{' '}
+                            <i data-tip data-for="address-tooltip" className="icon-info e-green" />
+                        </label>
+                        <Tooltip
+                            className="ecster-tooltip"
+                            id="address-tooltip"
+                            type="light"
+                            place="bottom"
+                            effect="solid"
+                            border
+                        >
+                            {i18n('general.address.info')}
+                        </Tooltip>
                         <div className="strong">
                             <div>{capWords(person.address)}</div>
                             <div>
@@ -45,6 +60,9 @@ class ProfilePage extends Component {
                             label={i18n('general.address.mobile')}
                             onSave={val => this.props.updateCustomerContactInfo({ phoneNumber: val })}
                             type="tel"
+                            validationMessage={i18n('general.validation.phone')}
+                            validator={phoneValidator}
+                            validateOnKeyUp
                         />
                     </section>
 
