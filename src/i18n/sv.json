@@ -168,7 +168,8 @@
     "common": {},
     "customer": {
         "profile": {
-            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto"
+            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto",
+            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort' ]"
         }
     },
     "home": {

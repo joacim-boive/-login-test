@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { bindActionCreators } from 'redux';
@@ -27,6 +28,7 @@ class ProfilePage extends Component {
                     <div>
                         <h2>{person.name}</h2>
                         <p>{i18n('customer.profile.info-text')}</p>
+                        <p dangerouslySetInnerHTML={{ __html: i18n('customer.profile.extra-card-info') }} />
                     </div>
                 </div>
                 <div key={2} className="profile-panel">
@@ -51,7 +53,6 @@ class ProfilePage extends Component {
                                 {person.zip} {capWords(person.city)}
                             </div>
                         </div>
-                        <small>{i18n('general.address.info')}</small>
                     </section>
 
                     <section>
