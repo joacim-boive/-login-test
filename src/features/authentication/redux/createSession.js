@@ -15,7 +15,6 @@ export const createSession = data => async dispatch => {
     });
 
     try {
-        // setOrigin('mypages'); // TODO: this is the first ajax call, but maybe move to app startup?
         const res = await post(CREATE_SESSION_URL(), data);
         setSession(res.response.key);
 
@@ -47,7 +46,7 @@ export function reducer(state, action) {
                 ...state,
                 loginStatus: {
                     sessionKey: action.data.key,
-                    isLoggedIn: true,
+                    isLoggedIn: false,
                 },
                 loginProgress: {
                     status: action.data.authentication.status,
