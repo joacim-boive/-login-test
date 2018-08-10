@@ -381,7 +381,7 @@ class LoanEconomyPanel extends Component {
                             disabled={!this.validForm()}
                             name="economyNextButton"
                         >
-                            {i18n('general.buttons.next')}
+                            {i18n('general.next')}
                         </Button>
                     </div>
                 </ExpandablePanel>

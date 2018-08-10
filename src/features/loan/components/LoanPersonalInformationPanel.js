@@ -37,31 +37,31 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                 <DataColumns className="body">
                     <DataColumn>
                         <DataRow>
-                            <Data small>{i18n('loan.personal.name')}</Data>
+                            <Data small>{i18n('general.address.name')}</Data>
                             <Data right strong>
                                 {person.name}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data small>{i18n('loan.personal.ssn')}</Data>
+                            <Data small>{i18n('general.ssn')}</Data>
                             <Data right strong>
                                 {person.ssn}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data small>{i18n('loan.personal.address')}</Data>
+                            <Data small>{i18n('general.address.address')}</Data>
                             <Data right strong>
                                 {person.address}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data small>{i18n('loan.personal.zip')}</Data>
+                            <Data small>{i18n('general.address.zip')}</Data>
                             <Data right strong>
                                 {person.zip}
                             </Data>
                         </DataRow>
                         <DataRow>
-                            <Data small>{i18n('loan.personal.city')}</Data>
+                            <Data small>{i18n('general.address.city')}</Data>
                             <Data right strong>
                                 {person.city}
                             </Data>
@@ -78,7 +78,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                         <DataRow className="column-first">
                             <EditableInputPhone
                                 className="edit-input"
-                                label={i18n('loan.personal.mobile')}
+                                label={i18n('general.address.mobile')}
                                 value={contactInformation.phoneNumber}
                                 editMode={!contactInformation.phoneNumber}
                                 onSave={val => onUpdateContactInfo({ phoneNumber: val })}
@@ -87,7 +87,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                         <DataRow>
                             <EditableInput
                                 className="edit-input"
-                                label={i18n('loan.personal.email')}
+                                label={i18n('general.address.email')}
                                 value={contactInformation.email}
                                 editMode={!contactInformation.email}
                                 onSave={val => onUpdateContactInfo({ email: val })}
@@ -98,7 +98,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                 </DataColumns>
                 <div className="next-button">
                     <Button onClick={() => console.log('Pressy pressy')} round disabled={!isValid()}>
-                        {i18n('general.buttons.next')}
+                        {i18n('general.next')}
                     </Button>
                 </div>
             </ExpandablePanel>

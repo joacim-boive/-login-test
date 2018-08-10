@@ -135,7 +135,8 @@
         "webpack-bundle-analyzer": "^2.13.1",
         "webpack-dev-middleware": "^2.0.4",
         "webpack-hot-middleware": "^2.22.3",
-        "webpack-node-externals": "^1.7.2"
+        "webpack-node-externals": "^1.7.2",
+        "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
         "@ecster/ecster-analytics": "1.0.65",
@@ -155,6 +156,6 @@
         "react-grid-layout": "^0.16.6",
         "react-media": "^1.8.0",
         "react-router": "^4.3.1",
-        "why-did-you-update": "^0.1.1"
+        "react-tooltip": "^3.6.1"
     }
 }

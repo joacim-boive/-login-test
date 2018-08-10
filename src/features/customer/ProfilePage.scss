@@ -1,0 +1,57 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.customer-profile-page {
+    $padding: 25px;
+
+    label {
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    section {
+        padding: $padding 0;
+        margin: 0;
+        border-bottom: 1px solid $gray40;
+        font-size: 18px;
+
+        &:last-child {
+            padding-bottom: 0;
+            border: none;
+        }
+    }
+
+    .summary-panel {
+        align-items: flex-start;
+        img {
+            margin-right: 20px;
+        }
+    }
+
+    .profile-panel {
+        .icon-info {
+            margin-left: 6px;
+        }
+    }
+
+    // experimental TODO: make a wrapper component in ectser-components
+    .ecster-tooltip {
+        max-width: 180px;
+        opacity: 1;
+        font-size: 16px;
+        padding: 15px;
+
+        &.border {
+            border-color: $gray60;
+            box-shadow: 0 0 6px $gray40;
+
+            &.place-bottom:before,
+            &.place-top:before,
+            &.place-right:before,
+            &.place-left:before {
+                border-bottom-color: $gray80;
+            }
+        }
+    }
+}
+

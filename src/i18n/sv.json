@@ -1,24 +1,44 @@
 {
     "general": {
-        "buttons": {
-            "help": "Hjälp",
-            "close": "Stäng",
-            "edit": "Ändra",
-            "save": "Spara",
-            "cancel": "Avbryt",
-            "next": "Nästa"
-        },
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
         "download": "Ladda ner",
+        "close": "Stäng",
+        "edit": "Ändra",
+        "save": "Spara",
+        "next": "Nästa",
+        "previous": "Föregående",
+        "ssn": "Personnummer",
+
+        "address": {
+            "name": "Namn",
+            "address": "Adress",
+            "mobile": "Mobil",
+            "number": "Nummer",
+            "country-code": "Landskod",
+            "email": "E-post",
+            "zip": "Postnummer",
+            "city": "Stad",
+            "country": "Land",
+            "info": "Vi använder din folkbokföringsadress som uppdateras automatiskt om du flyttar"
+        },
+
+        "validation": {
+            "ssn":
+                "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "email": "Kolla att e-postadressen blev rätt och försök igen",
+            "phone": "Kolla att numret blev rätt och försök igen"
+        },
         "answer": {
             "yes": "Ja",
             "no": "Nej"
         },
+
         "currency": {
             "se": "kr"
         },
+
         "banks": {
             "seb": "SEB",
             "nordea": "Nordea",
@@ -152,7 +172,12 @@
     },
     "authentication": {},
     "common": {},
-    "customer": {},
+    "customer": {
+        "profile": {
+            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto",
+            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort' ]"
+        }
+    },
     "home": {
         "login": {
             "SE": {
@@ -166,8 +191,6 @@
                         "header": "Logga in",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Mobilt BankID",
                         "to-bid-button": "Logga in med BankID"
                     }
@@ -177,8 +200,6 @@
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -323,14 +344,7 @@
         },
         "personal": {
             "header": "Personuppgifter",
-            "name": "Namn",
-            "ssn": "Personnummer",
-            "address": "Adress",
-            "zip": "Postnummer",
-            "city": "Ort",
             "info": "Dina uppgifter hämtas från Skatteverket.",
-            "mobile": "Mobil",
-            "email": "Email",
             "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
         },
         "spec": {
