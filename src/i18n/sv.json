@@ -109,7 +109,7 @@
             "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
             "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan",
 
-            "terms-error": "Dina kontohändelser kan inte visas just nu och felet är helt och hållet vårt."
+            "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
         },
         "terminate": {
             "terminate-account": "Avsluta konto",

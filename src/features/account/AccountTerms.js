@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { LinkButton, Panel } from '@ecster/ecster-components';
+import { LinkButton, Panel, Message } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -43,15 +43,11 @@ export class AccountTerms extends Component {
                 <h1>Villkor</h1>
                 <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     {getAccountTermsError ? (
-                        <div className="flex-row-center">
-                            <div className="info-i" />
-                            <div>
-                                <div className="strong">{i18n('general.error.oops')}</div>
-                                <p>
-                                    {i18n('account.terms.terms-error')} {i18n('general.error.try-again-later')}
-                                </p>
-                            </div>
-                        </div>
+                        <Message warning header={i18n('general.error.oops')}>
+                            <p>
+                                {i18n('account.terms.terms-error')} {i18n('general.error.try-again-later')}
+                            </p>
+                        </Message>
                     ) : (
                         <div>
                             <InfoItem

@@ -15,7 +15,7 @@ export const getAccountTerms = (customerId, refCode) => async dispatch => {
     });
 
     try {
-        const res = await get(GET_ACCOUNT_TERMS_URL(customerId, refCode));
+        const res = await get('/lars/'+GET_ACCOUNT_TERMS_URL(customerId, refCode));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_TERMS_SUCCESS,
             data: res.response,
