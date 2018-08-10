@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { LinkButton, Panel, Message } from '@ecster/ecster-components';
-import Tooltip from 'react-tooltip'; // https://github.com/wwayne/react-tooltip
 
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -72,28 +71,11 @@ export class AccountTerms extends Component {
                                 description={i18n('account.terms.interest-description')}
                             />
                             {terms.depositRate > 0 && (
-                                <React.Fragment>
-                                    <InfoItem
-                                        value={`${terms.depositRate}%`}
-                                        label={i18n('account.terms.deposit-rate')}
-                                        description={
-                                            <span>
-                                                {i18n('account.terms.deposit-rate-description')}{' '}
-                                                <i data-tip data-for="address-tooltip" className="icon-info e-green" />
-                                            </span>
-                                        }
-                                    />
-                                    <Tooltip
-                                        className="ecster-tooltip"
-                                        id="address-tooltip"
-                                        type="light"
-                                        place="bottom"
-                                        effect="solid"
-                                        border
-                                    >
-                                        {i18n('account.terms.deposit-rate-detailed-description')}
-                                    </Tooltip>
-                                </React.Fragment>
+                                <InfoItem
+                                    value={`${terms.depositRate}%`}
+                                    label={i18n('account.terms.deposit-rate')}
+                                    description={i18n('account.terms.deposit-rate-description')}
+                                />
                             )}
                             <InfoItem
                                 value={formatAmount(terms.adminFee)}
