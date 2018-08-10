@@ -24,6 +24,10 @@
             "nordea": "Nordea",
             "swedbank": "Swedbank",
             "handelsbanken": "Handelsbanken"
+        },
+        "error": {
+            "oops": "Oops, nu blev det något fel!",
+            "try-again-later": "Försök gärna igen om en liten stund."
         }
     },
     "account": {
@@ -103,7 +107,9 @@
             "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
             "overdraft-fee-description": "Debiteras om kontot övertrasseras",
             "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
-            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
+            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan",
+
+            "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
         },
         "terminate": {
             "terminate-account": "Avsluta konto",
