@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { LinkButton, Panel, Message } from '@ecster/ecster-components';
+import { Panel, Message } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -37,7 +38,6 @@ export class AccountTerms extends Component {
     render() {
         const { terms, getAccountRef, getCustomerId, getAccountTermsError } = this.props;
 
-        // TODO: component for info message? (css in index.scss) /joli44
         return (
             <AuthenticatedSubPageTemplate header={i18n('account.terms.account-terms')}>
                 <h1>Villkor</h1>
@@ -74,7 +74,14 @@ export class AccountTerms extends Component {
                                 <InfoItem
                                     value={`${terms.depositRate}%`}
                                     label={i18n('account.terms.deposit-rate')}
-                                    description={i18n('account.terms.deposit-rate-description')}
+                                    description={
+                                        <span>
+                                            {i18n('account.terms.deposit-rate-description')}{' '}
+                                            <a target="_blank" href={terms.termsPDFURL}>
+                                                pdf
+                                            </a>
+                                        </span>
+                                    }
                                 />
                             )}
                             <InfoItem
@@ -130,9 +137,13 @@ export class AccountTerms extends Component {
                             />
                             <InfoItem
                                 value={
-                                    <LinkButton outline round small to={terms.termsPDFURL} target="_blank">
+                                    <a
+                                        className="button --small --outline --round"
+                                        href={terms.termsPDFURL}
+                                        target="_blank"
+                                    >
                                         {i18n('general.download')}
-                                    </LinkButton>
+                                    </a>
                                 }
                                 label={i18n('account.terms.account-terms-pdf')}
                                 description={i18n('account.terms.account-terms-pdf-description')}
@@ -140,9 +151,13 @@ export class AccountTerms extends Component {
                             {terms.agreementPDFURL && (
                                 <InfoItem
                                     value={
-                                        <LinkButton outline round small to={terms.agreementPDFURL} target="_blank">
+                                        <a
+                                            className="button --small --outline --round"
+                                            href={terms.agreementPDFURL}
+                                            target="_blank"
+                                        >
                                             {i18n('general.download')}
-                                        </LinkButton>
+                                        </a>
                                     }
                                     label={i18n('account.terms.account-agreement-pdf')}
                                     description={i18n('account.terms.account-agreement-pdf-description')}
