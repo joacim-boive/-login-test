@@ -147,7 +147,7 @@
             "success": {
                 "header": "Konto avslutat",
                 "message":
-                    "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna.Välkommen tillbaka!",
+                    "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna. Välkommen tillbaka!",
                 "back": "Tillbaka"
             },
 
