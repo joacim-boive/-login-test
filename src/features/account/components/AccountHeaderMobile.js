@@ -19,7 +19,7 @@ export const AccountHeaderMobile = ({ account }) => {
                 {!noCard ? <EcsterCard className="account-header-mobile__card-icon" /> : null}
             </div>
             <div className="account-header-mobile__amount">
-                <div>{formatAmount(amountLeft)}</div>
+                <div>{formatAmount(amountLeft, undefined, { roundDown: true })}</div>
                 <p>Kvar att handla för</p>
             </div>
         </div>
