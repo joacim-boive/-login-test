@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { SettingsPage } from 'src/features/customer/SettingsPage';
+import { ProfilePage } from 'src/features/customer/ProfilePage';
 
-describe('customer/SettingsPage', () => {
+describe('customer/ProfilePage', () => {
   it('renders node with correct class name', () => {
     const props = {
       customer: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <SettingsPage {...props} />
+      <ProfilePage {...props} />
     );
 
     expect(

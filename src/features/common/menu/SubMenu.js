@@ -39,7 +39,7 @@ export class SubMenu extends React.Component {
 
     animateArrow = () => {
         const arrow = this.arrowRef.current;
-        if (this.props.show) {
+        if (this.props.top && this.props.show) {
             arrow.classList.add('show');
         }
     };

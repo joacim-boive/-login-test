@@ -1,25 +1,6 @@
-@import '~@ecster/ecster-styles/scss/v2/common/colors';
-@import '~@ecster/ecster-components/scss/MediaQuery';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
-
 .country-code-select {
-    .select {
+    .select-country {
         min-width: 80px;
         margin-right: 10px;
-    }
-
-    .disabled {
-        min-width: 0px;
-        margin-right: 0px;
-        i {
-            display: none;
-        }
-        select {
-            padding: 0px;
-            background: none;
-            border: none;
-            font-weight: $weight-semibold;
-            font-size: 18px;
-        }
     }
 }

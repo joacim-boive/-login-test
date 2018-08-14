@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button } from '@ecster/ecster-components';
+import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
 
 export class EditableInputPhone extends Component {
     state = {
-        disabled: !this.props.editMode,
+        editMode: false,
         value: this.props.value,
+        valueUnedited: this.props.value,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -29,52 +30,69 @@ export class EditableInputPhone extends Component {
     };
 
     onEdit = () => {
-        this.setState({ disabled: false });
+        this.setState({ editMode: true }, () => {
+            this.inputRef.getInputEl().focus();
+        });
     };
 
     onCancel = () => {
-        this.setState({ disabled: true, value: this.props.value });
+        this.setState({ editMode: false, value: this.state.valueUnedited });
     };
 
     onSave = () => {
-        this.props.onSave(this.state.value);
-        this.setState({ disabled: true });
+        const { countryCallingCode, number } = this.state.value;
+        this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
+        this.setState({ editMode: false });
     };
 
     render() {
-        const { className, label } = this.props;
-        const { disabled, value } = this.state;
+        const { className, label, ...rest } = this.props;
+        const { value, editMode } = this.state;
 
         const classes = classNames({
             'editable-input': true,
+            'editable-input-phone': true,
+            'edit-mode': editMode,
             [className]: className,
         });
 
-        return (
+        return editMode ? (
             <div className={classes}>
-                <div className="input-wrapper">
+                <div className="input-wrapper flex-row">
                     <CountrySelect
-                        label={label}
+                        label={i18n('general.address.country-code')}
                         value={value.countryCallingCode}
-                        disabled={disabled}
                         onChange={this.onChangeCountryCode}
                     />
-                    <Input value={value.number} disabled={disabled} small onChange={this.onChange} />
+                    <Input
+                        {...rest}
+                        value={value.number}
+                        small
+                        label={i18n('general.address.number')}
+                        onChange={this.onChange}
+                        ref={input => (this.inputRef = input)}
+                    />
                 </div>
-                {disabled ? (
-                    <Button name="edit" onClick={this.onEdit} small round outline>
-                        {i18n('general.buttons.edit')}
+                <ButtonGroup align="right">
+                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                        {i18n('general.cancel')}
                     </Button>
-                ) : (
-                    <div className="button-wrapper">
-                        <Button name="cancel" onClick={this.onCancel} small round transparent>
-                            {i18n('general.buttons.cancel')}
-                        </Button>
-                        <Button name="save" onClick={this.onSave} small round>
-                            {i18n('general.buttons.save')}
-                        </Button>
-                    </div>
-                )}
+                    <Button name="save" onClick={this.onSave} small round>
+                        {i18n('general.save')}
+                    </Button>
+                </ButtonGroup>
+            </div>
+        ) : (
+            <div className={classes}>
+                <label>{label}</label>
+                <div className="flex-row">
+                    <strong>
+                        {value.countryCallingCode} (0) {value.number}
+                    </strong>
+                    <Button name="edit" onClick={this.onEdit} small round outline>
+                        {i18n('general.edit')}
+                    </Button>
+                </div>
             </div>
         );
     }
@@ -86,7 +104,6 @@ EditableInputPhone.propTypes = {
     value: PropTypes.shape(),
     countryCode: PropTypes.string,
     label: PropTypes.string,
-    editMode: PropTypes.bool,
 };
 
 EditableInputPhone.defaultProps = {
@@ -94,5 +111,4 @@ EditableInputPhone.defaultProps = {
     value: {},
     countryCode: '',
     label: '',
-    editMode: false,
 };

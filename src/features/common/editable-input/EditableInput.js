@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button } from '@ecster/ecster-components';
+import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInput.scss';
 
 export class EditableInput extends Component {
     state = {
-        disabled: !this.props.editMode,
+        editMode: false,
         value: this.props.value || '',
+        valueUnedited: this.props.value || '',
     };
 
     componentWillReceiveProps(nextProps) {
@@ -23,44 +24,58 @@ export class EditableInput extends Component {
     };
 
     onEdit = () => {
-        this.setState({ disabled: false });
+        this.setState({ editMode: true }, () => {
+            this.inputRef.getInputEl().focus();
+        });
     };
 
     onCancel = () => {
-        this.setState({ disabled: true });
+        this.setState({ editMode: false, value: this.state.valueUnedited });
     };
 
     onSave = () => {
         this.props.onSave(this.state.value);
-        this.setState({ disabled: true });
+        this.setState({ editMode: false });
     };
 
     render() {
-        const { className, label } = this.props;
-        const { disabled, value } = this.state;
+        const { className, label, ...rest } = this.props;
+        const { value, editMode } = this.state;
 
         const classes = classNames({
             'editable-input': true,
+            'edit-mode': editMode,
             [className]: className,
         });
 
-        return (
+        return editMode ? (
             <div className={classes}>
-                <Input label={label} value={value} disabled={disabled} small onChange={this.onChange} />
-                {disabled ? (
-                    <Button name="edit" onClick={this.onEdit} small round outline>
-                        {i18n('general.buttons.edit')}
+                <Input
+                    {...rest}
+                    label={label}
+                    value={value}
+                    small
+                    onChange={this.onChange}
+                    ref={input => (this.inputRef = input)}
+                />
+                <ButtonGroup align="right">
+                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                        {i18n('general.cancel')}
                     </Button>
-                ) : (
-                    <div className="button-wrapper">
-                        <Button name="cancel" onClick={this.onCancel} small round transparent>
-                            {i18n('general.buttons.cancel')}
-                        </Button>
-                        <Button name="save" onClick={this.onSave} small round>
-                            {i18n('general.buttons.save')}
-                        </Button>
-                    </div>
-                )}
+                    <Button name="save" onClick={this.onSave} small round>
+                        {i18n('general.save')}
+                    </Button>
+                </ButtonGroup>
+            </div>
+        ) : (
+            <div className={classes}>
+                <label>{label}</label>
+                <div className="flex-row">
+                    <strong>{value}</strong>
+                    <Button name="edit" onClick={this.onEdit} small round outline>
+                        {i18n('general.edit')}
+                    </Button>
+                </div>
             </div>
         );
     }
@@ -71,12 +86,10 @@ EditableInput.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
     label: PropTypes.string,
-    editMode: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
-    editMode: false,
 };

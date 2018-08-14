@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
 
-export default class AuthenticatedSubPageTemplate extends React.Component {
+class AuthenticatedSubPageTemplate extends React.Component {
     render() {
-        const { className, linkTo, header } = this.props;
+        const { className, linkTo, header, customerId } = this.props;
 
         const classes = classNames({
             'common-authenticated-sub-page': true,
@@ -31,14 +32,14 @@ export default class AuthenticatedSubPageTemplate extends React.Component {
             <React.Fragment>
                 <div className={classes}>
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation />
+                        <TabletDesktopNavigation customerId={customerId} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
                         <div className="page-content">{this.props.children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation />
+                        <MobileNavigation customerId={customerId} />
                     </Mobile>
                 </div>
                 <MessagePanel />
@@ -48,6 +49,7 @@ export default class AuthenticatedSubPageTemplate extends React.Component {
 }
 
 AuthenticatedSubPageTemplate.propTypes = {
+    customerId: PropTypes.number.isRequired,
     className: PropTypes.string,
     header: PropTypes.string,
     linkTo: PropTypes.string,
@@ -59,3 +61,12 @@ AuthenticatedSubPageTemplate.defaultProps = {
     header: undefined,
     linkTo: '',
 };
+
+/* istanbul ignore next */
+function mapStateToProps({ authentication }) {
+    return {
+        customerId: authentication.person && authentication.person.id,
+    };
+}
+
+export default connect(mapStateToProps)(AuthenticatedSubPageTemplate);

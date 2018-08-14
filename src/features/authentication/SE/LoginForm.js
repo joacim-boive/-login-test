@@ -77,13 +77,14 @@ class LoginFormSE extends Component {
         const createSessionConfig = { type };
 
         this.prevState = { ...this.state };
-        this.setState(nextState);
+        this.setState(nextState, () => {
 
-        if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
-            createSessionConfig.ssn = ssn;
-        }
+            if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
+                createSessionConfig.ssn = ssn;
+            }
 
-        this.props.createSession(createSessionConfig);
+            this.props.createSession(createSessionConfig);
+        });
     };
 
     /**
@@ -130,12 +131,10 @@ class LoginFormSE extends Component {
         const { loginStatus, loginProgress } = this.props;
 
         if (loginStatus.isLoggedIn) {
-            console.log('LoginPage redirect to /account/overview');
-            console.log('    props = ', this.props);
             return <Redirect to="../account/overview" />;
         }
 
-        const { isOnThisDevice, isDesktop, isLoggingIn, ssn, ssnIsValid } = this.state;
+        const { isOnThisDevice, isDesktop, isLoggingIn, ssn } = this.state;
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
@@ -151,7 +150,7 @@ class LoginFormSE extends Component {
                 {!isLoggingIn && (
                     <aside className="help">
                         <Button id="login-se-help-button" onClick={this.showHelp} link>
-                            {i18n('general.buttons.help')}
+                            {i18n('general.help')}
                         </Button>
                     </aside>
                 )}

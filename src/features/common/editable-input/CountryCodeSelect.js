@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Select, Option } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './CountryCodeSelect.scss';
 
 export class CountryCodeSelect extends Component {
@@ -17,7 +16,7 @@ export class CountryCodeSelect extends Component {
     };
 
     render() {
-        const { className, value, label, disabled } = this.props;
+        const { className, value, label } = this.props;
 
         if (!this.countryCodes) return null;
 
@@ -27,14 +26,12 @@ export class CountryCodeSelect extends Component {
         });
 
         const classesSelect = classNames({
-            select: true,
-            disabled,
+            'select-country': true,
         });
 
         return (
             <div className={classes}>
                 <Select
-                    disabled={disabled}
                     className={classesSelect}
                     label={label}
                     value={value}
@@ -59,7 +56,6 @@ CountryCodeSelect.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
     language: PropTypes.string.isRequired,
-    disabled: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
 };
 
@@ -67,7 +63,6 @@ CountryCodeSelect.defaultProps = {
     className: '',
     value: '',
     label: '',
-    disabled: true,
 };
 
 /* istanbul ignore next */

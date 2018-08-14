@@ -1,0 +1,37 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.customer-profile-page {
+    $padding: 25px;
+
+    label {
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    section {
+        padding: $padding 0;
+        margin: 0;
+        border-bottom: 1px solid $gray40;
+        font-size: 18px;
+
+        &:last-child {
+            padding-bottom: 0;
+            border: none;
+        }
+    }
+
+    .summary-panel {
+        align-items: flex-start;
+        img {
+            margin-right: 20px;
+        }
+    }
+
+    .profile-panel {
+        .icon-info {
+            margin-left: 6px;
+        }
+    }
+}
+

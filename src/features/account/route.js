@@ -11,6 +11,6 @@ export default {
             component: AccountTransactionsOverview,
         },
         { path: ':ref/customer/:id/terms', name: 'Account terms', component: AccountTerms },
-      { path: ':ref/customer/:id/terminate', name: 'Terminate account', component: TerminateAccount },
+        { path: ':ref/customer/:id/terminate', name: 'Terminate account', component: TerminateAccount },
     ],
 };

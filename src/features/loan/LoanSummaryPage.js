@@ -10,6 +10,7 @@ import LoanPersonalInformationPanel from './components/LoanPersonalInformationPa
 import { updateCustomerContactInfo } from '../customer/redux/updateCustomerContactInfo';
 import { getCustomer } from './../customer/redux/getCustomer';
 import LoanEconomyPanel from './components/LoanEconomyPanel';
+import LoanGeneralInformationPanel from './components/LoanGeneralInformationPanel';
 
 export class LoanSummaryPage extends Component {
     static propTypes = {
@@ -42,6 +43,7 @@ export class LoanSummaryPage extends Component {
                         className="loan-panel"
                     />
                     <LoanEconomyPanel className="loan-panel" />
+                    <LoanGeneralInformationPanel className="loan-panel" />
                 </div>
             </AuthenticatedSubPageTemplate>
         );

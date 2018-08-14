@@ -1,20 +1,53 @@
 {
     "general": {
-        "buttons": {
-            "help": "Hjälp",
-            "close": "Stäng",
-            "edit": "Ändra",
-            "save": "Spara",
-            "cancel": "Avbryt",
-            "next": "Nästa"
-        },
         "help": "Hjälp",
         "back": "Tillbaka",
         "cancel": "Avbryt",
         "download": "Ladda ner",
+        "close": "Stäng",
+        "edit": "Ändra",
+        "save": "Spara",
+        "next": "Nästa",
+        "previous": "Föregående",
+        "ssn": "Personnummer",
+
+        "address": {
+            "name": "Namn",
+            "address": "Adress",
+            "mobile": "Mobil",
+            "number": "Nummer",
+            "country-code": "Landskod",
+            "email": "E-post",
+            "zip": "Postnummer",
+            "city": "Stad",
+            "country": "Land",
+            "info": "Vi använder din folkbokföringsadress som uppdateras automatiskt om du flyttar"
+        },
+
+        "validation": {
+            "ssn":
+                "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "email": "Kolla att e-postadressen blev rätt och försök igen",
+            "phone": "Kolla att numret blev rätt och försök igen"
+        },
         "answer": {
             "yes": "Ja",
             "no": "Nej"
+        },
+
+        "currency": {
+            "se": "kr"
+        },
+
+        "banks": {
+            "seb": "SEB",
+            "nordea": "Nordea",
+            "swedbank": "Swedbank",
+            "handelsbanken": "Handelsbanken"
+        },
+        "error": {
+            "oops": "Oops, nu blev det något fel!",
+            "try-again-later": "Försök gärna igen om en liten stund."
         }
     },
     "account": {
@@ -65,6 +98,7 @@
             "account-name": "Kontonamn",
             "total-credit": "Total kredit",
             "interest": "Ränta",
+            "deposit-rate": "Inlåningsränta",
             "admin-fee": "Administrativ avgift",
             "yearly-fee": "Årsavgift kort",
             "extra-card-fee": "Extrakortsavgift",
@@ -83,7 +117,8 @@
             "account-number-description": "Används som OCR-nummer",
             "account-name-description": "",
             "total-credit-description": "Din nuvarande kreditgräns",
-            "interest-description": "Aktiv om du delbetalar fakturan",
+            "interest-description": "Aktiv om du delbetalar fakturan.",
+            "deposit-rate-description": "Ränta på insatta pengar. Kontot omfattas av insättningsgarantin enligt beslut av Riksgälden. Se fullständiga villkor i ",
             "admin-fee-description": "Avgift för administration av din betalningar",
             "yearly-fee-description": "",
             "extra-card-fee-description": "",
@@ -94,7 +129,9 @@
             "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
             "overdraft-fee-description": "Debiteras om kontot övertrasseras",
             "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
-            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan"
+            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan",
+
+            "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
         },
         "terminate": {
             "terminate-account": "Avsluta konto",
@@ -137,7 +174,12 @@
     },
     "authentication": {},
     "common": {},
-    "customer": {},
+    "customer": {
+        "profile": {
+            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto",
+            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort' ]"
+        }
+    },
     "home": {
         "login": {
             "SE": {
@@ -151,8 +193,6 @@
                         "header": "Logga in",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Mobilt BankID",
                         "to-bid-button": "Logga in med BankID"
                     }
@@ -162,8 +202,6 @@
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "ssn-validation-message":
-                            "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -208,6 +246,26 @@
     },
     "loan": {
         "overview-header": "Privatlån",
+        "general": {
+            "about": "Om lånet",
+            "account": "Ange kontonummer för utbetalning",
+            "account-number": "Kontonummer",
+            "apply": "Skicka ansökan",
+            "clearing-number": "Clearingnummer",
+            "consumer-goods": "Resor, hemelektronik eller andra konsumtionsvaror",
+            "header": "Låneinformation",
+            "other": "Annat",
+            "other-usage": "Definiera vad",
+            "purpose": "Vad lånet skall användas till?",
+            "resolve-other": "Ange belopp du avser lösa",
+            "resolve": "Samla andra lån/krediter",
+            "residence": "Köp av bostad/fastighet",
+            "residence-other": "Övrigt till bostad (renovering etc)",
+            "vehicle": "Köp av fordon",
+            "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",
+            "withdrawal": "Utbetalning"
+
+        },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
             "12month-company": "Har du haft företaget längre än 12mån?",
@@ -288,14 +346,7 @@
         },
         "personal": {
             "header": "Personuppgifter",
-            "name": "Namn",
-            "ssn": "Personnummer",
-            "address": "Adress",
-            "zip": "Postnummer",
-            "city": "Ort",
             "info": "Dina uppgifter hämtas från Skatteverket.",
-            "mobile": "Mobil",
-            "email": "Email",
             "contact-text": "Vi behöver mobilnummer och mejladress för att kunna skicka bekräftelser om privatlånet."
         },
         "spec": {

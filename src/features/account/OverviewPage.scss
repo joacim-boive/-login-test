@@ -1,9 +1,9 @@
 .account-overview-page {
     &> * {
         margin-top: 100px;
-        
+
         &:first-child {
-            margin-top: 0px;
+            margin-top: 0;
         }
     }
 }

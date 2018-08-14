@@ -4,6 +4,7 @@
 @import "~@ecster/ecster-styles/scss/v2/theme/theme";
 @import "~@ecster/ecster-styles/scss/v2/include/paddings";
 @import "~@ecster/ecster-styles/scss/v2/include/margins";
+@import "~@ecster/ecster-styles/scss/v2/include/color-classes";
 // fonts incl icons
 @import '../features/home/style';
 @import '../features/common/style';
@@ -107,10 +108,57 @@ input {
 }
 
 h1 {
-    font-size: 3.6rem;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 26px;
     font-weight: 600;
 }
 
 p {
     margin-top: 1rem;
+}
+
+strong, .strong {
+    font-weight: bold;
+}
+
+.flex-row, .flex-column {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+// experimental TODO: make a wrapper component in ectser-components
+.ecster-tooltip {
+    max-width: 240px;
+    opacity: 1!important;
+    font-size: 16px;
+    padding: 15px;
+
+    &.border {
+        border-color: $gray60!important;
+        box-shadow: 0 0 6px $gray40;
+
+        &.place-bottom:before,
+        &.place-top:before,
+        &.place-right:before,
+        &.place-left:before {
+            border-bottom-color: $gray80!important;
+        }
+    }
 }
