@@ -57,7 +57,7 @@
         "prebuild:dev": "npm-run-all pre:build:clear_build",
         "help": "node ./src/lib/node-start.js --help",
         "prettier": "prettier",
-        "build": "node ./compile.js --prod --port 8081",
+        "build": "node ./tools/build.js && node webpack-after-build.js",
         "build:ci": "node ./compile.js --prod --ci",
         "build:vendor": "node ./compile.js --vendor",
         "build:vendor:ci": "node ./compile.js --vendor --ci",
@@ -70,7 +70,6 @@
         "test:watch": "jest --watch",
         "record": "node ./tools/server.js -record",
         "mock": "node ./tools/server.js -mock",
-        "build": "node ./tools/build.js && node webpack-after-build.js",
         "build-debug": "node ./tools/build.js --debug DEBUG && node webpack-after-build.js",
         "cordova": "cd cordova && cordova run browser",
         "android": "cd cordova && cordova run android",
@@ -208,7 +207,7 @@
         "react-router-dom": "^4.3.1",
         "react-router-redux": "5.0.0-alpha.9",
         "redux": "^3.7.2",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
         "react-tooltip": "^3.6.1"
     }
 }
