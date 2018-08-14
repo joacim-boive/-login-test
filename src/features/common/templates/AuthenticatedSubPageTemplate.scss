@@ -84,7 +84,7 @@
 
         @include mobile() {
             padding: 0;
-            margin-bottom: $navigation-height;
+            margin-bottom: $navigation-height + 15;
         }
 
         @include tablet() {
