@@ -337,7 +337,7 @@
             "submit": "Gå vidare",
             "details": "Specifikation",
             "year": "{{year}} år",
-            "show-more": "Specifikationer"
+            "show-more": "Specifikation"
         },
         "cost": {
             "header": "Månadskostnad",
