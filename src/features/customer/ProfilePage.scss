@@ -33,25 +33,5 @@
             margin-left: 6px;
         }
     }
-
-    // experimental TODO: make a wrapper component in ectser-components
-    .ecster-tooltip {
-        max-width: 180px;
-        opacity: 1;
-        font-size: 16px;
-        padding: 15px;
-
-        &.border {
-            border-color: $gray60;
-            box-shadow: 0 0 6px $gray40;
-
-            &.place-bottom:before,
-            &.place-top:before,
-            &.place-right:before,
-            &.place-left:before {
-                border-bottom-color: $gray80;
-            }
-        }
-    }
 }
 
