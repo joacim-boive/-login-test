@@ -8,7 +8,7 @@ import { Panel, Message } from '@ecster/ecster-components';
 import { formatAmount } from '../../../common/util/format-amount';
 
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
-import TerminateAccountIntro from '../terminate-account/TerminateAccountIntro';
+import TerminateAccountIntro from '../terminate/TerminateAccountIntro';
 import { getAccountTerms } from '../redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
