@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { Panel } from '@ecster/ecster-components';
+import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
 import * as actions from './redux/actions';
 
-export class OverviewPage extends Component {
+export class InvoicePage extends Component {
     static propTypes = {
         invoice: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
@@ -13,11 +15,11 @@ export class OverviewPage extends Component {
 
     render() {
         return (
-            <AuthenticatedPageTemplate>
-                <div className="invoice-overview-page">
-                    <h1>Invoice / overview page</h1>
-                </div>
-            </AuthenticatedPageTemplate>
+            <AuthenticatedSubPageTemplate className="invoice-invoice-page" header="Faktura">
+                <Panel>
+                    <h1>Invoices, not yet implemented...</h1>
+                </Panel>
+            </AuthenticatedSubPageTemplate>
         );
     }
 }
@@ -36,4 +38,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(InvoicePage);

@@ -70,12 +70,12 @@
             "missing": ["Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."]
         },
         "links": {
-            "event": "Kontohändelser",
-            "credit": "Höj kredit",
-            "part-payment": "Delbetalningar",
-            "bills": "Månadsfakturor",
-            "card": "Hantera kort",
-            "apply-card": "Ansök om kort",
+            "transactions": "Kontohändelser",
+            "raise-credit": "Höj kredit",
+            "part-payments": "Delbetalningar",
+            "monthly-invoices": "Månadsfakturor",
+            "manage-cards": "Hantera kort",
+            "apply-for-card": "Ansök om kort",
             "terms": "Kontovillkor"
         },
         "summary": {
@@ -170,6 +170,36 @@
                     "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
                 ]
             }
+        },
+        "raise-credit": {
+            "page-header": "Höj kredit",
+            "header": "Utöka ditt köputrymme",
+            "intro": [
+                "Det kan vara bra med extra utrymme på ditt konto om något oväntat skulle ske.",
+                "Ansök om höjd kreditgräns och få svar direkt.",
+                "Ingen extra avgift eller ränta tillkommer."
+            ],
+            "current-credit-limit": "Nuvarande kreditgräns",
+            "new-credit-limit": "Ny kreditgräns",
+            "select-amount": "Välj belopp",
+
+            "terms": "Villkor",
+            "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
+            "terms-items": [
+                "Du är över 18 år",
+                "Du har en fast inkomst",
+                "Du har inga betalningsanmärkningar"
+            ],
+
+            "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
+            "apply": "Ansök",
+            "processing-message": "Vi behandlar din ansökan...",
+
+            "denied-header": "Åh nej!",
+            "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 8-20 och helger 10-18.",
+
+            "approved-header": "Klart!",
+            "approved-message": "Din kredithöjning till {{amount}} {{currency}} är godkänd och dina villkor har uppdaterats under kontoinformation."
         }
     },
     "authentication": {},

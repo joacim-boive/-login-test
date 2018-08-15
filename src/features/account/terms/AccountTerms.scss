@@ -1,0 +1,61 @@
+@import "../../../../node_modules/@ecster/ecster-styles/scss/v2/common/colors";
+@import "../../../../node_modules/@ecster/ecster-components/scss/MediaQuery";
+
+.account-terms-panel {
+
+    margin-bottom: 30px;
+    .info-item {
+        padding: 15px;
+        border-bottom: 1px solid $gray40;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        & > div {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .label {
+            width: 30%;
+        }
+        .value {
+            $button-adjust: 12px;
+            width: 30%;
+            font-weight: bold;
+            padding-left: $button-adjust;
+            .button {
+                position: relative;
+                left: -$button-adjust;
+            }
+        }
+        .description {
+            color: $gray120;
+            font-size: 14px;
+            width: 40%;
+        }
+
+        @include mobile() {
+            .label {
+                width: 45%;
+            }
+            .value {
+                width: 55%;
+                text-align: right;
+                .button {
+                    left: 0;
+                }
+            }
+            .description {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    }
+}
