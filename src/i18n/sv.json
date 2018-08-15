@@ -337,7 +337,7 @@
             "submit": "Gå vidare",
             "details": "Specifikation",
             "year": "{{year}} år",
-            "show-more": "Specifikationer"
+            "show-more": "Specifikation"
         },
         "cost": {
             "header": "Månadskostnad",
@@ -356,8 +356,11 @@
             "rate-cost": "Räntekostnad",
             "start-fee": "Uppläggningsavgift",
             "admin-fee": "Administrativ avgift",
-            "sum-admin-fee": "Summa administrativ avgift",
-            "amount": "Totalt belopp att betala"
+            "sum-admin-fee": "Administrativ avgift totalt",
+            "amount": "Totalt belopp att betala",
+            "summary": "Summering",
+            "credit-summary": "Kreditkostnaden består av",
+            "per-month": "{{value}}/mån"
         },
         "terms": {
             "loan": "Låna upp till {{amount}}",
