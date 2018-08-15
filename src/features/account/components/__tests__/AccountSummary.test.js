@@ -21,6 +21,7 @@ describe('AccountSummary', () => {
 
     it('renders spendable money', () => {
         const component = shallowRender();
+
         expect(
             component
                 .find('article')
