@@ -18,17 +18,25 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
     return (
         <div {...rest} className={classes}>
             <ArrowLink
-                text={i18n('account.links.event')}
+                text={i18n('account.links.transactions')}
                 icon="icon-minimize-2"
                 to={`/account/${account.reference}/customer/${user.id}/transactions`}
             />
-            <ArrowLink text={i18n('account.links.credit')} icon="icon-arrow-up" />
-            <ArrowLink text={i18n('account.links.part-payment')} icon="icon-layers" />
-            <ArrowLink text={i18n('account.links.bills')} icon="icon-file" />
+            <ArrowLink
+                text={i18n('account.links.raise-credit')}
+                icon="icon-arrow-up"
+                to={`/account/${account.reference}/raise-credit`}
+            />
+            <ArrowLink
+                text={i18n('account.links.part-payments')}
+                icon="icon-layers"
+                to={`/account/${account.reference}/part-payments`}
+            />
+            <ArrowLink text={i18n('account.links.monthly-invoices')} icon="icon-file" to="/invoice/monthly-invoices" />
             {hasCard ? (
-                <ArrowLink text={i18n('account.links.card')} icon="icon-book" />
+                <ArrowLink text={i18n('account.links.manage-cards')} icon="icon-book" to="/card/overview" />
             ) : (
-                <ArrowLink text={i18n('account.links.apply-card')} icon="icon-book" />
+                <ArrowLink text={i18n('account.links.apply-for-card')} icon="icon-book" to="/card/extra-card" />
             )}
             <ArrowLink
                 text={i18n('account.links.terms')}

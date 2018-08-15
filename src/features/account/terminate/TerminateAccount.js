@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Checkbox, Panel, ConfirmButton, ButtonGroup } from '@ecster/ecster-components';
 
-import ResponsivePanel from '../../features/common/responsive-panel/ResponsivePanel';
-import { gaGenericEvent, gaActionEvent } from '../../common/ga';
-import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
-import { deleteAccount } from './redux/actions';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import { gaGenericEvent, gaActionEvent } from '../../../common/ga/index';
+import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
+import { deleteAccount } from '../redux/actions';
 
 export class TerminateAccount extends Component {
     state = {

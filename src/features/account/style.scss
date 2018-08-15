@@ -1,5 +1,7 @@
 @import '../../styles/mixins';
 @import './OverviewPage';
 @import './AccountTransactionsOverview';
-@import './AccountTerms';
-@import './TerminateAccount';
+@import 'terms/AccountTerms';
+@import 'terminate/TerminateAccount';
+@import 'raise-credit/RaiseCreditPage';
+@import 'part-payment/PartPaymentPage';

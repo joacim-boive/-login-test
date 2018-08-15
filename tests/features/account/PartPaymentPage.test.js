@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AccountTerms } from '../../../src/features/account/terms/AccountTerms';
+import { PartPaymentPage } from '../../../src/features/account/part-payment/PartPaymentPage';
 
-describe('account/AccountTerms', () => {
+describe('account/PartPaymentPage', () => {
   it('renders node with correct class name', () => {
     const props = {
       account: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <AccountTerms {...props} />
+      <PartPaymentPage {...props} />
     );
 
     expect(
-      renderedComponent.find('.account-account-terms').length
+      renderedComponent.find('.account-part-payment-page').length
     ).toBe(1);
   });
 });
