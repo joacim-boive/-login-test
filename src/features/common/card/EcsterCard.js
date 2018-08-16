@@ -12,7 +12,7 @@ export const EcsterCard = ({ className, ...rest }) => {
     return (
         <div {...rest}>
             <div className={classes}>
-                <img alt="Ecster Pay Card" src="../../../images/ecster-card-bitmap.jpg" />
+                <img alt="Ecster Pay Card" src="images/ecster-card-bitmap.jpg" />
             </div>
         </div>
     );
