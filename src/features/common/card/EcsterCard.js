@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './EcsterCard.scss';
 
+const ecsterCard = require('../../../images/ecster-card-bitmap.jpg');
+
 export const EcsterCard = ({ className, ...rest }) => {
     const classes = classNames({
         'ecster-card': true,
@@ -12,7 +14,7 @@ export const EcsterCard = ({ className, ...rest }) => {
     return (
         <div {...rest}>
             <div className={classes}>
-                <img alt="Ecster Pay Card" src="images/ecster-card-bitmap.jpg" />
+                <img alt="Ecster Pay Card" src={ecsterCard} />
             </div>
         </div>
     );
