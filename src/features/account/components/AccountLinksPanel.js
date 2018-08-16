@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ArrowLink } from './../../common/arrow-link/ArrowLink';
+import { ArrowLink } from '../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
 export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
