@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountSummary.scss';
-import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
-import { formatAmount } from './../../../common/util/format-amount';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountSummary = ({ account }) => {
     const spendableMoney = account.limit - account.used;
 
-    return (<div className="account-summary">
+    return (
+        <div className="account-summary">
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
                 <article>
                     <div>{i18n('account.summary.left')}</div>
