@@ -8,8 +8,7 @@ import { formatAmount } from './../../../common/util/format-amount';
 export const AccountSummary = ({ account }) => {
     const spendableMoney = account.limit - account.used;
 
-    return (
-        <div className="account-summary">
+    return (<div className="account-summary">
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
                 <article>
                     <div>{i18n('account.summary.left')}</div>
@@ -17,7 +16,7 @@ export const AccountSummary = ({ account }) => {
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.used')}</div>
-                    <div>{formatAmount(account.used, undefined, {roundUp: true})}</div>
+                    <div>{formatAmount(account.used, undefined, { roundUp: true })}</div>
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.total')}</div>
