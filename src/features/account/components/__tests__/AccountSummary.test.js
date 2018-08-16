@@ -2,8 +2,8 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
-import { AccountSummary } from './../AccountSummary';
-import accounts from '../../../../features/account/components/__tests__/__mocks__/accountsActive.json';
+import { AccountSummary } from '../AccountSummary';
+import accounts from './__mocks__/accountsActive.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -27,6 +27,6 @@ describe('AccountSummary', () => {
                 .find('article')
                 .at(0)
                 .text()
-        ).toBe('SEK 5,272.00');
+        ).toBe('SEK 5 273');
     });
 });
