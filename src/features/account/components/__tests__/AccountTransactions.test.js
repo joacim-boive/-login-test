@@ -3,7 +3,7 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import { AccountTransactions } from './../AccountTransactions';
-import transactions from '../../../../features/account/components/__tests__/__mocks__/transactions.json';
+import transactions from '../__mocks__/transactions.json';
 import { TransactionsPanel } from './../TransactionsPanel';
 
 Enzyme.configure({ adapter: new Adapter() });

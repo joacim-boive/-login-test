@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import DataRow from '@ecster/ecster-components/DataColumns/DataRow';
 import Enzyme, { shallow } from 'enzyme';
 import { LatestTransactions } from './../LatestTransactions';
-import transactionsJSON from './__mocks__/transactions.json';
+import transactionsJSON from '../__mocks__/transactions.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
