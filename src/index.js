@@ -25,11 +25,12 @@ const renderApp = app => {
 const initApplication = config => {
     Session.set('origin', 'mypages');
 
-    // TODO: tmp solution, fix later
-    const lang = window.location.hash.split('?lang=')[1] || 'sv';
+    // TODO: tmp solutions, fix later
+    const lang = window.location.hash.split('lang=')[1] || 'sv';
+    const country = 'SE';
+    // const country = 'FI';
 
-    store.dispatch(setApplicationCountry('SE'));
-    // store.dispatch(setApplicationCountry('FI'));
+    store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 
     if (config && config.ajaxBaseUrl) {

@@ -144,7 +144,13 @@ strong, .strong {
     flex-direction: column;
 }
 
-// experimental TODO: make a wrapper component in ectser-components
+.center {
+    text-align: center;
+}
+
+
+
+// experimental react-tooltip overrides TODO: make a wrapper component in ectser-components
 .ecster-tooltip {
     max-width: 240px;
     opacity: 1!important;

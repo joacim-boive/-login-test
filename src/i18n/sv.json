@@ -174,12 +174,9 @@
         "raise-credit": {
             "page-header": "Höj kredit",
             "header": "Utöka ditt köputrymme",
-            "intro": [
-                "Det kan vara bra med extra utrymme på ditt konto om något oväntat skulle ske.",
-                "Ansök om höjd kreditgräns och få svar direkt.",
-                "Ingen extra avgift eller ränta tillkommer."
-            ],
+            "intro": "Ansök om höjd kreditgräns och få svar direkt. Ingen extra avgift eller ränta tillkommer.",
             "current-credit-limit": "Nuvarande kreditgräns",
+            "max-credit-limit": "Maximal kreditgräns",
             "new-credit-limit": "Ny kreditgräns",
             "select-amount": "Välj belopp",
 
@@ -192,8 +189,10 @@
             ],
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
+            "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
             "apply": "Ansök",
             "processing-message": "Vi behandlar din ansökan...",
+            "processing-message-uc": "Kontaktar UC...",
 
             "denied-header": "Åh nej!",
             "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 8-20 och helger 10-18.",

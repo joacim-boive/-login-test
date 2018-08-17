@@ -9,7 +9,7 @@ import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_ACCOUNT_URL } from './urls';
 
-export const updateAccount = (customerId, referenceId, data) => async (dispatch) => {
+export const updateAccount = (customerId, referenceId, data) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_BEGIN,
     });
