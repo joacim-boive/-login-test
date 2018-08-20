@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-
-import '../../util/handle-scaling';
-
-const isMinified = window.ECSTER_CONFIG_ENVIRONMENT !== 'development';
-
-import(`lazysizes/plugins/respimg/ls.respimg${isMinified ? '.min' : ''}`);
-import(`lazysizes/plugins/bgset/ls.bgset${isMinified ? '.min' : ''}`);
-import(`lazysizes/plugins/rias/ls.rias${isMinified ? '.min' : ''}`);
-import(`lazysizes/lazysizes${isMinified ? '.min' : ''}`);
-
+// URL to cloudinary CDN
 const url = '//res.cloudinary.com/ecster';
-const transforms = 'f_auto,q_auto:good,dpr_auto';
+
+/*
+f_auto - Choose whatever image format is best for this particular request and client
+q_auto:good - Optimize the image with good quality
+dpr_auto - Select the proper dpr depending on the requesting client
+ */
+const transforms = 'f_auto,q_auto:good,dpr_auto,w_{width}';
 const scaling = ',{cloudinary.scaling}';
 const defaults = `${url}/${transforms}`;
 

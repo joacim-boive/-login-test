@@ -20,7 +20,7 @@ export const EcsterCard = ({ className, account, ...rest }) => {
         <Lazyload
             alt="Ecster Pay Card"
             className={classes}
-            src={`/v1/cards/${account.brickId || 0}.png`}
+            src={`/v1/cards/${account.brickId}.png`}
             widths={[166, 312]}
             {...rest}
         />
