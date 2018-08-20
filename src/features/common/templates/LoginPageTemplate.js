@@ -5,6 +5,12 @@ import cloudinary from '../../../common/images/Lazyload/cloudinary';
 
 import MessagePanel from '../MessagePanel';
 
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const LoginPage = props => {
     const { children } = props;
 

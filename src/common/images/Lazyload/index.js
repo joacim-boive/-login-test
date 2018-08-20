@@ -18,7 +18,7 @@ import './lazysizes';
  */
 class Lazyload extends Component {
     render() {
-        const { alt, className, src, widths, rest } = this.props;
+        const { alt, className, src, widths, ...rest } = this.props;
 
         return (
             <img
@@ -40,14 +40,12 @@ Lazyload.propTypes = {
     src: PropTypes.string.isRequired,
     widths: PropTypes.arrayOf(PropTypes.number),
     className: PropTypes.string,
-    rest: PropTypes.any,
 };
 
 Lazyload.defaultProps = {
     alt: '',
     widths: null,
     className: '',
-    rest: null,
 };
 
 export default Lazyload;
