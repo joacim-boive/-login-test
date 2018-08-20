@@ -1,7 +1,7 @@
 /**
- * @deprecated
+ * Handles different cases of when a resource is lazyloaded.
+ * The below is only intended for background images as in the LoginpageTemplate
  */
-
 document.addEventListener('lazybeforeunveil', event => {
     if (event.target.localName === 'img') return;
 
