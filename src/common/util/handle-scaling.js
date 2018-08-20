@@ -1,10 +1,12 @@
-document.addEventListener('lazybeforeunveil', () => {
+document.addEventListener('lazybeforeunveil', event => {
+    if (event.target.localName === 'img') return;
+
     const wrapper = document.querySelector('article.lazyload,article.lazyloading,article.lazyloaded');
     const { bgset } = wrapper.dataset;
     const defaultScaling = 'c_scale,w_{width}';
 
     const set = scaling => {
-        wrapper.dataset.bgset = bgset.replace(/{scaling}/i, scaling);
+        wrapper.dataset.bgset = bgset.replace(/{cloudinary.scaling}/i, scaling);
     };
 
     const widthChange = mq => {

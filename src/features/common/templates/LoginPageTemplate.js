@@ -1,25 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '@ecster/ecster-components/Logo';
-import MessagePanel from '../MessagePanel';
+import cloudinary from '../../../common/images/Lazyload/cloudinary';
 
-// eslint-disable-next-line no-unused-vars
-import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
-// eslint-disable-next-line no-unused-vars
-import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
-// eslint-disable-next-line no-unused-vars
-import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
-// eslint-disable-next-line no-unused-vars
-import lazySizes from 'lazysizes';
+import MessagePanel from '../MessagePanel';
 
 const LoginPage = props => {
     const { children } = props;
 
     return (
-        <React.Fragment>
+        <>
             <article
                 className="home-login-page lazyload"
-                data-bgset="//res.cloudinary.com/ecster/f_auto,o_40,q_auto:good,dpr_auto,{scaling}/v1/backgrounds/login.jpg"
+                data-bgset={`${cloudinary.defaults},o_40${cloudinary.scaling}/v1/backgrounds/login.jpg`}
                 data-absurl="false"
                 data-sizes="auto"
             >
@@ -31,7 +24,7 @@ const LoginPage = props => {
                 {children}
             </article>
             <MessagePanel />
-        </React.Fragment>
+        </>
     );
 };
 

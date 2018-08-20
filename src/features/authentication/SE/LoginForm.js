@@ -78,7 +78,6 @@ class LoginFormSE extends Component {
 
         this.prevState = { ...this.state };
         this.setState(nextState, () => {
-
             if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
                 createSessionConfig.ssn = ssn;
             }

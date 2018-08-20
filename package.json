@@ -59,7 +59,7 @@
         "build:ci": "node ./compile.js --prod --ci",
         "build:vendor": "node ./compile.js --vendor",
         "build:dll": "node ./compile.js --vendor",
-        "build:vendor:debug": "node --inspect-brk ./compile.js --debug --vendor",
+        "build:vendor:debug": "node --inspect-brk ./compile.js --debug --vendor --dev",
         "build:dll:debug": "node --inspect-brk ./compile.js --debug --vendor",
         "start": "node ./compile.js --dev",
         "start:debug": "ndb ./compile.js --debug --dev",
