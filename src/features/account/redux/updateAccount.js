@@ -42,6 +42,7 @@ export function reducer(state, action) {
         case ACCOUNT_UPDATE_ACCOUNT_SUCCESS:
             return {
                 ...state,
+                account: { ...state.account, applicationResult: action.data },
                 updateAccountPending: false,
                 updateAccountError: null,
             };

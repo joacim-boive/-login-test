@@ -1,5 +1,13 @@
 @import '../../../styles/mixins';
 
 .account-raise-credit-page {
-
+    .result-panel {
+        padding: 55px 25px;
+        img {
+            margin-bottom: 20px;
+        }
+        a {
+            font-weight: bold;
+        }
+    }
 }

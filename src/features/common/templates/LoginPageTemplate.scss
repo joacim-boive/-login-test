@@ -11,8 +11,8 @@
     justify-content: center;
 
     @include mobile() {
-        background: $beige10 url(../images/Ecster_00056_0-w450.png) no-repeat;
-        background-size: 100%;
+        //background: $beige10 url(../images/Ecster_00056_0-w450.png) no-repeat;
+        //background-size: 100%;
     }
 
     @include tablet() {

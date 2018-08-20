@@ -48,7 +48,8 @@
         "error": {
             "oops": "Oops, nu blev det något fel!",
             "try-again-later": "Försök gärna igen om en liten stund."
-        }
+        },
+        "support-opening-hours": "Vi har öppet vardagar 9-20 och helger 10-18."
     },
     "account": {
         "header": {
@@ -194,11 +195,22 @@
             "processing-message": "Vi behandlar din ansökan...",
             "processing-message-uc": "Kontaktar UC...",
 
-            "denied-header": "Åh nej!",
-            "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 8-20 och helger 10-18.",
-
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{amount}} {{currency}} är godkänd och dina villkor har uppdaterats under kontoinformation."
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats under kontoinformation.",
+
+            "pending-header": "Prövning!",
+            "pending-message": [
+                "Vi behöver titta lite närmare på din ansökan och ber dig därför höra av dig till oss på [link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50'].",
+                "$t(general.support-opening-hours)"
+            ],
+
+            "denied-header": "Åh nej!",
+            "denied-message": [
+                "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50'].",
+                "$t(general.support-opening-hours)"
+            ],
+
+            "back-to-overview": "Tillbaka till översikten"
         }
     },
     "authentication": {},
