@@ -68,10 +68,10 @@ const getCreditLimitOptions = (locale, currentLimit, maxLimit) => {
         nextLimit = currentLimit + (currentLimit < increments.bigFrom ? increments.small : increments.big);
     } else {
         // e.g (SE): 17000 - increase with 1000 and try again, stops when reaching 20000
-        nextLimit = currentLimit + increments.tiny;
+        nextLimit = currentLimit;
 
         // use a for loop with break to avoid risk of infinite while loop
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
             nextLimit += increments.tiny;
             if (oddMultiples(nextLimit, increments.small) || evenMultiples(nextLimit, increments.small)) {
                 break;
