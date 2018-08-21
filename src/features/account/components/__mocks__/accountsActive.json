@@ -8,7 +8,7 @@
             "cardName": "Ecster kortet"
         },
         "limit": 600000,
-        "used": 594728,
+        "used": 72672,
         "maxLimit": 18000000,
         "overDrawn": false,
         "allowIncreaseLimit": true,

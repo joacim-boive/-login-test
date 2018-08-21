@@ -3,8 +3,8 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import { Component as AccountPanel } from './../AccountPanel';
-import accountsActiveJSON from './__mocks__/accountsActive.json';
-import userJSON from './__mocks__/user.json';
+import accountsActiveJSON from '../__mocks__/accountsActive.json';
+import userJSON from '../__mocks__/user.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
