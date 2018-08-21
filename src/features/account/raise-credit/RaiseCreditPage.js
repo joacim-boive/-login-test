@@ -23,17 +23,14 @@ export class RaiseCreditPage extends Component {
         // message before button can change ...
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
-        showView: 'main', // or "APPROVED", "PENDING", "DENIED"
+        showView: 'APPROVED', // or "APPROVED", "PENDING", "DENIED"
     };
 
     componentWillMount() {
-        console.log('component will mount: dispatching getAccount()');
         this.props.getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps = ', nextProps);
-
         // application is pending, next props contains application result
         if (this.props.updateAccountPending && nextProps.account.applicationResult) {
             this.setState({
@@ -45,8 +42,6 @@ export class RaiseCreditPage extends Component {
     }
 
     onButtonClick = () => {
-        console.log(`Clickety click... newLimit = [${this.state.newLimit}]`);
-
         if (this.state.newLimit) {
             this.setState({ processing: true });
             // simulate a few seconds processing
