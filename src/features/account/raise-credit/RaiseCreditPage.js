@@ -23,7 +23,7 @@ export class RaiseCreditPage extends Component {
         // message before button can change ...
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
-        showView: 'APPROVED', // or "APPROVED", "PENDING", "DENIED"
+        showView: 'main', // or "APPROVED", "PENDING", "DENIED"
     };
 
     componentWillMount() {
@@ -151,7 +151,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'APPROVED' && (
-                    <Panel maxWidth="345px" textAlignCenter className="result-panel">
+                    <Panel textAlignCenter className="result-panel">
                         <img src={happyFace} aria-hidden="true" alt="happy face icon" />
                         <h2>{i18n('account.raise-credit.approved-header')}</h2>
                         <p>
@@ -164,7 +164,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'PENDING' && (
-                    <Panel maxWidth="345px" textAlignCenter className="result-panel">
+                    <Panel textAlignCenter className="result-panel">
                         <img src={disappointedFace} aria-hidden="true" alt="disappointed face icon" />
                         <h2>{i18n('account.raise-credit.pending-header')}</h2>
                         {i18n('account.raise-credit.pending-message', {
@@ -176,7 +176,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'DENIED' && (
-                    <Panel maxWidth="345px" textAlignCenter className="result-panel">
+                    <Panel textAlignCenter className="result-panel">
                         <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
                         <h2>{i18n('account.raise-credit.denied-header')}</h2>
                         {i18n('account.raise-credit.denied-message', {

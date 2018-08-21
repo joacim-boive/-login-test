@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React from 'react';
 import { Option } from '@ecster/ecster-components';
 
@@ -48,7 +49,8 @@ const getCreditLimitOptions = (locale, currentLimit, maxLimit) => {
         },
     };
 
-    if (!currentLimit) { // occurs before getAccount
+    if (!currentLimit) {
+        // occurs before getAccount
         return <Option label="" value="" />;
     }
 
@@ -67,8 +69,13 @@ const getCreditLimitOptions = (locale, currentLimit, maxLimit) => {
     } else {
         // e.g (SE): 17000 - increase with 1000 and try again, stops when reaching 20000
         nextLimit = currentLimit + increments.tiny;
-        while (!oddMultiples(nextLimit, increments.small) && !evenMultiples(nextLimit, increments.small)) {
+
+        // use a for loop with break to avoid risk of infinite while loop
+        for (let i = 0; i < 4; i++) {
             nextLimit += increments.tiny;
+            if (oddMultiples(nextLimit, increments.small) || evenMultiples(nextLimit, increments.small)) {
+                break;
+            }
         }
     }
 
