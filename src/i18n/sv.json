@@ -49,7 +49,11 @@
             "oops": "Oops, nu blev det något fel!",
             "try-again-later": "Försök gärna igen om en liten stund."
         },
-        "support-opening-hours": "Vi har öppet vardagar 9-20 och helger 10-18."
+        "support-opening-hours": "Vi har öppet vardagar 9-20 och helger 10-18.",
+
+        "phone-link-087014667": "[link tel:087014667 '08&#8209;701&nbsp;46&nbsp;67']",
+        "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50']",
+        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30']"
     },
     "account": {
         "header": {
@@ -155,7 +159,7 @@
             "failure": {
                 "header": "Kontot kunde inte avslutas",
                 "message":
-                    "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                    "Ditt konto kunde inte avslutas. Ring oss på $t(general.phone-link-087014667) så hjälper vi dig!",
                 "back": "Tillbaka till kontoöversikt"
             },
 
@@ -168,7 +172,7 @@
                 "info-text": [
                     "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
                     "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
-                    "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
+                    "Har du ett tillgodo på kontot? Ring oss gärna på $t(general.phone-link-087014667) så hjälper vi till."
                 ]
             }
         },
@@ -200,13 +204,13 @@
 
             "pending-header": "Prövning!",
             "pending-message": [
-                "Vi behöver titta lite närmare på din ansökan och ber dig därför höra av dig till oss på [link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50'].",
+                "Vi behöver titta lite närmare på din ansökan och ber dig därför höra av dig till oss på $t(general.phone-link-08343550).",
                 "$t(general.support-opening-hours)"
             ],
 
             "denied-header": "Åh nej!",
             "denied-message": [
-                "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50'].",
+                "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på $t(general.phone-link-08343550).",
                 "$t(general.support-opening-hours)"
             ],
 
@@ -412,12 +416,17 @@
             "finish": "Lös lånet när du vill"
         },
         "terms-apply": {
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": ""
+            "header": "Så här ansöker du om lånet",
+            "how-to-list": [
+                "Fyll i ansökan",
+                "Vid godkÃ¤nd ansökan, signera skuldebrevet och skicka till oss",
+                "När vi fått skuldebrevet har du normalt sett pengarna på ditt konto inom ca tre bankdagar"
+            ],
+            "sub-header": "För att kunna ansöka måste du uppfylla följande",
+            "terms-list": [
+                "Du har en stadigvarande inkomst. Du får inte ha några betalningsanmärkningar.",
+                "Har du några frågor så kontakta oss på $t(general.phone-link-08330130)"
+            ]
         },
         "summary": {
             "header": "Låneansökan",
