@@ -24,6 +24,7 @@ export class RaiseCreditPage extends Component {
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
         showView: 'main', // or "APPROVED", "PENDING", "DENIED"
+        caseNumber: undefined,
     };
 
     componentWillMount() {
@@ -31,14 +32,16 @@ export class RaiseCreditPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // application is pending, next props contains application result
+        // rest operation is pending, next props contains application result
         if (this.props.updateAccountPending && nextProps.account.applicationResult) {
             this.setState({
-                currentLimit: nextProps.account.limit,
+                currentLimit: nextProps.account.applicationResult.limit,
                 showView: nextProps.account.applicationResult.status,
+                caseNumber: nextProps.account.applicationResult.caseNumber, // only for PENDING
             });
+        } else {
+            this.setState({ currentLimit: nextProps.account.limit });
         }
-        this.setState({ currentLimit: nextProps.account.limit });
     }
 
     onButtonClick = () => {
@@ -170,6 +173,7 @@ export class RaiseCreditPage extends Component {
                         {i18n('account.raise-credit.pending-message', {
                             returnObjects: true,
                             wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                            caseNumber: this.state.caseNumber,
                         })}
                         {this.backToOverviewLink()}
                     </Panel>

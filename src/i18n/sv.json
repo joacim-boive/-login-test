@@ -200,11 +200,12 @@
             "processing-message-uc": "Kontaktar UC...",
 
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats under kontoinformation.",
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats under kontovillkor.",
 
-            "pending-header": "Prövning!",
+            "pending-header": "Vi behöver titta lite närmare på din ansökan",
             "pending-message": [
-                "Vi behöver titta lite närmare på din ansökan och ber dig därför höra av dig till oss på $t(general.phone-link-08343550).",
+                "Vi kommer behöva lite fler uppgifter från dig för att kunna ta ett beslut. ",
+                "Ring oss på $t(general.phone-link-08343550) och uppge ärendenummer <strong>{{caseNumber}}</strong>",
                 "$t(general.support-opening-hours)"
             ],
 
