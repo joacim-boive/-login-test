@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountSummary.scss';
-import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
-import { formatAmount } from './../../../common/util/format-amount';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountSummary = ({ account }) => {
     const spendableMoney = account.limit - account.used;
@@ -17,7 +17,7 @@ export const AccountSummary = ({ account }) => {
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.used')}</div>
-                    <div>{formatAmount(account.used, undefined, {roundUp: true})}</div>
+                    <div>{formatAmount(account.used, undefined, { roundUp: true })}</div>
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.total')}</div>

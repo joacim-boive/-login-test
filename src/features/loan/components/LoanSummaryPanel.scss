@@ -9,7 +9,7 @@
     .panel {
         background-color: $green20;
         border: 1px solid $green40;
-        padding: 20px 40px;
+        padding: 20px 20px;
 
         @include mobile() {
             padding: 20px 20px;
@@ -41,15 +41,11 @@
 
     .expander {
         width: auto;
-        margin: 20px -20px 0px -20px;
+        margin: 20px -10px 0px -10px;
         background: none;
 
         .expandable-bottom-panel__expander {
             border-top: 1px solid $green40;
-        }
-
-        .specs {
-            margin: 20px;
         }
     }
 }

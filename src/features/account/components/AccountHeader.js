@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountHeader.scss';
-import { EcsterCard } from './../../common/card/EcsterCard';
+import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountHeader = ({ account }) => {

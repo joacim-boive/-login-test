@@ -2,10 +2,14 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
-import { AccountLinksPanel } from './../AccountLinksPanel';
-import { ArrowLink } from './../../../common/arrow-link/ArrowLink';
-import accountsActiveJSON from './__mocks__/accountsActive.json';
-import userJSON from './__mocks__/user.json';
+import { AccountLinksPanel } from '../AccountLinksPanel';
+import { ArrowLink } from '../../../common/arrow-link/ArrowLink';
+import accountsActiveJSON from '../__mocks__/accountsActive.json';
+import userJSON from '../__mocks__/user.json';
+
+jest.mock('@ecster/ecster-i18n/lib/Translate', () => ({
+    getText: text => text,
+}));
 
 Enzyme.configure({ adapter: new Adapter() });
 

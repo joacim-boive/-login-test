@@ -15,9 +15,6 @@ export const SETermsWorks = ({ className, promissory }) => {
     return (
         <div className={classes}>
             <h4>Så här fungerar lånet</h4>
-            {/*<p>*/}
-                {/*<strong className="e-error">Inga texter är språkhanterade!</strong>*/}
-            {/*</p>*/}
             <UnorderedList icon="icon-check" className="mt-2x">
                 <span>{i18n('loan.terms.loan', { amount: formatAmount(promissory.maxCreditAmount) })}</span>
                 <span>

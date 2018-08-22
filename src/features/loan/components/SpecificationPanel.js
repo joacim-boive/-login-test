@@ -16,40 +16,60 @@ const SpecificationPanel = ({ className, terms, promissory, loanAmount }) => {
             <DataColumns>
                 <DataColumn>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.count')}</Data>
-                        <Data right>{terms.noOfPayments}</Data>
+                        <h4>{i18n('loan.spec.summary')}</h4>
                     </DataRow>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.credit-amount')}</Data>
-                        <Data right>{formatAmount(loanAmount)}</Data>
+                        <Data>{i18n('loan.spec.count')}</Data>
+                        <Data right strong>
+                            {terms.noOfPayments}
+                        </Data>
                     </DataRow>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.credit-cost')}</Data>
-                        <Data right>{formatAmount(terms.creditCost)}</Data>
+                        <Data>{i18n('loan.spec.credit-amount')}</Data>
+                        <Data right strong>
+                            {formatAmount(loanAmount, undefined, { roundDown: true })}
+                        </Data>
+                    </DataRow>
+                    <DataRow>
+                        <Data>{i18n('loan.spec.credit-cost')}</Data>
+                        <Data right strong>
+                            {formatAmount(terms.creditCost, undefined, { roundDown: true })}
+                        </Data>
+                    </DataRow>
+                    <DataRow>
+                        <Data>{i18n('loan.spec.amount')}</Data>
+                        <Data right strong>
+                            {formatAmount(terms.totalDebt, undefined, { roundDown: true })}
+                        </Data>
                     </DataRow>
                 </DataColumn>
                 <DataColumn>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.rate-cost')}</Data>
-                        <Data right>{formatAmount(terms.totalInterest)}</Data>
+                        <h4>{i18n('loan.spec.credit-summary')}</h4>
                     </DataRow>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.start-fee')}</Data>
-                        <Data right>{formatAmount(promissory.startFee)}</Data>
+                        <Data>{i18n('loan.spec.rate-cost')}</Data>
+                        <Data right strong>
+                            {formatAmount(terms.totalInterest, undefined, { roundDown: true })}
+                        </Data>
                     </DataRow>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.admin-fee')}</Data>
-                        <Data right>{formatAmount(promissory.adminFee)}</Data>
-                    </DataRow>
-                </DataColumn>
-                <DataColumn>
-                    <DataRow>
-                        <Data weak>{i18n('loan.spec.sum-admin-fee')}</Data>
-                        <Data right>{formatAmount(terms.totalAdmFee)}</Data>
+                        <Data>{i18n('loan.spec.start-fee')}</Data>
+                        <Data right strong>
+                            {formatAmount(promissory.startFee, undefined, { roundDown: true })}
+                        </Data>
                     </DataRow>
                     <DataRow>
-                        <Data weak>{i18n('loan.spec.amount')}</Data>
-                        <Data right>{formatAmount(terms.totalDebt)}</Data>
+                        <Data>{i18n('loan.spec.admin-fee')}</Data>
+                        <Data right strong>
+                            {i18n('loan.spec.per-month', {value: formatAmount(promissory.adminFee, undefined, { roundDown: true })})}
+                        </Data>
+                    </DataRow>
+                    <DataRow>
+                        <Data>{i18n('loan.spec.sum-admin-fee')}</Data>
+                        <Data right strong>
+                            {formatAmount(terms.totalAdmFee, undefined, { roundDown: true })}
+                        </Data>
                     </DataRow>
                 </DataColumn>
             </DataColumns>
