@@ -7,7 +7,7 @@ import './ClearingNumberInput.scss';
 
 class ClearingNumberInput extends Component {
     state = {
-        label: '',
+        autoSelectedBank: '',
         showBankInput: false,
         myBank: '',
     };
@@ -24,11 +24,11 @@ class ClearingNumberInput extends Component {
 
         if (bank) {
             onFoundBank(bank);
-            this.setState({ label: bank, showBankInput: false });
+            this.setState({ autoSelectedBank: bank, showBankInput: false });
         } else if (target.value && target.value.length >= 4) {
-            this.setState({ label: i18n('loan.general.enter-bank'), showBankInput: true });
+            this.setState({ autoSelectedBank: i18n('loan.general.enter-bank'), showBankInput: true });
         } else if (!target.value) {
-            this.setState({ label: '', showBankInput: false });
+            this.setState({ autoSelectedBank: '', showBankInput: false });
         }
 
         onChange(e);
@@ -57,7 +57,7 @@ class ClearingNumberInput extends Component {
 
     render() {
         const { className, ...rest } = this.props;
-        const { label, showBankInput, myBank } = this.state;
+        const { autoSelectedBank, showBankInput, myBank } = this.state;
 
         const classes = classNames({
             'clearing-number-input': true,
@@ -67,7 +67,7 @@ class ClearingNumberInput extends Component {
         return (
             <div className={classes}>
                 <Input {...rest} onChange={this.onChangeClearing} />
-                {label && <div className="bank-label">{label}</div>}
+                {autoSelectedBank && <div className="bank-label">{autoSelectedBank}</div>}
                 {showBankInput && (
                     <Input
                         onBlur={this.onChangeBank}
