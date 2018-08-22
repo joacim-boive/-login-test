@@ -11,7 +11,7 @@ class TerminateAccountIntro extends React.Component {
         return (
             <div className="account-terminate-intro">
                 <h1>{i18n('account.terminate.terminate-account')}</h1>
-                <Panel key="account-terminate-panel" className="account-terminate-panel" sideBordersMobile>
+                <Panel key="account-terminate-panel" sideBordersMobile sideMarginsMobile>
                     {i18n('account.terminate.intro.info-text', {
                         returnObjects: true,
                         wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
