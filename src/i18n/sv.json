@@ -208,6 +208,23 @@
         "profile": {
             "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto",
             "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort' ]"
+        },
+        "contact-us": {
+            "header": "Kontakta oss",
+            "question-panel-text1": "Vi gillar frågor!",
+            "question-panel-text2": "Hör gärna av dig om det är något du undrar över.",
+            "question-panel-tel": "[link tel:087014667 '08-701 46 67']",
+            "question-panel-opening-hours": "Vi har öppet vardagar 9-18",
+            "block-card-text1": "Spärra ditt kort",
+            "block-card-text2": "Ring något av våra nummer, som har öppet dygnet runt, för att spärra ditt kort.",
+            "block-card-phone-abroad": "[link tel:+4684112122 '+46 8 411 21 22']",
+            "block-card-phone-domestic": "[link tel:020411212 '020-41 12 12']",
+            "block-card-abroad-text": "Från utlandet",
+            "block-card-domestic-text": "Från Sverige",
+            "faq-text1": "Vanliga frågor",
+            "faq-text2": "Vi har samlat det vi får mest frågor om just nu i en FAQ",
+            "faq-link": "Frågor och svar",
+            "faq-url": "https://www.ecster.se/kundservice#faq-hela"
         }
     },
     "home": {
@@ -419,7 +436,7 @@
         "invoices": "Fakturor",
         "loan": "Privatlån",
         "more": "Mer",
-        "customer-support": "Kundservice",
+        "customer-support": "Kontakta oss",
         "settings": "Profil",
         "logout": "Logga ut"
     }
