@@ -150,7 +150,8 @@ strong, .strong {
     flex-direction: column;
 }
 
-// experimental TODO: make a wrapper component in ectser-components
+// experimental react-tooltip overrides
+// TODO: make a wrapper component in ecster-components, sync with or use the one from Dashboard
 .ecster-tooltip {
     max-width: 240px;
     opacity: 1!important;

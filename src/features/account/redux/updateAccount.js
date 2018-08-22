@@ -9,7 +9,7 @@ import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_ACCOUNT_URL } from './urls';
 
-export const updateAccount = (customerId, referenceId, data) => async (dispatch) => {
+export const updateAccount = (customerId, referenceId, data) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_BEGIN,
     });
@@ -42,6 +42,7 @@ export function reducer(state, action) {
         case ACCOUNT_UPDATE_ACCOUNT_SUCCESS:
             return {
                 ...state,
+                account: { ...state.account, applicationResult: action.data },
                 updateAccountPending: false,
                 updateAccountError: null,
             };

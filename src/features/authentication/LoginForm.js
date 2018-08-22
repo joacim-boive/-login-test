@@ -24,6 +24,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
     country: PropTypes.string.isRequired,
+    showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
