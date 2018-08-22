@@ -7,7 +7,7 @@ import './LoanEconomyPanel.scss';
 import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
-const validBoolean = str => str === 'yes';
+const validBoolean = str => str === 'yes' || str === 'no';
 
 class LoanEconomyPanel extends Component {
     state = {
