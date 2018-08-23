@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import { Panel } from '@ecster/ecster-components';
+import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
 import * as actions from './redux/actions';
 
 export class SupportPage extends Component {
@@ -13,11 +14,11 @@ export class SupportPage extends Component {
 
     render() {
         return (
-            <AuthenticatedPageTemplate>
-                <div className="customer-support-page">
-                    <h1>Kundservice</h1>
-                </div>
-            </AuthenticatedPageTemplate>
+            <AuthenticatedSubPageTemplate header="Kundservice">
+                <Panel className="customer-support-page">
+                    <h1>Kundservice, not yet implemented...</h1>
+                </Panel>
+            </AuthenticatedSubPageTemplate>
         );
     }
 }
@@ -36,4 +37,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SupportPage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SupportPage);

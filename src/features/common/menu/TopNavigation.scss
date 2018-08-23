@@ -14,7 +14,7 @@
     background: $green;
     height: $navigation-height;
 
-    a, a:visited, a:hover {
+    a, a:visited, a:hover, a:focus {
         color: $white;
     }
 }

@@ -166,7 +166,7 @@ class LoanGeneralInformationPanel extends Component {
                     </label>
 
                     <div className="apply-button">
-                        <Button onClick={() => console.log('Pressy pressy')} round disabled={!this.validForm()}>
+                        <Button onClick={() => console.log('Pressy pressy (what?? /joli44)')} round disabled={!this.validForm()}>
                             {i18n('loan.general.apply')}
                         </Button>
                     </div>

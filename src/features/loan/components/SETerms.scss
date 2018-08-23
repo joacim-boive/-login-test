@@ -7,7 +7,7 @@
         font-size: 30px;
         font-weight: $weight-bold;
         color: $green120;
-        margin: 0px;
+        margin: 0;
 
         @include mobile() {
             font-size: 24px;
@@ -17,38 +17,8 @@
     h5 {
         font-size: 16px;
         font-weight: $weight-bold;
-        font-family: 'PT Sans';
-        margin: 0px;
-    }
-
-    li {
-        margin-top: 15px;
-        text-indent: -35px;
-        padding-left: 35px;
-    }
-
-    ul {
-        margin: 20px 0px 0px 10px;
-        li {
-            font-size: 16px;
-            color: $gray140;
-            i {
-                color: $red120;
-                margin-right: 20px;
-            }
-        }
-    }
-    
-    ol {
-        margin: 20px 0px 0px 10px;
-        li {
-            span {
-                margin-right: 20px;
-                color: $red120;
-                font-weight: $weight-bold;
-                font-size: 16px;
-            }
-        }
+        font-family: 'PT Sans', sans-serif;
+        margin: 0;
     }
 
     section {

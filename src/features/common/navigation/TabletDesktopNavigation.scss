@@ -8,7 +8,7 @@
     justify-content: space-between;
 
     .top-menu-links {
-        a {
+        a, a:visited {
             margin-left: 40px;
             &.menu-item--is-active {
                 font-weight: bold;
