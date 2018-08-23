@@ -1,20 +1,12 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Panel } from '@ecster/ecster-components';
 import ResponsivePanel from '../../features/common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import balloonSvg from '../../common/images/SvgIconBalloon.svg';
-import * as actions from './redux/actions';
 import {getText as i18n} from "@ecster/ecster-i18n/lib/Translate";
 
 export class ContactUsPage extends Component {
-    static propTypes = {
-        customer: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
-    };
 
     render() {
         return (
@@ -54,18 +46,4 @@ export class ContactUsPage extends Component {
     }
 }
 
-/* istanbul ignore next */
-function mapStateToProps(state) {
-    return {
-        customer: state.customer,
-    };
-}
-
-/* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({ ...actions }, dispatch),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUsPage);
+export default ContactUsPage;

@@ -196,7 +196,7 @@
             "processing-message": "Vi behandlar din ansökan...",
 
             "denied-header": "Åh nej!",
-            "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 8-20 och helger 10-18.",
+            "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 9-20 och helger 10-18.",
 
             "approved-header": "Klart!",
             "approved-message": "Din kredithöjning till {{amount}} {{currency}} är godkänd och dina villkor har uppdaterats under kontoinformation."
