@@ -5,7 +5,7 @@ import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './SliderPanel.scss';
-import { InteractiveElement } from './../../common/interactive-element/InteractiveElement';
+import { InteractiveElement } from '../../common/interactive-element/InteractiveElement';
 
 export const SliderPanel = ({
     className,

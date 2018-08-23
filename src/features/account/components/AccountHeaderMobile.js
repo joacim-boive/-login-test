@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './AccountHeaderMobile.scss';
-import { EcsterCard } from './../../common/card/EcsterCard';
+import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountHeaderMobile = ({ account }) => {

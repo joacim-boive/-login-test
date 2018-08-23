@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Select, Option, Checkbox, Button, Input } from '@ecster/ecster-components';
 import './LoanEconomyPanel.scss';
-import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
 const validBoolean = str => str === 'yes' || str === 'no';
