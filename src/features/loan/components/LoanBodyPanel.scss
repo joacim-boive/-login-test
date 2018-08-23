@@ -3,12 +3,8 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-body-panel {
-    .panel {
-        padding: 15px 0px;
-    }
-
     @include mobile() {
-        margin: 0px -10px;
+        margin: 0 -10px;
     }
     .body-wrapper {
         margin-top: 20px;
@@ -27,10 +23,10 @@
             font-weight: $weight-bold;
             color: $green120;
             font-size: 44px;
-            margin: 35px 0px;
-            
+            margin: 35px 0;
+
             @include mobile() {
-                margin: 35px 0px 0px 0px;
+                margin: 35px 0 0 0;
                 font-size: 30px;
             }
         }
@@ -38,7 +34,7 @@
         .sliders {
             max-width: 800px;
             width: 100%;
-            margin: 50px auto 0px auto;
+            margin: 50px auto 0 auto;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -46,7 +42,7 @@
             justify-content: space-between;
 
             @include mobile() {
-                margin: 0px;
+                margin: 0;
             }
 
             .full-width {

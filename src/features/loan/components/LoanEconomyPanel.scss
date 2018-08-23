@@ -4,22 +4,22 @@
 
 .loan-economy-panel {
     @include mobile() {
-        .panel {
+        .ec-panel {
             border-left: none;
             border-right: none;
-            border-radius: 0px;
+            border-radius: 0;
             padding: 10px 15px;
         }
     }
 
-    h4 {
-        color: $green;
-        font-weight: $weight-semibold;
-
-        @include mobile() {
-            margin-top: 20px;
-        }
-    }
+    //h4 {
+    //    color: $green;
+    //    font-weight: $weight-semibold;
+    //
+    //    @include mobile() {
+    //        margin-top: 20px;
+    //    }
+    //}
 
     section {
         margin-top: 20px;
