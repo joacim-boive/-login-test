@@ -89,7 +89,7 @@ class ProfilePage extends Component {
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
-                    <Panel padding="47px 20px" sideBordersMobile>
+                    <Panel sideBordersMobile>
                         {dataReceived ? this.renderPanel(person) : <Spinner id="profile-spinner" isVisible isCenterX />}
                     </Panel>
                 </div>
