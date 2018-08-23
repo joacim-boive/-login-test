@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { UnorderedList } from '@ecster/ecster-components';
 import './SETerms.scss';
-import { formatAmount } from './../../../common/util/format-amount';
+import { formatAmount } from '../../../common/util/format-amount';
 
 export const SETermsWorks = ({ className, promissory }) => {
     const classes = classNames({
