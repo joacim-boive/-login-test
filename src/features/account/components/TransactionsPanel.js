@@ -4,8 +4,8 @@ import moment from 'moment';
 import classNames from 'classnames';
 import { Data, DataColumns, DataColumn, DataRow } from '@ecster/ecster-components/DataColumns';
 import './TransactionsPanel.scss';
-import { formatDateShort } from './../../../common/util/format-date';
-import { formatAmount } from './../../../common/util/format-amount';
+import { formatDateShort } from '../../../common/util/format-date';
+import { formatAmount } from '../../../common/util/format-amount';
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 

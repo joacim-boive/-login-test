@@ -6,7 +6,7 @@ import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPa
 import { AccountSummary } from './components/AccountSummary';
 import { AccountTransactions } from './components/AccountTransactions';
 import { TransactionsPanel } from './components/TransactionsPanel';
-import { ScrollPaginate } from './../common/scroll-paginate/ScrollPaginate';
+import { ScrollPaginate } from '../common/scroll-paginate/ScrollPaginate';
 import initialState from './redux/initialState';
 import { getAccountTransactions } from './redux/getAccountTransactions';
 import { getAccount } from './redux/getAccount';

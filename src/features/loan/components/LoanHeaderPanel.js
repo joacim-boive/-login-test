@@ -6,8 +6,8 @@ import { withMediaQueries } from '@ecster/ecster-components';
 import Panel from '@ecster/ecster-components/Panel/Panel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import './LoanHeaderPanel.scss';
-import { SvgIconLoanHeader } from './../../../common/images/SvgIconLoanHeader';
-import { SvgIconLoanHeaderMobile } from './../../../common/images/SvgIconLoanHeaderMobile';
+import { SvgIconLoanHeader } from '../../../common/images/SvgIconLoanHeader';
+import { SvgIconLoanHeaderMobile } from '../../../common/images/SvgIconLoanHeaderMobile';
 
 const LoanHeaderPanel = ({ className, media }) => {
     const classes = classNames({

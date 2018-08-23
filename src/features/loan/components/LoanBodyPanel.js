@@ -6,7 +6,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import Panel from '@ecster/ecster-components/Panel/Panel';
 import './LoanBodyPanel.scss';
 import { SliderPanel } from './SliderPanel';
-import { formatAmount } from './../../../common/util/format-amount';
+import { formatAmount } from '../../../common/util/format-amount';
 import { LoanCost } from './LoanCost';
 import SpecificationPanel from './SpecificationPanel';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';

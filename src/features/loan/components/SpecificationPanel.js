@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './SpecificationPanel.scss';
-import { formatAmount } from './../../../common/util/format-amount';
+import { formatAmount } from '../../../common/util/format-amount';
 
 const SpecificationPanel = ({ className, terms, promissory, loanAmount }) => {
     const classes = classNames({

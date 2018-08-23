@@ -5,8 +5,8 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import Panel from '@ecster/ecster-components/Panel/Panel';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LoanSummaryPanel.scss';
-import { formatAmount } from './../../../common/util/format-amount';
-import ExpandableBottomPanel from './../../common/expandable-bottom-panel/ExpandableBottomPanel';
+import { formatAmount } from '../../../common/util/format-amount';
+import ExpandableBottomPanel from '../../common/expandable-bottom-panel/ExpandableBottomPanel';
 import SpecificationPanel from './SpecificationPanel';
 
 const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {

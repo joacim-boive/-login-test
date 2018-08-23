@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import * as actions from './redux/actions';
-import AuthenticatedSubPageTemplate from './../common/templates/AuthenticatedSubPageTemplate';
+import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
 import LoanSummaryPanel from './components/LoanSummaryPanel';
 import LoanPersonalInformationPanel from './components/LoanPersonalInformationPanel';
 import { updateCustomerContactInfo } from '../customer/redux/updateCustomerContactInfo';
-import { getCustomer } from './../customer/redux/getCustomer';
+import { getCustomer } from '../customer/redux/getCustomer';
 import LoanEconomyPanel from './components/LoanEconomyPanel';
 import LoanGeneralInformationPanel from './components/LoanGeneralInformationPanel';
 
