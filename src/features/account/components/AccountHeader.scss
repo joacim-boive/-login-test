@@ -14,7 +14,9 @@
 
     &__card-icon {
         width: 166px;
+        min-width: 166px;
         margin-top: -40px;
+        margin-right: 20px;
     }
 
     &__panel {

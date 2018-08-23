@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 import LoginForm from '../authentication/LoginForm';
-import '../../common/util/handle-scaling';
+
 import loadFont from '../../common/util/load-font';
 
 loadFont('PT Sans');

@@ -28,30 +28,37 @@ export class RaiseCreditPage extends Component {
     };
 
     componentWillMount() {
-        this.props.getAccount();
+        const { getAccount } = this.props;
+        getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
+        const { updateAccountPending } = this.props;
+        const { applicationResult, limit } = nextProps.account;
+
         // rest operation is pending, next props contains application result
-        if (this.props.updateAccountPending && nextProps.account.applicationResult) {
+        if (updateAccountPending && applicationResult) {
             this.setState({
-                currentLimit: nextProps.account.applicationResult.limit,
-                showView: nextProps.account.applicationResult.status,
-                caseNumber: nextProps.account.applicationResult.caseNumber, // only for PENDING
+                currentLimit: applicationResult.limit,
+                showView: applicationResult.status,
+                caseNumber: applicationResult.caseNumber, // only for PENDING
             });
         } else {
-            this.setState({ currentLimit: nextProps.account.limit });
+            this.setState({ currentLimit: limit });
         }
     }
 
     onButtonClick = () => {
-        if (this.state.newLimit) {
+        const { newLimit } = this.state;
+        const { updateAccount } = this.props;
+
+        if (newLimit) {
             this.setState({ processing: true });
             // simulate a few seconds processing
             setTimeout(() => {
                 this.setState({ processingMessage: i18n('account.raise-credit.processing-message-uc') });
                 setTimeout(() => {
-                    this.props.updateAccount({ limit: this.state.newLimit });
+                    updateAccount({ limit: newLimit });
                 }, 1000);
             }, 2000);
         } else {
@@ -73,17 +80,26 @@ export class RaiseCreditPage extends Component {
         this.setState({ newLimit: value });
     };
 
-    backToOverviewLink = () => (
-        <p className="mt-8x">
-            <Link to="/account/overview">
-                <i className="icon-chevron-left" /> {i18n('account.raise-credit.back-to-overview')}
-            </Link>
-        </p>
-    );
-
     render() {
         const { account, locale } = this.props;
-        const { processing, processingMessage, applyMessage, applyClassName, showView } = this.state;
+        const {
+            processing,
+            processingMessage,
+            applyMessage,
+            applyClassName,
+            showView,
+            newLimit,
+            caseNumber,
+            currentLimit,
+        } = this.state;
+
+        const BackToOverviewLink = () => (
+            <p className="mt-8x">
+                <Link to="/account/overview">
+                    <i className="icon-chevron-left" /> {i18n('account.raise-credit.back-to-overview')}
+                </Link>
+            </p>
+        );
 
         return (
             <AuthenticatedSubPageTemplate
@@ -98,10 +114,10 @@ export class RaiseCreditPage extends Component {
                             <p>{i18n('account.raise-credit.intro')}</p>
                         </div>
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
-                            <div>
+                            <>
                                 <div className="flex-row mb-5x">
                                     <span>{i18n('account.raise-credit.current-credit-limit')}</span>
-                                    <strong>{formatAmount(this.state.currentLimit)}</strong>
+                                    <strong>{formatAmount(currentLimit)}</strong>
                                 </div>
                                 <div className="flex-row mb-5x">
                                     <span>{i18n('account.raise-credit.max-credit-limit')}</span>
@@ -111,7 +127,7 @@ export class RaiseCreditPage extends Component {
                                     <span>{i18n('account.raise-credit.new-credit-limit')}</span>
                                     <span>
                                         <Select
-                                            value={this.state.newLimit}
+                                            value={newLimit}
                                             onChange={e => this.onSelectChange(e.target.value)}
                                             defaultOption={i18n('account.raise-credit.select-amount')}
                                         >
@@ -119,7 +135,7 @@ export class RaiseCreditPage extends Component {
                                         </Select>
                                     </span>
                                 </div>
-                            </div>
+                            </>
                             <div>
                                 <strong>{i18n('account.raise-credit.terms')}</strong>
                                 <p>{i18n('account.raise-credit.terms-description')}</p>
@@ -159,10 +175,10 @@ export class RaiseCreditPage extends Component {
                         <h2>{i18n('account.raise-credit.approved-header')}</h2>
                         <p>
                             {i18n('account.raise-credit.approved-message', {
-                                value: formatAmount(this.state.currentLimit),
+                                value: formatAmount(currentLimit),
                             })}
                         </p>
-                        {this.backToOverviewLink()}
+                        <BackToOverviewLink />
                     </Panel>
                 )}
 
@@ -173,9 +189,9 @@ export class RaiseCreditPage extends Component {
                         {i18n('account.raise-credit.pending-message', {
                             returnObjects: true,
                             wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                            caseNumber: this.state.caseNumber,
+                            caseNumber,
                         })}
-                        {this.backToOverviewLink()}
+                        <BackToOverviewLink />
                     </Panel>
                 )}
 
@@ -187,7 +203,7 @@ export class RaiseCreditPage extends Component {
                             returnObjects: true,
                             wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
                         })}
-                        {this.backToOverviewLink()}
+                        <BackToOverviewLink />
                     </Panel>
                 )}
             </AuthenticatedSubPageTemplate>
@@ -201,11 +217,6 @@ RaiseCreditPage.propTypes = {
     getAccount: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
     updateAccountPending: PropTypes.bool.isRequired,
-    updateAccountError: PropTypes.object,
-};
-
-RaiseCreditPage.defaultProps = {
-    updateAccountError: undefined,
 };
 
 /* istanbul ignore next */

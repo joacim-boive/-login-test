@@ -25,8 +25,7 @@
         },
 
         "validation": {
-            "ssn":
-                "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
             "email": "Kolla att e-postadressen blev rätt och försök igen",
             "phone": "Kolla att numret blev rätt och försök igen"
         },
@@ -151,15 +150,13 @@
             "q6": "Annan anledning",
             "success": {
                 "header": "Konto avslutat",
-                "message":
-                    "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna. Välkommen tillbaka!",
+                "message": "Ditt konto är nu avslutat och kan inte längre användas för köp. När din eventuella skuld är slutbetald kommer kontot att försvinna. Välkommen tillbaka!",
                 "back": "Tillbaka"
             },
 
             "failure": {
                 "header": "Kontot kunde inte avslutas",
-                "message":
-                    "Ditt konto kunde inte avslutas. Ring oss på $t(general.phone-link-087014667) så hjälper vi dig!",
+                "message": "Ditt konto kunde inte avslutas. Ring oss på $t(general.phone-link-087014667) så hjälper vi dig!",
                 "back": "Tillbaka till kontoöversikt"
             },
 
@@ -187,11 +184,7 @@
 
             "terms": "Villkor",
             "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
-            "terms-items": [
-                "Du är över 18 år",
-                "Du har en fast inkomst",
-                "Du har inga betalningsanmärkningar"
-            ],
+            "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
@@ -389,8 +382,7 @@
         },
         "header": {
             "header": "Låna till stort eller smått?",
-            "body":
-                "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
+            "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
         },
         "body": {
             "header": "Ansök om privatlån",

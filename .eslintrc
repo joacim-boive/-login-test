@@ -1,10 +1,13 @@
 {
-    "extends": ["airbnb", "prettier", "prettier/react"],
-    "plugins": ["react", "prettier"],
+    "extends": ["airbnb", "prettier", "prettier/react", "plugin:jest/recommended"],
+    "plugins": ["react", "prettier", "jest"],
     "parser": "babel-eslint",
     "globals": {
         "document": true,
         "window": true
+    },
+    "env": {
+        "jest/globals": true
     },
     "settings": {
         "import/resolver": {
@@ -30,7 +33,7 @@
         "react/jsx-indent": ["warn", 4],
         "react/prefer-stateless-function": 0,
         "react/forbid-prop-types": 0,
-        "jsx-a11y/label-has-for": 0,
+        "jsx-a11y/label-has-for": 1,
         "import/prefer-default-export": 0,
         "import/no-extraneous-dependencies": 0,
         "import/imports-first": 0,

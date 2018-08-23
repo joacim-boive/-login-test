@@ -2,7 +2,7 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
-import { AccountHeader } from './../AccountHeader';
+import { AccountHeader } from '../AccountHeader';
 import accountsActiveJSON from '../__mocks__/accountsActive.json';
 
 Enzyme.configure({ adapter: new Adapter() });
