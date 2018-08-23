@@ -145,7 +145,7 @@ class LoginFormSE extends Component {
         }
 
         return (
-            <React.Fragment>
+            <>
                 {!isLoggingIn && (
                     <aside className="help">
                         <Button id="login-se-help-button" onClick={this.showHelp} link>
@@ -194,10 +194,9 @@ class LoginFormSE extends Component {
                     isVisible={!!isLoggingIn}
                     isDesktop={isDesktop}
                     isOnThisDevice={this.state.isOnThisDevice}
-                    // toggleState={this.toggleState}
                     cancelLogin={this.cancelLogin}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

@@ -3,7 +3,8 @@
         "standard": "WCAG2AA",
         "rules": [],
         "hideElements": "",
-        "ignore": [],
+
+        "ignore": ["WCAG2AA.Principle1.Guideline1_4.1_4_3"],
         "includeWarnings": true,
         "timeout": 5000,
         "threshold": 0
