@@ -48,7 +48,12 @@
         "error": {
             "oops": "Oops, nu blev det något fel!",
             "try-again-later": "Försök gärna igen om en liten stund."
-        }
+        },
+        "support-opening-hours": "Vi har öppet vardagar 9-20 och helger 10-18.",
+
+        "phone-link-087014667": "[link tel:087014667 '08&#8209;701&nbsp;46&nbsp;67']",
+        "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50']",
+        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30']"
     },
     "account": {
         "header": {
@@ -154,7 +159,7 @@
             "failure": {
                 "header": "Kontot kunde inte avslutas",
                 "message":
-                    "Ditt konto kunde inte avslutas. Ring oss på [link tel:087014667 '08-701 46 67'] så hjälper vi dig!",
+                    "Ditt konto kunde inte avslutas. Ring oss på $t(general.phone-link-087014667) så hjälper vi dig!",
                 "back": "Tillbaka till kontoöversikt"
             },
 
@@ -167,19 +172,16 @@
                 "info-text": [
                     "Här kan du själv avsluta ditt konto. Tänk på att du inte kan göra fler köp så snart kontot är avslutat. Om du har ett kort kopplat till ditt konto kommer det också att spärras i samband med att kontot avslutas",
                     "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
-                    "Har du ett tillgodo på kontot? Ring oss gärna på [link tel:087014667 '08-701 46 67'] så hjälper vi till."
+                    "Har du ett tillgodo på kontot? Ring oss gärna på $t(general.phone-link-087014667) så hjälper vi till."
                 ]
             }
         },
         "raise-credit": {
             "page-header": "Höj kredit",
             "header": "Utöka ditt köputrymme",
-            "intro": [
-                "Det kan vara bra med extra utrymme på ditt konto om något oväntat skulle ske.",
-                "Ansök om höjd kreditgräns och få svar direkt.",
-                "Ingen extra avgift eller ränta tillkommer."
-            ],
+            "intro": "Ansök om höjd kreditgräns och få svar direkt. Ingen extra avgift eller ränta tillkommer.",
             "current-credit-limit": "Nuvarande kreditgräns",
+            "max-credit-limit": "Maximal kreditgräns",
             "new-credit-limit": "Ny kreditgräns",
             "select-amount": "Välj belopp",
 
@@ -192,14 +194,28 @@
             ],
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
+            "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
             "apply": "Ansök",
             "processing-message": "Vi behandlar din ansökan...",
-
-            "denied-header": "Åh nej!",
-            "denied-message": "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på [link tel:08343550 '08-34 35 50']. Vi har öppet vardagar 9-20 och helger 10-18.",
+            "processing-message-uc": "Kontaktar UC...",
 
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{amount}} {{currency}} är godkänd och dina villkor har uppdaterats under kontoinformation."
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats under kontovillkor.",
+
+            "pending-header": "Vi behöver titta lite närmare på din ansökan",
+            "pending-message": [
+                "Vi kommer behöva lite fler uppgifter från dig för att kunna ta ett beslut. ",
+                "Ring oss på $t(general.phone-link-08343550) och uppge ärendenummer <strong>{{caseNumber}}</strong>",
+                "$t(general.support-opening-hours)"
+            ],
+
+            "denied-header": "Åh nej!",
+            "denied-message": [
+                "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på $t(general.phone-link-08343550).",
+                "$t(general.support-opening-hours)"
+            ],
+
+            "back-to-overview": "Tillbaka till översikten"
         }
     },
     "authentication": {},
@@ -310,8 +326,9 @@
             "residence-other": "Övrigt till bostad (renovering etc)",
             "vehicle": "Köp av fordon",
             "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",
-            "withdrawal": "Utbetalning"
-
+            "withdrawal": "Utbetalning",
+            "enter-bank": "Ange bank dit utbetalning ska ske",
+            "bank": "Bank"
         },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
@@ -416,6 +433,19 @@
             "fee": "Uppläggningsavgift {{amount}}",
             "admin-fee": "Administrativ avgift {{amount}}/mån",
             "finish": "Lös lånet när du vill"
+        },
+        "terms-apply": {
+            "header": "Så här ansöker du om lånet",
+            "how-to-list": [
+                "Fyll i ansökan",
+                "Vid godkÃ¤nd ansökan, signera skuldebrevet och skicka till oss",
+                "När vi fått skuldebrevet har du normalt sett pengarna på ditt konto inom ca tre bankdagar"
+            ],
+            "sub-header": "För att kunna ansöka måste du uppfylla följande",
+            "terms-list": [
+                "Du har en stadigvarande inkomst. Du får inte ha några betalningsanmärkningar.",
+                "Har du några frågor så kontakta oss på $t(general.phone-link-08330130)"
+            ]
         },
         "summary": {
             "header": "Låneansökan",

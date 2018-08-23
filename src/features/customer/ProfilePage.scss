@@ -1,4 +1,5 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-components/scss/MediaQuery";
 
 .customer-profile-page {
     $padding: 25px;
@@ -15,22 +16,47 @@
         border-bottom: 1px solid $gray40;
         font-size: 18px;
 
-        &:last-child {
-            padding-bottom: 0;
-            border: none;
+    }
+
+    .panel {
+        padding: 50px;
+        @include mobile() {
+            padding: 50px 20px;
         }
     }
 
     .summary-panel {
         align-items: flex-start;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
         img {
             margin-right: 20px;
+        }
+
+        @include mobile() {
+            flex-direction: column;
+
+            img {
+                margin: 0 auto 20px;
+            }
+            h2 {
+                font-size: 26px;
+                text-align: center;
+            }
         }
     }
 
     .profile-panel {
         .icon-info {
             margin-left: 6px;
+        }
+        section {
+            &:last-child {
+                padding-bottom: 0;
+                border: none;
+            }
         }
     }
 }

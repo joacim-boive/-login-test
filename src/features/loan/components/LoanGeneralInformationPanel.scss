@@ -7,7 +7,7 @@
         .panel {
             border-left: none;
             border-right: none;
-            border-radius: 0px;
+            border-radius: 0;
             padding: 10px 15px;
             margin-top: 20px;
         }
@@ -27,18 +27,18 @@
     }
 
     .clearing-field {
-        width: 150px;
+        width: 200px;
         margin-right: 10px;
     }
 
     .apply-button {
         width: 100%;
-        margin: 50px 0px 40px 0px;
+        margin: 50px 0 40px 0;
         display: flex;
         justify-content: center;
 
         @include mobile() {
-            margin: 25px 0px 15px 0px;
+            margin: 25px 0 15px 0;
         }
     }
 
@@ -60,14 +60,14 @@
                 padding-right: 30px;
 
                 @include mobile() {
-                    padding-right: 0px;
+                    padding-right: 0;
                 }
             }
             &:last-child {
                 padding-left: 30px;
 
                 @include mobile() {
-                    padding-left: 0px;
+                    padding-left: 0;
                 }
             }
         }
@@ -76,7 +76,7 @@
     .terms-section {
         display: flex;
         flex-direction: row;
-        margin: 50px 30px 0px;
+        margin: 50px 30px 0;
 
         .text {
             font-size: 14px;

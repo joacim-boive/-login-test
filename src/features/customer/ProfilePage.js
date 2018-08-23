@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Spinner } from '@ecster/ecster-components';
@@ -9,13 +8,13 @@ import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePho
 
 // TODO: Make an ecster-component of this one or Tooltip in Dashboard-X, use component hera and in DBX
 import Tooltip from 'react-tooltip'; // https://github.com/wwayne/react-tooltip
-import ResponsivePanel from './../common/responsive-panel/ResponsivePanel';
+import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
-import { getCustomer, updateCustomerContactInfo } from '../customer/redux/actions';
+import { getCustomer, updateCustomerContactInfo } from './redux/actions';
 import capWords from '../../common/cap-words';
 import { EditableInput } from '../common/editable-input/EditableInput';
 import { EditableInputPhone } from '../common/editable-input/EditableInputPhone';
-import profileSvg from '../../common/images/icn-profil.svg';
+import profileIcon from '../../common/images/icon-profile.svg';
 
 class ProfilePage extends Component {
     componentWillMount() {
@@ -25,8 +24,8 @@ class ProfilePage extends Component {
     renderPanel(person) {
         return (
             <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
-                <div key={1} className="summary-panel flex-row">
-                    <img src={profileSvg} alt="profile icon" />
+                <div key={1} className="summary-panel">
+                    <img src={profileIcon} alt="profile icon" />
                     <div>
                         <h2>{person.name}</h2>
                         <p>{i18n('customer.profile.info-text')}</p>
@@ -90,7 +89,7 @@ class ProfilePage extends Component {
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
-                    <Panel padding="50px">
+                    <Panel sideBordersMobile>
                         {dataReceived ? this.renderPanel(person) : <Spinner id="profile-spinner" isVisible isCenterX />}
                     </Panel>
                 </div>

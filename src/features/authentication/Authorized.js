@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getSession, setNextRoute, clearNextRoute } from './redux/actions';
-import history from './../../common/history';
+import history from '../../common/history';
 
 class Authorized extends React.Component {
     componentDidMount() {

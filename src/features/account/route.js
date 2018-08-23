@@ -19,7 +19,7 @@ export default {
         },
         { path: ':ref/customer/:id/terms', name: 'Account terms', component: AccountTerms },
         { path: ':ref/customer/:id/terminate', name: 'Terminate account', component: TerminateAccount },
-        { path: ':ref/raise-credit', name: 'Raise account credit', component: RaiseCreditPage },
+        { path: ':ref/customer/:id/raise-credit', name: 'Raise account credit', component: RaiseCreditPage },
         { path: ':ref/part-payments', name: 'Part payment page', component: PartPaymentPage },
     ],
 };

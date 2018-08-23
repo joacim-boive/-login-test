@@ -7,12 +7,12 @@ import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
 import { LatestTransactions } from './LatestTransactions';
-import ResponsivePanel from './../../common/responsive-panel/ResponsivePanel';
+import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
-import { getAccountTransactions } from './../redux/getAccountTransactions';
-import { getAccountBills } from './../redux/getAccountBills';
+import { getAccountTransactions } from '../redux/getAccountTransactions';
+import { getAccountBills } from '../redux/getAccountBills';
 import './AccountPanel.scss';
-import initialState from './../redux/initialState';
+import initialState from '../redux/initialState';
 import { AccountSalesPanel } from './AccountSalesPanel';
 
 const defaultFilter = initialState.accountTransactionsFilter;

@@ -7,20 +7,36 @@ import './ClearingNumberInput.scss';
 
 class ClearingNumberInput extends Component {
     state = {
-        label: '',
+        autoSelectedBank: '',
+        showBankInput: false,
+        myBank: '',
     };
 
     onChangeClearing = e => {
         const { target } = e;
+        const { onChange, onFoundBank } = this.props;
+
         let value = parseInt(target.value, 10);
+
         if (Number.isNaN(value)) value = 0;
 
         const bank = this.checkBank(value);
+
         if (bank) {
-            this.props.onFoundBank(bank);
-            this.setState({ label: bank });
+            onFoundBank(bank);
+            this.setState({ autoSelectedBank: bank, showBankInput: false });
+        } else if (target.value && target.value.length >= 4) {
+            this.setState({ autoSelectedBank: i18n('loan.general.enter-bank'), showBankInput: true });
+        } else if (!target.value) {
+            this.setState({ autoSelectedBank: '', showBankInput: false });
         }
-        this.props.onChange(e);
+
+        onChange(e);
+    };
+
+    onChangeBank = ({ target }) => {
+        const { onFoundBank } = this.props;
+        onFoundBank(target.value);
     };
 
     between = (x, min, max) => x >= min && x <= max;
@@ -41,6 +57,8 @@ class ClearingNumberInput extends Component {
 
     render() {
         const { className, ...rest } = this.props;
+        const { autoSelectedBank, showBankInput, myBank } = this.state;
+
         const classes = classNames({
             'clearing-number-input': true,
             [className]: className,
@@ -49,7 +67,17 @@ class ClearingNumberInput extends Component {
         return (
             <div className={classes}>
                 <Input {...rest} onChange={this.onChangeClearing} />
-                <div className="bank-label">{this.state.label}</div>
+                {autoSelectedBank && <div className="bank-label">{autoSelectedBank}</div>}
+                {showBankInput && (
+                    <Input
+                        onBlur={this.onChangeBank}
+                        value={myBank}
+                        placeholder={i18n('loan.general.bank')}
+                        onChange={({ target }) => {
+                            this.setState({ myBank: target.value });
+                        }}
+                    />
+                )}
             </div>
         );
     }
