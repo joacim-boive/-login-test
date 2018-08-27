@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
+import { LinkButton } from '@ecster/ecster-components';
+
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
@@ -12,11 +14,12 @@ export const NextPaymentPanel = ({ className, bills }) => {
         'next-payment-panel': true,
         [className]: className,
     });
+    const hasBills = bills.ocrNumber && bills.payment;
 
     let date = '';
     let amount = 0;
     let fullPayment = {};
-    const hasBills = bills.ocrNumber && bills.payment;
+
     if (hasBills) {
         [fullPayment] = bills.payment.options.filter(o => o.type === 'FULLPAYMENT');
         ({ amount } = fullPayment);
@@ -35,7 +38,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                         </Data>
                     </DataRow>
                     {hasBills ? (
-                        <React.Fragment>
+                        <>
                             <DataRow>
                                 <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
                                 <Data strong right>
@@ -48,15 +51,24 @@ export const NextPaymentPanel = ({ className, bills }) => {
                                     {formatDate(date)}
                                 </Data>
                             </DataRow>
-                        </React.Fragment>
+                            <DataRow>
+                                <Data right>
+                                    <LinkButton iconRight="icon-chevron-right" className="show-more" to="/invoice/monthly-invoices">
+                                        {i18n('account.next-payment.showDetails')}
+                                    </LinkButton>
+                                </Data>
+                            </DataRow>
+                        </>
                     ) : (
-                        <React.Fragment>
+                        <>
                             {i18n('account.next-payment.missing', {
                                 returnObjects: true,
                                 nr: bills.ocrNumber,
                                 wrapper: { tag: Data },
-                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
-                        </React.Fragment>
+                            }).map(obj => (
+                                <DataRow key={obj.key}>{obj}</DataRow>
+                            ))}
+                        </>
                     )}
                 </DataColumn>
             </DataColumns>

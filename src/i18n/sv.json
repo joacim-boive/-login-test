@@ -10,6 +10,7 @@
         "next": "Nästa",
         "previous": "Föregående",
         "ssn": "Personnummer",
+        "showMore": "Se fler",
 
         "address": {
             "name": "Namn",
@@ -67,7 +68,8 @@
                 "Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
                 "Bankgiro: 847-2425",
                 "OCR: {{nr}}"
-            ]
+            ],
+            "showDetails": "Detaljerad faktura"
         },
         "latest-transactions": {
             "header": "Senaste händelser",
