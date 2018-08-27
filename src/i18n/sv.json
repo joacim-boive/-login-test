@@ -10,8 +10,6 @@
         "next": "Nästa",
         "previous": "Föregående",
         "ssn": "Personnummer",
-        "showMore": "Se fler",
-
         "address": {
             "name": "Namn",
             "address": "Adress",
@@ -69,7 +67,7 @@
                 "Bankgiro: 847-2425",
                 "OCR: {{nr}}"
             ],
-            "showDetails": "Detaljerad faktura"
+            "show-details": "Detaljerad faktura"
         },
         "latest-transactions": {
             "header": "Senaste händelser",

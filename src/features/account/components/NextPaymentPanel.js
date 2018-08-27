@@ -54,7 +54,7 @@ export const NextPaymentPanel = ({ className, bills }) => {
                             <DataRow>
                                 <Data right>
                                     <LinkButton iconRight="icon-chevron-right" className="show-more" to="/invoice/monthly-invoices">
-                                        {i18n('account.next-payment.showDetails')}
+                                        {i18n('account.next-payment.show-details')}
                                     </LinkButton>
                                 </Data>
                             </DataRow>

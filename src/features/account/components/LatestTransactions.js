@@ -58,7 +58,7 @@ export const LatestTransactions = ({ className, transactions, account, user, ...
                                     className={`show-more`}
                                     to={`/account/${account.reference}/customer/${user.id}/transactions`}
                                 >
-                                    {i18n('general.showMore')}
+                                    {i18n('account.transactions.show-more')}
                                 </LinkButton>
                             </Data>
                         </DataRow>
