@@ -2,45 +2,65 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+
+import debounce from 'lodash/debounce';
+
 import './ScrollPaginate.scss';
 
 export class ScrollPaginate extends Component {
     state = {
-        bottom: false,
         showMoreButton: false,
     };
 
+    hasNewData = true;
+
+    isInitialLoad = false;
+
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll);
+
+        this.setState({ showMoreButton: !document.scrollingElement });
+    }
+
+    componentDidUpdate(prevProps) {
+        const { children } = this.props;
+
+        this.hasNewData = prevProps.children.props.transactions.length < children.props.transactions.length;
+        return null;
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onScroll);
     }
 
-    onScroll = e => {
-        if (e.target.scrollingElement) {
-            // normal browsers
-            const el = e.target.scrollingElement;
-            const bottom = el.scrollHeight - el.scrollTop < el.clientHeight + this.props.offset;
-            if (bottom && !this.state.bottom) {
-                // Trigger once when entering trigger threshold
-                this.props.onScrollBottom();
+    // eslint-disable-next-line consistent-return
+    onScroll = debounce(e => {
+        const { offset, onScrollBottom } = this.props;
+
+        const el = e.target.scrollingElement;
+        const bottom = el.scrollHeight - el.scrollTop < el.clientHeight + offset;
+
+        if (bottom) {
+            // Trigger once when entering trigger threshold
+            if (!this.hasNewData && this.isInitialLoad) {
+                return window.removeEventListener('scroll', this.onScroll);
+            } else {
+                this.isInitialLoad = true;
             }
-            this.setState({ bottom });
-        } else {
-            // IE
-            this.setState({ showMoreButton: true });
+            onScrollBottom();
         }
-    };
+    }, 300);
 
     render() {
+        const { children, onScrollBottom } = this.props;
+        const { showMoreButton } = this.state;
+
         return (
             <div ref={ref => (this.container = ref)} className="scroll-paginate">
-                {this.props.children}
-                {this.state.showMoreButton && (
+                {children}
+                {showMoreButton && (
                     <ButtonGroup align="center">
-                        <Button round outline small onClick={this.props.onScrollBottom}>
+                        <Button round outline small onClick={onScrollBottom}>
                             {i18n('account.transactions.show-more')}
                         </Button>
                     </ButtonGroup>
