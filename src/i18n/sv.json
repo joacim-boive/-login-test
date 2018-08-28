@@ -205,6 +205,20 @@
             ],
 
             "back-to-overview": "Tillbaka till översikten"
+        },
+        "no-account": {
+            "header": "Du verkar inte ha ett konto hos oss?",
+            "info": [
+                "För att kunna använda våra inloggade tjänster behöver du ha ett konto hos Ecster. Det får du när du köpt något på delbetalning hos någon av våra samarbetspartnes. Eller när du skaffar <strong>Ecster-kortet</strong>.",
+                "Med Ecster-kortet kan du dela upp betalningar i efterhand och ta del av förmånliga erbjudanden."
+            ],
+            "additional-info": "Har du redan en avbetalning eller ett lån hos oss och har frågor?",
+            "contact-info": [
+                "Ring oss gärna så hjälper vi dig",
+                "Telefon: $t(general.phone-link-08330130)",
+                "Vardagar: 9-18"
+            ],
+            "button-text": "Läs mer och ansök"
         }
     },
     "authentication": {},

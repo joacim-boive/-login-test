@@ -4,3 +4,4 @@ export { default as AccountTerms } from './terms/AccountTermsPage';
 export { default as TerminateAccount } from './terminate/TerminateAccount';
 export { default as RaiseCreditPage } from './raise-credit/RaiseCreditPage';
 export { default as PartPaymentPage } from './part-payment/PartPaymentPage';
+export { default as NoAccountsPanel } from './no-account/NoAccountsPanel';
