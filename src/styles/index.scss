@@ -5,6 +5,8 @@
 @import "~@ecster/ecster-styles/scss/v2/include/paddings";
 @import "~@ecster/ecster-styles/scss/v2/include/margins";
 @import "~@ecster/ecster-styles/scss/v2/include/color-classes";
+@import "~@ecster/ecster-components/Button/Button.css";
+
 // fonts incl icons
 @import '../features/home/style';
 @import '../features/common/style';
@@ -13,7 +15,6 @@
 @import '../features/customer/style';
 @import '../features/loan/style';
 @import '../features/invoice/style';
-@import "~@ecster/ecster-components/Button/Button.css";
 @import '../features/card/style';
 
 $border-color: #e1dbd1;

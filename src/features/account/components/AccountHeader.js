@@ -4,9 +4,10 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountHeader.scss';
 import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
+import { formatAccount } from '../../../common/util/format-account';
 
 export const AccountHeader = ({ account }) => {
-    const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+    const accountNumber = formatAccount(account.accountNumber);
     const amountLeft = account.limit - account.used;
 
     return (
