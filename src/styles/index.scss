@@ -173,7 +173,7 @@ strong, .strong {
 
 a[href^="tel:"] {
     &, &:focus, &:active, &:visited {
-        font-weight: 700;
+        font-weight: $weight-bold;
         color: $color-text;
         text-decoration: none;
     }
