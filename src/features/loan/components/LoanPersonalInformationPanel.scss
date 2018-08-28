@@ -4,14 +4,11 @@
 
 .loan-personal-information-panel {
     @include mobile() {
-        .panel {
+        .ec-panel {
             border-left: none;
             border-right: none;
-        }
-
-        .expander {
-            padding: 15px;
-            border-radius: 0px;
+            border-radius: 0;
+            padding: 10px 15px;
         }
     }
 

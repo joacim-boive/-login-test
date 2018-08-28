@@ -10,19 +10,12 @@
         display: inline-block;
     }
 
-    section {
+    section.sub-panel {
         padding: $padding 0;
         margin: 0;
         border-bottom: 1px solid $gray40;
         font-size: 18px;
 
-    }
-
-    .panel {
-        padding: 50px;
-        @include mobile() {
-            padding: 50px 20px;
-        }
     }
 
     .summary-panel {
@@ -52,7 +45,7 @@
         .icon-info {
             margin-left: 6px;
         }
-        section {
+        section.sub-panel {
             &:last-child {
                 padding-bottom: 0;
                 border: none;
