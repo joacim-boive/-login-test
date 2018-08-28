@@ -16,7 +16,7 @@ class TerminateAccountIntro extends React.Component {
                         returnObjects: true,
                         wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
                     })}
-                    <ButtonGroup>
+                    <ButtonGroup align="center">
                         <LinkButton outline round to={url}>
                             {i18n('account.terminate.terminate-account')}
                         </LinkButton>

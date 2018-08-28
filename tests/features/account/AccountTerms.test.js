@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AccountTerms } from '../../../src/features/account/terms/AccountTerms';
+import { AccountTermsPage } from '../../../src/features/account/terms/AccountTermsPage';
 
-describe('account/AccountTerms', () => {
+describe('account/AccountTermsPage', () => {
   it('renders node with correct class name', () => {
     const props = {
       account: {},
       actions: {},
     };
     const renderedComponent = shallow(
-      <AccountTerms {...props} />
+      <AccountTermsPage {...props} />
     );
 
     expect(

@@ -33,7 +33,7 @@ class ProfilePage extends Component {
                     </div>
                 </div>
                 <div key={2} className="profile-panel">
-                    <section>
+                    <section className="sub-panel">
                         <label>
                             {i18n('general.address.address')}{' '}
                             <i data-tip data-for="address-tooltip" className="icon-info e-green" />
@@ -56,7 +56,7 @@ class ProfilePage extends Component {
                         </div>
                     </section>
 
-                    <section>
+                    <section className="sub-panel">
                         <EditableInputPhone
                             value={person.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
@@ -68,7 +68,7 @@ class ProfilePage extends Component {
                         />
                     </section>
 
-                    <section>
+                    <section className="sub-panel">
                         <EditableInput
                             type="email"
                             value={person.contactInformation.email}

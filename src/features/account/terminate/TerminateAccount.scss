@@ -3,10 +3,6 @@
 
 .account-terminate-account {
 
-    &.panel {
-        padding: 30px;
-    }
-
     h1 {
         color: $gray140;
         @include mobile() {
