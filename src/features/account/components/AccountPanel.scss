@@ -2,21 +2,16 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
 .account-panel {
-    padding: 10px;
-    background: white;
-    border: 1px solid $beige40;
-    border-radius: 6px;
-    min-height: 150px;
-    
+
     @include mobile() {
-        padding: 0px;
+        padding: 0;
     }
 
     &__body {
         padding: 20px;
 
         @include mobile() {
-            padding: 0px;
+            padding: 0;
         }
     }
 }

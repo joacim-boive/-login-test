@@ -5,12 +5,14 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
+import NoAccountsPanel from './no-account/NoAccountsPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
         accountsActive: PropTypes.array.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
+        hasZeroAccounts: PropTypes.boolean,
     };
 
     componentWillMount() {
@@ -28,13 +30,17 @@ export class OverviewPage extends Component {
     }
 
     render() {
-        const { accountsActive, user } = this.props;
+        const { accountsActive, user, hasZeroAccounts } = this.props;
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
-                    {accountsActive.map(account => (
-                        <AccountPanel key={account.reference} account={account} user={user} />
-                    ))}
+                    {hasZeroAccounts ? (
+                        <NoAccountsPanel />
+                    ) : (
+                        accountsActive.map(account => (
+                            <AccountPanel key={account.reference} account={account} user={user} />
+                        ))
+                    )}
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -44,8 +50,8 @@ export class OverviewPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        accounts: state.account.accounts,
         accountsActive: state.account.accountsActive,
+        hasZeroAccounts: state.account.hasZeroAccounts,
         user: state.authentication.person,
     };
 }

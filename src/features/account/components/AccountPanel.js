@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { TabletOrDesktop, Mobile } from '@ecster/ecster-components';
+import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
@@ -40,7 +40,7 @@ class AccountPanel extends Component {
         const noCard = account.numberOfCards === 0;
 
         return (
-            <section className={classes}>
+            <Panel padding="12px" sideBordersMobile className={classes}>
                 <TabletOrDesktop>
                     <AccountHeader account={account} />
                 </TabletOrDesktop>
@@ -60,7 +60,7 @@ class AccountPanel extends Component {
                     </ResponsivePanel>
                     <AccountLinksPanel account={account} user={user} />
                 </ResponsivePanel>
-            </section>
+            </Panel>
         );
     }
 }
