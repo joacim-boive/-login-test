@@ -31,9 +31,13 @@ export class AccountTransactionsOverview extends Component {
     }
 
     onScrollBottom = () => {
-        const { getTransactions, filter } = this.props;
+        const { getTransactions, filter, transactions } = this.props;
 
-        getTransactions({ ...filter, maxRecords: filter.maxRecords + filter.stepSize });
+        getTransactions({
+            ...filter,
+            maxRecords: filter.maxRecords + filter.stepSize,
+            offset: transactions.length || 0,
+        });
     };
 
     render() {

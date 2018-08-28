@@ -12,9 +12,10 @@ export class ScrollPaginate extends Component {
         showMoreButton: false,
     };
 
+    // Using class fields instead of state/props to not do unnecessary re-renders in react
     hasNewData = true;
 
-    isInitialLoad = false;
+    isInitialLoad = true;
 
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll);
@@ -33,7 +34,6 @@ export class ScrollPaginate extends Component {
         window.removeEventListener('scroll', this.onScroll);
     }
 
-    // eslint-disable-next-line consistent-return
     onScroll = debounce(e => {
         const { offset, onScrollBottom } = this.props;
 
@@ -42,13 +42,16 @@ export class ScrollPaginate extends Component {
 
         if (bottom) {
             // Trigger once when entering trigger threshold
-            if (!this.hasNewData && this.isInitialLoad) {
+            if (!this.hasNewData && !this.isInitialLoad) {
+                // No more data available, remove the listener.
                 return window.removeEventListener('scroll', this.onScroll);
-            } else {
-                this.isInitialLoad = true;
             }
+
+            this.isInitialLoad = false;
             onScrollBottom();
         }
+
+        return true;
     }, 300);
 
     render() {
