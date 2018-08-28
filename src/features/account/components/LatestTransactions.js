@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
+import { LinkButton } from '@ecster/ecster-components';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
-export const LatestTransactions = ({ className, transactions, ...rest }) => {
+export const LatestTransactions = ({ className, transactions, account, user, ...rest }) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
@@ -40,12 +41,27 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
                             </DataRow>
                         ))
                     ) : (
-                        <React.Fragment>
+                        <>
                             {i18n('account.latest-transactions.missing', {
                                 returnObjects: true,
                                 wrapper: { tag: Data },
-                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
-                        </React.Fragment>
+                            }).map(obj => (
+                                <DataRow key={obj.key}>{obj}</DataRow>
+                            ))}
+                        </>
+                    )}
+                    {hasTransactions && (
+                        <DataRow>
+                            <Data right>
+                                <LinkButton
+                                    iconRight={`icon-chevron-right`}
+                                    className={`show-more`}
+                                    to={`/account/${account.reference}/customer/${user.id}/transactions`}
+                                >
+                                    {i18n('account.transactions.show-more')}
+                                </LinkButton>
+                            </Data>
+                        </DataRow>
                     )}
                 </DataColumn>
             </DataColumns>
@@ -56,6 +72,7 @@ export const LatestTransactions = ({ className, transactions, ...rest }) => {
 LatestTransactions.propTypes = {
     className: PropTypes.string,
     transactions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    account: PropTypes.shape().isRequired,
 };
 
 LatestTransactions.defaultProps = {

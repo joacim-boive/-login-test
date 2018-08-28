@@ -1,5 +1,4 @@
-@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+@import '~@ecster/ecster-styles/scss/v2/theme/theme';
 
 .latest-transactions {
     align-items: center;
@@ -7,7 +6,7 @@
     h4 {
         font-weight: $weight-semibold;
         color: $gray140;
-        margin: 0px 0px 10px 0px;
+        margin: 0 0 10px 0;
         text-align: left
     }
 
