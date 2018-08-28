@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile } from '@ecster/ecster-components';
@@ -11,6 +12,7 @@ import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
 import { getAccountTransactions } from '../redux/getAccountTransactions';
 import { getAccountBills } from '../redux/getAccountBills';
+
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
 import { AccountSalesPanel } from './AccountSalesPanel';
@@ -19,8 +21,10 @@ const defaultFilter = initialState.accountTransactionsFilter;
 
 class AccountPanel extends Component {
     componentDidMount() {
-        this.props.getAccountTransactions(this.props.user.id, this.props.account.reference, defaultFilter);
-        this.props.getAccountBills(this.props.user.id, this.props.account.reference);
+        const { getAccountTransactions, getAccountBills, user, account } = this.props;
+
+        getAccountTransactions(user.id, account.reference, defaultFilter);
+        getAccountBills(user.id, account.reference);
     }
 
     render() {
@@ -49,7 +53,7 @@ class AccountPanel extends Component {
                             <AccountSalesPanel />
                         ) : (
                             <TabletOrDesktop>
-                                <LatestTransactions transactions={transactions} />
+                                <LatestTransactions transactions={transactions} account={account} user={user} />
                             </TabletOrDesktop>
                         )}
                         <NextPaymentPanel bills={bills} />

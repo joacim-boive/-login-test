@@ -78,7 +78,6 @@ class LoginFormSE extends Component {
 
         this.prevState = { ...this.state };
         this.setState(nextState, () => {
-
             if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
                 createSessionConfig.ssn = ssn;
             }
@@ -146,7 +145,7 @@ class LoginFormSE extends Component {
         }
 
         return (
-            <React.Fragment>
+            <>
                 {!isLoggingIn && (
                     <aside className="help">
                         <Button id="login-se-help-button" onClick={this.showHelp} link>
@@ -195,10 +194,9 @@ class LoginFormSE extends Component {
                     isVisible={!!isLoggingIn}
                     isDesktop={isDesktop}
                     isOnThisDevice={this.state.isOnThisDevice}
-                    // toggleState={this.toggleState}
                     cancelLogin={this.cancelLogin}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

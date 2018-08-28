@@ -1,27 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '@ecster/ecster-components/Logo';
+import cloudinary from '../../../common/images/Lazyload/cloudinary';
+
 import MessagePanel from '../MessagePanel';
 
-// eslint-disable-next-line no-unused-vars
-import respimg from 'lazysizes/plugins/respimg/ls.respimg.min';
-// eslint-disable-next-line no-unused-vars
-import bgset from 'lazysizes/plugins/bgset/ls.bgset.min'; // Used for backgrounds.
-// eslint-disable-next-line no-unused-vars
-import rias from 'lazysizes/plugins/rias/ls.rias.min'; // required to calculate the width and send to CDN
-// eslint-disable-next-line no-unused-vars
-import lazySizes from 'lazysizes';
-
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const LoginPage = props => {
     const { children } = props;
 
+    /*
+    Temporary fix for getting the correct background image size request.
+    data-widths isn't respected for some reason in this context.
+    Works for the IMG-tag.
+     */
+    window.lazySizesConfig.rias.widths = [768, 1536, 1024, 2048, 1920, 3840];
     return (
-        <React.Fragment>
+        <>
             <article
                 className="home-login-page lazyload"
-                data-bgset="//res.cloudinary.com/ecster/f_auto,o_40,q_auto:good,dpr_auto,{scaling}/v1/backgrounds/login.jpg"
+                data-bgset={`${cloudinary.defaults},o_40${cloudinary.scaling}/v1/backgrounds/login.jpg`}
                 data-absurl="false"
                 data-sizes="auto"
+                data-widths="768, 1536, 1024, 2048, 1920, 3840"
             >
                 <header className="home-login-page__logo">
                     <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
@@ -31,7 +37,7 @@ const LoginPage = props => {
                 {children}
             </article>
             <MessagePanel />
-        </React.Fragment>
+        </>
     );
 };
 

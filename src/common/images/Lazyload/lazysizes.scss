@@ -1,0 +1,16 @@
+/*
+These are the different states of a lazyloaded image.
+.lazyload - Initial state - Everything with this class should be lazyloaded
+.lazyloading - The object is being loaded but isn't done yet.
+.lazyloaded - The object has finished loading.
+ */
+
+
+.lazyload,
+.lazyloading {
+    opacity: 0;
+}
+.lazyloaded {
+    opacity: 1;
+    transition: opacity 300ms;
+}

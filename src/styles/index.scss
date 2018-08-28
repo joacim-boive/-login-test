@@ -159,19 +159,27 @@ strong, .strong {
 // TODO: make a wrapper component in ecster-components, sync with or use the one from Dashboard
 .ecster-tooltip {
     max-width: 240px;
-    opacity: 1!important;
+    opacity: 1 !important;
     font-size: 16px;
     padding: 15px;
 
     &.border {
-        border-color: $gray60!important;
+        border-color: $gray60 !important;
         box-shadow: 0 0 6px $gray40;
 
         &.place-bottom:before,
         &.place-top:before,
         &.place-right:before,
         &.place-left:before {
-            border-bottom-color: $gray80!important;
+            border-bottom-color: $gray80 !important;
         }
+    }
+}
+
+a[href^="tel:"] {
+    &, &:focus, &:active, &:visited {
+        font-weight: $weight-bold;
+        color: $color-text;
+        text-decoration: none;
     }
 }

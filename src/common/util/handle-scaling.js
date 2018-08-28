@@ -1,15 +1,23 @@
-document.addEventListener('lazybeforeunveil', () => {
+/**
+ * Handles different cases of when a resource is lazyloaded.
+ * The below is only intended for background images as in the LoginpageTemplate
+ */
+document.addEventListener('lazybeforeunveil', event => {
+    if (event.target.localName === 'img') return;
+
     const wrapper = document.querySelector('article.lazyload,article.lazyloading,article.lazyloaded');
     const { bgset } = wrapper.dataset;
-    const defaultScaling = 'c_scale,w_{width}';
+    const defaultScaling = 'c_scale';
 
     const set = scaling => {
-        wrapper.dataset.bgset = bgset.replace(/{scaling}/i, scaling);
+        wrapper.dataset.bgset = bgset.replace(/{cloudinary.scaling}/i, scaling);
     };
 
     const widthChange = mq => {
         if (mq.matches) {
-            set(`c_fill,g_auto,h_${window.innerHeight},w_${window.innerWidth}`);
+            // set(`c_fill,g_auto,h_${window.innerHeight},w_${window.innerWidth}`);
+            // Currently it isn't possible to set the size of the image according to window as this will spawn too many variations of images
+            set(`c_fill,g_auto`);
         } else {
             set(defaultScaling);
         }
