@@ -6,6 +6,8 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Message } from '@ecster/ecster-components';
 
 import { formatAmount } from '../../../common/util/format-amount';
+import { formatAccount } from '../../../common/util/format-account';
+import { formatNumber } from '../../../common/util/format-number';
 
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import TerminateAccountIntro from '../terminate/TerminateAccountIntro';
@@ -30,7 +32,7 @@ InfoItem.defaultProps = {
     description: '',
 };
 
-export class AccountTerms extends Component {
+export class AccountTermsPage extends Component {
     componentWillMount() {
         this.props.getAccountTerms();
     }
@@ -51,7 +53,7 @@ export class AccountTerms extends Component {
                     ) : (
                         <div>
                             <InfoItem
-                                value={terms.accountNumber}
+                                value={formatAccount(terms.accountNumber)}
                                 label={i18n('account.terms.account-number')}
                                 description={i18n('account.terms.account-number-description')}
                             />
@@ -66,13 +68,13 @@ export class AccountTerms extends Component {
                                 description={i18n('account.terms.total-credit-description')}
                             />
                             <InfoItem
-                                value={`${terms.interestRate}%`}
+                                value={`${formatNumber(terms.interestRate, 2)}%`}
                                 label={i18n('account.terms.interest')}
                                 description={i18n('account.terms.interest-description')}
                             />
                             {terms.depositRate > 0 && (
                                 <InfoItem
-                                    value={`${terms.depositRate}%`}
+                                    value={`${formatNumber(terms.depositRate, 2)}%`}
                                     label={i18n('account.terms.deposit-rate')}
                                     description={
                                         <span>
@@ -100,28 +102,15 @@ export class AccountTerms extends Component {
                                 description={i18n('account.terms.extra-card-fee-description')}
                             />
                             <InfoItem
-                                value={i18n('account.terms.atm-withdrawal-fee-value', {
-                                    percentValue: `${terms.withdrawalFeePercent}%`,
-                                    feeValue: formatAmount(terms.withdrawalFee),
-                                })}
-                                label={i18n('account.terms.atm-withdrawal-fee')}
-                                description={i18n('account.terms.atm-withdrawal-fee-description')}
-                            />
-                            <InfoItem
                                 value={i18n('account.terms.withdrawal-fee-value', {
-                                    percentValue: `${terms.withdrawalFeePercent}%`,
+                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
                                     feeValue: formatAmount(terms.withdrawalFee),
                                 })}
                                 label={i18n('account.terms.withdrawal-fee')}
                                 description={i18n('account.terms.withdrawal-fee-description')}
                             />
                             <InfoItem
-                                value={`${terms.withdrawalFeeForeignCurrencyRate}%`}
-                                label={i18n('account.terms.withdrawal-fee-foreign-currency')}
-                                description={i18n('account.terms.withdrawal-fee-foreign-currency-description')}
-                            />
-                            <InfoItem
-                                value={`${terms.currencyExchangeFeeRate}%`}
+                                value={`${formatNumber(terms.currencyExchangeFeeRate, 2)}%`}
                                 label={i18n('account.terms.exchange-fee')}
                                 description={i18n('account.terms.exchange-fee-description')}
                             />
@@ -172,7 +161,7 @@ export class AccountTerms extends Component {
     }
 }
 
-AccountTerms.propTypes = {
+AccountTermsPage.propTypes = {
     // ajax action and its async states
     getAccountTerms: PropTypes.func.isRequired,
     getAccountTermsPending: PropTypes.bool.isRequired,
@@ -184,7 +173,7 @@ AccountTerms.propTypes = {
     // actions: PropTypes.object.isRequired,
 };
 
-AccountTerms.defaultProps = {
+AccountTermsPage.defaultProps = {
     getAccountTermsError: null,
 };
 
@@ -210,4 +199,4 @@ function mapDispatchToProps(dispatch, state) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AccountTerms);
+)(AccountTermsPage);
