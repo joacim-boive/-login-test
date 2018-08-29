@@ -4,7 +4,7 @@
 .account-header {
     width: 100%;
     background-color: $green10;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
     align-items: center;
 
     display: flex;
@@ -24,14 +24,14 @@
         flex: 0 1 100%;
         justify-content: space-between;
     }
-    
+
     &__panel-margin {
         margin-left: 20px;
     }
 
     &__card-number {
         h3 {
-            font-family: 'Campton';
+            font-family: 'Campton', sans-serif;
             font-size: 30px;
             color: $green120;
             font-weight: $weight-semibold;
@@ -46,7 +46,7 @@
 
     &__amount {
         div {
-            font-family: 'Campton';
+            font-family: 'Campton', sans-serif;
             font-size: 40px;
             font-weight: $weight-book;
             text-align: right;
@@ -56,7 +56,7 @@
             font-size: 14px;
             text-align: right;
             color: $gray120;
-            margin: 0px;
+            margin: 0;
         }
     }
 }

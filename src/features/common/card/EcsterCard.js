@@ -12,7 +12,7 @@ export const EcsterCard = ({ className, account, ...rest }) => {
     });
 
     if (!(account && account.numberOfCards && parseInt(account.numberOfCards, 0) > 0)) {
-        // we shouldn't show this component if no cards exists
+        // we shouldn't show this component if no card exists
         return null;
     }
 
