@@ -28,7 +28,7 @@ class AccountPanel extends Component {
     }
 
     render() {
-        const { className, account, bills, transactions, user } = this.props;
+        const { className, account, bills, transactions, totalTransactions, user } = this.props;
 
         const classes = classNames({
             'account-panel': true,
@@ -53,7 +53,12 @@ class AccountPanel extends Component {
                             <AccountSalesPanel />
                         ) : (
                             <TabletOrDesktop>
-                                <LatestTransactions transactions={transactions} account={account} user={user} />
+                                <LatestTransactions
+                                    transactions={transactions}
+                                    totalTransactions={totalTransactions}
+                                    account={account}
+                                    user={user}
+                                />
                             </TabletOrDesktop>
                         )}
                         <NextPaymentPanel bills={bills} />
@@ -69,6 +74,7 @@ AccountPanel.propTypes = {
     className: PropTypes.string,
     account: PropTypes.shape().isRequired,
     transactions: PropTypes.array,
+    totalTransactions: PropTypes.number.isRequired,
     bills: PropTypes.shape(),
     getAccountTransactions: PropTypes.func.isRequired,
     getAccountBills: PropTypes.func.isRequired,
@@ -86,6 +92,7 @@ function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
     return {
         transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
+        totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };
 }

@@ -8,7 +8,7 @@ import { LinkButton } from '@ecster/ecster-components';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
-export const LatestTransactions = ({ className, transactions, account, user, ...rest }) => {
+export const LatestTransactions = ({ className, transactions, totalTransactions, account, user, ...rest }) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
@@ -45,17 +45,15 @@ export const LatestTransactions = ({ className, transactions, account, user, ...
                             {i18n('account.latest-transactions.missing', {
                                 returnObjects: true,
                                 wrapper: { tag: Data },
-                            }).map(obj => (
-                                <DataRow key={obj.key}>{obj}</DataRow>
-                            ))}
+                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
                         </>
                     )}
-                    {hasTransactions && (
+                    {totalTransactions > transactions.length && (
                         <DataRow>
                             <Data right>
                                 <LinkButton
-                                    iconRight={`icon-chevron-right`}
-                                    className={`show-more`}
+                                    iconRight="icon-chevron-right"
+                                    className="show-more"
                                     to={`/account/${account.reference}/customer/${user.id}/transactions`}
                                 >
                                     {i18n('account.transactions.show-more')}
@@ -72,6 +70,7 @@ export const LatestTransactions = ({ className, transactions, account, user, ...
 LatestTransactions.propTypes = {
     className: PropTypes.string,
     transactions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    totalTransactions: PropTypes.number.isRequired,
     account: PropTypes.shape().isRequired,
 };
 
