@@ -4,30 +4,36 @@ import PropTypes from 'prop-types';
 import { Button, Input } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
 
-const i18n = keySuffix => getText(`home.login.SE.desktop.mbid-other-device.${keySuffix}`);
+const i18n = keySuffix => getText(`home.login.SE.desktop.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
     componentDidMount() {
-        this.inputRef && this.inputRef.getInputEl().focus();
+        if (this.inputRef) this.inputRef.getInputEl().focus();
     }
 
     onKeyUp = ({ which }) => {
         if (which === 13) {
-            this.startLogin();
             this.inputRef.getInputEl().blur(); // force field validation
+            this.startLogin();
         }
     };
 
     startLogin = () => {
-        if (!this.props.ssn) {
-            this.inputRef.getInputEl().focus();
-            this.inputRef.getInputEl().blur(); // force field validation
+        const { ssn, startLogin } = this.props;
+
+        if (ssn) {
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+        } else {
+            this.inputRef.getInputEl().focus(); // focus field, helps user understand it must be filled in
         }
-        this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+    };
+
+    startBidLogin = () => {
+        this.props.startLogin({ type: 'BANKID', isOnThisDevice: true });
     };
 
     render() {
-        const { isVisible, ssn, validateSsn, onSsnChange, onSsnValidation, toggleState } = this.props;
+        const { isVisible, ssn, validateSsn, onSsnChange, onSsnValidation } = this.props;
 
         return (
             isVisible && (
@@ -46,7 +52,6 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                         onKeyUp={this.onKeyUp}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
-                        required
                         validationMessage={getText('general.validation.ssn')}
                         type="tel"
                     />
@@ -55,8 +60,8 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                         {i18n('login-button')}
                     </Button>
 
-                    <Button onClick={() => toggleState('isOnThisDevice')} link name="to-bid-button">
-                        {i18n(`to-bid-button`)}
+                    <Button onClick={this.startBidLogin} link name="login-button-bid">
+                        {i18n('login-button-bid')}
                     </Button>
                 </div>
             )
@@ -71,7 +76,6 @@ MobileBankIdOtherDeviceForDesktopDevice.propTypes = {
     validateSsn: PropTypes.func.isRequired,
     onSsnChange: PropTypes.func.isRequired,
     onSsnValidation: PropTypes.func.isRequired,
-    toggleState: PropTypes.func.isRequired,
 };
 
 export default MobileBankIdOtherDeviceForDesktopDevice;

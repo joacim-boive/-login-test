@@ -250,24 +250,17 @@
         "login": {
             "SE": {
                 "desktop": {
-                    "bid-this-device": {
-                        "header": "Logga in med BankID på fil",
-                        "login-button": "Logga in",
-                        "to-mbid-button": "Tillbaka"
-                    },
-                    "mbid-other-device": {
-                        "header": "Logga in",
-                        "ssn-label": "Personnummer",
-                        "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "login-button": "Mobilt BankID",
-                        "to-bid-button": "Logga in med BankID"
-                    }
+                    "header": "Logga in",
+                    "ssn-label": "Personnummer",
+                    "ssn-placeholder": "ÅÅMMDD-XXXX",
+                    "login-button": "Mobilt BankID",
+                    "login-button-bid": "Logga in med BankID på fil"
                 },
                 "touch": {
                     "mbid-other-device": {
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
-                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-placeholder": "ÅÅMMDD-XXXX",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },

@@ -8,22 +8,24 @@ const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySu
 
 class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     componentDidMount() {
-        this.inputRef && this.inputRef.getInputEl().focus();
+        if (this.inputRef) this.inputRef.getInputEl().focus();
     }
 
     onKeyUp = ({ which }) => {
         if (which === 13) {
-            this.startLogin();
             this.inputRef.getInputEl().blur(); // force field validation
+            this.startLogin();
         }
     };
 
     startLogin = () => {
-        if (!this.props.ssn) {
-            this.inputRef.getInputEl().focus();
-            this.inputRef.getInputEl().blur(); // force field validation
+        const { ssn, startLogin } = this.props;
+
+        if (ssn) {
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+        } else {
+            this.inputRef.getInputEl().focus(); // focus field, helps user understand it must be filled in
         }
-        this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
     };
 
     render() {
@@ -46,7 +48,6 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         onKeyUp={this.onKeyUp}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
-                        required
                         validationMessage={getText('general.validation.ssn')}
                         type="tel"
                     />
