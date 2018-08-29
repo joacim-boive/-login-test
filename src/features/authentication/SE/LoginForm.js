@@ -14,7 +14,6 @@ import LoginHelp from './LoginHelp';
 import MobileBankIdOtherDeviceForTouchDevice from './MobileBankIdOtherDeviceForTouchDevice';
 import MobileBankIdOtherDeviceForDesktopDevice from './MobileBankIdOtherDeviceForDesktopDevice';
 import MobileBankIdThisDevice from './MobileBankIdThisDevice';
-import BankIdThisDevice from './BankIdThisDevice';
 
 class LoginFormSE extends Component {
     state = {
@@ -162,12 +161,6 @@ class LoginFormSE extends Component {
                         validateSsn={validateSsn}
                         onSsnChange={this.onSsnChange}
                         onSsnValidation={this.onSsnValidation}
-                        toggleState={this.toggleState}
-                    />
-
-                    <BankIdThisDevice
-                        isVisible={isOnThisDevice && !isLoggingIn}
-                        startLogin={this.startLogin}
                         toggleState={this.toggleState}
                     />
                 </DesktopDevice>
