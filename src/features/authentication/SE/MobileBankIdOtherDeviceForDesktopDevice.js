@@ -19,12 +19,15 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
     };
 
     startLogin = () => {
-        if (this.props.ssn) {
-            this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+        const { ssn, startLogin } = this.props;
+
+        if (ssn) {
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
         } else {
-            this.inputRef.getInputEl().focus();
-            this.inputRef.getInputEl().blur(); // force field validation
-            this.inputRef.getInputEl().focus(); // then focus field
+            const input = this.inputRef.getInputEl();
+            input.focus();
+            input.blur(); // force field validation
+            input.focus(); // then focus field again to help user save a click
         }
     };
 

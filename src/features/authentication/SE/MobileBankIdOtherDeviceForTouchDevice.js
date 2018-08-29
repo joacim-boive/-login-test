@@ -19,11 +19,16 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
     };
 
     startLogin = () => {
-        if (!this.props.ssn) {
-            this.inputRef.getInputEl().focus();
-            this.inputRef.getInputEl().blur(); // force field validation
+        const { ssn, startLogin } = this.props;
+
+        if (ssn) {
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+        } else {
+            const input = this.inputRef.getInputEl();
+            input.focus();
+            input.blur(); // force field validation
+            input.focus(); // then focus field again to help user save a click
         }
-        this.props.startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
     };
 
     render() {
@@ -46,7 +51,6 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         onKeyUp={this.onKeyUp}
                         onValidation={onSsnValidation}
                         validator={validateSsn}
-                        required
                         validationMessage={getText('general.validation.ssn')}
                         type="tel"
                     />
