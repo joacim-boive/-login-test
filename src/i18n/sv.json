@@ -24,7 +24,7 @@
         },
 
         "validation": {
-            "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmdd-xxxx)",
             "email": "Kolla att e-postadressen blev rätt och försök igen",
             "phone": "Kolla att numret blev rätt och försök igen"
         },
@@ -89,7 +89,7 @@
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp",
-            "show-more": "Visa fler"
+            "show-more": "Se fler"
         },
         "sales-panel": {
             "header": "Ett kort för alla dina inköp ",
