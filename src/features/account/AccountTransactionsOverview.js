@@ -23,15 +23,21 @@ export class AccountTransactionsOverview extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions } = this.props;
-        if (nextProps.account.accountNumber !== this.props.account.accountNumber) {
+        const { getTransactions, account } = this.props;
+
+        if (nextProps.account.accountNumber !== account.accountNumber) {
             getTransactions(defaultFilter);
         }
     }
 
     onScrollBottom = () => {
-        const { getTransactions, filter } = this.props;
-        getTransactions({ ...filter, maxRecords: filter.maxRecords + filter.stepSize });
+        const { getTransactions, filter, transactions } = this.props;
+
+        getTransactions({
+            ...filter,
+            maxRecords: filter.maxRecords + filter.stepSize,
+            offset: transactions.length || 0,
+        });
     };
 
     render() {
