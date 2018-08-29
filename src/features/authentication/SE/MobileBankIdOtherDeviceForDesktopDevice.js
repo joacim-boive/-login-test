@@ -8,13 +8,13 @@ const i18n = keySuffix => getText(`home.login.SE.desktop.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
     componentDidMount() {
-        this.inputRef && this.inputRef.getInputEl().focus();
+        if (this.inputRef) this.inputRef.getInputEl().focus();
     }
 
     onKeyUp = ({ which }) => {
         if (which === 13) {
-            this.startLogin();
             this.inputRef.getInputEl().blur(); // force field validation
+            this.startLogin();
         }
     };
 
@@ -24,10 +24,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
         if (ssn) {
             startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
         } else {
-            const input = this.inputRef.getInputEl();
-            input.focus();
-            input.blur(); // force field validation
-            input.focus(); // then focus field again to help user save a click
+            this.inputRef.getInputEl().focus(); // focus field, helps user understand it must be filled in
         }
     };
 
