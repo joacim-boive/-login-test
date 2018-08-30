@@ -110,29 +110,36 @@ input {
 }
 
 h1, h2, h3, h4, h5 {
-    margin: 0 0 20px;
+    margin: 0;
+    color: $green120;
+    font-weight: $weight-bold;
 }
 
 h1 {
     font-size: 36px;
-    font-weight: 600;
+    margin-bottom: 36px;
 }
 
 h2 {
     font-size: 30px;
-    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 h3 {
     font-size: 26px;
-    font-weight: 600;
-    color: $green120;
+    margin-bottom: 26px;
 }
 
 h4 {
     font-size: 20px;
-    font-weight: 600;
-    color: $green120;
+    margin-bottom: 20px;
+    font-weight: $weight-semibold;
+}
+
+h5 {
+    font-size: 18px;
+    margin-bottom: 18px;
+    font-weight: $weight-semibold;
 }
 
 p {
