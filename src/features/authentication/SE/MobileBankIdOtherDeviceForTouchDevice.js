@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Input } from '@ecster/ecster-components';
+import { Button, ButtonGroup, Input } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
 
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
@@ -52,9 +52,11 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         type="tel"
                     />
 
-                    <Button onClick={this.startLogin} round name="login-button">
-                        {i18n('login-button')}
-                    </Button>
+                    <ButtonGroup align="center">
+                        <Button onClick={this.startLogin} round name="login-button">
+                            {i18n('login-button')}
+                        </Button>
+                    </ButtonGroup>
 
                     <Button
                         onClick={() => toggleState('isOnThisDevice')}

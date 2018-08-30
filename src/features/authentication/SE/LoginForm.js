@@ -135,7 +135,7 @@ class LoginFormSE extends Component {
         const { isOnThisDevice, isDesktop, isLoggingIn, ssn } = this.state;
 
         if (isLoggingIn) {
-            if (loginProgress.startURL && loginProgress.pollTime > 0 && this.state.isOnThisDevice) {
+            if (loginProgress.startURL && loginProgress.pollTime > 0 && isOnThisDevice) {
                 this.startBankIdApp(loginProgress.startURL);
                 this.pollBankID();
             } else if (loginProgress.status === 'IN_PROGRESS') {
@@ -188,6 +188,7 @@ class LoginFormSE extends Component {
                     isDesktop={isDesktop}
                     isOnThisDevice={this.state.isOnThisDevice}
                     cancelLogin={this.cancelLogin}
+                    startURL={loginProgress.startURL}
                 />
             </>
         );
