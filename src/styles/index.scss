@@ -112,7 +112,7 @@ input {
 h1, h2, h3, h4, h5 {
     margin: 0;
     color: $green120;
-    font-weight: 700;
+    font-weight: $weight-bold;
 }
 
 h1 {
@@ -133,13 +133,13 @@ h3 {
 h4 {
     font-size: 20px;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: $weight-semibold;
 }
 
 h5 {
     font-size: 18px;
     margin-bottom: 18px;
-    font-weight: 600;
+    font-weight: $weight-semibold;
 }
 
 p {
