@@ -1,9 +1,17 @@
-@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-styles/scss/v2/theme/theme";
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
 .account-terms-panel {
-
+    margin-top: 40px;
     margin-bottom: 30px;
+
+    h1{
+        color: $gray140;
+        font-weight: $weight-bold;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
     .info-item {
         padding: 15px;
         border-bottom: 1px solid $gray40;
@@ -28,7 +36,7 @@
         .value {
             $button-adjust: 12px;
             width: 30%;
-            font-weight: bold;
+            font-weight: $weight-bold;
             padding-left: $button-adjust;
             .button {
                 position: relative;
