@@ -72,7 +72,6 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
-            debugger;
             return {
                 ...state,
                 accountTransactions: concatIfExists(state.accountTransactions, action.referenceId, action.transactions),
