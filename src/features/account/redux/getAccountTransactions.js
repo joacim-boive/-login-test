@@ -15,6 +15,19 @@ const applyAccountTransactionsFilter = filter => ({
     filter,
 });
 
+/**
+ * Concatenate the array values into the source object key/value store if previous key with values exists.
+ * Otherwise just add an array to the key.
+ * @param source {object} Actual key value store, not a copy.
+ * @param key {string} Key to placement in the object
+ * @param values {array} Array of values to store
+ * @returns {{}} Returns a new object that hasn't mutated anything.
+ */
+const concatIfExists = (source, key, values = []) => ({
+    ...source,
+    [key]: source[key] ? source[key].concat(values) : values,
+});
+
 export const getAccountTransactions = (customerId, referenceId, filter) => async (dispatch, getState) => {
     await dispatch(applyAccountTransactionsFilter(filter));
 
@@ -59,13 +72,16 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
+            debugger;
             return {
                 ...state,
-                accountTransactions: { ...state.accountTransactions, [action.referenceId]: action.transactions },
-                accountReservedTransactions: {
-                    ...state.accountReservedTransactions,
-                    [action.referenceId]: action.reservedTransactions,
-                },
+                accountTransactions: concatIfExists(state.accountTransactions, action.referenceId, action.transactions),
+                accountReservedTransactions: concatIfExists(
+                    state.accountReservedTransactions,
+                    action.referenceId,
+                    action.reservedTransactions
+                ),
+
                 getAccountTransactionsPending: false,
                 getAccountTransactionsError: null,
             };

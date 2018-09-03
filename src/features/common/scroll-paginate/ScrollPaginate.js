@@ -18,9 +18,13 @@ export class ScrollPaginate extends Component {
     isInitialLoad = true;
 
     componentDidMount() {
-        window.addEventListener('scroll', this.onScroll);
+        const isUpdateOnScroll = document.scrollingElement;
 
-        this.setState({ showMoreButton: !document.scrollingElement });
+        if (isUpdateOnScroll) {
+            window.addEventListener('scroll', this.onScroll);
+        }
+
+        this.setState({ showMoreButton: !isUpdateOnScroll });
     }
 
     componentDidUpdate(prevProps) {
