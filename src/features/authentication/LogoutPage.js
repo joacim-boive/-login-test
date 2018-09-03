@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeSession as removeSessionStorage } from '../../common/asyncAjax';
+import { removeSession as clearSessionStorage } from '../../common/asyncAjax';
 import { removeSession, deleteSession } from './redux/actions';
 
 export class LogoutPage extends Component {
@@ -18,7 +18,7 @@ export class LogoutPage extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
-            removeSessionStorage();
+            clearSessionStorage();
             this.props.removeSession(); // remove login state
         }
     }
