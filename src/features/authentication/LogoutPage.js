@@ -17,13 +17,9 @@ export class LogoutPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps: this.props: ', this.props.authentication.deleteSessionPending);
-        console.log('componentWillReceiveProps: nextProps: ', nextProps.authentication.deleteSessionPending);
-
         if (this.props.authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
-            console.log('Server session deleted, removing local stuff..');
             removeSessionStorage();
-            this.props.removeSession();
+            this.props.removeSession(); // remove login state
         }
     }
 
