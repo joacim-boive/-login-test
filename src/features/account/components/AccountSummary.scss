@@ -41,12 +41,12 @@
             justify-content: center;
 
 
-            &.first {
+            &.first { // wrapping divs added, can't use first-child
                 @include mobile() {
                     padding-top: 0;
                 }
             }
-            &.last {
+            &.last { // wrapping divs added, can't use last-child
                 @include mobile() {
                     padding-bottom: 0;
                 }
