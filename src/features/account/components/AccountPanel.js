@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { TabletOrDesktop, Mobile } from '@ecster/ecster-components';
+import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
@@ -28,7 +28,7 @@ class AccountPanel extends Component {
     }
 
     render() {
-        const { className, account, bills, transactions, user } = this.props;
+        const { className, account, bills, transactions, totalTransactions, user } = this.props;
 
         const classes = classNames({
             'account-panel': true,
@@ -40,7 +40,7 @@ class AccountPanel extends Component {
         const noCard = account.numberOfCards === 0;
 
         return (
-            <section className={classes}>
+            <Panel padding="12px" sideBordersMobile className={classes}>
                 <TabletOrDesktop>
                     <AccountHeader account={account} />
                 </TabletOrDesktop>
@@ -53,14 +53,19 @@ class AccountPanel extends Component {
                             <AccountSalesPanel />
                         ) : (
                             <TabletOrDesktop>
-                                <LatestTransactions transactions={transactions} account={account} user={user} />
+                                <LatestTransactions
+                                    transactions={transactions}
+                                    totalTransactions={totalTransactions}
+                                    account={account}
+                                    user={user}
+                                />
                             </TabletOrDesktop>
                         )}
                         <NextPaymentPanel bills={bills} />
                     </ResponsivePanel>
                     <AccountLinksPanel account={account} user={user} />
                 </ResponsivePanel>
-            </section>
+            </Panel>
         );
     }
 }
@@ -69,6 +74,7 @@ AccountPanel.propTypes = {
     className: PropTypes.string,
     account: PropTypes.shape().isRequired,
     transactions: PropTypes.array,
+    totalTransactions: PropTypes.number.isRequired,
     bills: PropTypes.shape(),
     getAccountTransactions: PropTypes.func.isRequired,
     getAccountBills: PropTypes.func.isRequired,
@@ -86,6 +92,7 @@ function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
     return {
         transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
+        totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };
 }

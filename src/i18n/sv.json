@@ -24,7 +24,7 @@
         },
 
         "validation": {
-            "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmddxxxx)",
+            "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmdd-xxxx)",
             "email": "Kolla att e-postadressen blev rätt och försök igen",
             "phone": "Kolla att numret blev rätt och försök igen"
         },
@@ -89,7 +89,7 @@
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp",
-            "show-more": "Visa fler"
+            "show-more": "Se fler"
         },
         "sales-panel": {
             "header": "Ett kort för alla dina inköp ",
@@ -205,6 +205,20 @@
             ],
 
             "back-to-overview": "Tillbaka till översikten"
+        },
+        "no-account": {
+            "header": "Du verkar inte ha ett konto hos oss?",
+            "info": [
+                "För att kunna använda våra inloggade tjänster behöver du ha ett konto hos Ecster. Det får du när du köpt något på delbetalning hos någon av våra samarbetspartnes. Eller när du skaffar <strong>Ecster-kortet</strong>.",
+                "Med Ecster-kortet kan du dela upp betalningar i efterhand och ta del av förmånliga erbjudanden."
+            ],
+            "additional-info": "Har du redan en avbetalning eller ett lån hos oss och har frågor?",
+            "contact-info": [
+                "Ring oss gärna så hjälper vi dig",
+                "Telefon: $t(general.phone-link-08330130)",
+                "Vardagar: 9-18"
+            ],
+            "button-text": "Läs mer och ansök"
         }
     },
     "authentication": {},
@@ -236,24 +250,17 @@
         "login": {
             "SE": {
                 "desktop": {
-                    "bid-this-device": {
-                        "header": "Logga in med BankID på fil",
-                        "login-button": "Logga in",
-                        "to-mbid-button": "Tillbaka"
-                    },
-                    "mbid-other-device": {
-                        "header": "Logga in",
-                        "ssn-label": "Personnummer",
-                        "ssn-placeholder": "ÅÅMMDDNNNN",
-                        "login-button": "Mobilt BankID",
-                        "to-bid-button": "Logga in med BankID"
-                    }
+                    "header": "Logga in",
+                    "ssn-label": "Personnummer",
+                    "ssn-placeholder": "ÅÅMMDD-XXXX",
+                    "login-button": "Mobilt BankID",
+                    "login-button-bid": "Logga in med BankID på fil"
                 },
                 "touch": {
                     "mbid-other-device": {
                         "header": "Logga in med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
-                        "ssn-placeholder": "ÅÅMMDDNNNN",
+                        "ssn-placeholder": "ÅÅMMDD-XXXX",
                         "login-button": "Logga in",
                         "to-mbid-this-device-button": "Tillbaka"
                     },
@@ -264,6 +271,10 @@
                     }
                 },
                 "in-progress": {
+                    "manual": {
+                        "info": "Om inte BankID öppnas, klicka här",
+                        "button":"Starta BankID"
+                    },
                     "desktop": {
                         "this-device": {
                             "header": "Öppna BankID",
