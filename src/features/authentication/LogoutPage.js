@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './redux/actions';
-import { removeSession as removeStorageSession } from '../../common/asyncAjax';
-import { removeSession } from './redux/removeSession';
+import { removeSession as removeSessionStorage } from '../../common/asyncAjax';
+import { removeSession, deleteSession } from './redux/actions';
 
 export class LogoutPage extends Component {
     static propTypes = {
         authentication: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
         removeSession: PropTypes.func.isRequired,
+        deleteSession: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        removeStorageSession();
-        this.props.removeSession();
+        props.deleteSession(props.authentication.loginStatus.sessionKey);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps: this.props: ', this.props.authentication.deleteSessionPending);
+        console.log('componentWillReceiveProps: nextProps: ', nextProps.authentication.deleteSessionPending);
+
+        if (this.props.authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
+            console.log('Server session deleted, removing local stuff..');
+            removeSessionStorage();
+            this.props.removeSession();
+        }
     }
 
     render() {
@@ -34,9 +42,12 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
         removeSession: () => dispatch(removeSession()),
+        deleteSession: sessionKey => dispatch(deleteSession(sessionKey)),
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutPage);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LogoutPage);

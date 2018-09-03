@@ -4,13 +4,13 @@ import { loadByKey } from '../../../common/sessionStoredState';
 export const loginStatus = {
     sessionKey: undefined,
     isLoggedIn: false,
-}
+};
 
 export const loginProgress = {
     status: undefined,
     pollTime: 0,
     startURL: undefined,
-}
+};
 
 const initialState = loadByKey('authentication') || {
     // generated

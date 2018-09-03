@@ -9,7 +9,7 @@ import { del } from '../../../common/asyncAjax';
 
 import { DELETE_SESSION_URL } from './urls';
 
-export const deleteSession = sessionKey => async (dispatch) => {
+export const deleteSession = sessionKey => async dispatch => {
     dispatch({
         type: AUTHENTICATION_DELETE_SESSION_BEGIN,
     });
