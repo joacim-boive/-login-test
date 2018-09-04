@@ -14,7 +14,7 @@ export default class LoginInProgress extends Component {
         if (nextProps.isVisible && !this.state.showButton) {
             setTimeout(() => {
                 this.setState({ showButton: true });
-            }, 4000);
+            }, 5000);
         }
     }
 
