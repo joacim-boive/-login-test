@@ -1,12 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Button, Spinner, LinkButton } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 // import Overlay from '../../common/Overlay';
 
 export default class LoginInProgress extends Component {
+    state = {
+        showButton: false,
+    };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isVisible && !this.state.showButton) {
+            setTimeout(() => {
+                this.setState({ showButton: true });
+            }, 4000);
+        }
+    }
+
+    onCancel = () => {
+        this.setState({ showButton: false });
+        this.props.cancelLogin();
+    };
+
     render() {
-        const { isVisible, isDesktop, isOnThisDevice, cancelLogin, startURL } = this.props;
+        const { isVisible, isDesktop, isOnThisDevice, startURL } = this.props;
+        const { showButton } = this.state;
+
+        const buttonClasses = classNames({
+            'start-manually': true,
+            hidden: !isOnThisDevice || !showButton,
+        });
 
         const whichDevice = isOnThisDevice ? 'this-device' : 'other-device';
         const deviceType = isDesktop ? 'desktop' : 'touch';
@@ -26,18 +50,16 @@ export default class LoginInProgress extends Component {
                     {thisBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible isCenterX />
 
-                    <Button link onClick={cancelLogin} name="cancel-login-button">
+                    <Button link onClick={this.onCancel} name="cancel-login-button">
                         {i18n('general.cancel')}
                     </Button>
 
-                    {isOnThisDevice && (
-                        <>
-                            <p className="mt-8x mb-4x">{i18n('home.login.SE.in-progress.manual.info')}</p>
-                            <LinkButton href={startURL} outline round>
-                                {i18n('home.login.SE.in-progress.manual.button')}
-                            </LinkButton>
-                        </>
-                    )}
+                    <div className={buttonClasses}>
+                        <p className="mt-8x mb-4x">{i18n('home.login.SE.in-progress.manual.info')}</p>
+                        <LinkButton href={startURL} outline round>
+                            {i18n('home.login.SE.in-progress.manual.button')}
+                        </LinkButton>
+                    </div>
                 </div>
             )
         );
@@ -53,7 +75,6 @@ LoginInProgress.propTypes = {
     startURL: PropTypes.string,
 };
 
-LoginInProgress.defauiltProps = {
+LoginInProgress.defaultProps = {
     startURL: undefined,
-    isOnThisDevice: false,
 };
