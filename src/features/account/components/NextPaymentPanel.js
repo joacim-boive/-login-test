@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { LinkButton, TabletOrDesktop, Mobile } from '@ecster/ecster-components';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
-import { LinkButton } from '@ecster/ecster-components';
 
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
@@ -28,46 +29,69 @@ export const NextPaymentPanel = ({ className, bills }) => {
 
     const month = formatDateMonth(date);
 
+    const monthlyInvoiceRoute = '/invoice/monthly-invoices';
+
+    const TheHeader = () => (
+        <DataRow>
+            <Data stronger left>
+                <h4>{i18n('account.next-payment.header')}</h4>
+            </Data>
+        </DataRow>
+    );
+
+    const TheData = () => (
+        <>
+            <DataRow>
+                <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
+                <Data strong right>
+                    {formatAmount(amount)}
+                </Data>
+            </DataRow>
+            <DataRow>
+                <Data left>{i18n('account.next-payment.deadline')}</Data>
+                <Data strong right>
+                    {formatDate(date)}
+                </Data>
+            </DataRow>
+        </>
+    );
+
+    const TheLink = () => (
+        <DataRow>
+            <Data right>
+                <LinkButton iconRight="icon-chevron-right" className="show-more" to={monthlyInvoiceRoute}>
+                    {i18n('account.next-payment.show-details')}
+                </LinkButton>
+            </Data>
+        </DataRow>
+    );
+
     return (
         <div className={classes}>
             <DataColumns>
                 <DataColumn>
-                    <DataRow>
-                        <Data stronger left>
-                            <h4>{i18n('account.next-payment.header')}</h4>
-                        </Data>
-                    </DataRow>
                     {hasBills ? (
                         <>
-                            <DataRow>
-                                <Data left>{`${i18n('account.next-payment.pay-in')} ${month}`}</Data>
-                                <Data strong right>
-                                    {formatAmount(amount)}
-                                </Data>
-                            </DataRow>
-                            <DataRow>
-                                <Data left>{i18n('account.next-payment.deadline')}</Data>
-                                <Data strong right>
-                                    {formatDate(date)}
-                                </Data>
-                            </DataRow>
-                            <DataRow>
-                                <Data right>
-                                    <LinkButton iconRight="icon-chevron-right" className="show-more" to="/invoice/monthly-invoices">
-                                        {i18n('account.next-payment.show-details')}
-                                    </LinkButton>
-                                </Data>
-                            </DataRow>
+                            <Mobile>
+                                <Link to={monthlyInvoiceRoute} className="link-no-style">
+                                    <TheHeader />
+                                    <TheData />
+                                </Link>
+                            </Mobile>
+                            <TabletOrDesktop>
+                                <TheHeader />
+                                <TheData />
+                                <TheLink />
+                            </TabletOrDesktop>
                         </>
                     ) : (
                         <>
+                            <TheHeader />
                             {i18n('account.next-payment.missing', {
                                 returnObjects: true,
                                 nr: bills.ocrNumber,
                                 wrapper: { tag: Data },
-                            }).map(obj => (
-                                <DataRow key={obj.key}>{obj}</DataRow>
-                            ))}
+                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
                         </>
                     )}
                 </DataColumn>
