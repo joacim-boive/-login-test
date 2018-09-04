@@ -55,7 +55,7 @@
     },
     "account": {
         "header": {
-            "left-to-buy": "kvar att handla för"
+            "left-to-buy": "Kvar att handla för"
         },
         "overview-header": "Översikt",
         "next-payment": {
