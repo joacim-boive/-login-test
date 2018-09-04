@@ -3,18 +3,23 @@
 
 .account-header-mobile {
     width: 100%;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
     align-items: center;
+    position: relative;
 
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
     justify-content: space-between;
 
-    padding: 15px 20px 0px;
+    padding: 15px 20px 0;
 
     &__card-icon {
-        margin-top: -30px;
+        position: absolute;
+        top: -30px;
+        right: 0;
+        height: 80px;
+        width: 120px;
 
         img {
             width: 112px;
@@ -30,23 +35,23 @@
 
     &__card-number {
         h3 {
-            font-family: 'Campton';
+            font-family: 'Campton', sans-serif;
             font-size: 24px;
             color: #488e6e;
             font-weight: $weight-semibold;
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
         div {
             color: #858585;
             font-size: 12px;
         }
     }
-    
+
     &__amount {
-        margin: 30px 0px;
+        margin: 30px 0;
 
         div {
-            font-family: 'Campton';
+            font-family: 'Campton', sans-serif;
             font-size: 30px;
             font-weight: $weight-book;
             text-align: center;
@@ -56,7 +61,7 @@
             font-size: 14px;
             text-align: center;
             color: #5c5c5c;
-            margin: 0px;
+            margin: 0;
         }
     }
 }
