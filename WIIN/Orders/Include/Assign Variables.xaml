@@ -1,0 +1,119 @@
+<Activity mc:Ignorable="sads sap" x:Class="Handelsbanken.WIIN.InstallerWorkflow" this:InstallerWorkflow.ToLib="E:\App\Web\" this:InstallerWorkflow.WIINSystem="NETX"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:hwa="clr-namespace:Handelsbanken.WIIN.Activities;assembly=Handelsbanken.WIIN.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=System.Core"
+ xmlns:s1="clr-namespace:System;assembly=mscorlib"
+ xmlns:s2="clr-namespace:System;assembly=System"
+ xmlns:s3="clr-namespace:System;assembly=System.ServiceModel"
+ xmlns:s4="clr-namespace:System;assembly=System.ComponentModel.Composition"
+ xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:si="clr-namespace:System.IO;assembly=WindowsBase"
+ xmlns:si1="clr-namespace:System.IO;assembly=mscorlib"
+ xmlns:si2="clr-namespace:System.IO;assembly=System.Core"
+ xmlns:si3="clr-namespace:System.IO;assembly=System"
+ xmlns:si4="clr-namespace:System.IO;assembly=System.ServiceModel"
+ xmlns:this="clr-namespace:Handelsbanken.WIIN"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">  
+  <x:Members>
+    <x:Property Name="Runtime" Type="InArgument(hwa:Runtime)" />
+    <x:Property Name="Envir" Type="InArgument(x:String)" />
+    <x:Property Name="FromLib" Type="InArgument(x:String)" />
+    <x:Property Name="ToLib" Type="InArgument(x:String)" />
+    <x:Property Name="WIINSystem" Type="InArgument(x:String)" />
+    <x:Property Name="ComputerName" Type="InArgument(x:String)" />
+    <x:Property Name="Identities" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="ApplicationName" Type="InArgument(x:String)" />
+    <x:Property Name="WebSiteName" Type="InArgument(x:String)" />
+    <x:Property Name="Name" Type="InArgument(x:String)" />
+    <x:Property Name="AppPoolName" Type="InArgument(x:String)" />
+    <x:Property Name="Version" Type="InArgument(x:String)" />
+    <x:Property Name="ApplicationDeployPath" Type="InArgument(x:String)" />
+    <x:Property Name="ApplicationLogPath" Type="InArgument(x:String)" />
+    <x:Property Name="LogPathRoot" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>326,948</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="286,908">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Assign all variables" sap:VirtualizedContainerService.HintSize="264,784">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Name]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">%NameOfTheApplication%</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[WebSiteName]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">%WebSiteName%</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[LogPathRoot]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">E:\AppLog\Web\</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[ApplicationName]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Name]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[AppPoolName]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Ecster_" + Name]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Version]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[System.IO.Path.GetDirectoryName(fromLib + "\").Split(Char.Parse("\"))(5).Replace("\", "")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[ApplicationDeployPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(toLib, Name, Version + "_" + String.Format("{0:yyyyMMdd_HHmmss}", DateTime.Now)).Replace(" ","_")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,60">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[ApplicationLogPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(LogPathRoot, Name)]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+  </Sequence>
+</Activity>
