@@ -4,18 +4,22 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
+import { AccountSalesPanel } from './AccountSalesPanel';
 import { LatestTransactions } from './LatestTransactions';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
 import { getAccountTransactions } from '../redux/getAccountTransactions';
 import { getAccountBills } from '../redux/getAccountBills';
+import { formatAmount } from '../../../common/util/format-amount';
+import { formatAccount } from '../../../common/util/format-account';
 
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
-import { AccountSalesPanel } from './AccountSalesPanel';
+import infoIcon from '../../../common/images/icon-info-circle.svg';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -39,6 +43,28 @@ class AccountPanel extends Component {
 
         const noCard = account.numberOfCards === 0;
 
+        const overdrawn = account.limit - account.used < 0;
+
+        const Overdrawn = () => (
+            <div className="overdrawn-info">
+                <div className="overdrawn-info-ctr">
+                    <img src={infoIcon} alt="info icon" />
+                    <div>
+                        <strong>{i18n('account.terminate.overdrawn.header')}</strong>
+                        <p>
+                            {i18n('account.terminate.overdrawn.info', {
+                                amount: formatAmount(account.used - account.limit, undefined, {
+                                    strip00: true,
+                                    roundUp: true,
+                                }),
+                                accountNumber: formatAccount(account.accountNumber),
+                            })}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>
                 <TabletOrDesktop>
@@ -47,6 +73,7 @@ class AccountPanel extends Component {
                 <Mobile>
                     <AccountHeaderMobile account={account} />
                 </Mobile>
+                {overdrawn && <Overdrawn />}
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
                         {noCard ? (

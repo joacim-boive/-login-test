@@ -51,7 +51,9 @@
 
         "phone-link-087014667": "[link tel:087014667 '08&#8209;701&nbsp;46&nbsp;67']",
         "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50']",
-        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30']"
+        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30']",
+        "phone-link-020411212": "[link tel:020411212 '020&#8209;41&nbsp;12&nbsp;12']",
+        "phone-link-4684112122": "[link tel:+4684112122 '+46&nbsp;8&nbsp;411&nbsp;21&nbsp;22']"
     },
     "account": {
         "header": {
@@ -167,6 +169,10 @@
                     "Om du har en pågående delbetalning eller skuld på kontot kommer du att få fakturor till dess att allt är slutbetalt.",
                     "Har du ett tillgodo på kontot? Ring oss gärna på $t(general.phone-link-087014667) så hjälper vi till."
                 ]
+            },
+            "overdrawn": {
+                "header": "Din kreditgräns är överskriden",
+                "info": "Vänligen betala in {{amount}} till bankgiro: 847-2425, OCR-nummer: {{accountNumber}}"
             }
         },
         "raise-credit": {
@@ -232,12 +238,12 @@
             "header": "Kontakta oss",
             "question-panel-text1": "Vi gillar frågor!",
             "question-panel-text2": "Hör gärna av dig om det är något du undrar över.",
-            "question-panel-tel": "[link tel:087014667 '08-701 46 67']",
+            "question-panel-tel": "$t(general.phone-link-087014667)",
             "question-panel-opening-hours": "Vi har öppet vardagar 9-18",
             "block-card-text1": "Spärra ditt kort",
             "block-card-text2": "Ring något av våra nummer, som har öppet dygnet runt, för att spärra ditt kort.",
-            "block-card-phone-abroad": "[link tel:+4684112122 '+46 8 411 21 22']",
-            "block-card-phone-domestic": "[link tel:020411212 '020-41 12 12']",
+            "block-card-phone-abroad": "$t(general.phone-link-4684112122)",
+            "block-card-phone-domestic": "$t(general.phone-link-020411212)",
             "block-card-abroad-text": "Från utlandet",
             "block-card-domestic-text": "Från Sverige",
             "faq-text1": "Vanliga frågor",

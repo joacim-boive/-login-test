@@ -4,9 +4,10 @@ import './AccountHeaderMobile.scss';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
+import { formatAccount } from '../../../common/util/format-account';
 
 export const AccountHeaderMobile = ({ account }) => {
-    const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+    const accountNumber = formatAccount(account.accountNumber);
     const amountLeft = account.limit - account.used;
 
     return (
@@ -16,10 +17,10 @@ export const AccountHeaderMobile = ({ account }) => {
                     <h3>{account.product.name}</h3>
                     <div>{accountNumber}</div>
                 </div>
-                <EcsterCard account={account} className="account-header-mobile__card-icon" />
+                <EcsterCard account={account} />
             </div>
             <div className="account-header-mobile__amount">
-                <div>{formatAmount(amountLeft, undefined, { roundDown: true })}</div>
+                <div>{formatAmount(amountLeft < 0 ? 0 : amountLeft, undefined, { roundDown: true })}</div>
                 <p>{i18n('account.header.left-to-buy')}</p>
             </div>
         </div>
