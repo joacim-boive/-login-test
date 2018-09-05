@@ -3,18 +3,18 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
 .next-payment-panel {
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', 'sans-serif';
     font-size: 16px;
     color: $gray140;
 
     @include mobile() {
-        padding: 0px 20px;
+        padding: 0 20px;
     }
 
     h4 {
         color: $gray140;
         font-weight: $weight-semibold;
-        margin: 0px 0px 10px 0px;
+        margin: 0 0 10px 0;
     }
 
     .word-wrap {
@@ -22,6 +22,15 @@
     }
 
     p {
-        margin: 0px;
+        margin: 0;
+    }
+
+    .link-no-style {
+        color: $gray140;
+        text-decoration: none;
+        &:visited, &:active, &:hover {
+            color: $gray140;
+            text-decoration: none;
+        }
     }
 }
