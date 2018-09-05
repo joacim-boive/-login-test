@@ -8,7 +8,7 @@ import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuI
 import { SvgIconHamburger, SvgIconInvoices, SvgIconLoan, SvgIconOverview } from '../../../common/images/index';
 import './MobileNavigation.scss';
 import { InteractiveElement } from '../interactive-element/InteractiveElement';
-import scrollOnLocationChange from './scrollOnLocationChange';
+import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
 class MobileNavigation extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class MobileNavigation extends React.Component {
         this.state = {
             showSubMenu: false,
         };
-        scrollOnLocationChange(props.history);
+        scrollTopOnLocationChange(props.history);
     }
 
     toggleSubMenu = e => {
