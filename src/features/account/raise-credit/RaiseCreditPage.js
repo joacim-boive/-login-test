@@ -9,6 +9,7 @@ import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
+import pendingIcon from '../../../common/images/icon-table-lamp.svg';
 import { getAccount, updateAccount } from '../redux/actions';
 import { formatAmount } from '../../../common/util/format-amount';
 
@@ -184,7 +185,7 @@ export class RaiseCreditPage extends Component {
 
                 {showView === 'PENDING' && (
                     <Panel textAlignCenter className="result-panel">
-                        <img src={disappointedFace} aria-hidden="true" alt="disappointed face icon" />
+                        <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
                         <h2>{i18n('account.raise-credit.pending-header')}</h2>
                         {i18n('account.raise-credit.pending-message', {
                             returnObjects: true,
