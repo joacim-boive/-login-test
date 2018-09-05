@@ -14,7 +14,7 @@
 
     padding: 15px 20px 0;
 
-    &__card-icon {
+    .ecster-card {
         position: absolute;
         top: -30px;
         right: 0;
@@ -48,7 +48,7 @@
     }
 
     &__amount {
-        margin: 30px 0;
+        margin: 30px 0 10px;
 
         div {
             font-family: 'Campton', sans-serif;

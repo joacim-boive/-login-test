@@ -4,18 +4,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
+import { AccountSalesPanel } from './AccountSalesPanel';
 import { LatestTransactions } from './LatestTransactions';
 import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
+import OverdrawnInfo from './OverdrawnInfo';
+
 import { getAccountTransactions } from '../redux/getAccountTransactions';
 import { getAccountBills } from '../redux/getAccountBills';
 
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
-import { AccountSalesPanel } from './AccountSalesPanel';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -30,14 +33,15 @@ class AccountPanel extends Component {
     render() {
         const { className, account, bills, transactions, totalTransactions, user } = this.props;
 
+        if (!transactions) return null;
+
         const classes = classNames({
             'account-panel': true,
             [className]: className,
         });
 
-        if (!transactions) return null;
-
         const noCard = account.numberOfCards === 0;
+        const overdrawn = account.limit - account.used < 0;
 
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>
@@ -47,6 +51,9 @@ class AccountPanel extends Component {
                 <Mobile>
                     <AccountHeaderMobile account={account} />
                 </Mobile>
+                {overdrawn && (
+                    <OverdrawnInfo used={account.used} limit={account.limit} accountNumber={account.accountNumber} />
+                )}
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
                         {noCard ? (
