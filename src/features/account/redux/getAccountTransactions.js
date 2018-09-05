@@ -21,24 +21,30 @@ const applyAccountTransactionsFilter = filter => ({
  * @param source {object} Actual key value store, not a copy.
  * @param key {string} Key to placement in the object
  * @param values {array} Array of values to store
+ * @param isShortList {boolean} Should we only retrieve a short list
  * @returns {{}} Returns a new object that hasn't mutated anything.
  */
-const concatIfExists = (source, key, values = []) => ({
+const concatIfExists = (source, key, values = [], isShortList = false) => ({
     ...source,
-    [key]: source[key] ? source[key].concat(values) : values,
+    [key]: source[key] && !isShortList ? source[key].concat(values) : values,
 });
 
-export const getAccountTransactions = (customerId, referenceId, filter) => async (dispatch, getState) => {
+export const getAccountTransactions = (customerId, referenceId, filter, isShortList = false) => async (
+    dispatch,
+    getState
+) => {
     await dispatch(applyAccountTransactionsFilter(filter));
 
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_TRANSACTIONS_BEGIN,
     });
 
-    const { offset, maxRecords } = getState().account.accountTransactionsFilter;
+    const { offset, maxRecords, shortList } = getState().account.accountTransactionsFilter;
+
+    const getNoOfRecords = isShortList ? shortList : maxRecords;
 
     try {
-        const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, maxRecords));
+        const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, getNoOfRecords));
         const reservedTransactions = res.response.transactions.filter(trans => trans.type === 'RESERVED_AMOUNT');
         const transactions = res.response.transactions.filter(trans => trans.type !== 'RESERVED_AMOUNT');
         dispatch({
@@ -46,6 +52,7 @@ export const getAccountTransactions = (customerId, referenceId, filter) => async
             transactions,
             reservedTransactions,
             referenceId,
+            isShortList,
         });
     } catch (err) {
         dispatch({
@@ -74,11 +81,17 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
-                accountTransactions: concatIfExists(state.accountTransactions, action.referenceId, action.transactions),
+                accountTransactions: concatIfExists(
+                    state.accountTransactions,
+                    action.referenceId,
+                    action.transactions,
+                    action.isShortList
+                ),
                 accountReservedTransactions: concatIfExists(
                     state.accountReservedTransactions,
                     action.referenceId,
-                    action.reservedTransactions
+                    action.reservedTransactions,
+                    action.isShortList
                 ),
 
                 getAccountTransactionsPending: false,

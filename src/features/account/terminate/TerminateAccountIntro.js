@@ -10,8 +10,8 @@ class TerminateAccountIntro extends React.Component {
         const url = `/account/${this.props.accountRef}/customer/${this.props.customerId}/terminate`;
         return (
             <div className="account-terminate-intro">
-                <h1>{i18n('account.terminate.terminate-account')}</h1>
                 <Panel key="account-terminate-panel" sideBordersMobile sideMarginsMobile>
+                    <h1>{i18n('account.terminate.terminate-account')}</h1>
                     {i18n('account.terminate.intro.info-text', {
                         returnObjects: true,
                         wrapper: { tag: 'p', dangerouslySetInnerHTML: true },

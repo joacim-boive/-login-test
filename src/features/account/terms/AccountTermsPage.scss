@@ -1,15 +1,27 @@
 @import "~@ecster/ecster-styles/scss/v2/theme/theme";
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
-.account-terms-panel {
-    margin-top: 40px;
-    margin-bottom: 30px;
+.account-name{
+    font-size: 36px;
+    text-align: center;
+}
 
+.account-terms-wrapper{
     h1{
         color: $gray140;
         font-weight: $weight-bold;
         font-size: 30px;
         margin-bottom: 30px;
+    }
+
+}
+
+.account-terms-panel {
+    margin-top: 40px;
+    margin-bottom: 30px;
+
+    a{
+        font-weight: $weight-bold;
     }
 
     .info-item {
@@ -35,7 +47,7 @@
         }
         .value {
             $button-adjust: 12px;
-            width: 30%;
+            width: 34%;
             font-weight: $weight-bold;
             padding-left: $button-adjust;
             .button {
@@ -46,7 +58,8 @@
         .description {
             color: $gray120;
             font-size: 14px;
-            width: 40%;
+            padding-left: 12px;
+            width: 36%;
         }
 
         @include mobile() {

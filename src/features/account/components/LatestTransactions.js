@@ -8,7 +8,14 @@ import { LinkButton } from '@ecster/ecster-components';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
-export const LatestTransactions = ({ className, transactions, totalTransactions, account, user, ...rest }) => {
+export const LatestTransactions = ({
+    className,
+    transactions,
+    totalTransactions,
+    account,
+    user,
+    ...rest
+}) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
@@ -45,7 +52,9 @@ export const LatestTransactions = ({ className, transactions, totalTransactions,
                             {i18n('account.latest-transactions.missing', {
                                 returnObjects: true,
                                 wrapper: { tag: Data },
-                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
+                            }).map(obj => (
+                                <DataRow key={obj.key}>{obj}</DataRow>
+                            ))}
                         </>
                     )}
                     {totalTransactions > transactions.length && (

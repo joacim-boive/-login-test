@@ -10,7 +10,7 @@ import MessagePanel from '../MessagePanel';
 
 class AuthenticatedSubPageTemplate extends React.Component {
     render() {
-        const { className, linkTo, header, customerId } = this.props;
+        const { className, linkTo, header, customerId, children } = this.props;
 
         const classes = classNames({
             'common-authenticated-sub-page': true,
@@ -29,21 +29,21 @@ class AuthenticatedSubPageTemplate extends React.Component {
         );
 
         return (
-            <React.Fragment>
+            <>
                 <div className={classes}>
                     <TabletOrDesktop>
                         <TabletDesktopNavigation customerId={customerId} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
-                        <div className="page-content">{this.props.children}</div>
+                        <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
                         <MobileNavigation customerId={customerId} />
                     </Mobile>
                 </div>
                 <MessagePanel />
-            </React.Fragment>
+            </>
         );
     }
 }

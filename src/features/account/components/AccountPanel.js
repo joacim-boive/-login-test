@@ -22,8 +22,9 @@ const defaultFilter = initialState.accountTransactionsFilter;
 class AccountPanel extends Component {
     componentDidMount() {
         const { getAccountTransactions, getAccountBills, user, account } = this.props;
+        const isShortList = true;
 
-        getAccountTransactions(user.id, account.reference, defaultFilter);
+        getAccountTransactions(user.id, account.reference, defaultFilter, isShortList);
         getAccountBills(user.id, account.reference);
     }
 
@@ -91,7 +92,7 @@ AccountPanel.defaultProps = {
 function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
     return {
-        transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
+        transactions: transactions || undefined,
         totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };
@@ -101,7 +102,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getAccountTransactions: (userId, reference, filter) =>
-            dispatch(getAccountTransactions(userId, reference, filter)),
+            dispatch(getAccountTransactions(userId, reference, filter, true)),
         getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
     };
 }

@@ -12,7 +12,11 @@ export class OverviewPage extends Component {
         accountsActive: PropTypes.array.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.boolean,
+        hasZeroAccounts: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        hasZeroAccounts: false,
     };
 
     componentWillMount() {
