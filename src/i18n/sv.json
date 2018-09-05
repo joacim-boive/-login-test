@@ -172,7 +172,7 @@
             },
             "overdrawn": {
                 "header": "Din kreditgräns är överskriden",
-                "info": "Vänligen betala in {{amount}} till bankgiro: 847-2425, OCR-nummer: {{accountNumber}}"
+                "info": "Vänligen betala in minst {{amount}} till bankgiro: 847-2425, OCR-nummer: {{accountNumber}}"
             }
         },
         "raise-credit": {
