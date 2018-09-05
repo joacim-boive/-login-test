@@ -10,20 +10,18 @@ import './OverdrawnInfo.scss';
 
 const OverdrawnInfo = ({ used, limit, accountNumber }) => (
     <div className="account-overdrawn-info">
-        <div className="account-overdrawn-info-ctr">
-            <img src={infoIcon} alt="info icon" />
-            <div>
-                <strong>{i18n('account.terminate.overdrawn.header')}</strong>
-                <p>
-                    {i18n('account.terminate.overdrawn.info', {
-                        amount: formatAmount(used - limit, undefined, {
-                            strip00: true,
-                            roundUp: true,
-                        }),
-                        accountNumber: formatAccount(accountNumber),
-                    })}
-                </p>
-            </div>
+        <img src={infoIcon} />
+        <div>
+            <strong>{i18n('account.terminate.overdrawn.header')}</strong>
+            <p>
+                {i18n('account.terminate.overdrawn.info', {
+                    amount: formatAmount(used - limit, undefined, {
+                        strip00: true,
+                        roundUp: true,
+                    }),
+                    accountNumber: formatAccount(accountNumber),
+                })}
+            </p>
         </div>
     </div>
 );
