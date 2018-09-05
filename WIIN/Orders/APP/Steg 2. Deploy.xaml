@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sads sap" x:Class="Handelsbanken.WIIN.InstallerWorkflow" this:InstallerWorkflow.ToLib="E:\App\Web\" this:InstallerWorkflow.WIINSystem="NETX" this:InstallerWorkflow.AppCmdPath="C:\Windows\System32\inetsrv\appcmd"
+﻿<Activity mc:Ignorable="sads sap" x:Class="Handelsbanken.WIIN.InstallerWorkflow" this:InstallerWorkflow.ToLib="E:\App\Web\" this:InstallerWorkflow.WIINSystem="NETX" this:InstallerWorkflow.AppCmdPath="C:\Windows\System32\inetsrv\appcmd"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:hwa="clr-namespace:Handelsbanken.WIIN.Activities;assembly=Handelsbanken.WIIN.Activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -39,16 +39,16 @@
     <x:Property Name="LogPathRoot" Type="InArgument(x:String)" />
     <x:Property Name="ApplicationLogPath" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>406,2209</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>406,1633</sap:VirtualizedContainerService.HintSize>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="366,2169">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="366,1593">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <hwa:IncludeWorkflow DisplayName="IncludeWorkflow" sap:VirtualizedContainerService.HintSize="344,61" Name="Assign Variables" />
-    <Sequence DisplayName="Deploy of application" sap:VirtualizedContainerService.HintSize="344,1242">
+    <Sequence DisplayName="Deploy of application" sap:VirtualizedContainerService.HintSize="344,1368">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -56,19 +56,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <hwa:CreateFolder DisplayName="Create folder to be used" sap:VirtualizedContainerService.HintSize="322,61" Path="[ApplicationDeployPath]" />
       <hwa:FileCopy CheckVersion="False" DisplayName="Deploy new files" FromPath="[FromLib + &quot;\build\&quot;]" sap:VirtualizedContainerService.HintSize="322,111" ToPath="[ApplicationDeployPath]" />
-
-      <Sequence DisplayName="Environment specific fixes" sap:VirtualizedContainerService.HintSize="486,437">
-        <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <hwa:FileDelete CheckIfExists="True" DisplayName="Remove default index.html" sap:VirtualizedContainerService.HintSize="316,61" Path="[ApplicationDeployPath + &quot;\index.html&quot;]" />
-        <hwa:FileCopy CheckVersion="False" DisplayName="Copy environment specific index.html" FromPath="[ApplicationDeployPath + &quot;\Environments\&quot; + Envir + &quot;\index.html&quot;]" sap:VirtualizedContainerService.HintSize="316,111" ToPath="[ApplicationDeployPath]" />
-        <hwa:FileDelete DisplayName="Remove environment specific source" sap:VirtualizedContainerService.HintSize="316,61" Path="[ApplicationDeployPath + &quot;\Environments\&quot;]" />
-      </Sequence>
-
-      <hwa:Command Arguments="[ApplicationDeployPath + &quot; &quot; + ApplicationName]" DisplayName="Create Version.txt" FilePath="[FromLib + &quot;\Scripts\CREATE_Version.cmd&quot;]" sap:VirtualizedContainerService.HintSize="486,86">
+      <hwa:Command Arguments="[ApplicationDeployPath + &quot; &quot; + ApplicationName]" DisplayName="Create Version.txt" FilePath="[FromLib + &quot;\Scripts\CREATE_Version.cmd&quot;]" sap:VirtualizedContainerService.HintSize="322,86">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -76,8 +64,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </hwa:Command>
-
-      <hwa:Command Arguments="[ApplicationDeployPath + &quot; &quot; + ApplicationName]" DisplayName="Update Index.html" FilePath="[FromLib + &quot;\Scripts\WRITE_Index.cmd&quot;]" sap:VirtualizedContainerService.HintSize="486,86">
+      <hwa:Command Arguments="[ApplicationDeployPath + &quot; &quot; + ApplicationName]" DisplayName="Update Index.html" FilePath="[FromLib + &quot;\Scripts\WRITE_Index.cmd&quot;]" sap:VirtualizedContainerService.HintSize="322,86">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -85,7 +72,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </hwa:Command>
-
       <hwa:Command Arguments="[&quot;-File &quot;&quot;&quot; + fromLib + &quot;\Scripts\UpdateVersionJson.ps1&quot;&quot; &quot;&quot;&quot; + ApplicationDeployPath + &quot;\version.json&quot;&quot; &quot;&quot;&quot; + ComputerName + &quot;&quot;&quot;&quot;]" DisplayName="Updating version.json" FilePath="powershell" sap:VirtualizedContainerService.HintSize="322,86" />
       <hwa:FileSecurity Action="Install" DisplayName="FileSecurity" sap:VirtualizedContainerService.HintSize="322,161" Path="[ApplicationDeployPath]" Permission="ReadAndExecute" Principal="[&quot;IIS APPPOOL\&quot; + AppPoolName]" Type="Allow" />
       <hwa:FileSecurity Action="Install" DisplayName="FileSecurity" sap:VirtualizedContainerService.HintSize="322,161" Path="[ApplicationDeployPath]" Permission="ReadAndExecute" Principal="IUSR" Type="Allow" />
