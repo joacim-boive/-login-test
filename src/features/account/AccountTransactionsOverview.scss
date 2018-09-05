@@ -1,8 +1,12 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
 .account-transactions-overview {
+    .ec-panel {
+        padding: 20px 40px;
+    }
     @include mobile() {
         .ec-panel {
+            padding: 20px;
             margin-left: 15px;
             margin-right: 15px;
         }

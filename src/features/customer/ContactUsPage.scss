@@ -3,29 +3,29 @@
 
 .customer-contact-us-page {
     $minHeight: 275px;
-    .responsive-panel-left {
-        margin-right: 20px;
-        min-height: $minHeight;
-
-        @include mobile() {
-            margin-right: 0;
-            margin-bottom: 40px;
-        }
-
-    }
-    .responsive-panel-right {
-        margin-left: 20px;
-        min-height: $minHeight;
-
-        @include mobile() {
-            margin-left: 0;
-        }
-    }
 
     .text-align-center {
         text-align: center;
     }
 
+    // todo: could be moed ecster-styles maybe? with better naiming..
+    .panels-50-50 {
+        display: flex;
+        justify-content: space-between;
+        align-content: stretch;
+        .sub-panel {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+
+        @include mobile() {
+            flex-direction: column;
+
+            .sub-panel {
+                width: 100%;
+            }
+        }
+    }
 }
 
 
