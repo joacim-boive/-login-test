@@ -1,0 +1,41 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+
+.account-overdrawn-info {
+    margin: 34px 20px 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $gray40;
+
+    @include mobile() {
+        margin: 15px 0 0 0;
+        border-bottom: none;
+        border-top: 1px solid $gray40;
+        text-align: center;
+        padding: 0;
+
+    }
+
+    &-ctr {
+        margin: 20px 40px;
+
+        & > * {
+            display: inline-block;
+        }
+        img {
+            width: 34px;
+            height: 34px;
+            margin-right: 34px;
+        }
+        p {
+            margin: 0;
+        }
+
+        @include mobile() {
+            display: flex;
+            flex-direction: column;
+            img {
+                margin: 0 auto 20px;
+            }
+        }
+    }
+}
