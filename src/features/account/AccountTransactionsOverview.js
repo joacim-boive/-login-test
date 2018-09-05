@@ -13,20 +13,29 @@ import { getAccount } from './redux/getAccount';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
+// Check if we already have transactions - in that case we came from the overview page and will already have a short list of transactions
+const getFilter = (defaultFilter, transactions) =>
+    Array.isArray(transactions) && transactions.length > 0
+        ? { ...defaultFilter, offset: defaultFilter.shortList }
+        : defaultFilter;
+
 export class AccountTransactionsOverview extends Component {
     componentWillMount() {
-        const { account, getTransactions, getAccount } = this.props;
+        const { account, getTransactions, getAccount, transactions } = this.props;
         if (account.product) {
-            getTransactions(defaultFilter);
+            const thisFilter = getFilter(defaultFilter, transactions);
+            getTransactions(thisFilter);
         }
         getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions, account } = this.props;
+        const { getTransactions, account, transactions } = this.props;
 
         if (nextProps.account.accountNumber !== account.accountNumber) {
-            getTransactions(defaultFilter);
+            const thisFilter = getFilter(defaultFilter, transactions);
+
+            getTransactions(thisFilter);
         }
     }
 
