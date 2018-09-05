@@ -6,14 +6,14 @@ import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountSummary = ({ account }) => {
-    const spendableMoney = account.limit - account.used;
+    const amountLeft = account.limit - account.used;
 
     return (
         <div className="account-summary">
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
                 <article className="first">
                     <div>{i18n('account.summary.left')}</div>
-                    <div>{formatAmount(spendableMoney < 0 ? 0 : spendableMoney, undefined, { roundDown: true })}</div>
+                    <div>{formatAmount(amountLeft < 0 ? 0 : amountLeft, undefined, { roundDown: true })}</div>
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.used')}</div>
