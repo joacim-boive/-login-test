@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Logo } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
+import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
 import './TabletDesktopNavigation.scss';
 
@@ -14,6 +15,7 @@ class TabletDesktopNavigation extends React.Component {
         this.state = {
             showSubMenu: false,
         };
+        scrollTopOnLocationChange(props.history);
     }
 
     toggleSubMenu = e => {
