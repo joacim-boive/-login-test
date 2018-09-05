@@ -1,6 +1,10 @@
-@import '../../styles/mixins';
-@import '~@ecster/ecster-styles/scss/v2/theme/theme';
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
 .account-transactions-overview {
+    @include mobile() {
+        .ec-panel {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+    }
 }

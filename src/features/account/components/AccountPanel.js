@@ -16,12 +16,9 @@ import OverdrawnInfo from './OverdrawnInfo';
 
 import { getAccountTransactions } from '../redux/getAccountTransactions';
 import { getAccountBills } from '../redux/getAccountBills';
-import { formatAmount } from '../../../common/util/format-amount';
-import { formatAccount } from '../../../common/util/format-account';
 
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
-import infoIcon from '../../../common/images/icon-info-circle.svg';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -45,26 +42,6 @@ class AccountPanel extends Component {
 
         const noCard = account.numberOfCards === 0;
         const overdrawn = account.limit - account.used < 0;
-
-        const Overdrawn = ({ used, limit, accountNumber }) => (
-            <div className="overdrawn-info">
-                <div className="overdrawn-info-ctr">
-                    <img src={infoIcon} alt="info icon" />
-                    <div>
-                        <strong>{i18n('account.terminate.overdrawn.header')}</strong>
-                        <p>
-                            {i18n('account.terminate.overdrawn.info', {
-                                amount: formatAmount(used - limit, undefined, {
-                                    strip00: true,
-                                    roundUp: true,
-                                }),
-                                accountNumber: formatAccount(accountNumber),
-                            })}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
 
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>

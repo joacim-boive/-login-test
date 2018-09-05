@@ -13,7 +13,7 @@ export const AccountSummary = ({ account }) => {
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
                 <article className="first">
                     <div>{i18n('account.summary.left')}</div>
-                    <div>{formatAmount(spendableMoney, undefined, { roundDown: true })}</div>
+                    <div>{formatAmount(spendableMoney < 0 ? 0 : spendableMoney, undefined, { roundDown: true })}</div>
                 </article>
                 <article className="border-left">
                     <div>{i18n('account.summary.used')}</div>
