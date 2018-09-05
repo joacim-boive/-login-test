@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './AccountHeaderMobile.scss';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
 
 export const AccountHeaderMobile = ({ account }) => {
     const accountNumber = account.accountNumber.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
     const amountLeft = account.limit - account.used;
-    const noCard = account.numberOfCards === 0;
 
     return (
         <div className="account-header-mobile">
@@ -16,11 +16,11 @@ export const AccountHeaderMobile = ({ account }) => {
                     <h3>{account.product.name}</h3>
                     <div>{accountNumber}</div>
                 </div>
-                {!noCard ? <EcsterCard className="account-header-mobile__card-icon" /> : null}
+                <EcsterCard account={account} className="account-header-mobile__card-icon" />
             </div>
             <div className="account-header-mobile__amount">
                 <div>{formatAmount(amountLeft, undefined, { roundDown: true })}</div>
-                <p>Kvar att handla för</p>
+                <p>{i18n('account.header.left-to-buy')}</p>
             </div>
         </div>
     );

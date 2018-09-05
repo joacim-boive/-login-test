@@ -11,7 +11,7 @@ export const AccountSummary = ({ account }) => {
     return (
         <div className="account-summary">
             <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
-                <article>
+                <article className="first">
                     <div>{i18n('account.summary.left')}</div>
                     <div>{formatAmount(spendableMoney, undefined, { roundDown: true })}</div>
                 </article>
@@ -19,7 +19,7 @@ export const AccountSummary = ({ account }) => {
                     <div>{i18n('account.summary.used')}</div>
                     <div>{formatAmount(account.used, undefined, { roundUp: true })}</div>
                 </article>
-                <article className="border-left">
+                <article className="border-left last">
                     <div>{i18n('account.summary.total')}</div>
                     <div>{formatAmount(account.limit)}</div>
                 </article>

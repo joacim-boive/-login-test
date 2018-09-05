@@ -5,6 +5,8 @@
 import { AUTHENTICATION_REMOVE_SESSION } from './constants';
 import { loginStatus, loginProgress } from './initialState';
 
+// TODO: rename to a better name, resetLoginState or soemthing... /joli44 2018-09
+// rename using rekit studio
 export function removeSession() {
     return {
         type: AUTHENTICATION_REMOVE_SESSION,
