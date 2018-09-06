@@ -1,5 +1,5 @@
-@import "~@ecster/ecster-styles/scss/v2/common/colors";
-@import "~@ecster/ecster-components/scss/MediaQuery";
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
 
 body {
     background: 0 11rem no-repeat $beige10;
@@ -19,71 +19,38 @@ body {
     align-items: center;
 
     & > .logo-ctr {
-        margin: 40px 0 0 150px;
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 30px;
+        width: 100%;
 
-        & svg {
-            display: block; // so the link element wraps the entire SVG.
+        svg {
+            margin: 0 auto;
+            display: block;
             width: 170px;
             fill: $green;
         }
     }
-}
 
-@mixin biggerH1() {
-    h1 {
-        font-size: 40px;
-    }
-}
-
-@include tablet() {
-    body {
+    @include tablet() {
         background-position: 0 bottom;
-    }
-
-    .common-login-page-template {
-
-        @include biggerH1();
 
         & > .logo-ctr {
-            & svg {
+            top: 60px;
+            svg {
                 width: 320px;
                 height: inherit;
             }
         }
     }
-}
 
-@media all and (max-width: 768px) and (orientation: landscape) {
-    .common-login-page-template {
+    @include isDesktop {
         background-size: cover;
-        //background-color: red;
-
-        & > .logo-ctr {
-            margin: 1vmin;
-
-            & svg {
-                width: 100px;
-            }
-        }
-    }
-}
-
-@include isDesktop {
-    .common-login-page-template {
-
-        @include biggerH1();
-
         background-position: 0 0;
-        background-size: cover;
-
         & > .logo-ctr {
-            justify-self: inherit;
-
-            & svg {
-                width: 220px;
+            top: 40px;
+            svg {
+                margin: 0 auto 0 150px;
+                width: 240px;
             }
         }
     }
