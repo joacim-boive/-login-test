@@ -1,26 +1,117 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
-.common-login-page {
+body {
+    background: 0 11rem no-repeat $beige10;
+    background-size: contain;
+}
+
+.common-login-page-template {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
     height: 100%;
-    margin: 0;
-    text-align: center;
+    width: 100%;
+    padding: 10px;
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    @include mobile() {
-        //background: $beige10 url(../images/Ecster_00056_0-w450.png) no-repeat;
-        //background-size: 100%;
+    & > .logo-ctr {
+        margin: 40px 0 0 150px;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        & svg {
+            display: block; // so the link element wraps the entire SVG.
+            width: 170px;
+            fill: $green;
+        }
     }
 
-    @include tablet() {
+    //&__box { // TODO: move to LoginPage
+    //    overflow: hidden;
+    //    padding: 20px;
+    //    max-width: 50rem;
+    //    background: #fff;
+    //    width: 100%;
+    //    border-radius: 6px;
+    //    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .1);
+    //    border: 1px solid $beige40;
+    //    position: relative;
+    //}
 
+    //&__form { // todo: SE bankid specific
+    //    margin-bottom: 30px;
+    //    text-align: center;
+    //
+    //    .help {
+    //        text-align: right;
+    //        margin-bottom: 20px;
+    //    }
+    //
+    //    .text-input {
+    //        width: 27rem;
+    //        margin: 0 auto 15px auto;
+    //    }
+    //}
+}
+
+@mixin biggerH1() {
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@include tablet() {
+    body {
+        background-position: 0 bottom;
     }
 
-    @include desktop() {
+    .home-login-page {
 
+        @include biggerH1();
+
+        & > .logo-ctr {
+            & svg {
+                width: 320px;
+                height: inherit;
+            }
+        }
     }
-    z-index: 2; // above .message-panel
+}
+
+@media all and (max-width: 768px) and (orientation: landscape) {
+    .common-login-page-template {
+        background-size: cover;
+        //background-color: red;
+
+        & > .logo-ctr {
+            margin: 1vmin;
+
+            & svg {
+                width: 100px;
+            }
+        }
+    }
+}
+
+@include isDesktop {
+    .common-login-page-template {
+
+        @include biggerH1();
+
+        background-position: 0 0;
+        background-size: cover;
+
+        & > .logo-ctr {
+            justify-self: inherit;
+
+            & svg {
+                width: 220px;
+            }
+        }
+    }
 }

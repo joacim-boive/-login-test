@@ -1,10 +1,14 @@
-@import '../../../styles/mixins';
 
-.home-login-page__form {
-    aside.help {
-        .button  {
-            margin-right: 0;
-        }
+.login-form-SE {
+    text-align: center;
+
+    .help-button {
+        text-align: right;
+    }
+
+    .text-input {
+        width: 27rem;
+        margin: 0 auto 15px auto;
     }
 
     .spinner--center-x {

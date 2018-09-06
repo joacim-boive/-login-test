@@ -144,9 +144,9 @@ class LoginFormSE extends Component {
         }
 
         return (
-            <>
+            <div className="login-form-SE">
                 {!isLoggingIn && (
-                    <aside className="help">
+                    <aside className="help-button">
                         <Button id="login-se-help-button" onClick={this.showHelp} link>
                             {i18n('general.help')}
                         </Button>
@@ -190,7 +190,7 @@ class LoginFormSE extends Component {
                     cancelLogin={this.cancelLogin}
                     startURL={loginProgress.startURL}
                 />
-            </>
+            </div>
         );
     }
 }
