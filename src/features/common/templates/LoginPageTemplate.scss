@@ -30,33 +30,6 @@ body {
             fill: $green;
         }
     }
-
-    //&__box { // TODO: move to LoginPage
-    //    overflow: hidden;
-    //    padding: 20px;
-    //    max-width: 50rem;
-    //    background: #fff;
-    //    width: 100%;
-    //    border-radius: 6px;
-    //    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .1);
-    //    border: 1px solid $beige40;
-    //    position: relative;
-    //}
-
-    //&__form { // todo: SE bankid specific
-    //    margin-bottom: 30px;
-    //    text-align: center;
-    //
-    //    .help {
-    //        text-align: right;
-    //        margin-bottom: 20px;
-    //    }
-    //
-    //    .text-input {
-    //        width: 27rem;
-    //        margin: 0 auto 15px auto;
-    //    }
-    //}
 }
 
 @mixin biggerH1() {
@@ -70,7 +43,7 @@ body {
         background-position: 0 bottom;
     }
 
-    .home-login-page {
+    .common-login-page-template {
 
         @include biggerH1();
 
