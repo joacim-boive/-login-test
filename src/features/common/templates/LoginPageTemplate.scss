@@ -34,6 +34,7 @@ body {
     }
 
     @include tablet() {
+        background-size: cover;
         background-position: 0 bottom;
 
         & > .logo-ctr {
