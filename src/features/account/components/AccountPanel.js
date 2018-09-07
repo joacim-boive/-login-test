@@ -41,7 +41,7 @@ class AccountPanel extends Component {
         });
 
         const noCard = account.numberOfCards === 0;
-        const overdrawn = account.limit - account.used < 0;
+        const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
 
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>
@@ -51,7 +51,7 @@ class AccountPanel extends Component {
                 <Mobile>
                     <AccountHeaderMobile account={account} />
                 </Mobile>
-                {overdrawn && (
+                {showOverdrawn && (
                     <OverdrawnInfo used={account.used} limit={account.limit} accountNumber={account.accountNumber} />
                 )}
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>

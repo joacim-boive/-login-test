@@ -57,13 +57,13 @@ export class AccountTransactionsOverview extends Component {
 
         if (!account.product || !transactions) return null;
 
-        const overdrawn = account.limit - account.used < 0;
+        const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
 
         return (
             <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
-                {overdrawn && (
+                {showOverdrawn && (
                     <Panel padding="20px 40px" sideBordersMobile className="mt-4x">
                         <OverdrawnInfo
                             used={account.used}
