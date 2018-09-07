@@ -13,6 +13,7 @@ const LoginPageTemplate = props => {
     data-widths isn't respected for some reason in this context.
     Works for the IMG-tag.
      */
+    // TODO: Where is this used? Where is the object structure defined? null problems may show here
     window.lazySizesConfig.rias.widths = [768, 1536, 1024, 2048, 1920, 3840];
     return (
         <>

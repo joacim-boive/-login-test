@@ -24,13 +24,13 @@ body {
         top: 50px;
         left: 0;
         width: 100%;
+        text-align: center;
 
         a {
             display: inline-block; // only logo clickable
         }
 
         svg {
-            margin: 0 auto;
             display: block;
             width: 170px;
             fill: $green;
@@ -57,9 +57,10 @@ body {
 
         & > .logo-header {
             top: 40px;
+            text-align: left;
+            padding-left: 150px;
 
             svg {
-                margin: 0 auto 0 150px;
                 width: 240px;
             }
         }
