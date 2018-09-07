@@ -5,13 +5,7 @@ import cloudinary from '../../../common/images/Lazyload/cloudinary';
 
 import MessagePanel from '../MessagePanel';
 
-/**
- *
- * @param props
- * @returns {*}
- * @constructor
- */
-const LoginPage = props => {
+const LoginPageTemplate = props => {
     const { children } = props;
 
     /*
@@ -23,13 +17,13 @@ const LoginPage = props => {
     return (
         <>
             <article
-                className="home-login-page lazyload"
+                className="common-login-page-template lazyload"
                 data-bgset={`${cloudinary.defaults},o_40${cloudinary.scaling}/v1/backgrounds/login.jpg`}
                 data-absurl="false"
                 data-sizes="auto"
                 data-widths="768, 1536, 1024, 2048, 1920, 3840"
             >
-                <header className="home-login-page__logo">
+                <header className="logo-header">
                     <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
                         <Logo withName isNoWrap />
                     </a>
@@ -41,8 +35,8 @@ const LoginPage = props => {
     );
 };
 
-LoginPage.propTypes = {
+LoginPageTemplate.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default LoginPage;
+export default LoginPageTemplate;

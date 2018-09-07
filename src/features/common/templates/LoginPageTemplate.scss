@@ -1,26 +1,67 @@
-@import "~@ecster/ecster-styles/scss/v2/common/colors";
-@import "~@ecster/ecster-components/scss/MediaQuery";
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
 
-.common-login-page {
+body {
+    background: 0 11rem no-repeat $beige10;
+    background-size: contain;
+}
+
+.common-login-page-template {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
     height: 100%;
-    margin: 0;
-    text-align: center;
+    width: 100%;
+    padding: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    @include mobile() {
-        //background: $beige10 url(../images/Ecster_00056_0-w450.png) no-repeat;
-        //background-size: 100%;
+    & > .logo-header {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+
+        a {
+            display: inline-block; // only logo clickable
+        }
+
+        svg {
+            margin: 0 auto;
+            display: block;
+            width: 170px;
+            fill: $green;
+        }
     }
 
     @include tablet() {
+        background-size: cover;
+        background-position: 0 bottom;
 
+        & > .logo-header {
+            top: 60px;
+
+            svg {
+                width: 320px;
+                height: inherit;
+            }
+        }
     }
 
-    @include desktop() {
+    @include desktop {
+        background-size: cover;
+        background-position: 0 0;
 
+        & > .logo-header {
+            top: 40px;
+
+            svg {
+                margin: 0 auto 0 150px;
+                width: 240px;
+            }
+        }
     }
-    z-index: 2; // above .message-panel
 }
