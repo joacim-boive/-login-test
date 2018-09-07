@@ -19,11 +19,15 @@ body {
     justify-content: center;
     align-items: center;
 
-    & > .logo-ctr {
+    & > .logo-header {
         position: absolute;
         top: 50px;
         left: 0;
         width: 100%;
+
+        a {
+            display: inline-block; // only logo clickable
+        }
 
         svg {
             margin: 0 auto;
@@ -37,7 +41,7 @@ body {
         background-size: cover;
         background-position: 0 bottom;
 
-        & > .logo-ctr {
+        & > .logo-header {
             top: 60px;
 
             svg {
@@ -51,7 +55,7 @@ body {
         background-size: cover;
         background-position: 0 0;
 
-        & > .logo-ctr {
+        & > .logo-header {
             top: 40px;
 
             svg {
