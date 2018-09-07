@@ -15,12 +15,14 @@ body {
     padding: 10px;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     & > .logo-ctr {
         position: absolute;
-        top: 30px;
+        top: 50px;
+        left: 0;
         width: 100%;
 
         svg {
@@ -36,6 +38,7 @@ body {
 
         & > .logo-ctr {
             top: 60px;
+
             svg {
                 width: 320px;
                 height: inherit;
@@ -43,11 +46,13 @@ body {
         }
     }
 
-    @include isDesktop {
+    @include desktop {
         background-size: cover;
         background-position: 0 0;
+
         & > .logo-ctr {
             top: 40px;
+
             svg {
                 margin: 0 auto 0 150px;
                 width: 240px;
