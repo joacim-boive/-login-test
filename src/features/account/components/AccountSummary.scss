@@ -10,8 +10,7 @@
 
     @include mobile() {
         height: inherit;
-        padding: 20px;
-        margin: 0 15px;
+        padding: 15px 20px;
     }
 
     .wrapper {
