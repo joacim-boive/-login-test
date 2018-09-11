@@ -65,7 +65,7 @@
             "deadline": "Förfallodatum",
             "pay-in": "Att betala i",
             "missing": [
-                "Du har inget att betala just nu. Vill du ändå göra en extra inbetalning? Använd uppgifterna nedan.",
+                "Du har inget att betala just nu. Vill du göra en extra inbetalning? Använd uppgifterna nedan.",
                 "Bankgiro: 847-2425",
                 "OCR: {{nr}}"
             ],
@@ -94,8 +94,8 @@
             "show-more": "Se fler"
         },
         "sales-panel": {
-            "header": "Ett kort för alla dina inköp ",
-            "body": "Delbetala köp, även i efterhand. 34 miljoner inköpsställen.",
+            "header": "Koppla ett kort till ditt konto",
+            "body": "Kortet är kopplat till Mastercard och du kan använda det över hela världen. Ingen årsavgift, du får upp till 8 veckor räntefri kredit och du kan delbetala större köp i efterhand.",
             "button": "Ansök"
         },
         "terms": {
@@ -108,9 +108,9 @@
             "admin-fee": "Administrativ avgift",
             "yearly-fee": "Årsavgift kort",
             "extra-card-fee": "Extrakortsavgift",
-            "withdrawal-fee": "Bankomat- och kontantuttagsavgift (gäller även utomlands)",
+            "withdrawal-fee": "Bankomat-och kontantuttagsavgift (gäller även utomlands)",
             "exchange-fee": "Valutaväxlingsavgift",
-            "late-payment-fee": "Förseniningsavgift",
+            "late-payment-fee": "Förseningsavgift",
             "overdraft-fee": "Övertrasseringsavgift",
             "account-terms-pdf": "Fullständiga villkor (pdf)",
             "account-agreement-pdf": "Kontoavtal (pdf)",
@@ -118,19 +118,19 @@
             "atm-withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
             "withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
 
-            "account-number-description": "Används som OCR-nummer",
+            "account-number-description": "Används som OCR-nummer.",
             "account-name-description": "",
-            "total-credit-description": "Din nuvarande kreditgräns",
+            "total-credit-description": "Din nuvarande kreditgräns.",
             "interest-description": "Aktiv om du delbetalar fakturan.",
             "deposit-rate-description": "Ränta på insatta pengar. Kontot omfattas av insättningsgarantin enligt beslut av Riksgälden. Se fullständiga villkor i ",
-            "admin-fee-description": "Avgift för administration av din betalningar",
+            "admin-fee-description": "Avgift för administration av din betalningar.",
             "yearly-fee-description": "",
             "extra-card-fee-description": "",
             "withdrawal-fee-description": "Du kan ta ut upp till 5 000 kr per uttag. Högst 15 000 kr inom 4 bankdagar.",
-            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta",
-            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
-            "overdraft-fee-description": "Debiteras om kontot övertrasseras",
-            "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
+            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta.",
+            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum.",
+            "overdraft-fee-description": "Debiteras om kontot övertrasseras.",
+            "account-terms-pdf-description": "Alla villkor som gäller för ditt konto.",
             "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan",
 
             "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
@@ -178,7 +178,7 @@
         "raise-credit": {
             "page-header": "Höj kredit",
             "header": "Utöka ditt köputrymme",
-            "intro": "Ansök om höjd kreditgräns och få svar direkt. Ingen extra avgift eller ränta tillkommer.",
+            "intro": "Här kan du ansöka om höjd kreditgräns. Du får svar direkt. Ingen extra avgift eller ränta tillkommer.",
             "current-credit-limit": "Nuvarande kreditgräns",
             "max-credit-limit": "Maximal kreditgräns",
             "new-credit-limit": "Ny kreditgräns",
@@ -195,7 +195,7 @@
             "processing-message-uc": "Kontaktar UC...",
 
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats under kontovillkor.",
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats. Du hittar dem under under kontovillkor.",
 
             "pending-header": "Vi behöver titta lite närmare på din ansökan",
             "pending-message": [
@@ -231,8 +231,8 @@
     "common": {},
     "customer": {
         "profile": {
-            "info-text": "Fyll i ditt mobilnummer här för att koppla ditt kort till Mastercard Secure Code, då handlar du säkerare på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto",
-            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort' ]"
+            "info-text": "Handla tryggare på internet. Genom att fylla i ditt mobilnummer här kopplar du ditt kort till Mastercard Secure Code, som innebär att det sker en extra kontroll när du handlar på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto.",
+            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort']."
         },
         "contact-us": {
             "header": "Kontakta oss",
@@ -241,13 +241,13 @@
             "question-panel-tel": "$t(general.phone-link-087014667)",
             "question-panel-opening-hours": "Vi har öppet vardagar 9-18",
             "block-card-text1": "Spärra ditt kort",
-            "block-card-text2": "Ring något av våra nummer, som har öppet dygnet runt, för att spärra ditt kort.",
-            "block-card-phone-abroad": "$t(general.phone-link-4684112122)",
+            "block-card-text2": "Ring något av våra nummer för att spärra ditt kort. Öppet dygnet runt.",
+			"block-card-phone-abroad": "$t(general.phone-link-4684112122)",
             "block-card-phone-domestic": "$t(general.phone-link-020411212)",
             "block-card-abroad-text": "Från utlandet",
-            "block-card-domestic-text": "Från Sverige",
+			"block-card-domestic-text": "Från Sverige",
             "faq-text1": "Vanliga frågor",
-            "faq-text2": "Vi har samlat det vi får mest frågor om just nu i en FAQ",
+            "faq-text2": "Du hittar svar på de vanligaste frågorna vi får i vår FAQ.",
             "faq-link": "Frågor och svar",
             "faq-url": "https://www.ecster.se/kundservice#faq-hela"
         }
@@ -285,7 +285,7 @@
                         "this-device": {
                             "header": "Öppna BankID",
                             "body": [
-                                "Låt sidan vara öppen under tiden du loggar in med ditt BankID - Annars avbryts inloggningen"
+                                "Låt sidan vara öppen under tiden du loggar in med ditt BankID, annars avbryts inloggningen."
                             ]
                         },
                         "other-device": {
@@ -338,7 +338,7 @@
         },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
-            "12month-company": "Har du haft företaget längre än 12mån?",
+            "12month-company": "Har du haft företaget längre än 12 mån?",
             "adults-label": "Hur många vuxna finns det i hushållet?",
             "children-label": "Hur många barn finns det i hushållet?",
             "company-name": "Företagsnamn",
@@ -346,7 +346,7 @@
             "employer": "Arbetsgivare",
             "header": "Ekonomi",
             "household": "Hushåll",
-            "house-label": "Vad är bostadens dirftkostnader/mån?",
+            "house-label": "Vad är bostadens driftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
             "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
             "living-label": "Hur bor du?",
@@ -394,8 +394,8 @@
             "rent-label": "Vad är bostadens hyra/mån?"
         },
         "header": {
-            "header": "Låna till stort eller smått?",
-            "body": "Med Ecsters privatlån får du ett lån anpassat efter dina behov och du bestämmer själv hur du vill använda pengarna. Du kan låna upp till 200 000 kr och väljer själv återbetalningstid, upp till 12 år."
+            "header": "Låna till stort eller smått",
+            "body": "Ska du renovera hemma, köpa ny soffa eller vill du kanske slå ihop dyra smålån och krediter och på så sätt sänka din totala lånekostnad? Med Ecsters privatlån kan du låna till det du behöver. Du kan låna upp till 200 000 kr och du väljer själv återbetalningstid, upp till 12 år."
         },
         "body": {
             "header": "Ansök om privatlån",
@@ -443,7 +443,7 @@
             "header": "Så här ansöker du om lånet",
             "how-to-list": [
                 "Fyll i ansökan",
-                "Vid godkÃ¤nd ansökan, signera skuldebrevet och skicka till oss",
+                "Vid godkänd ansökan, signera skuldebrevet och skicka till oss",
                 "När vi fått skuldebrevet har du normalt sett pengarna på ditt konto inom ca tre bankdagar"
             ],
             "sub-header": "För att kunna ansöka måste du uppfylla följande",
