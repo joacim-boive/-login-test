@@ -311,6 +311,11 @@
                     }
                 }
             }
+        },
+        "feedback": {
+            "header": "Vad tycker du?",
+            "info": "Vi är nyfikna på vad du tycker om den här Alphaversionen. Här kan du lämna synpunkter eller rapportera fel.",
+            "link": "Tyck till"
         }
     },
     "loan": {

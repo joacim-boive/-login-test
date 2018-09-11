@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import FeedbackPanel from '../home/FeedbackPanel';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
 import NoAccountsPanel from './no-account/NoAccountsPanel';
@@ -12,7 +13,13 @@ export class OverviewPage extends Component {
         accountsActive: PropTypes.array.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.boolean,
+        hasZeroAccounts: PropTypes.bool,
+        isAlpha: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        hasZeroAccounts: false,
+        isAlpha: false,
     };
 
     componentWillMount() {
@@ -30,7 +37,7 @@ export class OverviewPage extends Component {
     }
 
     render() {
-        const { accountsActive, user, hasZeroAccounts } = this.props;
+        const { accountsActive, user, hasZeroAccounts, isAlpha } = this.props;
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
@@ -41,6 +48,7 @@ export class OverviewPage extends Component {
                             <AccountPanel key={account.reference} account={account} user={user} />
                         ))
                     )}
+                    {isAlpha && <FeedbackPanel />}
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -48,11 +56,12 @@ export class OverviewPage extends Component {
 }
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps({ account, authentication, home }) {
     return {
-        accountsActive: state.account.accountsActive,
-        hasZeroAccounts: state.account.hasZeroAccounts,
-        user: state.authentication.person,
+        accountsActive: account.accountsActive,
+        hasZeroAccounts: account.hasZeroAccounts,
+        user: authentication.person,
+        isAlpha: home.isAlpha,
     };
 }
 

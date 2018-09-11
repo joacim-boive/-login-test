@@ -2,12 +2,16 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/theme';
 
 .account-overview-page {
-    &> * {
-        margin-top: 100px;
+    //&> * {
+    //    margin-top: 100px;
+    //
+    //    &:first-child {
+    //        margin-top: 0;
+    //    }
+    //}
 
-        &:first-child {
-            margin-top: 0;
-        }
+    .ec-panel {
+        margin-bottom: 40px;
     }
 
     .button.show-more {
@@ -24,7 +28,7 @@
             }
         }
 
-        i{
+        i {
             color: $black;
         }
     }
