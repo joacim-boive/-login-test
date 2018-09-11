@@ -14,12 +14,10 @@ export class OverviewPage extends Component {
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
         hasZeroAccounts: PropTypes.bool,
-        isAlpha: PropTypes.bool,
     };
 
     static defaultProps = {
         hasZeroAccounts: false,
-        isAlpha: false,
     };
 
     componentWillMount() {
@@ -37,7 +35,7 @@ export class OverviewPage extends Component {
     }
 
     render() {
-        const { accountsActive, user, hasZeroAccounts, isAlpha } = this.props;
+        const { accountsActive, user, hasZeroAccounts } = this.props;
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
@@ -48,7 +46,7 @@ export class OverviewPage extends Component {
                             <AccountPanel key={account.reference} account={account} user={user} />
                         ))
                     )}
-                    {isAlpha && <FeedbackPanel />}
+                    <FeedbackPanel />
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -56,12 +54,11 @@ export class OverviewPage extends Component {
 }
 
 /* istanbul ignore next */
-function mapStateToProps({ account, authentication, home }) {
+function mapStateToProps({ account, authentication }) {
     return {
         accountsActive: account.accountsActive,
         hasZeroAccounts: account.hasZeroAccounts,
         user: authentication.person,
-        isAlpha: home.isAlpha,
     };
 }
 
