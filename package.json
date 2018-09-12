@@ -48,6 +48,22 @@
         ],
         "testResultsProcessor": "jest-teamcity-reporter"
     },
+    "jestConfig": {
+        "timeout": 10000,
+        "configureToMatchImageSnapshot": {
+            "failureThreshold": "0.004",
+            "failureThresholdType": "percent",
+            "noColors": false
+        },
+        "port": 5600,
+        "puppeteer": {
+            "headless": true,
+            "args": [
+                "--disable-dev-shm-usage",
+                "--cap-add=SYS_ADMIN"
+            ]
+        }
+    },
     "scripts": {
         "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
         "pre:build:clear_build": "rimraf build",
@@ -133,7 +149,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure5.ft.ecster.se",
+                    "target": "https://secure4.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
@@ -156,6 +172,7 @@
         "chai": "^4.1.2",
         "colors": "^1.3.2",
         "core-js": "^2.5.7",
+        "cosmiconfig": "^5.0.6",
         "enzyme": "^3.6.0",
         "enzyme-adapter-react-16": "^1.5.0",
         "enzyme-to-json": "^3.3.4",
@@ -170,6 +187,7 @@
         "express": "^4.16.3",
         "express-history-api-fallback": "^2.2.1",
         "history": "^4.7.2",
+        "ip": "^1.1.5",
         "jest": "^23.5.0",
         "jest-image-snapshot": "^2.5.0",
         "jest-teamcity-reporter": "^0.9.0",

@@ -1,14 +1,14 @@
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
+import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
+import ip from 'ip';
+import packageJson from '../../../../../package';
 
-const { configureToMatchImageSnapshot } = require('jest-image-snapshot');
+const config = packageJson.jestConfig;
+const localDev = `http://${ip.address()}:${config.port}`;
 
-jest.setTimeout(100000);
+jest.setTimeout(config.timeout);
 
-const toMatchImageSnapshot = configureToMatchImageSnapshot({
-    failureThreshold: '0.004',
-    failureThresholdType: 'percent',
-    noColors: false,
-});
+const toMatchImageSnapshot = configureToMatchImageSnapshot(config.configureToMatchImageSnapshot);
 
 expect.extend({ toMatchImageSnapshot });
 
@@ -25,13 +25,10 @@ describe('LoginPage visual regression', async () => {
     beforeAll(async () => {
         // Just in case we decide to go down the Docker route
         // https://developers.google.com/web/tools/puppeteer/troubleshooting
-        browser = await puppeteer.launch({
-            headless: true,
-            args: ['--disable-dev-shm-usage', '--cap-add=SYS_ADMIN'],
-        });
+        browser = await puppeteer.launch(config.puppeteer);
 
         page = await browser.newPage();
-        await page.goto('http://172.25.14.140:5600');
+        await page.goto(localDev);
         await page.waitForSelector('article.lazyloaded');
     });
 
@@ -46,14 +43,18 @@ describe('LoginPage visual regression', async () => {
     });
 
     it('should match the image snapshot onHover of the login button', async () => {
-        await page.hover('[name="login-button"]');
+        const button = await page.$('[name="login-button"]');
+
+        await button.hover();
 
         const image = await page.screenshot();
 
         expect(image).toMatchImageSnapshot();
     });
     it('should match the image snapshot onFocus of the login button', async () => {
-        await page.focus('[name="login-button"]');
+        const button = await page.$('[name="login-button"]');
+
+        await button.focus();
 
         const image = await page.screenshot();
 
