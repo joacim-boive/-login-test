@@ -1,34 +1,27 @@
 import puppeteer from 'puppeteer';
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
-import ip from 'ip';
-import packageJson from '../../../../../package';
 
-const config = packageJson.jestConfig;
-const localDev = `http://${ip.address()}:${config.port}`;
+import { config, jestConfig, delay, login } from '../../../../../tools/utils';
 
-jest.setTimeout(config.timeout);
+jest.setTimeout(jestConfig.timeout);
 
-const toMatchImageSnapshot = configureToMatchImageSnapshot(config.configureToMatchImageSnapshot);
+const toMatchImageSnapshot = configureToMatchImageSnapshot(jestConfig.configureToMatchImageSnapshot);
 
 expect.extend({ toMatchImageSnapshot });
 
 // eslint-disable-next-line no-unused-vars
-const delay = timeout =>
-    new Promise(resolve => {
-        setTimeout(resolve, timeout);
-    });
 
-describe('LoginPage visual regression', async () => {
+describe('LoginPage', async () => {
     let browser;
     let page;
 
     beforeAll(async () => {
         // Just in case we decide to go down the Docker route
         // https://developers.google.com/web/tools/puppeteer/troubleshooting
-        browser = await puppeteer.launch(config.puppeteer);
+        browser = await puppeteer.launch(jestConfig.puppeteer);
 
         page = await browser.newPage();
-        await page.goto(localDev);
+        await page.goto(jestConfig.localDev);
         await page.waitForSelector('article.lazyloaded');
     });
 
@@ -74,7 +67,13 @@ describe('LoginPage visual regression', async () => {
         expect(image).toMatchImageSnapshot();
     });
 
+    it('should be able to login', async () => {
+        await login(page, config.test.persons[0].ssn);
+
+        expect(page).toMatchElement('.account-header__card-number > h3', { text: 'MultiCard 001' });
+    });
+
     afterAll(async () => {
-        await browser.close();
+        // await browser.close();
     });
 });

@@ -32,6 +32,8 @@
     ],
     "jest": {
         "testURL": "http://localhost",
+        "testEnvironment": "jsdom",
+        "preset": "jest-puppeteer",
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
@@ -49,7 +51,7 @@
         "testResultsProcessor": "jest-teamcity-reporter"
     },
     "jestConfig": {
-        "timeout": 10000,
+        "timeout": 20000,
         "configureToMatchImageSnapshot": {
             "failureThreshold": "0.004",
             "failureThresholdType": "percent",
@@ -63,6 +65,13 @@
                 "--cap-add=SYS_ADMIN"
             ]
         }
+    },
+    "test": {
+        "persons": [
+            {
+                "ssn": "3702030333"
+            }
+        ]
     },
     "scripts": {
         "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
@@ -188,10 +197,10 @@
         "express-history-api-fallback": "^2.2.1",
         "history": "^4.7.2",
         "ip": "^1.1.5",
-        "jest": "^23.5.0",
+        "jest": "^23.6.0",
         "jest-image-snapshot": "^2.5.0",
         "jest-teamcity-reporter": "^0.9.0",
-        "jsdom": "^11.12.0",
+        "jsdom": "^12.0.0",
         "lodash": "^4.17.10",
         "nock": "^9.6.1",
         "npm-run": "^5.0.1",
@@ -202,12 +211,12 @@
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
         "sinon": "^4.5.0",
-        "webpack": "^4.17.2",
+        "webpack": "^4.18.0",
         "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
         "@ecster/ecster-analytics": "1.0.65",
-        "@ecster/ecster-components": "^1.1.395",
+        "@ecster/ecster-components": "^1.1.397",
         "@ecster/ecster-i18n": "^3.0.64",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
@@ -218,12 +227,13 @@
         "cypress": "^3.1.0",
         "eslint-plugin-jest": "^21.22.0",
         "features": "^0.1.0",
-        "lazysizes": "^4.1.1",
+        "jest-puppeteer": "^3.3.1",
+        "lazysizes": "^4.1.2",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
         "rc-slider": "^8.6.2",
-        "react": "^16.4.2",
-        "react-dom": "^16.4.2",
+        "react": "^16.5.0",
+        "react-dom": "^16.5.0",
         "react-grid-layout": "^0.16.6",
         "react-hot-loader": "^4.3.6",
         "react-media": "^1.8.0",
@@ -231,7 +241,7 @@
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "react-router-redux": "5.0.0-alpha.9",
-        "react-tooltip": "^3.8.0",
+        "react-tooltip": "^3.8.2",
         "redux": "^3.7.2",
         "redux-thunk": "^2.3.0"
     }

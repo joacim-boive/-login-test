@@ -3,7 +3,7 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import DataRow from '@ecster/ecster-components/DataColumns/DataRow';
 import Enzyme, { shallow } from 'enzyme';
-import { LatestTransactions } from './../LatestTransactions';
+import { LatestTransactions } from '../LatestTransactions';
 import transactionsJSON from '../__mocks__/transactions.json';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -21,6 +21,6 @@ describe('LatestTransactions', () => {
     });
     it('renders header plus 3 rows', () => {
         const component = shallowRender();
-        expect(component.find(DataRow).length).toBe(4);
+        expect(component.find(DataRow)).toHaveLength(4);
     });
 });
