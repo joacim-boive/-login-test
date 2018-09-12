@@ -133,7 +133,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure3.ft.ecster.se",
+                    "target": "https://secure4.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
