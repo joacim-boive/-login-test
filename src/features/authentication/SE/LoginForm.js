@@ -134,12 +134,18 @@ class LoginFormSE extends Component {
 
         const { isOnThisDevice, isDesktop, isLoggingIn, ssn } = this.state;
 
+        const pollAgainStatus = ['STARTED', 'OUTSTANDING_TRANSACTION', 'NO_CLIENT', 'USER_SIGN'];
+        const stopPollStatus = ['COMPLETE', 'EXPIRED_TRANSACTION', 'CERTIFICATE_ERROR', 'USER_CANCEL', 'CANCELLED', 'START_FAILED', 'TECHNICAL_ERROR' ];
+
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && isOnThisDevice) {
                 this.startBankIdApp(loginProgress.startURL);
                 this.pollBankID();
-            } else if (loginProgress.status === 'IN_PROGRESS') {
+            } else if (pollAgainStatus.includes(loginProgress.status)) {
+                console.log('Poll again status', loginProgress.status);
                 this.pollBankID();
+            } else if (stopPollStatus.includes(loginProgress.status)) {
+                console.log('Stop poll status', loginProgress.status);
             }
         }
 
@@ -189,6 +195,7 @@ class LoginFormSE extends Component {
                     isOnThisDevice={this.state.isOnThisDevice}
                     cancelLogin={this.cancelLogin}
                     startURL={loginProgress.startURL}
+                    loginStatus={loginProgress.status}
                 />
             </div>
         );

@@ -51,7 +51,7 @@ parser.addArgument(['--readonly'], {
 const args = parser.parseArgs();
 
 function startEcsterServer() {
-    const ecsterBackend = initEcsterDevServer('https://secure1.ft.ecster.se', __dirname);
+    const ecsterBackend = initEcsterDevServer('https://secure5.ft.ecster.se', __dirname);
     const PORT = pkgJson.rekit.restPort;
 
     ecsterBackend.listen(PORT, () => {

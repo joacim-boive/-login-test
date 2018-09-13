@@ -286,12 +286,30 @@
                             "header": "Öppna BankID",
                             "body": [
                                 "Låt sidan vara öppen under tiden du loggar in med ditt BankID, annars avbryts inloggningen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
                             ]
                         },
                         "other-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
                             ]
                         }
                     },
@@ -300,12 +318,30 @@
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
                             ]
                         },
                         "other-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
                             ]
                         }
                     }

@@ -8,6 +8,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 export default class LoginInProgress extends Component {
     state = {
         showButton: false,
+        showSpinner: true,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -15,6 +16,13 @@ export default class LoginInProgress extends Component {
             setTimeout(() => {
                 this.setState({ showButton: true });
             }, 5000);
+        }
+
+        if (nextProps.loginStatus === 'USER_SIGN') {
+            this.setState({ showButton: false });
+        }
+        if (['EXPIRED_TRANSACTION', 'START_FAILED'].includes(nextProps.loginStatus)) {
+            this.setState({ showButton: false, showSpinner: false });
         }
     }
 
@@ -24,8 +32,8 @@ export default class LoginInProgress extends Component {
     };
 
     render() {
-        const { isVisible, isDesktop, isOnThisDevice, startURL } = this.props;
-        const { showButton } = this.state;
+        const { isVisible, isDesktop, isOnThisDevice, startURL, loginStatus } = this.props;
+        const { showButton, showSpinner } = this.state;
 
         const buttonClasses = classNames({
             'start-manually': true,
@@ -37,7 +45,17 @@ export default class LoginInProgress extends Component {
 
         const headerI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.header`;
 
-        const bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
+        let bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
+
+        if (loginStatus === 'USER_SIGN') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
+        }
+        if (loginStatus === 'EXPIRED_TRANSACTION') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-expired-transaction`;
+        }
+        if (loginStatus === 'START_FAILED') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-start-failed`;
+        }
 
         const i18nBody = i18n(bodyI18nKey, { returnObjects: true });
         // TODO: use i18n('...', {returnObjects: true}}? /joli44 2018-08
@@ -48,8 +66,8 @@ export default class LoginInProgress extends Component {
                 <div className="authentication-login-in-progress">
                     <h1>{i18n(headerI18nKey)}</h1>
                     {thisBody}
-                    <Spinner id="login-se-login-in-progress-spinner" isVisible isCenterX />
-
+                    <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
+                    <p>{loginStatus}</p>
                     <Button link onClick={this.onCancel} name="cancel-login-button">
                         {i18n('general.cancel')}
                     </Button>
@@ -73,6 +91,7 @@ LoginInProgress.propTypes = {
     // toggleState: PropTypes.func.isRequired,
     cancelLogin: PropTypes.func.isRequired,
     startURL: PropTypes.string,
+    loginStatus: PropTypes.string.isRequired,
 };
 
 LoginInProgress.defaultProps = {

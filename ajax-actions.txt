@@ -67,13 +67,13 @@ get /rest/customers/v1/:customerid/properties?property
 //// AUTHENTICATION
 
 // getSession GET_SESSION
-get /rest/sessions/v1/:sessionKey
+get /rest/sessions/v2/:sessionKey
 
 // deleteSession DELETE_SESSION
 del /rest/sessions/v1/:sessionKey
 
 // createSession CREATE_SESSION
-post /rest/sessions/v1
+post /rest/sessions/v2
 {type: "BANKID_MOBILE", ssn: "1212121212"}
 {type: "BANKID"}
 
