@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
@@ -98,7 +97,7 @@ AccountPanel.defaultProps = {
 function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
     return {
-        transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
+        transactions: transactions || undefined,
         totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };
@@ -108,7 +107,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getAccountTransactions: (userId, reference, filter) =>
-            dispatch(getAccountTransactions(userId, reference, filter)),
+            dispatch(getAccountTransactions(userId, reference, filter, true)),
         getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
     };
 }
