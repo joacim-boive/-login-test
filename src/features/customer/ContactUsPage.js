@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Panel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import balloonSvg from '../../common/images/SvgIconBalloon.svg';
 
@@ -17,8 +16,8 @@ export class ContactUsPage extends Component {
                     <p dangerouslySetInnerHTML={{ __html: i18n('customer.contact-us.question-panel-tel') }} />
                     {i18n('customer.contact-us.question-panel-opening-hours')}
                 </Panel>
-                <ResponsivePanel mobile={1} tablet={2} desktop={2}>
-                    <Panel padding="40px" className="responsive-panel-left" sideBordersMobile>
+                <div className="panels-50-50">
+                    <Panel padding="40px" className="sub-panel" sideBordersMobile>
                         <h2 className="text-align-center">{i18n('customer.contact-us.block-card-text1')}</h2>
                         {i18n('customer.contact-us.block-card-text2')}
                         <p className="flex-row pt-4x">
@@ -38,7 +37,7 @@ export class ContactUsPage extends Component {
                             />
                         </p>
                     </Panel>
-                    <Panel padding="40px" className="responsive-panel-right" sideBordersMobile>
+                    <Panel padding="40px" className="sub-panel" sideBordersMobile>
                         <h2 className="text-align-center">{i18n('customer.contact-us.faq-text1')}</h2>
                         {i18n('customer.contact-us.faq-text2')}
                         <div className="pt-4x">
@@ -47,7 +46,7 @@ export class ContactUsPage extends Component {
                             </a>
                         </div>
                     </Panel>
-                </ResponsivePanel>
+                </div>
             </AuthenticatedPageTemplate>
         );
     }

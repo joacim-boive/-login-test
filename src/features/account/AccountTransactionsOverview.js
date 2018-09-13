@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { Panel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
@@ -10,6 +12,7 @@ import { ScrollPaginate } from '../common/scroll-paginate/ScrollPaginate';
 import initialState from './redux/initialState';
 import { getAccountTransactions } from './redux/getAccountTransactions';
 import { getAccount } from './redux/getAccount';
+import OverdrawnInfo from './components/OverdrawnInfo';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -54,10 +57,21 @@ export class AccountTransactionsOverview extends Component {
 
         if (!account.product || !transactions) return null;
 
+        const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
+
         return (
             <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
+                {showOverdrawn && (
+                    <Panel padding="20px 40px" sideBordersMobile className="mt-4x">
+                        <OverdrawnInfo
+                            used={account.used}
+                            limit={account.limit}
+                            accountNumber={account.accountNumber}
+                        />
+                    </Panel>
+                )}
                 {reservedTransactions && (
                     <TransactionsPanel
                         weak

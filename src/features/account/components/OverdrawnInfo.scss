@@ -1,0 +1,22 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+
+.account-overdrawn-info {
+    & > img, & > div {
+        display: inline-block;
+    }
+    img {
+        width: 34px;
+        height: 34px;
+        margin-right: 34px;
+    }
+    p {
+        margin: 0;
+    }
+    @include mobile() {
+        display: flex;
+        flex-direction: column;
+        img {
+            display: none;
+        }
+    }
+}

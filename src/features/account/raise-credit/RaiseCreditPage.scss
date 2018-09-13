@@ -7,11 +7,17 @@
 
     .result-panel {
         padding: 55px 25px;
+        h2 {
+            color: black;
+        }
         img {
             margin-bottom: 20px;
+            width: 82px;
+            height: 82px;
         }
         a {
             font-weight: bold;
         }
     }
+
 }

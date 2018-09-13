@@ -14,4 +14,17 @@
             padding: 0;
         }
     }
+
+    // AccountPanel specific styling for overdrawn info component
+    .account-overdrawn-info {
+        padding: 40px 40px 30px;
+        margin: 0 20px;
+        border-bottom: 1px solid $gray40;
+
+        @include mobile() {
+            padding: 20px 0;
+            border-bottom: none;
+
+        }
+    }
 }

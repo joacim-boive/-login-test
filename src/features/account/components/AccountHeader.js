@@ -12,14 +12,14 @@ export const AccountHeader = ({ account }) => {
 
     return (
         <div className="account-header">
-            <EcsterCard account={account} className="account-header__card-icon" />
+            <EcsterCard account={account} />
             <div className="account-header__panel">
                 <div className="account-header__card-number">
                     <h3>{account.product.name}</h3>
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{formatAmount(amountLeft, undefined, { roundDown: true })}</div>
+                    <div>{formatAmount(amountLeft < 0 ? 0 : amountLeft, undefined, { roundDown: true })}</div>
                     <p>{i18n('account.header.left-to-buy')}</p>
                 </div>
             </div>
