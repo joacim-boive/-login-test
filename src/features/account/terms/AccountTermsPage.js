@@ -42,14 +42,14 @@ export class AccountTermsPage extends Component {
     render() {
         const { account, terms, getAccountRef, getCustomerId, getAccountTermsError } = this.props;
 
+        const hasAccountName = account && account.product && account.product.name;
+
         return (
             <AuthenticatedSubPageTemplate
                 header={i18n('account.terms.terms-information')}
                 className="account-terms-wrapper"
             >
-                {account &&
-                    account.product &&
-                    account.product.name && <h2 className="account-name">{account.product.name}</h2>}
+                {hasAccountName && <h2 className="account-name">{account.product.name}</h2>}
                 <AccountSummary account={account} />
                 <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
                     <h1>{i18n('account.terms.account-terms')}</h1>

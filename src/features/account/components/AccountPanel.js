@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
@@ -25,9 +24,8 @@ const defaultFilter = initialState.accountTransactionsFilter;
 class AccountPanel extends Component {
     componentDidMount() {
         const { getAccountTransactions, getAccountBills, user, account } = this.props;
-        const isShortList = true;
 
-        getAccountTransactions(user.id, account.reference, defaultFilter, isShortList);
+        getAccountTransactions(user.id, account.reference, defaultFilter);
         getAccountBills(user.id, account.reference);
     }
 
