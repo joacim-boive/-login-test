@@ -39,7 +39,7 @@
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
         },
         "testPathIgnorePatterns": [
-            "/tests/"
+            "<rootDir>/(build|docs|node_modules)/"
         ],
         "collectCoverageFrom": [
             "<rootDir>/src/**/*test.(js|jsx)",
@@ -51,7 +51,7 @@
         "testResultsProcessor": "jest-teamcity-reporter"
     },
     "jestConfig": {
-        "timeout": 25000,
+        "timeout": 35000,
         "configureToMatchImageSnapshot": {
             "failureThreshold": "0.004",
             "failureThresholdType": "percent",
@@ -59,7 +59,7 @@
         },
         "port": 5600,
         "puppeteer": {
-            "headless": false,
+            "headless": true,
             "args": [
                 "--disable-dev-shm-usage",
                 "--cap-add=SYS_ADMIN"

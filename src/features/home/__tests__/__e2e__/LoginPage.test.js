@@ -13,7 +13,7 @@ describe('LoginPage', async () => {
 
     beforeAll(async () => {
         // This isn't according to best practices, but until the delay in login with BankID is solved
-        //
+        // https://docs.browserless.io/blog/2018/06/04/puppeteer-best-practices.html
         await browser.init();
 
         await browser.loginPage();
