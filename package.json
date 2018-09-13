@@ -51,7 +51,7 @@
         "testResultsProcessor": "jest-teamcity-reporter"
     },
     "jestConfig": {
-        "timeout": 20000,
+        "timeout": 25000,
         "configureToMatchImageSnapshot": {
             "failureThreshold": "0.004",
             "failureThresholdType": "percent",
@@ -59,11 +59,15 @@
         },
         "port": 5600,
         "puppeteer": {
-            "headless": true,
+            "headless": false,
             "args": [
                 "--disable-dev-shm-usage",
                 "--cap-add=SYS_ADMIN"
-            ]
+            ],
+            "defaultViewport": {
+                "width": 1024,
+                "height": 768
+            }
         }
     },
     "test": {
@@ -224,7 +228,6 @@
         "@ecster/ecster-webpack": "^2.0.169",
         "ajv": "^6.5.3",
         "classnames": "^2.2.6",
-        "cypress": "^3.1.0",
         "eslint-plugin-jest": "^21.22.0",
         "features": "^0.1.0",
         "jest-puppeteer": "^3.3.1",
