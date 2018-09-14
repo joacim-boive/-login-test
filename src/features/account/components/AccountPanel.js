@@ -96,8 +96,9 @@ AccountPanel.defaultProps = {
 /* istanbul ignore next */
 function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
+
     return {
-        transactions: transactions || undefined,
+        transactions: transactions ? transactions.slice(0, defaultFilter.shortList) : undefined,
         totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };

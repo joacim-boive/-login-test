@@ -19,7 +19,7 @@ const defaultFilter = initialState.accountTransactionsFilter;
 // Check if we already have transactions - in that case we came from the overview page and will already have a short list of transactions
 const getFilter = (defaultFilter, transactions) =>
     Array.isArray(transactions) && transactions.length > 0
-        ? { ...defaultFilter, offset: defaultFilter.shortList }
+        ? { ...defaultFilter, offset: defaultFilter.shortList + 1 }
         : defaultFilter;
 
 export class AccountTransactionsOverview extends Component {
