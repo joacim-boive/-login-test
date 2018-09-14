@@ -60,6 +60,7 @@ export function reducer(state, action) {
             };
 
         case AUTHENTICATION_CREATE_SESSION_FAILURE:
+            console.log('BOOM! ', action.data.error);
             return {
                 ...state,
                 createSessionPending: false,

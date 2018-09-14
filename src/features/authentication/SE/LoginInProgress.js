@@ -20,9 +20,11 @@ export default class LoginInProgress extends Component {
 
         if (nextProps.loginStatus === 'USER_SIGN') {
             this.setState({ showButton: false });
-        }
-        if (['EXPIRED_TRANSACTION', 'START_FAILED'].includes(nextProps.loginStatus)) {
+        } else if (['COMPLETE', 'EXPIRED_TRANSACTION', 'CERTIFICATE_ERROR', 'USER_CANCEL', 'CANCELLED', 'START_FAILED', 'TECHNICAL_ERROR'].includes(nextProps.loginStatus)) {
             this.setState({ showButton: false, showSpinner: false });
+        } else {
+            // Other statuses 'STARTED', 'OUTSTANDING_TRANSACTION', 'NO_CLIENT'
+            this.setState({ showSpinner: true });
         }
     }
 
@@ -32,7 +34,7 @@ export default class LoginInProgress extends Component {
     };
 
     render() {
-        const { isVisible, isDesktop, isOnThisDevice, startURL, loginStatus } = this.props;
+        const { isVisible, isDesktop, isOnThisDevice, startURL, loginStatus, getSessionError, createSessionError } = this.props;
         const { showButton, showSpinner } = this.state;
 
         const buttonClasses = classNames({
@@ -47,14 +49,32 @@ export default class LoginInProgress extends Component {
 
         let bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
 
+        console.log('LoginProgress Poll status', loginStatus);
+
+        //Texts below are from the bankid-relying-party-guidelines-v3.1.pdf
         if (loginStatus === 'USER_SIGN') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
         }
         if (loginStatus === 'EXPIRED_TRANSACTION') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-expired-transaction`;
         }
+        if (loginStatus === 'CERTIFICATE_ERROR') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-certificate-error`;
+        }
+        if (loginStatus === 'USER_CANCEL') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-cancel`;
+        }
+        if (loginStatus === 'CANCELLED') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-cancelled`;
+        }
+        if (loginStatus === 'STARTED') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-started`;
+        }
         if (loginStatus === 'START_FAILED') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-start-failed`;
+        }
+        if (loginStatus === 'TECHNICAL_ERROR') {
+            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
         }
 
         const i18nBody = i18n(bodyI18nKey, { returnObjects: true });
@@ -68,6 +88,8 @@ export default class LoginInProgress extends Component {
                     {thisBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
                     <p>{loginStatus}</p>
+                    <p>{getSessionError}</p>
+                    <p>{createSessionError}</p>
                     <Button link onClick={this.onCancel} name="cancel-login-button">
                         {i18n('general.cancel')}
                     </Button>

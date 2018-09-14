@@ -287,11 +287,29 @@
                             "body": [
                                 "Låt sidan vara öppen under tiden du loggar in med ditt BankID, annars avbryts inloggningen."
                             ],
-                            "body-user-sign": [
-                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
                             ],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
+                            ],
+                            "body-started": [
+                                "Söker efter BankID, det kan ta en liten stund… Om det har gått några sekunder och inget BankID har hittats har du sannolikt inget BankID som går att använda för den aktuella identifieringen/underskriften i den här datorn. Om du har ett BankID-kort, sätt in det i kortläsaren. Om du inte har något BankID kan du hämta ett hos din internetbank."
                             ],
                             "body-start-failed": [
                                 "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
@@ -302,11 +320,26 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-user-sign": [
-                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
                             ],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
                                 "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
@@ -319,11 +352,26 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-user-sign": [
-                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
                             ],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
                                 "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
@@ -334,11 +382,26 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-user-sign": [
-                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
                             ],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
                                 "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
