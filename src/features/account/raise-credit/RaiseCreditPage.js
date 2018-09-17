@@ -120,10 +120,6 @@ export class RaiseCreditPage extends Component {
                                     <span>{i18n('account.raise-credit.current-credit-limit')}</span>
                                     <strong>{formatAmount(currentLimit)}</strong>
                                 </div>
-                                <div className="flex-row mb-5x">
-                                    <span>{i18n('account.raise-credit.max-credit-limit')}</span>
-                                    <strong>{formatAmount(account.maxLimit)}</strong>
-                                </div>
                                 <div className="flex-row">
                                     <span>{i18n('account.raise-credit.new-credit-limit')}</span>
                                     <span>

@@ -19,12 +19,10 @@ class AuthenticatedSubPageTemplate extends React.Component {
 
         const renderHeader = header && (
             <div className="hero-header">
-                <div>
-                    <Link to={linkTo} href={linkTo}>
-                        <i className="icon-arrow-left" />
-                    </Link>
-                    <h1>{header}</h1>
-                </div>
+                <Link to={linkTo} href={linkTo}>
+                    <i className="icon-arrow-left" />
+                </Link>
+                <h1>{header}</h1>
             </div>
         );
 
