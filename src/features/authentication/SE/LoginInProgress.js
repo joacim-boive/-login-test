@@ -26,6 +26,11 @@ export default class LoginInProgress extends Component {
             // Other statuses 'STARTED', 'OUTSTANDING_TRANSACTION', 'NO_CLIENT'
             this.setState({ showSpinner: true });
         }
+
+        //If error when creating a new session or polling a session then hide the spinner
+        if (nextProps.createSessionError || nextProps.getSessionError) {
+            this.setState({ showSpinner: false });
+        }
     }
 
     onCancel = () => {
@@ -76,6 +81,22 @@ export default class LoginInProgress extends Component {
         if (loginStatus === 'TECHNICAL_ERROR') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
         }
+
+        //Handle already in progress when starting a login
+        let errorText = createSessionError ? createSessionError.response : undefined;
+        if (!errorText) {
+            errorText = getSessionError ? getSessionError.response : undefined;
+        }
+        if (errorText) {
+            let err = JSON.parse(errorText);
+            if (err.detail && err.detail.indexOf('ALREADY_IN_PROGRESS') !== 0) {
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-already-in-progress`;
+            } else {
+                //Not sure what is wrong, but something went wrong
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
+            }
+        }
+
         const i18nBody = i18n(bodyI18nKey, {
             returnObjects: true,
             wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
@@ -88,8 +109,6 @@ export default class LoginInProgress extends Component {
                     {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
                     <p>{loginStatus}</p>
-                    <p>{getSessionError}</p>
-                    <p>{createSessionError}</p>
                     <Button link onClick={this.onCancel} name="cancel-login-button">
                         {i18n('general.cancel')}
                     </Button>
