@@ -162,7 +162,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure4.ft.ecster.se",
+                    "target": "https://secure3.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
@@ -232,6 +232,8 @@
         "features": "^0.1.0",
         "jest-puppeteer": "^3.3.1",
         "lazysizes": "^4.1.2",
+        "ndb": "^1.0.25",
+        "nodemon": "^1.18.4",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
         "rc-slider": "^8.6.1",
