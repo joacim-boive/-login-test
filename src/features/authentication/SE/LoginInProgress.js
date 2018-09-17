@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button, Spinner, LinkButton } from '@ecster/ecster-components';
+import {Button, Spinner, LinkButton, Panel} from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 // import Overlay from '../../common/Overlay';
 
@@ -76,16 +76,16 @@ export default class LoginInProgress extends Component {
         if (loginStatus === 'TECHNICAL_ERROR') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
         }
-
-        const i18nBody = i18n(bodyI18nKey, { returnObjects: true });
-        // TODO: use i18n('...', {returnObjects: true}}? /joli44 2018-08
-        const thisBody = Array.isArray(i18nBody) ? i18nBody.map(row => <p key={row}>{row}</p>) : <p>{i18nBody}</p>;
+        const i18nBody = i18n(bodyI18nKey, {
+            returnObjects: true,
+            wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+        });
 
         return (
             isVisible && (
                 <div className="authentication-login-in-progress">
                     <h1>{i18n(headerI18nKey)}</h1>
-                    {thisBody}
+                    {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
                     <p>{loginStatus}</p>
                     <p>{getSessionError}</p>

@@ -312,7 +312,7 @@
                                 "Söker efter BankID, det kan ta en liten stund… Om det har gått några sekunder och inget BankID har hittats har du sannolikt inget BankID som går att använda för den aktuella identifieringen/underskriften i den här datorn. Om du har ett BankID-kort, sätt in det i kortläsaren. Om du inte har något BankID kan du hämta ett hos din internetbank."
                             ],
                             "body-start-failed": [
-                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         },
                         "other-device": {
@@ -342,7 +342,7 @@
                                 "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
-                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         }
                     },
@@ -374,7 +374,7 @@
                                 "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
-                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         },
                         "other-device": {
@@ -404,7 +404,7 @@
                                 "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
                             ],
                             "body-start-failed": [
-                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från https://install.bankid.com."
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         }
                     }
