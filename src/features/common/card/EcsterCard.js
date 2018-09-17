@@ -11,13 +11,6 @@ export const EcsterCard = ({ className, account, ...rest }) => {
         [className]: className,
     });
 
-    const handleError = event => {
-        const img = event.target;
-        img.style = 'display: none!important;';
-
-        console.error(`Unable to load image for Ecster card: ${event.target.currentSrc}`);
-    };
-
     // Default brick id if none exists
     // Uses the ecster card according to https://jira.shbmain.shb.biz/browse/HXDN-11880
     let brickId = 0;
@@ -30,7 +23,6 @@ export const EcsterCard = ({ className, account, ...rest }) => {
 
     return (
         <Lazyload
-            onError={handleError}
             alt="Ecster Pay Card"
             className={classes}
             src={`/v1/cards/${brickId}.png`}
