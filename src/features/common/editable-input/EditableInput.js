@@ -52,6 +52,7 @@ export class EditableInput extends Component {
             <div className={classes}>
                 <Input
                     {...rest}
+                    className="editable-input__input"
                     label={label}
                     value={value}
                     small

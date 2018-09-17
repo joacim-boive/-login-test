@@ -10,6 +10,7 @@ export class SubMenu extends React.Component {
         super(props);
         this.arrowRef = React.createRef();
     }
+
     closeMenu = e => {
         if (this.props.show) {
             e.stopPropagation();
