@@ -17,11 +17,28 @@ import './lazysizes';
  * match for this particular request.
  */
 class Lazyload extends Component {
+    state = {
+        isError: false,
+    };
+
+    handleError = event => {
+        this.setState({ isError: true });
+
+        console.error(`Unable to load image for Ecster card: ${event.target.currentSrc}`);
+    };
+
     render() {
         const { alt, className, src, widths, ...rest } = this.props;
+        const { isError } = this.state;
+
+        const style = {
+            display: isError ? 'none' : 'inherit',
+        };
 
         return (
             <img
+                style={style}
+                onError={this.handleError}
                 alt={alt}
                 className={className}
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
