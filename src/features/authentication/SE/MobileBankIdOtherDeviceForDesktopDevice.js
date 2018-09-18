@@ -44,6 +44,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                             this.inputRef = input;
                         }}
                         name="ssn"
+                        className="ssn-input"
                         autoComplete="off"
                         label={i18n('ssn-label')}
                         placeholder={i18n('ssn-placeholder')}
