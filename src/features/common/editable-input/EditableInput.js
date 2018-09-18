@@ -59,10 +59,10 @@ export class EditableInput extends Component {
                     ref={input => (this.inputRef = input)}
                 />
                 <ButtonGroup align="right">
-                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                    <Button name="cancel" onClick={this.onCancel} xSmall round transparent>
                         {i18n('general.cancel')}
                     </Button>
-                    <Button name="save" onClick={this.onSave} small round>
+                    <Button name="save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -72,7 +72,7 @@ export class EditableInput extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>{value}</strong>
-                    <Button name="edit" onClick={this.onEdit} small round outline>
+                    <Button name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
                     </Button>
                 </div>

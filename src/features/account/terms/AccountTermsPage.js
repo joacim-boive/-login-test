@@ -1,28 +1,28 @@
-/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Message } from '@ecster/ecster-components';
-
+import { AccountSummary } from '../components/AccountSummary';
 import { formatAmount } from '../../../common/util/format-amount';
 import { formatAccount } from '../../../common/util/format-account';
 import { formatNumber } from '../../../common/util/format-number';
 
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import TerminateAccountIntro from '../terminate/TerminateAccountIntro';
-import { getAccountTerms } from '../redux/actions';
+
+import { getAccountTerms, getAccount } from '../redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
     <div className="info-item">
         <div className="item label">{label}</div>
-        <div className="item value">{value}</div>
-        <div className="item description">{description}</div>
+        {value && <div className="item value">{value}</div>}
+        {description && <div className="item description">{description}</div>}
     </div>
 );
 
 InfoItem.propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
@@ -34,16 +34,25 @@ InfoItem.defaultProps = {
 
 export class AccountTermsPage extends Component {
     componentWillMount() {
-        this.props.getAccountTerms();
+        const { getAccountTerms, getAccount } = this.props;
+        getAccount();
+        getAccountTerms();
     }
 
     render() {
-        const { terms, getAccountRef, getCustomerId, getAccountTermsError } = this.props;
+        const { account, terms, getAccountRef, getCustomerId, getAccountTermsError } = this.props;
+
+        const hasAccountName = account && account.product && account.product.name;
 
         return (
-            <AuthenticatedSubPageTemplate header={i18n('account.terms.account-terms')}>
-                <h1>Villkor</h1>
+            <AuthenticatedSubPageTemplate
+                header={i18n('account.terms.terms-information')}
+                className="account-terms-wrapper"
+            >
+                {hasAccountName && <h2 className="account-name">{account.product.name}</h2>}
+                <AccountSummary account={account} />
                 <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
+                    <h1>{i18n('account.terms.account-terms')}</h1>
                     {getAccountTermsError ? (
                         <Message warning header={i18n('general.error.oops')}>
                             <p>
@@ -79,7 +88,7 @@ export class AccountTermsPage extends Component {
                                     description={
                                         <span>
                                             {i18n('account.terms.deposit-rate-description')}{' '}
-                                            <a target="_blank" href={terms.termsPDFURL}>
+                                            <a target="_blank" rel="noopener noreferrer" href={terms.termsPDFURL}>
                                                 pdf
                                             </a>
                                         </span>
@@ -106,13 +115,29 @@ export class AccountTermsPage extends Component {
                                     percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
                                     feeValue: formatAmount(terms.withdrawalFee),
                                 })}
-                                label={i18n('account.terms.withdrawal-fee')}
+                                label={i18n('account.terms.withdrawal-fee-cash')}
+                                description={i18n('account.terms.withdrawal-fee-description')}
+                            />
+                            <InfoItem
+                                value={i18n('account.terms.withdrawal-fee-value', {
+                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
+                                    feeValue: formatAmount(terms.withdrawalFee),
+                                })}
+                                label={i18n('account.terms.withdrawal-fee-atm')}
                                 description={i18n('account.terms.withdrawal-fee-description')}
                             />
                             <InfoItem
                                 value={`${formatNumber(terms.currencyExchangeFeeRate, 2)}%`}
                                 label={i18n('account.terms.exchange-fee')}
                                 description={i18n('account.terms.exchange-fee-description')}
+                            />
+                            <InfoItem
+                                value={i18n('account.terms.foreign-currency-withdrawal-fee-value', {
+                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
+                                    feeValue: formatAmount(terms.withdrawalFee),
+                                })}
+                                label={i18n('account.terms.withdrawal-fee-foreign-currency')}
+                                description={i18n('account.terms.withdrawal-fee-foreign-currency-description')}
                             />
                             <InfoItem
                                 value={formatAmount(terms.lateFee)}
@@ -124,32 +149,32 @@ export class AccountTermsPage extends Component {
                                 label={i18n('account.terms.overdraft-fee')}
                                 description={i18n('account.terms.overdraft-fee-description')}
                             />
-                            <InfoItem
-                                value={
-                                    <a
-                                        className="button --small --outline --round"
-                                        href={terms.termsPDFURL}
-                                        target="_blank"
-                                    >
-                                        {i18n('general.download')}
-                                    </a>
-                                }
-                                label={i18n('account.terms.account-terms-pdf')}
-                                description={i18n('account.terms.account-terms-pdf-description')}
-                            />
-                            {terms.agreementPDFURL && (
+                            {terms.termsPDFURL && (
                                 <InfoItem
-                                    value={
+                                    label={
                                         <a
-                                            className="button --small --outline --round"
-                                            href={terms.agreementPDFURL}
+                                            className="--bold"
+                                            href={terms.termsPDFURL}
                                             target="_blank"
+                                            rel="noopener noreferrer"
                                         >
-                                            {i18n('general.download')}
+                                            {i18n('account.terms.account-terms-pdf')}
                                         </a>
                                     }
-                                    label={i18n('account.terms.account-agreement-pdf')}
-                                    description={i18n('account.terms.account-agreement-pdf-description')}
+                                />
+                            )}
+                            {terms.agreementPDFURL && (
+                                <InfoItem
+                                    label={
+                                        <a
+                                            className="--bold"
+                                            href={terms.agreementPDFURL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {i18n('account.terms.account-agreement-pdf')}
+                                        </a>
+                                    }
                                 />
                             )}
                         </div>
@@ -163,8 +188,9 @@ export class AccountTermsPage extends Component {
 
 AccountTermsPage.propTypes = {
     // ajax action and its async states
+    account: PropTypes.shape().isRequired,
+    getAccount: PropTypes.func.isRequired,
     getAccountTerms: PropTypes.func.isRequired,
-    getAccountTermsPending: PropTypes.bool.isRequired,
     getAccountTermsError: PropTypes.object,
 
     getAccountRef: PropTypes.func.isRequired,
@@ -180,6 +206,7 @@ AccountTermsPage.defaultProps = {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
+        account: state.account.account,
         terms: state.account.accountTerms,
         getAccountTermsPending: state.account.getAccountTermsPending,
         getAccountTermsError: state.account.getAccountTermsError,
@@ -191,6 +218,7 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
+        getAccount: () => dispatch(getAccount(id, ref)),
         getAccountRef: () => ref,
         getCustomerId: () => id,
     };

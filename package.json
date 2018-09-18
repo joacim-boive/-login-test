@@ -32,12 +32,14 @@
     ],
     "jest": {
         "testURL": "http://localhost",
+        "testEnvironment": "jsdom",
+        "preset": "jest-puppeteer",
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
         },
         "testPathIgnorePatterns": [
-            "/tests/"
+            "<rootDir>/(build|docs|node_modules)/"
         ],
         "collectCoverageFrom": [
             "<rootDir>/src/**/*test.(js|jsx)",
@@ -47,6 +49,33 @@
             "enzyme-to-json/serializer"
         ],
         "testResultsProcessor": "jest-teamcity-reporter"
+    },
+    "jestConfig": {
+        "timeout": 35000,
+        "configureToMatchImageSnapshot": {
+            "failureThreshold": "0.004",
+            "failureThresholdType": "percent",
+            "noColors": false
+        },
+        "port": 5600,
+        "puppeteer": {
+            "headless": true,
+            "args": [
+                "--disable-dev-shm-usage",
+                "--cap-add=SYS_ADMIN"
+            ],
+            "defaultViewport": {
+                "width": 1024,
+                "height": 768
+            }
+        }
+    },
+    "test": {
+        "persons": [
+            {
+                "ssn": "3702030333"
+            }
+        ]
     },
     "scripts": {
         "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
@@ -133,7 +162,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure4.ft.ecster.se",
+                    "target": "https://secure3.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
@@ -149,7 +178,7 @@
         }
     ],
     "devDependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.0.0-rc.2",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "body-parser": "^1.18.3",
@@ -159,7 +188,7 @@
         "enzyme": "^3.4.4",
         "enzyme-adapter-react-16": "^1.2.0",
         "enzyme-to-json": "^3.3.4",
-        "eslint": "^5.4.0",
+        "eslint": "^5.6.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-config-prettier": "^3.0.1",
         "eslint-import-resolver-babel-module": "^4.0.0",
@@ -169,48 +198,55 @@
         "eslint-plugin-react": "^7.11.1",
         "express": "^4.16.3",
         "express-history-api-fallback": "^2.2.1",
+        "hint": "^3.2.3",
         "history": "^4.7.2",
-        "jest": "^23.5.0",
+        "ip": "^1.1.5",
+        "jest": "^23.6.0",
+        "jest-image-snapshot": "^2.5.0",
         "jest-teamcity-reporter": "^0.9.0",
-        "jsdom": "^11.12.0",
+        "jsdom": "^12.0.0",
         "lodash": "^4.17.10",
         "nock": "^9.6.1",
         "npm-run": "^5.0.1",
         "nyc": "^11.9.0",
+        "puppeteer": "^1.8.0",
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.3",
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
         "sinon": "^4.5.0",
-        "webpack": "^4.17.0",
+        "webpack": "^4.19.0",
         "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
         "@ecster/ecster-analytics": "1.0.65",
-        "@ecster/ecster-components": "^1.0.386",
+        "@ecster/ecster-components": "^1.1.403",
         "@ecster/ecster-i18n": "^3.0.64",
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^2.0.192",
         "@ecster/ecster-util": "^2.0.71",
-        "@ecster/ecster-webpack": "^2.0.169",
+        "@ecster/ecster-webpack": "^2.0.171",
         "ajv": "^6.5.3",
         "classnames": "^2.2.6",
-        "eslint-plugin-jest": "^21.21.0",
+        "eslint-plugin-jest": "^21.22.0",
         "features": "^0.1.0",
-        "lazysizes": "^4.1.1",
+        "jest-puppeteer": "^3.3.1",
+        "lazysizes": "^4.1.2",
+        "ndb": "^1.0.25",
+        "nodemon": "^1.18.4",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
         "rc-slider": "^8.6.1",
-        "react": "^16.4.2",
-        "react-dom": "^16.4.2",
+        "react": "^16.5.1",
+        "react-dom": "^16.5.1",
         "react-grid-layout": "^0.16.6",
-        "react-hot-loader": "^4.3.5",
+        "react-hot-loader": "^4.3.8",
         "react-media": "^1.8.0",
         "react-redux": "^5.0.5",
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "react-router-redux": "5.0.0-alpha.9",
-        "react-tooltip": "^3.6.1",
+        "react-tooltip": "^3.8.4",
         "redux": "^3.7.2",
         "redux-thunk": "^2.3.0"
     }
