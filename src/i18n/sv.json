@@ -100,6 +100,7 @@
         },
         "terms": {
             "account-terms": "Kontovillkor",
+            "terms-information": "Kontoinformation",
             "account-number": "Kontonummer",
             "account-name": "Kontonamn",
             "total-credit": "Total kredit",
@@ -108,7 +109,10 @@
             "admin-fee": "Administrativ avgift",
             "yearly-fee": "Årsavgift kort",
             "extra-card-fee": "Extrakortsavgift",
-            "withdrawal-fee": "Bankomat-och kontantuttagsavgift (gäller även utomlands)",
+            "withdrawal-fee-cash": "Kontantuttagsavgift",
+            "withdrawal-fee-atm": "Bankomatuttagsavgift",
+            "withdrawal-fee-foreign-currency": "Kontantuttag i utländskvaluta",
+            "withdrawal-fee": "Bankomat- och kontantuttagsavgift (gäller även utomlands)",
             "exchange-fee": "Valutaväxlingsavgift",
             "late-payment-fee": "Förseningsavgift",
             "overdraft-fee": "Övertrasseringsavgift",
@@ -117,6 +121,7 @@
 
             "atm-withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
             "withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
+            "foreign-currency-withdrawal-fee-value": "{{percentValue}} av uttaget belopp",
 
             "account-number-description": "Används som OCR-nummer.",
             "account-name-description": "",
@@ -126,12 +131,12 @@
             "admin-fee-description": "Avgift för administration av din betalningar.",
             "yearly-fee-description": "",
             "extra-card-fee-description": "",
-            "withdrawal-fee-description": "Du kan ta ut upp till 5 000 kr per uttag. Högst 15 000 kr inom 4 bankdagar.",
-            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta.",
-            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum.",
-            "overdraft-fee-description": "Debiteras om kontot övertrasseras.",
-            "account-terms-pdf-description": "Alla villkor som gäller för ditt konto.",
-            "account-agreement-pdf-description": "Villkor som tecknades i samband med din ansökan",
+            "withdrawal-fee-description": "Du kan ta ut upp till 5 000 kr per uttag.",
+            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta",
+            "withdrawal-fee-foreign-currency-description": "Avgift om du gör uttag av utländskvaluta från bankomat",
+            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
+            "overdraft-fee-description": "Debiteras om kontot övertrasseras",
+            "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
 
             "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
         },
@@ -279,7 +284,7 @@
                 "in-progress": {
                     "manual": {
                         "info": "Om inte BankID öppnas, klicka här",
-                        "button":"Starta BankID"
+                        "button": "Starta BankID"
                     },
                     "desktop": {
                         "this-device": {

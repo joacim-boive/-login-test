@@ -41,7 +41,7 @@ export const getAccountTransactions = (customerId, referenceId, filter, isShortL
 
     const { offset, maxRecords, shortList } = getState().account.accountTransactionsFilter;
 
-    const getNoOfRecords = isShortList ? shortList : maxRecords;
+    const getNoOfRecords = isShortList ? shortList + 1 : maxRecords;
 
     try {
         const res = await get(GET_ACCOUNT_TRANSACTIONS_URL(customerId, referenceId, offset, getNoOfRecords));
