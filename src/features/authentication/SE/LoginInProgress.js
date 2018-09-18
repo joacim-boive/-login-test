@@ -54,8 +54,6 @@ export default class LoginInProgress extends Component {
 
         let bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
 
-        console.log('LoginProgress Poll status', loginStatus);
-
         //Texts below are from the bankid-relying-party-guidelines-v3.1.pdf
         if (loginStatus === 'USER_SIGN') {
             bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
@@ -92,7 +90,7 @@ export default class LoginInProgress extends Component {
             if (err.detail && err.detail.indexOf('ALREADY_IN_PROGRESS') !== 0) {
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-already-in-progress`;
             } else {
-                //Not sure what is wrong, but something went wrong
+                //Not sure what is wrong, but something went wrong so show the internal error text
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
             }
         }

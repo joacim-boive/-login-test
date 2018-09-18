@@ -90,7 +90,6 @@ class LoginFormSE extends Component {
      * Abort the login, clear BankID pollTimer and return to previous state
      */
     cancelLogin = () => {
-        console.log('cancelLogin: ', this.pollTimer);
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
         }
@@ -105,13 +104,9 @@ class LoginFormSE extends Component {
     };
 
     pollBankID = () => {
-        console.log('**** pollBankID', this.pollTimer);
         if (this.pollTimer) {
-            console.log('**** pollBankID NO POLLING just return....');
             return;
         }
-
-        console.log('**** pollBankID polling....');
 
         const { loginProgress } = this.props;
         this.pollTimer = setTimeout(() => {
@@ -133,8 +128,6 @@ class LoginFormSE extends Component {
     };
 
     render() {
-        console.log('LoginFrom.render: props = ', this.props);
-        console.log('LoginFrom.render: state = ', this.state);
         const { loginStatus, loginProgress, getSessionError, createSessionError } = this.props;
 
         if (loginStatus.isLoggedIn) {
@@ -149,15 +142,12 @@ class LoginFormSE extends Component {
 
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && isOnThisDevice) {
-                console.log('calling this.startBankIdApp():', loginProgress.startURL);
                 this.startBankIdApp(loginProgress.startURL);
-                console.log('1 calling this.pollBankID()');
                 this.pollBankID();
             } else if (pollAgainStatus.includes(loginProgress.status)) {
-                console.log('2 calling this.pollBankID()');
                 this.pollBankID();
             } else if (stopPollStatus.includes(loginProgress.status)) {
-                console.log('3 Do nada!');
+                //Do nothing
             }
         }
 
