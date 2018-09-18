@@ -1,0 +1,36 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+
+@mixin alphaLabelTransform($rotateZ, $translateX, $translateY) {
+    transform: rotateZ($rotateZ) translateX($translateX) translateY($translateY);
+}
+
+.alpha {
+    position: absolute;
+    @include alphaLabelTransform(-45deg, -36px, -55px);
+    padding: 40px 60px 12px;
+    background: $purple;
+    color: $white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 200;
+}
+
+@include mobile() {
+    .alpha {
+        right: 0;
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+    .common-authenticated-page {
+        .alpha {
+            @include alphaLabelTransform(45deg, 32px, -58px);
+        }
+    }
+
+    .common-authenticated-sub-page {
+        .alpha {
+            @include alphaLabelTransform(45deg, 62px, -32px);
+        }
+    }
+}

@@ -13,6 +13,8 @@
     }
     .hero-header {
         margin: 10px 0 30px;
+        position: relative;
+        z-index: 210; // alpha label order
 
         @include mobile() {
             margin: 0 0 30px 0;

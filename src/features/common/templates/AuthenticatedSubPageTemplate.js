@@ -7,6 +7,7 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
+import AlphaLabel from '../alpha/AlphaLabel';
 
 class AuthenticatedSubPageTemplate extends React.Component {
     render() {
@@ -31,6 +32,7 @@ class AuthenticatedSubPageTemplate extends React.Component {
         return (
             <>
                 <div className={classes}>
+                    <AlphaLabel />
                     <TabletOrDesktop>
                         <TabletDesktopNavigation customerId={customerId} />
                     </TabletOrDesktop>
