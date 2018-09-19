@@ -1,5 +1,6 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
 
 @mixin alphaLabelTransform($rotateZ, $translateX, $translateY) {
     transform: rotateZ($rotateZ) translateX($translateX) translateY($translateY);
