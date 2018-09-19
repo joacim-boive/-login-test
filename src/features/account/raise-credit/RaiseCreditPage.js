@@ -10,7 +10,7 @@ import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
 import pendingIcon from '../../../common/images/icon-table-lamp.svg';
-import { getAccount, updateAccount } from '../redux/actions';
+import { getAccount, getAccountTerms, updateAccount } from '../redux/actions';
 import { formatAmount } from '../../../common/util/format-amount';
 
 import getCreditLimitOptions from './getCreditLimitOptions';
@@ -29,8 +29,9 @@ export class RaiseCreditPage extends Component {
     };
 
     componentWillMount() {
-        const { getAccount } = this.props;
+        const { getAccountTerms, getAccount } = this.props;
         getAccount();
+        getAccountTerms();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -70,7 +71,9 @@ export class RaiseCreditPage extends Component {
         }
     };
 
-    onSelectChange = value => {
+    onSelectChange = e => {
+        const { value } = e.target;
+
         if (value) {
             this.setState({
                 newLimit: value,
@@ -82,7 +85,7 @@ export class RaiseCreditPage extends Component {
     };
 
     render() {
-        const { account, locale } = this.props;
+        const { account, terms, locale } = this.props;
         const {
             processing,
             processingMessage,
@@ -122,15 +125,13 @@ export class RaiseCreditPage extends Component {
                                 </div>
                                 <div className="flex-row">
                                     <span>{i18n('account.raise-credit.new-credit-limit')}</span>
-                                    <span>
-                                        <Select
-                                            value={newLimit}
-                                            onChange={e => this.onSelectChange(e.target.value)}
-                                            defaultOption={i18n('account.raise-credit.select-amount')}
-                                        >
-                                            {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
-                                        </Select>
-                                    </span>
+                                    <Select
+                                        value={newLimit}
+                                        onChange={this.onSelectChange}
+                                        defaultOption={i18n('account.raise-credit.select-amount')}
+                                    >
+                                        {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
+                                    </Select>
                                 </div>
                             </>
                             <div>
@@ -143,26 +144,25 @@ export class RaiseCreditPage extends Component {
                                 </UnorderedList>
                             </div>
                         </ResponsivePanel>
-                        <div className="center mt-8x">
-                            {!processing && (
-                                <div>
-                                    <small className={applyClassName}>{applyMessage}</small>
-                                    <ButtonGroup align="center">
-                                        <Button onClick={this.onButtonClick} round>
-                                            {i18n('account.raise-credit.apply')}
-                                        </Button>
-                                    </ButtonGroup>
-                                </div>
-                            )}
-                            {processing && (
-                                <div>
-                                    <div className="mb-3x">
-                                        <small>{processingMessage}</small>
-                                    </div>
-                                    <Spinner id="raise-credit-spinner" isCenterX isVisible />
-                                </div>
-                            )}
+                        <div className="center mt-6x">
+                            {i18n('account.raise-credit.terms-conditions')}{' '}
+                            <a href={terms.termsPDFURL}>{i18n('account.raise-credit.terms-conditions__link')}</a>
                         </div>
+                        {!processing && (
+                            <ButtonGroup align="center" className="mt-8x">
+                                <Button onClick={this.onButtonClick} round>
+                                    {i18n('account.raise-credit.apply')}
+                                </Button>
+                            </ButtonGroup>
+                        )}
+                        {processing && (
+                            <div>
+                                <div className="mb-3x">
+                                    <small>{processingMessage}</small>
+                                </div>
+                                <Spinner id="raise-credit-spinner" isCenterX isVisible />
+                            </div>
+                        )}
                     </Panel>
                 )}
 
@@ -210,8 +210,10 @@ export class RaiseCreditPage extends Component {
 
 RaiseCreditPage.propTypes = {
     account: PropTypes.object.isRequired,
+    terms: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired,
     getAccount: PropTypes.func.isRequired,
+    getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
     updateAccountPending: PropTypes.bool.isRequired,
 };
@@ -220,6 +222,7 @@ RaiseCreditPage.propTypes = {
 function mapStateToProps(state) {
     return {
         account: state.account.account, // account under feature account
+        terms: state.account.accountTerms,
         locale: state.home.locale,
         updateAccountPending: state.account.updateAccountPending,
         updateAccountError: state.account.updateAccountError,
@@ -231,6 +234,7 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccount: () => dispatch(getAccount(id, ref)),
+        getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
         updateAccount: data => dispatch(updateAccount(id, ref, data)),
     };
 }

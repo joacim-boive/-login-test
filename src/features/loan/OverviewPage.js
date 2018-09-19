@@ -13,12 +13,16 @@ import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 
 export class OverviewPage extends Component {
     componentWillMount() {
-        this.props.getPromissoryDefaultInfo();
-        this.props.getPaymentTerms(2000000, 10, false);
+        const { getPromissoryDefaultInfo, getPaymentTerms } = this.props;
+
+        getPromissoryDefaultInfo();
+        getPaymentTerms(2000000, 10, false);
     }
 
     onSubmit = () => {
-        this.props.history.push('/loan/summary');
+        const { history } = this.props;
+
+        history.push('/loan/summary');
     };
 
     render() {

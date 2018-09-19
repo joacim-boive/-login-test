@@ -1,6 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+
 import classNames from 'classnames';
+
+import './Footer.scss';
+
+import { Logo, TabletOrDesktop } from '@ecster/ecster-components';
 
 export const Footer = ({ className, ...rest }) => {
     const classes = classNames({
@@ -8,11 +15,23 @@ export const Footer = ({ className, ...rest }) => {
     });
 
     return (
-        <footer className={classes} {...rest}>
-            <div />
-            <div />
-            <div />
-        </footer>
+        <TabletOrDesktop>
+            <footer className={classes} {...rest}>
+                <div className="copyright">
+                    &copy; {i18n('footer.copyright')}
+                    {new Date().getFullYear()}
+                </div>
+                <Logo withName width="140px" height="35px" />
+                <div className="links">
+                    <Link name="block-card" to="/customer/support">
+                        {i18n('footer.block-card')}
+                    </Link>
+                    <Link name="contact" to="/customer/support">
+                        {i18n('footer.contact')}
+                    </Link>
+                </div>
+            </footer>
+        </TabletOrDesktop>
     );
 };
 
@@ -23,3 +42,5 @@ Footer.propTypes = {
 Footer.defaultProps = {
     className: '',
 };
+
+export default Footer;

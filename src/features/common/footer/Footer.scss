@@ -1,0 +1,25 @@
+[role="main"] > footer{
+    position: relative;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    max-width: 890px;
+    width: 100%;
+    justify-content: center;
+
+    .copyright{
+        position: absolute;
+        left: 0;
+    }
+
+    .links{
+        position: absolute;
+        right: 0;
+        white-space: nowrap;
+
+        :first-child{
+            margin-right: 20px;
+        }
+    }
+}

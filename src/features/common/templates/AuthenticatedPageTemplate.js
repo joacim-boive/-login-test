@@ -6,38 +6,40 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import Footer from '../footer';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId } = this.props;
+        const { className, customerId, header, children } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
             [className]: className,
         });
 
-        const header = this.props.header && (
+        const thisHeader = header && (
             <div className="hero-header">
-                <h1>{this.props.header}</h1>
+                <h1>{header}</h1>
             </div>
         );
 
         return (
-            <React.Fragment>
+            <>
                 <div className={classes}>
                     <TabletOrDesktop>
                         <TabletDesktopNavigation customerId={customerId} />
                     </TabletOrDesktop>
                     <div className="page-container">
-                        {header}
-                        <div className="page-content">{this.props.children}</div>
+                        {thisHeader}
+                        <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
                         <MobileNavigation customerId={customerId} />
                     </Mobile>
                 </div>
                 <MessagePanel />
-            </React.Fragment>
+                <Footer />
+            </>
         );
     }
 }
