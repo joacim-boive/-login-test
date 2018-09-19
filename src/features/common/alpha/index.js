@@ -1,1 +1,1 @@
-export default from './AlphaLabel';
+export { default } from './AlphaLabel';
