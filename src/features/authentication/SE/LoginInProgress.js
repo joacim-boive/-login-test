@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Button, Spinner, LinkButton, Panel} from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import {
+    AUTHENTICATION_CREATE_SESSION_BEGIN, AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
+    AUTHENTICATION_CREATE_SESSION_FAILURE,
+    AUTHENTICATION_CREATE_SESSION_SUCCESS
+} from "../redux/constants";
 // import Overlay from '../../common/Overlay';
 
 export default class LoginInProgress extends Component {
@@ -52,33 +57,38 @@ export default class LoginInProgress extends Component {
 
         const headerI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.header`;
 
-        let bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
-
+        let bodyI18nKey;
         //Texts below are from the bankid-relying-party-guidelines-v3.1.pdf
-        if (loginStatus === 'USER_SIGN') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
+        switch (loginStatus) {
+            case 'USER_SIGN':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
+                break;
+            case 'EXPIRED_TRANSACTION':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-expired-transaction`;
+                break;
+            case 'CERTIFICATE_ERROR':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-certificate-error`;
+                break;
+            case 'USER_CANCEL':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-cancel`;
+                break;
+            case 'CANCELLED':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-cancelled`;
+                break;
+            case 'STARTED':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-started`;
+                break;
+            case 'START_FAILED':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-start-failed`;
+                break;
+            case 'TECHNICAL_ERROR':
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
+                break;
+            default:
+                bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
         }
-        if (loginStatus === 'EXPIRED_TRANSACTION') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-expired-transaction`;
-        }
-        if (loginStatus === 'CERTIFICATE_ERROR') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-certificate-error`;
-        }
-        if (loginStatus === 'USER_CANCEL') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-cancel`;
-        }
-        if (loginStatus === 'CANCELLED') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-cancelled`;
-        }
-        if (loginStatus === 'STARTED') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-started`;
-        }
-        if (loginStatus === 'START_FAILED') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-start-failed`;
-        }
-        if (loginStatus === 'TECHNICAL_ERROR') {
-            bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
-        }
+
+        console.log('bodyI18nKey', bodyI18nKey);
 
         //Handle already in progress when starting a login
         let errorText = createSessionError ? createSessionError.response : undefined;
