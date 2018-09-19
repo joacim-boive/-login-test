@@ -223,7 +223,7 @@
         "@ecster/ecster-components": "^1.1.403",
         "@ecster/ecster-i18n": "^3.0.64",
         "@ecster/ecster-net": "^1.0.74",
-        "@ecster/ecster-styles": "^2.0.192",
+        "@ecster/ecster-styles": "^3.0.196",
         "@ecster/ecster-util": "^2.0.71",
         "@ecster/ecster-webpack": "^2.0.171",
         "ajv": "^6.5.3",

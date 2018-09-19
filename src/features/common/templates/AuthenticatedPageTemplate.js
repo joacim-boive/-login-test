@@ -6,7 +6,7 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
-import AlphaLabel from '../alpha/AlphaLabel';
+import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
