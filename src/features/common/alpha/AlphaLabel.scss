@@ -8,7 +8,6 @@ $label-left: -64px;
 .alpha {
     position: absolute;
     overflow: hidden;
-    //background: rgba(0,0,0,.2);
     background: transparent;
     z-index: 200;
     width: 120px;
@@ -40,10 +39,6 @@ $label-left: -64px;
             left: $label-left - 1;
         }
     }
-    //.common-authenticated-page {
-    //    .alpha {
-    //    }
-    //}
 
     .common-authenticated-sub-page {
         .alpha {
