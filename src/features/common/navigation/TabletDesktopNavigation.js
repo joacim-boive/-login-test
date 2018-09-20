@@ -36,6 +36,7 @@ class TabletDesktopNavigation extends React.Component {
         const loanIsActive = this.props.history.location.pathname.match(/.loan.overview/);
         const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
         const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
+        const showLoanMenu = this.props.showLoanMenu;
 
         return (
             <TopNavigation>
@@ -63,14 +64,14 @@ class TabletDesktopNavigation extends React.Component {
                                 {i18n('navigation.invoices')}
                             </Link>
 
-                            <Link
+                            {showLoanMenu && <Link
                                 className={classNames({
                                     'menu-item--is-active': loanIsActive,
                                 })}
                                 to="/loan/overview"
                             >
                                 {i18n('navigation.loan')}
-                            </Link>
+                            </Link>}
 
                             <div
                                 className={classNames({
@@ -109,6 +110,7 @@ class TabletDesktopNavigation extends React.Component {
 TabletDesktopNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
+    showLoanMenu: PropTypes.bool.isRequired,
 };
 
 export default withRouter(TabletDesktopNavigation);
