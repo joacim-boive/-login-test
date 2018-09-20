@@ -29,12 +29,11 @@ $label-left: -64px;
 
 @include mobile() {
     .alpha {
-        font-size: 14px;
         right: 0;
         transform: rotateZ(90deg);
         .label {
-            font-size: 16px;
-            padding-bottom: 14px;
+            font-size: 14px;
+            padding-bottom: 12px;
             top: $label-top - 2;
             left: $label-left - 1;
         }
