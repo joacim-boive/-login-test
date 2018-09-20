@@ -12,9 +12,10 @@
         text-align: center;
     }
     .hero-header {
-        margin: 10px 0 30px;
+        margin: 10px auto 30px;
         position: relative;
         z-index: 210; // alpha label order
+        max-width: $content-max-width-desktop;
 
         @include mobile() {
             margin: 0 0 30px 0;
