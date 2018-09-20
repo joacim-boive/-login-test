@@ -30,6 +30,7 @@ class LoginFormSE extends Component {
         isOnThisDevice: !detectDevice().isDesktop,
 
         ssnIsValid: false,
+        pollTimer: undefined,
     };
 
     componentWillUnmount = () => {
@@ -93,6 +94,8 @@ class LoginFormSE extends Component {
             clearTimeout(this.pollTimer);
         }
 
+        this.props.removeSession();
+
         this.setState({
             ...this.prevState,
         });
@@ -108,8 +111,7 @@ class LoginFormSE extends Component {
         const { loginProgress } = this.props;
         this.pollTimer = setTimeout(() => {
             const { getSession, loginStatus } = this.props;
-
-            delete this.pollTimer;
+            this.pollTimer = undefined;
             getSession(loginStatus.sessionKey);
         }, loginProgress.pollTime);
     };
@@ -126,7 +128,7 @@ class LoginFormSE extends Component {
     };
 
     render() {
-        const { loginStatus, loginProgress } = this.props;
+        const { loginStatus, loginProgress, getSessionError, createSessionError } = this.props;
 
         if (loginStatus.isLoggedIn) {
             return <Redirect to="../account/overview" />;
@@ -134,12 +136,18 @@ class LoginFormSE extends Component {
 
         const { isOnThisDevice, isDesktop, isLoggingIn, ssn } = this.state;
 
+        const pollAgainStatus = ['STARTED', 'OUTSTANDING_TRANSACTION', 'NO_CLIENT', 'USER_SIGN'];
+        const stopPollStatus = ['COMPLETE', 'EXPIRED_TRANSACTION', 'CERTIFICATE_ERROR', 'USER_CANCEL', 'CANCELLED', 'START_FAILED', 'TECHNICAL_ERROR' ];
+
+
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && isOnThisDevice) {
                 this.startBankIdApp(loginProgress.startURL);
                 this.pollBankID();
-            } else if (loginProgress.status === 'IN_PROGRESS') {
+            } else if (pollAgainStatus.includes(loginProgress.status)) {
                 this.pollBankID();
+            } else if (stopPollStatus.includes(loginProgress.status)) {
+                //Do nothing
             }
         }
 
@@ -189,6 +197,9 @@ class LoginFormSE extends Component {
                     isOnThisDevice={this.state.isOnThisDevice}
                     cancelLogin={this.cancelLogin}
                     startURL={loginProgress.startURL}
+                    loginStatus={loginProgress.status}
+                    createSessionError={createSessionError}
+                    getSessionError={getSessionError}
                 />
             </div>
         );
@@ -198,9 +209,18 @@ class LoginFormSE extends Component {
 LoginFormSE.propTypes = {
     showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
+    removeSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
+
+    createSessionError: PropTypes.object,
+    getSessionError: PropTypes.object,
+};
+
+LoginFormSE.defaultProps = {
+    createSessionError: null,
+    getSessionError: null,
 };
 
 export default LoginFormSE;
