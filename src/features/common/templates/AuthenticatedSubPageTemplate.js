@@ -11,7 +11,7 @@ import AlphaLabel from '../alpha';
 
 class AuthenticatedSubPageTemplate extends React.Component {
     render() {
-        const { className, linkTo, header, customerId, children } = this.props;
+        const { className, linkTo, header, customerId, children, showLoanMenu } = this.props;
 
         const classes = classNames({
             'common-authenticated-sub-page': true,
@@ -34,14 +34,14 @@ class AuthenticatedSubPageTemplate extends React.Component {
                 <div className={classes}>
                     <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} />
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} />
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </Mobile>
                 </div>
                 <MessagePanel />
@@ -56,6 +56,7 @@ AuthenticatedSubPageTemplate.propTypes = {
     header: PropTypes.string,
     linkTo: PropTypes.string,
     children: PropTypes.node.isRequired,
+    showLoanMenu: PropTypes.bool.isRequired,
 };
 
 AuthenticatedSubPageTemplate.defaultProps = {
@@ -65,9 +66,10 @@ AuthenticatedSubPageTemplate.defaultProps = {
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication }) {
+function mapStateToProps({ authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
+        showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
     };
 }
 

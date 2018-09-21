@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSession, removeSession, getSession } from './redux/actions';
 import { showFullscreenDialog } from '../common/redux/actions';
+import { getCustomerProperties } from '../customer/redux/actions';
 import { LoginFormFI, LoginFormSE } from './index';
 
 class LoginForm extends Component {
@@ -28,6 +29,7 @@ LoginForm.propTypes = {
     createSession: PropTypes.func.isRequired,
     removeSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
+    getCustomerProperties: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
 
@@ -48,6 +50,7 @@ function mapStateToProps({ authentication, home }) {
         country: home.applicationCountry,
         createSessionError: authentication.createSessionError,
         getSessionError: authentication.getSessionError,
+        person: authentication.person,
     };
 }
 
@@ -65,6 +68,9 @@ function mapDispatchToProps(dispatch) {
         },
         getSession: sessionKey => {
             dispatch(getSession(sessionKey));
+        },
+        getCustomerProperties: (customerId, propertyName) => {
+            dispatch(getCustomerProperties(customerId, propertyName));
         },
     };
 }
