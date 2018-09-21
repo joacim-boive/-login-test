@@ -63,7 +63,6 @@ class ProfilePage extends Component {
                             type="tel"
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
-                            validateOnKeyUp
                         />
                     </section>
 
@@ -74,7 +73,6 @@ class ProfilePage extends Component {
                             label={i18n('general.address.email')}
                             onSave={val => this.props.updateCustomerContactInfo({ email: val })}
                             validationMessage={i18n('general.validation.email')}
-                            validateOnKeyUp
                         />
                     </section>
                 </div>
@@ -88,7 +86,7 @@ class ProfilePage extends Component {
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
-                    <Panel sideBordersMobile>
+                    <Panel sideBordersMobile padding="40px">
                         {dataReceived ? this.renderPanel(person) : <Spinner id="profile-spinner" isVisible isCenterX />}
                     </Panel>
                 </div>
