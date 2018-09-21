@@ -44,7 +44,6 @@ export class TerminateAccount extends Component {
     }
 
     onCheckboxChanged = ({ name, checked }) => {
-        console.log(`checkbox ${name}, checked = ${checked}`);
         this.setState({ [name]: checked, checkCount: this.state.checkCount + (checked ? 1 : -1) });
     };
 

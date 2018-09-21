@@ -19,14 +19,12 @@ class MobileNavigation extends React.Component {
     }
 
     toggleSubMenu = e => {
-        console.log('MobileNavigation.toggleSubMenu: this.state = ', this.state);
         e.stopPropagation();
         e.preventDefault();
         this.setState({ showSubMenu: !this.state.showSubMenu });
     };
 
     closeSubMenu = () => {
-        console.log('MobileNavigation.closeSubMenu: this.state = ', this.state);
         this.setState({ showSubMenu: false });
     };
 

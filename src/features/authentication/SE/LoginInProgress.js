@@ -107,8 +107,6 @@ export default class LoginInProgress extends Component {
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body`;
         }
 
-        console.log('bodyI18nKey', bodyI18nKey);
-
         // Handle already in progress when starting a login
         let errorText = createSessionError ? createSessionError.response : undefined;
         if (!errorText) {
