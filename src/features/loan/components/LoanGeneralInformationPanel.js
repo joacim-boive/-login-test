@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, Select, Option, Input, Checkbox } from '@ecster/ecster-components';
+import { Button, Select, Option, Input, Checkbox, ResponsivePanel } from '@ecster/ecster-components';
 import './LoanGeneralInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import ClearingNumberInput from './ClearingNumberInput';
 
 class LoanGeneralInformationPanel extends Component {

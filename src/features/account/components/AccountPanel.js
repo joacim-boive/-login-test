@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
+import { TabletOrDesktop, Mobile, Panel, ResponsivePanel } from '@ecster/ecster-components';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
 import { AccountSalesPanel } from './AccountSalesPanel';
 import { LatestTransactions } from './LatestTransactions';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
 import OverdrawnInfo from './OverdrawnInfo';
 
