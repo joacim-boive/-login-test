@@ -236,7 +236,6 @@
         "nodemon": "^1.18.4",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
-        "rc-slider": "^8.6.3",
         "react": "^16.5.1",
         "react-dom": "^16.5.1",
         "react-grid-layout": "^0.16.6",
