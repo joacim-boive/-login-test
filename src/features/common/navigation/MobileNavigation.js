@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Link, withRouter} from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-
+import { InteractiveElement } from '@ecster/ecster-components';
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
 import { SvgIconHamburger, SvgIconInvoices, SvgIconLoan, SvgIconOverview } from '../../../common/images/index';
 import './MobileNavigation.scss';
-import { InteractiveElement } from '../interactive-element/InteractiveElement';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
 class MobileNavigation extends React.Component {

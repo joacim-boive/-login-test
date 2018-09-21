@@ -3,21 +3,23 @@
 @import '~@ecster/ecster-styles/scss/v2/common/font-weights';
 
 $label-top: -12px;
-$label-left: -64px;
+$label-right: -64px;
 
-.alpha {
+.alpha { // desktop
     position: absolute;
+    top: 66px;
+    right: 0;
     overflow: hidden;
     background: transparent;
-    z-index: 200;
+    z-index: 99;
     width: 120px;
     height: 120px;
 
     .label {
         position: absolute;
-        transform: rotateZ(-45deg);
+        transform: rotateZ(45deg);
         top: $label-top;
-        left: $label-left;
+        right: $label-right;
         background: $purple;
         color: $white;
         font-size: 20px;
@@ -29,13 +31,13 @@ $label-left: -64px;
 
 @include mobile() {
     .alpha {
-        right: 0;
-        transform: rotateZ(90deg);
+        z-index: 200;
+        top: 0;
         .label {
             font-size: 14px;
             padding-bottom: 12px;
             top: $label-top - 2;
-            left: $label-left - 1;
+            right: $label-right - 1;
         }
     }
 
