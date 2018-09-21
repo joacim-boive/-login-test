@@ -31,13 +31,7 @@ export class CountryCodeSelect extends Component {
 
         return (
             <div className={classes}>
-                <Select
-                    className={classesSelect}
-                    label={label}
-                    value={value}
-                    onChange={this.onChange}
-                    small
-                >
+                <Select className={classesSelect} label={label} value={value} onChange={this.onChange} small>
                     {this.countryCodes.map(obj => (
                         <Option
                             key={`${obj.countryName} (${obj.phoneCode})`}
