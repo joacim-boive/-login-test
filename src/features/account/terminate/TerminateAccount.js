@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Checkbox, Panel, ConfirmButton, ButtonGroup } from '@ecster/ecster-components';
+import { Checkbox, Panel, ConfirmButton, ButtonGroup, ResponsivePanel } from '@ecster/ecster-components';
 
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { gaGenericEvent, gaActionEvent } from '../../../common/ga/index';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import { deleteAccount } from '../redux/actions';

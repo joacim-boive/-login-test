@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import './AccountSummary.scss';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
+import { ResponsivePanel } from '@ecster/ecster-components';
 import { formatAmount } from '../../../common/util/format-amount';
+
+import './AccountSummary.scss';
 
 export const AccountSummary = ({ account }) => {
     const amountLeft = account.limit - account.used;

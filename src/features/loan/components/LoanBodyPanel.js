@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@ecster/ecster-components/Button';
+import { Button, Panel, SliderPanel, ResponsivePanel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import Panel from '@ecster/ecster-components/Panel/Panel';
 import './LoanBodyPanel.scss';
-import { SliderPanel } from './SliderPanel';
 import { formatAmount } from '../../../common/util/format-amount';
 import { LoanCost } from './LoanCost';
 import SpecificationPanel from './SpecificationPanel';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import ExpandableBottomPanel from '../../common/expandable-bottom-panel/ExpandableBottomPanel';
 
 class LoanBodyPanel extends Component {

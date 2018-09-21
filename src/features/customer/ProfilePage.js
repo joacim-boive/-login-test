@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, Spinner } from '@ecster/ecster-components';
+import { Panel, Spinner, ResponsivePanel } from '@ecster/ecster-components';
 import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
 
 // TODO: Make an ecster-component of this one or Tooltip in Dashboard-X, use component hera and in DBX
 import Tooltip from 'react-tooltip'; // https://github.com/wwayne/react-tooltip
-import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import { getCustomer, updateCustomerContactInfo } from './redux/actions';
 import capWords from '../../common/cap-words';
