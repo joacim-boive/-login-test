@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { InteractiveElement } from '@ecster/ecster-components';
 import './ExpandableBottomPanel.scss';
-import { InteractiveElement } from '../interactive-element/InteractiveElement';
 
 const MIN_COLLAPSABLE_HEIGHT = 5;
 const COLLAPSED_HEIGHT = 0;
