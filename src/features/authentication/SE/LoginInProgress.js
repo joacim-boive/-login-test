@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Button, Spinner, LinkButton, Panel} from '@ecster/ecster-components';
+import { Button, Spinner, LinkButton, Panel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import {
-    AUTHENTICATION_CREATE_SESSION_BEGIN, AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
+    AUTHENTICATION_CREATE_SESSION_BEGIN,
+    AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
     AUTHENTICATION_CREATE_SESSION_FAILURE,
-    AUTHENTICATION_CREATE_SESSION_SUCCESS
-} from "../redux/constants";
+    AUTHENTICATION_CREATE_SESSION_SUCCESS,
+} from '../redux/constants';
 // import Overlay from '../../common/Overlay';
 
 export default class LoginInProgress extends Component {
@@ -25,14 +26,24 @@ export default class LoginInProgress extends Component {
 
         if (nextProps.loginStatus === 'USER_SIGN') {
             this.setState({ showButton: false });
-        } else if (['COMPLETE', 'EXPIRED_TRANSACTION', 'CERTIFICATE_ERROR', 'USER_CANCEL', 'CANCELLED', 'START_FAILED', 'TECHNICAL_ERROR'].includes(nextProps.loginStatus)) {
+        } else if (
+            [
+                'COMPLETE',
+                'EXPIRED_TRANSACTION',
+                'CERTIFICATE_ERROR',
+                'USER_CANCEL',
+                'CANCELLED',
+                'START_FAILED',
+                'TECHNICAL_ERROR',
+            ].includes(nextProps.loginStatus)
+        ) {
             this.setState({ showButton: false, showSpinner: false });
         } else {
             // Other statuses 'STARTED', 'OUTSTANDING_TRANSACTION', 'NO_CLIENT'
             this.setState({ showSpinner: true });
         }
 
-        //If error when creating a new session or polling a session then hide the spinner
+        // If error when creating a new session or polling a session then hide the spinner
         if (nextProps.createSessionError || nextProps.getSessionError) {
             this.setState({ showSpinner: false });
         }
@@ -44,7 +55,15 @@ export default class LoginInProgress extends Component {
     };
 
     render() {
-        const { isVisible, isDesktop, isOnThisDevice, startURL, loginStatus, getSessionError, createSessionError } = this.props;
+        const {
+            isVisible,
+            isDesktop,
+            isOnThisDevice,
+            startURL,
+            loginStatus,
+            getSessionError,
+            createSessionError,
+        } = this.props;
         const { showButton, showSpinner } = this.state;
 
         const buttonClasses = classNames({
@@ -58,7 +77,7 @@ export default class LoginInProgress extends Component {
         const headerI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.header`;
 
         let bodyI18nKey;
-        //Texts below are from the bankid-relying-party-guidelines-v3.1.pdf
+        // Texts below are from the bankid-relying-party-guidelines-v3.1.pdf
         switch (loginStatus) {
             case 'USER_SIGN':
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-user-sign`;
@@ -90,17 +109,17 @@ export default class LoginInProgress extends Component {
 
         console.log('bodyI18nKey', bodyI18nKey);
 
-        //Handle already in progress when starting a login
+        // Handle already in progress when starting a login
         let errorText = createSessionError ? createSessionError.response : undefined;
         if (!errorText) {
             errorText = getSessionError ? getSessionError.response : undefined;
         }
         if (errorText) {
-            let err = JSON.parse(errorText);
+            const err = JSON.parse(errorText);
             if (err.detail && err.detail.indexOf('ALREADY_IN_PROGRESS') !== 0) {
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-already-in-progress`;
             } else {
-                //Not sure what is wrong, but something went wrong so show the internal error text
+                // Not sure what is wrong, but something went wrong so show the internal error text
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-internal-error`;
             }
         }
@@ -116,7 +135,6 @@ export default class LoginInProgress extends Component {
                     <h1>{i18n(headerI18nKey)}</h1>
                     {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
-                    <p>{loginStatus}</p>
                     <Button link onClick={this.onCancel} name="cancel-login-button">
                         {i18n('general.cancel')}
                     </Button>
