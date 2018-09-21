@@ -33,15 +33,15 @@ class MobileNavigation extends React.Component {
 
     render() {
         const { showSubMenu } = this.state;
-
+        const pathname = this.props.history.location.pathname;
         // double !! => true or false not array
-        const overviewIsActive = !!this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !!this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !!this.props.history.location.pathname.match(/.loan.overview/);
+        const overviewIsActive = !!pathname.match(/.account.overview/);
+        const invoiceIsActive = !!pathname.match(/.invoice.overview/);
+        const loanIsActive = !!pathname.match(/.loan.overview/);
         // submenu items, indicate active when submenu is visible
-        const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
-        const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
-        const showLoanMenu = this.props.showLoanMenu;
+        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSupportIsActive = !!pathname.match(/.customer.support/);
+        const { showLoanMenu, customerId } = this.props;
 
         return (
             <BottomNavigation light showOverlay={showSubMenu}>
@@ -73,7 +73,7 @@ class MobileNavigation extends React.Component {
                 </BottomMenu>
                 <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
                     <SubMenuItem
-                        linkTo={`/customer/${this.props.customerId}/profile`}
+                        linkTo={`/customer/${customerId}/profile`}
                         active={customerSettingsIsActive}
                     >
                         {i18n('navigation.settings')}

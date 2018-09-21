@@ -31,12 +31,13 @@ class TabletDesktopNavigation extends React.Component {
 
     render() {
         const { showSubMenu } = this.state;
-        const overviewIsActive = this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = this.props.history.location.pathname.match(/.loan.overview/);
-        const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
-        const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
-        const showLoanMenu = this.props.showLoanMenu;
+        const pathname = this.props.history.location.pathname;
+        const overviewIsActive = pathname.match(/.account.overview/);
+        const invoiceIsActive = pathname.match(/.invoice.overview/);
+        const loanIsActive = pathname.match(/.loan.overview/);
+        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSupportIsActive = !!pathname.match(/.customer.support/);
+        const { showLoanMenu, customerId } = this.props;
 
         return (
             <TopNavigation>
@@ -89,7 +90,7 @@ class TabletDesktopNavigation extends React.Component {
                 <div className="submenu-container">
                     <SubMenu top show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
                         <SubMenuItem
-                            linkTo={`/customer/${this.props.customerId}/profile`}
+                            linkTo={`/customer/${customerId}/profile`}
                             active={customerSettingsIsActive}
                         >
                             {i18n('navigation.settings')}
