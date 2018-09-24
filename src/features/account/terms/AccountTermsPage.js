@@ -43,6 +43,7 @@ export class AccountTermsPage extends Component {
         const { account, terms, getAccountRef, getCustomerId, getAccountTermsError } = this.props;
 
         const hasAccountName = account && account.product && account.product.name;
+        const hasZeroWithdrawalFeePercent = !(terms.withdrawalFeePercent > 0);
 
         return (
             <AuthenticatedSubPageTemplate
@@ -110,22 +111,36 @@ export class AccountTermsPage extends Component {
                                 label={i18n('account.terms.extra-card-fee')}
                                 description={i18n('account.terms.extra-card-fee-description')}
                             />
-                            <InfoItem
+                            {hasZeroWithdrawalFeePercent && <InfoItem
+                                value={i18n('account.terms.withdrawal-fee-only-value', {
+                                    feeValue: formatAmount(terms.withdrawalFee),
+                                })}
+                                label={i18n('account.terms.withdrawal-fee-cash')}
+                                description={i18n('account.terms.withdrawal-fee-description')}
+                            />}
+                            {!hasZeroWithdrawalFeePercent && <InfoItem
                                 value={i18n('account.terms.withdrawal-fee-value', {
                                     percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
                                     feeValue: formatAmount(terms.withdrawalFee),
                                 })}
                                 label={i18n('account.terms.withdrawal-fee-cash')}
                                 description={i18n('account.terms.withdrawal-fee-description')}
-                            />
-                            <InfoItem
+                            />}
+                            {hasZeroWithdrawalFeePercent && <InfoItem
+                                value={i18n('account.terms.withdrawal-fee-only-value', {
+                                    feeValue: formatAmount(terms.withdrawalFee),
+                                })}
+                                label={i18n('account.terms.withdrawal-fee-atm')}
+                                description={i18n('account.terms.withdrawal-fee-description')}
+                            />}
+                            {!hasZeroWithdrawalFeePercent && <InfoItem
                                 value={i18n('account.terms.withdrawal-fee-value', {
                                     percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
                                     feeValue: formatAmount(terms.withdrawalFee),
                                 })}
                                 label={i18n('account.terms.withdrawal-fee-atm')}
                                 description={i18n('account.terms.withdrawal-fee-description')}
-                            />
+                            />}
                             <InfoItem
                                 value={`${formatNumber(terms.currencyExchangeFeeRate, 2)}%`}
                                 label={i18n('account.terms.exchange-fee')}
@@ -133,7 +148,7 @@ export class AccountTermsPage extends Component {
                             />
                             <InfoItem
                                 value={i18n('account.terms.foreign-currency-withdrawal-fee-value', {
-                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
+                                    percentValue: `${formatNumber(terms.withdrawalFeeForeignCurrencyRate, 2)}%`,
                                     feeValue: formatAmount(terms.withdrawalFee),
                                 })}
                                 label={i18n('account.terms.withdrawal-fee-foreign-currency')}
