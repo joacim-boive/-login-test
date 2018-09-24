@@ -10,18 +10,21 @@
 
     @include mobile() {
         height: inherit;
-        padding: 15px 20px;
+        margin: 0 15px;
     }
 
     .wrapper {
         color: $green140;
         font-size: 16px;
         height: 100%;
+        padding: 12px;
+
+        @include mobile() {
+            padding: 15px 20px;
+        }
 
         & > div {
             height: 100%;
-            display: flex;
-            align-items: center;
         }
 
         .border-left {

@@ -11,7 +11,7 @@ export const AccountSummary = ({ account }) => {
 
     return (
         <div className="account-summary">
-            <ResponsivePanel desktop={3} tablet={3} mobile={1} className="wrapper">
+            <ResponsivePanel desktop={3} tablet={3} mobile={1} horisontalGutter className="wrapper">
                 <article className="first">
                     <div>{i18n('account.summary.left')}</div>
                     <div>{formatAmount(amountLeft < 0 ? 0 : amountLeft, undefined, { roundDown: true })}</div>
