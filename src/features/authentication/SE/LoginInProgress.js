@@ -19,9 +19,19 @@ export default class LoginInProgress extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.isVisible && !this.state.showButton) {
-            setTimeout(() => {
-                this.setState({ showButton: true });
-            }, 5000);
+            // start a timer unless already started
+            this.showButtonTimer =
+                this.showButtonTimer ||
+                setTimeout(() => {
+                    this.setState({ showButton: true });
+                }, 5000);
+        }
+
+        if (!nextProps.isVisible) {
+            this.setState({ showButton: false });
+            if (this.showButtonTimer) {
+                clearTimeout(this.showButtonTimer);
+            }
         }
 
         if (nextProps.loginStatus === 'USER_SIGN') {
@@ -50,6 +60,9 @@ export default class LoginInProgress extends Component {
     }
 
     onCancel = () => {
+        if (this.showButtonTimer) {
+            clearTimeout(this.showButtonTimer);
+        }
         this.setState({ showButton: false });
         this.props.cancelLogin();
     };
@@ -108,12 +121,11 @@ export default class LoginInProgress extends Component {
         }
 
         // Handle already in progress when starting a login
-        let errorText = createSessionError ? createSessionError.response : undefined;
-        if (!errorText) {
-            errorText = getSessionError ? getSessionError.response : undefined;
-        }
-        if (errorText) {
-            const err = JSON.parse(errorText);
+        const error =
+            (createSessionError && createSessionError.response) || (getSessionError && getSessionError.response);
+
+        if (error) {
+            const err = JSON.parse(error);
             if (err.detail && err.detail.indexOf('ALREADY_IN_PROGRESS') !== 0) {
                 bodyI18nKey = `home.login.SE.in-progress.${deviceType}.${whichDevice}.body-already-in-progress`;
             } else {
