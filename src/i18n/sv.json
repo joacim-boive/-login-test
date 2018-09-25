@@ -243,7 +243,7 @@
     "customer": {
         "profile": {
             "info-text": "Handla tryggare på internet. Genom att fylla i ditt mobilnummer här kopplar du ditt kort till Mastercard Secure Code, som innebär att det sker en extra kontroll när du handlar på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto.",
-            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort']."
+            "extra-card-info": "Information om extrakort hittar du under [link #/card/overview 'Hantera kort']."
         },
         "contact-us": {
             "header": "Kontakta oss",
