@@ -30,7 +30,6 @@ class LoginFormSE extends Component {
         isOnThisDevice: !detectDevice().isDesktop,
 
         ssnIsValid: false,
-        pollTimer: undefined,
     };
 
     componentWillUnmount = () => {
@@ -47,21 +46,12 @@ class LoginFormSE extends Component {
         this.setState({ ssnIsValid: isValid });
     };
 
-    /**
-     * Toggle a state from true to false and vice versa
-     * @param {string} toBeToggled - Existing state variable to be toggled
-     * @param {true|false} [force] - Force true or false
-     * */
-    toggleState = (toBeToggled, force) => {
+    toggleState = toBeToggled => {
         this.setState({
-            [toBeToggled]: force === undefined ? !this.state[toBeToggled] : (this.state[toBeToggled] = force),
+            [toBeToggled]: !this.state[toBeToggled],
         });
     };
 
-    /**
-     * Initiate the login progress
-     * @param {object} config -
-     */
     startLogin = config => {
         const { ssn, ssnIsValid } = this.state;
         const { type, isOnThisDevice } = config;
@@ -81,17 +71,14 @@ class LoginFormSE extends Component {
             if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
                 createSessionConfig.ssn = ssn;
             }
-
             this.props.createSession(createSessionConfig);
         });
     };
 
-    /**
-     * Abort the login, clear BankID pollTimer and return to previous state
-     */
     cancelLogin = () => {
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
+            this.pollTimer = undefined;
         }
 
         this.props.removeSession();
@@ -103,7 +90,7 @@ class LoginFormSE extends Component {
         this.prevState = undefined;
     };
 
-    pollBankID = () => {
+    pollBankId = () => {
         if (this.pollTimer) {
             return;
         }
@@ -151,11 +138,14 @@ class LoginFormSE extends Component {
         if (isLoggingIn) {
             if (loginProgress.startURL && loginProgress.pollTime > 0 && isOnThisDevice) {
                 this.startBankIdApp(loginProgress.startURL);
-                this.pollBankID();
+                this.pollBankId();
             } else if (pollAgainStatus.includes(loginProgress.status)) {
-                this.pollBankID();
+                this.pollBankId();
             } else if (stopPollStatus.includes(loginProgress.status)) {
-                // Do nothing
+                if (this.pollTimer) {
+                    clearTimeout(this.pollTimer);
+                    this.pollTimer = undefined;
+                }
             }
         }
 
