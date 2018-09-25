@@ -46,21 +46,12 @@ class LoginFormSE extends Component {
         this.setState({ ssnIsValid: isValid });
     };
 
-    /**
-     * Toggle a state from true to false and vice versa
-     * @param {string} toBeToggled - Existing state variable to be toggled
-     * */
     toggleState = toBeToggled => {
         this.setState({
-            // [toBeToggled]: force === undefined ? !this.state[toBeToggled] : (this.state[toBeToggled] = force),
             [toBeToggled]: !this.state[toBeToggled],
         });
     };
 
-    /**
-     * Initiate the login progress
-     * @param {object} config -
-     */
     startLogin = config => {
         const { ssn, ssnIsValid } = this.state;
         const { type, isOnThisDevice } = config;
@@ -85,7 +76,6 @@ class LoginFormSE extends Component {
     };
 
     cancelLogin = () => {
-
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
             this.pollTimer = undefined;
@@ -93,11 +83,9 @@ class LoginFormSE extends Component {
 
         this.props.removeSession();
 
-        this.setState(
-            {
-                ...this.prevState,
-            }
-        );
+        this.setState({
+            ...this.prevState,
+        });
 
         this.prevState = undefined;
     };
