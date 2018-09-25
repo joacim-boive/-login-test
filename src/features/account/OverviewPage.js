@@ -53,6 +53,7 @@ export class OverviewPage extends Component {
 function mapStateToProps({ account, authentication }) {
     return {
         accountsActive: account.accountsActive,
+        accountsTerminated: account.accountsTerminated,
         hasZeroAccounts: account.hasZeroAccounts,
         user: authentication.person,
     };

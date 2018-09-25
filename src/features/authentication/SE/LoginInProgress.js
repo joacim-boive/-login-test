@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button, Spinner, LinkButton, Panel } from '@ecster/ecster-components';
+import { Button, Spinner, LinkButton } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import {
-    AUTHENTICATION_CREATE_SESSION_BEGIN,
-    AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
-    AUTHENTICATION_CREATE_SESSION_FAILURE,
-    AUTHENTICATION_CREATE_SESSION_SUCCESS,
-} from '../redux/constants';
-// import Overlay from '../../common/Overlay';
 
 export default class LoginInProgress extends Component {
     state = {
