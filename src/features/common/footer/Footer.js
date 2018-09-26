@@ -17,12 +17,12 @@ export const Footer = ({ className, ...rest }) => {
     return (
         <TabletOrDesktop>
             <footer className={classes} {...rest}>
-                <div className="copyright">
+                <div className="copyright ends">
                     &copy; {i18n('footer.copyright')}
                     {new Date().getFullYear()}
                 </div>
                 <Logo withName width="140px" height="35px" />
-                <div className="links">
+                <div className="links ends">
                     <Link name="block-card" to="/customer/support">
                         {i18n('footer.block-card')}
                     </Link>

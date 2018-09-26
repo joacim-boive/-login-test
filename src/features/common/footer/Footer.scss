@@ -1,25 +1,34 @@
 [role="main"] > footer{
     position: relative;
-    margin: 0 auto;
+    align-self: center;
     align-items: center;
     flex-direction: row;
+    flex-shrink: 0;
     display: flex;
+    margin: 6px;
     max-width: 890px;
     width: 100%;
     justify-content: center;
 
     .copyright{
-        position: absolute;
         left: 0;
     }
 
     .links{
-        position: absolute;
         right: 0;
         white-space: nowrap;
 
         :first-child{
             margin-right: 20px;
         }
+    }
+
+    .ends {
+        position: absolute;
+
+        /* Vertically align items in IE11 */
+        top: 0;
+        bottom: 0;
+        line-height: 200%;
     }
 }

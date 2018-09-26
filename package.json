@@ -39,7 +39,8 @@
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
         },
         "testPathIgnorePatterns": [
-            "<rootDir>/(build|docs|node_modules)/"
+            "<rootDir>/(build|docs|node_modules)/",
+            "__e2e__"
         ],
         "collectCoverageFrom": [
             "<rootDir>/src/**/*test.(js|jsx)",
@@ -162,7 +163,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure3.ft.ecster.se",
+                    "target": "https://secure5.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
