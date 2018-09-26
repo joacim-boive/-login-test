@@ -33,14 +33,14 @@ class AuthenticatedSubPageTemplate extends Component {
                 <div className={classes}>
                     <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
                 </div>
                 <MessagePanel />
