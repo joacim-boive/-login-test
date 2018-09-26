@@ -7,10 +7,11 @@ import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import Footer from '../footer';
+import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId, header, children } = this.props;
+        const { className, customerId, showLoanMenu, header, children } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
@@ -26,15 +27,16 @@ class AuthenticatedPageTemplate extends React.Component {
         return (
             <>
                 <div className={classes}>
+                    <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} />
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </TabletOrDesktop>
                     <div className="page-container">
                         {thisHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} />
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </Mobile>
                 </div>
                 <MessagePanel />
@@ -49,6 +51,7 @@ AuthenticatedPageTemplate.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
+    showLoanMenu: PropTypes.bool.isRequired,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
@@ -57,9 +60,10 @@ AuthenticatedPageTemplate.defaultProps = {
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication }) {
+function mapStateToProps({ authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
+        showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
     };
 }
 

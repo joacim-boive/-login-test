@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Checkbox, Panel, ConfirmButton, ButtonGroup } from '@ecster/ecster-components';
+import { Checkbox, Panel, ConfirmButton, ButtonGroup, ResponsivePanel } from '@ecster/ecster-components';
 
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { gaGenericEvent, gaActionEvent } from '../../../common/ga/index';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import { deleteAccount } from '../redux/actions';
@@ -45,7 +44,6 @@ export class TerminateAccount extends Component {
     }
 
     onCheckboxChanged = ({ name, checked }) => {
-        console.log(`checkbox ${name}, checked = ${checked}`);
         this.setState({ [name]: checked, checkCount: this.state.checkCount + (checked ? 1 : -1) });
     };
 

@@ -86,7 +86,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                         </DataRow>
                         <DataRow>
                             <EditableInput
-                                className="edit-input"
+                                className="editable-input"
                                 label={i18n('general.address.email')}
                                 value={contactInformation.email}
                                 editMode={!contactInformation.email}

@@ -82,7 +82,6 @@ const getCreditLimitOptions = (locale, currentLimit, maxLimit) => {
     increment = oddMultiples(nextLimit, increments.small) ? increments.small : increments.big;
 
     while (nextLimit <= maxLimit) {
-        console.log('pushing option: ', formatAmount(nextLimit), nextLimit);
         options.push(<Option key={nextLimit} label={formatAmount(nextLimit)} value={nextLimit} />);
         if (oddMultiples(nextLimit, increments.small) || nextLimit < increments.bigFrom) {
             increment = increments.small;

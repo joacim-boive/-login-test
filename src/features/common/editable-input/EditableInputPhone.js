@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
+import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
@@ -12,6 +12,13 @@ export class EditableInputPhone extends Component {
         value: this.props.value,
         valueUnedited: this.props.value,
     };
+
+    constructor(props) {
+        super(props);
+        this.countryRef = React.createRef();
+        this.phoneRef = React.createRef();
+        this.formRef = React.createRef();
+    }
 
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
@@ -31,7 +38,7 @@ export class EditableInputPhone extends Component {
 
     onEdit = () => {
         this.setState({ editMode: true }, () => {
-            this.inputRef.getInputEl().focus();
+            this.phoneRef.current.getInputEl().focus();
         });
     };
 
@@ -41,8 +48,10 @@ export class EditableInputPhone extends Component {
 
     onSave = () => {
         const { countryCallingCode, number } = this.state.value;
-        this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
-        this.setState({ editMode: false });
+        if (this.formRef.current.validate()) {
+            this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
+            this.setState({ editMode: false });
+        }
     };
 
     render() {
@@ -58,20 +67,23 @@ export class EditableInputPhone extends Component {
 
         return editMode ? (
             <div className={classes}>
-                <div className="input-wrapper flex-row">
-                    <CountrySelect
-                        label={i18n('general.address.country-code')}
-                        value={value.countryCallingCode}
-                        onChange={this.onChangeCountryCode}
-                    />
-                    <Input
-                        {...rest}
-                        value={value.number}
-                        small
-                        label={i18n('general.address.number')}
-                        onChange={this.onChange}
-                        ref={input => (this.inputRef = input)}
-                    />
+                <div className="input-wrapper">
+                    <Form ref={this.formRef} validateRefs={[this.phoneRef, this.countryRef]} className="flex-row">
+                        <CountrySelect
+                            ref={this.countryRef}
+                            label={i18n('general.address.country-code')}
+                            value={value.countryCallingCode}
+                            onChange={this.onChangeCountryCode}
+                        />
+                        <Input
+                            {...rest}
+                            value={value.number}
+                            small
+                            label={i18n('general.address.number')}
+                            onChange={this.onChange}
+                            ref={this.phoneRef}
+                        />
+                    </Form>
                 </div>
                 <ButtonGroup align="right">
                     <Button name="cancel" onClick={this.onCancel} xSmall round transparent>

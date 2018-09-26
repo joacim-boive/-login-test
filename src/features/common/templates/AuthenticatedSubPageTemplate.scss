@@ -16,7 +16,8 @@
         flex-flow: column;
         position: relative;
         flex-wrap: nowrap;
-        max-width: 960px;
+        z-index: 210; // alpha label order
+        max-width: $content-max-width-desktop;
         width: 100%;
         margin: 0 0 30px;
 

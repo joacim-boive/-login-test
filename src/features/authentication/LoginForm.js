@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSession, getSession } from './redux/actions';
+import { createSession, removeSession, getSession } from './redux/actions';
 import { showFullscreenDialog } from '../common/redux/actions';
+import { getCustomerProperties } from '../customer/redux/actions';
 import { LoginFormFI, LoginFormSE } from './index';
 
 class LoginForm extends Component {
@@ -26,9 +27,19 @@ LoginForm.propTypes = {
     country: PropTypes.string.isRequired,
     showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
+    removeSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
+    getCustomerProperties: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
+
+    createSessionError: PropTypes.object,
+    getSessionError: PropTypes.object,
+};
+
+LoginForm.defaultProps = {
+    createSessionError: null,
+    getSessionError: null,
 };
 
 /* istanbul ignore next */
@@ -37,6 +48,9 @@ function mapStateToProps({ authentication, home }) {
         loginProgress: authentication.loginProgress,
         loginStatus: authentication.loginStatus,
         country: home.applicationCountry,
+        createSessionError: authentication.createSessionError,
+        getSessionError: authentication.getSessionError,
+        person: authentication.person,
     };
 }
 
@@ -49,8 +63,14 @@ function mapDispatchToProps(dispatch) {
         createSession: data => {
             dispatch(createSession(data));
         },
+        removeSession: () => {
+            dispatch(removeSession());
+        },
         getSession: sessionKey => {
             dispatch(getSession(sessionKey));
+        },
+        getCustomerProperties: (customerId, propertyName) => {
+            dispatch(getCustomerProperties(customerId, propertyName));
         },
     };
 }

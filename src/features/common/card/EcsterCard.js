@@ -11,16 +11,21 @@ export const EcsterCard = ({ className, account, ...rest }) => {
         [className]: className,
     });
 
-    if (!(account && account.numberOfCards && parseInt(account.numberOfCards, 0) > 0)) {
+    // Default brick id if none exists
+    // Uses the ecster card according to https://jira.shbmain.shb.biz/browse/HXDN-11880
+    let brickId = 0;
+
+    if (account && account.numberOfCards && parseInt(account.numberOfCards, 0) > 0) {
         // we shouldn't show this component if no card exists
-        return null;
+        // eslint-disable-next-line prefer-destructuring
+        brickId = account.brickId;
     }
 
     return (
         <Lazyload
             alt="Ecster Pay Card"
             className={classes}
-            src={`/v1/cards/${account.brickId}.png`}
+            src={`/v1/cards/${brickId}.png`}
             widths={[166, 312]}
             {...rest}
         />
