@@ -2,7 +2,6 @@
 const initialState = {
     customer: { contactInformation: {} },
     customerExtraCardHolders: [],
-    customerProperties: [],
 
     // generated
     getCustomerPending: false,

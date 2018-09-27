@@ -32,8 +32,6 @@ ArrowLink.propTypes = {
 ArrowLink.defaultProps = {
     className: '',
     icon: '',
-    onClick: () => {
-        console.log('Clicked ArrowLink');
-    },
+    onClick: () => {},
     to: '',
 };

@@ -7,7 +7,7 @@ export default class NoAccountsPanel extends Component {
 
     render() {
         return (
-            <Panel maxWidth="600px" textAlignCenter className="account-no-accounts-panel">
+            <Panel textAlignCenter className="account-no-accounts-panel" padding="40px 20px">
                 <h2>{i18n('account.no-account.header')}</h2>
                 {i18n('account.no-account.info', {
                     returnObjects: true,

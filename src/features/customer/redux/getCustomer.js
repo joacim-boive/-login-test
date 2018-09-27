@@ -9,13 +9,13 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_CUSTOMER_URL } from './urls';
 
-export const getCustomer = customerId => async dispatch => {
+export const getCustomer = (customerId, updateFromCreditSystem) => async dispatch => {
     dispatch({
         type: CUSTOMER_GET_CUSTOMER_BEGIN,
     });
 
     try {
-        const res = await get(GET_CUSTOMER_URL(customerId));
+        const res = await get(GET_CUSTOMER_URL(customerId, updateFromCreditSystem));
         dispatch({
             type: CUSTOMER_GET_CUSTOMER_SUCCESS,
             data: res.response,

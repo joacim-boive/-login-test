@@ -29,10 +29,9 @@ export const getSession = sessionKey => async dispatch => {
 };
 
 export const dismissGetSessionError = () => ({ type: AUTHENTICATION_GET_SESSION_DISMISS_ERROR });
-
 export function reducer(state, action) {
     const isLoggedIn =
-        action && action.data && action.data.authentication && action.data.authentication.status === 'VERIFIED';
+        action && action.data && action.data.authentication && action.data.authentication.status === 'COMPLETE';
 
     switch (action.type) {
         case AUTHENTICATION_GET_SESSION_BEGIN:
@@ -52,7 +51,7 @@ export function reducer(state, action) {
                 loginProgress: {
                     status: action.data.authentication.status,
                     pollTime:
-                        isLoggedIn && !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime,
+                        isLoggedIn || !action.data.authentication.eid ? 0 : action.data.authentication.eid.pollTime,
                 },
                 person: action.data.person,
                 getSessionPending: false,

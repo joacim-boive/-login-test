@@ -6,10 +6,11 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId } = this.props;
+        const { className, customerId, showLoanMenu } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
@@ -23,21 +24,22 @@ class AuthenticatedPageTemplate extends React.Component {
         );
 
         return (
-            <React.Fragment>
+            <>
                 <div className={classes}>
+                    <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} />
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </TabletOrDesktop>
                     <div className="page-container">
                         {header}
                         <div className="page-content">{this.props.children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} />
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </Mobile>
                 </div>
                 <MessagePanel />
-            </React.Fragment>
+            </>
         );
     }
 }
@@ -47,6 +49,7 @@ AuthenticatedPageTemplate.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
+    showLoanMenu: PropTypes.bool.isRequired,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
@@ -55,9 +58,10 @@ AuthenticatedPageTemplate.defaultProps = {
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication }) {
+function mapStateToProps({ authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
+        showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
     };
 }
 

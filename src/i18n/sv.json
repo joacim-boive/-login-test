@@ -82,7 +82,7 @@
             "monthly-invoices": "Månadsfakturor",
             "manage-cards": "Hantera kort",
             "apply-for-card": "Ansök om kort",
-            "terms": "Kontovillkor"
+            "terms": "Kontoinformation"
         },
         "summary": {
             "left": "Kvar att handla för",
@@ -111,7 +111,7 @@
             "extra-card-fee": "Extrakortsavgift",
             "withdrawal-fee-cash": "Kontantuttagsavgift",
             "withdrawal-fee-atm": "Bankomatuttagsavgift",
-            "withdrawal-fee-foreign-currency": "Kontantuttag i utländskvaluta",
+            "withdrawal-fee-foreign-currency": "Kontantuttag i utländsk valuta",
             "withdrawal-fee": "Bankomat- och kontantuttagsavgift (gäller även utomlands)",
             "exchange-fee": "Valutaväxlingsavgift",
             "late-payment-fee": "Förseningsavgift",
@@ -121,6 +121,7 @@
 
             "atm-withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
             "withdrawal-fee-value": "{{percentValue}} av uttaget belopp, minst {{feeValue}}",
+            "withdrawal-fee-only-value": "{{feeValue}}",
             "foreign-currency-withdrawal-fee-value": "{{percentValue}} av uttaget belopp",
 
             "account-number-description": "Används som OCR-nummer.",
@@ -128,14 +129,14 @@
             "total-credit-description": "Din nuvarande kreditgräns.",
             "interest-description": "Aktiv om du delbetalar fakturan.",
             "deposit-rate-description": "Ränta på insatta pengar. Kontot omfattas av insättningsgarantin enligt beslut av Riksgälden. Se fullständiga villkor i ",
-            "admin-fee-description": "Avgift för administration av din betalningar.",
+            "admin-fee-description": "Avgift för administration av dina betalningar.",
             "yearly-fee-description": "",
             "extra-card-fee-description": "",
             "withdrawal-fee-description": "Du kan ta ut upp till 5 000 kr per uttag.",
-            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta",
-            "withdrawal-fee-foreign-currency-description": "Avgift om du gör uttag av utländskvaluta från bankomat",
-            "late-payment-fee-description": "Debiteras om avgift inte kommit in vid förfallodatum",
-            "overdraft-fee-description": "Debiteras om kontot övertrasseras",
+            "exchange-fee-description": "Tillkommer vid uttag av utländsk valuta.",
+            "withdrawal-fee-foreign-currency-description": "Avgift om du gör uttag av utländsk valuta från bankomat.",
+            "late-payment-fee-description": "Debiteras om betalning inte kommit in vid förfallodatum.",
+            "overdraft-fee-description": "Debiteras om kontot övertrasseras.",
             "account-terms-pdf-description": "Samtliga villkor som gäller för ditt konto.",
 
             "terms-error": "Dina kontovillkor kan inte visas just nu och felet är helt och hållet vårt."
@@ -233,11 +234,16 @@
         }
     },
     "authentication": {},
-    "common": {},
+    "common": {
+        "under-construction": {
+            "header": "Sidan är inte riktigt färdigslipad än",
+            "info": "Vi arbetar för fullt med utvecklingen. Inom kort kommer du att kunna se mer information här."
+        }
+    },
     "customer": {
         "profile": {
             "info-text": "Handla tryggare på internet. Genom att fylla i ditt mobilnummer här kopplar du ditt kort till Mastercard Secure Code, som innebär att det sker en extra kontroll när du handlar på nätet. Din mejladress behöver vi för att kunna skicka information till dig om ditt konto.",
-            "extra-card-info": "Information om extrakort hittar du under [link #/account/extra-card 'Hantera kort']."
+            "extra-card-info": "Information om extrakort hittar du under [link #/card/overview 'Hantera kort']."
         },
         "contact-us": {
             "header": "Kontakta oss",
@@ -291,12 +297,63 @@
                             "header": "Öppna BankID",
                             "body": [
                                 "Låt sidan vara öppen under tiden du loggar in med ditt BankID, annars avbryts inloggningen."
+                            ],
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
+                            ],
+                            "body-started": [
+                                "Söker efter BankID, det kan ta en liten stund… Om det har gått några sekunder och inget BankID har hittats har du sannolikt inget BankID som går att använda för den aktuella identifieringen/underskriften i den här datorn. Om du har ett BankID-kort, sätt in det i kortläsaren. Om du inte har något BankID kan du hämta ett hos din internetbank."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         },
                         "other-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         }
                     },
@@ -305,12 +362,60 @@
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         },
                         "other-device": {
                             "header": "Öppna Mobilt BankID",
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
+                            ],
+                            "body-cancelled": [
+                                "Åtgärden avbruten. Försök igen."
+                            ],
+                            "body-already-in-progress": [
+                                "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
+                            ],
+                            "body-internal-error": [
+                                "Internt tekniskt fel. Försök igen."
+                            ],
+                            "body-user-cancel": [
+                                "Åtgärden avbruten."
+                            ],
+                            "body-expired-transaction": [
+                                "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
+                            ],
+                            "body-user-sign": [
+                                "Skriv in din säkerhetskod i BankID-appen och välj Legitimera eller Skriv under."
+                            ],
+                            "body-certificate-error": [
+                                "Det BankID du försöker använda är för gammalt eller spärrat. Använd ett annat BankID eller hämta ett nytt hos din internetbank."
+                            ],
+                            "body-start-failed": [
+                                "BankID-appen verkar inte finnas i din dator eller telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från [link https://install.bankid.com 'https://install.bankid.com']."
                             ]
                         }
                     }
@@ -338,7 +443,6 @@
             "purpose": "Vad lånet skall användas till?",
             "resolve-other": "Ange belopp du avser lösa",
             "resolve": "Samla andra lån/krediter",
-            "residence": "Köp av bostad/fastighet",
             "residence-other": "Övrigt till bostad (renovering etc)",
             "vehicle": "Köp av fordon",
             "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { ResponsivePanel } from '@ecster/ecster-components';
 import './LoanCost.scss';
 import { formatAmount } from '../../../common/util/format-amount';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 
 export const LoanCost = ({ className, terms, interestRate }) => {
     const classes = classNames({
