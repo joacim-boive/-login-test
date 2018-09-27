@@ -143,10 +143,12 @@ export class RaiseCreditPage extends Component {
                                 </UnorderedList>
                             </div>
                         </ResponsivePanel>
-                        <div className="center mt-6x">
-                            {i18n('account.raise-credit.terms-conditions')}{' '}
-                            <a href={terms.termsPDFURL}>{i18n('account.raise-credit.terms-conditions__link')}</a>
-                        </div>
+                        <div
+                            className="center mt-6x"
+                            dangerouslySetInnerHTML={{
+                                __html: i18n('account.raise-credit.terms-conditions', { url: terms.termsPDFURL }),
+                            }}
+                        />
                         {!processing && (
                             <ButtonGroup align="center" className="mt-8x">
                                 <Button onClick={this.onButtonClick} round>

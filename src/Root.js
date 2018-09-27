@@ -7,8 +7,6 @@ import { Switch, HashRouter } from 'react-router-dom';
 import Authorized from './features/authentication/Authorized';
 import createRoutes from './createRoutes';
 
-import Footer from './features/common/footer';
-
 export default class Root extends Component {
     static propTypes = {
         store: PropTypes.object.isRequired,
@@ -25,7 +23,6 @@ export default class Root extends Component {
                     <Switch>
                         {routes.publicRoutes}
                         <Authorized>{routes.authRoutes}</Authorized>
-                        <Footer />
                     </Switch>
                 </HashRouter>
             </Provider>
