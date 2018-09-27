@@ -1,30 +1,32 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
+.terminated-account-panel {
+    .account-panel-content {
+        align-items: center;
+    }
+}
+
 .account-panel {
 
     @include mobile() {
         padding: 0;
     }
 
-    &__body {
+    &-content {
         padding: 20px;
 
         @include mobile() {
             padding: 0;
         }
+        & > p {
+            text-align: center;
+        }
     }
 
-    // AccountPanel specific styling for overdrawn info component
-    .account-overdrawn-info {
-        padding: 40px 40px 30px;
-        margin: 0 20px;
-        border-bottom: 1px solid $gray40;
-
+    &-terminated-info {
         @include mobile() {
-            padding: 20px 0;
-            border-bottom: none;
-
+            padding: 20px 20px 0 20px;
         }
     }
 }

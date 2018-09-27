@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './AccountHeader.scss';
 import { EcsterCard } from '../../common/card/EcsterCard';
 import { formatAmount } from '../../../common/util/format-amount';
 import { formatAccount } from '../../../common/util/format-account';
 
-export const AccountHeader = ({ account }) => {
+export const AccountHeader = ({ account, amount, amountLabel, showCard }) => {
     const accountNumber = formatAccount(account.accountNumber);
-    const amountLeft = account.limit - account.used;
 
     return (
         <div className="account-header">
-            <EcsterCard account={account} />
+            {showCard && <EcsterCard account={account} />}
             <div className="account-header__panel">
                 <div className="account-header__card-number">
                     <h3>{account.product.name}</h3>
                     <div>{accountNumber}</div>
                 </div>
                 <div className="account-header__amount">
-                    <div>{formatAmount(amountLeft < 0 ? 0 : amountLeft, undefined, { roundDown: true })}</div>
-                    <p>{i18n('account.header.left-to-buy')}</p>
+                    <div>{formatAmount(amount < 0 ? 0 : amount, undefined, { roundDown: true })}</div>
+                    <p>{amountLabel}</p>
                 </div>
             </div>
         </div>
@@ -29,4 +27,11 @@ export const AccountHeader = ({ account }) => {
 
 AccountHeader.propTypes = {
     account: PropTypes.shape().isRequired,
+    amount: PropTypes.number.isRequired,
+    amountLabel: PropTypes.string.isRequired,
+    showCard: PropTypes.bool,
+};
+
+AccountHeader.defaultProps = {
+    showCard: true,
 };
