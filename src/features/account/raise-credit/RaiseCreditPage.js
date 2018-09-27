@@ -123,9 +123,11 @@ export class RaiseCreditPage extends Component {
                                     <strong>{formatAmount(currentLimit)}</strong>
                                 </div>
                                 <div className="flex-row">
-                                    <span>{i18n('account.raise-credit.new-credit-limit')}</span>
+                                    <label for="creditLimit">{i18n('account.raise-credit.new-credit-limit')}</label>
                                     <Select
                                         value={newLimit}
+                                        name="creditLimit"
+                                        id="creditLimit"
                                         onChange={this.onSelectChange}
                                         defaultOption={i18n('account.raise-credit.select-amount')}
                                     >
