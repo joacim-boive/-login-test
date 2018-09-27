@@ -40,10 +40,13 @@ export function reducer(state, action) {
 
         case ACCOUNT_GET_ACCOUNTS_SUCCESS:
             const accountsActive = action.data.filter(a => a.status === 'ACTIVE'); // eslint-disable-line
+            const accountsTerminated = action.data.filter(a => a.status === 'TERMINATED'); // eslint-disable-line
+
             return {
                 ...state,
                 accounts: action.data,
                 accountsActive,
+                accountsTerminated,
                 hasZeroAccounts: accountsActive.length === 0,
                 getAccountsPending: false,
                 getAccountsError: null,

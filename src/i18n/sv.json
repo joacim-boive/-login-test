@@ -53,7 +53,8 @@
         "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50']",
         "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30']",
         "phone-link-020411212": "[link tel:020411212 '020&#8209;41&nbsp;12&nbsp;12']",
-        "phone-link-4684112122": "[link tel:+4684112122 '+46&nbsp;8&nbsp;411&nbsp;21&nbsp;22']"
+        "phone-link-4684112122": "[link tel:+4684112122 '+46&nbsp;8&nbsp;411&nbsp;21&nbsp;22']",
+        "bg": "847-2425"
     },
     "account": {
         "header": {
@@ -66,10 +67,12 @@
             "pay-in": "Att betala i",
             "missing": [
                 "Du har inget att betala just nu. Vill du göra en extra inbetalning? Använd uppgifterna nedan.",
-                "Bankgiro: 847-2425",
+                "Bankgiro: $t(general.bg)",
                 "OCR: {{nr}}"
             ],
-            "show-details": "Detaljerad faktura"
+            "show-details": "Detaljerad faktura",
+            "bg": "Bankgiro",
+            "ocr": "OCR/kontonummer"
         },
         "latest-transactions": {
             "header": "Senaste händelser",
@@ -178,7 +181,7 @@
             },
             "overdrawn": {
                 "header": "Din kreditgräns är överskriden",
-                "info": "Vänligen betala in minst {{amount}} till bankgiro: 847-2425, OCR-nummer: {{accountNumber}}"
+                "info": "Vänligen betala in minst {{amount}} till bankgiro: $t(general.bg), OCR-nummer: {{accountNumber}}"
             }
         },
         "raise-credit": {
@@ -193,6 +196,8 @@
             "terms": "Villkor",
             "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
+
+            "terms-conditions": "Här kan du ta del av dina [link {{url}} 'fullständiga kontovillkor']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
@@ -231,6 +236,14 @@
                 "Vardagar: 9-18"
             ],
             "button-text": "Läs mer och ansök"
+        },
+        "terminated-account": {
+            "header": "Kvarstående skuld",
+            "short-info": "Det här kontot har avslutats och kan inte längre användas för köp.",
+            "long-info": [
+                "$t(account.terminated-account.short-info)",
+                "När din skuld är avbetald kommer kontot att tas bort."
+            ]
         }
     },
     "authentication": {},
@@ -253,10 +266,10 @@
             "question-panel-opening-hours": "Vi har öppet vardagar 9-18",
             "block-card-text1": "Spärra ditt kort",
             "block-card-text2": "Ring något av våra nummer för att spärra ditt kort. Öppet dygnet runt.",
-			"block-card-phone-abroad": "$t(general.phone-link-4684112122)",
+            "block-card-phone-abroad": "$t(general.phone-link-4684112122)",
             "block-card-phone-domestic": "$t(general.phone-link-020411212)",
             "block-card-abroad-text": "Från utlandet",
-			"block-card-domestic-text": "Från Sverige",
+            "block-card-domestic-text": "Från Sverige",
             "faq-text1": "Vanliga frågor",
             "faq-text2": "Du hittar svar på de vanligaste frågorna vi får i vår FAQ.",
             "faq-link": "Frågor och svar",
@@ -588,5 +601,10 @@
         "customer-support": "Kontakta oss",
         "settings": "Profil",
         "logout": "Logga ut"
+    },
+    "footer": {
+        "copyright": "Ecster",
+        "block-card": "Spärra kort",
+        "contact": "Kontakt"
     }
 }

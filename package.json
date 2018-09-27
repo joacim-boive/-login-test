@@ -14,15 +14,6 @@
         "plugins": [],
         "css": "sass"
     },
-    "prettier": {
-        "printWidth": 120,
-        "bracketSpacing": true,
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "semi": true,
-        "useTabs": false,
-        "tabWidth": 4
-    },
     "browserslist": [
         "last 2 versions",
         "ie 11",
@@ -39,7 +30,8 @@
             "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
         },
         "testPathIgnorePatterns": [
-            "<rootDir>/(build|docs|node_modules)/"
+            "<rootDir>/(build|docs|node_modules)/",
+            "__e2e__"
         ],
         "collectCoverageFrom": [
             "<rootDir>/src/**/*test.(js|jsx)",
@@ -162,7 +154,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure3.ft.ecster.se",
+                    "target": "https://secure5.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",
@@ -190,7 +182,7 @@
         "enzyme-to-json": "^3.3.4",
         "eslint": "^5.6.0",
         "eslint-config-airbnb": "^17.1.0",
-        "eslint-config-prettier": "^3.0.1",
+        "eslint-config-prettier": "^3.1.0",
         "eslint-import-resolver-babel-module": "^4.0.0",
         "eslint-plugin-import": "^2.14.0",
         "eslint-plugin-jsx-a11y": "^6.1.1",
@@ -198,7 +190,7 @@
         "eslint-plugin-react": "^7.11.1",
         "express": "^4.16.3",
         "express-history-api-fallback": "^2.2.1",
-        "hint": "^3.2.3",
+        "hint": "^3.4.3",
         "history": "^4.7.2",
         "ip": "^1.1.5",
         "jest": "^23.6.0",
@@ -215,31 +207,31 @@
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
         "sinon": "^4.5.0",
-        "webpack": "^4.19.0",
+        "webpack": "^4.20.2",
         "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
         "@ecster/ecster-analytics": "1.0.65",
-        "@ecster/ecster-components": "^1.1.427",
+        "@ecster/ecster-components": "^1.1.436",
         "@ecster/ecster-i18n": "^3.0.64",
         "@ecster/ecster-net": "^1.0.74",
-        "@ecster/ecster-styles": "^3.0.197",
+        "@ecster/ecster-styles": "^3.0.200",
         "@ecster/ecster-util": "^2.0.71",
-        "@ecster/ecster-webpack": "^2.0.171",
-        "ajv": "^6.5.3",
+        "@ecster/ecster-webpack": "^2.0.177",
+        "ajv": "^6.5.4",
         "classnames": "^2.2.6",
-        "eslint-plugin-jest": "^21.22.0",
+        "eslint-plugin-jest": "^21.22.1",
         "features": "^0.1.0",
-        "jest-puppeteer": "^3.3.1",
+        "jest-puppeteer": "^3.4.0",
         "lazysizes": "^4.1.2",
-        "ndb": "^1.0.25",
+        "ndb": "^1.0.26",
         "nodemon": "^1.18.4",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
-        "react": "^16.5.1",
-        "react-dom": "^16.5.1",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
         "react-grid-layout": "^0.16.6",
-        "react-hot-loader": "^4.3.8",
+        "react-hot-loader": "^4.3.11",
         "react-media": "^1.8.0",
         "react-redux": "^5.0.5",
         "react-router": "^4.3.1",

@@ -25,16 +25,22 @@ $color-text: #333;
 }
 
 html, body, #react-root {
-    /* everywhere grid is used both col and rows needs to be defined for IE11 to work */
-    @include grid((
-        cols: 1fr,
-        rows: 1fr
-    ));
-
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+body, #react-root{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#react-root{
+    & > div:first-child{
+        flex: 1 0 auto;
+    }
 }
 
 // Remove number spinner in number-field

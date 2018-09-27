@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -8,8 +8,9 @@ import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
 import AlphaLabel from '../alpha';
+import Footer from '../footer';
 
-class AuthenticatedSubPageTemplate extends React.Component {
+class AuthenticatedSubPageTemplate extends Component {
     render() {
         const { className, linkTo, header, customerId, children, showLoanMenu } = this.props;
 
@@ -32,17 +33,18 @@ class AuthenticatedSubPageTemplate extends React.Component {
                 <div className={classes}>
                     <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
                 </div>
                 <MessagePanel />
+                <Footer />
             </>
         );
     }
