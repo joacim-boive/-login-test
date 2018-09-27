@@ -57,7 +57,7 @@ class AccountPanel extends Component {
                             bg={i18n('general.bg')}
                             ocr={formatAccount(account.accountNumber)}
                         />
-                        <div className="terminated-info">
+                        <div className="account-panel-terminated-info">
                             {i18n('account.terminated-account.long-info', {
                                 returnObjects: true,
                                 wrapper: { tag: 'p' },
