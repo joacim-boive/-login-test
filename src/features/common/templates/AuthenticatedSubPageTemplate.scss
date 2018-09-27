@@ -12,10 +12,14 @@
         text-align: center;
     }
     .hero-header {
-        margin: 10px auto 30px;
+        display: flex;
+        flex-flow: column;
         position: relative;
+        flex-wrap: nowrap;
         z-index: 210; // alpha label order
         max-width: $content-max-width-desktop;
+        width: 100%;
+        margin: 0 0 30px;
 
         @include mobile() {
             margin: 0 0 30px 0;
@@ -46,13 +50,10 @@
         }
 
         h1 {
-            position: absolute;
-            left: 0;
             font-family: 'Campton', sans-serif;
             color: $beige140;
             font-weight: $weight-medium;
             font-size: 26px;
-            text-align: center;
             width: 100%;
             margin: 0;
             padding: 0;
@@ -69,6 +70,10 @@
     }
 
     .page-container {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+
         @include tablet() {
             margin-top: $navigation-height + 10;
         }

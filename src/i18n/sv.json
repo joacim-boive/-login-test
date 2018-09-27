@@ -194,6 +194,8 @@
             "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
+            "terms-conditions": "Här kan du ta del av dina [link {{url}} 'fullständiga kontovillkor']",
+
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
             "apply": "Ansök",
@@ -253,10 +255,10 @@
             "question-panel-opening-hours": "Vi har öppet vardagar 9-18",
             "block-card-text1": "Spärra ditt kort",
             "block-card-text2": "Ring något av våra nummer för att spärra ditt kort. Öppet dygnet runt.",
-			"block-card-phone-abroad": "$t(general.phone-link-4684112122)",
+            "block-card-phone-abroad": "$t(general.phone-link-4684112122)",
             "block-card-phone-domestic": "$t(general.phone-link-020411212)",
             "block-card-abroad-text": "Från utlandet",
-			"block-card-domestic-text": "Från Sverige",
+            "block-card-domestic-text": "Från Sverige",
             "faq-text1": "Vanliga frågor",
             "faq-text2": "Du hittar svar på de vanligaste frågorna vi får i vår FAQ.",
             "faq-link": "Frågor och svar",
@@ -588,5 +590,10 @@
         "customer-support": "Kontakta oss",
         "settings": "Profil",
         "logout": "Logga ut"
+    },
+    "footer": {
+        "copyright": "Ecster",
+        "block-card": "Spärra kort",
+        "contact": "Kontakt"
     }
 }
