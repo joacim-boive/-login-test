@@ -93,6 +93,7 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                                 label={i18n('general.address.email')}
                                 onSave={val => onUpdateContactInfo({ email: val })}
                                 validationMessage={i18n('general.validation.email')}
+                                required
                             />
                         </DataRow>
                         <DataRow>{i18n('loan.personal.contact-text')}</DataRow>

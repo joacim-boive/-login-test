@@ -75,6 +75,7 @@ class ProfilePage extends Component {
                             label={i18n('general.address.email')}
                             onSave={val => updateCustomerContactInfo(hasAccounts, { email: val })}
                             validationMessage={i18n('general.validation.email')}
+                            required
                         />
                     </section>
                 </div>

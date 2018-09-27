@@ -47,7 +47,7 @@ export class EditableInput extends Component {
     };
 
     render() {
-        const { className, label, validationMessage, ...rest } = this.props;
+        const { className, label, validationMessage, required, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -68,6 +68,7 @@ export class EditableInput extends Component {
                         onChange={this.onChange}
                         ref={this.inputRef}
                         validationMessage={validationMessage}
+                        required
                     />
                 </Form>
                 <ButtonGroup align="right">
@@ -99,10 +100,12 @@ EditableInput.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
     validationMessage: PropTypes.string.isRequired,
+    required: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
+    required: false
 };
