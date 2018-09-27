@@ -6,20 +6,21 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import Footer from '../footer';
 import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId, showLoanMenu } = this.props;
+        const { className, customerId, showLoanMenu, header, children } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
             [className]: className,
         });
 
-        const header = this.props.header && (
+        const thisHeader = header && (
             <div className="hero-header">
-                <h1>{this.props.header}</h1>
+                <h1>{header}</h1>
             </div>
         );
 
@@ -31,14 +32,15 @@ class AuthenticatedPageTemplate extends React.Component {
                         <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </TabletOrDesktop>
                     <div className="page-container">
-                        {header}
-                        <div className="page-content">{this.props.children}</div>
+                        {thisHeader}
+                        <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
                         <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
                     </Mobile>
                 </div>
                 <MessagePanel />
+                <Footer />
             </>
         );
     }

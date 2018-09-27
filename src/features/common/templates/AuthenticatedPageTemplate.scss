@@ -45,11 +45,11 @@
 
     .page-container {
         @include tablet() {
-            margin-top: $navigation-height;
+            padding-top: $navigation-height;
         }
 
         @include desktop() {
-            margin-top: $navigation-height;
+            padding-top: $navigation-height;
         }
     }
 

@@ -13,7 +13,7 @@
         padding: 0;
     }
 
-    .account-panel-content {
+    &-content {
         padding: 20px;
 
         @include mobile() {

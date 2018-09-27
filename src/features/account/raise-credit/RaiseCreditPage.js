@@ -9,7 +9,7 @@ import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
 import pendingIcon from '../../../common/images/icon-table-lamp.svg';
-import { getAccount, updateAccount } from '../redux/actions';
+import { getAccount, getAccountTerms, updateAccount } from '../redux/actions';
 import { formatAmount } from '../../../common/util/format-amount';
 
 import getCreditLimitOptions from './getCreditLimitOptions';
@@ -28,8 +28,9 @@ export class RaiseCreditPage extends Component {
     };
 
     componentWillMount() {
-        const { getAccount } = this.props;
+        const { getAccountTerms, getAccount } = this.props;
         getAccount();
+        getAccountTerms();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,7 +70,9 @@ export class RaiseCreditPage extends Component {
         }
     };
 
-    onSelectChange = value => {
+    onSelectChange = e => {
+        const { value } = e.target;
+
         if (value) {
             this.setState({
                 newLimit: value,
@@ -81,7 +84,7 @@ export class RaiseCreditPage extends Component {
     };
 
     render() {
-        const { account, locale } = this.props;
+        const { account, terms, locale } = this.props;
         const {
             processing,
             processingMessage,
@@ -108,54 +111,55 @@ export class RaiseCreditPage extends Component {
             >
                 {showView === 'main' && (
                     <Panel padding="40px 60px">
-                        <div className="center mb-8x">
-                            <img className="mb-4x" src={walletIcon} alt="wallet icon" />
-                            <h2>{i18n('account.raise-credit.header')}</h2>
-                            <p>{i18n('account.raise-credit.intro')}</p>
-                        </div>
-                        <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
-                            <>
-                                <div className="flex-row mb-5x">
-                                    <span>{i18n('account.raise-credit.current-credit-limit')}</span>
-                                    <strong>{formatAmount(currentLimit)}</strong>
-                                </div>
-                                <div className="flex-row mb-5x">
-                                    <span>{i18n('account.raise-credit.max-credit-limit')}</span>
-                                    <strong>{formatAmount(account.maxLimit)}</strong>
-                                </div>
-                                <div className="flex-row">
-                                    <span>{i18n('account.raise-credit.new-credit-limit')}</span>
-                                    <span>
+                        <form>
+                            <div className="center mb-8x">
+                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                                <h2>{i18n('account.raise-credit.header')}</h2>
+                                <p>{i18n('account.raise-credit.intro')}</p>
+                            </div>
+                            <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
+                                <>
+                                    <div className="flex-row mb-5x">
+                                        <span>{i18n('account.raise-credit.current-credit-limit')}</span>
+                                        <strong>{formatAmount(currentLimit)}</strong>
+                                    </div>
+                                    <div className="flex-row">
+                                        <label htmlFor="creditLimit">
+                                            {i18n('account.raise-credit.new-credit-limit')}
+                                        </label>
                                         <Select
                                             value={newLimit}
-                                            onChange={e => this.onSelectChange(e.target.value)}
+                                            name="creditLimit"
+                                            id="creditLimit"
+                                            onChange={this.onSelectChange}
                                             defaultOption={i18n('account.raise-credit.select-amount')}
                                         >
                                             {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
                                         </Select>
-                                    </span>
-                                </div>
-                            </>
-                            <div>
-                                <strong>{i18n('account.raise-credit.terms')}</strong>
-                                <p>{i18n('account.raise-credit.terms-description')}</p>
-                                <UnorderedList icon="icon-check" iconClass="e-purple">
-                                    {i18n('account.raise-credit.terms-items', {
-                                        returnObjects: true,
-                                    })}
-                                </UnorderedList>
-                            </div>
-                        </ResponsivePanel>
-                        <div className="center mt-8x">
-                            {!processing && (
+                                    </div>
+                                </>
                                 <div>
-                                    <small className={applyClassName}>{applyMessage}</small>
-                                    <ButtonGroup align="center">
-                                        <Button onClick={this.onButtonClick} round>
-                                            {i18n('account.raise-credit.apply')}
-                                        </Button>
-                                    </ButtonGroup>
+                                    <strong>{i18n('account.raise-credit.terms')}</strong>
+                                    <p>{i18n('account.raise-credit.terms-description')}</p>
+                                    <UnorderedList icon="icon-check" iconClass="e-purple">
+                                        {i18n('account.raise-credit.terms-items', {
+                                            returnObjects: true,
+                                        })}
+                                    </UnorderedList>
                                 </div>
+                            </ResponsivePanel>
+                            <div
+                                className="center mt-6x"
+                                dangerouslySetInnerHTML={{
+                                    __html: i18n('account.raise-credit.terms-conditions', { url: terms.termsPDFURL }),
+                                }}
+                            />
+                            {!processing && (
+                                <ButtonGroup align="center" className="mt-8x">
+                                    <Button onClick={this.onButtonClick} round>
+                                        {i18n('account.raise-credit.apply')}
+                                    </Button>
+                                </ButtonGroup>
                             )}
                             {processing && (
                                 <div>
@@ -165,7 +169,7 @@ export class RaiseCreditPage extends Component {
                                     <Spinner id="raise-credit-spinner" isCenterX isVisible />
                                 </div>
                             )}
-                        </div>
+                        </form>
                     </Panel>
                 )}
 
@@ -213,8 +217,10 @@ export class RaiseCreditPage extends Component {
 
 RaiseCreditPage.propTypes = {
     account: PropTypes.object.isRequired,
+    terms: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired,
     getAccount: PropTypes.func.isRequired,
+    getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
     updateAccountPending: PropTypes.bool.isRequired,
 };
@@ -223,6 +229,7 @@ RaiseCreditPage.propTypes = {
 function mapStateToProps(state) {
     return {
         account: state.account.account, // account under feature account
+        terms: state.account.accountTerms,
         locale: state.home.locale,
         updateAccountPending: state.account.updateAccountPending,
         updateAccountError: state.account.updateAccountError,
@@ -234,6 +241,7 @@ function mapDispatchToProps(dispatch, state) {
     const { id, ref } = state.match.params;
     return {
         getAccount: () => dispatch(getAccount(id, ref)),
+        getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
         updateAccount: data => dispatch(updateAccount(id, ref, data)),
     };
 }
