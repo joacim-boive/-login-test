@@ -45,3 +45,9 @@ $label-right: -64px;
         }
     }
 }
+
+@include ie11-only{
+    .alpha {
+        z-index: 2;
+    }
+}
