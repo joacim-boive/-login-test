@@ -44,11 +44,23 @@ class Browser {
     async login(ssn) {
         await this.loginPage();
 
-        await this.page.focus('[name="ssn"]');
-        await this.page.keyboard.type(ssn, { delay: 100 });
+        await this.page.type('[name="ssn"]', ssn);
         await this.page.keyboard.press('Enter');
 
         await this.page.waitForSelector('.common-authenticated-page');
+    }
+
+    /**
+     * focus and clear ONE input field that matches <selector> and then <type>
+     * @param selector {string} The CSS selector to find in the page.
+     * @param type {string} To type in the matched input
+     */
+    async focusClearAndType({ selector, type }) {
+        const input = await page.$(selector);
+
+        // Cross OS "select all"
+        await input.click({ clickCount: 3 });
+        await input.type(type);
     }
 
     /**

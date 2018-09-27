@@ -1,6 +1,6 @@
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
 
-import { config, jestConfig, Browser } from '../../../../../tools/test-utils';
+import { config, jestConfig, Browser } from '../../../../tools/test-utils';
 
 jest.setTimeout(jestConfig.timeout);
 
