@@ -14,15 +14,6 @@
         "plugins": [],
         "css": "sass"
     },
-    "prettier": {
-        "printWidth": 120,
-        "bracketSpacing": true,
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "semi": true,
-        "useTabs": false,
-        "tabWidth": 4
-    },
     "browserslist": [
         "last 2 versions",
         "ie 11",

@@ -111,61 +111,65 @@ export class RaiseCreditPage extends Component {
             >
                 {showView === 'main' && (
                     <Panel padding="40px 60px">
-                        <div className="center mb-8x">
-                            <img className="mb-4x" src={walletIcon} alt="wallet icon" />
-                            <h2>{i18n('account.raise-credit.header')}</h2>
-                            <p>{i18n('account.raise-credit.intro')}</p>
-                        </div>
-                        <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
-                            <>
-                                <div className="flex-row mb-5x">
-                                    <span>{i18n('account.raise-credit.current-credit-limit')}</span>
-                                    <strong>{formatAmount(currentLimit)}</strong>
-                                </div>
-                                <div className="flex-row">
-                                    <label for="creditLimit">{i18n('account.raise-credit.new-credit-limit')}</label>
-                                    <Select
-                                        value={newLimit}
-                                        name="creditLimit"
-                                        id="creditLimit"
-                                        onChange={this.onSelectChange}
-                                        defaultOption={i18n('account.raise-credit.select-amount')}
-                                    >
-                                        {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
-                                    </Select>
-                                </div>
-                            </>
-                            <div>
-                                <strong>{i18n('account.raise-credit.terms')}</strong>
-                                <p>{i18n('account.raise-credit.terms-description')}</p>
-                                <UnorderedList icon="icon-check" iconClass="e-purple">
-                                    {i18n('account.raise-credit.terms-items', {
-                                        returnObjects: true,
-                                    })}
-                                </UnorderedList>
+                        <form>
+                            <div className="center mb-8x">
+                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                                <h2>{i18n('account.raise-credit.header')}</h2>
+                                <p>{i18n('account.raise-credit.intro')}</p>
                             </div>
-                        </ResponsivePanel>
-                        <div
-                            className="center mt-6x"
-                            dangerouslySetInnerHTML={{
-                                __html: i18n('account.raise-credit.terms-conditions', { url: terms.termsPDFURL }),
-                            }}
-                        />
-                        {!processing && (
-                            <ButtonGroup align="center" className="mt-8x">
-                                <Button onClick={this.onButtonClick} round>
-                                    {i18n('account.raise-credit.apply')}
-                                </Button>
-                            </ButtonGroup>
-                        )}
-                        {processing && (
-                            <div>
-                                <div className="mb-3x">
-                                    <small>{processingMessage}</small>
+                            <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
+                                <>
+                                    <div className="flex-row mb-5x">
+                                        <span>{i18n('account.raise-credit.current-credit-limit')}</span>
+                                        <strong>{formatAmount(currentLimit)}</strong>
+                                    </div>
+                                    <div className="flex-row">
+                                        <label htmlFor="creditLimit">
+                                            {i18n('account.raise-credit.new-credit-limit')}
+                                        </label>
+                                        <Select
+                                            value={newLimit}
+                                            name="creditLimit"
+                                            id="creditLimit"
+                                            onChange={this.onSelectChange}
+                                            defaultOption={i18n('account.raise-credit.select-amount')}
+                                        >
+                                            {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
+                                        </Select>
+                                    </div>
+                                </>
+                                <div>
+                                    <strong>{i18n('account.raise-credit.terms')}</strong>
+                                    <p>{i18n('account.raise-credit.terms-description')}</p>
+                                    <UnorderedList icon="icon-check" iconClass="e-purple">
+                                        {i18n('account.raise-credit.terms-items', {
+                                            returnObjects: true,
+                                        })}
+                                    </UnorderedList>
                                 </div>
-                                <Spinner id="raise-credit-spinner" isCenterX isVisible />
-                            </div>
-                        )}
+                            </ResponsivePanel>
+                            <div
+                                className="center mt-6x"
+                                dangerouslySetInnerHTML={{
+                                    __html: i18n('account.raise-credit.terms-conditions', { url: terms.termsPDFURL }),
+                                }}
+                            />
+                            {!processing && (
+                                <ButtonGroup align="center" className="mt-8x">
+                                    <Button onClick={this.onButtonClick} round>
+                                        {i18n('account.raise-credit.apply')}
+                                    </Button>
+                                </ButtonGroup>
+                            )}
+                            {processing && (
+                                <div>
+                                    <div className="mb-3x">
+                                        <small>{processingMessage}</small>
+                                    </div>
+                                    <Spinner id="raise-credit-spinner" isCenterX isVisible />
+                                </div>
+                            )}
+                        </form>
                     </Panel>
                 )}
 
