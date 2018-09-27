@@ -8,7 +8,7 @@ import CountrySelect from './CountryCodeSelect';
 
 export class EditableInputPhone extends Component {
     state = {
-        editMode: false,
+        editMode: !this.props.value, // editMode if empty
         value: this.props.value,
         valueUnedited: this.props.value,
     };
@@ -55,7 +55,7 @@ export class EditableInputPhone extends Component {
     };
 
     render() {
-        const { className, label, ...rest } = this.props;
+        const { className, label, validator, validationMessage, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -82,6 +82,9 @@ export class EditableInputPhone extends Component {
                             label={i18n('general.address.number')}
                             onChange={this.onChange}
                             ref={this.phoneRef}
+                            validator={validator}
+                            validationMessage={validationMessage}
+                            required
                         />
                     </Form>
                 </div>
@@ -116,6 +119,8 @@ EditableInputPhone.propTypes = {
     value: PropTypes.shape(),
     countryCode: PropTypes.string,
     label: PropTypes.string,
+    validator: PropTypes.string.isRequired,
+    validationMessage: PropTypes.string.isRequired,
 };
 
 EditableInputPhone.defaultProps = {
