@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, ResponsivePanel } from '@ecster/ecster-components';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import FeedbackPanel from '../home/FeedbackPanel';
 import { getAccounts } from './redux/getAccounts';
@@ -24,16 +23,18 @@ export class OverviewPage extends Component {
     };
 
     componentWillMount() {
-        if (this.props.user.id) {
-            this.props.getAccounts(this.props.user.id);
+        const { user, getAccounts } = this.props;
+        if (user.id) {
+            getAccounts(user.id);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         const nextUser = nextProps.user;
-        const currUser = this.props.user;
-        if (nextUser && nextUser.id !== currUser.id) {
-            this.props.getAccounts(nextUser.id);
+        const { user, getAccounts } = this.props;
+
+        if (nextUser && nextUser.id !== user.id) {
+            getAccounts(nextUser.id);
         }
     }
 
@@ -49,16 +50,6 @@ export class OverviewPage extends Component {
 
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
-                <Panel padding="20px" className="mb-8x">
-                    <ResponsivePanel desktop={3} tablet={2} mobile={1} horizontalGutter>
-                        <div>Lorem ipsum dolor sit amet</div>
-                        <div>Lorem ipsum dolor sit amet</div>
-                        <div>Lorem ipsum dolor sit amet</div>
-                        <div>Lorem ipsum dolor sit amet</div>
-                        <div>Lorem ipsum dolor sit amet</div>
-                        <div>Lorem ipsum dolor sit amet</div>
-                    </ResponsivePanel>
-                </Panel>
                 <div className="account-overview-page">
                     {hasZeroAccounts ? (
                         <NoAccountsPanel />

@@ -23,7 +23,7 @@ class AccountPanel extends Component {
     }
 
     render() {
-        const { className, account, bills, user } = this.props;
+        const { className, account, bills } = this.props;
 
         const classes = classNames({
             'account-panel': true,
@@ -33,10 +33,6 @@ class AccountPanel extends Component {
 
         const amountLabel = i18n('account.terminated-account.header');
 
-        // TODO: remove Von, Rolf test
-        // TODO: remove Von, Rolf test
-        // TODO: remove Von, Rolf test
-        // TODO: remove Von, Rolf test
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>
                 <TabletOrDesktop>
@@ -50,7 +46,7 @@ class AccountPanel extends Component {
                         amount={account.used}
                     />
                 </Mobile>
-                {account.used <= 0 || (account.used === 390270 && user.name === 'Von, Rolf') ? (
+                {account.used <= 0 ? (
                     <div className="account-panel-content">
                         <p>{i18n('account.terminated-account.short-info')}</p>
                     </div>
