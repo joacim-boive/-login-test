@@ -22,14 +22,15 @@ export class LoanSummaryPage extends Component {
         person: PropTypes.object.isRequired,
         customer: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
+        hasAccounts: PropTypes.bool.isRequired,
     };
 
     componentWillMount() {
-        this.props.getCustomer(this.props.person.id);
+        this.props.getCustomer(this.props.person.id, this.props.hasAccounts);
     }
 
     render() {
-        const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo } = this.props;
+        const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo, hasAccounts } = this.props;
         const { contactInformation } = customer;
 
         return (
@@ -37,9 +38,9 @@ export class LoanSummaryPage extends Component {
                 <div className="loan-summary-page">
                     <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
                     <LoanPersonalInformationPanel
-                        onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
+                        onUpdateContactInfo={data => updateCustomerContactInfo(person.id, hasAccounts, data)}
                         contactInformation={contactInformation}
-                        person={person}
+                        person={customer}
                         className="loan-panel"
                     />
                     <LoanEconomyPanel className="loan-panel" />
@@ -58,6 +59,7 @@ function mapStateToProps(state) {
         promissory: state.loan.promissoryNoteDefaultParameters,
         person: state.authentication.person,
         customer: state.customer.customer,
+        hasAccounts: !state.account.hasZeroAccounts,
     };
 }
 
@@ -65,8 +67,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({ ...actions }, dispatch),
-        updateCustomerContactInfo: (id, data) => dispatch(updateCustomerContactInfo(id, data)),
-        getCustomer: id => dispatch(getCustomer(id)),
+        updateCustomerContactInfo: (id, customerHasAccounts, data) =>
+            dispatch(updateCustomerContactInfo(id, customerHasAccounts, data)),
+        getCustomer: (id, hasAccounts) => dispatch(getCustomer(id, hasAccounts)),
     };
 }
 

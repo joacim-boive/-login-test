@@ -90,7 +90,6 @@ class LoanGeneralInformationPanel extends Component {
                                 className="input-field"
                             >
                                 <Option label={i18n('loan.general.resolve')} value="RESOLVE_OTHER_LOAN" />
-                                <Option label={i18n('loan.general.residence')} value="NEW_RESIDENCE" />
                                 <Option label={i18n('loan.general.residence-other')} value="RESIDENCE_OTHER" />
                                 <Option label={i18n('loan.general.vehicle')} value="VEHICLE" />
                                 <Option label={i18n('loan.general.consumer-goods')} value="TRAVELS_CONSUMER_GOODS" />
