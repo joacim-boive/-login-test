@@ -13,11 +13,7 @@
     $gradient-right: #ddf8bb;
 
     .hero-header {
-        background: $gradient-left;
-        background: -moz-linear-gradient(left, $gradient-left 0%, $gradient-right 100%);
-        background: -webkit-linear-gradient(left, $gradient-left 0%,$gradient-right 100%);
         background: linear-gradient(to right, $gradient-left 0%,$gradient-right 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-left', endColorstr='$gradient-right',GradientType=1 );
 
         height: $hero-height;
 
