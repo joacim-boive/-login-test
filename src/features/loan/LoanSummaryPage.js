@@ -67,7 +67,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({ ...actions }, dispatch),
-        updateCustomerContactInfo: (id, customerHasAccounts, data) => dispatch(updateCustomerContactInfo(id, customerHasAccounts, data)),
+        updateCustomerContactInfo: (id, customerHasAccounts, data) =>
+            dispatch(updateCustomerContactInfo(id, customerHasAccounts, data)),
         getCustomer: (id, hasAccounts) => dispatch(getCustomer(id, hasAccounts)),
     };
 }
