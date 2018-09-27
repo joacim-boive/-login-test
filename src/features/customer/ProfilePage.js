@@ -59,10 +59,10 @@ class ProfilePage extends Component {
 
                     <section className="sub-panel">
                         <EditableInputPhone
+                            type="tel"
                             value={person.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
                             onSave={val => updateCustomerContactInfo(hasAccounts, { phoneNumber: val })}
-                            type="tel"
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
                         />
