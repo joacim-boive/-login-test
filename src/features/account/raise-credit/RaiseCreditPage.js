@@ -44,6 +44,8 @@ export class RaiseCreditPage extends Component {
                 showView: applicationResult.status,
                 caseNumber: applicationResult.caseNumber, // only for PENDING
             });
+        } else if (nextProps.updateAccountError) {
+            this.setState({ showView: 'ERROR' });
         } else {
             this.setState({ currentLimit: limit });
         }
@@ -210,6 +212,15 @@ export class RaiseCreditPage extends Component {
                         <BackToOverviewLink />
                     </Panel>
                 )}
+
+                {showView === 'ERROR' && (
+                    <Panel textAlignCenter className="result-panel">
+                        <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                        <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
+                        <p>{i18n('account.raise-credit.error.communication.body')}</p>
+                        <BackToOverviewLink />
+                    </Panel>
+                )}
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -222,7 +233,12 @@ RaiseCreditPage.propTypes = {
     getAccount: PropTypes.func.isRequired,
     getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
+    updateAccountError: PropTypes.func,
     updateAccountPending: PropTypes.bool.isRequired,
+};
+
+RaiseCreditPage.defaultProp = {
+    updateAccountError: () => {},
 };
 
 /* istanbul ignore next */
