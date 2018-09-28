@@ -21,6 +21,8 @@ class ProfilePage extends Component {
     }
 
     renderPanel(person) {
+        const { updateCustomerContactInfo, hasAccounts } = this.props;
+
         return (
             <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
                 <div key={1} className="summary-panel">
@@ -57,10 +59,10 @@ class ProfilePage extends Component {
 
                     <section className="sub-panel">
                         <EditableInputPhone
+                            type="tel"
                             value={person.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
-                            onSave={val => this.props.updateCustomerContactInfo(this.props.hasAccounts, { phoneNumber: val })}
-                            type="tel"
+                            onSave={val => updateCustomerContactInfo(hasAccounts, { phoneNumber: val })}
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
                         />
@@ -71,8 +73,9 @@ class ProfilePage extends Component {
                             type="email"
                             value={person.contactInformation.email}
                             label={i18n('general.address.email')}
-                            onSave={val => this.props.updateCustomerContactInfo(this.props.hasAccounts, { email: val })}
+                            onSave={val => updateCustomerContactInfo(hasAccounts, { email: val })}
                             validationMessage={i18n('general.validation.email')}
+                            required
                         />
                     </section>
                 </div>
@@ -116,7 +119,8 @@ function mapDispatchToProps(dispatch, state) {
 
     return {
         getCustomer: customerHasAccounts => dispatch(getCustomer(customerId, customerHasAccounts)),
-        updateCustomerContactInfo: (customerHasAccounts, data) => dispatch(updateCustomerContactInfo(customerId, customerHasAccounts, data)),
+        updateCustomerContactInfo: (customerHasAccounts, data) =>
+            dispatch(updateCustomerContactInfo(customerId, customerHasAccounts, data)),
     };
 }
 

@@ -83,6 +83,7 @@
     }
 
     .page-content {
+        width: 100%; // Needed because parent (page-container) is display:flex;
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
             margin: 0 auto 10px;

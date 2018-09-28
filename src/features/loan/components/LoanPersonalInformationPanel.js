@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
+import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
 import withMediaQueries from '@ecster/ecster-components/MediaQuery/withMediaQueries';
 import { Button } from '@ecster/ecster-components';
 import './LoanPersonalInformationPanel.scss';
@@ -77,20 +78,22 @@ const LoanPersonalInformationPanel = ({ className, person, media, contactInforma
                     <DataColumn>
                         <DataRow className="column-first">
                             <EditableInputPhone
-                                className="edit-input"
-                                label={i18n('general.address.mobile')}
+                                type="tel"
                                 value={contactInformation.phoneNumber}
-                                editMode={!contactInformation.phoneNumber}
+                                label={i18n('general.address.mobile')}
                                 onSave={val => onUpdateContactInfo({ phoneNumber: val })}
+                                validationMessage={i18n('general.validation.phone')}
+                                validator={phoneValidator}
                             />
                         </DataRow>
                         <DataRow>
                             <EditableInput
-                                className="editable-input"
-                                label={i18n('general.address.email')}
+                                type="email"
                                 value={contactInformation.email}
-                                editMode={!contactInformation.email}
+                                label={i18n('general.address.email')}
                                 onSave={val => onUpdateContactInfo({ email: val })}
+                                validationMessage={i18n('general.validation.email')}
+                                required
                             />
                         </DataRow>
                         <DataRow>{i18n('loan.personal.contact-text')}</DataRow>

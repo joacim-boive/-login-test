@@ -217,6 +217,7 @@
         "@ecster/ecster-net": "^1.0.74",
         "@ecster/ecster-styles": "^3.0.200",
         "@ecster/ecster-util": "^2.0.71",
+        "@ecster/ecster-validation": "^2.0.41",
         "@ecster/ecster-webpack": "^2.0.177",
         "ajv": "^6.5.4",
         "classnames": "^2.2.6",

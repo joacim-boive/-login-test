@@ -7,7 +7,7 @@ import './EditableInput.scss';
 
 export class EditableInput extends Component {
     state = {
-        editMode: false,
+        editMode: !this.props.value, // editMode if empty
         value: this.props.value || '',
         valueUnedited: this.props.value || '',
     };
@@ -30,7 +30,7 @@ export class EditableInput extends Component {
     };
 
     onEdit = () => {
-        this.setState({ editMode: true }, () => {
+        this.setState({ editMode: true, valueUnedited: this.props.value }, () => {
             this.inputRef.current.getInputEl().focus();
         });
     };
@@ -47,7 +47,7 @@ export class EditableInput extends Component {
     };
 
     render() {
-        const { className, label, ...rest } = this.props;
+        const { className, label, validationMessage, required, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -67,6 +67,8 @@ export class EditableInput extends Component {
                         small
                         onChange={this.onChange}
                         ref={this.inputRef}
+                        validationMessage={validationMessage}
+                        required
                     />
                 </Form>
                 <ButtonGroup align="right">
@@ -97,10 +99,13 @@ EditableInput.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
     label: PropTypes.string,
+    validationMessage: PropTypes.string.isRequired,
+    required: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
+    required: false
 };
