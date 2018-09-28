@@ -233,12 +233,12 @@ RaiseCreditPage.propTypes = {
     getAccount: PropTypes.func.isRequired,
     getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
-    updateAccountError: PropTypes.func,
+    updateAccountError: PropTypes.any,
     updateAccountPending: PropTypes.bool.isRequired,
 };
 
-RaiseCreditPage.defaultProp = {
-    updateAccountError: () => {},
+RaiseCreditPage.defaultProps = {
+    updateAccountError: null,
 };
 
 /* istanbul ignore next */
