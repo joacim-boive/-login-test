@@ -19,6 +19,7 @@ describe('LoginPage', async () => {
 
     it('should match the image snapshot of the untouched page', async () => {
         await browser.page.waitForSelector('.ecster-card.lazyloaded');
+        await browser.page.waitForSelector('.latest-transactions .data-columns-row');
         await browser.page.waitFor(300);
 
         const image = await browser.page.screenshot();
