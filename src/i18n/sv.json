@@ -221,6 +221,13 @@
                 "$t(general.support-opening-hours)"
             ],
 
+            "error":{
+                "communication": {
+                    "header": "Oj, nu gick något fel",
+                    "body": "Vi kan tyvärr inte genomföra din ansökan om höjd kredigräns just nu och felet är helt och hållet vårt. Försök gärna igen om en liten stund."
+                }
+            },
+
             "back-to-overview": "Tillbaka till översikten"
         },
         "no-account": {
