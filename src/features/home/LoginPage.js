@@ -12,7 +12,7 @@ class LoginPage extends Component {
     render() {
         return (
             <LoginPageTemplate>
-                <Panel id="home-login-page" noPadding maxWidth="50rem" className="login-page-panel">
+                <Panel id="home-login-page" withNoPadding maxWidth="50rem" className="login-page-panel">
                     <LoginForm />
                 </Panel>
             </LoginPageTemplate>
@@ -20,6 +20,4 @@ class LoginPage extends Component {
     }
 }
 
-// todo: add state + dispatch mappings later?
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginPage;

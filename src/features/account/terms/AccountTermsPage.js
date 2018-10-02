@@ -15,7 +15,9 @@ import { getAccountTerms, getAccount } from '../redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
     <div className="info-item">
-        <div className="item label" title={description}>{label}</div>
+        <div className="item label" title={description}>
+            {label}
+        </div>
         {value && <div className="item value">{value}</div>}
         {description && <div className="item description">{description}</div>}
     </div>
@@ -46,13 +48,10 @@ export class AccountTermsPage extends Component {
         const hasZeroWithdrawalFeePercent = !(terms.withdrawalFeePercent > 0);
 
         return (
-            <AuthenticatedSubPageTemplate
-                header={i18n('account.terms.terms-information')}
-                className="account-terms-wrapper"
-            >
+            <AuthenticatedSubPageTemplate header={i18n('account.terms.terms-information')}>
                 {hasAccountName && <h2 className="account-name">{account.product.name}</h2>}
                 <AccountSummary account={account} />
-                <Panel key="account-terms-panel" className="account-terms-panel" sideBordersMobile={false}>
+                <Panel key="account-terms-panel" className="account-terms-panel" stretchInMobile withFullWidthContent>
                     <h1>{i18n('account.terms.account-terms')}</h1>
                     {getAccountTermsError ? (
                         <Message warning header={i18n('general.error.oops')}>
@@ -111,36 +110,44 @@ export class AccountTermsPage extends Component {
                                 label={i18n('account.terms.extra-card-fee')}
                                 description={i18n('account.terms.extra-card-fee-description')}
                             />
-                            {hasZeroWithdrawalFeePercent && <InfoItem
-                                value={i18n('account.terms.withdrawal-fee-only-value', {
-                                    feeValue: formatAmount(terms.withdrawalFee),
-                                })}
-                                label={i18n('account.terms.withdrawal-fee-cash')}
-                                description={i18n('account.terms.withdrawal-fee-description')}
-                            />}
-                            {!hasZeroWithdrawalFeePercent && <InfoItem
-                                value={i18n('account.terms.withdrawal-fee-value', {
-                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
-                                    feeValue: formatAmount(terms.withdrawalFee),
-                                })}
-                                label={i18n('account.terms.withdrawal-fee-cash')}
-                                description={i18n('account.terms.withdrawal-fee-description')}
-                            />}
-                            {hasZeroWithdrawalFeePercent && <InfoItem
-                                value={i18n('account.terms.withdrawal-fee-only-value', {
-                                    feeValue: formatAmount(terms.withdrawalFee),
-                                })}
-                                label={i18n('account.terms.withdrawal-fee-atm')}
-                                description={i18n('account.terms.withdrawal-fee-description')}
-                            />}
-                            {!hasZeroWithdrawalFeePercent && <InfoItem
-                                value={i18n('account.terms.withdrawal-fee-value', {
-                                    percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
-                                    feeValue: formatAmount(terms.withdrawalFee),
-                                })}
-                                label={i18n('account.terms.withdrawal-fee-atm')}
-                                description={i18n('account.terms.withdrawal-fee-description')}
-                            />}
+                            {hasZeroWithdrawalFeePercent && (
+                                <InfoItem
+                                    value={i18n('account.terms.withdrawal-fee-only-value', {
+                                        feeValue: formatAmount(terms.withdrawalFee),
+                                    })}
+                                    label={i18n('account.terms.withdrawal-fee-cash')}
+                                    description={i18n('account.terms.withdrawal-fee-description')}
+                                />
+                            )}
+                            {!hasZeroWithdrawalFeePercent && (
+                                <InfoItem
+                                    value={i18n('account.terms.withdrawal-fee-value', {
+                                        percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
+                                        feeValue: formatAmount(terms.withdrawalFee),
+                                    })}
+                                    label={i18n('account.terms.withdrawal-fee-cash')}
+                                    description={i18n('account.terms.withdrawal-fee-description')}
+                                />
+                            )}
+                            {hasZeroWithdrawalFeePercent && (
+                                <InfoItem
+                                    value={i18n('account.terms.withdrawal-fee-only-value', {
+                                        feeValue: formatAmount(terms.withdrawalFee),
+                                    })}
+                                    label={i18n('account.terms.withdrawal-fee-atm')}
+                                    description={i18n('account.terms.withdrawal-fee-description')}
+                                />
+                            )}
+                            {!hasZeroWithdrawalFeePercent && (
+                                <InfoItem
+                                    value={i18n('account.terms.withdrawal-fee-value', {
+                                        percentValue: `${formatNumber(terms.withdrawalFeePercent, 2)}%`,
+                                        feeValue: formatAmount(terms.withdrawalFee),
+                                    })}
+                                    label={i18n('account.terms.withdrawal-fee-atm')}
+                                    description={i18n('account.terms.withdrawal-fee-description')}
+                                />
+                            )}
                             <InfoItem
                                 value={`${formatNumber(terms.currencyExchangeFeeRate, 2)}%`}
                                 label={i18n('account.terms.exchange-fee')}

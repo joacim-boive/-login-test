@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ResponsivePanel, Panel, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
+import {
+    ResponsivePanel,
+    FlexPanel,
+    Panel,
+    Select,
+    ButtonGroup,
+    Button,
+    UnorderedList,
+    Spinner,
+} from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
@@ -110,15 +119,16 @@ export class RaiseCreditPage extends Component {
                 header={i18n('account.raise-credit.page-header')}
             >
                 {showView === 'main' && (
-                    <Panel padding="40px 60px">
-                        <form>
-                            <div className="center mb-8x">
-                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
-                                <h2>{i18n('account.raise-credit.header')}</h2>
-                                <p>{i18n('account.raise-credit.intro')}</p>
-                            </div>
-                            <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
-                                <>
+                    <Panel withMixedContent>
+                        <div className="mixed-content centered-content mb-8x">
+                            <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                            <h2>{i18n('account.raise-credit.header')}</h2>
+                            <p>{i18n('account.raise-credit.intro')}</p>
+                        </div>
+
+                        <form className="two-col-content">
+                            <FlexPanel>
+                                <div>
                                     <div className="flex-row mb-5x">
                                         <span>{i18n('account.raise-credit.current-credit-limit')}</span>
                                         <strong>{formatAmount(currentLimit)}</strong>
@@ -137,7 +147,7 @@ export class RaiseCreditPage extends Component {
                                             {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
                                         </Select>
                                     </div>
-                                </>
+                                </div>
                                 <div>
                                     <strong>{i18n('account.raise-credit.terms')}</strong>
                                     <p>{i18n('account.raise-credit.terms-description')}</p>
@@ -147,7 +157,7 @@ export class RaiseCreditPage extends Component {
                                         })}
                                     </UnorderedList>
                                 </div>
-                            </ResponsivePanel>
+                            </FlexPanel>
                             <div
                                 className="center mt-6x"
                                 dangerouslySetInnerHTML={{
@@ -174,7 +184,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'APPROVED' && (
-                    <Panel textAlignCenter className="result-panel">
+                    <Panel withMixedContent centeredContent className="result-panel">
                         <img src={happyFace} aria-hidden="true" alt="happy face icon" />
                         <h2>{i18n('account.raise-credit.approved-header')}</h2>
                         <p>
@@ -187,7 +197,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'PENDING' && (
-                    <Panel textAlignCenter className="result-panel">
+                    <Panel withMixedContent centeredContent className="result-panel">
                         <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
                         <h2>{i18n('account.raise-credit.pending-header')}</h2>
                         {i18n('account.raise-credit.pending-message', {
@@ -200,7 +210,7 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'DENIED' && (
-                    <Panel textAlignCenter className="result-panel">
+                    <Panel withMixedContent centeredContent className="result-panel">
                         <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
                         <h2>{i18n('account.raise-credit.denied-header')}</h2>
                         {i18n('account.raise-credit.denied-message', {
