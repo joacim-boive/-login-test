@@ -12,7 +12,7 @@ class LoginPage extends Component {
     render() {
         return (
             <LoginPageTemplate>
-                <Panel id="home-login-page" padding="20px 20px 40px" sideBordersMobile className="login-page-panel">
+                <Panel id="home-login-page" noPadding maxWidth="50rem" className="login-page-panel">
                     <LoginForm />
                 </Panel>
             </LoginPageTemplate>
