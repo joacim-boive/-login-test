@@ -8,8 +8,13 @@ export default class FeedbackPanel extends Component {
 
     static SURVEY_URL = 'https://www.netigate.se/a/s.aspx?s=632612X139591763X13679';
 
-    // to enhance readability in encoded string, replace some chars, then remove double --
-    static READABLE_UA = encodeURIComponent(navigator.userAgent.replace(/[ /;,]/g, '-').replace(/--+/g, '-')); // eslint-disable-line no-undef
+    // to enhance readability in encoded string, replace some chars with '' or '-', then remove double --
+    static READABLE_UA = encodeURIComponent(
+        window.navigator.userAgent
+            .replace(/[()]/g, '')
+            .replace(/[ /;,]/g, '-')
+            .replace(/--+/g, '-')
+    );
 
     render() {
         return (
@@ -21,7 +26,7 @@ export default class FeedbackPanel extends Component {
                 </div>
                 <LinkButton
                     iconRight="icon-external-link"
-                    href={`${FeedbackPanel.SURVEY_URL}&userAgent=${FeedbackPanel.READABLE_UA}`}
+                    href={`${FeedbackPanel.SURVEY_URL}&eid=${FeedbackPanel.READABLE_UA}`}
                     target="_blank"
                     outline
                     purple
