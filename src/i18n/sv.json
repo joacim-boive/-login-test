@@ -258,6 +258,14 @@
         "under-construction": {
             "header": "Sidan är inte riktigt färdigslipad än",
             "info": "Vi arbetar för fullt med utvecklingen. Inom kort kommer du att kunna se mer information här."
+        },
+        "alpha": {
+            "header": "Testa vår Alphaversion",
+            "info": [
+                "Nu finns en alphaversion av Ecsters nya inloggade sidor. Alpha betyder att tjänsten är halvfärdig. Det kommer alltså finnas sidor som fortfarande är under utveckling och du kommer säkert upptäcka en och annan bugg.",
+                "Alphan är tillgänglig för alla anställda på Ecster och dina åsikter är viktiga. Inne i tjänsten kan du lämna synpunkter eller rapportera fel. Tillsammans gör vi nya inloggat ännu bättre."
+            ],
+            "button-text": "Okej, då åker vi!"
         }
     },
     "customer": {
