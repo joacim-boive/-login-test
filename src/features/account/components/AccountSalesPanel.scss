@@ -4,17 +4,12 @@
 
 .account-sales-panel {
     @include mobile() {
-        padding: 0px 20px;
+        padding: 0 20px 20px;
     }
 
     h4 {
         color: $gray140;
         font-weight: $weight-semibold;
-        margin: 0px 0px 10px 0px;
-    }
-
-    .button-column {
-        max-width: 150px;
-        text-align: right;
+        margin: 0 0 10px 0;
     }
 }
