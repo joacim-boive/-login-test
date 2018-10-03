@@ -47,7 +47,7 @@ export function reducer(state, action) {
                 accounts: action.data,
                 accountsActive,
                 accountsTerminated,
-                hasZeroAccounts: accountsActive.length === 0,
+                hasZeroAccounts: accountsActive.length === 0 && accountsTerminated.length === 0,
                 getAccountsPending: false,
                 getAccountsError: null,
             };

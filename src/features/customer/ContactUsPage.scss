@@ -2,29 +2,8 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 
 .customer-contact-us-page {
-    $minHeight: 275px;
-
-    .text-align-center {
-        text-align: center;
-    }
-
-    // todo: could be moved to ecster-styles maybe? with better naming..
-    .panels-50-50 {
-        display: flex;
-        justify-content: space-between;
-        align-content: stretch;
-        .sub-panel {
-            width: 48%;
-            margin-bottom: 20px;
-        }
-
-        @include mobile() {
-            flex-direction: column;
-
-            .sub-panel {
-                width: 100%;
-            }
-        }
+    .sub-panel {
+        height: 100%;
     }
 }
 

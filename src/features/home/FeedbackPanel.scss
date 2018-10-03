@@ -2,11 +2,9 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
 
 .home-feedback-panel {
-    &.ec-panel {
-        padding: 20px 40px;
-        @include mobile() {
-            padding: 30px 20px;
-        }
+    padding: 20px 40px;
+    @include mobile() {
+        padding: 30px 20px;
     }
 
     display: flex;

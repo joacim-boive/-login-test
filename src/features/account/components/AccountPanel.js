@@ -44,9 +44,15 @@ class AccountPanel extends Component {
         const amountLabel = i18n('account.header.left-to-buy');
 
         return (
-            <Panel padding="12px" sideBordersMobile className={classes}>
+            <Panel withFullWidthContent className={classes}>
                 <TabletOrDesktop>
-                    <AccountHeader account={account} amountLabel={amountLabel} amount={account.limit - account.used} />
+                    <div className="full-width-content">
+                        <AccountHeader
+                            account={account}
+                            amountLabel={amountLabel}
+                            amount={account.limit - account.used}
+                        />
+                    </div>
                 </TabletOrDesktop>
                 <Mobile>
                     <AccountHeaderMobile
@@ -56,7 +62,12 @@ class AccountPanel extends Component {
                     />
                 </Mobile>
                 {showOverdrawn && (
-                    <OverdrawnInfo used={account.used} limit={account.limit} accountNumber={account.accountNumber} />
+                    <OverdrawnInfo
+                        bottomBorder
+                        used={account.used}
+                        limit={account.limit}
+                        accountNumber={account.accountNumber}
+                    />
                 )}
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>

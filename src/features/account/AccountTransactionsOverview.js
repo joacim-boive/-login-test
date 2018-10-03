@@ -64,7 +64,7 @@ export class AccountTransactionsOverview extends Component {
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 {showOverdrawn && (
-                    <Panel padding="20px 40px" sideBordersMobile className="mt-4x">
+                    <Panel withNoPadding stretchInMobile className="mt-4x">
                         <OverdrawnInfo
                             used={account.used}
                             limit={account.limit}

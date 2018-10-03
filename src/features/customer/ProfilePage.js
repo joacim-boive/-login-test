@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, Spinner, ResponsivePanel } from '@ecster/ecster-components';
+import { Panel, Spinner, FlexPanel } from '@ecster/ecster-components';
 import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
 
 // TODO: Make an ecster-component of this one or Tooltip in Dashboard-X, use component hera and in DBX
@@ -24,7 +24,7 @@ class ProfilePage extends Component {
         const { updateCustomerContactInfo, hasAccounts } = this.props;
 
         return (
-            <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
+            <FlexPanel>
                 <div key={1} className="summary-panel">
                     <img src={profileIcon} alt="profile icon" />
                     <div>
@@ -79,7 +79,7 @@ class ProfilePage extends Component {
                         />
                     </section>
                 </div>
-            </ResponsivePanel>
+            </FlexPanel>
         );
     }
 
@@ -89,7 +89,7 @@ class ProfilePage extends Component {
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
-                    <Panel sideBordersMobile padding="40px">
+                    <Panel withNoPadding className="customer-profile-panel">
                         {dataReceived ? this.renderPanel(person) : <Spinner id="profile-spinner" isVisible isCenterX />}
                     </Panel>
                 </div>
