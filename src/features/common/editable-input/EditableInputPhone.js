@@ -8,7 +8,6 @@ import CountrySelect from './CountryCodeSelect';
 
 export class EditableInputPhone extends Component {
     state = {
-        editMode: !this.props.value, // editMode if empty
         value: this.props.value,
         valueUnedited: this.props.value,
     };
@@ -23,7 +22,12 @@ export class EditableInputPhone extends Component {
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
         const { value } = this.state;
-        if (nextValue.number !== value.number) this.setState({ value: nextValue });
+
+        if (nextValue && nextValue.number !== value.number) {
+            this.setState({ value: nextValue });
+        }
+
+        this.setState({ editMode: !nextValue || !nextValue.countryCallingCode || !nextValue.number });
     }
 
     onChange = e => {
