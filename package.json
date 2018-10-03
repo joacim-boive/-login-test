@@ -53,13 +53,14 @@
     "jestConfig": {
         "timeout": 35000,
         "configureToMatchImageSnapshot": {
-            "failureThreshold": "0.004",
-            "failureThresholdType": "percent",
+            "failureThreshold": "100",
+            "failureThresholdType": "pixel",
             "noColors": false
         },
         "port": 5600,
         "puppeteer": {
             "headless": true,
+            "slowMo": 0,
             "args": [
                 "--disable-dev-shm-usage",
                 "--cap-add=SYS_ADMIN"
@@ -92,8 +93,12 @@
         "build:dll:debug": "node --inspect-brk ./compile.js --debug --vendor",
         "start": "node ./compile.js --dev",
         "start:debug": "ndb ./compile.js --debug --dev",
-        "test": "jest --coverage",
-        "test:watch": "jest --watch",
+        "test": "jest --coverage --testPathIgnorePatterns=__e2e__",
+        "test:watch": "jest --testPathIgnorePatterns=__e2e__ --watch",
+        "test:e2e": "jest __e2e__",
+        "test:e2e:watch": "jest __e2e__ --watch",
+        "test:all": "jest",
+        "test:all:watch": "jest --watch",
         "test:debug": "ndb ./node_modules/jest/bin/jest.js --runInBand",
         "record": "node ./tools/server.js -record",
         "mock": "node ./tools/server.js -mock",

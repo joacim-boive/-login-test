@@ -13,25 +13,33 @@ export class OverviewPage extends Component {
         accountsActive: PropTypes.array.isRequired,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.bool.isRequired,
+        hasZeroAccounts: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        hasZeroAccounts: false,
     };
 
     componentWillMount() {
-        if (this.props.user.id) {
-            this.props.getAccounts(this.props.user.id);
+        const { user, getAccounts } = this.props;
+
+        if (user.id) {
+            getAccounts(user.id);
         }
     }
 
     componentWillReceiveProps(nextProps) {
+        const { user, getAccounts } = this.props;
         const nextUser = nextProps.user;
-        const currUser = this.props.user;
-        if (nextUser && nextUser.id !== currUser.id) {
-            this.props.getAccounts(nextUser.id);
+
+        if (nextUser && nextUser.id !== user.id) {
+            getAccounts(nextUser.id);
         }
     }
 
     render() {
         const { accountsActive, user, hasZeroAccounts } = this.props;
+
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">

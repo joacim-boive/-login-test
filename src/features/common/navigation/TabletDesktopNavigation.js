@@ -30,7 +30,7 @@ class TabletDesktopNavigation extends React.Component {
 
     render() {
         const { showSubMenu } = this.state;
-        const pathname = this.props.history.location.pathname;
+        const { pathname } = this.props.history.location;
         const overviewIsActive = pathname.match(/.account.overview/);
         const invoiceIsActive = pathname.match(/.invoice.overview/);
         const loanIsActive = pathname.match(/.loan.overview/);
@@ -64,14 +64,16 @@ class TabletDesktopNavigation extends React.Component {
                                 {i18n('navigation.invoices')}
                             </Link>
 
-                            {showLoanMenu && <Link
-                                className={classNames({
-                                    'menu-item--is-active': loanIsActive,
-                                })}
-                                to="/loan/overview"
-                            >
-                                {i18n('navigation.loan')}
-                            </Link>}
+                            {showLoanMenu && (
+                                <Link
+                                    className={classNames({
+                                        'menu-item--is-active': loanIsActive,
+                                    })}
+                                    to="/loan/overview"
+                                >
+                                    {i18n('navigation.loan')}
+                                </Link>
+                            )}
 
                             <div
                                 className={classNames({
@@ -88,10 +90,7 @@ class TabletDesktopNavigation extends React.Component {
                 </TopMenu>
                 <div className="submenu-container">
                     <SubMenu top show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
-                        <SubMenuItem
-                            linkTo={`/customer/${customerId}/profile`}
-                            active={customerSettingsIsActive}
-                        >
+                        <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
                             {i18n('navigation.settings')}
                         </SubMenuItem>
                         <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
@@ -110,7 +109,10 @@ class TabletDesktopNavigation extends React.Component {
 TabletDesktopNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
-    showLoanMenu: PropTypes.bool.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
+TabletDesktopNavigation.defaultProps = {
+    showLoanMenu: false,
+};
 export default withRouter(TabletDesktopNavigation);

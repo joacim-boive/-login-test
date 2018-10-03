@@ -77,7 +77,7 @@ class LoanEconomyPanel extends Component {
     };
 
     render() {
-        const { className } = this.props;
+        const { className, collapse } = this.props;
         const classes = classNames({
             'loan-economy-panel': true,
             [className]: className,
@@ -88,7 +88,7 @@ class LoanEconomyPanel extends Component {
                 <ExpandablePanel
                     className="expander"
                     compact
-                    collapse
+                    collapse={collapse}
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
@@ -391,10 +391,12 @@ class LoanEconomyPanel extends Component {
 
 LoanEconomyPanel.propTypes = {
     className: PropTypes.string,
+    collapse: PropTypes.bool,
 };
 
 LoanEconomyPanel.defaultProps = {
     className: '',
+    collapse: false
 };
 
 export default LoanEconomyPanel;

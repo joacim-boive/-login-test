@@ -1,90 +1,123 @@
-/* eslint-disable no-undef */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Panel, InteractiveElement } from '@ecster/ecster-components';
 import './ExpandablePanel.scss';
 
-const MIN_COLLAPSABLE_HEIGHT = 5;
-const COLLAPSED_HEIGHT = 0;
-
-class ExpandablePanel extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { collapsed: true };
-    }
-
-    componentDidMount() {
-        this.checkHeight();
-        if (!this.props.collapse) {
-            this.toggleExpansion();
-        }
-    }
-
-    checkHeight = () => {
-        const actualHeight = this.el.offsetHeight;
-        this.setState({ collapsed: actualHeight > MIN_COLLAPSABLE_HEIGHT });
-        this.el.style.height = `${COLLAPSED_HEIGHT}px`;
+class ExpandablePanel extends Component {
+    state = {
+        initializing: true,
+        isCollapsed: this.props.collapse,
+        maxHeight: null,
+        thisStyle: {},
     };
 
-    toggleExpansion = () => {
-        if (this.state.collapsed) {
-            this.el.style.height = null;
-            const actualHeight = this.el.offsetHeight;
-            this.el.style.height = `${COLLAPSED_HEIGHT}px`;
-            requestAnimationFrame(() => {
-                this.el.style.height = `${actualHeight}px`;
+    componentDidMount() {
+        const { isCollapsed } = this.state;
+        const height = isCollapsed ? 0 : this.el.offsetHeight;
+
+        this.setState({
+            initializing: false,
+            thisStyle: { height: `${height}px` },
+            maxHeight: height,
+        });
+    }
+
+    componentWillReceiveProps(prevProps) {
+        // We need to keep track if the next-button is pressed
+        // As well as maintain the current state of expand/collapse
+        const { collapse } = this.props;
+
+        if (collapse !== prevProps.collapse) {
+            this.toggleExpansion(null, collapse);
+        }
+    }
+
+    onTransitionEnd = () => {
+        // We have to remove the height when done so the box can grow if needed
+        this.setState({ thisStyle: {} });
+    };
+
+    toggleExpansion = (component, collapse = null) => {
+        const { isCollapsed, maxHeight } = this.state;
+        const height = !isCollapsed ? 0 : maxHeight;
+
+        if (!isCollapsed) {
+            const promise = new Promise(resolve => {
+                // We must set the height first so we have something for the transition
+                this.setState({
+                    thisStyle: { height: `${maxHeight}px` },
+                });
+
                 setTimeout(() => {
-                    this.el.style.height = null;
-                }, 600);
+                    // Give the DOM a chance to update
+                    // Maybe because React batches setState calls as well
+                    resolve(true);
+                }, 0);
+            });
+
+            promise.then(() => {
+                // We're collapsing, must have a height set
+
+                this.setState({
+                    thisStyle: { height: '0px' },
+                    isCollapsed: true,
+                });
             });
         } else {
-            const actualHeight = this.el.offsetHeight;
-            this.el.style.height = `${actualHeight}px`;
-            requestAnimationFrame(() => {
-                this.el.style.height = `${COLLAPSED_HEIGHT}px`;
+            this.setState({
+                thisStyle: { height: `${height}px` },
+                isCollapsed: collapse || !isCollapsed,
             });
         }
-        this.setState({ collapsed: !this.state.collapsed });
     };
 
     render() {
         const { icon, style, children, noBorder, showMoreLabel, showLessLabel, className } = this.props;
-        const { collapsed } = this.state;
+        const { isCollapsed, initializing, thisStyle } = this.state;
 
         const rootClasses = classNames({
             'expandable-panel': true,
             'expandable-panel--bordered': !noBorder,
-            'expandable-panel--no-bottom-padding': collapsed,
+            'expandable-panel--no-bottom-padding': isCollapsed,
             [className]: className,
         });
 
         const arrowClasses = classNames({
             'expandable-panel__arrow': true,
-            'expandable-panel__arrow--expanded': !collapsed,
+            'expandable-panel__arrow--expanded': isCollapsed,
+        });
+
+        const contentClasses = classNames({
+            initializing,
+            'expandable-panel__content': true,
+            'is-collapsed': isCollapsed,
         });
 
         return (
             <Panel style={style} className={rootClasses}>
-                <InteractiveElement tabIndex="0" className="expandable-panel__expander" onClick={this.toggleExpansion}>
+                <InteractiveElement className="expandable-panel__expander" onClick={this.toggleExpansion}>
                     <span className="expandable-panel__show-more-text">
-                        {collapsed ? showMoreLabel : showLessLabel}
+                        {isCollapsed ? showMoreLabel : showLessLabel}
                     </span>
                     <div className="expandable-panel__arrow-wrapper">
                         <span className={arrowClasses}>
-                            <i className={icon} alt="expand" />
+                            <i className={icon} />
                         </span>
                     </div>
                 </InteractiveElement>
-                <div
-                    className="expandable-panel__content"
+                <section
+                    onTransitionEnd={() => {
+                        this.onTransitionEnd(this);
+                    }}
+                    style={thisStyle}
+                    className={contentClasses}
                     ref={el => {
                         this.el = el;
                     }}
                 >
                     {children}
-                </div>
+                </section>
             </Panel>
         );
     }
@@ -101,7 +134,7 @@ ExpandablePanel.propTypes = {
 };
 
 ExpandablePanel.defaultProps = {
-    collapse: true,
+    collapse: false,
     noBorder: false,
     style: {},
     icon: 'icon-chevron-down',

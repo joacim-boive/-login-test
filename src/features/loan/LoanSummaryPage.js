@@ -21,29 +21,53 @@ export class LoanSummaryPage extends Component {
         getCustomer: PropTypes.func.isRequired,
         person: PropTypes.object.isRequired,
         customer: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
+    };
+
+    state = {
+        currentStep: 1,
     };
 
     componentWillMount() {
-        this.props.getCustomer(this.props.person.id);
+        const { getCustomer, person } = this.props;
+
+        getCustomer(person.id);
     }
+
+    onNextStep = step => {
+        this.setState({
+            currentStep: step,
+        });
+    };
 
     render() {
         const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo } = this.props;
+        const { currentStep } = this.state;
+
         const { contactInformation } = customer;
 
         return (
             <AuthenticatedSubPageTemplate linkTo="/loan/overview" header={i18n('loan.summary.header')}>
                 <div className="loan-summary-page">
+                    <h1>{currentStep}</h1>
                     <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
                     <LoanPersonalInformationPanel
+                        className="loan-panel"
+                        collapse={currentStep !== 1}
                         onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
                         contactInformation={contactInformation}
                         person={person}
-                        className="loan-panel"
+                        onNextStep={() => this.onNextStep(2)}
                     />
-                    <LoanEconomyPanel className="loan-panel" />
-                    <LoanGeneralInformationPanel className="loan-panel" />
+                    <LoanEconomyPanel
+                        className="loan-panel"
+                        collapse={currentStep !== 2}
+                        onNextStep={() => this.onNextStep(3)}
+                    />
+                    <LoanGeneralInformationPanel
+                        className="loan-panel"
+                        collapse={currentStep !== 3}
+                        onNextStep={() => this.onNextStep(3)}
+                    />
                 </div>
             </AuthenticatedSubPageTemplate>
         );
