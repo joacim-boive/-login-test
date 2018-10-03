@@ -7,6 +7,11 @@
     padding: 30px;
     margin: 0 20px;
 
+    &.bottom-border {
+        border-bottom: 1px solid $beige20;
+        margin-bottom: 20px;
+    }
+
     & > img, & > div {
         display: inline-block;
     }

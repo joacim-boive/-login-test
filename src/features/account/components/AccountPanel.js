@@ -62,7 +62,12 @@ class AccountPanel extends Component {
                     />
                 </Mobile>
                 {showOverdrawn && (
-                    <OverdrawnInfo used={account.used} limit={account.limit} accountNumber={account.accountNumber} />
+                    <OverdrawnInfo
+                        bottomBorder
+                        used={account.used}
+                        limit={account.limit}
+                        accountNumber={account.accountNumber}
+                    />
                 )}
                 <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
