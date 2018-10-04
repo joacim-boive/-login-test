@@ -85,6 +85,7 @@ class LoanEconomyPanel extends Component {
 
         return (
             <div className={classes}>
+                <pre>props: {JSON.stringify(this.props, null, 2)}</pre>
                 <ExpandablePanel
                     className="expander"
                     compact
@@ -396,7 +397,7 @@ LoanEconomyPanel.propTypes = {
 
 LoanEconomyPanel.defaultProps = {
     className: '',
-    collapse: false
+    collapse: false,
 };
 
 export default LoanEconomyPanel;

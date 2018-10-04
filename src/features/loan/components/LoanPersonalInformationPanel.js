@@ -17,6 +17,8 @@ class LoanPersonalInformationPanel extends Component {
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
         onNextStep: PropTypes.func.isRequired,
+        step: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         collapse: PropTypes.bool,
         className: PropTypes.string,
     };
@@ -27,16 +29,14 @@ class LoanPersonalInformationPanel extends Component {
         className: '',
     };
 
+    handleNextStep = () => {
+        const { onNextStep, step, id } = this.props;
+
+        onNextStep(step, id);
+    };
+
     render() {
-        const {
-            className,
-            person,
-            media,
-            contactInformation,
-            onUpdateContactInfo,
-            onNextStep,
-            collapse,
-        } = this.props;
+        const { className, person, media, contactInformation, onUpdateContactInfo, collapse } = this.props;
         const classes = classNames({
             'loan-personal-information-panel': true,
             [className]: className,
@@ -54,6 +54,7 @@ class LoanPersonalInformationPanel extends Component {
             <div className={classes}>
                 <ExpandablePanel
                     className="expander"
+                    handleNextStep={this.handleNextStep}
                     compact
                     collapse={collapse}
                     showMoreLabel={i18n('loan.personal.header')}
@@ -123,7 +124,7 @@ class LoanPersonalInformationPanel extends Component {
                         </DataColumn>
                     </DataColumns>
                     <div className="next-button">
-                        <Button onClick={onNextStep} round disabled={!isValid()}>
+                        <Button onClick={this.handleNextStep} round disabled={!isValid()}>
                             {i18n('general.next')}
                         </Button>
                     </div>
