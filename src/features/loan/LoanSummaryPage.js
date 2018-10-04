@@ -37,12 +37,21 @@ export class LoanSummaryPage extends Component {
     }
 
     onNextStep = (step, id) => {
+        // Step order trumps manual expand/collapse
+        const steps = ['LoanPersonalInformation', 'LoanEconomy', 'LoanGeneralInformation'];
+        const currentStep = steps[step];
         const nextStep = step + 1;
 
         this.setState({
             [id]: !this.state[id],
-            LoanEconomy: true,
+            [currentStep]: true,
             currentStep: nextStep,
+        });
+    };
+
+    handleCollapse = id => {
+        this.setState({
+            [id]: !this.state[id],
         });
     };
 
@@ -66,21 +75,24 @@ export class LoanSummaryPage extends Component {
                         contactInformation={contactInformation}
                         person={person}
                         onNextStep={this.onNextStep}
+                        handleCollapse={this.handleCollapse}
                     />
-                    {/*<LoanEconomyPanel*/}
-                    {/*id="LoanEconomy"*/}
-                    {/*step={2}*/}
-                    {/*className="loan-panel"*/}
-                    {/*collapse={!LoanEconomy}*/}
-                    {/*onNextStep={this.onNextStep}*/}
-                    {/*/>*/}
-                    {/*<LoanGeneralInformationPanel*/}
-                    {/*id="LoanGeneralInformation"*/}
-                    {/*step={3}*/}
-                    {/*className="loan-panel"*/}
-                    {/*collapse*/}
-                    {/*onNextStep={this.onNextStep}*/}
-                    {/*/>*/}
+                    <LoanEconomyPanel
+                        id="LoanEconomy"
+                        step={2}
+                        className="loan-panel"
+                        collapse={!LoanEconomy}
+                        onNextStep={this.onNextStep}
+                        handleCollapse={this.handleCollapse}
+                    />
+                    <LoanGeneralInformationPanel
+                    id="LoanGeneralInformation"
+                    step={3}
+                    className="loan-panel"
+                    collapse={!LoanGeneralInformation}
+                    onNextStep={this.onNextStep}
+                    handleCollapse={this.handleCollapse}
+                    />
                 </div>
             </AuthenticatedSubPageTemplate>
         );

@@ -75,40 +75,11 @@ class ExpandablePanel extends Component {
         this.setState({ isCollapsed: isCollapsing, isCollapsing: false, thisStyle: style });
     };
 
-    toggleExpansion = () => {
-        const { isCollapsed, maxHeight } = this.state;
-
-        const height = isCollapsed ? 0 : maxHeight;
-
-        if (isCollapsed) {
-            const promise = new Promise(resolve => {
-                // We must set the height first so we have something for the transition
-                this.setState({
-                    thisStyle: { height: `${maxHeight}px` },
-                });
-
-                setTimeout(() => {
-                    // Give the DOM a chance to update
-                    // Maybe because React batches setState calls as well
-                    resolve(true);
-                }, 0);
-            });
-
-            promise.then(() => {
-                // We're collapsing, must have a height set
-
-                this.setState({
-                    thisStyle: { height: '0px' },
-                    isCollapsed: true,
-                });
-            });
-        } else {
-            this.setState({
-                thisStyle: { height: `${height}px` },
-                isCollapsed: false,
-            });
-        }
-    };
+    // handleCollapse = () =>{
+    //     const {handleCollapse, id} = this.props;
+    //
+    //     handleCollapse(id);
+    // }
 
     render() {
         const {
@@ -120,7 +91,7 @@ class ExpandablePanel extends Component {
             showLessLabel,
             className,
             collapse: isCollapsed,
-            handleNextStep,
+            handleCollapse,
         } = this.props;
         const { thisStyle } = this.state;
 
@@ -142,10 +113,9 @@ class ExpandablePanel extends Component {
 
         return (
             <Panel style={style} className={rootClasses}>
-
                 <pre>state: {JSON.stringify(this.state, null, 2)}</pre>
 
-                <InteractiveElement className="expandable-panel__expander" onClick={handleNextStep}>
+                <InteractiveElement className="expandable-panel__expander" onClick={handleCollapse}>
                     <span className="expandable-panel__show-more-text">
                         {isCollapsed ? showMoreLabel : showLessLabel}
                     </span>
@@ -177,7 +147,7 @@ class ExpandablePanel extends Component {
 }
 ExpandablePanel.propTypes = {
     children: PropTypes.node.isRequired,
-    handleNextStep: PropTypes.func.isRequired,
+    handleCollapse: PropTypes.func.isRequired,
     collapse: PropTypes.bool,
     noBorder: PropTypes.bool,
     style: PropTypes.shape(),

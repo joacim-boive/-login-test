@@ -8,6 +8,18 @@ import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import ClearingNumberInput from './ClearingNumberInput';
 
 class LoanGeneralInformationPanel extends Component {
+    static propTypes = {
+        onNextStep: PropTypes.func.isRequired,
+        handleCollapse: PropTypes.func.isRequired,
+        className: PropTypes.string,
+        collapse: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        className: '',
+        collapse: false,
+    };
+
     state = {
         loanUsage: '',
         loanUsageDescription: '',
@@ -62,8 +74,14 @@ class LoanGeneralInformationPanel extends Component {
         return result;
     };
 
+    handleNextStep = () => {
+        const { onNextStep, step, id } = this.props;
+
+        onNextStep(step, id);
+    };
+
     render() {
-        const { className, collapse } = this.props;
+        const { className, collapse, handleCollapse, id } = this.props;
         const {
             loanUsage,
             loanUsageDescription,
@@ -79,11 +97,15 @@ class LoanGeneralInformationPanel extends Component {
 
         return (
             <div className={classes}>
+                <pre>props: {JSON.stringify(this.props, null, 2)}</pre>
+
                 <form>
                     <ExpandablePanel
                         className="expander"
                         compact
                         collapse={collapse}
+                        handleNextStep={this.handleNextStep}
+                        handleCollapse={() => handleCollapse(id)}
                         showMoreLabel={i18n('loan.general.header')}
                         showLessLabel={i18n('loan.general.header')}
                     >
@@ -185,11 +207,7 @@ class LoanGeneralInformationPanel extends Component {
                         </label>
 
                         <div className="apply-button">
-                            <Button
-                                onClick={() => console.log('Pressy pressy (what?? /joli44)')}
-                                round
-                                disabled={!this.validForm()}
-                            >
+                            <Button onClick={this.handleNextStep} round disabled={!this.validForm()}>
                                 {i18n('loan.general.apply')}
                             </Button>
                         </div>
@@ -199,15 +217,5 @@ class LoanGeneralInformationPanel extends Component {
         );
     }
 }
-
-LoanGeneralInformationPanel.propTypes = {
-    className: PropTypes.string,
-    collapse: PropTypes.bool,
-};
-
-LoanGeneralInformationPanel.defaultProps = {
-    className: '',
-    collapse: false,
-};
 
 export default LoanGeneralInformationPanel;

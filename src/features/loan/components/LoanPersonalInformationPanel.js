@@ -17,6 +17,7 @@ class LoanPersonalInformationPanel extends Component {
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
         onNextStep: PropTypes.func.isRequired,
+        handleCollapse: PropTypes.func.isRequired,
         step: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
         collapse: PropTypes.bool,
@@ -36,7 +37,16 @@ class LoanPersonalInformationPanel extends Component {
     };
 
     render() {
-        const { className, person, media, contactInformation, onUpdateContactInfo, collapse } = this.props;
+        const {
+            className,
+            person,
+            media,
+            contactInformation,
+            onUpdateContactInfo,
+            collapse,
+            handleCollapse,
+            id,
+        } = this.props;
         const classes = classNames({
             'loan-personal-information-panel': true,
             [className]: className,
@@ -54,9 +64,10 @@ class LoanPersonalInformationPanel extends Component {
             <div className={classes}>
                 <ExpandablePanel
                     className="expander"
-                    handleNextStep={this.handleNextStep}
                     compact
                     collapse={collapse}
+                    handleNextStep={this.handleNextStep}
+                    handleCollapse={() => handleCollapse(id)}
                     showMoreLabel={i18n('loan.personal.header')}
                     showLessLabel={i18n('loan.personal.header')}
                 >

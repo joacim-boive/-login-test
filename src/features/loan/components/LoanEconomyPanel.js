@@ -9,6 +9,20 @@ import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 const validBoolean = str => str === 'yes' || str === 'no';
 
 class LoanEconomyPanel extends Component {
+    static propTypes = {
+        onNextStep: PropTypes.func.isRequired,
+        handleCollapse: PropTypes.func.isRequired,
+        step: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        className: PropTypes.string,
+        collapse: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        className: '',
+        collapse: false,
+    };
+
     state = {
         employmentForm: '',
         monthlyNetIncome: '',
@@ -76,8 +90,14 @@ class LoanEconomyPanel extends Component {
         return result;
     };
 
+    handleNextStep = () => {
+        const { onNextStep, step, id } = this.props;
+
+        onNextStep(step, id);
+    };
+
     render() {
-        const { className, collapse } = this.props;
+        const { className, collapse, handleCollapse, id } = this.props;
         const classes = classNames({
             'loan-economy-panel': true,
             [className]: className,
@@ -86,10 +106,13 @@ class LoanEconomyPanel extends Component {
         return (
             <div className={classes}>
                 <pre>props: {JSON.stringify(this.props, null, 2)}</pre>
+
                 <ExpandablePanel
                     className="expander"
                     compact
                     collapse={collapse}
+                    handleNextStep={this.handleNextStep}
+                    handleCollapse={() => handleCollapse(id)}
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
@@ -376,7 +399,7 @@ class LoanEconomyPanel extends Component {
                     </ResponsivePanel>
                     <div className="next-button">
                         <Button
-                            onClick={() => console.log('Pressy pressy')}
+                            onClick={this.handleNextStep}
                             round
                             disabled={!this.validForm()}
                             name="economyNextButton"
@@ -389,15 +412,5 @@ class LoanEconomyPanel extends Component {
         );
     }
 }
-
-LoanEconomyPanel.propTypes = {
-    className: PropTypes.string,
-    collapse: PropTypes.bool,
-};
-
-LoanEconomyPanel.defaultProps = {
-    className: '',
-    collapse: false,
-};
 
 export default LoanEconomyPanel;

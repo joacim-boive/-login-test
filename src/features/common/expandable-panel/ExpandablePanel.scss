@@ -29,7 +29,7 @@
     &__content {
         will-change: height;
         overflow: hidden;
-        transition: height 5000ms cubic-bezier(1, 0, 0, 1);
+        transition: height 500ms cubic-bezier(1, 0, 0, 1);
 
         &.is-collapsed{
             visibility: hidden;
