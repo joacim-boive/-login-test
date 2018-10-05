@@ -20,12 +20,9 @@ class OnboardingDialog extends Component {
         showOnboarding: false,
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            showDialog: false,
-        };
-    }
+    state = {
+        showDialog: false,
+    };
 
     componentDidMount() {
         const seenAlready = Cookie.read(ALPHA_COOKIE);
