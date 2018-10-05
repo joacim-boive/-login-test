@@ -27,13 +27,13 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
                 {header ? (
                     <span>{header}</span>
                 ) : (
-                    <React.Fragment>
+                    <>
                         <span>{month}</span>
                         <span>{year}</span>
-                    </React.Fragment>
+                    </>
                 )}
             </h2>
-            <Panel stretchInMobile>
+            <Panel withSidePaddingOnly className="transactions-panel">
                 {transactions.map(trans => (
                     <DataColumns key={trans.id} className="row">
                         <DataColumn>
