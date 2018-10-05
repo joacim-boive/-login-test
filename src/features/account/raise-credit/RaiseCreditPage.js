@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import {
-    ResponsivePanel,
-    FlexPanel,
-    Panel,
-    Select,
-    ButtonGroup,
-    Button,
-    UnorderedList,
-    Spinner,
-} from '@ecster/ecster-components';
+import { FlexPanel, Panel, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
@@ -121,7 +112,7 @@ export class RaiseCreditPage extends Component {
                 header={i18n('account.raise-credit.page-header')}
             >
                 {showView === 'main' && (
-                    <Panel withMixedContent>
+                    <Panel withMixedContent stretchInMobile>
                         <div className="mixed-content centered-content mb-8x">
                             <img className="mb-4x" src={walletIcon} alt="wallet icon" />
                             <h2>{i18n('account.raise-credit.header')}</h2>

@@ -6,6 +6,10 @@
 
     .customer-profile-panel {
         padding: 40px;
+
+        @include mobile() {
+            padding: 30px 15px;
+        }
     }
 
     label {
