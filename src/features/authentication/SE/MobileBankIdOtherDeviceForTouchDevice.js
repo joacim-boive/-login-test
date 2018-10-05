@@ -34,7 +34,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
         return (
             isVisible && (
                 <div className="login-se-touch-mbid-other-device">
-                    <h2>{i18n('header')}</h2>
+                    <h2 className="e-green120">{i18n('header')}</h2>
                     <Input
                         ref={input => {
                             this.inputRef = input;

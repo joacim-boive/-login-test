@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import FeedbackPanel from '../home/FeedbackPanel';
+import OnboardingDialog from '../common/alpha/OnboardingDialog';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
 import AccountPanelTerminatedAccount from './components/AccountPanelTerminatedAccount';
@@ -60,6 +61,7 @@ export class OverviewPage extends Component {
                         </>
                     )}
                     <FeedbackPanel />
+                    <OnboardingDialog />
                 </div>
             </AuthenticatedPageTemplate>
         );

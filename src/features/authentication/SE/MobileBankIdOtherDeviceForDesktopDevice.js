@@ -38,7 +38,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
         return (
             isVisible && (
                 <div className="login-se-dekstop-mbid-other-device">
-                    <h1>{i18n('header')}</h1>
+                    <h1 className="e-green120">{i18n('header')}</h1>
                     <Input
                         ref={input => {
                             this.inputRef = input;
