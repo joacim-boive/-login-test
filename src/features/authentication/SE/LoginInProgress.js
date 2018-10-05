@@ -135,7 +135,7 @@ export default class LoginInProgress extends Component {
         return (
             isVisible && (
                 <div className="authentication-login-in-progress">
-                    <h1>{i18n(headerI18nKey)}</h1>
+                    <h1 className="e-green120">{i18n(headerI18nKey)}</h1>
                     {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
                     <Button link onClick={this.onCancel} name="cancel-login-button">

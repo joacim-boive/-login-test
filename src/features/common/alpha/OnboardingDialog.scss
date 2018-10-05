@@ -1,5 +1,16 @@
 @import '../../../styles/mixins';
 
 .common-onboarding-dialog {
+    h1 {
+        text-align: center;
+    }
 
+    .hand-icon {
+        width: 150px;
+        height: auto;
+    }
+
+    .dialog-ctr {
+        padding: 20px 10px;
+    }
 }

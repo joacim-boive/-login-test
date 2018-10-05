@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Dialog, DialogBody, ButtonGroup, Button } from '@ecster/ecster-components';
 import { Cookie } from '@ecster/ecster-net';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import handIcon from '../../../common/images/icon-hand-flower.svg';
+import { hideAlphaOnboarding } from '../redux/actions';
 
 const ALPHA_COOKIE = 'alpha-info';
 
-export default class OnboardingDialog extends Component {
-    static propTypes = {};
+class OnboardingDialog extends Component {
+    static propTypes = {
+        hideAlphaOnboarding: PropTypes.func.isRequired,
+        showOnboarding: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        showOnboarding: false,
+    };
 
     constructor(props) {
         super(props);
@@ -23,9 +34,16 @@ export default class OnboardingDialog extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.showOnboarding) {
+            this.setState({ showDialog: true });
+        }
+    }
+
     onClickGo = () => {
         this.setState({ showDialog: false });
-        Cookie.create(ALPHA_COOKIE, true);
+        this.props.hideAlphaOnboarding();
+        Cookie.create(ALPHA_COOKIE, true, { days: 3650 });
     };
 
     render() {
@@ -33,21 +51,37 @@ export default class OnboardingDialog extends Component {
 
         return (
             <div className="common-onboarding-dialog">
-                <Dialog borderRadius="15px" maxWidth="400px" open={showDialog}>
-                    <DialogBody centeredContent>
-                        <h1>{i18n('common.alpha.header')}</h1>
-                        {i18n('common.alpha.info', {
-                            returnObjects: true,
-                            wrapper: { tag: 'p' },
-                        })}
-                    </DialogBody>
-                    <ButtonGroup alignCenter>
-                        <Button outline round onClick={this.onClickGo}>
-                            {i18n('common.alpha.button-text')}
-                        </Button>
-                    </ButtonGroup>
+                <Dialog rounded3x maxWidth="500px" fullscreenMobile open={showDialog} className="e-bg-beige10">
+                    <div className="dialog-ctr">
+                        <DialogBody centeredContent className="dialog">
+                            <img src={handIcon} className="hand-icon mb-6x" />
+                            <h2 className="e-green120">{i18n('common.alpha.header')}</h2>
+                            {i18n('common.alpha.info', {
+                                returnObjects: true,
+                                wrapper: { tag: 'p' },
+                            })}
+                        </DialogBody>
+                        <ButtonGroup alignCenter>
+                            <Button round onClick={this.onClickGo}>
+                                {i18n('common.alpha.button-text')}
+                            </Button>
+                        </ButtonGroup>
+                    </div>
                 </Dialog>
             </div>
         );
     }
 }
+
+const mapStateToProps = ({ common }) => ({
+    showOnboarding: common.alpha && common.alpha.showOnboarding,
+});
+
+const mapDispatchToProps = dispatch => ({
+    hideAlphaOnboarding: () => dispatch(hideAlphaOnboarding()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OnboardingDialog);

@@ -13,7 +13,7 @@ class BankIdThisDevice extends React.Component {
         return (
             isVisible && (
                 <div className="login-se-touch-mbid-this-device">
-                    <h1>{i18n('header')}</h1>
+                    <h1 className="e-green120">{i18n('header')}</h1>
                     <ButtonGroup align="center">
                         <Button
                             onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
