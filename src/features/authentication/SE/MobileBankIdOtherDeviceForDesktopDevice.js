@@ -57,15 +57,17 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                         type="tel"
                     />
 
-                    <ButtonGroup align="center">
+                    <ButtonGroup alignCenter>
                         <Button onClick={this.startLogin} round name="login-button">
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>
 
-                    <Button onClick={this.startBidLogin} link name="login-button-bid">
-                        {i18n('login-button-bid')}
-                    </Button>
+                    <ButtonGroup alignCenter space={false}>
+                        <Button onClick={this.startBidLogin} link name="login-button-bid">
+                            {i18n('login-button-bid')}
+                        </Button>
+                    </ButtonGroup>
                 </div>
             )
         );

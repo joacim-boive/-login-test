@@ -24,7 +24,7 @@ export class LogoutPage extends Component {
     }
 
     render() {
-        return <div className="authentication-logout-page">Page Content: authentication/LogoutPage</div>;
+        return <div className="authentication-logout-page" />;
     }
 }
 
