@@ -262,9 +262,8 @@
         "alpha": {
             "header": "Testa vår Alphaversion",
             "info": [
-                "Detta är alphaversion av Ecsters inloggade tjänst som du som anställd får vara med och testa.",
-                "Alpha betyder att tjänsten är halvfärdig, det finns sidor som fortfarande är under utveckling. I tjänsten kan du rapportera fel och/eller lämna synpunkter.",
-                "Vi väldigt tacksamma för din hjälp. Tillsammans gör vi nya inloggat ännu bättre."
+                "Detta är alphaversion av Ecsters inloggade tjänst som du som anställd får vara med och testa. Alpha betyder att tjänsten är halvfärdig, det finns sidor som fortfarande är under utveckling. ",
+                "I tjänsten kan du rapportera fel och/eller lämna synpunkter. Vi väldigt tacksamma för din hjälp. Tillsammans gör vi nya inloggat ännu bättre."
             ],
             "button-text": "Okej, då kör vi"
         }
