@@ -62,7 +62,7 @@ export const LatestTransactions = ({
                             <Data right>
                                 <LinkButton
                                     iconRight="icon-chevron-right"
-                                    className="show-more"
+                                    className="show-more no-underline"
                                     to={`/account/${account.reference}/customer/${user.id}/transactions`}
                                 >
                                     {i18n('account.transactions.show-more')}
