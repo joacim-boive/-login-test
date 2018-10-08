@@ -8,8 +8,9 @@ import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSu
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
+import robotFace from '../../../common/images/face-robot.svg';
 import pendingIcon from '../../../common/images/icon-table-lamp.svg';
-import { getAccount, getAccountTerms, updateAccount } from '../redux/actions';
+import { getAccount, getAccountTerms, updateAccount, dismissUpdateAccountError } from '../redux/actions';
 import { formatAmount } from '../../../common/util/format-amount';
 
 import getCreditLimitOptions from './getCreditLimitOptions';
@@ -28,7 +29,8 @@ export class RaiseCreditPage extends Component {
     };
 
     componentWillMount() {
-        const { getAccountTerms, getAccount } = this.props;
+        const { getAccountTerms, getAccount, dismissUpdateAccountError } = this.props;
+        dismissUpdateAccountError(); // dismiss any previous errors
         getAccount();
         getAccountTerms();
     }
@@ -221,7 +223,7 @@ export class RaiseCreditPage extends Component {
                 {showView === 'ERROR' && (
                     <Panel withMixedContent centeredContent className="result-panel">
                         <div className="mixed-content">
-                            <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                            <img src={robotFace} aria-hidden="true" alt="sad face icon" />
                             <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
                             <p>{i18n('account.raise-credit.error.communication.body')}</p>
                             <BackToOverviewLink />
@@ -240,6 +242,7 @@ RaiseCreditPage.propTypes = {
     getAccount: PropTypes.func.isRequired,
     getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
+    dismissUpdateAccountError: PropTypes.func.isRequired,
     updateAccountError: PropTypes.any,
     updateAccountPending: PropTypes.bool.isRequired,
 };
@@ -266,6 +269,7 @@ function mapDispatchToProps(dispatch, state) {
         getAccount: () => dispatch(getAccount(id, ref)),
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
         updateAccount: data => dispatch(updateAccount(id, ref, data)),
+        dismissUpdateAccountError: () => dispatch(dismissUpdateAccountError()),
     };
 }
 
