@@ -23,7 +23,7 @@ export class RaiseCreditPage extends Component {
         // message before button can change ...
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
-        showView: 'main', // or "APPROVED", "PENDING", "DENIED"
+        showView: 'main', // "main" or "APPROVED", "PENDING", "DENIED"
         caseNumber: undefined,
     };
 
@@ -57,7 +57,7 @@ export class RaiseCreditPage extends Component {
 
         if (newLimit) {
             this.setState({ processing: true });
-            // simulate a few seconds processing
+            // simulate a few seconds processing. TODO: simulation (if needed) after updateAccount returns successfully
             setTimeout(() => {
                 this.setState({ processingMessage: i18n('account.raise-credit.processing-message-uc') });
                 setTimeout(() => {
@@ -165,12 +165,12 @@ export class RaiseCreditPage extends Component {
                                 </ButtonGroup>
                             )}
                             {processing && (
-                                <div>
-                                    <div className="mb-3x">
+                                <>
+                                    <div className="mtb-3x centered-content">
                                         <small>{processingMessage}</small>
                                     </div>
                                     <Spinner id="raise-credit-spinner" isCenterX isVisible />
-                                </div>
+                                </>
                             )}
                         </form>
                     </Panel>
@@ -191,35 +191,41 @@ export class RaiseCreditPage extends Component {
 
                 {showView === 'PENDING' && (
                     <Panel withMixedContent centeredContent className="result-panel">
-                        <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
-                        <h2>{i18n('account.raise-credit.pending-header')}</h2>
-                        {i18n('account.raise-credit.pending-message', {
-                            returnObjects: true,
-                            wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                            caseNumber,
-                        })}
-                        <BackToOverviewLink />
+                        <div className="mixed-content">
+                            <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
+                            <h2>{i18n('account.raise-credit.pending-header')}</h2>
+                            {i18n('account.raise-credit.pending-message', {
+                                returnObjects: true,
+                                wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                                caseNumber,
+                            })}
+                            <BackToOverviewLink />
+                        </div>
                     </Panel>
                 )}
 
                 {showView === 'DENIED' && (
                     <Panel withMixedContent centeredContent className="result-panel">
-                        <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
-                        <h2>{i18n('account.raise-credit.denied-header')}</h2>
-                        {i18n('account.raise-credit.denied-message', {
-                            returnObjects: true,
-                            wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                        })}
-                        <BackToOverviewLink />
+                        <div className="mixed-content">
+                            <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                            <h2>{i18n('account.raise-credit.denied-header')}</h2>
+                            {i18n('account.raise-credit.denied-message', {
+                                returnObjects: true,
+                                wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                            })}
+                            <BackToOverviewLink />
+                        </div>
                     </Panel>
                 )}
 
                 {showView === 'ERROR' && (
-                    <Panel textAlignCenter className="result-panel">
-                        <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
-                        <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
-                        <p>{i18n('account.raise-credit.error.communication.body')}</p>
-                        <BackToOverviewLink />
+                    <Panel withMixedContent centeredContent className="result-panel">
+                        <div className="mixed-content">
+                            <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                            <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
+                            <p>{i18n('account.raise-credit.error.communication.body')}</p>
+                            <BackToOverviewLink />
+                        </div>
                     </Panel>
                 )}
             </AuthenticatedSubPageTemplate>

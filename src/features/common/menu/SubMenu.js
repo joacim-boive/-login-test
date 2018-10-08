@@ -82,7 +82,7 @@ export const SubMenuItem = ({ children, linkTo, iconClass, active }) => {
                 active,
             })}
         >
-            <Link to={linkTo} href={linkTo}>
+            <Link to={linkTo} href={linkTo} className="no-underline">
                 <span className="submenu-item__text">{children}</span>
                 {icon}
             </Link>

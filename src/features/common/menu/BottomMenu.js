@@ -27,7 +27,7 @@ export const MenuItem = ({ active, children, linkTo, onClick }) => (
             active,
         })}
     >
-        <Link to={linkTo} onClick={onClick}>
+        <Link to={linkTo} onClick={onClick} className="no-underline">
             {children}
         </Link>
     </div>

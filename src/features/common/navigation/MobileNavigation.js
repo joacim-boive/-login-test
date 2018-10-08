@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Link, withRouter} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { InteractiveElement } from '@ecster/ecster-components';
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
@@ -52,10 +52,12 @@ class MobileNavigation extends React.Component {
                         <SvgIconInvoices />
                         <MenuItemText>{i18n('navigation.invoices')}</MenuItemText>
                     </MenuItem>
-                    {showLoanMenu && <MenuItem linkTo="/loan/overview" active={loanIsActive}>
-                        <SvgIconLoan />
-                        <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
-                    </MenuItem>}
+                    {showLoanMenu && (
+                        <MenuItem linkTo="/loan/overview" active={loanIsActive}>
+                            <SvgIconLoan />
+                            <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
+                        </MenuItem>
+                    )}
                     <InteractiveElement onClick={this.toggleSubMenu}>
                         <div
                             className={classNames({
@@ -69,10 +71,7 @@ class MobileNavigation extends React.Component {
                     </InteractiveElement>
                 </BottomMenu>
                 <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
-                    <SubMenuItem
-                        linkTo={`/customer/${customerId}/profile`}
-                        active={customerSettingsIsActive}
-                    >
+                    <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
                         {i18n('navigation.settings')}
                     </SubMenuItem>
                     <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
