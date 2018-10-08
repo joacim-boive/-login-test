@@ -197,7 +197,7 @@
             "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
-            "terms-conditions": "Här kan du ta del av dina [link-new-win {{url}} 'fullständiga kontovillkor']",
+            "terms-conditions": "Här kan du ta del av dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
