@@ -11,6 +11,7 @@ import { updateCustomerContactInfo } from '../customer/redux/updateCustomerConta
 import { getCustomer } from '../customer/redux/getCustomer';
 import LoanEconomyPanel from './components/LoanEconomyPanel';
 import LoanGeneralInformationPanel from './components/LoanGeneralInformationPanel';
+import UnderConstruction from '../common/alpha/UnderConstruction';
 
 export class LoanSummaryPage extends Component {
     static propTypes = {
@@ -25,6 +26,8 @@ export class LoanSummaryPage extends Component {
 
     state = {
         currentStep: 1,
+        isEnabling: false,
+        isSubmitted: false,
         LoanPersonalInformation: true,
         LoanEconomy: false,
         LoanGeneralInformation: false,
@@ -39,14 +42,24 @@ export class LoanSummaryPage extends Component {
     onNextStep = (step, id) => {
         // Step order trumps manual expand/collapse
         const steps = ['LoanPersonalInformation', 'LoanEconomy', 'LoanGeneralInformation'];
-        const currentStep = steps[step];
-        const nextStep = step + 1;
+        let thisState = {};
 
-        this.setState({
-            [id]: !this.state[id],
-            [currentStep]: true,
-            currentStep: nextStep,
-        });
+        if (step === steps.length) {
+            thisState = {
+                isSubmitted: true,
+            };
+        } else {
+            const currentStep = steps[step];
+            const nextStep = step + 1;
+
+            thisState = {
+                [id]: !this.state[id],
+                [currentStep]: true,
+                currentStep: nextStep,
+            };
+        }
+
+        this.setState(thisState);
     };
 
     handleCollapse = id => {
@@ -55,45 +68,58 @@ export class LoanSummaryPage extends Component {
         });
     };
 
+    handleEnabling = () => {
+        this.setState({
+            isEnabling: !this.state.isEnabling,
+        });
+    };
+
     render() {
         const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo } = this.props;
-        const { LoanPersonalInformation, LoanEconomy, LoanGeneralInformation } = this.state;
+        const { LoanPersonalInformation, LoanEconomy, LoanGeneralInformation, currentStep, isSubmitted } = this.state;
 
         const { contactInformation } = customer;
 
         return (
             <AuthenticatedSubPageTemplate linkTo="/loan/overview" header={i18n('loan.summary.header')}>
-                <div className="loan-summary-page">
-                    <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
-                    <pre>state: {JSON.stringify(this.state, null, 2)}</pre>
-                    <LoanPersonalInformationPanel
-                        id="LoanPersonalInformation"
-                        step={1}
-                        collapse={!LoanPersonalInformation}
-                        className="loan-panel"
-                        onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
-                        contactInformation={contactInformation}
-                        person={person}
-                        onNextStep={this.onNextStep}
-                        handleCollapse={this.handleCollapse}
-                    />
-                    <LoanEconomyPanel
-                        id="LoanEconomy"
-                        step={2}
-                        className="loan-panel"
-                        collapse={!LoanEconomy}
-                        onNextStep={this.onNextStep}
-                        handleCollapse={this.handleCollapse}
-                    />
-                    <LoanGeneralInformationPanel
-                    id="LoanGeneralInformation"
-                    step={3}
-                    className="loan-panel"
-                    collapse={!LoanGeneralInformation}
-                    onNextStep={this.onNextStep}
-                    handleCollapse={this.handleCollapse}
-                    />
-                </div>
+                {isSubmitted && <UnderConstruction />}
+
+                {!isSubmitted && (
+                    <div className="loan-summary-page">
+                        <LoanSummaryPanel terms={terms} searchTerms={searchTerms} promissory={promissory} />
+                        <LoanPersonalInformationPanel
+                            id="LoanPersonalInformation"
+                            step={1}
+                            collapse={!LoanPersonalInformation}
+                            className="loan-panel"
+                            onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
+                            contactInformation={contactInformation}
+                            person={person}
+                            onNextStep={this.onNextStep}
+                            handleCollapse={this.handleCollapse}
+                        />
+                        <LoanEconomyPanel
+                            id="LoanEconomy"
+                            step={2}
+                            className="loan-panel"
+                            collapse={!LoanEconomy}
+                            isDisabled={currentStep < 2}
+                            onNextStep={this.onNextStep}
+                            handleCollapse={this.handleCollapse}
+                            handleEnabling={this.handleEnabling}
+                        />
+                        <LoanGeneralInformationPanel
+                            id="LoanGeneralInformation"
+                            step={3}
+                            className="loan-panel"
+                            collapse={!LoanGeneralInformation}
+                            isDisabled={currentStep < 3}
+                            onNextStep={this.onNextStep}
+                            handleCollapse={this.handleCollapse}
+                            handleEnabling={this.handleEnabling}
+                        />
+                    </div>
+                )}
             </AuthenticatedSubPageTemplate>
         );
     }

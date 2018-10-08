@@ -6,6 +6,30 @@ import { Panel, InteractiveElement } from '@ecster/ecster-components';
 import './ExpandablePanel.scss';
 
 class ExpandablePanel extends Component {
+    static propTypes = {
+        children: PropTypes.node.isRequired,
+        handleCollapse: PropTypes.func.isRequired,
+        collapse: PropTypes.bool,
+        isDisabled: PropTypes.bool,
+        noBorder: PropTypes.bool,
+        style: PropTypes.shape(),
+        icon: PropTypes.string,
+        showMoreLabel: PropTypes.string,
+        showLessLabel: PropTypes.string,
+        className: PropTypes.string,
+    };
+
+    static defaultProps = {
+        collapse: false,
+        isDisabled: false,
+        noBorder: false,
+        style: {},
+        icon: 'icon-chevron-down',
+        showMoreLabel: 'Visa mer',
+        showLessLabel: 'Visa mindre',
+        className: '',
+    };
+
     state = {
         isCollapsed: this.props.collapse,
         maxHeight: null,
@@ -14,11 +38,17 @@ class ExpandablePanel extends Component {
 
     componentDidMount() {
         const { isCollapsed } = this.state;
+        const { isDisabled } = this.props;
+
+        // if (isDisabled) return;
+
         const maxHeight = this.getHeight();
 
         let setStyle;
         if (isCollapsed) {
-            setStyle = { height: '0px' };
+            setStyle = {
+                height: '0px',
+            };
         }
 
         this.setState({
@@ -64,7 +94,13 @@ class ExpandablePanel extends Component {
     }
 
     getHeight = () => {
-        return this.el.offsetHeight;
+        let height = 0;
+
+        if (this.el) {
+            height = this.el.offsetHeight;
+        }
+
+        return height;
     };
 
     onTransitionEnd = () => {
@@ -74,12 +110,6 @@ class ExpandablePanel extends Component {
 
         this.setState({ isCollapsed: isCollapsing, isCollapsing: false, thisStyle: style });
     };
-
-    // handleCollapse = () =>{
-    //     const {handleCollapse, id} = this.props;
-    //
-    //     handleCollapse(id);
-    // }
 
     render() {
         const {
@@ -92,13 +122,16 @@ class ExpandablePanel extends Component {
             className,
             collapse: isCollapsed,
             handleCollapse,
+            isDisabled,
         } = this.props;
+
         const { thisStyle } = this.state;
 
         const rootClasses = classNames({
             'expandable-panel': true,
             'expandable-panel--bordered': !noBorder,
             'expandable-panel--no-bottom-padding': isCollapsed,
+            'is-disabled': isDisabled,
             [className]: className,
         });
 
@@ -109,62 +142,42 @@ class ExpandablePanel extends Component {
 
         const contentClasses = classNames({
             'expandable-panel__content': true,
+            // 'is-collapsed': isCollapsed,
         });
 
         return (
             <Panel style={style} className={rootClasses}>
-                <pre>state: {JSON.stringify(this.state, null, 2)}</pre>
+                <>
+                    <InteractiveElement className="expandable-panel__expander" onClick={handleCollapse}>
+                        <h3 className="expandable-panel__show-more-text">
+                            {isCollapsed ? showMoreLabel : showLessLabel}
+                        </h3>
+                        <div className="expandable-panel__arrow-wrapper">
+                            <span className={arrowClasses}>
+                                <i className={icon} />
+                            </span>
+                        </div>
+                    </InteractiveElement>
+                    <section
+                        onTransitionEnd={event => {
+                            // We're only interest for the transition for this element
+                            // Otherwise we will get the transition event for the button as well
+                            if (event.target.localName !== 'section') return;
 
-                <InteractiveElement className="expandable-panel__expander" onClick={handleCollapse}>
-                    <span className="expandable-panel__show-more-text">
-                        {isCollapsed ? showMoreLabel : showLessLabel}
-                    </span>
-                    <div className="expandable-panel__arrow-wrapper">
-                        <span className={arrowClasses}>
-                            <i className={icon} />
-                        </span>
-                    </div>
-                </InteractiveElement>
-                <section
-                    onTransitionEnd={event => {
-                        // We're only interest for the transition for this element
-                        // Otherwise we will get the transition event for the button as well
-                        if (event.target.localName !== 'section') return;
-
-                        this.onTransitionEnd();
-                    }}
-                    style={thisStyle}
-                    className={contentClasses}
-                    ref={el => {
-                        this.el = el;
-                    }}
-                >
-                    {children}
-                </section>
+                            this.onTransitionEnd();
+                        }}
+                        style={thisStyle}
+                        className={contentClasses}
+                        ref={el => {
+                            this.el = el;
+                        }}
+                    >
+                        {children}
+                    </section>
+                </>
             </Panel>
         );
     }
 }
-ExpandablePanel.propTypes = {
-    children: PropTypes.node.isRequired,
-    handleCollapse: PropTypes.func.isRequired,
-    collapse: PropTypes.bool,
-    noBorder: PropTypes.bool,
-    style: PropTypes.shape(),
-    icon: PropTypes.string,
-    showMoreLabel: PropTypes.string,
-    showLessLabel: PropTypes.string,
-    className: PropTypes.string,
-};
-
-ExpandablePanel.defaultProps = {
-    collapse: false,
-    noBorder: false,
-    style: {},
-    icon: 'icon-chevron-down',
-    showMoreLabel: 'Visa mer',
-    showLessLabel: 'Visa mindre',
-    className: '',
-};
 
 export default ExpandablePanel;

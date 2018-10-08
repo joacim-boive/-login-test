@@ -11,13 +11,17 @@ class LoanGeneralInformationPanel extends Component {
     static propTypes = {
         onNextStep: PropTypes.func.isRequired,
         handleCollapse: PropTypes.func.isRequired,
+        step: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         className: PropTypes.string,
         collapse: PropTypes.bool,
+        isDisabled: PropTypes.bool,
     };
 
     static defaultProps = {
         className: '',
         collapse: false,
+        isDisabled: false,
     };
 
     state = {
@@ -81,7 +85,7 @@ class LoanGeneralInformationPanel extends Component {
     };
 
     render() {
-        const { className, collapse, handleCollapse, id } = this.props;
+        const { className, collapse, handleCollapse, id, isDisabled } = this.props;
         const {
             loanUsage,
             loanUsageDescription,
@@ -97,18 +101,17 @@ class LoanGeneralInformationPanel extends Component {
 
         return (
             <div className={classes}>
-                <pre>props: {JSON.stringify(this.props, null, 2)}</pre>
-
-                <form>
-                    <ExpandablePanel
-                        className="expander"
-                        compact
-                        collapse={collapse}
-                        handleNextStep={this.handleNextStep}
-                        handleCollapse={() => handleCollapse(id)}
-                        showMoreLabel={i18n('loan.general.header')}
-                        showLessLabel={i18n('loan.general.header')}
-                    >
+                <ExpandablePanel
+                    className="expander"
+                    compact
+                    collapse={collapse}
+                    isDisabled={isDisabled}
+                    handleNextStep={this.handleNextStep}
+                    handleCollapse={() => handleCollapse(id)}
+                    showMoreLabel={i18n('loan.general.header')}
+                    showLessLabel={i18n('loan.general.header')}
+                >
+                    <form>
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} className="body">
                             <section key="1">
                                 <h4>{i18n('loan.general.about')}</h4>
@@ -211,8 +214,8 @@ class LoanGeneralInformationPanel extends Component {
                                 {i18n('loan.general.apply')}
                             </Button>
                         </div>
-                    </ExpandablePanel>
-                </form>
+                    </form>
+                </ExpandablePanel>
             </div>
         );
     }

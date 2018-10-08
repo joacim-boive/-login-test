@@ -10,6 +10,10 @@
     width: 100%;
     padding: 10px 30px;
 
+    h3 {
+        margin: 0;
+    }
+
     @include mobile() {
         margin: 0;
         border-right: 0;
@@ -21,6 +25,21 @@
         padding-bottom: 0;
     }
 
+    &.is-disabled{
+        h3{
+            font-size: 24px;
+            color: $gray60;
+            font-weight: $weight-semibold;
+        }
+        .expandable-panel__arrow-wrapper{
+            display: none;
+        }
+        section{
+            margin: 0;
+        }
+    }
+
+
     &--bordered {
         border-radius: 8px;
         border: solid 1px $beige40;
@@ -31,7 +50,11 @@
         overflow: hidden;
         transition: height 500ms cubic-bezier(1, 0, 0, 1);
 
-        &.is-collapsed{
+        form{
+            margin-top: 20px;
+        }
+
+        &.is-collapsed, &.is-enabling{
             visibility: hidden;
             position: absolute;
         }
