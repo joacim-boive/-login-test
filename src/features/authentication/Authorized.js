@@ -31,7 +31,8 @@ class Authorized extends React.Component {
         }
 
         // remember route for redirect after login
-        // this.props.setNextRoute(this.props.location.pathname);
+        console.log('next route = ', this.props.location.pathname);
+        this.props.setNextRoute(this.props.location.pathname);
         return <Redirect to="/" />;
     }
 }
