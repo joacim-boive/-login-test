@@ -5,6 +5,7 @@ import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
+import { formatMobileNumber } from '../../../common/util/format-mobile-number';
 
 export class EditableInputPhone extends Component {
     state = {
@@ -106,7 +107,7 @@ export class EditableInputPhone extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>
-                        {value.countryCallingCode} (0) {value.number}
+                        {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                     </strong>
                     <Button name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
