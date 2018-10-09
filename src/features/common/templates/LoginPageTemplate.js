@@ -24,7 +24,7 @@ const LoginPageTemplate = props => {
                 data-widths="768, 1536, 1024, 2048, 1920, 3840"
             >
                 <header className="logo-header">
-                    <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
+                    <a href="https://www.ecster.se" rel="noopener" title="ecster.se">
                         <Logo withName isNoWrap />
                     </a>
                 </header>

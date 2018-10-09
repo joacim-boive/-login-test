@@ -1,0 +1,28 @@
+@import '../../../styles/constants';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
+
+.common-public-page-template {
+
+    .logo-header {
+        padding: 40px;
+        @include mobile() {
+            padding: 20px 0 10px 0;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-content {
+        width: 100%; // if display: flex
+        max-width: $content-max-width-desktop;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        @include mobile() {
+            padding: 0;
+        }
+    }
+    z-index: 2;
+}
