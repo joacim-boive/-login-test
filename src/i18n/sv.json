@@ -431,6 +431,11 @@
             "header": "Vad tycker du?",
             "info": "Vi är nyfikna på vad du tycker om den här Alphaversionen. Här kan du lämna synpunkter eller rapportera fel.",
             "link": "Tyck till"
+        },
+        "after-logout": {
+            "header": "Tack för besöket!",
+            "info": "Missade du att lämna synpukter? Ingen fara. Tyck till och hjälp oss att göra tjänsten ännu bättre.",
+            "login-link": "Logga in igen"
         }
     },
     "loan": {

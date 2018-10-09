@@ -1,5 +1,24 @@
+@import '../../../styles/constants';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-components/scss/MediaQuery';
 
 .common-public-page-template {
-    background: $beige10;
+
+    .logo-header {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-content {
+        max-width: $content-max-width-desktop;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        @include mobile() {
+            padding: 0;
+        }
+
+    }
 }

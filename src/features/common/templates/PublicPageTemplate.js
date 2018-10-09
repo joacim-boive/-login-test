@@ -4,6 +4,8 @@ import { Logo } from '@ecster/ecster-components';
 
 import MessagePanel from '../MessagePanel';
 
+import './PublicPageTemplate.scss';
+
 const PublicPageTemplate = props => {
     const { children } = props;
 
@@ -11,11 +13,11 @@ const PublicPageTemplate = props => {
         <>
             <article className="common-public-page-template">
                 <header className="logo-header">
-                    <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
-                        <Logo withName isNoWrap />
+                    <a href="https://www.ecster.se" rel="noopener" title="ecster.se">
+                        <Logo withName width="150px" />
                     </a>
                 </header>
-                {children}
+                <div className="page-content">{children}</div>
             </article>
             <MessagePanel />
         </>

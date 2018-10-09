@@ -6,7 +6,7 @@ import cloudinary from '../../../common/images/Lazyload/cloudinary';
 import MessagePanel from '../MessagePanel';
 
 const LoginPageTemplate = props => {
-    const { children } = props;
+    const { children, ...rest } = props;
 
     /*
     Temporary fix for getting the correct background image size request.
@@ -22,9 +22,10 @@ const LoginPageTemplate = props => {
                 data-absurl="false"
                 data-sizes="auto"
                 data-widths="768, 1536, 1024, 2048, 1920, 3840"
+                {...rest}
             >
                 <header className="logo-header">
-                    <a href="https://www.ecster.se" rel="noopener" className="login__link--logo" title="ecster.se">
+                    <a href="https://www.ecster.se" rel="noopener" title="ecster.se">
                         <Logo withName isNoWrap />
                     </a>
                 </header>
