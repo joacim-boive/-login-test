@@ -17,6 +17,7 @@ export class LogoutPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        const { authentication} = this.props;
         if (this.props.authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
             clearSessionStorage();
             this.props.removeSession(); // remove login state
