@@ -3,6 +3,25 @@
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
 .home-after-logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .info-text {
+        margin-bottom: 30px;
+        @include mobile() {
+            margin-bottom: 10px;
+        }
+    }
+
+    .page-content {
+        margin-bottom: 200px;
+
+        @include mobile() {
+            margin-bottom: 0;
+        }
+    }
+
     footer {
         text-align: center;
         padding: 30px;
