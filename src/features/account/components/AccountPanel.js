@@ -51,6 +51,7 @@ class AccountPanel extends Component {
                             account={account}
                             amountLabel={amountLabel}
                             amount={account.limit - account.used}
+                            showCard={!noCard}
                         />
                     </div>
                 </TabletOrDesktop>
@@ -59,6 +60,7 @@ class AccountPanel extends Component {
                         account={account}
                         amountLabel={amountLabel}
                         amount={account.limit - account.used}
+                        showCard={!noCard}
                     />
                 </Mobile>
                 {showOverdrawn && (
