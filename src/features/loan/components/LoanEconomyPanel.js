@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Select, Option, Checkbox, Button, Input, ResponsivePanel, Radio } from '@ecster/ecster-components';
+import { Form, Select, Option, Checkbox, Button, Input, ResponsivePanel } from '@ecster/ecster-components';
 import './LoanEconomyPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
@@ -44,9 +44,17 @@ class LoanEconomyPanel extends Component {
         residenceDescription: '',
     };
 
-    onChange = (name, e) => {
+    constructor(props) {
+        super(props);
+
+        this.formEconomy = React.createRef();
+        this.monthlyNetIncome = React.createRef();
+    }
+
+    onChange = e => {
         const { target } = e;
         const value = target.type === 'checkbox' ? target.checked : target.value;
+        const { name } = target;
         this.setState({ [name]: value });
     };
 
@@ -95,7 +103,9 @@ class LoanEconomyPanel extends Component {
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        onNextStep(step, id);
+        if (this.formEconomy.current.validate()) {
+            onNextStep(step, id);
+        }
     };
 
     render() {
@@ -113,6 +123,7 @@ class LoanEconomyPanel extends Component {
             monthlyCostOtherLoans,
             employer,
             employedMoreThan1Year,
+            ownedCompanyName,
             ownedCompanyMoreThan1Year,
             monthlyResidenceCost,
             residenceDescription,
@@ -135,15 +146,16 @@ class LoanEconomyPanel extends Component {
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
-                    <form>
+                    <Form ref={this.formEconomy} validateRefs={[this.monthlyNetIncome]} className="formEconomy">
                         <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                             <section key="1">
                                 <h4>{i18n('loan.economy.occupation')}</h4>
                                 <Select
                                     label={i18n('loan.economy.occupation-label')}
                                     value={employmentForm}
-                                    onChange={e => this.onChange('employmentForm', e)}
+                                    onChange={this.onChange}
                                     required
+                                    validationMessage="Fältet är obligatoriskt!"
                                     name="employmentForm"
                                     className="input-field"
                                 >
@@ -171,12 +183,13 @@ class LoanEconomyPanel extends Component {
                                     <Input
                                         label={i18n('loan.economy.income-label')}
                                         value={monthlyNetIncome}
-                                        onChange={e => this.onChange('monthlyNetIncome', e)}
+                                        onChange={this.onChange}
                                         name="monthlyNetIncome"
                                         required
                                         minLength={1}
                                         maxLength={7}
                                         className="input-field"
+                                        ref={this.monthlyNetIncome}
                                     />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED', 'SELFEMPLOYED'].includes(
@@ -185,7 +198,7 @@ class LoanEconomyPanel extends Component {
                                     <Input
                                         label={i18n('loan.economy.gross-income-label')}
                                         value={monthlyGrossIncome}
-                                        onChange={e => this.onChange('monthlyGrossIncome', e)}
+                                        onChange={this.onChange}
                                         name="monthlyGrossIncome"
                                         required
                                         minLength={1}
@@ -197,7 +210,7 @@ class LoanEconomyPanel extends Component {
                                     <Input
                                         label={i18n('loan.economy.employer')}
                                         value={employer}
-                                        onChange={e => this.onChange('employer', e)}
+                                        onChange={this.onChange}
                                         name="employer"
                                         minLength={1}
                                         maxLength={40}
@@ -208,7 +221,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.12month')}
                                         value={employedMoreThan1Year}
-                                        onChange={e => this.onChange('employedMoreThan1Year', e)}
+                                        onChange={this.onChange}
                                         name="employedMoreThan1Year"
                                         required
                                         className="input-field"
@@ -221,7 +234,7 @@ class LoanEconomyPanel extends Component {
                                     <Input
                                         label={i18n('loan.economy.company-name')}
                                         value={ownedCompanyName}
-                                        onChange={e => this.onChange('ownedCompanyName', e)}
+                                        onChange={this.onChange}
                                         name="ownedCompanyName"
                                         minLength={1}
                                         maxLength={40}
@@ -232,7 +245,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.12month-company')}
                                         value={ownedCompanyMoreThan1Year}
-                                        onChange={e => this.onChange('ownedCompanyMoreThan1Year', e)}
+                                        onChange={this.onChange}
                                         name="ownedCompanyMoreThan1Year"
                                         required
                                         className="input-field"
@@ -247,7 +260,7 @@ class LoanEconomyPanel extends Component {
                                 <Select
                                     label={i18n('loan.economy.living-label')}
                                     value={residenceType}
-                                    onChange={e => this.onChange('residenceType', e)}
+                                    onChange={this.onChange}
                                     name="residenceType"
                                     required
                                     className="input-field"
@@ -261,7 +274,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.rent-label')}
                                         value={monthlyResidenceCost}
-                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        onChange={this.onChange}
                                         name="tenant"
                                         required
                                         className="input-field"
@@ -276,7 +289,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.owned-label')}
                                         value={monthlyResidenceCost}
-                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        onChange={this.onChange}
                                         name="condominium"
                                         required
                                         className="input-field"
@@ -291,7 +304,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.house-label')}
                                         value={monthlyResidenceCost}
-                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        onChange={this.onChange}
                                         name="detached_house"
                                         required
                                         className="input-field"
@@ -306,7 +319,7 @@ class LoanEconomyPanel extends Component {
                                     <Input
                                         label={i18n('loan.economy.living-other-label')}
                                         value={residenceDescription}
-                                        onChange={e => this.onChange('residenceDescription', e)}
+                                        onChange={this.onChange}
                                         name="residenceDescription"
                                         required
                                         minLength={1}
@@ -318,7 +331,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.others-living-label')}
                                         value={monthlyResidenceCost}
-                                        onChange={e => this.onChange('monthlyResidenceCost', e)}
+                                        onChange={this.onChange}
                                         name="monthlyResidenceCost"
                                         required
                                         className="input-field"
@@ -332,7 +345,7 @@ class LoanEconomyPanel extends Component {
                                 <Select
                                     label={i18n('loan.economy.adults-label')}
                                     value={numberOfAdultsInResidence}
-                                    onChange={e => this.onChange('numberOfAdultsInResidence', e)}
+                                    onChange={this.onChange}
                                     name="numberOfAdultsInResidence"
                                     required
                                     className="input-field"
@@ -343,7 +356,7 @@ class LoanEconomyPanel extends Component {
                                 <Select
                                     label={i18n('loan.economy.children-label')}
                                     value={numberOfChildrenInResidence}
-                                    onChange={e => this.onChange('numberOfChildrenInResidence', e)}
+                                    onChange={this.onChange}
                                     name="numberOfChildrenInResidence"
                                     required
                                     className="input-field"
@@ -367,7 +380,7 @@ class LoanEconomyPanel extends Component {
                                 <label className="economy-row">
                                     <Checkbox
                                         checked={hasMortgageLoan}
-                                        onChange={e => this.onChange('hasMortgageLoan', e)}
+                                        onChange={this.onChange}
                                         name="hasMortgageLoan"
                                     />
                                     <div>{i18n('loan.economy.others-checkbox')}</div>
@@ -376,7 +389,7 @@ class LoanEconomyPanel extends Component {
                                     <Select
                                         label={i18n('loan.economy.others-label')}
                                         value={monthlyMortgageCost}
-                                        onChange={e => this.onChange('monthlyMortgageCost', e)}
+                                        onChange={this.onChange}
                                         name="monthlyMortgageCost"
                                         className="input-field"
                                     >
@@ -391,18 +404,14 @@ class LoanEconomyPanel extends Component {
                             </section>
                             <section className="economy-bottom" key="4">
                                 <label className="economy-row">
-                                    <Checkbox
-                                        checked={hasOtherLoan}
-                                        onChange={e => this.onChange('hasOtherLoan', e)}
-                                        name="hasOtherLoan"
-                                    />
+                                    <Checkbox checked={hasOtherLoan} onChange={this.onChange} name="hasOtherLoan" />
                                     <div>{i18n('loan.economy.other-loan-checkbox')}</div>
                                 </label>
                                 {!hasOtherLoan && (
                                     <Select
                                         label={i18n('loan.economy.other-loan-cost-label')}
                                         value={monthlyCostOtherLoans}
-                                        onChange={e => this.onChange('monthlyCostOtherLoans', e)}
+                                        onChange={this.onChange}
                                         name="monthlyCostOtherLoans"
                                         className="input-field"
                                     >
@@ -417,16 +426,11 @@ class LoanEconomyPanel extends Component {
                             </section>
                         </ResponsivePanel>
                         <div className="next-button">
-                            <Button
-                                onClick={this.handleNextStep}
-                                round
-                                disabled={!this.validForm()}
-                                name="economyNextButton"
-                            >
+                            <Button onClick={this.handleNextStep} round name="economyNextButton">
                                 {i18n('general.next')}
                             </Button>
                         </div>
-                    </form>
+                    </Form>
                 </ExpandablePanel>
             </div>
         );

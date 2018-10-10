@@ -210,7 +210,7 @@ class LoanGeneralInformationPanel extends Component {
                         </label>
 
                         <div className="apply-button">
-                            <Button onClick={this.handleNextStep} round disabled={!this.validForm()}>
+                            <Button onClick={this.handleNextStep} round>
                                 {i18n('loan.general.apply')}
                             </Button>
                         </div>
