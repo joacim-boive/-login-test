@@ -44,18 +44,25 @@ class LoanEconomyPanel extends Component {
         residenceDescription: '',
     };
 
-    constructor(props) {
-        super(props);
+    formEconomy = React.createRef();
 
-        this.formEconomy = React.createRef();
-        this.monthlyNetIncome = React.createRef();
-    }
+    monthlyNetIncome = React.createRef();
+
+    testRef = React.createRef();
+
+    setRef = element => {
+        this.testRef = element;
+        this.forceUpdate();
+    };
 
     onChange = e => {
         const { target } = e;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const { name } = target;
-        this.setState({ [name]: value });
+
+        this.setState({
+            [name]: value,
+        });
     };
 
     validForm = () => {
@@ -146,7 +153,7 @@ class LoanEconomyPanel extends Component {
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
-                    <Form ref={this.formEconomy} validateRefs={[this.monthlyNetIncome]} className="formEconomy">
+                    <Form ref={this.formEconomy} validateRefs={[this.testRef]} className="formEconomy">
                         <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                             <section key="1">
                                 <h4>{i18n('loan.economy.occupation')}</h4>
@@ -189,22 +196,25 @@ class LoanEconomyPanel extends Component {
                                         minLength={1}
                                         maxLength={7}
                                         className="input-field"
-                                        ref={this.monthlyNetIncome}
                                     />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED', 'SELFEMPLOYED'].includes(
                                     employmentForm
                                 ) && (
-                                    <Input
-                                        label={i18n('loan.economy.gross-income-label')}
-                                        value={monthlyGrossIncome}
-                                        onChange={this.onChange}
-                                        name="monthlyGrossIncome"
-                                        required
-                                        minLength={1}
-                                        maxLength={7}
-                                        className="input-field"
-                                    />
+                                    <>
+                                        <h1>testRef</h1>
+                                        <Input
+                                            label={i18n('loan.economy.gross-income-label')}
+                                            value={monthlyGrossIncome}
+                                            onChange={this.onChange}
+                                            name="monthlyGrossIncome"
+                                            required
+                                            minLength={1}
+                                            maxLength={7}
+                                            className="input-field"
+                                            ref={this.testRef}
+                                        />
+                                    </>
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
                                     <Input
