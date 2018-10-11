@@ -1,16 +1,30 @@
-@import '../../../styles/mixins';
+@import "~@ecster/ecster-styles/scss/v2/include/media-queries";
 
 .common-onboarding-dialog {
-    h1 {
-        text-align: center;
-    }
-
-    .hand-icon {
-        width: 150px;
-        height: auto;
-    }
-
     .dialog-ctr {
-        padding: 20px 10px;
+        padding: 25px 15px; // adds to DialogBody 15px padding
+
+        .hand-icon {
+            width: 150px;
+            height: auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        @include mobile() {
+            padding: 20px 0;
+
+            .hand-icon {
+                width: 100px;
+                height: auto;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+        }
     }
 }
