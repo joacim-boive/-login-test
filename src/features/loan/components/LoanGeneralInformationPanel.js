@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Button, Select, Option, Input, Checkbox, ResponsivePanel } from '@ecster/ecster-components';
+import { Button, Select, Option, Input, Checkbox, ResponsivePanel, Form } from '@ecster/ecster-components';
 import './LoanGeneralInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import ClearingNumberInput from './ClearingNumberInput';
@@ -38,6 +38,18 @@ class LoanGeneralInformationPanel extends Component {
         agreedTerms: false,
     };
 
+    formGeneralInformation = React.createRef();
+
+    loanUsage = React.createRef();
+
+    loanAmountToResolve = React.createRef();
+
+    loanUsageDescription = React.createRef();
+
+    clearingNumber = React.createRef();
+
+    accountNumber = React.createRef();
+
     onFoundBank = bank => {
         this.setState({ bank });
     };
@@ -57,31 +69,12 @@ class LoanGeneralInformationPanel extends Component {
         this.setState({ [name]: val });
     };
 
-    validForm = () => {
-        const {
-            loanUsage,
-            loanUsageDescriptionValid,
-            loanAmountToResolveValid,
-            bank,
-            clearingNumberValid,
-            accountNumberValid,
-            agreedTerms,
-        } = this.state;
-
-        let result = true;
-
-        if (['OTHER'].includes(loanUsage)) result = result && loanUsageDescriptionValid;
-        if (['RESOLVE_OTHER_LOAN'].includes(loanUsage)) result = result && loanAmountToResolveValid;
-
-        result = result && !!loanUsage && clearingNumberValid && accountNumberValid && agreedTerms && !!bank;
-
-        return result;
-    };
-
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        onNextStep(step, id);
+        if (this.formGeneralInformation.current.validate()) {
+            onNextStep(step, id);
+        }
     };
 
     render() {
@@ -94,6 +87,7 @@ class LoanGeneralInformationPanel extends Component {
             clearingNumber,
             agreedTerms,
         } = this.state;
+
         const classes = classNames({
             'loan-general-information-panel': true,
             [className]: className,
@@ -111,7 +105,17 @@ class LoanGeneralInformationPanel extends Component {
                     showMoreLabel={i18n('loan.general.header')}
                     showLessLabel={i18n('loan.general.header')}
                 >
-                    <form>
+                    <Form
+                        ref={this.formGeneralInformation}
+                        validateRefs={[
+                            this.loanUsage,
+                            this.loanAmountToResolve,
+                            this.loanUsageDescription,
+                            this.clearingNumber,
+                            this.accountNumber,
+                        ]}
+                        className="formGeneralInformation"
+                    >
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} className="body">
                             <section key="1">
                                 <h4>{i18n('loan.general.about')}</h4>
@@ -136,6 +140,7 @@ class LoanGeneralInformationPanel extends Component {
                                 {['RESOLVE_OTHER_LOAN'].includes(loanUsage) && (
                                     <Input
                                         label={i18n('loan.general.resolve-other')}
+                                        type="tel"
                                         value={loanAmountToResolve}
                                         onChange={e => this.onChange('loanAmountToResolve', e)}
                                         placeholder={i18n('general.currency.se')}
@@ -151,6 +156,7 @@ class LoanGeneralInformationPanel extends Component {
                                 {['OTHER'].includes(loanUsage) && (
                                     <Input
                                         label={i18n('loan.general.other-usage')}
+                                        type="tel"
                                         value={loanUsageDescription}
                                         onChange={e => this.onChange('loanUsageDescription', e)}
                                         name="loanUsageDescription"
@@ -171,6 +177,7 @@ class LoanGeneralInformationPanel extends Component {
                                 <span className="account-number">
                                     <ClearingNumberInput
                                         value={clearingNumber}
+                                        type="tel"
                                         onChange={e => this.onChange('clearingNumber', e)}
                                         onFoundBank={this.onFoundBank}
                                         placeholder={i18n('loan.general.clearing-number')}
@@ -185,6 +192,7 @@ class LoanGeneralInformationPanel extends Component {
                                     />
                                     <Input
                                         value={accountNumber}
+                                        type="tel"
                                         onChange={e => this.onChange('accountNumber', e)}
                                         placeholder={i18n('loan.general.account-number')}
                                         name="accountNumber"
@@ -214,7 +222,7 @@ class LoanGeneralInformationPanel extends Component {
                                 {i18n('loan.general.apply')}
                             </Button>
                         </div>
-                    </form>
+                    </Form>
                 </ExpandablePanel>
             </div>
         );

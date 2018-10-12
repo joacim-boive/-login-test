@@ -6,8 +6,6 @@ import { Form, Select, Option, Checkbox, Button, Input, ResponsivePanel } from '
 import './LoanEconomyPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
-const validBoolean = str => str === 'yes' || str === 'no';
-
 class LoanEconomyPanel extends Component {
     static propTypes = {
         onNextStep: PropTypes.func.isRequired,
@@ -75,48 +73,6 @@ class LoanEconomyPanel extends Component {
         this.setState({
             [name]: value,
         });
-    };
-
-    validForm = () => {
-        const {
-            employmentForm,
-            monthlyNetIncome,
-            monthlyGrossIncome,
-            hasMortgageLoan,
-            monthlyMortgageCost,
-            residenceType,
-            numberOfAdultsInResidence,
-            numberOfChildrenInResidence,
-            hasOtherLoan,
-            monthlyCostOtherLoans,
-            employer,
-            employedMoreThan1Year,
-            ownedCompanyMoreThan1Year,
-            monthlyResidenceCost,
-            residenceDescription,
-        } = this.state;
-
-        let result = true;
-
-        if (['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm)) {
-            result = result && !!monthlyGrossIncome && !!employer && !!validBoolean(employedMoreThan1Year);
-        } else if (['SELFEMPLOYED'].includes(employmentForm)) {
-            result = result && !!monthlyGrossIncome && !!validBoolean(ownedCompanyMoreThan1Year);
-        } else if (['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(employmentForm)) {
-            result = result && !!monthlyNetIncome;
-        } else {
-            result = false;
-        }
-
-        result = result && !!numberOfAdultsInResidence && !!numberOfChildrenInResidence;
-
-        result = result && (!!hasMortgageLoan || !!monthlyMortgageCost) && (!!hasOtherLoan || !!monthlyCostOtherLoans);
-
-        result = result && !!residenceType && !!monthlyResidenceCost;
-
-        if (['OTHER'].includes(residenceType)) result = result && !!residenceDescription;
-
-        return result;
     };
 
     handleNextStep = () => {
@@ -217,6 +173,7 @@ class LoanEconomyPanel extends Component {
                                 {['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(employmentForm) && (
                                     <Input
                                         label={i18n('loan.economy.income-label')}
+                                        type="tel"
                                         value={monthlyNetIncome}
                                         onChange={this.onChange}
                                         name="monthlyNetIncome"
@@ -232,6 +189,7 @@ class LoanEconomyPanel extends Component {
                                 ) && (
                                     <Input
                                         label={i18n('loan.economy.gross-income-label')}
+                                        type="tel"
                                         value={monthlyGrossIncome}
                                         onChange={this.onChange}
                                         name="monthlyGrossIncome"
