@@ -47,25 +47,29 @@ class OnboardingDialog extends Component {
         const { showDialog } = this.state;
 
         return (
-            <div className="common-onboarding-dialog">
-                <Dialog rounded3x maxWidth="500px" fullscreenMobile open={showDialog} className="e-bg-beige10">
-                    <div className="dialog-ctr">
-                        <DialogBody centeredContent className="dialog">
-                            <img src={handIcon} className="hand-icon mb-6x" />
-                            <h2 className="e-green120">{i18n('common.alpha.header')}</h2>
-                            {i18n('common.alpha.info', {
-                                returnObjects: true,
-                                wrapper: { tag: 'p' },
-                            })}
-                        </DialogBody>
-                        <ButtonGroup alignCenter>
-                            <Button round onClick={this.onClickGo}>
-                                {i18n('common.alpha.button-text')}
-                            </Button>
-                        </ButtonGroup>
-                    </div>
-                </Dialog>
-            </div>
+            <Dialog
+                rounded3x
+                maxWidth="500px"
+                fullscreenMobile
+                open={showDialog}
+                className="common-onboarding-dialog e-bg-beige10"
+            >
+                <div className="dialog-ctr">
+                    <DialogBody centeredContent className="dialog">
+                        <img src={handIcon} className="hand-icon mb-6x" />
+                        <h2 className="e-green120">{i18n('common.alpha.header')}</h2>
+                        {i18n('common.alpha.info', {
+                            returnObjects: true,
+                            wrapper: { tag: 'p' },
+                        })}
+                    </DialogBody>
+                    <ButtonGroup alignCenter>
+                        <Button round onClick={this.onClickGo}>
+                            {i18n('common.alpha.button-text')}
+                        </Button>
+                    </ButtonGroup>
+                </div>
+            </Dialog>
         );
     }
 }
