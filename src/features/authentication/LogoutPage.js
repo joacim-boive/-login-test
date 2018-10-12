@@ -17,14 +17,15 @@ export class LogoutPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
+        const { authentication, removeSession } = this.props;
+        if (authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
             clearSessionStorage();
-            this.props.removeSession(); // remove login state
+            removeSession(); // remove login state
         }
     }
 
     render() {
-        return <div className="authentication-logout-page">Page Content: authentication/LogoutPage</div>;
+        return <div className="authentication-logout-page" />;
     }
 }
 

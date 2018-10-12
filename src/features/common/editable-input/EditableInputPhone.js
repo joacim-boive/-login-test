@@ -5,10 +5,10 @@ import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
+import { formatMobileNumber } from '../../../common/util/format-mobile-number';
 
 export class EditableInputPhone extends Component {
     state = {
-        editMode: !this.props.value, // editMode if empty
         value: this.props.value,
         valueUnedited: this.props.value,
     };
@@ -23,7 +23,12 @@ export class EditableInputPhone extends Component {
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
         const { value } = this.state;
-        if (nextValue.number !== value.number) this.setState({ value: nextValue });
+
+        if (nextValue && nextValue.number !== value.number) {
+            this.setState({ value: nextValue });
+        }
+
+        this.setState({ editMode: !nextValue || !nextValue.countryCallingCode || !nextValue.number });
     }
 
     onChange = e => {
@@ -102,7 +107,7 @@ export class EditableInputPhone extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>
-                        {value.countryCallingCode} (0) {value.number}
+                        {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                     </strong>
                     <Button name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}

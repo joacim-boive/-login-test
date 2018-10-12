@@ -97,9 +97,9 @@
             "show-more": "Se fler"
         },
         "sales-panel": {
-            "header": "Koppla ett kort till ditt konto",
-            "body": "Kortet är kopplat till Mastercard och du kan använda det över hela världen. Ingen årsavgift, du får upp till 8 veckor räntefri kredit och du kan delbetala större köp i efterhand.",
-            "button": "Ansök"
+            "header": "Skaffa ett kort till ditt konto",
+            "body": "Handla världen över. Ta del av fler förmåner och försäkringar med ett flexibelt kreditkort.",
+            "button": "Läs mer och ansök"
         },
         "terms": {
             "account-terms": "Kontovillkor",
@@ -197,7 +197,7 @@
             "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
-            "terms-conditions": "Här kan du ta del av dina [link {{url}} 'fullständiga kontovillkor']",
+            "terms-conditions": "Här kan du ta del av dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
@@ -220,6 +220,13 @@
                 "Din ansökan kunde tyvärr inte godkännas. Har du frågor kan du ringa oss på $t(general.phone-link-08343550).",
                 "$t(general.support-opening-hours)"
             ],
+
+            "error":{
+                "communication": {
+                    "header": "Oj, nu gick något fel",
+                    "body": "Vi kan tyvärr inte genomföra din ansökan om höjd kredigräns just nu och felet är helt och hållet vårt. Försök gärna igen om en liten stund."
+                }
+            },
 
             "back-to-overview": "Tillbaka till översikten"
         },
@@ -251,6 +258,14 @@
         "under-construction": {
             "header": "Sidan är inte riktigt färdigslipad än",
             "info": "Vi arbetar för fullt med utvecklingen. Inom kort kommer du att kunna se mer information här."
+        },
+        "alpha": {
+            "header": "Testa vår Alphaversion",
+            "info": [
+                "Detta är alphaversion av Ecsters inloggade tjänst som du som anställd får vara med och testa. Alpha betyder att tjänsten är halvfärdig, det finns sidor som fortfarande är under utveckling. ",
+                "I tjänsten kan du rapportera fel och/eller lämna synpunkter. Vi väldigt tacksamma för din hjälp. Tillsammans gör vi nya inloggat ännu bättre."
+            ],
+            "button-text": "Okej, då kör vi"
         }
     },
     "customer": {
@@ -276,6 +291,7 @@
             "faq-url": "https://www.ecster.se/kundservice#faq-hela"
         }
     },
+
     "home": {
         "login": {
             "SE": {
@@ -311,18 +327,12 @@
                             "body": [
                                 "Låt sidan vara öppen under tiden du loggar in med ditt BankID, annars avbryts inloggningen."
                             ],
-                            "body-cancelled": [
-                                "Åtgärden avbruten. Försök igen."
-                            ],
+                            "body-cancelled": ["Åtgärden avbruten. Försök igen."],
                             "body-already-in-progress": [
                                 "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
                             ],
-                            "body-internal-error": [
-                                "Internt tekniskt fel. Försök igen."
-                            ],
-                            "body-user-cancel": [
-                                "Åtgärden avbruten."
-                            ],
+                            "body-internal-error": ["Internt tekniskt fel. Försök igen."],
+                            "body-user-cancel": ["Åtgärden avbruten."],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
                             ],
@@ -344,18 +354,12 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-cancelled": [
-                                "Åtgärden avbruten. Försök igen."
-                            ],
+                            "body-cancelled": ["Åtgärden avbruten. Försök igen."],
                             "body-already-in-progress": [
                                 "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
                             ],
-                            "body-internal-error": [
-                                "Internt tekniskt fel. Försök igen."
-                            ],
-                            "body-user-cancel": [
-                                "Åtgärden avbruten."
-                            ],
+                            "body-internal-error": ["Internt tekniskt fel. Försök igen."],
+                            "body-user-cancel": ["Åtgärden avbruten."],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
                             ],
@@ -376,18 +380,12 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-cancelled": [
-                                "Åtgärden avbruten. Försök igen."
-                            ],
+                            "body-cancelled": ["Åtgärden avbruten. Försök igen."],
                             "body-already-in-progress": [
                                 "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
                             ],
-                            "body-internal-error": [
-                                "Internt tekniskt fel. Försök igen."
-                            ],
-                            "body-user-cancel": [
-                                "Åtgärden avbruten."
-                            ],
+                            "body-internal-error": ["Internt tekniskt fel. Försök igen."],
+                            "body-user-cancel": ["Åtgärden avbruten."],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
                             ],
@@ -406,18 +404,12 @@
                             "body": [
                                 "Starta BankID säkerhetsapp i din mobil eller surfplatta och ange din kod. Låt denna sida vara öppen, annars avbryts inloggningen."
                             ],
-                            "body-cancelled": [
-                                "Åtgärden avbruten. Försök igen."
-                            ],
+                            "body-cancelled": ["Åtgärden avbruten. Försök igen."],
                             "body-already-in-progress": [
                                 "En identifiering eller underskrift för det här personnumret är redan påbörjad. Försök igen."
                             ],
-                            "body-internal-error": [
-                                "Internt tekniskt fel. Försök igen."
-                            ],
-                            "body-user-cancel": [
-                                "Åtgärden avbruten."
-                            ],
+                            "body-internal-error": ["Internt tekniskt fel. Försök igen."],
+                            "body-user-cancel": ["Åtgärden avbruten."],
                             "body-expired-transaction": [
                                 "BankID-appen svarar inte. Kontrollera att den är startad och att du har internetanslutning. Om du inte har något giltigt BankID kan du hämta ett hos din Bank. Försök sedan igen."
                             ],
@@ -439,6 +431,11 @@
             "header": "Vad tycker du?",
             "info": "Vi är nyfikna på vad du tycker om den här Alphaversionen. Här kan du lämna synpunkter eller rapportera fel.",
             "link": "Tyck till"
+        },
+        "after-logout": {
+            "header": "Tack för besöket!",
+            "info": "Missade du att lämna synpukter? Ingen fara. Tyck till och hjälp oss att göra tjänsten ännu bättre.",
+            "login-link": "Logga in igen"
         }
     },
     "loan": {

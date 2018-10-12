@@ -13,8 +13,8 @@ class BankIdThisDevice extends React.Component {
         return (
             isVisible && (
                 <div className="login-se-touch-mbid-this-device">
-                    <h1>{i18n('header')}</h1>
-                    <ButtonGroup align="center">
+                    <h1 className="e-green120">{i18n('header')}</h1>
+                    <ButtonGroup alignCenter>
                         <Button
                             onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                             round
@@ -24,9 +24,11 @@ class BankIdThisDevice extends React.Component {
                         </Button>
                     </ButtonGroup>
 
-                    <Button onClick={() => toggleState('isOnThisDevice')} link name="to-mbid-other-device-button">
-                        {i18n('to-mbid-button')}
-                    </Button>
+                    <ButtonGroup alignCenter space={false}>
+                        <Button onClick={() => toggleState('isOnThisDevice')} link name="to-mbid-other-device-button">
+                            {i18n('to-mbid-button')}
+                        </Button>
+                    </ButtonGroup>
                 </div>
             )
         );

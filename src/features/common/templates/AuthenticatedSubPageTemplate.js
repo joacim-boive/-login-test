@@ -21,7 +21,7 @@ class AuthenticatedSubPageTemplate extends Component {
 
         const renderHeader = header && (
             <div className="hero-header">
-                <Link to={linkTo} href={linkTo}>
+                <Link to={linkTo} href={linkTo} className="no-underline">
                     <i className="icon-arrow-left" />
                 </Link>
                 <h1>{header}</h1>

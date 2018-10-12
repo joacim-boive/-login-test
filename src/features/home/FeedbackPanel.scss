@@ -1,12 +1,10 @@
-@import "~@ecster/ecster-components/scss/MediaQuery";
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-styles/scss/v2/include/media-queries";
 
 .home-feedback-panel {
-    &.ec-panel {
-        padding: 20px 40px;
-        @include mobile() {
-            padding: 30px 20px;
-        }
+    padding: 20px 40px;
+    @include mobile() {
+        padding: 30px 15px;
     }
 
     display: flex;
@@ -40,4 +38,11 @@
         white-space: nowrap;
         color: $purple!important;
     }
+
+    @include ie11-only() {
+        & > .info {
+            width: 100%;
+        }
+    }
+
 }

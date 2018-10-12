@@ -1,4 +1,5 @@
 import { LoginPage } from '.';
+import { AfterLogout } from '.';
 
 export default {
     path: '/',
@@ -12,5 +13,6 @@ export default {
             isPublic: true,
             childRoutes: [],
         },
+        { path: '/loggedout', name: 'After logout', component: AfterLogout, isPublic: true },
     ],
 };

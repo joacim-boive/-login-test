@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ResponsivePanel, Panel, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
+import { FlexPanel, Panel, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
+import robotFace from '../../../common/images/face-robot.svg';
 import pendingIcon from '../../../common/images/icon-table-lamp.svg';
-import { getAccount, getAccountTerms, updateAccount } from '../redux/actions';
+import { getAccount, getAccountTerms, updateAccount, dismissUpdateAccountError } from '../redux/actions';
 import { formatAmount } from '../../../common/util/format-amount';
 
 import getCreditLimitOptions from './getCreditLimitOptions';
@@ -23,12 +24,13 @@ export class RaiseCreditPage extends Component {
         // message before button can change ...
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
-        showView: 'main', // or "APPROVED", "PENDING", "DENIED"
+        showView: 'main', // "main" or "APPROVED", "PENDING", "DENIED"
         caseNumber: undefined,
     };
 
     componentWillMount() {
-        const { getAccountTerms, getAccount } = this.props;
+        const { getAccountTerms, getAccount, dismissUpdateAccountError } = this.props;
+        dismissUpdateAccountError(); // dismiss any previous errors
         getAccount();
         getAccountTerms();
     }
@@ -44,6 +46,8 @@ export class RaiseCreditPage extends Component {
                 showView: applicationResult.status,
                 caseNumber: applicationResult.caseNumber, // only for PENDING
             });
+        } else if (nextProps.updateAccountError) {
+            this.setState({ showView: 'ERROR' });
         } else {
             this.setState({ currentLimit: limit });
         }
@@ -55,7 +59,7 @@ export class RaiseCreditPage extends Component {
 
         if (newLimit) {
             this.setState({ processing: true });
-            // simulate a few seconds processing
+            // simulate a few seconds processing. TODO: simulation (if needed) after updateAccount returns successfully
             setTimeout(() => {
                 this.setState({ processingMessage: i18n('account.raise-credit.processing-message-uc') });
                 setTimeout(() => {
@@ -110,15 +114,16 @@ export class RaiseCreditPage extends Component {
                 header={i18n('account.raise-credit.page-header')}
             >
                 {showView === 'main' && (
-                    <Panel padding="40px 60px">
-                        <form>
-                            <div className="center mb-8x">
-                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
-                                <h2>{i18n('account.raise-credit.header')}</h2>
-                                <p>{i18n('account.raise-credit.intro')}</p>
-                            </div>
-                            <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter className="pt-4x">
-                                <>
+                    <Panel withMixedContent stretchInMobile>
+                        <div className="mixed-content centered-content mb-8x">
+                            <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                            <h2>{i18n('account.raise-credit.header')}</h2>
+                            <p>{i18n('account.raise-credit.intro')}</p>
+                        </div>
+
+                        <form className="two-col-content">
+                            <FlexPanel>
+                                <div>
                                     <div className="flex-row mb-5x">
                                         <span>{i18n('account.raise-credit.current-credit-limit')}</span>
                                         <strong>{formatAmount(currentLimit)}</strong>
@@ -137,7 +142,7 @@ export class RaiseCreditPage extends Component {
                                             {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
                                         </Select>
                                     </div>
-                                </>
+                                </div>
                                 <div>
                                     <strong>{i18n('account.raise-credit.terms')}</strong>
                                     <p>{i18n('account.raise-credit.terms-description')}</p>
@@ -147,7 +152,7 @@ export class RaiseCreditPage extends Component {
                                         })}
                                     </UnorderedList>
                                 </div>
-                            </ResponsivePanel>
+                            </FlexPanel>
                             <div
                                 className="center mt-6x"
                                 dangerouslySetInnerHTML={{
@@ -162,19 +167,19 @@ export class RaiseCreditPage extends Component {
                                 </ButtonGroup>
                             )}
                             {processing && (
-                                <div>
-                                    <div className="mb-3x">
+                                <>
+                                    <div className="mtb-3x centered-content">
                                         <small>{processingMessage}</small>
                                     </div>
                                     <Spinner id="raise-credit-spinner" isCenterX isVisible />
-                                </div>
+                                </>
                             )}
                         </form>
                     </Panel>
                 )}
 
                 {showView === 'APPROVED' && (
-                    <Panel textAlignCenter className="result-panel">
+                    <Panel withMixedContent centeredContent className="result-panel">
                         <img src={happyFace} aria-hidden="true" alt="happy face icon" />
                         <h2>{i18n('account.raise-credit.approved-header')}</h2>
                         <p>
@@ -187,27 +192,42 @@ export class RaiseCreditPage extends Component {
                 )}
 
                 {showView === 'PENDING' && (
-                    <Panel textAlignCenter className="result-panel">
-                        <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
-                        <h2>{i18n('account.raise-credit.pending-header')}</h2>
-                        {i18n('account.raise-credit.pending-message', {
-                            returnObjects: true,
-                            wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                            caseNumber,
-                        })}
-                        <BackToOverviewLink />
+                    <Panel withMixedContent centeredContent className="result-panel">
+                        <div className="mixed-content">
+                            <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
+                            <h2>{i18n('account.raise-credit.pending-header')}</h2>
+                            {i18n('account.raise-credit.pending-message', {
+                                returnObjects: true,
+                                wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                                caseNumber,
+                            })}
+                            <BackToOverviewLink />
+                        </div>
                     </Panel>
                 )}
 
                 {showView === 'DENIED' && (
-                    <Panel textAlignCenter className="result-panel">
-                        <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
-                        <h2>{i18n('account.raise-credit.denied-header')}</h2>
-                        {i18n('account.raise-credit.denied-message', {
-                            returnObjects: true,
-                            wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                        })}
-                        <BackToOverviewLink />
+                    <Panel withMixedContent centeredContent className="result-panel">
+                        <div className="mixed-content">
+                            <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                            <h2>{i18n('account.raise-credit.denied-header')}</h2>
+                            {i18n('account.raise-credit.denied-message', {
+                                returnObjects: true,
+                                wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                            })}
+                            <BackToOverviewLink />
+                        </div>
+                    </Panel>
+                )}
+
+                {showView === 'ERROR' && (
+                    <Panel withMixedContent centeredContent className="result-panel">
+                        <div className="mixed-content">
+                            <img src={robotFace} aria-hidden="true" alt="sad face icon" />
+                            <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
+                            <p>{i18n('account.raise-credit.error.communication.body')}</p>
+                            <BackToOverviewLink />
+                        </div>
                     </Panel>
                 )}
             </AuthenticatedSubPageTemplate>
@@ -222,7 +242,13 @@ RaiseCreditPage.propTypes = {
     getAccount: PropTypes.func.isRequired,
     getAccountTerms: PropTypes.func.isRequired,
     updateAccount: PropTypes.func.isRequired,
+    dismissUpdateAccountError: PropTypes.func.isRequired,
+    updateAccountError: PropTypes.any,
     updateAccountPending: PropTypes.bool.isRequired,
+};
+
+RaiseCreditPage.defaultProps = {
+    updateAccountError: null,
 };
 
 /* istanbul ignore next */
@@ -243,6 +269,7 @@ function mapDispatchToProps(dispatch, state) {
         getAccount: () => dispatch(getAccount(id, ref)),
         getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
         updateAccount: data => dispatch(updateAccount(id, ref, data)),
+        dismissUpdateAccountError: () => dispatch(dismissUpdateAccountError()),
     };
 }
 

@@ -75,7 +75,7 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
     const TheLink = () => (
         <DataRow>
             <Data right>
-                <LinkButton iconRight="icon-chevron-right" className="show-more" to={monthlyInvoiceRoute}>
+                <LinkButton iconRight="icon-chevron-right" className="show-more no-underline" to={monthlyInvoiceRoute}>
                     {i18n('account.next-payment.show-details')}
                 </LinkButton>
             </Data>

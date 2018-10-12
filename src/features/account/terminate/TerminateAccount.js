@@ -149,10 +149,12 @@ export class TerminateAccount extends Component {
         const { deleteAccountSuccess, deleteAccountFailure } = this.state;
         return (
             <AuthenticatedSubPageTemplate header={i18n('account.terminate.terminate-account')}>
-                <Panel className="account-terminate-account">
-                    {!deleteAccountSuccess && !deleteAccountFailure && this.renderForm(backUrl)}
-                    {deleteAccountSuccess && this.renderSuccessMessage(backUrl)}
-                    {deleteAccountFailure && this.renderFailureMessage(backUrl)}
+                <Panel withMixedContent stretchInMobile className="account-terminate-account">
+                    <div className="mixed-content">
+                        {!deleteAccountSuccess && !deleteAccountFailure && this.renderForm(backUrl)}
+                        {deleteAccountSuccess && this.renderSuccessMessage(backUrl)}
+                        {deleteAccountFailure && this.renderFailureMessage(backUrl)}
+                    </div>
                 </Panel>
             </AuthenticatedSubPageTemplate>
         );

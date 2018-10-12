@@ -15,12 +15,6 @@
         margin-top: 2%;
         padding: 0;
 
-        &:focus, &:active, &:hover{
-            span {
-                text-decoration: underline;
-            }
-        }
-
         i {
             color: $black;
         }

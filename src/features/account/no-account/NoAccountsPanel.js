@@ -7,22 +7,24 @@ export default class NoAccountsPanel extends Component {
 
     render() {
         return (
-            <Panel textAlignCenter className="account-no-accounts-panel" padding="40px 20px">
-                <h2>{i18n('account.no-account.header')}</h2>
-                {i18n('account.no-account.info', {
-                    returnObjects: true,
-                    wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                })}
-                <ButtonGroup align="center">
-                    <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
-                        {i18n('account.no-account.button-text')}
-                    </LinkButton>
-                </ButtonGroup>
-                <p>{i18n('account.no-account.additional-info')}</p>
-                {i18n('account.no-account.contact-info', {
-                    returnObjects: true,
-                    wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                })}
+            <Panel centeredContent withMixedContent>
+                <div className="mixed-content">
+                    <h2>{i18n('account.no-account.header')}</h2>
+                    {i18n('account.no-account.info', {
+                        returnObjects: true,
+                        wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                    })}
+                    <ButtonGroup align="center">
+                        <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
+                            {i18n('account.no-account.button-text')}
+                        </LinkButton>
+                    </ButtonGroup>
+                    <p>{i18n('account.no-account.additional-info')}</p>
+                    {i18n('account.no-account.contact-info', {
+                        returnObjects: true,
+                        wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
+                    })}
+                </div>
             </Panel>
         );
     }

@@ -7,10 +7,12 @@ import diamond from '../../../common/images/icon-diamond.svg';
 import './UnderConstruction.scss';
 
 const UnderConstruction = () => (
-    <Panel className="under-construction" padding="50px 15px" textAlignCenter sideBordersMobile sideMarginsMobile>
-        <img src={diamond} className="mb-6x" />
-        <h2 className="e-black mb-3x">{i18n('common.under-construction.header')}</h2>
-        <p>{i18n('common.under-construction.info')}</p>
+    <Panel className="under-construction" withMixedContent centeredContent sideMarginsInMobile>
+        <div className="mixed-content">
+            <img src={diamond} className="mb-6x" />
+            <h2 className="e-black mb-3x">{i18n('common.under-construction.header')}</h2>
+            <p>{i18n('common.under-construction.info')}</p>
+        </div>
     </Panel>
 );
 

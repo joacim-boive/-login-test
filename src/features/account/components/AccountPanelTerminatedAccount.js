@@ -34,9 +34,11 @@ class AccountPanel extends Component {
         const amountLabel = i18n('account.terminated-account.header');
 
         return (
-            <Panel padding="12px" sideBordersMobile className={classes}>
+            <Panel withFullWidthContent className={classes}>
                 <TabletOrDesktop>
+                    <div className="full-width-content">
                     <AccountHeader account={account} amountLabel={amountLabel} showCard={false} amount={account.used} />
+                    </div>
                 </TabletOrDesktop>
                 <Mobile>
                     <AccountHeaderMobile

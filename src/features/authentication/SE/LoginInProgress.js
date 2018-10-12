@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button, Spinner, LinkButton } from '@ecster/ecster-components';
+import { Button, ButtonGroup, Spinner, LinkButton } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 
 export default class LoginInProgress extends Component {
@@ -135,13 +135,14 @@ export default class LoginInProgress extends Component {
         return (
             isVisible && (
                 <div className="authentication-login-in-progress">
-                    <h1>{i18n(headerI18nKey)}</h1>
+                    <h1 className="e-green120">{i18n(headerI18nKey)}</h1>
                     {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
-                    <Button link onClick={this.onCancel} name="cancel-login-button">
-                        {i18n('general.cancel')}
-                    </Button>
-
+                    <ButtonGroup alignCenter space={false}>
+                        <Button link onClick={this.onCancel} space={false} name="cancel-login-button">
+                            {i18n('general.cancel')}
+                        </Button>
+                    </ButtonGroup>
                     <div className={buttonClasses}>
                         <p className="mt-8x mb-4x">{i18n('home.login.SE.in-progress.manual.info')}</p>
                         <LinkButton href={startURL} outline round>
