@@ -46,14 +46,26 @@ class LoanEconomyPanel extends Component {
 
     formEconomy = React.createRef();
 
+    // Required fields
+    employmentForm = React.createRef();
+
     monthlyNetIncome = React.createRef();
 
-    testRef = React.createRef();
+    monthlyGrossIncome = React.createRef();
 
-    setRef = element => {
-        this.testRef = element;
-        this.forceUpdate();
-    };
+    employedMoreThan1Year = React.createRef();
+
+    ownedCompanyMoreThan1Year = React.createRef();
+
+    residenceType = React.createRef();
+
+    monthlyResidenceCost = React.createRef();
+
+    residenceDescription = React.createRef();
+
+    numberOfAdultsInResidence = React.createRef();
+
+    numberOfChildrenInResidence = React.createRef();
 
     onChange = e => {
         const { target } = e;
@@ -153,7 +165,22 @@ class LoanEconomyPanel extends Component {
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
-                    <Form ref={this.formEconomy} validateRefs={[this.testRef]} className="formEconomy">
+                    <Form
+                        ref={this.formEconomy}
+                        validateRefs={[
+                            this.employmentForm,
+                            this.monthlyNetIncome,
+                            this.monthlyGrossIncome,
+                            this.employedMoreThan1Year,
+                            this.ownedCompanyMoreThan1Year,
+                            this.residenceType,
+                            this.monthlyResidenceCost,
+                            this.residenceDescription,
+                            this.numberOfAdultsInResidence,
+                            this.numberOfChildrenInResidence,
+                        ]}
+                        className="formEconomy"
+                    >
                         <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                             <section key="1">
                                 <h4>{i18n('loan.economy.occupation')}</h4>
@@ -165,6 +192,7 @@ class LoanEconomyPanel extends Component {
                                     validationMessage="Fältet är obligatoriskt!"
                                     name="employmentForm"
                                     className="input-field"
+                                    ref={this.employmentForm}
                                 >
                                     <Option
                                         label={i18n('loan.economy.options.occupation.fulltime')}
@@ -196,25 +224,23 @@ class LoanEconomyPanel extends Component {
                                         minLength={1}
                                         maxLength={7}
                                         className="input-field"
+                                        ref={this.monthlyNetIncome}
                                     />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED', 'SELFEMPLOYED'].includes(
                                     employmentForm
                                 ) && (
-                                    <>
-                                        <h1>testRef</h1>
-                                        <Input
-                                            label={i18n('loan.economy.gross-income-label')}
-                                            value={monthlyGrossIncome}
-                                            onChange={this.onChange}
-                                            name="monthlyGrossIncome"
-                                            required
-                                            minLength={1}
-                                            maxLength={7}
-                                            className="input-field"
-                                            ref={this.testRef}
-                                        />
-                                    </>
+                                    <Input
+                                        label={i18n('loan.economy.gross-income-label')}
+                                        value={monthlyGrossIncome}
+                                        onChange={this.onChange}
+                                        name="monthlyGrossIncome"
+                                        required
+                                        minLength={1}
+                                        maxLength={7}
+                                        className="input-field"
+                                        ref={this.monthlyGrossIncome}
+                                    />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
                                     <Input
@@ -235,6 +261,7 @@ class LoanEconomyPanel extends Component {
                                         name="employedMoreThan1Year"
                                         required
                                         className="input-field"
+                                        ref={this.employedMoreThan1Year}
                                     >
                                         <Option label={i18n('general.answer.yes')} value="yes" />
                                         <Option label={i18n('general.answer.no')} value="no" />
@@ -259,6 +286,7 @@ class LoanEconomyPanel extends Component {
                                         name="ownedCompanyMoreThan1Year"
                                         required
                                         className="input-field"
+                                        ref={this.ownedCompanyMoreThan1Year}
                                     >
                                         <Option label={i18n('general.answer.yes')} value="yes" />
                                         <Option label={i18n('general.answer.no')} value="no" />
@@ -274,6 +302,7 @@ class LoanEconomyPanel extends Component {
                                     name="residenceType"
                                     required
                                     className="input-field"
+                                    ref={this.residenceType}
                                 >
                                     <Option label={i18n('loan.economy.options.living.rental')} value="TENANT" />
                                     <Option label={i18n('loan.economy.options.living.owned')} value="CONDOMINIUM" />
@@ -285,9 +314,10 @@ class LoanEconomyPanel extends Component {
                                         label={i18n('loan.economy.rent-label')}
                                         value={monthlyResidenceCost}
                                         onChange={this.onChange}
-                                        name="tenant"
+                                        name="monthlyResidenceCost"
                                         required
                                         className="input-field"
+                                        ref={this.monthlyResidenceCost}
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
@@ -300,9 +330,10 @@ class LoanEconomyPanel extends Component {
                                         label={i18n('loan.economy.owned-label')}
                                         value={monthlyResidenceCost}
                                         onChange={this.onChange}
-                                        name="condominium"
+                                        name="monthlyResidenceCost"
                                         required
                                         className="input-field"
+                                        ref={this.monthlyResidenceCost}
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
@@ -315,9 +346,10 @@ class LoanEconomyPanel extends Component {
                                         label={i18n('loan.economy.house-label')}
                                         value={monthlyResidenceCost}
                                         onChange={this.onChange}
-                                        name="detached_house"
+                                        name="monthlyResidenceCost"
                                         required
                                         className="input-field"
+                                        ref={this.monthlyResidenceCost}
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
@@ -335,6 +367,7 @@ class LoanEconomyPanel extends Component {
                                         minLength={1}
                                         maxLength={40}
                                         className="input-field"
+                                        ref={this.residenceDescription}
                                     />
                                 )}
                                 {['OTHER'].includes(residenceType) && (
@@ -345,6 +378,7 @@ class LoanEconomyPanel extends Component {
                                         name="monthlyResidenceCost"
                                         required
                                         className="input-field"
+                                        ref={this.monthlyResidenceCost}
                                     >
                                         <Option label={i18n('loan.economy.options.rent.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.rent.span2')} value="2" />
@@ -359,6 +393,7 @@ class LoanEconomyPanel extends Component {
                                     name="numberOfAdultsInResidence"
                                     required
                                     className="input-field"
+                                    ref={this.numberOfAdultsInResidence}
                                 >
                                     <Option label="1" value="1" />
                                     <Option label="2" value="2" />
@@ -370,6 +405,7 @@ class LoanEconomyPanel extends Component {
                                     name="numberOfChildrenInResidence"
                                     required
                                     className="input-field"
+                                    ref={this.numberOfChildrenInResidence}
                                 >
                                     <Option label="0" value="0" />
                                     <Option label="1" value="1" />
