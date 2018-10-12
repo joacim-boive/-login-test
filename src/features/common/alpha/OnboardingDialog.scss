@@ -1,6 +1,10 @@
 @import "~@ecster/ecster-styles/scss/v2/include/media-queries";
 
 .common-onboarding-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     .dialog-ctr {
         padding: 25px 15px; // adds to DialogBody 15px padding
 
