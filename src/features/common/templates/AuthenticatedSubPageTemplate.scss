@@ -12,9 +12,12 @@
         text-align: center;
     }
     .hero-header {
-        margin: 10px auto 30px;
+        display: flex;
+        flex-flow: column;
         position: relative;
-        z-index: 210; // alpha label order
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 10px auto 30px;
         max-width: $content-max-width-desktop;
 
         @include mobile() {
@@ -46,13 +49,10 @@
         }
 
         h1 {
-            position: absolute;
-            left: 0;
             font-family: 'Campton', sans-serif;
             color: $beige140;
             font-weight: $weight-medium;
             font-size: 26px;
-            text-align: center;
             width: 100%;
             margin: 0;
             padding: 0;
@@ -69,6 +69,10 @@
     }
 
     .page-container {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+
         @include tablet() {
             margin-top: $navigation-height + 10;
         }
@@ -79,6 +83,7 @@
     }
 
     .page-content {
+        width: 100%; // Needed because parent (page-container) is display:flex;
         @mixin tabletOrDesktop() {
             max-width: $content-max-width-desktop;
             margin: 0 auto 10px;

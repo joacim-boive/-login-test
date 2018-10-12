@@ -15,7 +15,7 @@ import { getAccountTerms, getAccount } from '../redux/actions';
 
 const InfoItem = ({ label, value, description }) => (
     <div className="info-item">
-        <div className="item label">{label}</div>
+        <div className="item label" title={description}>{label}</div>
         {value && <div className="item value">{value}</div>}
         {description && <div className="item description">{description}</div>}
     </div>

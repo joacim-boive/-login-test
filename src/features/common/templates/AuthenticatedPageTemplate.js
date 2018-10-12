@@ -6,6 +6,7 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import Footer from '../footer';
 import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
@@ -39,6 +40,7 @@ class AuthenticatedPageTemplate extends React.Component {
                     </Mobile>
                 </div>
                 <MessagePanel />
+                <Footer />
             </>
         );
     }

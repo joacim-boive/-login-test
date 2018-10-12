@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { TabletOrDesktop, Mobile, Panel, ResponsivePanel } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
@@ -40,19 +41,24 @@ class AccountPanel extends Component {
 
         const noCard = account.numberOfCards === 0;
         const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
+        const amountLabel = i18n('account.header.left-to-buy');
 
         return (
             <Panel padding="12px" sideBordersMobile className={classes}>
                 <TabletOrDesktop>
-                    <AccountHeader account={account} />
+                    <AccountHeader account={account} amountLabel={amountLabel} amount={account.limit - account.used} />
                 </TabletOrDesktop>
                 <Mobile>
-                    <AccountHeaderMobile account={account} />
+                    <AccountHeaderMobile
+                        account={account}
+                        amountLabel={amountLabel}
+                        amount={account.limit - account.used}
+                    />
                 </Mobile>
                 {showOverdrawn && (
                     <OverdrawnInfo used={account.used} limit={account.limit} accountNumber={account.accountNumber} />
                 )}
-                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
+                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
                         {noCard ? (
                             <AccountSalesPanel />

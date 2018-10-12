@@ -11,7 +11,6 @@ $label-right: -64px;
     right: 0;
     overflow: hidden;
     background: transparent;
-    z-index: 99;
     width: 120px;
     height: 120px;
 
@@ -31,7 +30,6 @@ $label-right: -64px;
 
 @include mobile() {
     .alpha {
-        z-index: 200;
         top: 0;
         .label {
             font-size: 14px;
@@ -43,7 +41,13 @@ $label-right: -64px;
 
     .common-authenticated-sub-page {
         .alpha {
-            top: 40px;
+            top: 32px;
         }
+    }
+}
+
+@include ie11-only{
+    .alpha {
+        z-index: 2;
     }
 }

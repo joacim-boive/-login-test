@@ -22,6 +22,8 @@ export class LoanSummaryPage extends Component {
         getCustomer: PropTypes.func.isRequired,
         person: PropTypes.object.isRequired,
         customer: PropTypes.object.isRequired,
+        actions: PropTypes.object.isRequired,
+        hasAccounts: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -34,9 +36,7 @@ export class LoanSummaryPage extends Component {
     };
 
     componentWillMount() {
-        const { getCustomer, person } = this.props;
-
-        getCustomer(person.id);
+        this.props.getCustomer(this.props.person.id, this.props.hasAccounts);
     }
 
     onNextStep = (step, id) => {
@@ -75,7 +75,7 @@ export class LoanSummaryPage extends Component {
     };
 
     render() {
-        const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo } = this.props;
+        const { terms, searchTerms, promissory, person, customer, updateCustomerContactInfo, hasAccounts } = this.props;
         const { LoanPersonalInformation, LoanEconomy, LoanGeneralInformation, currentStep, isSubmitted } = this.state;
 
         const { contactInformation } = customer;
@@ -92,9 +92,9 @@ export class LoanSummaryPage extends Component {
                             step={1}
                             collapse={!LoanPersonalInformation}
                             className="loan-panel"
-                            onUpdateContactInfo={data => updateCustomerContactInfo(person.id, data)}
+                            onUpdateContactInfo={data => updateCustomerContactInfo(person.id, hasAccounts, data)}
                             contactInformation={contactInformation}
-                            person={person}
+                            person={customer}
                             onNextStep={this.onNextStep}
                             handleCollapse={this.handleCollapse}
                         />
@@ -133,6 +133,7 @@ function mapStateToProps(state) {
         promissory: state.loan.promissoryNoteDefaultParameters,
         person: state.authentication.person,
         customer: state.customer.customer,
+        hasAccounts: !state.account.hasZeroAccounts,
     };
 }
 
@@ -140,8 +141,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({ ...actions }, dispatch),
-        updateCustomerContactInfo: (id, data) => dispatch(updateCustomerContactInfo(id, data)),
-        getCustomer: id => dispatch(getCustomer(id)),
+        updateCustomerContactInfo: (id, customerHasAccounts, data) =>
+            dispatch(updateCustomerContactInfo(id, customerHasAccounts, data)),
+        getCustomer: (id, hasAccounts) => dispatch(getCustomer(id, hasAccounts)),
     };
 }
 

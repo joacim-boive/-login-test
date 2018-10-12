@@ -6,31 +6,32 @@ import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemp
 import FeedbackPanel from '../home/FeedbackPanel';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
+import AccountPanelTerminatedAccount from './components/AccountPanelTerminatedAccount';
 import NoAccountsPanel from './no-account/NoAccountsPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
         accountsActive: PropTypes.array.isRequired,
+        accountsTerminated: PropTypes.array,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.bool,
+        hasZeroAccounts: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
-        hasZeroAccounts: false,
+        accountsTerminated: [],
     };
 
     componentWillMount() {
         const { user, getAccounts } = this.props;
-
         if (user.id) {
             getAccounts(user.id);
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        const { user, getAccounts } = this.props;
         const nextUser = nextProps.user;
+        const { user, getAccounts } = this.props;
 
         if (nextUser && nextUser.id !== user.id) {
             getAccounts(nextUser.id);
@@ -38,7 +39,14 @@ export class OverviewPage extends Component {
     }
 
     render() {
-        const { accountsActive, user, hasZeroAccounts } = this.props;
+        const { accountsActive, accountsTerminated, user, hasZeroAccounts } = this.props;
+
+        const activeAccounts = accountsActive.map(account => (
+            <AccountPanel key={account.reference} account={account} user={user} />
+        ));
+        const terminatedAccounts = accountsTerminated.map(account => (
+            <AccountPanelTerminatedAccount key={account.reference} account={account} user={user} />
+        ));
 
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
@@ -46,9 +54,10 @@ export class OverviewPage extends Component {
                     {hasZeroAccounts ? (
                         <NoAccountsPanel />
                     ) : (
-                        accountsActive.map(account => (
-                            <AccountPanel key={account.reference} account={account} user={user} />
-                        ))
+                        <>
+                            {activeAccounts}
+                            {terminatedAccounts}
+                        </>
                     )}
                     <FeedbackPanel />
                 </div>
@@ -61,6 +70,7 @@ export class OverviewPage extends Component {
 function mapStateToProps({ account, authentication }) {
     return {
         accountsActive: account.accountsActive,
+        accountsTerminated: account.accountsTerminated,
         hasZeroAccounts: account.hasZeroAccounts,
         user: authentication.person,
     };

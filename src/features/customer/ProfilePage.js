@@ -17,10 +17,12 @@ import profileIcon from '../../common/images/icon-profile.svg';
 
 class ProfilePage extends Component {
     componentWillMount() {
-        this.props.getCustomer();
+        this.props.getCustomer(this.props.hasAccounts);
     }
 
     renderPanel(person) {
+        const { updateCustomerContactInfo, hasAccounts } = this.props;
+
         return (
             <ResponsivePanel desktop={2} tablet={2} mobile={1} horizontalGutter horizontalPadding={20}>
                 <div key={1} className="summary-panel">
@@ -57,10 +59,10 @@ class ProfilePage extends Component {
 
                     <section className="sub-panel">
                         <EditableInputPhone
+                            type="tel"
                             value={person.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
-                            onSave={val => this.props.updateCustomerContactInfo({ phoneNumber: val })}
-                            type="tel"
+                            onSave={val => updateCustomerContactInfo(hasAccounts, { phoneNumber: val })}
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
                         />
@@ -71,8 +73,9 @@ class ProfilePage extends Component {
                             type="email"
                             value={person.contactInformation.email}
                             label={i18n('general.address.email')}
-                            onSave={val => this.props.updateCustomerContactInfo({ email: val })}
+                            onSave={val => updateCustomerContactInfo(hasAccounts, { email: val })}
                             validationMessage={i18n('general.validation.email')}
+                            required
                         />
                     </section>
                 </div>
@@ -99,21 +102,25 @@ ProfilePage.propTypes = {
     person: PropTypes.shape().isRequired,
     getCustomer: PropTypes.func.isRequired,
     updateCustomerContactInfo: PropTypes.func.isRequired,
+    hasAccounts: PropTypes.bool.isRequired,
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ customer }) {
+function mapStateToProps(state) {
     return {
-        person: customer.customer,
+        person: state.customer.customer,
+        hasAccounts: !state.account.hasZeroAccounts,
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch, state) {
     const { customerId } = state.match.params;
+
     return {
-        getCustomer: () => dispatch(getCustomer(customerId)),
-        updateCustomerContactInfo: data => dispatch(updateCustomerContactInfo(customerId, data)),
+        getCustomer: customerHasAccounts => dispatch(getCustomer(customerId, customerHasAccounts)),
+        updateCustomerContactInfo: (customerHasAccounts, data) =>
+            dispatch(updateCustomerContactInfo(customerId, customerHasAccounts, data)),
     };
 }
 
