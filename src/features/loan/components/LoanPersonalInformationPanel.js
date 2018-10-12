@@ -62,90 +62,90 @@ class LoanPersonalInformationPanel extends Component {
             !!contactInformation.phoneNumber.number &&
             !!contactInformation.email;
 
-    return (
-        <div className={classes}>
-            <ExpandablePanel
-                className="expander"
-                compact
-                collapse={collapse}
-                handleNextStep={this.handleNextStep}
-                handleCollapse={() => handleCollapse(id)}
-                showMoreLabel={i18n('loan.personal.header')}
-                showLessLabel={i18n('loan.personal.header')}
-            >
-                <h3>{i18n('loan.personal.panel.header')}</h3>
-                <DataColumns className="body">
-                    <DataColumn>
-                        <DataRow>
-                            <Data small>{i18n('general.address.name')}</Data>
-                            <Data right strong>
-                                {person.name}
-                            </Data>
-                        </DataRow>
-                        <DataRow>
-                            <Data small>{i18n('general.ssn')}</Data>
-                            <Data right strong>
-                                {person.ssn}
-                            </Data>
-                        </DataRow>
-                        <DataRow>
-                            <Data small>{i18n('general.address.address')}</Data>
-                            <Data right strong>
-                                {person.address}
-                            </Data>
-                        </DataRow>
-                        <DataRow>
-                            <Data small>{i18n('general.address.zip')}</Data>
-                            <Data right strong>
-                                {person.zip}
-                            </Data>
-                        </DataRow>
-                        <DataRow>
-                            <Data small>{i18n('general.address.city')}</Data>
-                            <Data right strong>
-                                {person.city}
-                            </Data>
-                        </DataRow>
-                        {!media.onMobile && (
+        return (
+            <div className={classes}>
+                <ExpandablePanel
+                    className="expander"
+                    compact
+                    collapse={collapse}
+                    handleNextStep={this.handleNextStep}
+                    handleCollapse={() => handleCollapse(id)}
+                    showMoreLabel={i18n('loan.personal.header')}
+                    showLessLabel={i18n('loan.personal.header')}
+                >
+                    <h3>{i18n('loan.personal.panel.header')}</h3>
+                    <DataColumns className="body">
+                        <DataColumn>
                             <DataRow>
-                                <Data className="text" right>
-                                    {i18n('loan.personal.info')}
+                                <Data small>{i18n('general.address.name')}</Data>
+                                <Data right strong>
+                                    {person.name}
                                 </Data>
                             </DataRow>
-                        )}
-                    </DataColumn>
-                    <DataColumn>
-                        <DataRow className="column-first">
-                            <EditableInputPhone
-                                type="tel"
-                                value={contactInformation.phoneNumber}
-                                label={i18n('general.address.mobile')}
-                                onSave={val => onUpdateContactInfo({ phoneNumber: val })}
-                                validationMessage={i18n('general.validation.phone')}
-                                validator={phoneValidator}
-                            />
-                        </DataRow>
-                        <DataRow>
-                            <EditableInput
-                                type="email"
-                                value={contactInformation.email}
-                                label={i18n('general.address.email')}
-                                onSave={val => onUpdateContactInfo({ email: val })}
-                                validationMessage={i18n('general.validation.email')}
-                                required
-                            />
-                        </DataRow>
-                        <DataRow>{i18n('loan.personal.contact-text')}</DataRow>
-                    </DataColumn>
-                </DataColumns>
-                <div className="next-button">
-                    <Button onClick={() => console.log('Pressy pressy')} round disabled={!isValid()}>
-                        {i18n('general.next')}
-                    </Button>
-                </div>
-            </ExpandablePanel>
-        </div>
-    );
-};
-
+                            <DataRow>
+                                <Data small>{i18n('general.ssn')}</Data>
+                                <Data right strong>
+                                    {person.ssn}
+                                </Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data small>{i18n('general.address.address')}</Data>
+                                <Data right strong>
+                                    {person.address}
+                                </Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data small>{i18n('general.address.zip')}</Data>
+                                <Data right strong>
+                                    {person.zip}
+                                </Data>
+                            </DataRow>
+                            <DataRow>
+                                <Data small>{i18n('general.address.city')}</Data>
+                                <Data right strong>
+                                    {person.city}
+                                </Data>
+                            </DataRow>
+                            {!media.onMobile && (
+                                <DataRow>
+                                    <Data className="text" right>
+                                        {i18n('loan.personal.info')}
+                                    </Data>
+                                </DataRow>
+                            )}
+                        </DataColumn>
+                        <DataColumn>
+                            <DataRow className="column-first">
+                                <EditableInputPhone
+                                    type="tel"
+                                    value={contactInformation.phoneNumber}
+                                    label={i18n('general.address.mobile')}
+                                    onSave={val => onUpdateContactInfo({ phoneNumber: val })}
+                                    validationMessage={i18n('general.validation.phone')}
+                                    validator={phoneValidator}
+                                />
+                            </DataRow>
+                            <DataRow>
+                                <EditableInput
+                                    type="email"
+                                    value={contactInformation.email}
+                                    label={i18n('general.address.email')}
+                                    onSave={val => onUpdateContactInfo({ email: val })}
+                                    validationMessage={i18n('general.validation.email')}
+                                    required
+                                />
+                            </DataRow>
+                            <DataRow>{i18n('loan.personal.contact-text')}</DataRow>
+                        </DataColumn>
+                    </DataColumns>
+                    <div className="next-button">
+                        <Button onClick={this.handleNextStep} round>
+                            {i18n('general.next')}
+                        </Button>
+                    </div>
+                </ExpandablePanel>
+            </div>
+        );
+    }
+}
 export default withMediaQueries(LoanPersonalInformationPanel);
