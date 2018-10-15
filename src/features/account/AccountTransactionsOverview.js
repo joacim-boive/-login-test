@@ -23,6 +23,10 @@ const getFilter = (defaultFilter, transactions) =>
         : defaultFilter;
 
 export class AccountTransactionsOverview extends Component {
+    state = {
+        reachedBottom: false,
+    };
+
     componentWillMount() {
         const { account, getTransactions, getAccount, transactions } = this.props;
         if (account.product) {
@@ -33,7 +37,11 @@ export class AccountTransactionsOverview extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions, account, transactions } = this.props;
+        const { getTransactions, account, transactions, getAccountTransactionsPending } = this.props;
+
+        if (getAccountTransactionsPending && transactions.length === nextProps.transactions.length) {
+            this.setState({ reachedBottom: true });
+        }
 
         if (nextProps.account.accountNumber !== account.accountNumber) {
             const thisFilter = getFilter(defaultFilter, transactions);
@@ -45,6 +53,8 @@ export class AccountTransactionsOverview extends Component {
     onScrollBottom = () => {
         const { getTransactions, filter, transactions } = this.props;
 
+        console.log('onScrollBottom: received no of tx = ', transactions.length);
+
         getTransactions({
             ...filter,
             maxRecords: filter.maxRecords + filter.stepSize,
@@ -54,6 +64,7 @@ export class AccountTransactionsOverview extends Component {
 
     render() {
         const { account, transactions, reservedTransactions } = this.props;
+        const { reachedBottom } = this.state;
 
         if (!account.product || !transactions) return null;
 
@@ -64,11 +75,12 @@ export class AccountTransactionsOverview extends Component {
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 {showOverdrawn && (
-                    <Panel withNoPadding stretchInMobile className="mt-4x">
+                    <Panel withNoPadding stretchInMobile className="overdrawn-info-ctr">
                         <OverdrawnInfo
                             used={account.used}
                             limit={account.limit}
                             accountNumber={account.accountNumber}
+                            className="overdrawn-info"
                         />
                     </Panel>
                 )}
@@ -82,6 +94,11 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
+                {reachedBottom && (
+                    <Panel withTextContent className="all-tx-info">
+                        <div className="text-content">{i18n('account.transactions.all-transactions')}</div>
+                    </Panel>
+                )}
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -94,6 +111,7 @@ AccountTransactionsOverview.propTypes = {
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
     filter: PropTypes.shape().isRequired,
+    getAccountTransactionsPending: PropTypes.bool.isRequired,
 };
 
 AccountTransactionsOverview.defaultProps = {
@@ -110,6 +128,7 @@ function mapStateToProps(state, route) {
         transactions: state.account.accountTransactions[ref],
         reservedTransactions: state.account.accountReservedTransactions[ref],
         filter: state.account.accountTransactionsFilter,
+        getAccountTransactionsPending: state.account.getAccountTransactionsPending,
     };
 }
 

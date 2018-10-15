@@ -76,7 +76,7 @@
         },
         "latest-transactions": {
             "header": "Senaste händelser",
-            "missing": ["Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."]
+            "missing": ["$t(account.transactions.no-transactions)."]
         },
         "links": {
             "transactions": "Kontohändelser",
@@ -94,7 +94,9 @@
         },
         "transactions": {
             "reserved-amount": "Reserverat belopp",
-            "show-more": "Se fler"
+            "show-more": "Se fler",
+            "no-transactions": "Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader.",
+            "all-transactions": "Det finns inga fler kontohändelser. Du kan se händelser upp till 24 månader."
         },
         "sales-panel": {
             "header": "Skaffa ett kort till ditt konto",
