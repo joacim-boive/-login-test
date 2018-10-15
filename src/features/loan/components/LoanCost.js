@@ -5,6 +5,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ResponsivePanel } from '@ecster/ecster-components';
 import './LoanCost.scss';
 import { formatAmount } from '../../../common/util/format-amount';
+import { formatNumber } from '../../../common/util/format-number';
 
 export const LoanCost = ({ className, terms, interestRate }) => {
     const classes = classNames({
@@ -21,8 +22,8 @@ export const LoanCost = ({ className, terms, interestRate }) => {
                 <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                     <h5>{formatAmount(terms.averageMonthlyCost)}</h5>
                     <div className="column">
-                        <span>{i18n('loan.cost.rate', { rate: interestRate })}</span>
-                        <span>{i18n('loan.cost.effective-rate', { rate: terms.effectiveRate })}</span>
+                        <span>{i18n('loan.cost.rate', { rate: formatNumber(interestRate) })}</span>
+                        <span>{i18n('loan.cost.effective-rate', { rate: formatNumber(terms.effectiveRate) })}</span>
                     </div>
                 </ResponsivePanel>
             </div>

@@ -1,5 +1,5 @@
 // TODO: get locale from redux state
-export const formatNumber = (value, decimals = 2) =>
+export const formatNumber = (value, decimals = 2, locale = 'sv-SE') =>
     isNaN(value)
         ? ''
-        : value.toLocaleString('sv-SE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+        : value.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
