@@ -7,16 +7,21 @@
         margin-bottom: 40px;
     }
 
-    .button.show-more {
-        font-size: $font-size-medium;
-        font-weight: $weight-medium;
-        color: $purple;
-        background: transparent;
-        margin-top: 2%;
-        padding: 0;
+    a {
+        &.button {
+            &.show-more {
+                font-size: $font-size-medium;
+                font-weight: $weight-medium;
+                color: $purple;
+                background: transparent;
+                margin-top: 2%;
+                padding: 0;
 
-        i {
-            color: $black;
+                i {
+                    color: $black;
+                }
+            }
         }
     }
+
 }
