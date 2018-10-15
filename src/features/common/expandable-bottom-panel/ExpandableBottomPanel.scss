@@ -30,8 +30,12 @@
     }
 
     &__content {
-        transition: height 218ms cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
+
+        &--collapsed {
+            transition: height 218ms cubic-bezier(0.4, 0, 0.2, 1);
+            height: 0;
+        }
     }
 
     &__expander {
@@ -41,7 +45,7 @@
         position: relative;
         height: 40px;
         width: 100%;
-        padding: 20px 0px;
+        padding: 20px 0;
         cursor: pointer;
         border-top: 1px solid $beige40;
 
@@ -73,6 +77,6 @@
     &__arrow--expanded {
         transform: rotate(180deg);
         transform-origin: 50% 50%;
-        margin-top: 0px;
+        margin-top: 0;
     }
 }

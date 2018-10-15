@@ -29,14 +29,14 @@ class AuthenticatedPageTemplate extends React.Component {
                 <div className={classes}>
                     <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {thisHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu}/>
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
                 </div>
                 <MessagePanel />
@@ -51,12 +51,13 @@ AuthenticatedPageTemplate.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
-    showLoanMenu: PropTypes.bool.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
     className: '',
     header: undefined,
+    showLoanMenu: false,
 };
 
 /* istanbul ignore next */
