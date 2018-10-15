@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { Panel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
@@ -70,6 +71,11 @@ export class AccountTransactionsOverview extends Component {
 
         const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
 
+        const allTxContainerClasses = classNames({
+            'all-tx-info-ctr': true,
+            'all-received': reachedBottom,
+        });
+
         return (
             <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
                 <h1>{account.product.name}</h1>
@@ -94,11 +100,11 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
-                {reachedBottom && (
+                <div className={allTxContainerClasses}>
                     <Panel withTextContent className="all-tx-info">
                         <div className="text-content">{i18n('account.transactions.all-transactions')}</div>
                     </Panel>
-                )}
+                </div>
             </AuthenticatedSubPageTemplate>
         );
     }
