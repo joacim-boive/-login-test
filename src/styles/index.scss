@@ -195,3 +195,9 @@ a[href^="tel:"] {
         text-decoration: none;
     }
 }
+
+html {
+    /* Always show vertical scroll bar to prevent jumping */
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical;
+}

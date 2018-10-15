@@ -56,13 +56,14 @@ AuthenticatedSubPageTemplate.propTypes = {
     header: PropTypes.string,
     linkTo: PropTypes.string,
     children: PropTypes.node.isRequired,
-    showLoanMenu: PropTypes.bool.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
 AuthenticatedSubPageTemplate.defaultProps = {
     className: '',
     header: undefined,
     linkTo: '',
+    showLoanMenu: false,
 };
 
 /* istanbul ignore next */

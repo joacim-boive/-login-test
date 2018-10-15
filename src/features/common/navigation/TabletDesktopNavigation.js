@@ -30,7 +30,7 @@ class TabletDesktopNavigation extends React.Component {
 
     render() {
         const { showSubMenu } = this.state;
-        const pathname = this.props.history.location.pathname;
+        const { pathname } = this.props.history.location;
         const overviewIsActive = pathname.match(/.account.overview/);
         const invoiceIsActive = pathname.match(/.invoice.overview/);
         const loanIsActive = pathname.match(/.loan.overview/);
@@ -112,7 +112,10 @@ class TabletDesktopNavigation extends React.Component {
 TabletDesktopNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
-    showLoanMenu: PropTypes.bool.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
+TabletDesktopNavigation.defaultProps = {
+    showLoanMenu: false,
+};
 export default withRouter(TabletDesktopNavigation);

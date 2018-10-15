@@ -62,7 +62,9 @@ const SpecificationPanel = ({ className, terms, promissory, loanAmount }) => {
                     <DataRow>
                         <Data>{i18n('loan.spec.admin-fee')}</Data>
                         <Data right strong>
-                            {i18n('loan.spec.per-month', {value: formatAmount(promissory.adminFee, undefined, { roundDown: true })})}
+                            {i18n('loan.spec.per-month', {
+                                value: formatAmount(promissory.adminFee, undefined, { roundDown: true }),
+                            })}
                         </Data>
                     </DataRow>
                     <DataRow>
