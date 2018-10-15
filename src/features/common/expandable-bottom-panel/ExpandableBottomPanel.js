@@ -5,14 +5,34 @@ import { InteractiveElement } from '@ecster/ecster-components';
 import './ExpandableBottomPanel.scss';
 
 class ExpandableBottomPanel extends Component {
+    static propTypes = {
+        children: PropTypes.node.isRequired,
+        compact: PropTypes.bool,
+        noPadding: PropTypes.bool,
+        noBorder: PropTypes.bool,
+        style: PropTypes.shape(),
+        icon: PropTypes.string,
+        showMoreLabel: PropTypes.string,
+        showLessLabel: PropTypes.string,
+        className: PropTypes.string,
+    };
+
+    static defaultProps = {
+        noPadding: false,
+        compact: false,
+        noBorder: false,
+        style: {},
+        icon: 'icon-chevron-down',
+        showMoreLabel: 'Visa mer',
+        showLessLabel: 'Visa mindre',
+        className: '',
+    };
+
     state = { isCollapsed: true };
 
     toggleExpansion = () => {
         const { isCollapsed } = this.state;
 
-        // if (isCollapsed) {
-        //
-        // }
         this.setState({ isCollapsed: !isCollapsed });
     };
 
@@ -67,27 +87,5 @@ class ExpandableBottomPanel extends Component {
         );
     }
 }
-ExpandableBottomPanel.propTypes = {
-    children: PropTypes.node.isRequired,
-    compact: PropTypes.bool,
-    noPadding: PropTypes.bool,
-    noBorder: PropTypes.bool,
-    style: PropTypes.shape(),
-    icon: PropTypes.string,
-    showMoreLabel: PropTypes.string,
-    showLessLabel: PropTypes.string,
-    className: PropTypes.string,
-};
-
-ExpandableBottomPanel.defaultProps = {
-    noPadding: false,
-    compact: false,
-    noBorder: false,
-    style: {},
-    icon: 'icon-chevron-down',
-    showMoreLabel: 'Visa mer',
-    showLessLabel: 'Visa mindre',
-    className: '',
-};
 
 export default ExpandableBottomPanel;

@@ -38,10 +38,6 @@ class ExpandablePanel extends Component {
 
     componentDidMount() {
         const { isCollapsed } = this.state;
-        const { isDisabled } = this.props;
-
-        // if (isDisabled) return;
-
         const maxHeight = this.getHeight();
 
         let setStyle;
@@ -93,15 +89,7 @@ class ExpandablePanel extends Component {
         }
     }
 
-    getHeight = () => {
-        let height = 0;
-
-        if (this.el) {
-            height = this.el.offsetHeight;
-        }
-
-        return height;
-    };
+    getHeight = () => (this.el ? this.el.offsetHeight : 0);
 
     onTransitionEnd = () => {
         // We have to remove the height when done so the box can grow if needed
@@ -142,7 +130,6 @@ class ExpandablePanel extends Component {
 
         const contentClasses = classNames({
             'expandable-panel__content': true,
-            // 'is-collapsed': isCollapsed,
         });
 
         return (
