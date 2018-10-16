@@ -2,6 +2,7 @@
 
     .all-tx-info-ctr {
         max-height: 0;
+        will-change: max-height;
         opacity: 0;
         transition: max-height .3s ease, opacity .3s ease;
         overflow: hidden;

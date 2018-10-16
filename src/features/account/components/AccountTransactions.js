@@ -22,15 +22,11 @@ export const parseTransactionsOnMonth = transactions => {
 export const AccountTransactions = ({ transactions }) => {
     const parsedTransactions = parseTransactionsOnMonth(transactions);
 
-    if (parsedTransactions.length === 0) {
-        return (
-            <Panel withTextContent sideMarginsInMobile>
-                <div className="text-content">{i18n('account.transactions.no-transactions')}</div>
-            </Panel>
-        );
-    }
-
-    return (
+    return parsedTransactions.length === 0 ? (
+        <Panel withTextContent sideMarginsInMobile>
+            <div className="text-content">{i18n('account.transactions.no-transactions')}</div>
+        </Panel>
+    ) : (
         <div className="account-transactions">
             {parsedTransactions.map(trans => (
                 <TransactionsPanel key={trans[0].date} transactions={trans} />
