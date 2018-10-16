@@ -24,7 +24,7 @@ export class RaiseCreditPage extends Component {
         // message before button can change ...
         applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
         applyClassName: 'none', // ... and appearance
-        showView: 'main', // "main" or "APPROVED", "PENDING", "DENIED"
+        showView: 'main', // "main" or "APPROVED", "PENDING", "DENIED", "ERROR"
         caseNumber: undefined,
     };
 

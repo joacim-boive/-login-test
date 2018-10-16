@@ -193,11 +193,11 @@
             "new-credit-limit": "Ny kreditgräns",
             "select-amount": "Välj belopp",
 
-            "terms": "Villkor",
-            "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
+            "terms": "Grundkrav",
+            "terms-description": "När du ansöker om en högre kreditgräns tar vi en kreditupplysning och du behöver uppfylla ett antal grundkrav.",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
-            "terms-conditions": "Här kan du ta del av dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
+            "terms-conditions": "Här kan du ladda ner dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
             "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
@@ -206,11 +206,11 @@
             "processing-message-uc": "Kontaktar UC...",
 
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats. Du hittar dem under under kontovillkor.",
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och din nya kreditgräns har uppdaterats under kontoinformation.",
 
-            "pending-header": "Vi behöver titta lite närmare på din ansökan",
+            "pending-header": "Vi behöver titta närmare på din ansökan",
             "pending-message": [
-                "Vi kommer behöva lite fler uppgifter från dig för att kunna ta ett beslut. ",
+                "Vi behöver fler uppgifter från dig för att kunna ta ett beslut.",
                 "Ring oss på $t(general.phone-link-08343550) och uppge ärendenummer <strong>{{caseNumber}}</strong>",
                 "$t(general.support-opening-hours)"
             ],
@@ -223,8 +223,8 @@
 
             "error":{
                 "communication": {
-                    "header": "Oj, nu gick något fel",
-                    "body": "Vi kan tyvärr inte genomföra din ansökan om höjd kredigräns just nu och felet är helt och hållet vårt. Försök gärna igen om en liten stund."
+                    "header": "Åh nej!",
+                    "body": "Ett tekniskt fel har inträffat och din ansökan om kredithöjning kunde inte genomföras. Försök gärna igen om en liten stund."
                 }
             },
 
