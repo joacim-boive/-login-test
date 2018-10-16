@@ -101,7 +101,7 @@ export class AccountTransactionsOverview extends Component {
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
                 <div className={allTxContainerClasses}>
-                    <Panel withTextContent className="all-tx-info">
+                    <Panel withTextContent sideMarginsInMobile className="all-tx-info">
                         <div className="text-content">{i18n('account.transactions.all-transactions')}</div>
                     </Panel>
                 </div>

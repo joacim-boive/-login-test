@@ -24,7 +24,7 @@ export const AccountTransactions = ({ transactions }) => {
 
     if (parsedTransactions.length === 0) {
         return (
-            <Panel withTextContent>
+            <Panel withTextContent sideMarginsInMobile>
                 <div className="text-content">{i18n('account.transactions.no-transactions')}</div>
             </Panel>
         );
