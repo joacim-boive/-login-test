@@ -56,7 +56,7 @@ class ClearingNumberInput extends Component {
     };
 
     render() {
-        const { className, ...rest } = this.props;
+        const { className, onChange, ...rest } = this.props;
         const { autoSelectedBank, showBankInput, myBank } = this.state;
 
         const classes = classNames({
@@ -72,10 +72,9 @@ class ClearingNumberInput extends Component {
                     <Input
                         onBlur={this.onChangeBank}
                         value={myBank}
+                        name="myBank"
                         placeholder={i18n('loan.general.bank')}
-                        onChange={({ target }) => {
-                            this.setState({ myBank: target.value });
-                        }}
+                        onChange={onChange}
                     />
                 )}
             </div>

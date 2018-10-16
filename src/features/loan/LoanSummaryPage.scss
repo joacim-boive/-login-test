@@ -4,10 +4,14 @@
 
 .loan-summary-page {
     .loan-panel {
-        margin-top: 30px;
+        margin-top: 20px;
+    }
 
-        @include mobile() {
-            margin-top: 0;
-        }
+    .ec-select label{
+        display: block;
+    }
+
+    section{
+        margin-right: 2%;
     }
 }

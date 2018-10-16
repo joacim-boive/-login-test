@@ -6,6 +6,7 @@ import Panel from '@ecster/ecster-components/Panel/Panel';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LoanSummaryPanel.scss';
 import { formatAmount } from '../../../common/util/format-amount';
+import { formatNumber } from '../../../common/util/format-number';
 import ExpandableBottomPanel from '../../common/expandable-bottom-panel/ExpandableBottomPanel';
 import SpecificationPanel from './SpecificationPanel';
 
@@ -44,13 +45,13 @@ const LoanSummaryPanel = ({ className, terms, searchTerms, promissory }) => {
                         <DataRow>
                             <Data>{i18n('loan.summary.panel.rate')}</Data>
                             <Data right strong>
-                                {i18n('loan.summary.panel.rate-value', { rate: promissory.interestRate })}
+                                {i18n('loan.summary.panel.rate-value', { rate: formatNumber(promissory.interestRate) })}
                             </Data>
                         </DataRow>
                         <DataRow>
                             <Data>{i18n('loan.summary.panel.effective-rate')}</Data>
                             <Data right strong>
-                                {i18n('loan.summary.panel.rate-value', { rate: terms.effectiveRate })}
+                                {i18n('loan.summary.panel.rate-value', { rate: formatNumber(terms.effectiveRate) })}
                             </Data>
                         </DataRow>
                     </DataColumn>

@@ -221,7 +221,7 @@
                 "$t(general.support-opening-hours)"
             ],
 
-            "error":{
+            "error": {
                 "communication": {
                     "header": "Oj, nu gick något fel",
                     "body": "Vi kan tyvärr inte genomföra din ansökan om höjd kredigräns just nu och felet är helt och hållet vårt. Försök gärna igen om en liten stund."
@@ -466,13 +466,17 @@
             "adults-label": "Hur många vuxna finns det i hushållet?",
             "children-label": "Hur många barn finns det i hushållet?",
             "company-name": "Företagsnamn",
+            "company-name-error": "Ange namnet på din arbetsgivare",
             "default-label": "Välj",
             "employer": "Arbetsgivare",
+            "employer-error": "Ange namnet på din arbetsgivare",
             "header": "Ekonomi",
             "household": "Hushåll",
             "house-label": "Vad är bostadens driftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "income-error": "Fyll i din inkomst med siffror",
             "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
+            "gross-income-error": "Fyll i din inkomst med siffror",
             "living-label": "Hur bor du?",
             "living-other-label": "Fyll i vilken boendeform",
             "occupation": "Sysselsättning",
@@ -487,7 +491,7 @@
                 "occupation": {
                     "fulltime": "Tillsvidareanställd",
                     "solo": "Egenföretagare",
-                    "parttime": "Visstidsanställd (tex vikarie/projektanställd)",
+                    "parttime": "Visstidsanställd (tex vikarie)",
                     "tryout": "Provanställd",
                     "pension": "Pensionär",
                     "student": "Student",
