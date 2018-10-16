@@ -163,7 +163,6 @@ class LoanGeneralInformationPanel extends Component {
                                     <ClearingNumberInput
                                         value={clearingNumber}
                                         onChange={this.onChange}
-                                        onFoundBank={this.onFoundBank}
                                         placeholder={i18n('loan.general.clearing-number')}
                                         name="clearingNumber"
                                         required

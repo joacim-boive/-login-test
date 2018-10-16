@@ -5,6 +5,8 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Input } from '@ecster/ecster-components';
 import './ClearingNumberInput.scss';
 
+import storeValueForNameInState from '../../../common/util/store-value-for-name-in-state';
+
 class ClearingNumberInput extends Component {
     state = {
         autoSelectedBank: '',
@@ -34,11 +36,6 @@ class ClearingNumberInput extends Component {
         onChange(e);
     };
 
-    onChangeBank = ({ target }) => {
-        const { onFoundBank } = this.props;
-        onFoundBank(target.value);
-    };
-
     between = (x, min, max) => x >= min && x <= max;
 
     checkBank = clearing => {
@@ -55,8 +52,16 @@ class ClearingNumberInput extends Component {
         return '';
     };
 
+    handleChange = e => {
+        const { onChange } = this.props;
+        const that = this;
+
+        storeValueForNameInState(e, that);
+        onChange(e);
+    };
+
     render() {
-        const { className, onChange, ...rest } = this.props;
+        const { className, ...rest } = this.props;
         const { autoSelectedBank, showBankInput, myBank } = this.state;
 
         const classes = classNames({
@@ -70,11 +75,10 @@ class ClearingNumberInput extends Component {
                 {autoSelectedBank && <div className="bank-label">{autoSelectedBank}</div>}
                 {showBankInput && (
                     <Input
-                        onBlur={this.onChangeBank}
                         value={myBank}
                         name="myBank"
                         placeholder={i18n('loan.general.bank')}
-                        onChange={onChange}
+                        onChange={this.handleChange}
                     />
                 )}
             </div>
