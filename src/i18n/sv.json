@@ -93,10 +93,11 @@
             "total": "Total kredit"
         },
         "transactions": {
+            "page-header": "Kontohändelser",
             "reserved-amount": "Reserverat belopp",
             "show-more": "Se fler",
             "no-transactions": "Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader.",
-            "all-transactions": "Det finns inga fler kontohändelser. Du kan se händelser upp till 24 månader."
+            "no-more-transactions": "Det finns inga fler kontohändelser. Du kan se händelser upp till 24 månader."
         },
         "sales-panel": {
             "header": "Skaffa ett kort till ditt konto",

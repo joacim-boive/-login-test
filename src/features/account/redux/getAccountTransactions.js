@@ -29,6 +29,9 @@ const concatIfExists = (source, key, values = [], isShortList = false) => ({
     [key]: source[key] && !isShortList ? source[key].concat(values) : values,
 });
 
+const receivedAllTransactions = (transactions, reservedTransactions) =>
+    (!transactions || transactions.length === 0) && (!reservedTransactions || reservedTransactions.length === 0);
+
 export const getAccountTransactions = (customerId, referenceId, filter, isShortList = false) => async (
     dispatch,
     getState
@@ -76,6 +79,7 @@ export function reducer(state, action) {
                 ...state,
                 getAccountTransactionsPending: true,
                 getAccountTransactionsError: null,
+                receivedAllTransactions: false,
             };
 
         case ACCOUNT_GET_ACCOUNT_TRANSACTIONS_SUCCESS:
@@ -93,6 +97,8 @@ export function reducer(state, action) {
                     action.reservedTransactions,
                     action.isShortList
                 ),
+
+                receivedAllTransactions: receivedAllTransactions(action.transactions, action.reservedTransactions),
 
                 getAccountTransactionsPending: false,
                 getAccountTransactionsError: null,

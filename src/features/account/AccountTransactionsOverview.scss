@@ -1,18 +1,4 @@
 .account-transactions-overview {
-
-    .all-tx-info-ctr {
-        max-height: 0;
-        will-change: max-height;
-        opacity: 0;
-        transition: max-height .3s ease, opacity .3s ease;
-        overflow: hidden;
-
-        &.all-received {
-            max-height: 120px;
-            opacity: 1;
-        }
-    }
-
     .account-summary, .overdrawn-info-ctr, .account-transactions, .all-tx-info {
         margin-bottom: 40px;
     }
