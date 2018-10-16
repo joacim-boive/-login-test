@@ -41,7 +41,7 @@ export class RaiseCreditPage extends Component {
         const { updateAccountPending } = this.props;
         const { applicationResult, limit, maxLimit, allowIncreaseLimit } = nextProps.account;
 
-        if (limit === maxLimit || !allowIncreaseLimit) {
+        if (limit && (limit === maxLimit || !allowIncreaseLimit)) {
             this.setState({ allowRaise: false });
         }
 
