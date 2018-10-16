@@ -17,7 +17,6 @@ export class ExtraCardPage extends Component {
         return (
             <AuthenticatedSubPageTemplate className="card-extra-card-page" header={i18n('card.extra-card.page-header')}>
                 <UnderConstruction />
-                Lars
             </AuthenticatedSubPageTemplate>
         );
     }
