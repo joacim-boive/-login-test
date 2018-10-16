@@ -88,7 +88,11 @@ export class AccountTransactionsOverview extends Component {
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
                 {receivedAllTransactions && (
-                    <Panel withTextContent sideMarginsInMobile className="all-tx-info">
+                    <Panel
+                        id={transactions.length === 0 ? 'no-tx-info' : 'no-more-tx-info'}
+                        withTextContent
+                        sideMarginsInMobile
+                    >
                         <div className="text-content">
                             {transactions.length === 0
                                 ? i18n('account.transactions.no-transactions')
