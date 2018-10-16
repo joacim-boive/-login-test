@@ -5,11 +5,11 @@
 .transactions-panel {
     font-size: 18px;
     color: $gray140;
-    margin-top: 40px;
+    margin-bottom: 40px;
 
     h2 {
         font-size: 20px;
-        margin: 0px 0px 10px 35px;
+        margin: 0 0 10px 35px;
 
         span:last-child {
             color: $beige120;
@@ -18,7 +18,7 @@
         span:first-child {
             font-weight: $weight-bold;
             color: $gray140;
-            margin-left: 0px;
+            margin-left: 0;
         }
 
         @include mobile() {

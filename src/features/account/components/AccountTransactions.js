@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Panel } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import moment from 'moment';
 import './AccountTransactions.scss';
 import { TransactionsPanel } from './TransactionsPanel';
@@ -19,9 +21,16 @@ export const parseTransactionsOnMonth = transactions => {
 
 export const AccountTransactions = ({ transactions }) => {
     const parsedTransactions = parseTransactionsOnMonth(transactions);
-    return (
+
+    return parsedTransactions.length === 0 ? (
+        <Panel withTextContent sideMarginsInMobile>
+            <div className="text-content">{i18n('account.transactions.no-transactions')}</div>
+        </Panel>
+    ) : (
         <div className="account-transactions">
-            {parsedTransactions.map(trans => <TransactionsPanel key={trans[0].date} transactions={trans} />)}
+            {parsedTransactions.map(trans => (
+                <TransactionsPanel key={trans[0].date} transactions={trans} />
+            ))}
         </div>
     );
 };
