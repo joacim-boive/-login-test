@@ -24,10 +24,6 @@ const getFilter = (defaultFilter, transactions) =>
         : defaultFilter;
 
 export class AccountTransactionsOverview extends Component {
-    state = {
-        reachedBottom: false,
-    };
-
     componentWillMount() {
         const { account, getTransactions, getAccount, transactions } = this.props;
         if (account.product) {
@@ -38,11 +34,7 @@ export class AccountTransactionsOverview extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions, account, transactions, getAccountTransactionsPending } = this.props;
-
-        if (getAccountTransactionsPending && transactions.length === nextProps.transactions.length) {
-            this.setState({ reachedBottom: true });
-        }
+        const { getTransactions, account, transactions } = this.props;
 
         if (nextProps.account.accountNumber !== account.accountNumber) {
             const thisFilter = getFilter(defaultFilter, transactions);
@@ -54,8 +46,6 @@ export class AccountTransactionsOverview extends Component {
     onScrollBottom = () => {
         const { getTransactions, filter, transactions } = this.props;
 
-        console.log('onScrollBottom: received no of tx = ', transactions.length);
-
         getTransactions({
             ...filter,
             maxRecords: filter.maxRecords + filter.stepSize,
@@ -64,20 +54,17 @@ export class AccountTransactionsOverview extends Component {
     };
 
     render() {
-        const { account, transactions, reservedTransactions } = this.props;
-        const { reachedBottom } = this.state;
+        const { account, transactions, reservedTransactions, receivedAllTransactions } = this.props;
 
         if (!account.product || !transactions) return null;
 
         const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
 
-        const allTxContainerClasses = classNames({
-            'all-tx-info-ctr': true,
-            'all-received': reachedBottom,
-        });
-
         return (
-            <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
+            <AuthenticatedSubPageTemplate
+                header={i18n('account.transactions.page-header')}
+                className="account-transactions-overview"
+            >
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 {showOverdrawn && (
@@ -100,11 +87,15 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
-                <div className={allTxContainerClasses}>
+                {receivedAllTransactions && (
                     <Panel withTextContent sideMarginsInMobile className="all-tx-info">
-                        <div className="text-content">{i18n('account.transactions.all-transactions')}</div>
+                        <div className="text-content">
+                            {transactions.length === 0
+                                ? i18n('account.transactions.no-transactions')
+                                : i18n('account.transactions.no-more-transactions')}
+                        </div>
                     </Panel>
-                </div>
+                )}
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -117,24 +108,25 @@ AccountTransactionsOverview.propTypes = {
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
     filter: PropTypes.shape().isRequired,
-    getAccountTransactionsPending: PropTypes.bool.isRequired,
+    receivedAllTransactions: PropTypes.bool,
 };
 
 AccountTransactionsOverview.defaultProps = {
     account: {},
     transactions: [],
     reservedTransactions: [],
+    receivedAllTransactions: false,
 };
 
 /* istanbul ignore next */
-function mapStateToProps(state, route) {
+function mapStateToProps({ account }, route) {
     const { ref } = route.match.params;
     return {
-        account: state.account.account,
-        transactions: state.account.accountTransactions[ref],
-        reservedTransactions: state.account.accountReservedTransactions[ref],
-        filter: state.account.accountTransactionsFilter,
-        getAccountTransactionsPending: state.account.getAccountTransactionsPending,
+        account: account.account,
+        transactions: account.accountTransactions[ref],
+        reservedTransactions: account.accountReservedTransactions[ref],
+        filter: account.accountTransactionsFilter,
+        receivedAllTransactions: account.receivedAllTransactions,
     };
 }
 
