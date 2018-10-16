@@ -85,7 +85,8 @@
             "monthly-invoices": "Månadsfakturor",
             "manage-cards": "Hantera kort",
             "apply-for-card": "Ansök om kort",
-            "terms": "Kontoinformation"
+            "terms": "Kontoinformation",
+            "validation-message": "Välj nytt kreditbelopp"
         },
         "summary": {
             "left": "Kvar att handla för",
@@ -203,10 +204,14 @@
             "terms-conditions": "Här kan du ladda ner dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
-            "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
             "apply": "Ansök",
             "processing-message": "Vi behandlar din ansökan...",
             "processing-message-uc": "Kontaktar UC...",
+            "not-allowed": {
+                "alert-header": "Maximal kreditgräns",
+                "alert-message": "Du har redan uppnått din maximala kreditgräns och kan inte ansöka om kredithöjning.",
+                "info-message": "Du kan inte ansöka om kredithöjning."
+            },
 
             "approved-header": "Klart!",
             "approved-message": "Din kredithöjning till {{value}} är godkänd och din nya kreditgräns har uppdaterats under kontoinformation.",

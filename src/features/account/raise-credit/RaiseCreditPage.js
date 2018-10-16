@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { FlexPanel, Panel, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
+import { FlexPanel, Panel, Form, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
+import AlertPanel from '../../../common/AlertPanel';
+
 import walletIcon from '../../../common/images/icon-wallet.svg';
 import happyFace from '../../../common/images/face-happy.svg';
 import disappointedFace from '../../../common/images/face-disappointed.svg';
@@ -21,11 +23,9 @@ export class RaiseCreditPage extends Component {
         newLimit: 0,
         processing: false,
         processingMessage: i18n('account.raise-credit.processing-message'),
-        // message before button can change ...
-        applyMessage: i18n('account.raise-credit.apply-note'), // ... content ...
-        applyClassName: 'none', // ... and appearance
         showView: 'main', // "main" or "APPROVED", "PENDING", "DENIED", "ERROR"
         caseNumber: undefined,
+        allowRaise: true,
     };
 
     componentWillMount() {
@@ -33,11 +33,17 @@ export class RaiseCreditPage extends Component {
         dismissUpdateAccountError(); // dismiss any previous errors
         getAccount();
         getAccountTerms();
+        this.formRef = React.createRef();
+        this.selectRef = React.createRef();
     }
 
     componentWillReceiveProps(nextProps) {
         const { updateAccountPending } = this.props;
-        const { applicationResult, limit } = nextProps.account;
+        const { applicationResult, limit, maxLimit, allowIncreaseLimit } = nextProps.account;
+
+        if (limit === maxLimit || !allowIncreaseLimit) {
+            this.setState({ allowRaise: false });
+        }
 
         // rest operation is pending, next props contains application result
         if (updateAccountPending && applicationResult) {
@@ -57,48 +63,23 @@ export class RaiseCreditPage extends Component {
         const { newLimit } = this.state;
         const { updateAccount } = this.props;
 
-        if (newLimit) {
+        if (this.formRef.current.validate()) {
             this.setState({ processing: true });
             // simulate a few seconds processing. TODO: simulation (if needed) after updateAccount returns successfully
             setTimeout(() => {
-                this.setState({ processingMessage: i18n('account.raise-credit.processing-message-uc') });
-                setTimeout(() => {
-                    updateAccount({ limit: newLimit });
-                }, 1000);
-            }, 2000);
-        } else {
-            this.setState({
-                applyMessage: i18n('account.raise-credit.apply-note-validation'),
-                applyClassName: 'e-error',
-            });
+                updateAccount({ limit: newLimit });
+            }, 2500);
         }
     };
 
     onSelectChange = e => {
         const { value } = e.target;
-
-        if (value) {
-            this.setState({
-                newLimit: value,
-                applyMessage: i18n('account.raise-credit.apply-note'),
-                applyClassName: 'none',
-            });
-        }
         this.setState({ newLimit: value });
     };
 
     render() {
         const { account, terms, locale } = this.props;
-        const {
-            processing,
-            processingMessage,
-            applyMessage,
-            applyClassName,
-            showView,
-            newLimit,
-            caseNumber,
-            currentLimit,
-        } = this.state;
+        const { processing, processingMessage, showView, newLimit, caseNumber, currentLimit, allowRaise } = this.state;
 
         const BackToOverviewLink = () => (
             <p className="mt-8x">
@@ -108,74 +89,98 @@ export class RaiseCreditPage extends Component {
             </p>
         );
 
+        const NoRaiseMsg = () =>
+            !allowRaise && (
+                <AlertPanel
+                    header={i18n('account.raise-credit.not-allowed.alert-header')}
+                    body={i18n('account.raise-credit.not-allowed.alert-message')}
+                    className="mb-8x"
+                />
+            );
+
         return (
             <AuthenticatedSubPageTemplate
                 className="account-raise-credit-page"
                 header={i18n('account.raise-credit.page-header')}
             >
                 {showView === 'main' && (
-                    <Panel withMixedContent stretchInMobile>
-                        <div className="mixed-content centered-content mb-8x">
-                            <img className="mb-4x" src={walletIcon} alt="wallet icon" />
-                            <h2>{i18n('account.raise-credit.header')}</h2>
-                            <p>{i18n('account.raise-credit.intro')}</p>
-                        </div>
+                    <>
+                        <NoRaiseMsg />
+                        <Panel withMixedContent stretchInMobile>
+                            <div className="mixed-content centered-content mb-8x">
+                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                                <h2>{i18n('account.raise-credit.header')}</h2>
+                                <p>{i18n('account.raise-credit.intro')}</p>
+                            </div>
 
-                        <form className="two-col-content">
-                            <FlexPanel>
-                                <div>
-                                    <div className="flex-row mb-5x">
-                                        <span>{i18n('account.raise-credit.current-credit-limit')}</span>
-                                        <strong>{formatAmount(currentLimit)}</strong>
+                            <Form ref={this.formRef} className="two-col-content" validateRefs={[this.selectRef]}>
+                                <FlexPanel>
+                                    <div>
+                                        <div className="flex-row mb-5x">
+                                            <span>{i18n('account.raise-credit.current-credit-limit')}</span>
+                                            <strong>{formatAmount(currentLimit)}</strong>
+                                        </div>
+                                        <div className="flex-row">
+                                            <label htmlFor="creditLimit" className={!allowRaise ? 'no-raise-label' : ''}>
+                                                {i18n('account.raise-credit.new-credit-limit')}
+                                            </label>
+                                            <Select
+                                                ref={this.selectRef}
+                                                value={newLimit}
+                                                name="creditLimit"
+                                                id="creditLimit"
+                                                onChange={this.onSelectChange}
+                                                defaultOption={i18n('account.raise-credit.select-amount')}
+                                                required
+                                                validationMessage={i18n('account.links.validation-message')}
+                                                disabled={!allowRaise}
+                                            >
+                                                {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
+                                            </Select>
+                                        </div>
+                                        {!allowRaise && (
+                                            <p className="no-raise-info">
+                                                <i className="icon-alert-circle" />{' '}
+                                                {i18n('account.raise-credit.not-allowed.info-message')}
+                                            </p>
+                                        )}
                                     </div>
-                                    <div className="flex-row">
-                                        <label htmlFor="creditLimit">
-                                            {i18n('account.raise-credit.new-credit-limit')}
-                                        </label>
-                                        <Select
-                                            value={newLimit}
-                                            name="creditLimit"
-                                            id="creditLimit"
-                                            onChange={this.onSelectChange}
-                                            defaultOption={i18n('account.raise-credit.select-amount')}
-                                        >
-                                            {getCreditLimitOptions(locale, account.limit, account.maxLimit)}
-                                        </Select>
+                                    <div>
+                                        <strong>{i18n('account.raise-credit.terms')}</strong>
+                                        <p>{i18n('account.raise-credit.terms-description')}</p>
+                                        <UnorderedList icon="icon-check" iconClass="e-purple">
+                                            {i18n('account.raise-credit.terms-items', {
+                                                returnObjects: true,
+                                            })}
+                                        </UnorderedList>
                                     </div>
-                                </div>
-                                <div>
-                                    <strong>{i18n('account.raise-credit.terms')}</strong>
-                                    <p>{i18n('account.raise-credit.terms-description')}</p>
-                                    <UnorderedList icon="icon-check" iconClass="e-purple">
-                                        {i18n('account.raise-credit.terms-items', {
-                                            returnObjects: true,
-                                        })}
-                                    </UnorderedList>
-                                </div>
-                            </FlexPanel>
-                            <div
-                                className="center mt-6x"
-                                dangerouslySetInnerHTML={{
-                                    __html: i18n('account.raise-credit.terms-conditions', { url: terms.termsPDFURL }),
-                                }}
-                            />
-                            {!processing && (
-                                <ButtonGroup align="center" className="mt-8x">
-                                    <Button onClick={this.onButtonClick} round>
-                                        {i18n('account.raise-credit.apply')}
-                                    </Button>
-                                </ButtonGroup>
-                            )}
-                            {processing && (
-                                <>
-                                    <div className="mtb-3x centered-content">
-                                        <small>{processingMessage}</small>
-                                    </div>
-                                    <Spinner id="raise-credit-spinner" isCenterX isVisible />
-                                </>
-                            )}
-                        </form>
-                    </Panel>
+                                </FlexPanel>
+                                <div
+                                    className="center mt-6x"
+                                    dangerouslySetInnerHTML={{
+                                        __html: i18n('account.raise-credit.terms-conditions', {
+                                            url: terms.termsPDFURL,
+                                        }),
+                                    }}
+                                />
+                                {!processing && (
+                                    <ButtonGroup align="center" className="mt-8x">
+                                        <Button onClick={this.onButtonClick} round disabled={!allowRaise}>
+                                            {i18n('account.raise-credit.apply')}
+                                        </Button>
+                                    </ButtonGroup>
+                                )}
+                                {processing && (
+                                    <>
+                                        <div className="mtb-3x centered-content">
+                                            <small>{processingMessage}</small>
+                                        </div>
+                                        <Spinner id="raise-credit-spinner" isCenterX isVisible />
+                                    </>
+                                )}
+                            </Form>
+                        </Panel>
+                    </>
                 )}
 
                 {showView === 'APPROVED' && (
