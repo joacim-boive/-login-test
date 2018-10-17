@@ -20,6 +20,11 @@ export class EditableInputPhone extends Component {
         this.formRef = React.createRef();
     }
 
+    componentDidMount() {
+        const { value } = this.state;
+        this.setState({ editMode: !value || !value.countryCallingCode || !value.number });
+    }
+
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
         const { value } = this.state;
@@ -27,8 +32,6 @@ export class EditableInputPhone extends Component {
         if (nextValue && nextValue.number !== value.number) {
             this.setState({ value: nextValue });
         }
-
-        this.setState({ editMode: !nextValue || !nextValue.countryCallingCode || !nextValue.number });
     }
 
     onChange = e => {
