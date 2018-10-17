@@ -90,8 +90,16 @@ class LoanEconomyPanel extends Component {
         }
     };
 
+    handleCollapse = () => {
+        const { isDisabled, handleCollapse, id } = this.props;
+
+        if (!isDisabled) {
+            handleCollapse(id);
+        }
+    };
+
     render() {
-        const { className, collapse, handleCollapse, id, isDisabled } = this.props;
+        const { className, collapse, id, isDisabled } = this.props;
         const {
             employmentForm,
             monthlyNetIncome,
@@ -124,7 +132,7 @@ class LoanEconomyPanel extends Component {
                     collapse={collapse}
                     isDisabled={isDisabled}
                     handleNextStep={this.handleNextStep}
-                    handleCollapse={() => handleCollapse(id)}
+                    handleCollapse={this.handleCollapse}
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
@@ -261,13 +269,20 @@ class LoanEconomyPanel extends Component {
                                         <span>{i18n('loan.economy.12month-company')}</span>
                                         <RadioGroup
                                             name="ownedCompanyMoreThan1Year"
-                                            onChange={this.onChange}
                                             selectedValue={ownedCompanyMoreThan1Year}
                                             required
                                             ref={this.ownedCompanyMoreThan1Year}
                                         >
-                                            <Radio value="yes" label={i18n('general.answer.yes')} />
-                                            <Radio value="no" label={i18n('general.answer.no')} />
+                                            <Radio
+                                                value="yes"
+                                                label={i18n('general.answer.yes')}
+                                                onChange={e => this.onChange(e)}
+                                            />
+                                            <Radio
+                                                value="no"
+                                                label={i18n('general.answer.no')}
+                                                onChange={e => this.onChange(e)}
+                                            />
                                         </RadioGroup>
                                     </div>
                                 )}
@@ -370,31 +385,36 @@ class LoanEconomyPanel extends Component {
                                     value={numberOfAdultsInResidence}
                                     onChange={this.onChange}
                                     name="numberOfAdultsInResidence"
+                                    id="numberOfAdultsInResidence"
                                     required
                                     className="input-field max-50"
                                     ref={this.numberOfAdultsInResidence}
                                     maxLength={2}
+                                    autocomplete="off"
                                 />
                                 <Input
                                     label={i18n('loan.economy.children-label')}
                                     value={numberOfChildrenInResidence}
                                     onChange={this.onChange}
                                     name="numberOfChildrenInResidence"
+                                    id="numberOfChildrenInResidence"
                                     required
                                     className="input-field  max-50"
                                     ref={this.numberOfChildrenInResidence}
                                     maxLength={2}
+                                    autocomplete="off"
                                 />
                             </section>
                         </ResponsivePanel>
                         <h4>{i18n('loan.economy.others')}</h4>
                         <ResponsivePanel desktop={2} tablet={2} mobile={1}>
                             <section key="3">
-                                <label className="economy-row">
+                                <label htmlFor="hasMortgageLoan" className="economy-row">
                                     <Checkbox
                                         checked={hasMortgageLoan}
                                         onChange={this.onChange}
                                         name="hasMortgageLoan"
+                                        id="hasMortgageLoan"
                                     />
                                     <div>{i18n('loan.economy.others-checkbox')}</div>
                                 </label>

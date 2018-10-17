@@ -28,7 +28,6 @@ class LoanGeneralInformationPanel extends Component {
     state = {
         loanUsage: '',
         loanUsageDescription: '',
-        loanAmountToResolve: '',
         clearingNumber: '',
         accountNumber: '',
         agreedTerms: false,
@@ -37,8 +36,6 @@ class LoanGeneralInformationPanel extends Component {
     formGeneralInformation = React.createRef();
 
     loanUsage = React.createRef();
-
-    loanAmountToResolve = React.createRef();
 
     loanUsageDescription = React.createRef();
 
@@ -63,16 +60,17 @@ class LoanGeneralInformationPanel extends Component {
         }
     };
 
+    handleCollapse = () => {
+        const { isDisabled, handleCollapse, id } = this.props;
+
+        if (!isDisabled) {
+            handleCollapse(id);
+        }
+    };
+
     render() {
-        const { className, collapse, handleCollapse, id, isDisabled } = this.props;
-        const {
-            loanUsage,
-            loanUsageDescription,
-            loanAmountToResolve,
-            accountNumber,
-            clearingNumber,
-            agreedTerms,
-        } = this.state;
+        const { className, collapse, isDisabled } = this.props;
+        const { loanUsage, loanUsageDescription, accountNumber, clearingNumber, agreedTerms } = this.state;
 
         const classes = classNames({
             'loan-general-information-panel': true,
@@ -87,7 +85,7 @@ class LoanGeneralInformationPanel extends Component {
                     collapse={collapse}
                     isDisabled={isDisabled}
                     handleNextStep={this.handleNextStep}
-                    handleCollapse={() => handleCollapse(id)}
+                    handleCollapse={this.handleCollapse}
                     showMoreLabel={i18n('loan.general.header')}
                     showLessLabel={i18n('loan.general.header')}
                 >
@@ -95,7 +93,6 @@ class LoanGeneralInformationPanel extends Component {
                         ref={this.formGeneralInformation}
                         validateRefs={[
                             this.loanUsage,
-                            this.loanAmountToResolve,
                             this.loanUsageDescription,
                             this.clearingNumber,
                             this.accountNumber,
@@ -112,6 +109,7 @@ class LoanGeneralInformationPanel extends Component {
                                     name="loanUsage"
                                     required
                                     className="input-field"
+                                    validationMessage={i18n('loan.general.purpose-error')}
                                 >
                                     <Option label={i18n('loan.general.resolve')} value="RESOLVE_OTHER_LOAN" />
                                     <Option label={i18n('loan.general.residence-other')} value="RESIDENCE_OTHER" />
@@ -122,22 +120,6 @@ class LoanGeneralInformationPanel extends Component {
                                     />
                                     <Option label={i18n('loan.general.other')} value="OTHER" />
                                 </Select>
-                                {['RESOLVE_OTHER_LOAN'].includes(loanUsage) && (
-                                    <Input
-                                        label={i18n('loan.general.resolve-other')}
-                                        type="tel"
-                                        value={loanAmountToResolve}
-                                        onChange={this.onChange}
-                                        placeholder={i18n('general.currency.se')}
-                                        name="loanAmountToResolve"
-                                        required
-                                        minLength={3}
-                                        maxLength={30}
-                                        className="input-field"
-                                        onValidation={(name, val) => this.onValidate('loanAmountToResolveValid', val)}
-                                        validator={val => /^\d{1,7}$/.test(val)}
-                                    />
-                                )}
                                 {['OTHER'].includes(loanUsage) && (
                                     <Input
                                         label={i18n('loan.general.other-usage')}
@@ -159,7 +141,7 @@ class LoanGeneralInformationPanel extends Component {
                                 <label htmlFor="clearingNumber" className="account-number-label">
                                     {i18n('loan.general.account')}
                                 </label>
-                                <span className="account-number">
+                                <div className="account-number">
                                     <ClearingNumberInput
                                         value={clearingNumber}
                                         onChange={this.onChange}
@@ -169,6 +151,7 @@ class LoanGeneralInformationPanel extends Component {
                                         minLength={4}
                                         maxLength={6}
                                         className="clearing-field"
+                                        validationMessage={i18n('loan.general.clearing-number-error')}
                                         onValidation={(name, val) => this.onValidate('clearingNumberValid', val)}
                                         validator={val => /^\d{4}(-\d{1}){0,1}$/.test(val)}
                                     />
@@ -181,10 +164,11 @@ class LoanGeneralInformationPanel extends Component {
                                         required
                                         minLength={7}
                                         maxLength={10}
+                                        validationMessage={i18n('loan.general.account-number-error')}
                                         onValidation={(name, val) => this.onValidate('accountNumberValid', val)}
                                         validator={val => /^\d{7,10}$/.test(val)}
                                     />
-                                </span>
+                                </div>
                             </section>
                         </ResponsivePanel>
 
@@ -194,6 +178,8 @@ class LoanGeneralInformationPanel extends Component {
                                 onChange={this.onChange}
                                 name="agreedTerms"
                                 id="agreedTerms"
+                                required
+                                validationMessage={i18n('loan.general.terms-error')}
                             />
                             <div className="text">{i18n('loan.general.terms')}</div>
                         </label>

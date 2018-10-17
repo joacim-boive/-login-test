@@ -8,6 +8,17 @@ import './ClearingNumberInput.scss';
 import storeValueForNameInState from '../../../common/util/store-value-for-name-in-state';
 
 class ClearingNumberInput extends Component {
+    static propTypes = {
+        className: PropTypes.string,
+        onChange: PropTypes.func.isRequired,
+        onFoundBank: PropTypes.func,
+    };
+
+    static defaultProps = {
+        className: '',
+        onFoundBank: () => {},
+    };
+
     state = {
         autoSelectedBank: '',
         showBankInput: false,
@@ -79,22 +90,13 @@ class ClearingNumberInput extends Component {
                         name="myBank"
                         placeholder={i18n('loan.general.bank')}
                         onChange={this.handleChange}
+                        required
+                        validationMessage={i18n('loan.general.bank-error')}
                     />
                 )}
             </div>
         );
     }
 }
-
-ClearingNumberInput.propTypes = {
-    className: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    onFoundBank: PropTypes.func,
-};
-
-ClearingNumberInput.defaultProps = {
-    className: '',
-    onFoundBank: () => {},
-};
 
 export default ClearingNumberInput;
