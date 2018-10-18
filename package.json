@@ -110,8 +110,7 @@
             "cssWhiteList": [],
             "language": "sv",
             "googleAnalytics": {
-                "id": "UA-123456-1",
-                "script": "ga/analytics.js"
+                "id": "UA-127526908-1"
             },
             "entries": [
                 "index.js",
@@ -124,7 +123,7 @@
                     "to": "static/i18n"
                 },
                 {
-                    "from": "ga",
+                    "from": "../node_modules/@ecster/ecster-analytics/vendor/",
                     "to": "ga"
                 },
                 {
@@ -216,14 +215,14 @@
         "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "1.0.65",
+        "@ecster/ecster-analytics": "^4.0.92",
         "@ecster/ecster-components": "^2.0.485",
         "@ecster/ecster-i18n": "^3.0.66",
         "@ecster/ecster-net": "^2.0.93",
         "@ecster/ecster-styles": "^3.0.212",
         "@ecster/ecster-util": "^2.0.73",
         "@ecster/ecster-validation": "^2.0.62",
-        "@ecster/ecster-webpack": "^2.0.191",
+        "@ecster/ecster-webpack": "^2.0.201",
         "ajv": "^6.5.4",
         "classnames": "^2.2.6",
         "eslint-plugin-jest": "^21.25.0",
