@@ -462,7 +462,7 @@
             "terms-error": "Vänligen försäkra att dina uppgifter är korrekta",
             "withdrawal": "Utbetalning",
             "enter-bank": "Ange bank dit utbetalning ska ske",
-            "bank": "Bank"
+            "bank": "Bank",
             "bank-error": "Vänligen ange bankens namn"
         },
         "economy": {

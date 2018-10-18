@@ -96,7 +96,11 @@ class ExpandablePanel extends Component {
         const { isCollapsing } = this.state;
         const style = isCollapsing ? { height: '0px' } : null;
 
-        this.setState({ isCollapsed: isCollapsing, isCollapsing: false, thisStyle: style });
+        // This is needed for Safari on Mac and iOS
+        // They trigger this event in a non standard way so we're not ready yet.
+        if (typeof isCollapsing !== 'undefined') {
+            this.setState({ isCollapsed: isCollapsing, isCollapsing: false, thisStyle: style });
+        }
     };
 
     render() {
