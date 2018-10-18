@@ -16,7 +16,7 @@ export const updateCustomerContactInfo = (customerId, customerHasAccounts, data)
     });
 
     try {
-        if (data.phoneNumber.number) {
+        if (data.phoneNumber && data.phoneNumber.number) {
             data.phoneNumber.number = data.phoneNumber.number.replace(/\D/g, '');
         }
         const res = await put(UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId), data);

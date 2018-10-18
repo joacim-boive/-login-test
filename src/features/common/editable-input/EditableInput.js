@@ -107,5 +107,5 @@ EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
-    required: false
+    required: false,
 };
