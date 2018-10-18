@@ -2,7 +2,6 @@ const compile = require('@ecster/ecster-webpack');
 
 compile();
 
-
 // Start an express server for rekit-studio.
 
 // Tests from Rekit Studio does NOT work - run the tests using npm scripts!

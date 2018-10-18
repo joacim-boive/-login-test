@@ -67,7 +67,7 @@ export class ScrollPaginate extends Component {
                 {children}
                 {showMoreButton && (
                     <ButtonGroup align="center">
-                        <Button round outline small onClick={onScrollBottom}>
+                        <Button round outline xSmall onClick={onScrollBottom}>
                             {i18n('account.transactions.show-more')}
                         </Button>
                     </ButtonGroup>

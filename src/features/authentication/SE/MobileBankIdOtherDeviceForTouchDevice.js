@@ -34,12 +34,13 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
         return (
             isVisible && (
                 <div className="login-se-touch-mbid-other-device">
-                    <h2>{i18n('header')}</h2>
+                    <h3 className="e-green120">{i18n('header')}</h3>
                     <Input
                         ref={input => {
                             this.inputRef = input;
                         }}
                         name="ssn"
+                        className="ssn-input"
                         autoComplete="off"
                         label={i18n('ssn-label')}
                         placeholder={i18n('ssn-placeholder')}
@@ -52,20 +53,22 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         type="tel"
                     />
 
-                    <ButtonGroup align="center">
+                    <ButtonGroup alignCenter>
                         <Button onClick={this.startLogin} round name="login-button">
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>
 
-                    <Button
-                        onClick={() => toggleState('isOnThisDevice')}
-                        link
-                        iconLeft="icon-chevron-left"
-                        name="to-mbid-this-device-button"
-                    >
-                        {i18n(`to-mbid-this-device-button`)}
-                    </Button>
+                    <ButtonGroup alignCenter space={false}>
+                        <Button
+                            onClick={() => toggleState('isOnThisDevice')}
+                            link
+                            iconLeft="icon-chevron-left"
+                            name="to-mbid-this-device-button"
+                        >
+                            {i18n(`to-mbid-this-device-button`)}
+                        </Button>
+                    </ButtonGroup>
                 </div>
             )
         );

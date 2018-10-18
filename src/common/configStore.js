@@ -13,7 +13,7 @@ const middlewares = [thunk, router];
 let devToolsExtension = f => f;
 
 /* istanbul ignore if  */
-if (process.env.NODE_ENV === 'dev') {
+if (window.ECSTER_CONFIG_ENVIRONMENT === 'development') {
     const { createLogger } = require('redux-logger');
 
     const logger = createLogger({ collapsed: true });
@@ -25,7 +25,14 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 export default function configureStore(initialState) {
-    const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares), devToolsExtension));
+    const store = createStore(
+        rootReducer,
+        initialState,
+        compose(
+            applyMiddleware(...middlewares),
+            devToolsExtension
+        )
+    );
 
     store.subscribe(() => {
         const state = store.getState();

@@ -6,38 +6,42 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MessagePanel from '../MessagePanel';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
+import Footer from '../footer';
+import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId } = this.props;
+        const { className, customerId, showLoanMenu, header, children } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
             [className]: className,
         });
 
-        const header = this.props.header && (
+        const thisHeader = header && (
             <div className="hero-header">
-                <h1>{this.props.header}</h1>
+                <h1>{header}</h1>
             </div>
         );
 
         return (
-            <React.Fragment>
+            <>
                 <div className={classes}>
+                    <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} />
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
                     <div className="page-container">
-                        {header}
-                        <div className="page-content">{this.props.children}</div>
+                        {thisHeader}
+                        <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} />
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
                 </div>
                 <MessagePanel />
-            </React.Fragment>
+                <Footer />
+            </>
         );
     }
 }
@@ -47,17 +51,20 @@ AuthenticatedPageTemplate.propTypes = {
     className: PropTypes.string,
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
     className: '',
     header: undefined,
+    showLoanMenu: false,
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication }) {
+function mapStateToProps({ authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
+        showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
     };
 }
 

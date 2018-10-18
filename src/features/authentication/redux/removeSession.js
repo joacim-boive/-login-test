@@ -14,13 +14,14 @@ export function removeSession() {
 }
 
 export function reducer(state, action) {
+    const nextState = {
+        ...state,
+        loginStatus,
+        loginProgress,
+    };
     switch (action.type) {
         case AUTHENTICATION_REMOVE_SESSION:
-            return {
-                ...state,
-                loginStatus,
-                loginProgress,
-            };
+            return nextState;
 
         default:
             return state;

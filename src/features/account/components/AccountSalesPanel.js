@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@ecster/ecster-components/Button';
+import { Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './AccountSalesPanel.scss';
 
 export const AccountSalesPanel = ({ className }) => {
@@ -14,23 +13,13 @@ export const AccountSalesPanel = ({ className }) => {
 
     return (
         <div className={classes}>
-            <DataColumns>
-                <DataColumn>
-                    <DataRow>
-                        <Data stronger>
-                            <h4>{i18n('account.sales-panel.header')}</h4>
-                        </Data>
-                    </DataRow>
-                    <DataRow>
-                        <Data>{i18n('account.sales-panel.body')}</Data>
-                        <Data className="button-column">
-                            <Button outline round onClick={() => {}} name="submit">
-                                {i18n('account.sales-panel.button')}
-                            </Button>
-                        </Data>
-                    </DataRow>
-                </DataColumn>
-            </DataColumns>
+            <h4>{i18n('account.sales-panel.header')}</h4>
+            <p>{i18n('account.sales-panel.body')}</p>
+            <ButtonGroup alignCenter spaceBelow={false}>
+                <Button outline round onClick={() => {}} name="submit">
+                    {i18n('account.sales-panel.button')}
+                </Button>
+            </ButtonGroup>
         </div>
     );
 };

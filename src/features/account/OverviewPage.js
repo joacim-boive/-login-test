@@ -3,44 +3,65 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
+import FeedbackPanel from '../home/FeedbackPanel';
+import OnboardingDialog from '../common/alpha/OnboardingDialog';
 import { getAccounts } from './redux/getAccounts';
 import AccountPanel from './components/AccountPanel';
+import AccountPanelTerminatedAccount from './components/AccountPanelTerminatedAccount';
 import NoAccountsPanel from './no-account/NoAccountsPanel';
 
 export class OverviewPage extends Component {
     static propTypes = {
         accountsActive: PropTypes.array.isRequired,
+        accountsTerminated: PropTypes.array,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.boolean,
+        hasZeroAccounts: PropTypes.bool.isRequired,
+    };
+
+    static defaultProps = {
+        accountsTerminated: [],
     };
 
     componentWillMount() {
-        if (this.props.user.id) {
-            this.props.getAccounts(this.props.user.id);
+        const { user, getAccounts } = this.props;
+        if (user.id) {
+            getAccounts(user.id);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         const nextUser = nextProps.user;
-        const currUser = this.props.user;
-        if (nextUser && nextUser.id !== currUser.id) {
-            this.props.getAccounts(nextUser.id);
+        const { user, getAccounts } = this.props;
+
+        if (nextUser && nextUser.id !== user.id) {
+            getAccounts(nextUser.id);
         }
     }
 
     render() {
-        const { accountsActive, user, hasZeroAccounts } = this.props;
+        const { accountsActive, accountsTerminated, user, hasZeroAccounts } = this.props;
+
+        const activeAccounts = accountsActive.map(account => (
+            <AccountPanel key={account.reference} account={account} user={user} />
+        ));
+        const terminatedAccounts = accountsTerminated.map(account => (
+            <AccountPanelTerminatedAccount key={account.reference} account={account} user={user} />
+        ));
+
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
                     {hasZeroAccounts ? (
                         <NoAccountsPanel />
                     ) : (
-                        accountsActive.map(account => (
-                            <AccountPanel key={account.reference} account={account} user={user} />
-                        ))
+                        <>
+                            {activeAccounts}
+                            {terminatedAccounts}
+                        </>
                     )}
+                    <FeedbackPanel />
+                    <OnboardingDialog />
                 </div>
             </AuthenticatedPageTemplate>
         );
@@ -48,11 +69,12 @@ export class OverviewPage extends Component {
 }
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps({ account, authentication }) {
     return {
-        accountsActive: state.account.accountsActive,
-        hasZeroAccounts: state.account.hasZeroAccounts,
-        user: state.authentication.person,
+        accountsActive: account.accountsActive,
+        accountsTerminated: account.accountsTerminated,
+        hasZeroAccounts: account.hasZeroAccounts,
+        user: authentication.person,
     };
 }
 

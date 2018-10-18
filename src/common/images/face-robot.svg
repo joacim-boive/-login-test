@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="87" viewBox="0 0 84 87">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#EFF8F3" stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M68.357 85.929H15.643a5.857 5.857 0 0 1-5.857-5.858V24.43a5.857 5.857 0 0 1 5.857-5.858h52.714a5.857 5.857 0 0 1 5.857 5.858V80.07a5.857 5.857 0 0 1-5.857 5.858z"/>
+        <path fill="#EFF8F3" stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.929 39.071h5.857v20.5H3.929A2.93 2.93 0 0 1 1 56.643V42a2.93 2.93 0 0 1 2.929-2.929z"/>
+        <path stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.929 39.071V6.857"/>
+        <path fill="#FFF" stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.571 74.214H65.43v-5.857H18.57zM42 53.714L36.143 62.5h11.714z"/>
+        <path stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M24.429 74.214h5.857v-5.857h-5.857zM53.714 74.214h5.857v-5.857h-5.857zM36.143 68.357v5.857M47.857 68.357v5.857M42 68.357v5.857M6.857 3.929a2.93 2.93 0 0 1-5.857 0 2.93 2.93 0 0 1 5.857 0z"/>
+        <path fill="#EFF8F3" stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M80.071 39.071h-5.857v20.5h5.857A2.93 2.93 0 0 0 83 56.643V42a2.93 2.93 0 0 0-2.929-2.929z"/>
+        <path stroke="#59B189" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M80.071 39.071V6.857M77.143 3.929a2.93 2.93 0 0 0 5.857 0 2.93 2.93 0 0 0-5.857 0z"/>
+        <path fill="#FFF" stroke="#59B189" stroke-width="2" d="M68.357 39.071c0 6.47-5.245 11.715-11.714 11.715-6.47 0-11.714-5.245-11.714-11.715 0-6.469 5.245-11.714 11.714-11.714 6.47 0 11.714 5.245 11.714 11.714zM39.071 39.071c0 6.47-5.245 11.715-11.714 11.715-6.47 0-11.714-5.245-11.714-11.715 0-6.469 5.245-11.714 11.714-11.714 6.47 0 11.714 5.245 11.714 11.714z"/>
+        <path fill="#59B189" d="M61.036 39.071a4.394 4.394 0 0 1-4.393 4.393 4.394 4.394 0 0 1-4.393-4.393 4.394 4.394 0 0 1 4.393-4.392 4.394 4.394 0 0 1 4.393 4.392M31.75 39.071a4.394 4.394 0 0 1-4.393 4.393 4.394 4.394 0 0 1-4.393-4.393 4.394 4.394 0 0 1 4.393-4.392 4.394 4.394 0 0 1 4.393 4.392"/>
+    </g>
+</svg>

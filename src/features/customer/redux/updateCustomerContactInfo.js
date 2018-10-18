@@ -10,18 +10,21 @@ import { put } from '../../../common/asyncAjax';
 import { UPDATE_CUSTOMER_CONTACT_INFO_URL } from './urls';
 import { getCustomer } from './getCustomer';
 
-export const updateCustomerContactInfo = (customerId, data) => async dispatch => {
+export const updateCustomerContactInfo = (customerId, customerHasAccounts, data) => async dispatch => {
     dispatch({
         type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_BEGIN,
     });
 
     try {
+        if (data.phoneNumber && data.phoneNumber.number) {
+            data.phoneNumber.number = data.phoneNumber.number.replace(/\D/g, '');
+        }
         const res = await put(UPDATE_CUSTOMER_CONTACT_INFO_URL(customerId), data);
         dispatch({
             type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_SUCCESS,
             data: res.response,
         });
-        dispatch(getCustomer(customerId));
+        dispatch(getCustomer(customerId, customerHasAccounts));
     } catch (err) {
         dispatch({
             type: CUSTOMER_UPDATE_CUSTOMER_CONTACT_INFO_FAILURE,

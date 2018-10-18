@@ -1,0 +1,31 @@
+@import '~@ecster/ecster-styles/scss/v2/include/media-queries';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+
+.alert-ctr {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    margin: 0 20px;
+
+    & > img, & > div {
+        display: inline-block;
+    }
+
+    img {
+        width: 34px;
+        height: 34px;
+        margin-right: 34px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    @include mobile() {
+        flex-direction: column;
+        padding: 20px 0;
+        img {
+            display: none;
+        }
+    }
+}

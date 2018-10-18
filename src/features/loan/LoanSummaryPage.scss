@@ -1,12 +1,13 @@
 @import '../../styles/mixins';
 @import '~@ecster/ecster-components/scss/MediaQuery';
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
 
 .loan-summary-page {
     .loan-panel {
         margin-top: 30px;
 
         @include mobile() {
-            margin-top: 0px;
+            margin-top: 0;
         }
     }
 }

@@ -1,0 +1,48 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-styles/scss/v2/include/media-queries";
+
+.home-feedback-panel {
+    padding: 20px 40px;
+    @include mobile() {
+        padding: 30px 15px;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    @include mobile() {
+        flex-direction: column;
+    }
+
+    h3 {
+        margin: 0;
+        @include mobile() {
+            text-align: center;
+        }
+
+    }
+
+    img, .info {
+        margin-right: 30px;
+
+        @include mobile() {
+            margin-right: 0;
+            margin-bottom: 30px;
+        }
+    }
+
+    // TODO: should be a rule in LinkButton component
+    .button {
+        white-space: nowrap;
+        color: $purple!important;
+    }
+
+    @include ie11-only() {
+        & > .info {
+            width: 100%;
+        }
+    }
+
+}

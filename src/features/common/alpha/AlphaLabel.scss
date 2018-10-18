@@ -1,0 +1,53 @@
+@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
+
+$label-top: -12px;
+$label-right: -64px;
+
+.alpha { // desktop
+    position: absolute;
+    top: 66px;
+    right: 0;
+    overflow: hidden;
+    background: transparent;
+    width: 120px;
+    height: 120px;
+
+    .label {
+        position: absolute;
+        transform: rotateZ(45deg);
+        top: $label-top;
+        right: $label-right;
+        background: $purple;
+        color: $white;
+        font-size: 20px;
+        font-weight: $weight-bold;
+        padding: 34px 60px 16px;
+        display: inline-block;
+    }
+}
+
+@include mobile() {
+    .alpha {
+        top: 0;
+        .label {
+            font-size: 14px;
+            padding-bottom: 12px;
+            top: $label-top - 2;
+            right: $label-right - 1;
+        }
+    }
+
+    .common-authenticated-sub-page {
+        .alpha {
+            top: 32px;
+        }
+    }
+}
+
+@include ie11-only{
+    .alpha {
+        z-index: 2;
+    }
+}

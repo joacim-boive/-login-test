@@ -1,7 +1,7 @@
 @import '../../../styles/mixins';
 @import '../../../styles/constants';
 @import '~@ecster/ecster-styles/scss/v2/common/colors';
-@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/include/media-queries';
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .common-authenticated-sub-page {
@@ -12,87 +12,77 @@
         text-align: center;
     }
     .hero-header {
-        margin: 10px 0 30px;
-
-        @include mobile() {
-            margin: 0 0 30px 0;
-
-            color: white;
-            background-color: $green;
-        }
-
-        div {
-            position: relative;
-            height: 40px;
-            width: 100%;
-            @include mobile() {
-                padding-top: 5px;
-            }
-        }
+        display: flex;
+        flex-flow: column;
+        position: relative;
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 10px auto 30px;
+        max-width: $content-max-width-desktop;
 
         a {
             position: absolute;
             left: 0;
-            font-size: 24px;
             color: $beige140;
             z-index: 1;
             margin-left: 20px;
-            @include mobile() {
-                color: white;
-            }
         }
 
         h1 {
-            position: absolute;
-            left: 0;
             font-family: 'Campton', sans-serif;
             color: $beige140;
-            font-weight: $weight-medium;
-            font-size: 26px;
-            text-align: center;
+            font-weight: $weight-book;
+            font-size: 20px;
             width: 100%;
             margin: 0;
             padding: 0;
-            @include mobile() {
+        }
+
+        @include mobile() {
+            margin: 0;
+            color: white;
+            background-color: $green;
+            height: 32px;
+            position: fixed;
+
+            a {
                 color: white;
-                font-weight: $weight-book;
+            }
+
+            h1 {
+                color: white;
+                font-size: 18px;
+                margin-top: 5px;
             }
         }
 
         .icon-arrow-left {
             font-size: 26px;
         }
-
     }
 
     .page-container {
-        @include tablet() {
-            margin-top: $navigation-height + 10;
-        }
+        display: flex;
+        align-items: center;
+        flex-flow: column;
 
-        @include desktop() {
+        @include tabletOrDesktop() {
             margin-top: $navigation-height + 10;
         }
     }
 
     .page-content {
-        @mixin tabletOrDesktop() {
-            max-width: $content-max-width-desktop;
-            margin: 0 auto 10px;
-            padding: 0 15px;
-        }
-
+        width: 100%; // Needed because parent (page-container) is display:flex;
         @include mobile() {
             padding: 0;
+            margin-top: 62px;
             margin-bottom: $navigation-height + 15;
         }
 
-        @include tablet() {
-            @include tabletOrDesktop();
-        }
-
-        @include desktop() {
-            @include tabletOrDesktop();
+        @include tabletOrDesktop() {
+            max-width: $content-max-width-desktop;
+            margin: 0 auto 10px;
+            padding: 0 15px;
         }
     }
     z-index: 2; // above .message-panel

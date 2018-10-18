@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
+import { ResponsivePanel } from '@ecster/ecster-components';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import LoanHeaderPanel from './components/LoanHeaderPanel';
 import LoanBodyPanel from './components/LoanBodyPanel';
@@ -9,16 +10,19 @@ import { getPromissoryNoteDefaultParameters } from './redux/getPromissoryNoteDef
 import { getPromissoryNotePaymentTerms } from './redux/getPromissoryNotePaymentTerms';
 import { SETermsWorks } from './components/SETermsWorks';
 import { SETermsApply } from './components/SETermsApply';
-import ResponsivePanel from '../common/responsive-panel/ResponsivePanel';
 
 export class OverviewPage extends Component {
     componentWillMount() {
-        this.props.getPromissoryDefaultInfo();
-        this.props.getPaymentTerms(2000000, 10, false);
+        const { getPromissoryDefaultInfo, getPaymentTerms } = this.props;
+
+        getPromissoryDefaultInfo();
+        getPaymentTerms(2000000, 10, false);
     }
 
     onSubmit = () => {
-        this.props.history.push('/loan/summary');
+        const { history } = this.props;
+
+        history.push('/loan/summary');
     };
 
     render() {

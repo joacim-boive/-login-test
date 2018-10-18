@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import classNames from 'classnames';
 import { Data, DataColumns, DataColumn, DataRow } from '@ecster/ecster-components/DataColumns';
+import { Panel } from '@ecster/ecster-components';
 import './TransactionsPanel.scss';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
@@ -26,13 +27,13 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
                 {header ? (
                     <span>{header}</span>
                 ) : (
-                    <React.Fragment>
+                    <>
                         <span>{month}</span>
                         <span>{year}</span>
-                    </React.Fragment>
+                    </>
                 )}
             </h2>
-            <section>
+            <Panel withSidePaddingOnly className="transactions-panel">
                 {transactions.map(trans => (
                     <DataColumns key={trans.id} className="row">
                         <DataColumn>
@@ -52,7 +53,7 @@ export const TransactionsPanel = ({ transactions, header, weak }) => {
                         </DataColumn>
                     </DataColumns>
                 ))}
-            </section>
+            </Panel>
         </div>
     );
 };

@@ -1,6 +1,5 @@
-@import '../../styles/mixins';
-@import '~@ecster/ecster-styles/scss/v2/theme/theme';
-@import '~@ecster/ecster-components/scss/MediaQuery';
-
 .account-transactions-overview {
+    .account-summary, .overdrawn-info-ctr, .account-transactions, .all-tx-info {
+        margin-bottom: 40px;
+    }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Panel } from '@ecster/ecster-components';
 
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 import LoginForm from '../authentication/LoginForm';
@@ -11,14 +12,12 @@ class LoginPage extends Component {
     render() {
         return (
             <LoginPageTemplate>
-                <div id="home-login-page" className="home-login-page__box">
+                <Panel id="home-login-page" withMixedContent maxWidth="50rem" className="login-page-panel">
                     <LoginForm />
-                </div>
+                </Panel>
             </LoginPageTemplate>
         );
     }
 }
 
-// todo: add state + dispatch mappings later?
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginPage;

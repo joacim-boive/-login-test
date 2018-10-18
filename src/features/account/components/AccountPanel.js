@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { TabletOrDesktop, Mobile, Panel } from '@ecster/ecster-components';
+import { TabletOrDesktop, Mobile, Panel, ResponsivePanel } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { AccountHeader } from './AccountHeader';
 import { NextPaymentPanel } from './NextPaymentPanel';
 import { AccountLinksPanel } from './AccountLinksPanel';
+import { AccountSalesPanel } from './AccountSalesPanel';
 import { LatestTransactions } from './LatestTransactions';
-import ResponsivePanel from '../../common/responsive-panel/ResponsivePanel';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
+import OverdrawnInfo from './OverdrawnInfo';
+
 import { getAccountTransactions } from '../redux/getAccountTransactions';
 import { getAccountBills } from '../redux/getAccountBills';
 
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
-import { AccountSalesPanel } from './AccountSalesPanel';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
@@ -30,24 +32,46 @@ class AccountPanel extends Component {
     render() {
         const { className, account, bills, transactions, totalTransactions, user } = this.props;
 
+        if (!transactions) return null;
+
         const classes = classNames({
             'account-panel': true,
             [className]: className,
         });
 
-        if (!transactions) return null;
-
         const noCard = account.numberOfCards === 0;
+        const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
+        const amountLabel = i18n('account.header.left-to-buy');
 
         return (
-            <Panel padding="12px" sideBordersMobile className={classes}>
+            <Panel withFullWidthContent className={classes}>
                 <TabletOrDesktop>
-                    <AccountHeader account={account} />
+                    <div className="full-width-content">
+                        <AccountHeader
+                            account={account}
+                            amountLabel={amountLabel}
+                            amount={account.limit - account.used}
+                            showCard={!noCard}
+                        />
+                    </div>
                 </TabletOrDesktop>
                 <Mobile>
-                    <AccountHeaderMobile account={account} />
+                    <AccountHeaderMobile
+                        account={account}
+                        amountLabel={amountLabel}
+                        amount={account.limit - account.used}
+                        showCard={!noCard}
+                    />
                 </Mobile>
-                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel__body" horizontalGutter>
+                {showOverdrawn && (
+                    <OverdrawnInfo
+                        bottomBorder
+                        used={account.used}
+                        limit={account.limit}
+                        accountNumber={account.accountNumber}
+                    />
+                )}
+                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" horizontalGutter>
                     <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
                         {noCard ? (
                             <AccountSalesPanel />
@@ -90,8 +114,9 @@ AccountPanel.defaultProps = {
 /* istanbul ignore next */
 function mapStateToProps(state, ownProps) {
     const transactions = state.account.accountTransactions[ownProps.account.reference];
+
     return {
-        transactions: transactions ? transactions.slice(0, 3) : undefined, // Only first 3
+        transactions: transactions ? transactions.slice(0, defaultFilter.shortList) : undefined,
         totalTransactions: transactions ? transactions.length : 0,
         bills: state.account.accountBills[ownProps.account.reference],
     };
@@ -101,7 +126,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getAccountTransactions: (userId, reference, filter) =>
-            dispatch(getAccountTransactions(userId, reference, filter)),
+            dispatch(getAccountTransactions(userId, reference, filter, true)),
         getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
     };
 }

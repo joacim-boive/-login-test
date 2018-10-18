@@ -7,6 +7,7 @@ import './ArrowLink.scss';
 export const ArrowLink = ({ className, icon, text, onClick, to, ...rest }) => {
     const classes = classNames({
         'arrow-link': true,
+        'no-underline': true,
         [className]: className,
     });
 
@@ -32,8 +33,6 @@ ArrowLink.propTypes = {
 ArrowLink.defaultProps = {
     className: '',
     icon: '',
-    onClick: () => {
-        console.log('Clicked ArrowLink');
-    },
+    onClick: () => {},
     to: '',
 };

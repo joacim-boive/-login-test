@@ -21,18 +21,24 @@ class Authorized extends React.Component {
     };
 
     render() {
-        if (this.props.loginStatus.isLoggedIn) {
+        const { loginStatus, clearNextRoute, children, location, setNextRoute } = this.props;
+
+        if (loginStatus.isLoggedIn) {
             const { nextRoute } = this.props;
             if (nextRoute) {
-                this.props.clearNextRoute();
+                clearNextRoute();
                 return <Redirect to={nextRoute} />;
             }
-            return this.props.children;
+            return children;
         }
 
-        // remember route for redirect after login
-        // this.props.setNextRoute(this.props.location.pathname);
-        return <Redirect to="/" />;
+        // remember route for redirect after login unless it's the logout page
+        // TODO: safe if nextRoute contains custromerId or accountRef??
+        // const nextRoute = location.pathname;
+        // if (!nextRoute.match(/\/authentication\/logout/)) {
+        //     setNextRoute(nextRoute);
+        // }
+        return <Redirect to="/loggedout" />;
     }
 }
 

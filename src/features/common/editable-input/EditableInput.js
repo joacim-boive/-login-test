@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
+import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInput.scss';
 
 export class EditableInput extends Component {
     state = {
-        editMode: false,
+        editMode: !this.props.value, // editMode if empty
         value: this.props.value || '',
         valueUnedited: this.props.value || '',
     };
+
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef();
+        this.formRef = React.createRef();
+    }
 
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
@@ -24,8 +30,8 @@ export class EditableInput extends Component {
     };
 
     onEdit = () => {
-        this.setState({ editMode: true }, () => {
-            this.inputRef.getInputEl().focus();
+        this.setState({ editMode: true, valueUnedited: this.props.value }, () => {
+            this.inputRef.current.getInputEl().focus();
         });
     };
 
@@ -34,12 +40,14 @@ export class EditableInput extends Component {
     };
 
     onSave = () => {
-        this.props.onSave(this.state.value);
-        this.setState({ editMode: false });
+        if (this.formRef.current.validate()) {
+            this.props.onSave(this.state.value);
+            this.setState({ editMode: false });
+        }
     };
 
     render() {
-        const { className, label, ...rest } = this.props;
+        const { className, label, validationMessage, required, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -50,19 +58,24 @@ export class EditableInput extends Component {
 
         return editMode ? (
             <div className={classes}>
-                <Input
-                    {...rest}
-                    label={label}
-                    value={value}
-                    small
-                    onChange={this.onChange}
-                    ref={input => (this.inputRef = input)}
-                />
+                <Form ref={this.formRef} validateRefs={[this.inputRef]}>
+                    <Input
+                        {...rest}
+                        className="editable-input__input"
+                        label={label}
+                        value={value}
+                        small
+                        onChange={this.onChange}
+                        ref={this.inputRef}
+                        validationMessage={validationMessage}
+                        required
+                    />
+                </Form>
                 <ButtonGroup align="right">
-                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                    <Button name="cancel" onClick={this.onCancel} xSmall round transparent>
                         {i18n('general.cancel')}
                     </Button>
-                    <Button name="save" onClick={this.onSave} small round>
+                    <Button name="save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -72,7 +85,7 @@ export class EditableInput extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>{value}</strong>
-                    <Button name="edit" onClick={this.onEdit} small round outline>
+                    <Button name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
                     </Button>
                 </div>
@@ -86,10 +99,13 @@ EditableInput.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
     label: PropTypes.string,
+    validationMessage: PropTypes.string.isRequired,
+    required: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
     className: '',
     value: '',
     label: '',
+    required: false,
 };

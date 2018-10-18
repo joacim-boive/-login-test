@@ -19,9 +19,12 @@ export const parseTransactionsOnMonth = transactions => {
 
 export const AccountTransactions = ({ transactions }) => {
     const parsedTransactions = parseTransactionsOnMonth(transactions);
+
     return (
         <div className="account-transactions">
-            {parsedTransactions.map(trans => <TransactionsPanel key={trans[0].date} transactions={trans} />)}
+            {parsedTransactions.map(trans => (
+                <TransactionsPanel key={trans[0].date} transactions={trans} />
+            ))}
         </div>
     );
 };

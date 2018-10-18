@@ -3,7 +3,7 @@
 ## Create session
 
     POST
-    https://secure.ecster.se/rest/sessions/v1
+    https://secure.ecster.se/rest/sessions/v2
     
      {
          "response": {
@@ -25,7 +25,7 @@
 With status IN_PROGRESS
 
     GET
-    https://secure.ecster.se/rest/sessions/v1/5BA682D6AE5872EA45A692F348BA40ED?v=1522131115806
+    https://secure.ecster.se/rest/sessions/v2/5BA682D6AE5872EA45A692F348BA40ED?v=1522131115806
 
 
     {
@@ -49,7 +49,7 @@ With status IN_PROGRESS
 With status VERIFIED
 
     GET
-    https://secure.ecster.se/rest/sessions/v1/5BA682D6AE5872EA45A692F348BA40ED?v=1522131115902
+    https://secure.ecster.se/rest/sessions/v2/5BA682D6AE5872EA45A692F348BA40ED?v=1522131115902
 
      {
          "response": {

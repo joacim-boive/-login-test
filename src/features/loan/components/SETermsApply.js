@@ -22,12 +22,12 @@ export const SETermsApply = ({ className }) => {
 
             <section>
                 <h5>{i18n('loan.terms-apply.sub-header')}</h5>
-                <p>
+                <div>
                     {i18n('loan.terms-apply.terms-list', {
                         returnObjects: true,
                         wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
                     })}
-                </p>
+                </div>
             </section>
         </div>
     );

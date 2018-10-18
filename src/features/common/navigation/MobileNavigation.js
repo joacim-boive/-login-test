@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-
+import { InteractiveElement } from '@ecster/ecster-components';
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
 import { SvgIconHamburger, SvgIconInvoices, SvgIconLoan, SvgIconOverview } from '../../../common/images/index';
 import './MobileNavigation.scss';
-import { InteractiveElement } from '../interactive-element/InteractiveElement';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
 class MobileNavigation extends React.Component {
@@ -20,27 +19,26 @@ class MobileNavigation extends React.Component {
     }
 
     toggleSubMenu = e => {
-        console.log('MobileNavigation.toggleSubMenu: this.state = ', this.state);
         e.stopPropagation();
         e.preventDefault();
         this.setState({ showSubMenu: !this.state.showSubMenu });
     };
 
     closeSubMenu = () => {
-        console.log('MobileNavigation.closeSubMenu: this.state = ', this.state);
         this.setState({ showSubMenu: false });
     };
 
     render() {
         const { showSubMenu } = this.state;
-
+        const pathname = this.props.history.location.pathname;
         // double !! => true or false not array
-        const overviewIsActive = !!this.props.history.location.pathname.match(/.account.overview/);
-        const invoiceIsActive = !!this.props.history.location.pathname.match(/.invoice.overview/);
-        const loanIsActive = !!this.props.history.location.pathname.match(/.loan.overview/);
+        const overviewIsActive = !!pathname.match(/.account.overview/);
+        const invoiceIsActive = !!pathname.match(/.invoice.overview/);
+        const loanIsActive = !!pathname.match(/.loan.overview/);
         // submenu items, indicate active when submenu is visible
-        const customerSettingsIsActive = !!this.props.history.location.pathname.match(/.customer.settings/);
-        const customerSupportIsActive = !!this.props.history.location.pathname.match(/.customer.support/);
+        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSupportIsActive = !!pathname.match(/.customer.support/);
+        const { showLoanMenu, customerId } = this.props;
 
         return (
             <BottomNavigation light showOverlay={showSubMenu}>
@@ -54,10 +52,12 @@ class MobileNavigation extends React.Component {
                         <SvgIconInvoices />
                         <MenuItemText>{i18n('navigation.invoices')}</MenuItemText>
                     </MenuItem>
-                    <MenuItem linkTo="/loan/overview" active={loanIsActive}>
-                        <SvgIconLoan />
-                        <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
-                    </MenuItem>
+                    {showLoanMenu && (
+                        <MenuItem linkTo="/loan/overview" active={loanIsActive}>
+                            <SvgIconLoan />
+                            <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
+                        </MenuItem>
+                    )}
                     <InteractiveElement onClick={this.toggleSubMenu}>
                         <div
                             className={classNames({
@@ -71,10 +71,7 @@ class MobileNavigation extends React.Component {
                     </InteractiveElement>
                 </BottomMenu>
                 <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
-                    <SubMenuItem
-                        linkTo={`/customer/${this.props.customerId}/profile`}
-                        active={customerSettingsIsActive}
-                    >
+                    <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
                         {i18n('navigation.settings')}
                     </SubMenuItem>
                     <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
@@ -92,6 +89,7 @@ class MobileNavigation extends React.Component {
 MobileNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
+    showLoanMenu: PropTypes.bool.isRequired,
 };
 
 export default withRouter(MobileNavigation);

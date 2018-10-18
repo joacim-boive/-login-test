@@ -2,30 +2,26 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/theme';
 
 .account-overview-page {
-    &> * {
-        margin-top: 100px;
 
-        &:first-child {
-            margin-top: 0;
-        }
+    .ec-panel {
+        margin-bottom: 40px;
     }
 
-    .button.show-more {
-        font-size: $font-size-medium;
-        font-weight: $weight-medium;
-        color: $purple;
-        background: transparent;
-        margin-top: 2%;
-        padding: 0;
+    a {
+        &.button {
+            &.show-more {
+                font-size: $font-size-medium;
+                font-weight: $weight-medium;
+                color: $purple;
+                background: transparent;
+                margin-top: 2%;
+                padding: 0;
 
-        &:focus, &:active, &:hover{
-            span {
-                text-decoration: underline;
+                i {
+                    color: $black;
+                }
             }
         }
-
-        i{
-            color: $black;
-        }
     }
+
 }

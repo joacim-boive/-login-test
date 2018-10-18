@@ -6,12 +6,31 @@
     }
 
     .result-panel {
-        padding: 55px 25px;
+        h2 {
+            color: black;
+        }
         img {
             margin-bottom: 20px;
+            width: 82px;
+            height: 82px;
         }
         a {
             font-weight: bold;
         }
     }
+
+    .no-raise-info {
+        font-size: 14px;
+        margin-top: 15px;
+        i {
+            font-size: 16px;
+            color: $purple;
+            margin-right: 5px;
+        }
+    }
+
+    .no-raise-label {
+        color: $gray80;
+    }
+
 }

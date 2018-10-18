@@ -1,7 +1,8 @@
 @import '../../../styles/mixins';
 @import '../../../styles/constants';
 @import '~@ecster/ecster-components/scss/MediaQuery';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
 
 .common-authenticated-page {
 
@@ -12,11 +13,7 @@
     $gradient-right: #ddf8bb;
 
     .hero-header {
-        background: $gradient-left;
-        background: -moz-linear-gradient(left, $gradient-left 0%, $gradient-right 100%);
-        background: -webkit-linear-gradient(left, $gradient-left 0%,$gradient-right 100%);
         background: linear-gradient(to right, $gradient-left 0%,$gradient-right 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-left', endColorstr='$gradient-right',GradientType=1 );
 
         height: $hero-height;
 
@@ -44,11 +41,11 @@
 
     .page-container {
         @include tablet() {
-            margin-top: $navigation-height;
+            padding-top: $navigation-height;
         }
 
         @include desktop() {
-            margin-top: $navigation-height;
+            padding-top: $navigation-height;
         }
     }
 

@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_CREATE_SESSION_DISMISS_ERROR,
 } from './constants';
 
-import { post, setSession } from '../../../common/asyncAjax';
+import { post, removeSession, setSession } from '../../../common/asyncAjax';
 
 import { CREATE_SESSION_URL } from './urls';
 
@@ -15,6 +15,7 @@ export const createSession = data => async dispatch => {
     });
 
     try {
+        removeSession(); // remove timed out session data
         const res = await post(CREATE_SESSION_URL(), data);
         setSession(res.response.key);
 

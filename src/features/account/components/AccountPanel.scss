@@ -1,17 +1,32 @@
 @import '~@ecster/ecster-components/scss/MediaQuery';
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
+.terminated-account-panel {
+    .account-panel-content {
+        align-items: center;
+    }
+}
+
 .account-panel {
 
     @include mobile() {
         padding: 0;
     }
 
-    &__body {
-        padding: 20px;
+    &-content {
+        padding: 15px;
 
         @include mobile() {
             padding: 0;
+        }
+        & > p {
+            text-align: center;
+        }
+    }
+
+    &-terminated-info {
+        @include mobile() {
+            padding: 20px 20px 0 20px;
         }
     }
 }

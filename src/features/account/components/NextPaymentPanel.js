@@ -10,7 +10,7 @@ import './NextPaymentPanel.scss';
 import { formatDate, formatDateMonth } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
-export const NextPaymentPanel = ({ className, bills }) => {
+export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
     const classes = classNames({
         'next-payment-panel': true,
         [className]: className,
@@ -53,13 +53,29 @@ export const NextPaymentPanel = ({ className, bills }) => {
                     {formatDate(date)}
                 </Data>
             </DataRow>
+            {bg && (
+                <DataRow>
+                    <Data left>{i18n('account.next-payment.bg')}</Data>
+                    <Data strong right>
+                        {bg}
+                    </Data>
+                </DataRow>
+            )}
+            {ocr && (
+                <DataRow>
+                    <Data left>{i18n('account.next-payment.ocr')}</Data>
+                    <Data strong right>
+                        {ocr}
+                    </Data>
+                </DataRow>
+            )}
         </>
     );
 
     const TheLink = () => (
         <DataRow>
             <Data right>
-                <LinkButton iconRight="icon-chevron-right" className="show-more" to={monthlyInvoiceRoute}>
+                <LinkButton iconRight="icon-chevron-right" className="show-more no-underline" to={monthlyInvoiceRoute}>
                     {i18n('account.next-payment.show-details')}
                 </LinkButton>
             </Data>
@@ -91,7 +107,9 @@ export const NextPaymentPanel = ({ className, bills }) => {
                                 returnObjects: true,
                                 nr: bills.ocrNumber,
                                 wrapper: { tag: Data },
-                            }).map(obj => <DataRow key={obj.key}>{obj}</DataRow>)}
+                            }).map(obj => (
+                                <DataRow key={obj.key}>{obj}</DataRow>
+                            ))}
                         </>
                     )}
                 </DataColumn>
@@ -103,9 +121,13 @@ export const NextPaymentPanel = ({ className, bills }) => {
 NextPaymentPanel.propTypes = {
     bills: PropTypes.shape(),
     className: PropTypes.string,
+    bg: PropTypes.string,
+    ocr: PropTypes.string,
 };
 
 NextPaymentPanel.defaultProps = {
     className: '',
     bills: {},
+    bg: undefined,
+    ocr: undefined,
 };

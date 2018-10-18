@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel } from '@ecster/ecster-components';
+import UnderConstruction from '../common/alpha/UnderConstruction';
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
 import * as actions from './redux/actions';
 
@@ -15,10 +15,8 @@ export class ExtraCardPage extends Component {
 
     render() {
         return (
-            <AuthenticatedSubPageTemplate className="card-extra-card-page" header="Extrakort">
-                <Panel>
-                    <h1>Extra card, not yet implemented...</h1>
-                </Panel>
+            <AuthenticatedSubPageTemplate className="card-extra-card-page" header={i18n('card.extra-card.page-header')}>
+                <UnderConstruction />
             </AuthenticatedSubPageTemplate>
         );
     }

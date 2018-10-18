@@ -5,7 +5,6 @@
 @import "~@ecster/ecster-styles/scss/v2/include/paddings";
 @import "~@ecster/ecster-styles/scss/v2/include/margins";
 @import "~@ecster/ecster-styles/scss/v2/include/color-classes";
-@import "~@ecster/ecster-components/Button/Button.css";
 
 // fonts incl icons
 @import '../features/home/style';
@@ -26,16 +25,22 @@ $color-text: #333;
 }
 
 html, body, #react-root {
-    /* everywhere grid is used both col and rows needs to be defined for IE11 to work */
-    @include grid((
-        cols: 1fr,
-        rows: 1fr
-    ));
-
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+body, #react-root{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#react-root{
+    & > div:first-child{
+        flex: 1 0 auto;
+    }
 }
 
 // Remove number spinner in number-field
@@ -63,8 +68,7 @@ body {
     color: $color-text;
     font-size: 1.6rem;
     min-width: 32rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: "PT Sans", sans-serif;
 
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
@@ -109,38 +113,38 @@ input {
     -moz-appearance: textfield;
 }
 
-h1, h2, h3, h4, h5 {
-    margin: 0;
-    color: $green120;
-    font-weight: $weight-bold;
-}
-
-h1 {
-    font-size: 36px;
-    margin-bottom: 36px;
-}
-
-h2 {
-    font-size: 30px;
-    margin-bottom: 30px;
-}
-
-h3 {
-    font-size: 26px;
-    margin-bottom: 26px;
-}
-
-h4 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    font-weight: $weight-semibold;
-}
-
-h5 {
-    font-size: 18px;
-    margin-bottom: 18px;
-    font-weight: $weight-semibold;
-}
+//h1, h2, h3, h4, h5 {
+//    margin: 0;
+//    color: $green120;
+//    font-weight: $weight-bold;
+//}
+//
+//h1 {
+//    font-size: 36px;
+//    margin-bottom: 36px;
+//}
+//
+//h2 {
+//    font-size: 30px;
+//    margin-bottom: 30px;
+//}
+//
+//h3 {
+//    font-size: 26px;
+//    margin-bottom: 26px;
+//}
+//
+//h4 {
+//    font-size: 20px;
+//    margin-bottom: 20px;
+//    font-weight: $weight-semibold;
+//}
+//
+//h5 {
+//    font-size: 18px;
+//    margin-bottom: 18px;
+//    font-weight: $weight-semibold;
+//}
 
 p {
     margin-top: 1rem;
@@ -190,4 +194,10 @@ a[href^="tel:"] {
         color: $color-text;
         text-decoration: none;
     }
+}
+
+html {
+    /* Always show vertical scroll bar to prevent jumping */
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical;
 }

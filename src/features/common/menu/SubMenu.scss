@@ -76,9 +76,9 @@
     }
     a:hover, a:active {
         color: $gray140;
-        span {
-            text-decoration: underline;
-        }
+        //span {
+        //    text-decoration: underline;
+        //}
     }
 
     &.active a {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -7,10 +7,12 @@ import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
+import AlphaLabel from '../alpha';
+import Footer from '../footer';
 
-class AuthenticatedSubPageTemplate extends React.Component {
+class AuthenticatedSubPageTemplate extends Component {
     render() {
-        const { className, linkTo, header, customerId } = this.props;
+        const { className, linkTo, header, customerId, children, showLoanMenu } = this.props;
 
         const classes = classNames({
             'common-authenticated-sub-page': true,
@@ -19,31 +21,31 @@ class AuthenticatedSubPageTemplate extends React.Component {
 
         const renderHeader = header && (
             <div className="hero-header">
-                <div>
-                    <Link to={linkTo} href={linkTo}>
-                        <i className="icon-arrow-left" />
-                    </Link>
-                    <h1>{header}</h1>
-                </div>
+                <Link to={linkTo} href={linkTo} className="no-underline">
+                    <i className="icon-arrow-left" />
+                </Link>
+                <h1>{header}</h1>
             </div>
         );
 
         return (
-            <React.Fragment>
+            <>
                 <div className={classes}>
+                    <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} />
+                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
-                        <div className="page-content">{this.props.children}</div>
+                        <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} />
+                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
                 </div>
                 <MessagePanel />
-            </React.Fragment>
+                <Footer />
+            </>
         );
     }
 }
@@ -54,18 +56,21 @@ AuthenticatedSubPageTemplate.propTypes = {
     header: PropTypes.string,
     linkTo: PropTypes.string,
     children: PropTypes.node.isRequired,
+    showLoanMenu: PropTypes.bool,
 };
 
 AuthenticatedSubPageTemplate.defaultProps = {
     className: '',
     header: undefined,
     linkTo: '',
+    showLoanMenu: false,
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication }) {
+function mapStateToProps({ authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
+        showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
     };
 }
 

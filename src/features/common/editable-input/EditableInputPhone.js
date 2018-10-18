@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Input, Button, ButtonGroup } from '@ecster/ecster-components';
+import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
+import { formatMobileNumber } from '../../../common/util/format-mobile-number';
 
 export class EditableInputPhone extends Component {
     state = {
-        editMode: false,
         value: this.props.value,
         valueUnedited: this.props.value,
     };
 
+    constructor(props) {
+        super(props);
+        this.countryRef = React.createRef();
+        this.phoneRef = React.createRef();
+        this.formRef = React.createRef();
+    }
+
+    componentDidMount() {
+        const { value } = this.state;
+        this.setState({ editMode: !value || !value.countryCallingCode || !value.number });
+    }
+
     componentWillReceiveProps(nextProps) {
         const nextValue = nextProps.value;
         const { value } = this.state;
-        if (nextValue.number !== value.number) this.setState({ value: nextValue });
+
+        if (nextValue && nextValue.number !== value.number) {
+            this.setState({ value: nextValue });
+        }
     }
 
     onChange = e => {
@@ -31,7 +46,7 @@ export class EditableInputPhone extends Component {
 
     onEdit = () => {
         this.setState({ editMode: true }, () => {
-            this.inputRef.getInputEl().focus();
+            this.phoneRef.current.getInputEl().focus();
         });
     };
 
@@ -41,12 +56,14 @@ export class EditableInputPhone extends Component {
 
     onSave = () => {
         const { countryCallingCode, number } = this.state.value;
-        this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
-        this.setState({ editMode: false });
+        if (this.formRef.current.validate()) {
+            this.props.onSave({ countryCallingCode, number: number.startsWith('0') ? number.substr(1) : number });
+            this.setState({ editMode: false });
+        }
     };
 
     render() {
-        const { className, label, ...rest } = this.props;
+        const { className, label, validator, validationMessage, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -58,26 +75,32 @@ export class EditableInputPhone extends Component {
 
         return editMode ? (
             <div className={classes}>
-                <div className="input-wrapper flex-row">
-                    <CountrySelect
-                        label={i18n('general.address.country-code')}
-                        value={value.countryCallingCode}
-                        onChange={this.onChangeCountryCode}
-                    />
-                    <Input
-                        {...rest}
-                        value={value.number}
-                        small
-                        label={i18n('general.address.number')}
-                        onChange={this.onChange}
-                        ref={input => (this.inputRef = input)}
-                    />
+                <div className="input-wrapper">
+                    <Form ref={this.formRef} validateRefs={[this.phoneRef, this.countryRef]} className="flex-row">
+                        <CountrySelect
+                            ref={this.countryRef}
+                            label={i18n('general.address.country-code')}
+                            value={value.countryCallingCode}
+                            onChange={this.onChangeCountryCode}
+                        />
+                        <Input
+                            {...rest}
+                            value={value.number}
+                            small
+                            label={i18n('general.address.number')}
+                            onChange={this.onChange}
+                            ref={this.phoneRef}
+                            validator={validator}
+                            validationMessage={validationMessage}
+                            required
+                        />
+                    </Form>
                 </div>
                 <ButtonGroup align="right">
-                    <Button name="cancel" onClick={this.onCancel} small round transparent>
+                    <Button name="cancel" onClick={this.onCancel} xSmall round transparent>
                         {i18n('general.cancel')}
                     </Button>
-                    <Button name="save" onClick={this.onSave} small round>
+                    <Button name="save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -87,9 +110,9 @@ export class EditableInputPhone extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>
-                        {value.countryCallingCode} (0) {value.number}
+                        {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                     </strong>
-                    <Button name="edit" onClick={this.onEdit} small round outline>
+                    <Button name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
                     </Button>
                 </div>
@@ -104,6 +127,8 @@ EditableInputPhone.propTypes = {
     value: PropTypes.shape(),
     countryCode: PropTypes.string,
     label: PropTypes.string,
+    validator: PropTypes.string.isRequired,
+    validationMessage: PropTypes.string.isRequired,
 };
 
 EditableInputPhone.defaultProps = {
