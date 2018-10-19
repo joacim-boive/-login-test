@@ -4,12 +4,16 @@ import { Route } from 'react-router-dom';
 const createRoutes = routeConfig => {
     const publicRoutes = [];
     const authRoutes = [];
+    const allRoutes = []; // original paths '/account/:ref/overview' etc
+
     let i = 0;
 
     const pushRoute = (item, path) => {
         i++; // eslint-disable-line
         const cleanPath = path.replace(/\/+/, '/').replace(/^\^\/$/, '');
         const route = <Route key={`key-${i}`} component={item.component} path={cleanPath} exact />;
+
+        allRoutes.push({ path: cleanPath, name: item.name });
 
         if (item.isPublic) {
             publicRoutes.push(route);
@@ -36,6 +40,7 @@ const createRoutes = routeConfig => {
     return {
         publicRoutes,
         authRoutes,
+        allRoutes,
     };
 };
 
