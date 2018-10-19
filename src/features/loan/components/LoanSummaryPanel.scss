@@ -6,6 +6,11 @@
     @include mobile() {
         padding: 20px 15px;
     }
+
+    .specs{
+        padding: 0;
+    }
+
     .panel {
         background-color: $green20;
         border: 1px solid $green40;

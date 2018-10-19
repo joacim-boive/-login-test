@@ -237,6 +237,7 @@ class LoanEconomyPanel extends Component {
                                             selectedValue={employedMoreThan1Year}
                                             required
                                             ref={this.employedMoreThan1Year}
+                                            className="radio-boxes"
                                         >
                                             <Radio
                                                 onChange={e => this.onChange(e)}
@@ -287,7 +288,7 @@ class LoanEconomyPanel extends Component {
                                     </div>
                                 )}
                             </section>
-                            <section key="2">
+                            <section key="2" className="mt-20">
                                 <h4>{i18n('loan.economy.household')}</h4>
                                 <Select
                                     label={i18n('loan.economy.living-label')}
@@ -406,8 +407,13 @@ class LoanEconomyPanel extends Component {
                                 />
                             </section>
                         </ResponsivePanel>
-                        <h4>{i18n('loan.economy.others')}</h4>
-                        <ResponsivePanel desktop={2} tablet={2} mobile={1}>
+                        <h4 className="mt-4x">{i18n('loan.economy.others')}</h4>
+                        <ResponsivePanel
+                            desktop={2}
+                            tablet={2}
+                            mobile={1}
+                            className="loan-economy__others-panel full-width mt-4x"
+                        >
                             <section key="3">
                                 <label htmlFor="hasMortgageLoan" className="economy-row">
                                     <Checkbox
@@ -435,7 +441,7 @@ class LoanEconomyPanel extends Component {
                                     </Select>
                                 )}
                             </section>
-                            <section key="4">
+                            <section key="4" className="has-other mt-4x">
                                 <label htmlFor="hasOtherLoan" className="economy-row">
                                     <Checkbox
                                         checked={hasOtherLoan}

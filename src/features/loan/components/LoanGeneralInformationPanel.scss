@@ -3,16 +3,6 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-general-information-panel {
-    @include mobile() {
-        .ec-panel {
-            border-left: none;
-            border-right: none;
-            border-radius: 0;
-            padding: 10px 15px;
-            margin-top: 20px;
-        }
-    }
-
     .body {
         margin-top: 20px;
     }

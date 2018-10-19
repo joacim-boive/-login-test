@@ -3,24 +3,15 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-personal-information-panel {
-    @include mobile() {
-        .ec-panel {
-            border-left: none;
-            border-right: none;
-            border-radius: 0;
-            padding: 10px 15px;
-        }
-    }
-
     .text {
         margin-top: 20px;
     }
 
     .body {
-        margin: 0px -10px;
+        margin: 0 -10px;
 
         @include mobile() {
-            margin: 0px -30px;
+            margin: 0 -30px;
         }
     }
 
@@ -40,12 +31,12 @@
 
     .next-button {
         width: 100%;
-        margin: 50px 0px 40px 0px;
+        margin: 50px 0 40px 0;
         display: flex;
         justify-content: center;
 
         @include mobile() {
-            margin: 25px 0px 15px 0px;
+            margin: 25px 0 15px 0;
         }
     }
 }
