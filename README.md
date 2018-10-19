@@ -2,6 +2,11 @@
 
 The "Inloggat" re-write
 
+##Note!
+
+Webpack is locked to 4.19.0 due to problems with hard-source-webpack-plugin and later versions of webpack:
+https://github.com/mzgoddard/hard-source-webpack-plugin/issues/443
+
 ## Installation
 
 Säkerställ att dessa System Environmental Variable finns uppsatt i Windows

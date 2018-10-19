@@ -227,7 +227,7 @@
         "@ecster/ecster-webpack": "^2.0.204",
         "ajv": "^6.5.4",
         "classnames": "^2.2.6",
-        "eslint-plugin-jest": "^21.25.0",
+        "eslint-plugin-jest": "^21.25.1",
         "features": "^0.1.0",
         "jest-puppeteer": "^3.4.0",
         "lazysizes": "^4.1.4",
