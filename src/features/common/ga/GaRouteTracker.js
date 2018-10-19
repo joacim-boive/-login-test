@@ -21,8 +21,6 @@ class GaRouteTracker extends React.Component {
                     strict: false,
                 })
             ) {
-                console.log(`${location.pathname} matches...`);
-                console.log(`${route.path} ${route.name}`);
                 setPageView(route.path, route.name);
             }
         });
