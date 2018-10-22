@@ -29,7 +29,7 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
             "env": "<%= htmlWebpackPlugin.options.env %>"
         };
     </script>
-    <script async defer src="ga/analytics-tracking-snippet.js"></script>
+    <script async defer src="<%= htmlWebpackPlugin.options.googleAnalytics.script %>"></script>
     <% } %>
     <% if(htmlWebpackPlugin.options.env) { %>
     <script>

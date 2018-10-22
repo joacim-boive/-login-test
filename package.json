@@ -110,8 +110,9 @@
             "cssWhiteList": [],
             "language": "sv",
             "googleAnalytics": {
-                "isDevModeEnabled": false,
-                "id": "UA-127526908-1"
+                "isDevModeEnabled": true,
+                "id": "UA-127526908-1",
+                "script": "ga/tracking.js"
             },
             "entries": [
                 "index.js",
