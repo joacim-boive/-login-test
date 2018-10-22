@@ -34,7 +34,7 @@ class TabletDesktopNavigation extends React.Component {
         const overviewIsActive = pathname.match(/.account.overview/);
         const invoiceIsActive = pathname.match(/.invoice.overview/);
         const loanIsActive = pathname.match(/.loan.overview/);
-        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSettingsIsActive = !!pathname.match(/.customer\/[0-9]+\/profile/);
         const customerSupportIsActive = !!pathname.match(/.customer.support/);
         const { showLoanMenu, customerId } = this.props;
 
