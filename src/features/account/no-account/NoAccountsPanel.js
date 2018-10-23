@@ -1,31 +1,63 @@
 import React, { Component } from 'react';
-import { Panel, ButtonGroup, LinkButton } from '@ecster/ecster-components';
+import { Panel, ButtonGroup, LinkButton, UnorderedList, FlexPanel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import Lazyload from '../../../common/images/Lazyload';
+
+import tmpImage from '../../../common/images/girl+traffic.jpg';
+
+import './NoAccountPanel.scss';
 
 export default class NoAccountsPanel extends Component {
     static propTypes = {};
 
     render() {
         return (
-            <Panel centeredContent withMixedContent>
-                <div className="mixed-content">
-                    <h2>{i18n('account.no-account.header')}</h2>
-                    {i18n('account.no-account.info', {
-                        returnObjects: true,
-                        wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                    })}
+            <div className="account-no-account">
+                <Panel withFullWidthContent>
+                    <img src={tmpImage} alt="" />
+
+                    <div className="two-col-content">
+                        <h2 className="e-green120 centered-content">{i18n('account.no-account.panel1.header')}</h2>
+                        <p>{i18n('account.no-account.panel1.text')}</p>
+                        <FlexPanel separator={false} reverseMobile>
+                            <UnorderedList icon="icon-check" iconClass="e-purple">
+                                {i18n('account.no-account.panel1.bullets', {
+                                    returnObjects: true,
+                                    wrapper: { tag: 'span', dangerouslySetInnerHTML: true },
+                                })}
+                            </UnorderedList>
+                            <div className="ctr-2">
+                                <div className="info-bubble">Ingen årsavgift</div>
+                                <div className="ecster-card">
+                                    <Lazyload
+                                        className="lazyload"
+                                        alt="Ecster Pay Card"
+                                        src={`/v1/cards/130.png`}
+                                        widths={[166, 312]}
+                                    />
+                                </div>
+                            </div>
+                        </FlexPanel>
+                    </div>
                     <ButtonGroup align="center">
                         <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
-                            {i18n('account.no-account.button-text')}
+                            {i18n('account.no-account.panel1.button-text')}
                         </LinkButton>
                     </ButtonGroup>
-                    <p>{i18n('account.no-account.additional-info')}</p>
-                    {i18n('account.no-account.contact-info', {
-                        returnObjects: true,
-                        wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
-                    })}
-                </div>
-            </Panel>
+                </Panel>
+                <Panel withFullWidthContent>
+                    <img src={tmpImage} alt="" />
+                    <div className="mixed-content">
+                        <h2 className="e-green120 centered-content">{i18n('account.no-account.panel2.header')}</h2>
+                        <p>{i18n('account.no-account.panel2.text')}</p>
+                    </div>
+                    <ButtonGroup align="center">
+                        <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
+                            {i18n('account.no-account.panel2.button-text')}
+                        </LinkButton>
+                    </ButtonGroup>
+                </Panel>
+            </div>
         );
     }
 }

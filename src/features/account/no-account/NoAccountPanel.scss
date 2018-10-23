@@ -1,0 +1,55 @@
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+
+.account-no-account {
+    img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 40px;
+    }
+
+    $bubble-color: $yellow;
+    $bubble-diameter: 90px;
+
+    .ctr-2 {
+        position: relative;
+
+        .ecster-card {
+            width: 80%;
+            position: relative;
+            left: 20%;
+            top: 20px;
+            img {
+                width: 100%;
+            }
+        }
+        .info-bubble {
+            z-index: 2;
+            position: absolute;
+            padding: 15px;
+            background: $bubble-color;
+            color: white;
+            border-radius: 80px;
+            width: $bubble-diameter + 15;
+            height: $bubble-diameter;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            box-sizing: border-box;
+            text-align: center;
+            transform: rotateZ(-10deg);
+
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: -22px;
+                right: 30px;
+                border-width: 0 20px 25px 0;
+                border-style: solid;
+                border-color: transparent $bubble-color;
+                display: block;
+                width: 0;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
