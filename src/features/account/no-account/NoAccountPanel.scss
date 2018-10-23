@@ -40,7 +40,7 @@
             &:before {
                 content: "";
                 position: absolute;
-                bottom: -20px;
+                bottom: -18px;
                 right: 30px;
                 border-width: 0 20px 25px 0;
                 border-style: solid;
@@ -48,6 +48,7 @@
                 display: block;
                 width: 0;
                 box-sizing: border-box;
+                transform: rotateZ(-20deg);
             }
         }
     }

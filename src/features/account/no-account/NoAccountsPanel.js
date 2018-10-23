@@ -11,8 +11,6 @@ import {
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import Lazyload from '../../../common/images/Lazyload';
 
-import tmpImage from '../../../common/images/girl+traffic.jpg';
-
 import './NoAccountPanel.scss';
 
 export default class NoAccountsPanel extends Component {
@@ -61,7 +59,7 @@ export default class NoAccountsPanel extends Component {
                         </FlexPanel>
                     </div>
                     <ButtonGroup align="center">
-                        <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
+                        <LinkButton to="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
                             {i18n('account.no-account.panel1.button-text')}
                         </LinkButton>
                     </ButtonGroup>
@@ -84,7 +82,7 @@ export default class NoAccountsPanel extends Component {
                         <p>{i18n('account.no-account.panel2.text')}</p>
                     </div>
                     <ButtonGroup align="center">
-                        <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
+                        <LinkButton to="/loan/overview" round outline>
                             {i18n('account.no-account.panel2.button-text')}
                         </LinkButton>
                     </ButtonGroup>
