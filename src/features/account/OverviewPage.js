@@ -52,7 +52,7 @@ export class OverviewPage extends Component {
         return (
             <AuthenticatedPageTemplate header={i18n('account.overview-header')}>
                 <div className="account-overview-page">
-                    {!hasZeroAccounts ? (
+                    {hasZeroAccounts ? (
                         <NoAccountsPanel />
                     ) : (
                         <>
