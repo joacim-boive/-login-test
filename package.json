@@ -222,6 +222,7 @@
         "@ecster/ecster-components": "^2.0.495",
         "@ecster/ecster-i18n": "^3.0.66",
         "@ecster/ecster-net": "^2.0.93",
+        "@ecster/ecster-styles": "^3.0.215",
         "@ecster/ecster-util": "^2.0.73",
         "@ecster/ecster-validation": "^2.0.62",
         "@ecster/ecster-webpack": "^2.0.206",
