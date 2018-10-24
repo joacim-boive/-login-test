@@ -11,7 +11,7 @@ import AlphaLabel from '../alpha';
 
 class AuthenticatedPageTemplate extends React.Component {
     render() {
-        const { className, customerId, showLoanMenu, header, children } = this.props;
+        const { className, customerId, showLoanMenu, header, children, hasZeroAccounts } = this.props;
 
         const classes = classNames({
             'common-authenticated-page': true,
@@ -29,14 +29,22 @@ class AuthenticatedPageTemplate extends React.Component {
                 <div className={classes}>
                     <AlphaLabel />
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
+                        <TabletDesktopNavigation
+                            customerId={customerId}
+                            showLoanMenu={showLoanMenu}
+                            hasZeroAccounts={hasZeroAccounts}
+                        />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {thisHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
+                        <MobileNavigation
+                            customerId={customerId}
+                            showLoanMenu={showLoanMenu}
+                            hasZeroAccounts={hasZeroAccounts}
+                        />
                     </Mobile>
                 </div>
                 <MessagePanel />
@@ -52,6 +60,7 @@ AuthenticatedPageTemplate.propTypes = {
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
     showLoanMenu: PropTypes.bool,
+    hasZeroAccounts: PropTypes.bool.isRequired,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
@@ -61,10 +70,11 @@ AuthenticatedPageTemplate.defaultProps = {
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication, customer }) {
+function mapStateToProps({ account, authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
         showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
+        hasZeroAccounts: account.hasZeroAccounts,
     };
 }
 

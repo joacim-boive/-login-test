@@ -218,8 +218,8 @@
         "why-did-you-update": "^0.1.1"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.107",
-        "@ecster/ecster-components": "^2.0.495",
+        "@ecster/ecster-analytics": "^4.0.108",
+        "@ecster/ecster-components": "^2.0.498",
         "@ecster/ecster-i18n": "^3.0.66",
         "@ecster/ecster-net": "^2.0.93",
         "@ecster/ecster-styles": "^3.0.215",

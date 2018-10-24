@@ -269,11 +269,11 @@ function mapStateToProps(state) {
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch, state) {
-    const { id, ref } = state.match.params;
+    const { customerId, accountRef } = state.match.params;
     return {
-        getAccount: () => dispatch(getAccount(id, ref)),
-        getAccountTerms: () => dispatch(getAccountTerms(id, ref)),
-        updateAccount: data => dispatch(updateAccount(id, ref, data)),
+        getAccount: () => dispatch(getAccount(customerId, accountRef)),
+        getAccountTerms: () => dispatch(getAccountTerms(customerId, accountRef)),
+        updateAccount: data => dispatch(updateAccount(customerId, accountRef, data)),
         dismissUpdateAccountError: () => dispatch(dismissUpdateAccountError()),
     };
 }
