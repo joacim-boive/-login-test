@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_CUSTOMER_PROPERTIES_URL } from './urls';
 
-export const getCustomerProperties = (customerId, property) => async (dispatch) => {
+export const getCustomerProperties = (customerId, property) => async dispatch => {
     dispatch({
         type: CUSTOMER_GET_CUSTOMER_PROPERTIES_BEGIN,
     });
@@ -18,7 +18,7 @@ export const getCustomerProperties = (customerId, property) => async (dispatch) 
         const res = await get(GET_CUSTOMER_PROPERTIES_URL(customerId, property));
         dispatch({
             type: CUSTOMER_GET_CUSTOMER_PROPERTIES_SUCCESS,
-            property: property,
+            property,
             data: res.response,
         });
     } catch (err) {

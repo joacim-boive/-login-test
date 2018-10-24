@@ -28,13 +28,14 @@ class Lazyload extends Component {
     };
 
     render() {
-        const { alt, className, src, widths, ...rest } = this.props;
+        const { alt, className, src, widths, customTransform, ...rest } = this.props;
         const { isError } = this.state;
 
         const style = {
             display: isError ? 'none' : 'inherit',
         };
 
+        const dataSrc = customTransform ? `${cloudinary.url}/${customTransform}${src}` : `${cloudinary.defaults}${src}`;
         return (
             <img
                 style={style}
@@ -42,7 +43,7 @@ class Lazyload extends Component {
                 alt={alt}
                 className={className}
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-                data-src={`${cloudinary.defaults}${src}`}
+                data-src={dataSrc}
                 data-absurl="false"
                 data-sizes="auto"
                 data-widths={widths ? `[${widths.join(',')}]` : null}
@@ -57,12 +58,14 @@ Lazyload.propTypes = {
     src: PropTypes.string.isRequired,
     widths: PropTypes.arrayOf(PropTypes.number),
     className: PropTypes.string,
+    customTransform: PropTypes.string,
 };
 
 Lazyload.defaultProps = {
     alt: '',
     widths: null,
     className: '',
+    customTransform: undefined,
 };
 
 export default Lazyload;

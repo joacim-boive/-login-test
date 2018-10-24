@@ -61,6 +61,8 @@ export const LatestTransactions = ({
                         <DataRow>
                             <Data right>
                                 <LinkButton
+                                    purple
+                                    link
                                     iconRight="icon-chevron-right"
                                     className="show-more no-underline"
                                     to={`/account/${account.reference}/customer/${user.id}/transactions`}

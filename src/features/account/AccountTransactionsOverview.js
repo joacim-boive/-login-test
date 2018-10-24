@@ -124,11 +124,11 @@ AccountTransactionsOverview.defaultProps = {
 
 /* istanbul ignore next */
 function mapStateToProps({ account }, route) {
-    const { ref } = route.match.params;
+    const { accountRef } = route.match.params;
     return {
         account: account.account,
-        transactions: account.accountTransactions[ref],
-        reservedTransactions: account.accountReservedTransactions[ref],
+        transactions: account.accountTransactions[accountRef],
+        reservedTransactions: account.accountReservedTransactions[accountRef],
         filter: account.accountTransactionsFilter,
         receivedAllTransactions: account.receivedAllTransactions,
     };
@@ -136,10 +136,10 @@ function mapStateToProps({ account }, route) {
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch, state) {
-    const { id, ref } = state.match.params;
+    const { customerId, accountRef } = state.match.params;
     return {
-        getAccount: () => dispatch(getAccount(id, ref)),
-        getTransactions: filter => dispatch(getAccountTransactions(id, ref, filter)),
+        getAccount: () => dispatch(getAccount(customerId, accountRef)),
+        getTransactions: filter => dispatch(getAccountTransactions(customerId, accountRef, filter)),
     };
 }
 

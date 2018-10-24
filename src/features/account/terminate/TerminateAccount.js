@@ -184,12 +184,15 @@ function mapStateToProps({ account }) {
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch, state) {
-    const { id, ref } = state.match.params;
+    const { customerId, accountRef } = state.match.params;
     return {
-        deleteAccount: () => dispatch(deleteAccount(id, ref)),
-        getAccountRef: () => ref,
-        getCustomerId: () => id,
+        deleteAccount: () => dispatch(deleteAccount(customerId, accountRef)),
+        getAccountRef: () => accountRef,
+        getCustomerId: () => accountRef,
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TerminateAccount);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TerminateAccount);
