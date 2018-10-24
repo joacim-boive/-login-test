@@ -21,20 +21,28 @@ export default class NoAccountsPanel extends Component {
             <div className="account-no-account">
                 <Panel withFullWidthContent>
                     <Mobile>
-                        <img
-                            src="https://res.cloudinary.com/johanlinderoth/image/upload/c_scale,w_768/v1540300071/girl-in-traffic-cropped.jpg"
-                            alt=""
+                        <Lazyload
+                            className="lazyload"
+                            alt="Happy girl"
+                            src="/v1/imgs/girl-in-town.jpg"
+                            customTransform="/c_crop,g_face,t_base,w_1900,h_1400/w_{width}"
+                            widths={[323, 646]}
                         />
                     </Mobile>
                     <TabletOrDesktop>
-                        <img
-                            src="https://res.cloudinary.com/johanlinderoth/image/upload/c_scale,w_960/v1540300076/girl-in-traffic-wide.jpg"
-                            alt=""
+                        <Lazyload
+                            className="lazyload"
+                            alt="Happy girl"
+                            src="/v1/imgs/girl-in-town.jpg"
+                            customTransform="/c_crop,g_face,t_base,w_3350,h_1200/w_{width}"
+                            widths={[898, 1796]}
                         />
                     </TabletOrDesktop>
 
                     <div className="two-col-content">
-                        <h2 className="h1 e-green centered-content">{i18n('account.no-account.panel1.header')}</h2>
+                        <h2 className="h1 e-green centered-content extra-margin">
+                            {i18n('account.no-account.panel1.header')}
+                        </h2>
                         <FlexPanel separator={false} reverseMobile>
                             <div>
                                 <p>{i18n('account.no-account.panel1.text')}</p>
@@ -66,15 +74,20 @@ export default class NoAccountsPanel extends Component {
                 </Panel>
                 <Panel withFullWidthContent>
                     <Mobile>
-                        <img
-                            src="https://res.cloudinary.com/johanlinderoth/image/upload/c_scale,w_768/v1540301508/guitar-guy-cropped.jpg"
-                            alt=""
+                        <Lazyload
+                            className="lazyload"
+                            alt="Happy girl"
+                            src="/v1/imgs/guitar.jpg"
+                            customTransform="/t_base,w_1400,h_1000,c_crop,g_auto/w_{width}"
+                            widths={[323, 646]}
                         />
                     </Mobile>
                     <TabletOrDesktop>
-                        <img
-                            src="https://res.cloudinary.com/johanlinderoth/image/upload/c_scale,w_960/v1540300080/guitar-guy.jpg"
-                            alt=""
+                        <Lazyload
+                            className="lazyload"
+                            alt="Happy girl"
+                            src="/v1/imgs/guitar.jpg"
+                            widths={[898, 1796]}
                         />
                     </TabletOrDesktop>
                     <div className="mixed-content">
