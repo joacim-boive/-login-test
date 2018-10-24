@@ -77,9 +77,19 @@ class LoanEconomyPanel extends Component {
 
     numberOfChildrenInResidence = React.createRef();
 
-    onChange = e => {
+    hasMortgageLoan = React.createRef();
+
+    monthlyMortgageCost = React.createRef();
+
+    hasOtherLoan = React.createRef();
+
+    monthlyCostOtherLoans = React.createRef();
+
+    onChange = (e, form) => {
         const that = this;
-        storeValueForNameInState(e, that);
+        const callback = form && form.current ? form.current.validate.bind(form.current) : undefined;
+
+        storeValueForNameInState(e, that, callback);
     };
 
     handleNextStep = () => {
@@ -99,7 +109,7 @@ class LoanEconomyPanel extends Component {
     };
 
     render() {
-        const { className, collapse, id, isDisabled } = this.props;
+        const { className, collapse, isDisabled } = this.props;
         const {
             employmentForm,
             monthlyNetIncome,
@@ -149,6 +159,10 @@ class LoanEconomyPanel extends Component {
                             this.residenceDescription,
                             this.numberOfAdultsInResidence,
                             this.numberOfChildrenInResidence,
+                            this.hasMortgageLoan,
+                            this.monthlyMortgageCost,
+                            this.hasOtherLoan,
+                            this.monthlyCostOtherLoans,
                         ]}
                         className="formEconomy"
                     >
@@ -231,7 +245,7 @@ class LoanEconomyPanel extends Component {
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
                                     <div className="input-field">
-                                        <span>{i18n('loan.economy.12month')}</span>
+                                        <div>{i18n('loan.economy.12month')}</div>
                                         <RadioGroup
                                             name="employedMoreThan1Year"
                                             selectedValue={employedMoreThan1Year}
@@ -240,11 +254,13 @@ class LoanEconomyPanel extends Component {
                                             className="radio-boxes"
                                         >
                                             <Radio
+                                                className="radio-box"
                                                 onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
                                             />
                                             <Radio
+                                                className="radio-box"
                                                 onChange={e => this.onChange(e)}
                                                 value="no"
                                                 label={i18n('general.answer.no')}
@@ -415,22 +431,29 @@ class LoanEconomyPanel extends Component {
                             className="loan-economy__others-panel full-width mt-4x"
                         >
                             <section key="3">
-                                <label htmlFor="hasMortgageLoan" className="economy-row">
-                                    <Checkbox
-                                        checked={hasMortgageLoan}
-                                        onChange={this.onChange}
-                                        name="hasMortgageLoan"
-                                        id="hasMortgageLoan"
-                                    />
-                                    <div>{i18n('loan.economy.others-checkbox')}</div>
-                                </label>
+                                <Checkbox
+                                    checked={hasMortgageLoan}
+                                    required={monthlyMortgageCost === ''}
+                                    className="economy-row"
+                                    onChange={event => {
+                                        this.onChange(event, this.formEconomy);
+                                    }}
+                                    name="hasMortgageLoan"
+                                    id="hasMortgageLoan"
+                                    ref={this.hasMortgageLoan}
+                                >
+                                    {i18n('loan.economy.others-checkbox')}
+                                </Checkbox>
                                 {!hasMortgageLoan && (
                                     <Select
+                                        required
                                         label={i18n('loan.economy.others-label')}
                                         value={monthlyMortgageCost}
-                                        onChange={this.onChange}
+                                        onChange={event => {
+                                            this.onChange(event, this.formEconomy);
+                                        }}
                                         name="monthlyMortgageCost"
-                                        className="input-field"
+                                        ref={this.monthlyMortgageCost}
                                     >
                                         <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
@@ -442,22 +465,29 @@ class LoanEconomyPanel extends Component {
                                 )}
                             </section>
                             <section key="4" className="has-other mt-4x">
-                                <label htmlFor="hasOtherLoan" className="economy-row">
-                                    <Checkbox
-                                        checked={hasOtherLoan}
-                                        onChange={this.onChange}
-                                        name="hasOtherLoan"
-                                        id="hasOtherLoan"
-                                    />
-                                    <div>{i18n('loan.economy.other-loan-checkbox')}</div>
-                                </label>
+                                <Checkbox
+                                    checked={hasOtherLoan}
+                                    className="economy-row"
+                                    required={monthlyCostOtherLoans === ''}
+                                    onChange={event => {
+                                        this.onChange(event, this.formEconomy);
+                                    }}
+                                    name="hasOtherLoan"
+                                    id="hasOtherLoan"
+                                    ref={this.hasOtherLoan}
+                                >
+                                    {i18n('loan.economy.other-loan-checkbox')}
+                                </Checkbox>
                                 {!hasOtherLoan && (
                                     <Select
+                                        required
                                         label={i18n('loan.economy.other-loan-cost-label')}
                                         value={monthlyCostOtherLoans}
-                                        onChange={this.onChange}
+                                        onChange={event => {
+                                            this.onChange(event, this.formEconomy);
+                                        }}
                                         name="monthlyCostOtherLoans"
-                                        className="input-field"
+                                        ref={this.monthlyCostOtherLoans}
                                     >
                                         <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />

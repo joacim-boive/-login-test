@@ -7,12 +7,15 @@
         display: inline-block;
         margin-right: 20px;
     }
+    .radio-box{
+        display: inline-block;
+
+        &:nth-child(n+2) {
+            margin-left: 20px;
+        }
+    }
 
     section {
-        display: flex;
-        flex-direction: column;
-        align-content: space-between;
-
         & .responsive-column {
             &:first-child {
                 padding-right: 30px;
@@ -46,19 +49,16 @@
     }
 
     .economy-row {
-        display: flex;
-        flex-direction: row;
         margin-bottom: 20px;
 
-        div {
-            margin-left: 5px;
+        label{
+            span:nth-child(n+2){
+                margin-left: 5px;
+            }
         }
     }
 
     .formEconomy {
-        section {
-            margin-right: 2%;
-        }
 
         @include mobile() {
             section {

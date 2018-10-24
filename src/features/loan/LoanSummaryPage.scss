@@ -13,12 +13,29 @@
         }
     }
 
-    .loan-panel,
-    .loan-panel section h4{
+    form section {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        width: 98%;
+    }
+
+    .has-error .ec-text-input__err-msg, .has-error .text-input__err-msg, .err-msg {
+        // Don't jump the layout when err message is visible
+        position: absolute;
+    }
+
+    .input-field {
+        // Leave room for error message
         margin-top: 20px;
     }
 
-    .label{
+    .loan-panel,
+    .loan-panel section h4 {
+        margin-top: 20px;
+    }
+
+    label {
         display: block;
     }
 
@@ -27,4 +44,8 @@
     .max-50 input {
         max-width: 50%;
     }
+    .no-wrap{
+        white-space: nowrap;
+    }
+
 }

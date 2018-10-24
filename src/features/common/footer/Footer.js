@@ -21,7 +21,7 @@ export const Footer = ({ className, ...rest }) => {
                     &copy; {i18n('footer.copyright')}
                     {new Date().getFullYear()}
                 </div>
-                <Logo withName width="140px" height="35px" />
+                <Logo id="test-id" withName width="140px" height="35px" />
                 <div className="links ends">
                     <Link name="block-card" to="/customer/support">
                         {i18n('footer.block-card')}

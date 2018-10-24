@@ -11,12 +11,11 @@ class ClearingNumberInput extends Component {
     static propTypes = {
         className: PropTypes.string,
         onChange: PropTypes.func.isRequired,
-        onFoundBank: PropTypes.func,
+        setRef: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
         className: '',
-        onFoundBank: () => {},
     };
 
     state = {
@@ -27,7 +26,7 @@ class ClearingNumberInput extends Component {
 
     onChangeClearing = e => {
         const { target } = e;
-        const { onChange, onFoundBank } = this.props;
+        const { onChange } = this.props;
 
         let value = parseInt(target.value, 10);
 
@@ -36,10 +35,9 @@ class ClearingNumberInput extends Component {
         const bank = this.checkBank(value);
 
         if (bank) {
-            onFoundBank(bank);
             this.setState({ autoSelectedBank: bank, showBankInput: false });
         } else if (target.value && target.value.length >= 4) {
-            this.setState({ autoSelectedBank: i18n('loan.general.enter-bank'), showBankInput: true });
+            this.setState({ showBankInput: true });
         } else if (!target.value) {
             this.setState({ autoSelectedBank: '', showBankInput: false });
         }
@@ -72,7 +70,7 @@ class ClearingNumberInput extends Component {
     };
 
     render() {
-        const { className, ...rest } = this.props;
+        const { className, setRef, ...rest } = this.props;
         const { autoSelectedBank, showBankInput, myBank } = this.state;
 
         const classes = classNames({
@@ -82,10 +80,12 @@ class ClearingNumberInput extends Component {
 
         return (
             <div className={classes}>
-                <Input {...rest} onChange={this.onChangeClearing} />
-                {autoSelectedBank && <div className="bank-label">{autoSelectedBank}</div>}
+                <Input ref={setRef} {...rest} onChange={this.onChangeClearing} />
+                {!showBankInput && <div className="bank-label">{autoSelectedBank}</div>}
                 {showBankInput && (
                     <Input
+                        label={i18n('loan.general.enter-bank')}
+                        className="input-field no-wrap"
                         value={myBank}
                         name="myBank"
                         placeholder={i18n('loan.general.bank')}
