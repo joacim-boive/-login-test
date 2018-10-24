@@ -115,10 +115,9 @@ class LoginFormSE extends Component {
     };
 
     render() {
-        const { loginStatus, loginProgress, getSessionError, createSessionError, person } = this.props;
+        const { loginStatus, loginProgress, getSessionError, createSessionError } = this.props;
 
         if (loginStatus.isLoggedIn) {
-            this.props.getCustomerProperties(person.id, 'SHOW_PRIVATLAN_MENU');
             return <Redirect to="../account/overview" />;
         }
 
@@ -209,13 +208,11 @@ LoginFormSE.propTypes = {
     createSession: PropTypes.func.isRequired,
     removeSession: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
-    getCustomerProperties: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
 
     createSessionError: PropTypes.object,
     getSessionError: PropTypes.object,
-    person: PropTypes.object,
 };
 
 LoginFormSE.defaultProps = {

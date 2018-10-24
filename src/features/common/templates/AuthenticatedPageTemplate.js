@@ -8,8 +8,17 @@ import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import Footer from '../footer';
 import AlphaLabel from '../alpha';
+import { getCustomerProperties } from '../../customer/redux/actions';
 
 class AuthenticatedPageTemplate extends React.Component {
+    componentDidUpdate() {
+        const { showLoanMenu, getCustomerPropertiesPending, customerId, getCustomerProperties } = this.props;
+
+        if (showLoanMenu === undefined && !getCustomerPropertiesPending) {
+            getCustomerProperties(customerId, 'SHOW_PRIVATLAN_MENU');
+        }
+    }
+
     render() {
         const { className, customerId, showLoanMenu, header, children, hasZeroAccounts } = this.props;
 
@@ -61,12 +70,14 @@ AuthenticatedPageTemplate.propTypes = {
     children: PropTypes.node.isRequired,
     showLoanMenu: PropTypes.bool,
     hasZeroAccounts: PropTypes.bool.isRequired,
+    getCustomerPropertiesPending: PropTypes.bool.isRequired,
+    getCustomerProperties: PropTypes.func.isRequired,
 };
 
 AuthenticatedPageTemplate.defaultProps = {
     className: '',
     header: undefined,
-    showLoanMenu: false,
+    showLoanMenu: undefined, // undefined important, used in test above!
 };
 
 /* istanbul ignore next */
@@ -75,7 +86,19 @@ function mapStateToProps({ account, authentication, customer }) {
         customerId: authentication.person && authentication.person.id,
         showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
         hasZeroAccounts: account.hasZeroAccounts,
+        getCustomerPropertiesPending: customer.getCustomerPropertiesPending,
     };
 }
 
-export default connect(mapStateToProps)(AuthenticatedPageTemplate);
+function mapDispatchToProps(dispatch) {
+    return {
+        getCustomerProperties: (customerId, propertyName) => {
+            dispatch(getCustomerProperties(customerId, propertyName));
+        },
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AuthenticatedPageTemplate);
