@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { Panel } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
@@ -53,22 +54,26 @@ export class AccountTransactionsOverview extends Component {
     };
 
     render() {
-        const { account, transactions, reservedTransactions } = this.props;
+        const { account, transactions, reservedTransactions, receivedAllTransactions } = this.props;
 
         if (!account.product || !transactions) return null;
 
         const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
 
         return (
-            <AuthenticatedSubPageTemplate header="Kontohändelser" className="account-transactions-overview">
+            <AuthenticatedSubPageTemplate
+                header={i18n('account.transactions.page-header')}
+                className="account-transactions-overview"
+            >
                 <h1>{account.product.name}</h1>
                 <AccountSummary account={account} />
                 {showOverdrawn && (
-                    <Panel withNoPadding stretchInMobile className="mt-4x">
+                    <Panel withNoPadding stretchInMobile className="overdrawn-info-ctr">
                         <OverdrawnInfo
                             used={account.used}
                             limit={account.limit}
                             accountNumber={account.accountNumber}
+                            className="overdrawn-info"
                         />
                     </Panel>
                 )}
@@ -82,6 +87,19 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
+                {receivedAllTransactions && (
+                    <Panel
+                        id={transactions.length === 0 ? 'no-tx-info' : 'no-more-tx-info'}
+                        withTextContent
+                        sideMarginsInMobile
+                    >
+                        <div className="text-content">
+                            {transactions.length === 0
+                                ? i18n('account.transactions.no-transactions')
+                                : i18n('account.transactions.no-more-transactions')}
+                        </div>
+                    </Panel>
+                )}
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -94,22 +112,25 @@ AccountTransactionsOverview.propTypes = {
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
     filter: PropTypes.shape().isRequired,
+    receivedAllTransactions: PropTypes.bool,
 };
 
 AccountTransactionsOverview.defaultProps = {
     account: {},
     transactions: [],
     reservedTransactions: [],
+    receivedAllTransactions: false,
 };
 
 /* istanbul ignore next */
-function mapStateToProps(state, route) {
+function mapStateToProps({ account }, route) {
     const { ref } = route.match.params;
     return {
-        account: state.account.account,
-        transactions: state.account.accountTransactions[ref],
-        reservedTransactions: state.account.accountReservedTransactions[ref],
-        filter: state.account.accountTransactionsFilter,
+        account: account.account,
+        transactions: account.accountTransactions[ref],
+        reservedTransactions: account.accountReservedTransactions[ref],
+        filter: account.accountTransactionsFilter,
+        receivedAllTransactions: account.receivedAllTransactions,
     };
 }
 

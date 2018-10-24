@@ -76,7 +76,7 @@
         },
         "latest-transactions": {
             "header": "Senaste händelser",
-            "missing": ["Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader tillbaka."]
+            "missing": ["$t(account.transactions.no-transactions)."]
         },
         "links": {
             "transactions": "Kontohändelser",
@@ -85,7 +85,8 @@
             "monthly-invoices": "Månadsfakturor",
             "manage-cards": "Hantera kort",
             "apply-for-card": "Ansök om kort",
-            "terms": "Kontoinformation"
+            "terms": "Kontoinformation",
+            "validation-message": "Välj nytt kreditbelopp"
         },
         "summary": {
             "left": "Kvar att handla för",
@@ -93,8 +94,11 @@
             "total": "Total kredit"
         },
         "transactions": {
+            "page-header": "Kontohändelser",
             "reserved-amount": "Reserverat belopp",
-            "show-more": "Se fler"
+            "show-more": "Se fler",
+            "no-transactions": "Det finns inga kontohändelser att visa. Du kan se händelser upp till 24 månader.",
+            "no-more-transactions": "Det finns inga fler kontohändelser. Du kan se händelser upp till 24 månader."
         },
         "sales-panel": {
             "header": "Skaffa ett kort till ditt konto",
@@ -193,24 +197,28 @@
             "new-credit-limit": "Ny kreditgräns",
             "select-amount": "Välj belopp",
 
-            "terms": "Villkor",
-            "terms-description": "För att ansöka om en högre kreditgräns behöver du uppfylla ett antal grundkrav. ",
+            "terms": "Grundkrav",
+            "terms-description": "När du ansöker om en högre kreditgräns tar vi en kreditupplysning och du behöver uppfylla ett antal grundkrav.",
             "terms-items": ["Du är över 18 år", "Du har en fast inkomst", "Du har inga betalningsanmärkningar"],
 
-            "terms-conditions": "Här kan du ta del av dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
+            "terms-conditions": "Här kan du ladda ner dina [link-new-win {{url}} 'fullständiga kontovillkor (pdf)']",
 
             "apply-note": "Genom att klicka på “Ansök” godkänner jag villkoren ovan.",
-            "apply-note-validation": "Vänligen välj ny kreditgräns ovan.",
             "apply": "Ansök",
             "processing-message": "Vi behandlar din ansökan...",
             "processing-message-uc": "Kontaktar UC...",
+            "not-allowed": {
+                "alert-header": "Maximal kreditgräns",
+                "alert-message": "Du har redan uppnått din maximala kreditgräns och kan inte ansöka om kredithöjning.",
+                "info-message": "Du kan inte ansöka om kredithöjning."
+            },
 
             "approved-header": "Klart!",
-            "approved-message": "Din kredithöjning till {{value}} är godkänd och dina villkor har uppdaterats. Du hittar dem under under kontovillkor.",
+            "approved-message": "Din kredithöjning till {{value}} är godkänd och din nya kreditgräns har uppdaterats under kontoinformation.",
 
-            "pending-header": "Vi behöver titta lite närmare på din ansökan",
+            "pending-header": "Vi behöver titta närmare på din ansökan",
             "pending-message": [
-                "Vi kommer behöva lite fler uppgifter från dig för att kunna ta ett beslut. ",
+                "Vi behöver fler uppgifter från dig för att kunna ta ett beslut.",
                 "Ring oss på $t(general.phone-link-08343550) och uppge ärendenummer <strong>{{caseNumber}}</strong>",
                 "$t(general.support-opening-hours)"
             ],
@@ -223,8 +231,8 @@
 
             "error": {
                 "communication": {
-                    "header": "Oj, nu gick något fel",
-                    "body": "Vi kan tyvärr inte genomföra din ansökan om höjd kredigräns just nu och felet är helt och hållet vårt. Försök gärna igen om en liten stund."
+                    "header": "Åh nej!",
+                    "body": "Ett tekniskt fel har inträffat och din ansökan om kredithöjning kunde inte genomföras. Försök gärna igen om en liten stund."
                 }
             },
 
@@ -266,6 +274,20 @@
                 "I tjänsten kan du rapportera fel och/eller lämna synpunkter. Vi väldigt tacksamma för din hjälp. Tillsammans gör vi nya inloggat ännu bättre."
             ],
             "button-text": "Okej, då kör vi"
+        }
+    },
+    "invoice": {
+        "page-header": "Fakturor",
+        "monthly-invoice": {
+            "page-header": "Månadsfakturor"
+        }
+    },
+    "card": {
+        "manage-card": {
+            "page-header": "Hantera kort"
+        },
+        "extra-card": {
+            "page-header": "Hantera kort"
         }
     },
     "customer": {

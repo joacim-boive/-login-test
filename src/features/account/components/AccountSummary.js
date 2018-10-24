@@ -18,7 +18,7 @@ export const AccountSummary = ({ account }) => {
                 </article>
                 <article key={2} className="border-left">
                     <div>{i18n('account.summary.used')}</div>
-                    <div>{formatAmount(account.used, undefined, { roundUp: true })}</div>
+                    <div>{formatAmount(account.used < 0 ? 0 : account.used, undefined, { roundUp: true })}</div>
                 </article>
                 <article key={3} className="border-left last">
                     <div>{i18n('account.summary.total')}</div>
