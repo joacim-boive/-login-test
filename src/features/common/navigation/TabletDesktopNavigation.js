@@ -120,6 +120,5 @@ TabletDesktopNavigation.propTypes = {
 
 TabletDesktopNavigation.defaultProps = {
     showLoanMenu: false,
-    hasZeroAccounts: PropTypes.bool.isRequired,
 };
 export default withRouter(TabletDesktopNavigation);

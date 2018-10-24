@@ -30,7 +30,7 @@ class MobileNavigation extends React.Component {
 
     render() {
         const { showSubMenu } = this.state;
-        const pathname = this.props.history.location.pathname;
+        const { pathname } = this.props.history.location;
         // double !! => true or false not array
         const overviewIsActive = !!pathname.match(/.account.overview/);
         const invoiceIsActive = !!pathname.match(/.invoice.overview/);
@@ -38,7 +38,7 @@ class MobileNavigation extends React.Component {
         // submenu items, indicate active when submenu is visible
         const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
         const customerSupportIsActive = !!pathname.match(/.customer.support/);
-        const { showLoanMenu, customerId } = this.props;
+        const { showLoanMenu, customerId, hasZeroAccounts } = this.props;
 
         return (
             <BottomNavigation light showOverlay={showSubMenu}>
@@ -71,9 +71,11 @@ class MobileNavigation extends React.Component {
                     </InteractiveElement>
                 </BottomMenu>
                 <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
-                    <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
-                        {i18n('navigation.settings')}
-                    </SubMenuItem>
+                    {!hasZeroAccounts && (
+                        <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
+                            {i18n('navigation.settings')}
+                        </SubMenuItem>
+                    )}
                     <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
                         {i18n('navigation.customer-support')}
                     </SubMenuItem>
@@ -90,6 +92,7 @@ MobileNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
     showLoanMenu: PropTypes.bool.isRequired,
+    hasZeroAccounts: PropTypes.bool.isRequired,
 };
 
 export default withRouter(MobileNavigation);
