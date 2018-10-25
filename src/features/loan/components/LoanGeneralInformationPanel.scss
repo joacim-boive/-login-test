@@ -3,16 +3,6 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-general-information-panel {
-    @include mobile() {
-        .ec-panel {
-            border-left: none;
-            border-right: none;
-            border-radius: 0;
-            padding: 10px 15px;
-            margin-top: 20px;
-        }
-    }
-
     .body {
         margin-top: 20px;
     }
@@ -33,7 +23,8 @@
         justify-content: center;
 
         @include mobile() {
-            margin: 25px 0 15px 0;
+            // Need to leave room for a possible error message that needs position absolute.
+            margin: 45px 0 15px 0;
         }
     }
 
@@ -73,10 +64,19 @@
         flex-direction: row;
         margin: 50px 30px 0;
 
+        label{
+            display: flex;
+        }
+
         .text {
             font-size: 14px;
             font-weight: normal;
             margin-left: 10px;
+        }
+
+        .err-msg{
+            top: 100%;
+            margin-left: 30px;
         }
     }
 

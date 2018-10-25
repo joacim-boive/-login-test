@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Form, Select, Option, Checkbox, Button, Input, ResponsivePanel } from '@ecster/ecster-components';
+import {
+    Form,
+    RadioGroup,
+    Radio,
+    Select,
+    Option,
+    Checkbox,
+    Button,
+    Input,
+    ResponsivePanel,
+} from '@ecster/ecster-components';
+import storeValueForNameInState from '../../../common/util/store-value-for-name-in-state';
+
 import './LoanEconomyPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 
@@ -65,14 +77,19 @@ class LoanEconomyPanel extends Component {
 
     numberOfChildrenInResidence = React.createRef();
 
-    onChange = e => {
-        const { target } = e;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const { name } = target;
+    hasMortgageLoan = React.createRef();
 
-        this.setState({
-            [name]: value,
-        });
+    monthlyMortgageCost = React.createRef();
+
+    hasOtherLoan = React.createRef();
+
+    monthlyCostOtherLoans = React.createRef();
+
+    onChange = (e, form) => {
+        const that = this;
+        const callback = form && form.current ? form.current.validate.bind(form.current) : undefined;
+
+        storeValueForNameInState(e, that, callback);
     };
 
     handleNextStep = () => {
@@ -83,8 +100,16 @@ class LoanEconomyPanel extends Component {
         }
     };
 
+    handleCollapse = () => {
+        const { isDisabled, handleCollapse, id } = this.props;
+
+        if (!isDisabled) {
+            handleCollapse(id);
+        }
+    };
+
     render() {
-        const { className, collapse, handleCollapse, id, isDisabled } = this.props;
+        const { className, collapse, isDisabled } = this.props;
         const {
             employmentForm,
             monthlyNetIncome,
@@ -117,7 +142,7 @@ class LoanEconomyPanel extends Component {
                     collapse={collapse}
                     isDisabled={isDisabled}
                     handleNextStep={this.handleNextStep}
-                    handleCollapse={() => handleCollapse(id)}
+                    handleCollapse={this.handleCollapse}
                     showMoreLabel={i18n('loan.economy.header')}
                     showLessLabel={i18n('loan.economy.header')}
                 >
@@ -134,6 +159,10 @@ class LoanEconomyPanel extends Component {
                             this.residenceDescription,
                             this.numberOfAdultsInResidence,
                             this.numberOfChildrenInResidence,
+                            this.hasMortgageLoan,
+                            this.monthlyMortgageCost,
+                            this.hasOtherLoan,
+                            this.monthlyCostOtherLoans,
                         ]}
                         className="formEconomy"
                     >
@@ -145,7 +174,6 @@ class LoanEconomyPanel extends Component {
                                     value={employmentForm}
                                     onChange={this.onChange}
                                     required
-                                    validationMessage="Fältet är obligatoriskt!"
                                     name="employmentForm"
                                     className="input-field"
                                     ref={this.employmentForm}
@@ -173,14 +201,15 @@ class LoanEconomyPanel extends Component {
                                 {['RETIRED', 'STUDENT', 'SEEKING_EMPLOYMENT'].includes(employmentForm) && (
                                     <Input
                                         label={i18n('loan.economy.income-label')}
-                                        type="tel"
+                                        type="number"
                                         value={monthlyNetIncome}
                                         onChange={this.onChange}
                                         name="monthlyNetIncome"
                                         required
+                                        validationMessage={i18n('loan.economy.income-error')}
                                         minLength={1}
                                         maxLength={7}
-                                        className="input-field"
+                                        className="input-field max-50"
                                         ref={this.monthlyNetIncome}
                                     />
                                 )}
@@ -189,14 +218,15 @@ class LoanEconomyPanel extends Component {
                                 ) && (
                                     <Input
                                         label={i18n('loan.economy.gross-income-label')}
-                                        type="tel"
+                                        type="number"
                                         value={monthlyGrossIncome}
                                         onChange={this.onChange}
                                         name="monthlyGrossIncome"
                                         required
+                                        validationMessage={i18n('loan.economy.gross-income-error')}
                                         minLength={1}
                                         maxLength={7}
-                                        className="input-field"
+                                        className="input-field max-50"
                                         ref={this.monthlyGrossIncome}
                                     />
                                 )}
@@ -209,25 +239,40 @@ class LoanEconomyPanel extends Component {
                                         minLength={1}
                                         maxLength={40}
                                         className="input-field"
+                                        required
+                                        validationMessage={i18n('loan.economy.employer-error')}
                                     />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
-                                    <Select
-                                        label={i18n('loan.economy.12month')}
-                                        value={employedMoreThan1Year}
-                                        onChange={this.onChange}
-                                        name="employedMoreThan1Year"
-                                        required
-                                        className="input-field"
-                                        ref={this.employedMoreThan1Year}
-                                    >
-                                        <Option label={i18n('general.answer.yes')} value="yes" />
-                                        <Option label={i18n('general.answer.no')} value="no" />
-                                    </Select>
+                                    <div className="input-field">
+                                        <div>{i18n('loan.economy.12month')}</div>
+                                        <RadioGroup
+                                            name="employedMoreThan1Year"
+                                            selectedValue={employedMoreThan1Year}
+                                            required
+                                            ref={this.employedMoreThan1Year}
+                                            className="radio-buttons"
+                                        >
+                                            <Radio
+                                                className="radio-button"
+                                                onChange={e => this.onChange(e)}
+                                                value="yes"
+                                                label={i18n('general.answer.yes')}
+                                            />
+                                            <Radio
+                                                className="radio-button"
+                                                onChange={e => this.onChange(e)}
+                                                value="no"
+                                                label={i18n('general.answer.no')}
+                                            />
+                                        </RadioGroup>
+                                    </div>
                                 )}
                                 {['SELFEMPLOYED'].includes(employmentForm) && (
                                     <Input
                                         label={i18n('loan.economy.company-name')}
+                                        required
+                                        validationMessage={i18n('loan.economy.company-name-error')}
                                         value={ownedCompanyName}
                                         onChange={this.onChange}
                                         name="ownedCompanyName"
@@ -237,21 +282,29 @@ class LoanEconomyPanel extends Component {
                                     />
                                 )}
                                 {['SELFEMPLOYED'].includes(employmentForm) && (
-                                    <Select
-                                        label={i18n('loan.economy.12month-company')}
-                                        value={ownedCompanyMoreThan1Year}
-                                        onChange={this.onChange}
-                                        name="ownedCompanyMoreThan1Year"
-                                        required
-                                        className="input-field"
-                                        ref={this.ownedCompanyMoreThan1Year}
-                                    >
-                                        <Option label={i18n('general.answer.yes')} value="yes" />
-                                        <Option label={i18n('general.answer.no')} value="no" />
-                                    </Select>
+                                    <div className="input-field">
+                                        <span>{i18n('loan.economy.12month-company')}</span>
+                                        <RadioGroup
+                                            name="ownedCompanyMoreThan1Year"
+                                            selectedValue={ownedCompanyMoreThan1Year}
+                                            required
+                                            ref={this.ownedCompanyMoreThan1Year}
+                                        >
+                                            <Radio
+                                                value="yes"
+                                                label={i18n('general.answer.yes')}
+                                                onChange={e => this.onChange(e)}
+                                            />
+                                            <Radio
+                                                value="no"
+                                                label={i18n('general.answer.no')}
+                                                onChange={e => this.onChange(e)}
+                                            />
+                                        </RadioGroup>
+                                    </div>
                                 )}
                             </section>
-                            <section key="2">
+                            <section key="2" className="mt-20">
                                 <h4>{i18n('loan.economy.household')}</h4>
                                 <Select
                                     label={i18n('loan.economy.living-label')}
@@ -344,58 +397,63 @@ class LoanEconomyPanel extends Component {
                                         <Option label={i18n('loan.economy.options.rent.span4')} value="4" />
                                     </Select>
                                 )}
-                                <Select
+                                <Input
                                     label={i18n('loan.economy.adults-label')}
                                     value={numberOfAdultsInResidence}
                                     onChange={this.onChange}
                                     name="numberOfAdultsInResidence"
+                                    id="numberOfAdultsInResidence"
                                     required
-                                    className="input-field"
+                                    className="input-field max-50"
                                     ref={this.numberOfAdultsInResidence}
-                                >
-                                    <Option label="1" value="1" />
-                                    <Option label="2" value="2" />
-                                </Select>
-                                <Select
+                                    maxLength={2}
+                                    autocomplete="off"
+                                />
+                                <Input
                                     label={i18n('loan.economy.children-label')}
                                     value={numberOfChildrenInResidence}
                                     onChange={this.onChange}
                                     name="numberOfChildrenInResidence"
+                                    id="numberOfChildrenInResidence"
                                     required
-                                    className="input-field"
+                                    className="input-field  max-50"
                                     ref={this.numberOfChildrenInResidence}
-                                >
-                                    <Option label="0" value="0" />
-                                    <Option label="1" value="1" />
-                                    <Option label="2" value="2" />
-                                    <Option label="3" value="3" />
-                                    <Option label="4" value="4" />
-                                    <Option label="5" value="5" />
-                                    <Option label="6" value="6" />
-                                    <Option label="7" value="7" />
-                                    <Option label="8" value="8" />
-                                    <Option label="9" value="9" />
-                                </Select>
+                                    maxLength={2}
+                                    autocomplete="off"
+                                />
                             </section>
                         </ResponsivePanel>
-                        <ResponsivePanel desktop={2} tablet={2} mobile={1}>
+                        <h4 className="mt-4x">{i18n('loan.economy.others')}</h4>
+                        <ResponsivePanel
+                            desktop={2}
+                            tablet={2}
+                            mobile={1}
+                            className="loan-economy__others-panel full-width mt-4x"
+                        >
                             <section key="3">
-                                <h4>{i18n('loan.economy.others')}</h4>
-                                <label className="economy-row">
-                                    <Checkbox
-                                        checked={hasMortgageLoan}
-                                        onChange={this.onChange}
-                                        name="hasMortgageLoan"
-                                    />
-                                    <div>{i18n('loan.economy.others-checkbox')}</div>
-                                </label>
+                                <Checkbox
+                                    checked={hasMortgageLoan}
+                                    required={monthlyMortgageCost === ''}
+                                    className="economy-row"
+                                    onChange={event => {
+                                        this.onChange(event, this.formEconomy);
+                                    }}
+                                    name="hasMortgageLoan"
+                                    id="hasMortgageLoan"
+                                    ref={this.hasMortgageLoan}
+                                >
+                                    {i18n('loan.economy.others-checkbox')}
+                                </Checkbox>
                                 {!hasMortgageLoan && (
                                     <Select
+                                        required
                                         label={i18n('loan.economy.others-label')}
                                         value={monthlyMortgageCost}
-                                        onChange={this.onChange}
+                                        onChange={event => {
+                                            this.onChange(event, this.formEconomy);
+                                        }}
                                         name="monthlyMortgageCost"
-                                        className="input-field"
+                                        ref={this.monthlyMortgageCost}
                                     >
                                         <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
@@ -406,18 +464,30 @@ class LoanEconomyPanel extends Component {
                                     </Select>
                                 )}
                             </section>
-                            <section className="economy-bottom" key="4">
-                                <label className="economy-row">
-                                    <Checkbox checked={hasOtherLoan} onChange={this.onChange} name="hasOtherLoan" />
-                                    <div>{i18n('loan.economy.other-loan-checkbox')}</div>
-                                </label>
+                            <section key="4" className="has-other mt-4x">
+                                <Checkbox
+                                    checked={hasOtherLoan}
+                                    className="economy-row"
+                                    required={monthlyCostOtherLoans === ''}
+                                    onChange={event => {
+                                        this.onChange(event, this.formEconomy);
+                                    }}
+                                    name="hasOtherLoan"
+                                    id="hasOtherLoan"
+                                    ref={this.hasOtherLoan}
+                                >
+                                    {i18n('loan.economy.other-loan-checkbox')}
+                                </Checkbox>
                                 {!hasOtherLoan && (
                                     <Select
+                                        required
                                         label={i18n('loan.economy.other-loan-cost-label')}
                                         value={monthlyCostOtherLoans}
-                                        onChange={this.onChange}
+                                        onChange={event => {
+                                            this.onChange(event, this.formEconomy);
+                                        }}
                                         name="monthlyCostOtherLoans"
-                                        className="input-field"
+                                        ref={this.monthlyCostOtherLoans}
                                     >
                                         <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
                                         <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />

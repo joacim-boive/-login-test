@@ -6,6 +6,7 @@ import { Button, Select, Option, Input, Checkbox, ResponsivePanel, Form } from '
 import './LoanGeneralInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import ClearingNumberInput from './ClearingNumberInput';
+import storeValueForNameInState from '../../../common/util/store-value-for-name-in-state';
 
 class LoanGeneralInformationPanel extends Component {
     static propTypes = {
@@ -27,14 +28,8 @@ class LoanGeneralInformationPanel extends Component {
     state = {
         loanUsage: '',
         loanUsageDescription: '',
-        loanUsageDescriptionValid: false,
-        loanAmountToResolve: '',
-        loanAmountToResolveValid: false,
-        bank: '',
         clearingNumber: '',
         accountNumber: '',
-        clearingNumberValid: false,
-        accountNumberValid: false,
         agreedTerms: false,
     };
 
@@ -42,31 +37,17 @@ class LoanGeneralInformationPanel extends Component {
 
     loanUsage = React.createRef();
 
-    loanAmountToResolve = React.createRef();
-
     loanUsageDescription = React.createRef();
 
-    clearingNumber = React.createRef();
+    clearingNumber = null;
 
     accountNumber = React.createRef();
 
-    onFoundBank = bank => {
-        this.setState({ bank });
-    };
+    agreedTerms = React.createRef();
 
-    onChange = (name, e) => {
-        const { target } = e;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        this.setState({ [name]: value });
-    };
-
-    onChangeTerms = e => {
-        const { target } = e;
-        this.setState({ agreedTerms: target.checked });
-    };
-
-    onValidate = (name, val) => {
-        this.setState({ [name]: val });
+    onChange = e => {
+        const that = this;
+        storeValueForNameInState(e, that);
     };
 
     handleNextStep = () => {
@@ -77,16 +58,22 @@ class LoanGeneralInformationPanel extends Component {
         }
     };
 
+    handleCollapse = () => {
+        const { isDisabled, handleCollapse, id } = this.props;
+
+        if (!isDisabled) {
+            handleCollapse(id);
+        }
+    };
+
+    setClearingNumberRef = element => {
+        // We can't set the ref directly as the DOM element is inside the component.
+        this.clearingNumber = { current: element };
+    };
+
     render() {
-        const { className, collapse, handleCollapse, id, isDisabled } = this.props;
-        const {
-            loanUsage,
-            loanUsageDescription,
-            loanAmountToResolve,
-            accountNumber,
-            clearingNumber,
-            agreedTerms,
-        } = this.state;
+        const { className, collapse, isDisabled } = this.props;
+        const { loanUsage, loanUsageDescription, accountNumber, clearingNumber, agreedTerms } = this.state;
 
         const classes = classNames({
             'loan-general-information-panel': true,
@@ -101,19 +88,13 @@ class LoanGeneralInformationPanel extends Component {
                     collapse={collapse}
                     isDisabled={isDisabled}
                     handleNextStep={this.handleNextStep}
-                    handleCollapse={() => handleCollapse(id)}
+                    handleCollapse={this.handleCollapse}
                     showMoreLabel={i18n('loan.general.header')}
                     showLessLabel={i18n('loan.general.header')}
                 >
                     <Form
                         ref={this.formGeneralInformation}
-                        validateRefs={[
-                            this.loanUsage,
-                            this.loanAmountToResolve,
-                            this.loanUsageDescription,
-                            this.clearingNumber,
-                            this.accountNumber,
-                        ]}
+                        validateRefs={[this.loanUsage, this.clearingNumber, this.accountNumber, this.agreedTerms]}
                         className="formGeneralInformation"
                     >
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} className="body">
@@ -122,13 +103,14 @@ class LoanGeneralInformationPanel extends Component {
                                 <Select
                                     label={i18n('loan.general.purpose')}
                                     value={loanUsage}
-                                    onChange={e => this.onChange('loanUsage', e)}
+                                    onChange={this.onChange}
                                     name="loanUsage"
                                     required
-                                    className="input-field"
+                                    validationMessage={i18n('loan.general.purpose-error')}
+                                    ref={this.loanUsage}
                                 >
                                     <Option label={i18n('loan.general.resolve')} value="RESOLVE_OTHER_LOAN" />
-                                    <Option  label={i18n('loan.general.residence-other')} value="RESIDENCE_OTHER" />
+                                    <Option label={i18n('loan.general.residence-other')} value="RESIDENCE_OTHER" />
                                     <Option label={i18n('loan.general.vehicle')} value="VEHICLE" />
                                     <Option
                                         label={i18n('loan.general.consumer-goods')}
@@ -136,35 +118,17 @@ class LoanGeneralInformationPanel extends Component {
                                     />
                                     <Option label={i18n('loan.general.other')} value="OTHER" />
                                 </Select>
-                                {['RESOLVE_OTHER_LOAN'].includes(loanUsage) && (
-                                    <Input
-                                        label={i18n('loan.general.resolve-other')}
-                                        type="tel"
-                                        value={loanAmountToResolve}
-                                        onChange={e => this.onChange('loanAmountToResolve', e)}
-                                        placeholder={i18n('general.currency.se')}
-                                        name="loanAmountToResolve"
-                                        required
-                                        minLength={3}
-                                        maxLength={30}
-                                        className="input-field"
-                                        onValidation={(name, val) => this.onValidate('loanAmountToResolveValid', val)}
-                                        validator={val => /^\d{1,7}$/.test(val)}
-                                    />
-                                )}
                                 {['OTHER'].includes(loanUsage) && (
                                     <Input
                                         label={i18n('loan.general.other-usage')}
-                                        type="tel"
+                                        className="input-field"
                                         value={loanUsageDescription}
-                                        onChange={e => this.onChange('loanUsageDescription', e)}
+                                        onChange={this.onChange}
                                         name="loanUsageDescription"
                                         required
                                         minLength={3}
                                         maxLength={30}
-                                        className="input-field"
-                                        onValidation={(name, val) => this.onValidate('loanUsageDescriptionValid', val)}
-                                        validator={val => /^[a-zA-ZäöåÄÖÅ]{3,30}$/.test(val)}
+                                        ref={this.loanUsageDescription}
                                     />
                                 )}
                             </section>
@@ -173,12 +137,11 @@ class LoanGeneralInformationPanel extends Component {
                                 <label htmlFor="clearingNumber" className="account-number-label">
                                     {i18n('loan.general.account')}
                                 </label>
-                                <span className="account-number">
+                                <div className="account-number">
                                     <ClearingNumberInput
                                         value={clearingNumber}
                                         type="tel"
-                                        onChange={e => this.onChange('clearingNumber', e)}
-                                        onFoundBank={this.onFoundBank}
+                                        onChange={this.onChange}
                                         placeholder={i18n('loan.general.clearing-number')}
                                         name="clearingNumber"
                                         id="clearingNumber"
@@ -186,35 +149,38 @@ class LoanGeneralInformationPanel extends Component {
                                         minLength={4}
                                         maxLength={6}
                                         className="clearing-field"
-                                        onValidation={(name, val) => this.onValidate('clearingNumberValid', val)}
+                                        validationMessage={i18n('loan.general.clearing-number-error')}
                                         validator={val => /^\d{4}(-\d{1}){0,1}$/.test(val)}
+                                        setRef={this.setClearingNumberRef}
                                     />
                                     <Input
                                         value={accountNumber}
                                         type="tel"
-                                        onChange={e => this.onChange('accountNumber', e)}
+                                        onChange={this.onChange}
                                         placeholder={i18n('loan.general.account-number')}
                                         name="accountNumber"
                                         required
                                         minLength={7}
                                         maxLength={10}
-                                        style={{ width: '100%' }}
-                                        onValidation={(name, val) => this.onValidate('accountNumberValid', val)}
+                                        validationMessage={i18n('loan.general.account-number-error')}
                                         validator={val => /^\d{7,10}$/.test(val)}
+                                        ref={this.accountNumber}
                                     />
-                                </span>
+                                </div>
                             </section>
                         </ResponsivePanel>
-
-                        <label htmlFor="agreedTerms" className="terms-section">
-                            <Checkbox
-                                checked={agreedTerms}
-                                onChange={this.onChangeTerms}
-                                name="agreedTerms"
-                                id="agreedTerms"
-                            />
+                        <Checkbox
+                            checked={agreedTerms}
+                            className="terms-section"
+                            onChange={this.onChange}
+                            name="agreedTerms"
+                            id="agreedTerms"
+                            required
+                            validationMessage={i18n('loan.general.terms-error')}
+                            ref={this.agreedTerms}
+                        >
                             <div className="text">{i18n('loan.general.terms')}</div>
-                        </label>
+                        </Checkbox>
 
                         <div className="apply-button">
                             <Button onClick={this.handleNextStep} round>

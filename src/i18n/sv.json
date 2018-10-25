@@ -229,7 +229,7 @@
                 "$t(general.support-opening-hours)"
             ],
 
-            "error":{
+            "error": {
                 "communication": {
                     "header": "Åh nej!",
                     "body": "Ett tekniskt fel har inträffat och din ansökan om kredithöjning kunde inte genomföras. Försök gärna igen om en liten stund."
@@ -469,21 +469,26 @@
             "about": "Om lånet",
             "account": "Ange kontonummer för utbetalning",
             "account-number": "Kontonummer",
+            "account-number-error": "Vänligen ange ditt kontonummer",
             "apply": "Skicka ansökan",
             "clearing-number": "Clearingnummer",
-            "consumer-goods": "Resor, hemelektronik eller andra konsumtionsvaror",
+            "clearing-number-error": "Vänligen ange ditt clearingnummer",
+            "consumer-goods": "Konsumtionsvaror (tex hemelektronik)",
             "header": "Låneinformation",
             "other": "Annat",
             "other-usage": "Definiera vad",
             "purpose": "Vad lånet skall användas till?",
+            "purpose-error": "Vänligen ange vad lånet ska användas till",
             "resolve-other": "Ange belopp du avser lösa",
             "resolve": "Samla andra lån/krediter",
             "residence-other": "Övrigt till bostad (renovering etc)",
             "vehicle": "Köp av fordon",
             "terms": "Jag försäkrar att lämnade uppgifter är riktiga och fullständiga. Jag är medveten om att ansökan föranleder sedvanlig kreditprövning, vilket bl. a. innebär att Ecster AB inhämtar kreditupplysning och eventuellt kontaktar min arbetsgivare. Jag bekräftar att jag tagit del av samtliga dessa bestämmelser inklusive ovanstående kreditvillkor före undertecknandet.",
+            "terms-error": "Vänligen försäkra att dina uppgifter är korrekta",
             "withdrawal": "Utbetalning",
             "enter-bank": "Ange bank dit utbetalning ska ske",
-            "bank": "Bank"
+            "bank": "Bank",
+            "bank-error": "Vänligen ange bankens namn"
         },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
@@ -491,13 +496,17 @@
             "adults-label": "Hur många vuxna finns det i hushållet?",
             "children-label": "Hur många barn finns det i hushållet?",
             "company-name": "Företagsnamn",
+            "company-name-error": "Ange namnet på din arbetsgivare",
             "default-label": "Välj",
             "employer": "Arbetsgivare",
+            "employer-error": "Ange namnet på din arbetsgivare",
             "header": "Ekonomi",
             "household": "Hushåll",
             "house-label": "Vad är bostadens driftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
+            "income-error": "Fyll i din inkomst med siffror",
             "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
+            "gross-income-error": "Fyll i din inkomst med siffror",
             "living-label": "Hur bor du?",
             "living-other-label": "Fyll i vilken boendeform",
             "occupation": "Sysselsättning",
@@ -512,7 +521,7 @@
                 "occupation": {
                     "fulltime": "Tillsvidareanställd",
                     "solo": "Egenföretagare",
-                    "parttime": "Visstidsanställd (tex vikarie/projektanställd)",
+                    "parttime": "Visstidsanställd (tex vikarie)",
                     "tryout": "Provanställd",
                     "pension": "Pensionär",
                     "student": "Student",
