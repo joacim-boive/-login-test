@@ -62,6 +62,8 @@ export class EditableInputPhone extends Component {
         }
     };
 
+    handleExternalValidate = () => this.formRef && this.formRef.current.validate();
+
     render() {
         const { className, label, validator, validationMessage, ...rest } = this.props;
         const { value, editMode } = this.state;

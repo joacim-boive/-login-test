@@ -31,10 +31,19 @@ class LoanPersonalInformationPanel extends Component {
         className: '',
     };
 
+    phoneNumber = React.createRef();
+
+    email = React.createRef();
+
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        onNextStep(step, id);
+        const isValidPhoneNumber = this.phoneNumber.current.handleExternalValidate();
+        const isValidEmail = this.email.current.handleExternalValidate();
+
+        if (isValidPhoneNumber && isValidEmail) {
+            onNextStep(step, id);
+        }
     };
 
     render() {
@@ -55,12 +64,6 @@ class LoanPersonalInformationPanel extends Component {
         });
 
         if (Object.keys(contactInformation).length === 0) return null;
-
-        const isValid = () =>
-            !!contactInformation.phoneNumber &&
-            !!contactInformation.phoneNumber.countryCallingCode &&
-            !!contactInformation.phoneNumber.number &&
-            !!contactInformation.email;
 
         return (
             <div className={classes}>
@@ -117,22 +120,26 @@ class LoanPersonalInformationPanel extends Component {
                         <DataColumn>
                             <DataRow className="column-first">
                                 <EditableInputPhone
+                                    name="phoneNumber"
                                     type="tel"
                                     value={contactInformation.phoneNumber}
                                     label={i18n('general.address.mobile')}
                                     onSave={val => onUpdateContactInfo({ phoneNumber: val })}
                                     validationMessage={i18n('general.validation.phone')}
                                     validator={phoneValidator}
+                                    ref={this.phoneNumber}
                                 />
                             </DataRow>
                             <DataRow>
                                 <EditableInput
+                                    name="email"
                                     type="email"
                                     value={contactInformation.email}
                                     label={i18n('general.address.email')}
                                     onSave={val => onUpdateContactInfo({ email: val })}
                                     validationMessage={i18n('general.validation.email')}
                                     required
+                                    ref={this.email}
                                 />
                             </DataRow>
                             <DataRow>{i18n('loan.personal.contact-text')}</DataRow>
