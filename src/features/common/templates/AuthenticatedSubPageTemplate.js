@@ -20,18 +20,19 @@ class AuthenticatedSubPageTemplate extends Component {
         });
 
         const renderHeader = header && (
-            <div className="hero-header">
-                <Link to={linkTo} href={linkTo} className="no-underline">
-                    <i className="icon-arrow-left" />
-                </Link>
-                <h1>{header}</h1>
+            <div className="page-header">
+                <div className="page-header-content">
+                    <Link to={linkTo} href={linkTo} className="no-underline">
+                        <i className="icon-arrow-left" />
+                    </Link>
+                    <h1>{header}</h1>
+                </div>
             </div>
         );
 
         return (
             <>
                 <div className={classes}>
-                    <AlphaLabel />
                     <TabletOrDesktop>
                         <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </TabletOrDesktop>
@@ -42,6 +43,7 @@ class AuthenticatedSubPageTemplate extends Component {
                     <Mobile>
                         <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
                     </Mobile>
+                    <AlphaLabel />
                 </div>
                 <MessagePanel />
                 <Footer />

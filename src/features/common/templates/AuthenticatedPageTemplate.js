@@ -28,7 +28,7 @@ class AuthenticatedPageTemplate extends React.Component {
         });
 
         const thisHeader = header && (
-            <div className="hero-header">
+            <div className="page-header">
                 <h1>{header}</h1>
             </div>
         );
