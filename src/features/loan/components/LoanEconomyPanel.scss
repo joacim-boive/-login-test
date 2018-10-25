@@ -3,11 +3,11 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-economy-panel {
-    .radio-boxes {
+    .radio-buttons {
         display: inline-block;
         margin-right: 20px;
     }
-    .radio-box{
+    .radio-button{
         display: inline-block;
 
         &:nth-child(n+2) {

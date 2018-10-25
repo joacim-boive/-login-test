@@ -251,16 +251,16 @@ class LoanEconomyPanel extends Component {
                                             selectedValue={employedMoreThan1Year}
                                             required
                                             ref={this.employedMoreThan1Year}
-                                            className="radio-boxes"
+                                            className="radio-buttons"
                                         >
                                             <Radio
-                                                className="radio-box"
+                                                className="radio-button"
                                                 onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
                                             />
                                             <Radio
-                                                className="radio-box"
+                                                className="radio-button"
                                                 onChange={e => this.onChange(e)}
                                                 value="no"
                                                 label={i18n('general.answer.no')}

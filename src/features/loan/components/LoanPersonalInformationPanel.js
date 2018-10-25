@@ -65,7 +65,7 @@ class LoanPersonalInformationPanel extends Component {
         return (
             <div className={classes}>
                 <ExpandablePanel
-                    className="expander loan-personal-information-panel"
+                    className="expander"
                     compact
                     collapse={collapse}
                     handleNextStep={this.handleNextStep}
