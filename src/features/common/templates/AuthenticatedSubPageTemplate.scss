@@ -14,11 +14,8 @@
     .page-header {
         width: 100%;
         margin: 0;
-        //background: $beige10;
-        //border-bottom: 1px solid $beige20;
         background: $beige20;
-        box-shadow: 0 0 4px $beige60;
-        //border-bottom: 1px solid $beige40;
+        border-bottom: 1px solid $beige40;
         position: fixed;
 
         &-content {
