@@ -240,10 +240,10 @@
         },
         "no-account": {
             "panel1": {
-                "header": "Skaffa Ecster-kortet",
-                "text": "Kortet är kopplat till Mastercard och du kan använda det över hela världen.",
+                "header": "Ett kort med många poänger",
+                "text": "Ecster-kortet är kopplat till Mastercard och du kan använda det över hela världen. Du får bonuspoäng på varje köp.",
                 "bullets": [
-                    "Ingen årsavgift",
+                    "Köparskydd ingår",
                     "Upp till 8 veckors räntefri kredit",
                     "Dela upp större köp i efterhand"
                 ],

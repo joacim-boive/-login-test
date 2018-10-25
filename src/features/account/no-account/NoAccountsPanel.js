@@ -67,7 +67,7 @@ export default class NoAccountsPanel extends Component {
                         </FlexPanel>
                     </div>
                     <ButtonGroup align="center">
-                        <LinkButton href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
+                        <LinkButton id="apply-for-card-link" href="https://www.ecster.se/ecster-kortet" target="_blank" round outline>
                             {i18n('account.no-account.panel1.button-text')}
                         </LinkButton>
                     </ButtonGroup>
@@ -95,7 +95,7 @@ export default class NoAccountsPanel extends Component {
                         <p>{i18n('account.no-account.panel2.text')}</p>
                     </div>
                     <ButtonGroup align="center">
-                        <LinkButton to="/loan/overview" round outline>
+                        <LinkButton id="goto-loan-link" to="/loan/overview" round outline>
                             {i18n('account.no-account.panel2.button-text')}
                         </LinkButton>
                     </ButtonGroup>
