@@ -6,21 +6,20 @@
 
 .common-authenticated-page {
 
-    $hero-height: 180px;
-    $hero-height-mobile: 120px;
+    $page-header-height: 180px;
+    $page-header-height-mobile: 120px;
 
     $gradient-left: #6ab28a;
     $gradient-right: #ddf8bb;
 
-    .hero-header {
+    .page-header {
         background: linear-gradient(to right, $gradient-left 0%,$gradient-right 100%);
 
-        height: $hero-height;
-
+        height: $page-header-height;
 
         h1 {
             display: block;
-            line-height: $hero-height * 0.8;
+            line-height: $page-header-height * 0.8;
             font-weight: $weight-bold;
             color: #fff;
             margin: 0 auto;
@@ -28,14 +27,14 @@
             max-width: $content-max-width-desktop;
         }
         @include mobile() {
-            height: $hero-height-mobile;
+            height: $page-header-height-mobile;
             h1 {
-                line-height: $hero-height-mobile * 0.8;
+                line-height: $page-header-height-mobile * 0.8;
             }
         }
     };
 
-    .hero-header + .page-content {
+    .page-header + .page-content {
         margin-top: -55px;
     }
 

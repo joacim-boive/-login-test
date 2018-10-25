@@ -11,14 +11,21 @@
         color: $green120;
         text-align: center;
     }
-    .hero-header {
-        display: flex;
-        flex-flow: column;
-        position: relative;
-        flex-wrap: nowrap;
+    .page-header {
         width: 100%;
-        margin: 10px auto 30px;
-        max-width: $content-max-width-desktop;
+        margin: 0;
+        background: $beige20;
+        border-bottom: 1px solid $beige40;
+        position: fixed;
+
+        &-content {
+            display: flex;
+            flex-flow: row nowrap;
+            position: relative;
+            align-items: center;
+            max-width: $content-max-width-desktop;
+            margin: 16px auto;
+        }
 
         a {
             position: absolute;
@@ -42,8 +49,13 @@
             margin: 0;
             color: white;
             background-color: $green;
-            height: 32px;
+            height: 60px;
             position: fixed;
+            z-index: 100;
+
+            &-content {
+                margin: 18px auto;
+            }
 
             a {
                 color: white;
@@ -52,7 +64,6 @@
             h1 {
                 color: white;
                 font-size: 18px;
-                margin-top: 5px;
             }
         }
 
@@ -67,7 +78,7 @@
         flex-flow: column;
 
         @include tabletOrDesktop() {
-            margin-top: $navigation-height + 10;
+            margin-top: $navigation-height;
         }
     }
 
@@ -75,13 +86,13 @@
         width: 100%; // Needed because parent (page-container) is display:flex;
         @include mobile() {
             padding: 0;
-            margin-top: 62px;
+            margin-top: 92px;
             margin-bottom: $navigation-height + 15;
         }
 
         @include tabletOrDesktop() {
             max-width: $content-max-width-desktop;
-            margin: 0 auto 10px;
+            margin: 75px auto 10px;
             padding: 0 15px;
         }
     }
