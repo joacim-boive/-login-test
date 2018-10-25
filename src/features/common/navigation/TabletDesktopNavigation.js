@@ -34,9 +34,9 @@ class TabletDesktopNavigation extends React.Component {
         const overviewIsActive = pathname.match(/.account.overview/);
         const invoiceIsActive = pathname.match(/.invoice.overview/);
         const loanIsActive = pathname.match(/.loan.overview/);
-        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSettingsIsActive = !!pathname.match(/.customer\/[0-9]+\/profile/);
         const customerSupportIsActive = !!pathname.match(/.customer.support/);
-        const { showLoanMenu, customerId } = this.props;
+        const { showLoanMenu, customerId, hasZeroAccounts } = this.props;
 
         return (
             <TopNavigation>
@@ -92,10 +92,12 @@ class TabletDesktopNavigation extends React.Component {
                     </div>
                 </TopMenu>
                 <div className="submenu-container">
-                    <SubMenu top show={this.state.showSubMenu} requestClose={this.closeSubMenu}>
-                        <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
-                            {i18n('navigation.settings')}
-                        </SubMenuItem>
+                    <SubMenu top show={showSubMenu} requestClose={this.closeSubMenu}>
+                        {!hasZeroAccounts && (
+                            <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
+                                {i18n('navigation.settings')}
+                            </SubMenuItem>
+                        )}
                         <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
                             {i18n('navigation.customer-support')}
                         </SubMenuItem>
@@ -113,6 +115,7 @@ TabletDesktopNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
     showLoanMenu: PropTypes.bool,
+    hasZeroAccounts: PropTypes.bool.isRequired,
 };
 
 TabletDesktopNavigation.defaultProps = {

@@ -1,0 +1,50 @@
+<Activity mc:Ignorable="sads sap" x:Class="Handelsbanken.WIIN.InstallerWorkflow" this:InstallerWorkflow.ToLib="E:\App\Web\" this:InstallerWorkflow.WIINSystem="NETX" this:InstallerWorkflow.AppCmdPath="C:\Windows\System32\inetsrv\appcmd"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:hwa="clr-namespace:Handelsbanken.WIIN.Activities;assembly=Handelsbanken.WIIN.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:this="clr-namespace:Handelsbanken.WIIN"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Runtime" Type="InArgument(hwa:Runtime)" />
+    <x:Property Name="Envir" Type="InArgument(x:String)" />
+    <x:Property Name="FromLib" Type="InArgument(x:String)" />
+    <x:Property Name="ToLib" Type="InArgument(x:String)" />
+    <x:Property Name="WIINSystem" Type="InArgument(x:String)" />
+    <x:Property Name="ComputerName" Type="InArgument(x:String)" />
+    <x:Property Name="Identities" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="AppPoolName" Type="InArgument(x:String)" />
+    <x:Property Name="ApplicationName" Type="InArgument(x:String)" />
+    <x:Property Name="WebSiteName" Type="InArgument(x:String)" />
+    <x:Property Name="ApplicationDeployPath" Type="InArgument(x:String)" />
+    <x:Property Name="ApplicationLogPath" Type="InArgument(x:String)" />
+    <x:Property Name="Name" Type="InArgument(x:String)" />
+    <x:Property Name="Version" Type="InArgument(x:String)" />
+    <x:Property Name="LogPathRoot" Type="InArgument(x:String)" />
+    <x:Property Name="AppCmdPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>397,927</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="357,887">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <hwa:IncludeWorkflow DisplayName="IncludeWorkflow" sap:VirtualizedContainerService.HintSize="335,61" Name="Assign Variables" />
+    <Sequence DisplayName="IIS Setup" sap:VirtualizedContainerService.HintSize="335,662">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <hwa:IIS Action="Remove" DisplayName="IIS" DotnetVersion="[&quot;&quot;&quot;&quot;&quot;&quot;]" sap:VirtualizedContainerService.HintSize="313,111" Name="[AppPoolName]" ObjectType="AppPool" />
+      <hwa:IIS Action="Install" DisplayName="IIS" DotnetVersion="v4.0" sap:VirtualizedContainerService.HintSize="313,161" Name="[AppPoolName]" ObjectType="AppPool" />
+      <hwa:IIS Action="Remove" AppPool="[AppPoolName]" DisplayName="IIS" sap:VirtualizedContainerService.HintSize="313,186" Name="[ApplicationName]" ObjectType="Application" PhysicalPath="[&quot;&quot;&quot;&quot; + ApplicationDeployPath + &quot;&quot;&quot;&quot;]" Site="[WebSiteName]" />
+      <hwa:IIS Action="Install" AppPool="[AppPoolName]" DisplayName="IIS" sap:VirtualizedContainerService.HintSize="313,186" Name="[ApplicationName]" ObjectType="Application" PhysicalPath="[&quot;&quot;&quot;&quot; + ApplicationDeployPath + &quot;&quot;&quot;&quot;]" Site="[WebSiteName]" />
+    </Sequence>
+  </Sequence>
+</Activity>

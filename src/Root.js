@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Switch, HashRouter } from 'react-router-dom';
 import Authorized from './features/authentication/Authorized';
+import GaRouteTracker from './features/common/ga/GaRouteTracker';
 import createRoutes from './createRoutes';
 
 export default class Root extends Component {
@@ -20,10 +21,12 @@ export default class Root extends Component {
         return (
             <Provider store={store}>
                 <HashRouter>
-                    <Switch>
-                        {routes.publicRoutes}
-                        <Authorized>{routes.authRoutes}</Authorized>
-                    </Switch>
+                    <GaRouteTracker routes={routes.allRoutes}>
+                        <Switch>
+                            {routes.publicRoutes}
+                            <Authorized>{routes.authRoutes}</Authorized>
+                        </Switch>
+                    </GaRouteTracker>
                 </HashRouter>
             </Provider>
         );

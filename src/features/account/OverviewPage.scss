@@ -1,5 +1,7 @@
 @import '../../styles/mixins';
-@import '~@ecster/ecster-styles/scss/v2/theme/theme';
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-styles/scss/v2/common/font-sizes";
+@import "~@ecster/ecster-styles/scss/v2/common/font-weights";
 
 .account-overview-page {
 
@@ -12,8 +14,6 @@
             &.show-more {
                 font-size: $font-size-medium;
                 font-weight: $weight-medium;
-                color: $purple;
-                background: transparent;
                 margin-top: 2%;
                 padding: 0;
 

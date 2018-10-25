@@ -8,7 +8,7 @@ import './UnderConstruction.scss';
 
 const UnderConstruction = () => (
     <Panel className="under-construction" withMixedContent centeredContent sideMarginsInMobile>
-        <div className="mixed-content">
+        <div className="two-col-content">
             <img src={diamond} className="mb-6x" />
             <h2 className="e-black mb-3x">{i18n('common.under-construction.header')}</h2>
             <p>{i18n('common.under-construction.info')}</p>
