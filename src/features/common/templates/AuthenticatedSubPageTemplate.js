@@ -9,10 +9,18 @@ import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
 import AlphaLabel from '../alpha';
 import Footer from '../footer';
+import { getCustomerProperties } from '../../customer/redux/actions';
 
 class AuthenticatedSubPageTemplate extends Component {
+    componentDidUpdate() {
+        const { showLoanMenu, getCustomerPropertiesPending, customerId, getCustomerProperties } = this.props;
+        if (showLoanMenu === undefined && !getCustomerPropertiesPending) {
+            getCustomerProperties(customerId, 'SHOW_PRIVATLAN_MENU');
+        }
+    }
+
     render() {
-        const { className, linkTo, header, customerId, children, showLoanMenu } = this.props;
+        const { className, linkTo, header, customerId, children, showLoanMenu, hasZeroAccounts } = this.props;
 
         const classes = classNames({
             'common-authenticated-sub-page': true,
@@ -34,14 +42,22 @@ class AuthenticatedSubPageTemplate extends Component {
             <>
                 <div className={classes}>
                     <TabletOrDesktop>
-                        <TabletDesktopNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
+                        <TabletDesktopNavigation
+                            customerId={customerId}
+                            showLoanMenu={showLoanMenu}
+                            hasZeroAccounts={hasZeroAccounts}
+                        />
                     </TabletOrDesktop>
                     <div className="page-container">
                         {renderHeader}
                         <div className="page-content">{children}</div>
                     </div>
                     <Mobile>
-                        <MobileNavigation customerId={customerId} showLoanMenu={showLoanMenu} />
+                        <MobileNavigation
+                            customerId={customerId}
+                            showLoanMenu={showLoanMenu}
+                            hasZeroAccounts={hasZeroAccounts}
+                        />
                     </Mobile>
                     <AlphaLabel />
                 </div>
@@ -59,21 +75,37 @@ AuthenticatedSubPageTemplate.propTypes = {
     linkTo: PropTypes.string,
     children: PropTypes.node.isRequired,
     showLoanMenu: PropTypes.bool,
+    hasZeroAccounts: PropTypes.bool.isRequired,
+    getCustomerPropertiesPending: PropTypes.bool.isRequired,
+    getCustomerProperties: PropTypes.func.isRequired,
 };
 
 AuthenticatedSubPageTemplate.defaultProps = {
     className: '',
     header: undefined,
     linkTo: '',
-    showLoanMenu: false,
+    showLoanMenu: undefined, // undefined important, used in componentDidUpdate
 };
 
 /* istanbul ignore next */
-function mapStateToProps({ authentication, customer }) {
+function mapStateToProps({ account, authentication, customer }) {
     return {
         customerId: authentication.person && authentication.person.id,
         showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
+        hasZeroAccounts: account.hasZeroAccounts,
+        getCustomerPropertiesPending: customer.getCustomerPropertiesPending,
     };
 }
 
-export default connect(mapStateToProps)(AuthenticatedSubPageTemplate);
+function mapDispatchToProps(dispatch) {
+    return {
+        getCustomerProperties: (customerId, propertyName) => {
+            dispatch(getCustomerProperties(customerId, propertyName));
+        },
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AuthenticatedSubPageTemplate);

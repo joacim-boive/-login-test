@@ -13,7 +13,6 @@ import { getCustomerProperties } from '../../customer/redux/actions';
 class AuthenticatedPageTemplate extends React.Component {
     componentDidUpdate() {
         const { showLoanMenu, getCustomerPropertiesPending, customerId, getCustomerProperties } = this.props;
-
         if (showLoanMenu === undefined && !getCustomerPropertiesPending) {
             getCustomerProperties(customerId, 'SHOW_PRIVATLAN_MENU');
         }
@@ -77,7 +76,7 @@ AuthenticatedPageTemplate.propTypes = {
 AuthenticatedPageTemplate.defaultProps = {
     className: '',
     header: undefined,
-    showLoanMenu: undefined, // undefined important, used in test above!
+    showLoanMenu: undefined, // undefined important, used in componentDidUpdate
 };
 
 /* istanbul ignore next */
