@@ -218,11 +218,11 @@
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.114",
-        "@ecster/ecster-components": "^2.0.504",
+        "@ecster/ecster-components": "^2.0.507",
         "@ecster/ecster-i18n": "^3.0.69",
         "@ecster/ecster-net": "^2.0.98",
         "@ecster/ecster-styles": "^3.0.218",
-        "@ecster/ecster-util": "^2.0.78",
+        "@ecster/ecster-util": "^2.0.79",
         "@ecster/ecster-validation": "^2.0.63",
         "@ecster/ecster-webpack": "^2.0.208",
         "ajv": "^6.5.4",
