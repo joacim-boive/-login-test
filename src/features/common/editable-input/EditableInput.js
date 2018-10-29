@@ -46,7 +46,13 @@ export class EditableInput extends Component {
         }
     };
 
-    handleExternalValidate = () => this.formRef && this.formRef.current.validate();
+    handleExternalValidate = () => {
+        if (this.formRef && this.formRef.current) {
+            return this.formRef.current.validate();
+        } else {
+            return true;
+        }
+    };
 
     render() {
         const { className, label, validationMessage, ...rest } = this.props;
