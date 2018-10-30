@@ -183,7 +183,7 @@ class LoanGeneralInformationPanel extends Component {
                         </Checkbox>
 
                         <div className="apply-button">
-                            <Button onClick={this.handleNextStep} round>
+                            <Button onClick={this.handleNextStep} round name="loan-general-info-next">
                                 {i18n('loan.general.apply')}
                             </Button>
                         </div>

@@ -500,7 +500,7 @@ class LoanEconomyPanel extends Component {
                             </section>
                         </ResponsivePanel>
                         <div className="next-button">
-                            <Button onClick={this.handleNextStep} round name="economyNextButton">
+                            <Button onClick={this.handleNextStep} round name="loan-economy-next">
                                 {i18n('general.next')}
                             </Button>
                         </div>

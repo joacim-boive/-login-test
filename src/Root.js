@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Switch, HashRouter } from 'react-router-dom';
+import { GaProvider } from '@ecster/ecster-analytics/v2';
 import Authorized from './features/authentication/Authorized';
 // import GaRouteTracker from './features/common/ga/GaRouteTracker';
-import { GaProvider } from '@ecster/ecster-analytics/v2';
 
 import createRoutes from './createRoutes';
 
@@ -23,7 +23,7 @@ export default class Root extends Component {
         return (
             <Provider store={store}>
                 <HashRouter>
-                    <GaProvider routes={routes.allRoutes} registerPageViews={false}>
+                    <GaProvider routes={routes.allRoutes} registerPageViews registerEvents>
                         <Switch>
                             {routes.publicRoutes}
                             <Authorized>{routes.authRoutes}</Authorized>
@@ -34,4 +34,3 @@ export default class Root extends Component {
         );
     }
 }
-2

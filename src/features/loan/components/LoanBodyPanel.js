@@ -94,7 +94,7 @@ class LoanBodyPanel extends Component {
                         </ResponsivePanel>
                     </div>
                     <LoanCost className="loan-cost-panel" terms={terms} interestRate={promissory.interestRate} />
-                    <Button className="submit" green round onClick={onSubmit}>
+                    <Button className="submit" green round onClick={onSubmit} name="loan-submit">
                         {i18n('loan.body.submit')}
                     </Button>
                     <ExpandableBottomPanel

@@ -121,7 +121,10 @@ export class RaiseCreditPage extends Component {
                                             <strong>{formatAmount(currentLimit)}</strong>
                                         </div>
                                         <div className="flex-row">
-                                            <label htmlFor="creditLimit" className={!allowRaise ? 'no-raise-label' : ''}>
+                                            <label
+                                                htmlFor="creditLimit"
+                                                className={!allowRaise ? 'no-raise-label' : ''}
+                                            >
                                                 {i18n('account.raise-credit.new-credit-limit')}
                                             </label>
                                             <Select
@@ -165,7 +168,12 @@ export class RaiseCreditPage extends Component {
                                 />
                                 {!processing && (
                                     <ButtonGroup align="center" className="mt-8x">
-                                        <Button onClick={this.onButtonClick} round disabled={!allowRaise}>
+                                        <Button
+                                            onClick={this.onButtonClick}
+                                            round
+                                            disabled={!allowRaise}
+                                            name="raise-credit-apply"
+                                        >
                                             {i18n('account.raise-credit.apply')}
                                         </Button>
                                     </ButtonGroup>

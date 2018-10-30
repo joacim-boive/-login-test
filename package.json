@@ -217,7 +217,7 @@
         "webpack": "4.19.0"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.114",
+        "@ecster/ecster-analytics": "^4.0.115",
         "@ecster/ecster-components": "^2.0.507",
         "@ecster/ecster-i18n": "^3.0.69",
         "@ecster/ecster-net": "^2.0.98",
