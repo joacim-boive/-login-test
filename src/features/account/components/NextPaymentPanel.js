@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { LinkButton, TabletOrDesktop, Mobile } from '@ecster/ecster-components';
+import { LinkButton, Link, TabletOrDesktop, Mobile } from '@ecster/ecster-components';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 
@@ -74,16 +74,17 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
 
     const TheLink = () => (
         <DataRow>
-            <Data right>
-                <LinkButton
+            <Data right className="mt-3x">
+                <Link
                     purple
-                    link
                     iconRight="icon-chevron-right"
-                    className="show-more no-underline"
+                    iconColorClass="e-gray140"
                     to={monthlyInvoiceRoute}
+                    underline={false}
+                    gaLabel="show-detailed-invoice"
                 >
                     {i18n('account.next-payment.show-details')}
-                </LinkButton>
+                </Link>
             </Data>
         </DataRow>
     );

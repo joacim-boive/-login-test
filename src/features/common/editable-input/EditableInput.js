@@ -89,7 +89,7 @@ export class EditableInput extends Component {
                     >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button gaLabel="editable-input-save" name="save" onClick={this.onSave} xSmall round>
+                    <Button gaLabel="editable-input-save" name="editable-input-save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>

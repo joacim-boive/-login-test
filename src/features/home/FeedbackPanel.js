@@ -15,7 +15,15 @@ export default class FeedbackPanel extends Component {
                     <h3 className="e-black">{i18n('home.feedback.header')}</h3>
                     <p>{i18n('home.feedback.info')}</p>
                 </div>
-                <LinkButton iconRight="icon-external-link" href={SURVEY_URL} target="_blank" outline purple round>
+                <LinkButton
+                    iconRight="icon-external-link"
+                    href={SURVEY_URL}
+                    target="_blank"
+                    outline
+                    purple
+                    round
+                    gaLabel="feedback"
+                >
                     {i18n('home.feedback.link')}
                 </LinkButton>
             </Panel>
