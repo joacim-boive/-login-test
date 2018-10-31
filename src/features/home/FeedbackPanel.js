@@ -22,7 +22,7 @@ export default class FeedbackPanel extends Component {
                     outline
                     purple
                     round
-                    gaLabel="feedback"
+                    gaLabel="start-feedback"
                 >
                     {i18n('home.feedback.link')}
                 </LinkButton>

@@ -145,7 +145,7 @@ export default class LoginInProgress extends Component {
                     </ButtonGroup>
                     <div className={buttonClasses}>
                         <p className="mt-8x mb-4x">{i18n('home.login.SE.in-progress.manual.info')}</p>
-                        <LinkButton href={startURL} outline round>
+                        <LinkButton href={startURL} outline round gaLabel="start-bid-manually">
                             {i18n('home.login.SE.in-progress.manual.button')}
                         </LinkButton>
                     </div>

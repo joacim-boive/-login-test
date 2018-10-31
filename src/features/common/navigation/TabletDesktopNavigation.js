@@ -25,6 +25,7 @@ class TabletDesktopNavigation extends React.Component {
     };
 
     closeSubMenu = () => {
+        console.log('closeSubMenu');
         this.setState({ showSubMenu: false });
     };
 
@@ -52,6 +53,7 @@ class TabletDesktopNavigation extends React.Component {
                                     'menu-item--is-active': overviewIsActive,
                                 })}
                                 to="/account/overview"
+                                id="top-nav-account-overview"
                             >
                                 {i18n('navigation.account-overview')}
                             </Link>
@@ -62,6 +64,7 @@ class TabletDesktopNavigation extends React.Component {
                                     'menu-item--is-active': invoiceIsActive,
                                 })}
                                 to="/invoice/overview"
+                                id="top-nav-invoice-overview"
                             >
                                 {i18n('navigation.invoices')}
                             </Link>
@@ -73,6 +76,7 @@ class TabletDesktopNavigation extends React.Component {
                                         'menu-item--is-active': loanIsActive,
                                     })}
                                     to="/loan/overview"
+                                    id="top-nav-loan-overview"
                                 >
                                     {i18n('navigation.loan')}
                                 </Link>
@@ -94,14 +98,22 @@ class TabletDesktopNavigation extends React.Component {
                 <div className="submenu-container">
                     <SubMenu top show={showSubMenu} requestClose={this.closeSubMenu}>
                         {!hasZeroAccounts && (
-                            <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
+                            <SubMenuItem
+                                id="top-nav-customer-profile"
+                                linkTo={`/customer/${customerId}/profile`}
+                                active={customerSettingsIsActive}
+                            >
                                 {i18n('navigation.settings')}
                             </SubMenuItem>
                         )}
-                        <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
+                        <SubMenuItem
+                            id="top-nav-customer-support"
+                            linkTo="/customer/support"
+                            active={customerSupportIsActive}
+                        >
                             {i18n('navigation.customer-support')}
                         </SubMenuItem>
-                        <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">
+                        <SubMenuItem id="top-nav-logout" linkTo="/authentication/logout" iconClass="icon-lock">
                             {i18n('navigation.logout')}
                         </SubMenuItem>
                     </SubMenu>

@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { FlexPanel, Panel, Form, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
+import {
+    FlexPanel,
+    Panel,
+    Form,
+    Select,
+    ButtonGroup,
+    Button,
+    UnorderedList,
+    Spinner,
+    Link,
+} from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import AlertPanel from '../../../common/AlertPanel';
 

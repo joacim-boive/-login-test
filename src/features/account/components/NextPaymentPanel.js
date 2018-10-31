@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { LinkButton, Link, TabletOrDesktop, Mobile } from '@ecster/ecster-components';
+import { Link, TabletOrDesktop, Mobile } from '@ecster/ecster-components';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './NextPaymentPanel.scss';
 
@@ -78,10 +77,10 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
                 <Link
                     purple
                     iconRight="icon-chevron-right"
-                    iconColorClass="e-gray140"
+                    iconColorClass="e-black"
                     to={monthlyInvoiceRoute}
                     underline={false}
-                    gaLabel="show-detailed-invoice"
+                    gaLabel="show-detailed-invoice-tablet-or-desktop"
                 >
                     {i18n('account.next-payment.show-details')}
                 </Link>
@@ -96,7 +95,11 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
                     {hasBills ? (
                         <>
                             <Mobile>
-                                <Link to={monthlyInvoiceRoute} className="link-no-style">
+                                <Link
+                                    to={monthlyInvoiceRoute}
+                                    className="link-no-style"
+                                    gaLabel="show-detailed-invoice-mobile"
+                                >
                                     <TheHeader />
                                     <TheData />
                                 </Link>

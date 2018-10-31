@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link } from '@ecster/ecster-components';
 
 export class BottomMenu extends React.Component {
     render() {
@@ -20,45 +20,23 @@ export class BottomMenu extends React.Component {
     }
 }
 
-export const MenuItem = ({ active, children, linkTo, onClick }) => (
+export const MenuItem = ({ id, active, children, linkTo }) => (
     <div
         className={classNames({
             'menu-item': true,
             active,
         })}
     >
-        <Link to={linkTo} onClick={onClick} className="no-underline">
+        <Link id={id} to={linkTo} underline={false}>
             {children}
         </Link>
     </div>
 );
 
-// export class MenuItem extends React.Component {
-//     onClick = e => {
-//         e.stopPropagation();
-//         this.props.onClick();
-//     };
-//
-//     render() {
-//         const { active, children, linkTo, onClick } = this.props;
-//         return (
-//             <div
-//                 className={classNames({
-//                     'menu-item': true,
-//                     active,
-//                 })}
-//             >
-//                 <Link to={linkTo} onClick={this.onClick}>
-//                     {children}
-//                 </Link>
-//             </div>
-//         );
-//     }
-// }
-
 export const MenuItemText = ({ children }) => <div className="menu-item__text">{children}</div>;
 
 MenuItem.propTypes = {
+    id: PropTypes.string,
     children: PropTypes.node.isRequired,
     active: PropTypes.bool,
     linkTo: PropTypes.string,
@@ -66,6 +44,7 @@ MenuItem.propTypes = {
 };
 
 MenuItem.defaultProps = {
+    id: undefined,
     active: false,
     linkTo: '',
     onClick: () => {},

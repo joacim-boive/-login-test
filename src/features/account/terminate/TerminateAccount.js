@@ -117,7 +117,7 @@ export class TerminateAccount extends Component {
                 </ConfirmButton>
             </ButtonGroup>
             <ButtonGroup align="center">
-                <Link to={backUrl}>{i18n('general.cancel')}</Link>
+                <Link to={backUrl} gaLabel="terminate-account-cancel">{i18n('general.cancel')}</Link>
             </ButtonGroup>
         </div>
     );
@@ -127,7 +127,7 @@ export class TerminateAccount extends Component {
             <h1>{i18n('account.terminate.success.header')}</h1>
             <p>{i18n('account.terminate.success.message')}</p>
             <ButtonGroup align="center">
-                <Link to={backUrl}>{i18n('account.terminate.success.back')}</Link>
+                <Link to={backUrl} gaLabel="terminate-account-success-back">{i18n('account.terminate.success.back')}</Link>
             </ButtonGroup>
         </div>
     );
@@ -138,7 +138,7 @@ export class TerminateAccount extends Component {
             <h1>{i18n('account.terminate.failure.header')}</h1>
             <p dangerouslySetInnerHTML={{ __html: i18n('account.terminate.failure.message') }} />
             <ButtonGroup align="center">
-                <Link to={backUrl}>{i18n('account.terminate.failure.back')}</Link>
+                <Link to={backUrl} gaLabel="terminate-account-failure-back">{i18n('account.terminate.failure.back')}</Link>
             </ButtonGroup>
         </div>
     );

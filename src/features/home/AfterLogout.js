@@ -26,7 +26,14 @@ export default class AfterLogout extends React.Component {
                         <h2>{i18n('home.after-logout.header')}</h2>
                         <p className="info-text">{i18n('home.after-logout.info')}</p>
                         <ButtonGroup alignCenter>
-                            <LinkButton iconRight="icon-external-link" href={SURVEY_URL} target="_blank" outline round>
+                            <LinkButton
+                                iconRight="icon-external-link"
+                                href={SURVEY_URL}
+                                target="_blank"
+                                outline
+                                round
+                                gaLabel="after-logout-start-feedback"
+                            >
                                 {i18n('home.feedback.link')}
                             </LinkButton>
                         </ButtonGroup>
