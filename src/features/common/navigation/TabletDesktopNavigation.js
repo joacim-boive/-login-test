@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link as RRLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Logo } from '@ecster/ecster-components';
+import { Logo, Link } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
@@ -25,7 +25,6 @@ class TabletDesktopNavigation extends React.Component {
     };
 
     closeSubMenu = () => {
-        console.log('closeSubMenu');
         this.setState({ showSubMenu: false });
     };
 

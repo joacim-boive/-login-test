@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Checkbox, Panel, ConfirmButton, ButtonGroup, ResponsivePanel } from '@ecster/ecster-components';
+import { Checkbox, Panel, ConfirmButton, ButtonGroup, ResponsivePanel, Link } from '@ecster/ecster-components';
 
 import { gaGenericEvent, gaActionEvent } from '../../../common/ga/index';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
@@ -117,7 +117,9 @@ export class TerminateAccount extends Component {
                 </ConfirmButton>
             </ButtonGroup>
             <ButtonGroup align="center">
-                <Link to={backUrl} gaLabel="terminate-account-cancel">{i18n('general.cancel')}</Link>
+                <Link to={backUrl} id="terminate-account-cancel">
+                    {i18n('general.cancel')}
+                </Link>
             </ButtonGroup>
         </div>
     );
@@ -127,7 +129,9 @@ export class TerminateAccount extends Component {
             <h1>{i18n('account.terminate.success.header')}</h1>
             <p>{i18n('account.terminate.success.message')}</p>
             <ButtonGroup align="center">
-                <Link to={backUrl} gaLabel="terminate-account-success-back">{i18n('account.terminate.success.back')}</Link>
+                <Link to={backUrl} id="terminate-account-success-back">
+                    {i18n('account.terminate.success.back')}
+                </Link>
             </ButtonGroup>
         </div>
     );
@@ -138,7 +142,9 @@ export class TerminateAccount extends Component {
             <h1>{i18n('account.terminate.failure.header')}</h1>
             <p dangerouslySetInnerHTML={{ __html: i18n('account.terminate.failure.message') }} />
             <ButtonGroup align="center">
-                <Link to={backUrl} gaLabel="terminate-account-failure-back">{i18n('account.terminate.failure.back')}</Link>
+                <Link to={backUrl} id="terminate-account-failure-back">
+                    {i18n('account.terminate.failure.back')}
+                </Link>
             </ButtonGroup>
         </div>
     );
@@ -188,7 +194,7 @@ function mapDispatchToProps(dispatch, state) {
     return {
         deleteAccount: () => dispatch(deleteAccount(customerId, accountRef)),
         getAccountRef: () => accountRef,
-        getCustomerId: () => accountRef,
+        getCustomerId: () => customerId,
     };
 }
 

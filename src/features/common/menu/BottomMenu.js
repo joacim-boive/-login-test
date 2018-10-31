@@ -40,14 +40,12 @@ MenuItem.propTypes = {
     children: PropTypes.node.isRequired,
     active: PropTypes.bool,
     linkTo: PropTypes.string,
-    onClick: PropTypes.func,
 };
 
 MenuItem.defaultProps = {
     id: undefined,
     active: false,
     linkTo: '',
-    onClick: () => {},
 };
 
 MenuItemText.propTypes = {
