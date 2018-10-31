@@ -152,7 +152,7 @@ class LoginFormSE extends Component {
             <div className="login-form-SE">
                 {!isLoggingIn && (
                     <aside className="help-button">
-                        <Button id="login-se-help-button" onClick={this.showHelp} link>
+                        <Button id="login-se-help-button" onClick={this.showHelp} transparent xSmall>
                             {i18n('general.help')}
                         </Button>
                     </aside>

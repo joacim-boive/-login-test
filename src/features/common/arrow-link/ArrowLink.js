@@ -12,7 +12,7 @@ export const ArrowLink = ({ className, icon, text, onClick, to, ...rest }) => {
     });
 
     return (
-        <Link {...rest} to={to} onClick={onClick} className={classes}>
+        <Link {...rest} to={to} onClick={onClick} className={classes} underline={false}>
             {icon ? <i className={icon} /> : null}
             <div className="arrow-link__wrapper">
                 <div>{text}</div>

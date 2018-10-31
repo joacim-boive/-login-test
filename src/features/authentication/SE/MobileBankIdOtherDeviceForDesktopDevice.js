@@ -58,13 +58,13 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                     />
 
                     <ButtonGroup alignCenter>
-                        <Button onClick={this.startLogin} round name="login-button">
+                        <Button onClick={this.startLogin} round name="login-button" gaLabel="mbid-other-device-dekstop">
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>
 
                     <ButtonGroup alignCenter space={false}>
-                        <Button onClick={this.startBidLogin} link name="login-button-bid">
+                        <Button onClick={this.startBidLogin} transparent name="login-button-bid">
                             {i18n('login-button-bid')}
                         </Button>
                     </ButtonGroup>

@@ -54,7 +54,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     />
 
                     <ButtonGroup alignCenter>
-                        <Button onClick={this.startLogin} round name="login-button">
+                        <Button onClick={this.startLogin} round name="login-button" gaLabel="mbid-other-device-touch">
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>
@@ -62,7 +62,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                     <ButtonGroup alignCenter space={false}>
                         <Button
                             onClick={() => toggleState('isOnThisDevice')}
-                            link
+                            transparent
                             iconLeft="icon-chevron-left"
                             name="to-mbid-this-device-button"
                         >

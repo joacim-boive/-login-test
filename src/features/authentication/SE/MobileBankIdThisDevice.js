@@ -19,13 +19,18 @@ class BankIdThisDevice extends React.Component {
                             onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                             round
                             name="login-button"
+                            gaLabel="mbid-this-device"
                         >
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>
 
                     <ButtonGroup alignCenter space={false}>
-                        <Button onClick={() => toggleState('isOnThisDevice')} link name="to-mbid-other-device-button">
+                        <Button
+                            onClick={() => toggleState('isOnThisDevice')}
+                            transparent
+                            name="to-mbid-other-device-button"
+                        >
                             {i18n('to-mbid-button')}
                         </Button>
                     </ButtonGroup>

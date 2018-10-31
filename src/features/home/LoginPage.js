@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from '@ecster/ecster-components';
-
+import { setPageView } from '@ecster/ecster-analytics/v2';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 import LoginForm from '../authentication/LoginForm';
 
@@ -9,6 +9,11 @@ import loadFont from '../../common/util/load-font';
 loadFont('PT Sans');
 
 class LoginPage extends Component {
+    componentDidMount() {
+        console.log('LoginPage did mount');
+        setPageView('/login', 'Login page'); // auto page view for '/' is disabled
+    }
+
     render() {
         return (
             <LoginPageTemplate>

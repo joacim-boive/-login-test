@@ -42,9 +42,9 @@ class TabletDesktopNavigation extends React.Component {
             <TopNavigation>
                 <TopMenu>
                     <div className="top-menu-container">
-                        <a href="#/account/overview">
+                        <Link href="#/account/overview" id="top-nav-logo">
                             <Logo withName fill="#fff" width="120px" height="32px" />
-                        </a>
+                        </Link>
                         <div className="top-menu-links">
                             <Link
                                 className={classNames({
@@ -53,6 +53,7 @@ class TabletDesktopNavigation extends React.Component {
                                 })}
                                 to="/account/overview"
                                 id="top-nav-account-overview"
+                                underline={false}
                             >
                                 {i18n('navigation.account-overview')}
                             </Link>
@@ -64,6 +65,7 @@ class TabletDesktopNavigation extends React.Component {
                                 })}
                                 to="/invoice/overview"
                                 id="top-nav-invoice-overview"
+                                underline={false}
                             >
                                 {i18n('navigation.invoices')}
                             </Link>
@@ -76,6 +78,7 @@ class TabletDesktopNavigation extends React.Component {
                                     })}
                                     to="/loan/overview"
                                     id="top-nav-loan-overview"
+                                    underline={false}
                                 >
                                     {i18n('navigation.loan')}
                                 </Link>
