@@ -41,6 +41,8 @@ class LoanGeneralInformationPanel extends Component {
 
     clearingNumber = null;
 
+    myBank = null;
+
     accountNumber = React.createRef();
 
     agreedTerms = React.createRef();
@@ -66,9 +68,10 @@ class LoanGeneralInformationPanel extends Component {
         }
     };
 
-    setClearingNumberRef = element => {
+    setRef = element => {
+        const field = element.inputField;
         // We can't set the ref directly as the DOM element is inside the component.
-        this.clearingNumber = { current: element };
+        this[field.id || field.name] = { current: element };
     };
 
     render() {
@@ -94,7 +97,13 @@ class LoanGeneralInformationPanel extends Component {
                 >
                     <Form
                         ref={this.formGeneralInformation}
-                        validateRefs={[this.loanUsage, this.clearingNumber, this.accountNumber, this.agreedTerms]}
+                        validateRefs={[
+                            this.loanUsage,
+                            this.clearingNumber,
+                            this.myBank,
+                            this.accountNumber,
+                            this.agreedTerms,
+                        ]}
                         className="formGeneralInformation"
                     >
                         <ResponsivePanel desktop={2} tablet={2} mobile={1} className="body">
@@ -151,7 +160,7 @@ class LoanGeneralInformationPanel extends Component {
                                         className="clearing-field"
                                         validationMessage={i18n('loan.general.clearing-number-error')}
                                         validator={val => /^\d{4}(-\d{1}){0,1}$/.test(val)}
-                                        setRef={this.setClearingNumberRef}
+                                        setRef={this.setRef}
                                     />
                                     <Input
                                         value={accountNumber}
