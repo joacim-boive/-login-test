@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
-import withMediaQueries from '@ecster/ecster-components/MediaQuery/withMediaQueries';
 import { Button } from '@ecster/ecster-components';
 import './LoanPersonalInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import { EditableInput } from '../../common/editable-input/EditableInput';
 import { EditableInputPhone } from '../../common/editable-input/EditableInputPhone';
 
+import detectDevice from '../../../common/util/detect-device';
+
 class LoanPersonalInformationPanel extends Component {
     static propTypes = {
-        media: PropTypes.shape().isRequired,
         person: PropTypes.object.isRequired,
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
@@ -38,25 +38,20 @@ class LoanPersonalInformationPanel extends Component {
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        const isValidPhoneNumber = this.phoneNumber.current.handleExternalValidate();
-        const isValidEmail = this.email.current.handleExternalValidate();
-
-        if (isValidPhoneNumber && isValidEmail) {
+        if (this.isFormValid()) {
             onNextStep(step, id);
         }
     };
 
+    isFormValid = () => {
+        const isValidPhoneNumber = this.phoneNumber.current.handleExternalValidate();
+        const isValidEmail = this.email.current.handleExternalValidate();
+
+        return isValidPhoneNumber && isValidEmail;
+    };
+
     render() {
-        const {
-            className,
-            person,
-            media,
-            contactInformation,
-            onUpdateContactInfo,
-            collapse,
-            handleCollapse,
-            id,
-        } = this.props;
+        const { className, person, contactInformation, onUpdateContactInfo, collapse, handleCollapse, id } = this.props;
 
         const classes = classNames({
             'loan-personal-information-panel': true,
@@ -109,7 +104,7 @@ class LoanPersonalInformationPanel extends Component {
                                     {person.city}
                                 </Data>
                             </DataRow>
-                            {!media.onMobile && (
+                            {!detectDevice.isMobile && (
                                 <DataRow>
                                     <Data className="text" right>
                                         {i18n('loan.personal.info')}
@@ -155,4 +150,5 @@ class LoanPersonalInformationPanel extends Component {
         );
     }
 }
-export default withMediaQueries(LoanPersonalInformationPanel);
+
+export default LoanPersonalInformationPanel;

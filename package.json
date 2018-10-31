@@ -226,6 +226,7 @@
         "@ecster/ecster-validation": "^2.0.63",
         "@ecster/ecster-webpack": "^2.0.208",
         "ajv": "^6.5.4",
+        "babel-plugin-module-resolver": "^3.1.1",
         "classnames": "^2.2.6",
         "eslint-plugin-jest": "^21.26.2",
         "features": "^0.1.0",

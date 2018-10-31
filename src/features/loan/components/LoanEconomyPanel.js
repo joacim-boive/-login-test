@@ -95,10 +95,12 @@ class LoanEconomyPanel extends Component {
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        if (this.formEconomy.current.validate()) {
+        if (this.isFormValid()) {
             onNextStep(step, id);
         }
     };
+
+    isFormValid = () => this.formEconomy.current.validate();
 
     handleCollapse = () => {
         const { isDisabled, handleCollapse, id } = this.props;
