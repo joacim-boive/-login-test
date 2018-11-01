@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
-import withMediaQueries from '@ecster/ecster-components/MediaQuery/withMediaQueries';
 import { Button } from '@ecster/ecster-components';
 import './LoanPersonalInformationPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
@@ -47,16 +46,7 @@ class LoanPersonalInformationPanel extends Component {
     };
 
     render() {
-        const {
-            className,
-            person,
-            media,
-            contactInformation,
-            onUpdateContactInfo,
-            collapse,
-            handleCollapse,
-            id,
-        } = this.props;
+        const { className, person, contactInformation, onUpdateContactInfo, collapse, handleCollapse, id } = this.props;
 
         const classes = classNames({
             'loan-personal-information-panel': true,
@@ -109,13 +99,11 @@ class LoanPersonalInformationPanel extends Component {
                                     {person.city}
                                 </Data>
                             </DataRow>
-                            {!media.onMobile && (
-                                <DataRow>
-                                    <Data className="text" right>
-                                        {i18n('loan.personal.info')}
-                                    </Data>
-                                </DataRow>
-                            )}
+                            <DataRow className="hide-on-mobile">
+                                <Data className="text" right>
+                                    {i18n('loan.personal.info')}
+                                </Data>
+                            </DataRow>
                         </DataColumn>
                         <DataColumn>
                             <DataRow className="column-first">
@@ -155,4 +143,4 @@ class LoanPersonalInformationPanel extends Component {
         );
     }
 }
-export default withMediaQueries(LoanPersonalInformationPanel);
+export default LoanPersonalInformationPanel;
