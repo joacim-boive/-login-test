@@ -35,8 +35,16 @@ export class LoanSummaryPage extends Component {
         LoanGeneralInformation: false,
     };
 
+    LoanPersonalInformation = React.createRef();
+
+    LoanEconomy = React.createRef();
+
+    LoanGeneralInformation = React.createRef();
+
     componentWillMount() {
-        this.props.getCustomer(this.props.person.id, this.props.hasAccounts);
+        const { getCustomer, person, hasAccounts } = this.props;
+
+        getCustomer(person.id, hasAccounts);
     }
 
     onNextStep = (step, id) => {
@@ -45,9 +53,21 @@ export class LoanSummaryPage extends Component {
         let thisState = {};
 
         if (step === steps.length) {
-            thisState = {
-                isSubmitted: true,
-            };
+            const isLoanPersonalInformationValid =
+                this.LoanPersonalInformation.current && this.LoanPersonalInformation.current.isFormValid();
+            let isLoanEconomyValid = this.LoanEconomy.current && this.LoanEconomy.current.isFormValid();
+            isLoanEconomyValid = typeof isLoanEconomyValid === 'undefined' ? true : isLoanEconomyValid;
+
+            let isLoanGeneralInformation =
+                this.LoanGeneralInformation.current && this.LoanGeneralInformation.current.isFormValid();
+            isLoanGeneralInformation =
+                typeof isLoanGeneralInformation === 'undefined' ? true : isLoanGeneralInformation;
+
+            if (isLoanPersonalInformationValid && isLoanEconomyValid && isLoanGeneralInformation) {
+                thisState = {
+                    isSubmitted: true,
+                };
+            }
         } else {
             const currentStep = steps[step];
             const nextStep = step + 1;
@@ -97,6 +117,7 @@ export class LoanSummaryPage extends Component {
                             person={customer}
                             onNextStep={this.onNextStep}
                             handleCollapse={this.handleCollapse}
+                            ref={this.LoanPersonalInformation}
                         />
                         <LoanEconomyPanel
                             id="LoanEconomy"
@@ -107,6 +128,7 @@ export class LoanSummaryPage extends Component {
                             onNextStep={this.onNextStep}
                             handleCollapse={this.handleCollapse}
                             handleEnabling={this.handleEnabling}
+                            ref={this.LoanEconomy}
                         />
                         <LoanGeneralInformationPanel
                             id="LoanGeneralInformation"
@@ -117,6 +139,7 @@ export class LoanSummaryPage extends Component {
                             onNextStep={this.onNextStep}
                             handleCollapse={this.handleCollapse}
                             handleEnabling={this.handleEnabling}
+                            ref={this.LoanGeneralInformation}
                         />
                     </div>
                 )}
