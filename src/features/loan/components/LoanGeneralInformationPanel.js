@@ -53,10 +53,12 @@ class LoanGeneralInformationPanel extends Component {
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        if (this.formGeneralInformation.current.validate()) {
+        if (this.isFormValid()) {
             onNextStep(step, id);
         }
     };
+
+    isFormValid = () => this.formGeneralInformation.current.validate();
 
     handleCollapse = () => {
         const { isDisabled, handleCollapse, id } = this.props;
