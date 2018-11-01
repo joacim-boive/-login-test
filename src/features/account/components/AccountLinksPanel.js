@@ -5,7 +5,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ArrowLink } from '../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
-export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
+export const AccountLinksPanel = ({ className, account, customer, ...rest }) => {
     const classes = classNames({
         'account-links-panel': true,
         [className]: className,
@@ -20,13 +20,13 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
             <ArrowLink
                 text={i18n('account.links.transactions')}
                 icon="icon-minimize-2"
-                to={`/account/${account.reference}/customer/${user.id}/transactions`}
+                to={`/account/${account.reference}/customer/${customer.id}/transactions`}
                 id="arrow-link-account-overview-transactions"
             />
             <ArrowLink
                 text={i18n('account.links.raise-credit')}
                 icon="icon-arrow-up"
-                to={`/account/${account.reference}/customer/${user.id}/raise-credit`}
+                to={`/account/${account.reference}/customer/${customer.id}/raise-credit`}
                 id="arrow-link-account-overview-raise-credit"
             />
             <ArrowLink
@@ -41,25 +41,16 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
                 to="/invoice/monthly-invoices"
                 id="arrow-link-account-overview-monthly-invoices"
             />
-            {hasCard ? (
-                <ArrowLink
-                    text={i18n('account.links.manage-cards')}
-                    icon="icon-book"
-                    to="/card/overview"
-                    id="arrow-link-account-overview-manage-cards"
-                />
-            ) : (
-                <ArrowLink
-                    text={i18n('account.links.apply-for-card')}
-                    icon="icon-book"
-                    to="/card/extra-card"
-                    id="arrow-link-account-overview-apply-for-card"
-                />
-            )}
+            <ArrowLink
+                text={hasCard ? i18n('account.links.manage-cards') : i18n('account.links.apply-for-card')}
+                icon="icon-book"
+                to={`/card/${account.reference}/customer/${customer.id}`}
+                id="arrow-link-account-overview-manage-cards"
+            />
             <ArrowLink
                 text={i18n('account.links.terms')}
                 icon="icon-info"
-                to={`/account/${account.reference}/customer/${user.id}/terms`}
+                to={`/account/${account.reference}/customer/${customer.id}/terms`}
                 id="arrow-link-account-overview-account-terms"
             />
         </div>
@@ -69,7 +60,7 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
 AccountLinksPanel.propTypes = {
     className: PropTypes.string,
     account: PropTypes.shape().isRequired,
-    user: PropTypes.shape().isRequired,
+    customer: PropTypes.shape().isRequired,
 };
 
 AccountLinksPanel.defaultProps = {

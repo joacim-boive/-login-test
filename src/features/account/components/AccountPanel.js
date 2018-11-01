@@ -81,13 +81,13 @@ class AccountPanel extends Component {
                                     transactions={transactions}
                                     totalTransactions={totalTransactions}
                                     account={account}
-                                    user={user}
+                                    customer={user}
                                 />
                             </TabletOrDesktop>
                         )}
                         <NextPaymentPanel bills={bills} />
                     </ResponsivePanel>
-                    <AccountLinksPanel account={account} user={user} />
+                    <AccountLinksPanel account={account} customer={user} />
                 </ResponsivePanel>
             </Panel>
         );

@@ -289,8 +289,20 @@
         "manage-card": {
             "page-header": "Hantera kort"
         },
-        "extra-card": {
-            "page-header": "Hantera kort"
+        "apply-for-card": {
+            "header":"Ansök om ett {{cardName}}-kort",
+            "info": "Med Ecster-kortet kan du ta del av fler förmåner.",
+            "yearly-fee": "Årsavgift",
+            "credit-limit": "Kreditgräns",
+            "card-terms": "Samtliga villkor hittar du i dina [link https://a.pdf.com kontovillkor]",
+            "info-list": [
+                "Upp till 8 veckors räntefri kredit",
+                "Köparskydd ingår - trygghet när du handlar",
+                "Dela upp större köp i efterhand"
+            ],
+            "button": "Ansök",
+            "success": {},
+            "failure": {}
         }
     },
     "customer": {

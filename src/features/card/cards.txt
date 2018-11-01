@@ -1,0 +1,77 @@
+Pages
+----
+
+Manage card page
+/card/:accountRef
+
+rekit add component card/ManageCardPage -c -u /card/:accountRef
+
+
+Components
+----
+
+KORT
+--
+Ansök om kort (panel)
+  Tack för din beställning (panel)
+  Beställning kunde inte genomföras (panel)
+
+Aktivera kort (panel)
+
+Visa befintligt kort (panel)
+
+rekit add component card/ApplyForCardPanel
+rekit add component card/ApplyForCardSuccessPanel
+rekit add component card/ApplyForCardFailurePanel
+rekit add component card/ActivateCardPanel
+rekit add component card/ShowCardPanel
+
+"apply-for-card": {
+    "header":"Ansök om ett {{cardName}}-kort",
+    "info": "Med Ecster-kortet kan du ta del av fler förmåner.",
+    "yearly-fee": "Årsavgift",
+    "credit-limit": "Kreditgräns",
+    "card-terms": "Samtliga villkor hittar du i dina [link https://a.pdf.com kontovillkor]",
+    "": [
+        "Upp till 8 veckors räntefri kredit",
+        "Köparskydd ingår - trygghet när du handlar",
+        "Dela upp större köp i efterhand"
+    ],
+    "button": "Ansök",
+
+    "success": {},
+    "failure": {},
+
+}
+
+
+EXTRAKORT
+--
+Skaffa extrakort (panel)
+  Tack för din beställning (samma som kort)
+  Beställning kunde inte genomföras (samma som kort)
+
+Visa extrakort (panel)
+  Aktivera extrakort (subpanel)
+  Visa befintligt extrakort (subpanel)
+
+rekit add component card/ApplyForExtraCardPanel
+rekit add component card/ShowExtraCardsPanel
+rekit add component card/ActivateExtraCardSubpanel
+rekit add component card/ShowExtraCardSubpanel
+
+
+
+OTHER
+--
+Spärra kort
+
+rekit add component card/...CardPanel
+
+
+Apply for card
+
+GET  https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts?noCache=1541088865083
+POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3UEAVFUCXUFQH5hRQRWNzdGVyLVNIQgxxxxx
+/rest/customers/v1/.+/accounts/cards/.+
+

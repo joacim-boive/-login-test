@@ -5,7 +5,18 @@ import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import UnderConstruction from '../common/alpha/UnderConstruction';
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
-import * as actions from './redux/actions';
+
+import { updateAccountCard } from '../account/redux/updateAccountCard';
+
+import ActivateCardPanel from './ActivateCardPanel';
+import ActivateExtraCardSubpanel from './ActivateExtraCardSubpanel';
+import ApplyForCardFailurePanel from './ApplyForCardFailurePanel';
+import ApplyForCardPanel from './ApplyForCardPanel';
+import ApplyForCardSuccessPanel from './ApplyForCardSuccessPanel';
+import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
+import ShowCardPanel from './ShowCardPanel';
+import ShowExtraCardsPanel from './ShowExtraCardsPanel';
+import ShowExtraCardSubpanel from './ShowExtraCardSubpanel';
 
 export class ManageCardPage extends Component {
     static propTypes = {
@@ -14,25 +25,33 @@ export class ManageCardPage extends Component {
     };
 
     render() {
+        const { account, accountRef, customerId } = this.props;
+
         return (
-            <AuthenticatedSubPageTemplate className="card-manage-card-page" header={i18n('card.manage-card.page-header')}>
-                <UnderConstruction />
+            <AuthenticatedSubPageTemplate
+                className="card-manage-card-page"
+                header={i18n('card.manage-card.page-header')}
+            >
+                <ApplyForCardPanel account={account} />
             </AuthenticatedSubPageTemplate>
         );
     }
 }
 
 /* istanbul ignore next */
-function mapStateToProps(state) {
+function mapStateToProps({ account }, route) {
+    const { customerId, accountRef } = route.match.params;
     return {
-        card: state.card,
+        account: account.account,
+        accountRef,
+        customerId,
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...actions }, dispatch),
+        updateAccountCard: (customerId, accountRef) => dispatch(updateAccountCard(customerId, accountRef)),
     };
 }
 

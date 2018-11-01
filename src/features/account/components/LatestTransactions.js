@@ -4,18 +4,11 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
-import { LinkButton, Link } from '@ecster/ecster-components';
+import { Link } from '@ecster/ecster-components';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
-export const LatestTransactions = ({
-    className,
-    transactions,
-    totalTransactions,
-    account,
-    user,
-    ...rest
-}) => {
+export const LatestTransactions = ({ className, transactions, totalTransactions, account, customer, ...rest }) => {
     const classes = classNames({
         'latest-transactions': true,
         [className]: className,
@@ -84,6 +77,7 @@ LatestTransactions.propTypes = {
     transactions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     totalTransactions: PropTypes.number.isRequired,
     account: PropTypes.shape().isRequired,
+    customer: PropTypes.shape().isRequired,
 };
 
 LatestTransactions.defaultProps = {
