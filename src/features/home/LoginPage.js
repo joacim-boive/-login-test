@@ -10,7 +10,6 @@ loadFont('PT Sans');
 
 class LoginPage extends Component {
     componentDidMount() {
-        console.log('LoginPage did mount');
         setPageView('/login', 'Login page'); // auto page view for '/' is disabled
     }
 
