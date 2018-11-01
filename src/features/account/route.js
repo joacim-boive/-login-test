@@ -11,7 +11,7 @@ export default {
     path: 'account',
     name: 'Account',
     childRoutes: [
-        { path: 'overview', name: 'Overview page', component: OverviewPage },
+        { path: 'overview', name: 'Account overview page', component: OverviewPage },
         {
             path: ':accountRef/customer/:customerId/transactions',
             name: 'Account transactions overview',
