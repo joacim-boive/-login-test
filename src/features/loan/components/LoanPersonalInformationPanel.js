@@ -141,7 +141,7 @@ class LoanPersonalInformationPanel extends Component {
                         </DataColumn>
                     </DataColumns>
                     <div className="next-button">
-                        <Button onClick={this.handleNextStep} round>
+                        <Button onClick={this.handleNextStep} round name="loan-personal-info-next">
                             {i18n('general.next')}
                         </Button>
                     </div>

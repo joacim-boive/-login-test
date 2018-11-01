@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@ecster/ecster-components';
 import './LoginHelp.scss';
 
 // yes: hardcoded swedish is ok, it's a component located under .../SE/
@@ -15,7 +16,9 @@ const LoginHelp = () => (
         </p>
 
         <p>
-            <a href="http://support.bankid.com">http://support.bankid.com</a>
+            <Link href="http://support.bankid.com" target="_blank" id="link-support-bankid-com">
+                http://support.bankid.com
+            </Link>
         </p>
 
         <h2>I inloggat läge finns flera bra tjänster</h2>
@@ -42,18 +45,23 @@ const LoginHelp = () => (
         </p>
 
         <p>
-            <a href="https://www.ecster.se/om-oss/hantering-av-personuppgifter">
+            <Link
+                href="https://www.ecster.se/om-oss/hantering-av-personuppgifter"
+                target="_blank"
+                id="link-ecster-se-gdpr"
+            >
                 www.ecster.se/om-oss/hantering-av-personuppgifter
-            </a>
+            </Link>
         </p>
 
         <h2>Vill du prata med oss?</h2>
 
         <p>
             Om du behöver hjälp med att logga in eller har andra frågor är du välkommen att ringa vår kundservice på{' '}
-            <a className="tel" href="tel:+4687014667">
+            <Link href="tel:+4687014667" underline={false} id="tel-link-call-customer-support">
                 08 701 46 67
-            </a>, vardagar kl. 9–18.
+            </Link>
+            , vardagar kl. 9–18.
         </p>
     </div>
 );

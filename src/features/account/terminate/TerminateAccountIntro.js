@@ -18,7 +18,7 @@ class TerminateAccountIntro extends React.Component {
                             wrapper: { tag: 'p', dangerouslySetInnerHTML: true },
                         })}
                         <ButtonGroup align="center">
-                            <LinkButton outline round to={url}>
+                            <LinkButton outline round to={url} gaLabel="start-terminate-account">
                                 {i18n('account.terminate.terminate-account')}
                             </LinkButton>
                         </ButtonGroup>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // Ecster imports
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, ButtonGroup, LinkButton } from '@ecster/ecster-components';
+import { Panel, ButtonGroup, LinkButton, Link } from '@ecster/ecster-components';
 
 import PublicPageTemplate from '../common/templates/PublicPageTemplate';
 import { SURVEY_URL } from '../../common/surveyUrl';
@@ -13,9 +12,9 @@ export default class AfterLogout extends React.Component {
     render() {
         const footer = (
             <footer>
-                <a href="https://www.ecster.se" rel="noopener noreferer" target="_blank">
+                <Link href="https://www.ecster.se" target="_blank" id="logged-out-logo-link-in-footer">
                     www.ecster.se
-                </a>
+                </Link>
             </footer>
         );
         return (
@@ -26,12 +25,19 @@ export default class AfterLogout extends React.Component {
                         <h2>{i18n('home.after-logout.header')}</h2>
                         <p className="info-text">{i18n('home.after-logout.info')}</p>
                         <ButtonGroup alignCenter>
-                            <LinkButton iconRight="icon-external-link" href={SURVEY_URL} target="_blank" outline round>
+                            <LinkButton
+                                iconRight="icon-external-link"
+                                href={SURVEY_URL}
+                                target="_blank"
+                                outline
+                                round
+                                id="after-logout-start-feedback"
+                            >
                                 {i18n('home.feedback.link')}
                             </LinkButton>
                         </ButtonGroup>
                         <ButtonGroup alignCenter spaceBelow={false}>
-                            <Link to="/">
+                            <Link to="/" id="logged-out-login-again">
                                 <strong>{i18n('home.after-logout.login-link')}</strong>
                             </Link>
                         </ButtonGroup>

@@ -21,27 +21,46 @@ export const AccountLinksPanel = ({ className, account, user, ...rest }) => {
                 text={i18n('account.links.transactions')}
                 icon="icon-minimize-2"
                 to={`/account/${account.reference}/customer/${user.id}/transactions`}
+                id="arrow-link-account-overview-transactions"
             />
             <ArrowLink
                 text={i18n('account.links.raise-credit')}
                 icon="icon-arrow-up"
                 to={`/account/${account.reference}/customer/${user.id}/raise-credit`}
+                id="arrow-link-account-overview-raise-credit"
             />
             <ArrowLink
                 text={i18n('account.links.part-payments')}
                 icon="icon-layers"
                 to={`/account/${account.reference}/part-payments`}
+                id="arrow-link-account-overview-part-payments"
             />
-            <ArrowLink text={i18n('account.links.monthly-invoices')} icon="icon-file" to="/invoice/monthly-invoices" />
+            <ArrowLink
+                text={i18n('account.links.monthly-invoices')}
+                icon="icon-file"
+                to="/invoice/monthly-invoices"
+                id="arrow-link-account-overview-monthly-invoices"
+            />
             {hasCard ? (
-                <ArrowLink text={i18n('account.links.manage-cards')} icon="icon-book" to="/card/overview" />
+                <ArrowLink
+                    text={i18n('account.links.manage-cards')}
+                    icon="icon-book"
+                    to="/card/overview"
+                    id="arrow-link-account-overview-manage-cards"
+                />
             ) : (
-                <ArrowLink text={i18n('account.links.apply-for-card')} icon="icon-book" to="/card/extra-card" />
+                <ArrowLink
+                    text={i18n('account.links.apply-for-card')}
+                    icon="icon-book"
+                    to="/card/extra-card"
+                    id="arrow-link-account-overview-apply-for-card"
+                />
             )}
             <ArrowLink
                 text={i18n('account.links.terms')}
                 icon="icon-info"
                 to={`/account/${account.reference}/customer/${user.id}/terms`}
+                id="arrow-link-account-overview-account-terms"
             />
         </div>
     );

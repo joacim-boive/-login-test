@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link as RRLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Logo } from '@ecster/ecster-components';
+import { Logo, Link } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
@@ -42,9 +42,9 @@ class TabletDesktopNavigation extends React.Component {
             <TopNavigation>
                 <TopMenu>
                     <div className="top-menu-container">
-                        <a href="#/account/overview">
+                        <Link href="#/account/overview" id="top-nav-logo">
                             <Logo withName fill="#fff" width="120px" height="32px" />
-                        </a>
+                        </Link>
                         <div className="top-menu-links">
                             <Link
                                 className={classNames({
@@ -52,6 +52,8 @@ class TabletDesktopNavigation extends React.Component {
                                     'menu-item--is-active': overviewIsActive,
                                 })}
                                 to="/account/overview"
+                                id="top-nav-account-overview"
+                                underline={false}
                             >
                                 {i18n('navigation.account-overview')}
                             </Link>
@@ -62,6 +64,8 @@ class TabletDesktopNavigation extends React.Component {
                                     'menu-item--is-active': invoiceIsActive,
                                 })}
                                 to="/invoice/overview"
+                                id="top-nav-invoice-overview"
+                                underline={false}
                             >
                                 {i18n('navigation.invoices')}
                             </Link>
@@ -73,6 +77,8 @@ class TabletDesktopNavigation extends React.Component {
                                         'menu-item--is-active': loanIsActive,
                                     })}
                                     to="/loan/overview"
+                                    id="top-nav-loan-overview"
+                                    underline={false}
                                 >
                                     {i18n('navigation.loan')}
                                 </Link>
@@ -94,14 +100,22 @@ class TabletDesktopNavigation extends React.Component {
                 <div className="submenu-container">
                     <SubMenu top show={showSubMenu} requestClose={this.closeSubMenu}>
                         {!hasZeroAccounts && (
-                            <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
+                            <SubMenuItem
+                                id="top-nav-customer-profile"
+                                linkTo={`/customer/${customerId}/profile`}
+                                active={customerSettingsIsActive}
+                            >
                                 {i18n('navigation.settings')}
                             </SubMenuItem>
                         )}
-                        <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
+                        <SubMenuItem
+                            id="top-nav-customer-support"
+                            linkTo="/customer/support"
+                            active={customerSupportIsActive}
+                        >
                             {i18n('navigation.customer-support')}
                         </SubMenuItem>
-                        <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">
+                        <SubMenuItem id="top-nav-logout" linkTo="/authentication/logout" iconClass="icon-lock">
                             {i18n('navigation.logout')}
                         </SubMenuItem>
                     </SubMenu>

@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { FlexPanel, Panel, Form, Select, ButtonGroup, Button, UnorderedList, Spinner } from '@ecster/ecster-components';
+import {
+    FlexPanel,
+    Panel,
+    Form,
+    Select,
+    ButtonGroup,
+    Button,
+    UnorderedList,
+    Spinner,
+    Link,
+} from '@ecster/ecster-components';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import AlertPanel from '../../../common/AlertPanel';
 
@@ -121,7 +130,10 @@ export class RaiseCreditPage extends Component {
                                             <strong>{formatAmount(currentLimit)}</strong>
                                         </div>
                                         <div className="flex-row">
-                                            <label htmlFor="creditLimit" className={!allowRaise ? 'no-raise-label' : ''}>
+                                            <label
+                                                htmlFor="creditLimit"
+                                                className={!allowRaise ? 'no-raise-label' : ''}
+                                            >
                                                 {i18n('account.raise-credit.new-credit-limit')}
                                             </label>
                                             <Select
@@ -165,7 +177,12 @@ export class RaiseCreditPage extends Component {
                                 />
                                 {!processing && (
                                     <ButtonGroup align="center" className="mt-8x">
-                                        <Button onClick={this.onButtonClick} round disabled={!allowRaise}>
+                                        <Button
+                                            onClick={this.onButtonClick}
+                                            round
+                                            disabled={!allowRaise}
+                                            name="raise-credit-apply"
+                                        >
                                             {i18n('account.raise-credit.apply')}
                                         </Button>
                                     </ButtonGroup>
