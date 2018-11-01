@@ -19,7 +19,7 @@ class BankIdThisDevice extends React.Component {
                             onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
                             round
                             name="login-button"
-                            gaLabel="mbid-this-device"
+                            gaLabel="mobile-bankid-this-device"
                         >
                             {i18n('login-button')}
                         </Button>
@@ -30,6 +30,7 @@ class BankIdThisDevice extends React.Component {
                             onClick={() => toggleState('isOnThisDevice')}
                             transparent
                             name="to-mbid-other-device-button"
+                            gaLabel="mobile-bankid-other-device-button"
                         >
                             {i18n('to-mbid-button')}
                         </Button>

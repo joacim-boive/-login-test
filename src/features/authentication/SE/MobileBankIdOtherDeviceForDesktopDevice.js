@@ -37,7 +37,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
 
         return (
             isVisible && (
-                <div className="login-se-dekstop-mbid-other-device">
+                <div className="login-se-dekstop-mobile-bankid-other-device">
                     <h1 className="e-green120">{i18n('header')}</h1>
                     <Input
                         ref={input => {
@@ -58,7 +58,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                     />
 
                     <ButtonGroup alignCenter>
-                        <Button onClick={this.startLogin} round name="login-button" gaLabel="mbid-other-device-dekstop">
+                        <Button onClick={this.startLogin} round name="login-button" gaLabel="mobile-bankid-other-device-dekstop">
                             {i18n('login-button')}
                         </Button>
                     </ButtonGroup>

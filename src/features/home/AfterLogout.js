@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 
 // Ecster imports
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';

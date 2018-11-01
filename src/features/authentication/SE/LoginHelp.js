@@ -58,7 +58,7 @@ const LoginHelp = () => (
 
         <p>
             Om du behöver hjälp med att logga in eller har andra frågor är du välkommen att ringa vår kundservice på{' '}
-            <Link href="tel:+4687014667" underline={false} id="tel-link-call-customer-support" gaValue={4687014667}>
+            <Link href="tel:+4687014667" underline={false} id="tel-link-call-customer-support">
                 08 701 46 67
             </Link>
             , vardagar kl. 9–18.

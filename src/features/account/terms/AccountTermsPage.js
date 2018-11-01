@@ -88,7 +88,7 @@ export class AccountTermsPage extends Component {
                                     description={
                                         <span>
                                             {i18n('account.terms.deposit-rate-description')}{' '}
-                                            <Link target="_blank" href={terms.termsPDFURL} id="open-terms-pdf-link1">
+                                            <Link target="_blank" href={terms.termsPDFURL} id="open-account-terms-pdf-link1">
                                                 pdf
                                             </Link>
                                         </span>
@@ -174,7 +174,11 @@ export class AccountTermsPage extends Component {
                             {terms.termsPDFURL && (
                                 <InfoItem
                                     label={
-                                        <Link href={terms.termsPDFURL} target="_blank" id="open-terms-pdf-link2">
+                                        <Link
+                                            href={terms.termsPDFURL}
+                                            target="_blank"
+                                            id="open-account-terms-pdf-link2"
+                                        >
                                             {i18n('account.terms.account-terms-pdf')}
                                         </Link>
                                     }
