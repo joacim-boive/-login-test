@@ -8,6 +8,15 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel } from '@ecster/ecster-components';
 
 export class ${_.pascalCase(component)} extends React.Component {
+    static propTypes = {
+        ${_.camelCase(feature)}: PropTypes.object.isRequired,
+        actions: PropTypes.object.isRequired,
+    };
+
+    static defaultProps = {};
+
+    state = {};
+
     render() {
         return (
             <Panel className="${_.kebabCase(feature)}-${_.kebabCase(component)}">
@@ -16,13 +25,6 @@ export class ${_.pascalCase(component)} extends React.Component {
         );
     }
 }
-
-${_.pascalCase(component)}.propTypes = {
-    ${_.camelCase(feature)}: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-};
-
-${_.pascalCase(component)}.defaultProps = {};
 
 /* istanbul ignore next */
 function mapStateToProps(state) {

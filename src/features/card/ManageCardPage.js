@@ -42,7 +42,6 @@ export class ManageCardPage extends Component {
                 <ApplyForCardPanel account={account} />
                 <ApplyForCardSuccessPanel account={account} />
                 <ApplyForCardFailurePanel />
-                <p>xx</p>
             </AuthenticatedSubPageTemplate>
         );
     }

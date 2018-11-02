@@ -12,43 +12,30 @@ Components
 
 KORT
 --
-Ansök om kort (panel)
-  Tack för din beställning (panel)
-  Beställning kunde inte genomföras (panel)
-
-Aktivera kort (panel)
+AnsÃ¶k om kort (panel)
+  Tack fÃ¶r din bestÃ¤llning (panel)
+  BestÃ¤llning kunde inte genomfÃ¶ras (panel)
 
 Visa befintligt kort (panel)
 
-rekit add component card/ApplyForCardPanel
-rekit add component card/ApplyForCardSuccessPanel
-rekit add component card/ApplyForCardFailurePanel
-rekit add component card/ActivateCardPanel
-rekit add component card/ShowCardPanel
+Aktivera kort (panel)
 
 
 EXTRAKORT
 --
 Skaffa extrakort (panel)
-  Tack för din beställning (samma som kort)
-  Beställning kunde inte genomföras (samma som kort)
+  Tack fÃ¶r din bestÃ¤llning (samma som kort)
+  BestÃ¤llning kunde inte genomfÃ¶ras (samma som kort)
 
 Visa extrakort (panel)
   Aktivera extrakort (subpanel)
   Visa befintligt extrakort (subpanel)
 
-rekit add component card/ApplyForExtraCardPanel
-rekit add component card/ShowExtraCardsPanel
-rekit add component card/ActivateExtraCardSubpanel
-rekit add component card/ShowExtraCardSubpanel
-
 
 
 OTHER
 --
-Spärra kort
-
-rekit add component card/...CardPanel
+SpÃ¤rra kort
 
 
 Apply for card
@@ -57,3 +44,20 @@ GET  https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts?noCache=15410
 POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3UEAVFUCXUFQH5hRQRWNzdGVyLVNIQgxxxxx
 /rest/customers/v1/.+/accounts/cards/.+
 
+
+
+REKIT
+----
+
+rekit add component card/ApplyForCardPanel
+rekit add component card/ApplyForCardSuccessPanel
+rekit add component card/ApplyForCardFailurePanel
+rekit add component card/ActivateCardPanel
+rekit add component card/ShowCardPanel
+
+rekit add component card/ApplyForExtraCardPanel
+rekit add component card/ShowExtraCardsPanel
+rekit add component card/ActivateExtraCardSubpanel
+rekit add component card/ShowExtraCardSubpanel
+
+rekit add component card/BlockCardPanel
