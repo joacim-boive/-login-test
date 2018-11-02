@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import {
-    Form,
-    RadioGroup,
-    Radio,
-    Select,
-    Option,
-    Checkbox,
     Button,
+    Checkbox,
+    Form,
     Input,
+    Option,
+    Radio,
+    RadioGroup,
     ResponsivePanel,
+    Select,
 } from '@ecster/ecster-components';
 import storeValueForNameInState from '../../../common/util/store-value-for-name-in-state';
 
@@ -64,6 +64,10 @@ class LoanEconomyPanel extends Component {
     monthlyGrossIncome = React.createRef();
 
     employedMoreThan1Year = React.createRef();
+
+    employer = React.createRef();
+
+    ownedCompanyName = React.createRef();
 
     ownedCompanyMoreThan1Year = React.createRef();
 
@@ -154,7 +158,9 @@ class LoanEconomyPanel extends Component {
                             this.employmentForm,
                             this.monthlyNetIncome,
                             this.monthlyGrossIncome,
+                            this.employer,
                             this.employedMoreThan1Year,
+                            this.ownedCompanyName,
                             this.ownedCompanyMoreThan1Year,
                             this.residenceType,
                             this.monthlyResidenceCost,
@@ -243,6 +249,7 @@ class LoanEconomyPanel extends Component {
                                         className="input-field"
                                         required
                                         validationMessage={i18n('loan.economy.employer-error')}
+                                        ref={this.employer}
                                     />
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
@@ -251,8 +258,6 @@ class LoanEconomyPanel extends Component {
                                         <RadioGroup
                                             name="employedMoreThan1Year"
                                             selectedValue={employedMoreThan1Year}
-                                            required
-                                            ref={this.employedMoreThan1Year}
                                             className="radio-buttons"
                                         >
                                             <Radio
@@ -260,6 +265,9 @@ class LoanEconomyPanel extends Component {
                                                 onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
+                                                ref={this.employedMoreThan1Year}
+                                                validationMessage={i18n('loan.economy.12month-error')}
+                                                required
                                             />
                                             <Radio
                                                 className="radio-button"
@@ -281,23 +289,28 @@ class LoanEconomyPanel extends Component {
                                         minLength={1}
                                         maxLength={40}
                                         className="input-field"
+                                        ref={this.ownedCompanyName}
                                     />
                                 )}
                                 {['SELFEMPLOYED'].includes(employmentForm) && (
                                     <div className="input-field">
-                                        <span>{i18n('loan.economy.12month-company')}</span>
+                                        <div>{i18n('loan.economy.12month-company')}</div>
                                         <RadioGroup
                                             name="ownedCompanyMoreThan1Year"
                                             selectedValue={ownedCompanyMoreThan1Year}
-                                            required
-                                            ref={this.ownedCompanyMoreThan1Year}
+                                            className="radio-buttons"
                                         >
                                             <Radio
+                                                className="radio-button"
+                                                onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
-                                                onChange={e => this.onChange(e)}
+                                                ref={this.ownedCompanyMoreThan1Year}
+                                                validationMessage={i18n('loan.economy.12month-company-error')}
+                                                required
                                             />
                                             <Radio
+                                                className="radio-button"
                                                 value="no"
                                                 label={i18n('general.answer.no')}
                                                 onChange={e => this.onChange(e)}

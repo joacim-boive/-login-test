@@ -1,11 +1,11 @@
 // index is the entry for all styles.
 @import "~normalize-scss/sass/normalize";
 @import './mixins';
+@import "~@ecster/ecster-styles/scss/v2/include/media-queries";
 @import "~@ecster/ecster-styles/scss/v2/theme/theme";
 @import "~@ecster/ecster-styles/scss/v2/include/paddings";
 @import "~@ecster/ecster-styles/scss/v2/include/margins";
 @import "~@ecster/ecster-styles/scss/v2/include/color-classes";
-
 // fonts incl icons
 @import '../features/home/style';
 @import '../features/common/style';
@@ -31,14 +31,14 @@ html, body, #react-root {
     padding: 0;
 }
 
-body, #react-root{
+body, #react-root {
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-#react-root{
-    & > div:first-child{
+#react-root {
+    & > div:first-child {
         flex: 1 0 auto;
     }
 }
@@ -113,39 +113,6 @@ input {
     -moz-appearance: textfield;
 }
 
-//h1, h2, h3, h4, h5 {
-//    margin: 0;
-//    color: $green120;
-//    font-weight: $weight-bold;
-//}
-//
-//h1 {
-//    font-size: 36px;
-//    margin-bottom: 36px;
-//}
-//
-//h2 {
-//    font-size: 30px;
-//    margin-bottom: 30px;
-//}
-//
-//h3 {
-//    font-size: 26px;
-//    margin-bottom: 26px;
-//}
-//
-//h4 {
-//    font-size: 20px;
-//    margin-bottom: 20px;
-//    font-weight: $weight-semibold;
-//}
-//
-//h5 {
-//    font-size: 18px;
-//    margin-bottom: 18px;
-//    font-weight: $weight-semibold;
-//}
-
 p {
     margin-top: 1rem;
 }
@@ -200,4 +167,10 @@ html {
     /* Always show vertical scroll bar to prevent jumping */
     overflow-y: scroll;
     overflow: -moz-scrollbars-vertical;
+}
+
+.hide-on-mobile {
+    @include mobile {
+        display: none;
+    }
 }

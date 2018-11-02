@@ -10,10 +10,9 @@ import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
 import { EditableInput } from '../../common/editable-input/EditableInput';
 import { EditableInputPhone } from '../../common/editable-input/EditableInputPhone';
 
-import detectDevice from '../../../common/util/detect-device';
-
 class LoanPersonalInformationPanel extends Component {
     static propTypes = {
+        media: PropTypes.shape().isRequired,
         person: PropTypes.object.isRequired,
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
@@ -38,16 +37,12 @@ class LoanPersonalInformationPanel extends Component {
     handleNextStep = () => {
         const { onNextStep, step, id } = this.props;
 
-        if (this.isFormValid()) {
-            onNextStep(step, id);
-        }
-    };
-
-    isFormValid = () => {
         const isValidPhoneNumber = this.phoneNumber.current.handleExternalValidate();
         const isValidEmail = this.email.current.handleExternalValidate();
 
-        return isValidPhoneNumber && isValidEmail;
+        if (isValidPhoneNumber && isValidEmail) {
+            onNextStep(step, id);
+        }
     };
 
     render() {
@@ -104,13 +99,11 @@ class LoanPersonalInformationPanel extends Component {
                                     {person.city}
                                 </Data>
                             </DataRow>
-                            {!detectDevice.isMobile && (
-                                <DataRow>
-                                    <Data className="text" right>
-                                        {i18n('loan.personal.info')}
-                                    </Data>
-                                </DataRow>
-                            )}
+                            <DataRow className="hide-on-mobile">
+                                <Data className="text" right>
+                                    {i18n('loan.personal.info')}
+                                </Data>
+                            </DataRow>
                         </DataColumn>
                         <DataColumn>
                             <DataRow className="column-first">
@@ -150,5 +143,4 @@ class LoanPersonalInformationPanel extends Component {
         );
     }
 }
-
 export default LoanPersonalInformationPanel;
