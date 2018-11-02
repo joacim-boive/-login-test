@@ -315,12 +315,22 @@
             },
             "failure": {
                 "header":"Åh nej!",
-                "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(phone-link-08343550). Vi har öppet vardagar 9-18",
+                "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
                 "link": "Tlllbaka till kontoöversikt"
             }
         },
+        "activate-card": {
+            "header": "Aktivera ditt kort",
+            "info": "Ange CVC-koden på kortets baksida för att aktivera kortet.",
+            "input-label": "CVC-kod",
+            "button": "Aktivera kort"
+        },
         "show-card": {
             "default-card-name": "Ecsterkort"
+        },
+        "block-card": {
+            "header": "Spärra ditt kort",
+            "info": "Ring $t(general.phone-link-020411212). Vi har öppet dygnet runt. Om du befinner dig utomlands så ringer du $t(general.phone-link-4684112122)."
         }
     },
     "customer": {

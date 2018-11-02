@@ -17,6 +17,7 @@ import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import ShowExtraCardSubpanel from './ShowExtraCardSubpanel';
+import BlockCardPanel from './BlockCardPanel';
 import { getAccount } from '../account/redux/getAccount';
 
 export class ManageCardPage extends Component {
@@ -40,8 +41,10 @@ export class ManageCardPage extends Component {
             >
                 <ShowCardPanel account={account} />
                 <ApplyForCardPanel account={account} />
+                <ActivateCardPanel account={account} />
                 <ApplyForCardSuccessPanel account={account} />
                 <ApplyForCardFailurePanel />
+                <BlockCardPanel />
             </AuthenticatedSubPageTemplate>
         );
     }

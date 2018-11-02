@@ -8,3 +8,4 @@ export { default as ApplyForExtraCardPanel } from './ApplyForExtraCardPanel';
 export { default as ShowExtraCardsPanel } from './ShowExtraCardsPanel';
 export { default as ActivateExtraCardSubpanel } from './ActivateExtraCardSubpanel';
 export { default as ShowExtraCardSubpanel } from './ShowExtraCardSubpanel';
+export { default as BlockCardPanel } from './BlockCardPanel';

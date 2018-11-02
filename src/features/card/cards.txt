@@ -4,21 +4,18 @@ Pages
 Manage card page
 /card/:accountRef
 
-rekit add component card/ManageCardPage -c -u /card/:accountRef
-
-
 Components
 ----
 
 KORT
 --
-Ansök om kort (panel)
-  Tack för din beställning (panel)
-  Beställning kunde inte genomföras (panel)
+x Ansök om kort (panel)
+x  Tack för din beställning (panel)
+x  Beställning kunde inte genomföras (panel)
 
-Visa befintligt kort (panel)
+x Visa befintligt kort (panel)
 
-Aktivera kort (panel)
+x Aktivera kort (panel)
 
 
 EXTRAKORT
@@ -35,7 +32,7 @@ Visa extrakort (panel)
 
 OTHER
 --
-Spärra kort
+x Spärra kort
 
 
 Apply for card
@@ -48,6 +45,8 @@ POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3U
 
 REKIT
 ----
+
+rekit add component card/ManageCardPage -c -u /card/:accountRef
 
 rekit add component card/ApplyForCardPanel
 rekit add component card/ApplyForCardSuccessPanel
