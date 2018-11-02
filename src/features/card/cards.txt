@@ -39,7 +39,6 @@ Apply for card
 
 GET  https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts?noCache=1541088865083
 POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3UEAVFUCXUFQH5hRQRWNzdGVyLVNIQgxxxxx
-/rest/customers/v1/.+/accounts/cards/.+
 
 
 
