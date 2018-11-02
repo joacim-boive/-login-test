@@ -9,17 +9,17 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_BILLS_URL } from './urls';
 
-export const getAccountBills = (customerId, referenceId) => async dispatch => {
+export const getAccountBills = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_BILLS_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_BILLS_URL(customerId, referenceId));
+        const res = await get(GET_ACCOUNT_BILLS_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS,
             data: res.response,
-            referenceId,
+            accountRef,
         });
     } catch (err) {
         dispatch({
@@ -43,7 +43,7 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_BILLS_SUCCESS:
             return {
                 ...state,
-                accountBills: { ...state.accountBills, [action.referenceId]: action.data },
+                accountBills: { ...state.accountBills, [action.accountRef]: action.data },
                 getAccountBillsPending: false,
                 getAccountBillsError: null,
             };

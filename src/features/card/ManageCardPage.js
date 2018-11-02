@@ -17,40 +17,50 @@ import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import ShowExtraCardSubpanel from './ShowExtraCardSubpanel';
+import { getAccount } from '../account/redux/getAccount';
 
 export class ManageCardPage extends Component {
     static propTypes = {
-        card: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
+        account: PropTypes.shape().isRequired,
+        getAccount: PropTypes.func.isRequired,
     };
 
+    componentWillMount() {
+        const { getAccount } = this.props;
+        getAccount();
+    }
+
     render() {
-        const { account, accountRef, customerId } = this.props;
+        const { account } = this.props;
 
         return (
             <AuthenticatedSubPageTemplate
                 className="card-manage-card-page"
                 header={i18n('card.manage-card.page-header')}
             >
+                <ShowCardPanel account={account} />
                 <ApplyForCardPanel account={account} />
+                <ApplyForCardSuccessPanel account={account} />
+                <ApplyForCardFailurePanel />
+                <p>xx</p>
             </AuthenticatedSubPageTemplate>
         );
     }
 }
 
 /* istanbul ignore next */
-function mapStateToProps({ account }, route) {
-    const { customerId, accountRef } = route.match.params;
+function mapStateToProps({ account }) {
+    // const { customerId, accountRef } = route.match.params;
     return {
         account: account.account,
-        accountRef,
-        customerId,
     };
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, route) {
+    const { customerId, accountRef } = route.match.params;
     return {
+        getAccount: () => dispatch(getAccount(customerId, accountRef)),
         updateAccountCard: (customerId, accountRef) => dispatch(updateAccountCard(customerId, accountRef)),
     };
 }

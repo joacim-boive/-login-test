@@ -3,5 +3,12 @@
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
 .card-show-card-panel {
-
+    .ecster-card {
+        margin: 0;
+        max-width: 260px;
+        height: auto;
+    }
+    .card-info {
+        color: $green120
+    }
 }

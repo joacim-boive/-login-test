@@ -3,5 +3,35 @@
 @import "~@ecster/ecster-components/scss/MediaQuery";
 
 .card-apply-for-card-success-panel {
+    h1 {
+        margin-top: 15px;
+    }
 
+    .col1, .col2 {
+        padding: 20px 30px;
+    }
+
+    .col1 {
+        width: 33%;
+    }
+
+    .col2 {
+        width: 66%;
+    }
+
+    @include mobile() {
+        .flex-row {
+            flex-direction: column;
+        }
+        .col1, .col2 {
+            width: 100%;
+        }
+        .col1 {
+            padding-bottom: 0;
+        }
+
+        .col2 {
+            padding-top: 0;
+        }
+    }
 }

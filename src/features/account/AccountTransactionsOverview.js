@@ -135,8 +135,8 @@ function mapStateToProps({ account }, route) {
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch, state) {
-    const { customerId, accountRef } = state.match.params;
+function mapDispatchToProps(dispatch, route) {
+    const { customerId, accountRef } = route.match.params;
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
         getTransactions: filter => dispatch(getAccountTransactions(customerId, accountRef, filter)),

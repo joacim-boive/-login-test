@@ -9,13 +9,13 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_ALLOWED_PART_PAYMENTS_URL } from './urls';
 
-export const getAccountAllowedPartPayments = (customerId, referenceId) => async (dispatch) => {
+export const getAccountAllowedPartPayments = (customerId, accountRef) => async dispatch => {
     dispatch({
-        type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_BEGIN
+        type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_ALLOWED_PART_PAYMENTS_URL(customerId, referenceId));
+        const res = await get(GET_ACCOUNT_ALLOWED_PART_PAYMENTS_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_SUCCESS,
             data: res.response,
@@ -28,7 +28,9 @@ export const getAccountAllowedPartPayments = (customerId, referenceId) => async 
     }
 };
 
-export const dismissGetAccountAllowedPartPaymentsError = () => ({ type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR });
+export const dismissGetAccountAllowedPartPaymentsError = () => ({
+    type: ACCOUNT_GET_ACCOUNT_ALLOWED_PART_PAYMENTS_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {

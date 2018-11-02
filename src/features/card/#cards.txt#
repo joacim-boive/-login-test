@@ -12,13 +12,13 @@ Components
 
 KORT
 --
-Ansök om kort (panel)
-  Tack för din beställning (panel)
-  Beställning kunde inte genomföras (panel)
-
-Aktivera kort (panel)
+AnsÃ¶k om kort (panel)
+  Tack fÃ¶r din bestÃ¤llning (panel)
+  BestÃ¤llning kunde inte genomfÃ¶ras (panel)
 
 Visa befintligt kort (panel)
+
+Aktivera kort (panel)
 
 rekit add component card/ApplyForCardPanel
 rekit add component card/ApplyForCardSuccessPanel
@@ -30,8 +30,8 @@ rekit add component card/ShowCardPanel
 EXTRAKORT
 --
 Skaffa extrakort (panel)
-  Tack för din beställning (samma som kort)
-  Beställning kunde inte genomföras (samma som kort)
+  Tack fÃ¶r din bestÃ¤llning (samma som kort)
+  BestÃ¤llning kunde inte genomfÃ¶ras (samma som kort)
 
 Visa extrakort (panel)
   Aktivera extrakort (subpanel)
@@ -46,7 +46,7 @@ rekit add component card/ShowExtraCardSubpanel
 
 OTHER
 --
-Spärra kort
+SpÃ¤rra kort
 
 rekit add component card/...CardPanel
 

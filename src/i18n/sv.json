@@ -286,23 +286,41 @@
         }
     },
     "card": {
+        "general": {
+            "card-number": "Kortnummer",
+            "card-holder": "Kortinnehavare",
+            "valid-to": "Giltigt t.o.m.",
+            "status": "Status",
+            "active": "Aktivt",
+            "inactive": "Inaktivt"
+        },
         "manage-card": {
             "page-header": "Hantera kort"
         },
         "apply-for-card": {
-            "header":"Ansök om ett {{cardName}}-kort",
-            "info": "Med Ecster-kortet kan du ta del av fler förmåner.",
+            "header":"Ansök om ett {{cardName}}kort",
+            "info": "Med {{cardName}}kortet kan du ta del av fler förmåner.",
             "yearly-fee": "Årsavgift",
             "credit-limit": "Kreditgräns",
-            "card-terms": "Samtliga villkor hittar du i dina [link https://a.pdf.com kontovillkor]",
+            "card-terms": "Samtliga villkor hittar du i dina [link-new-win https://a.pdf.com 'kontovillkor']",
             "info-list": [
                 "Upp till 8 veckors räntefri kredit",
                 "Köparskydd ingår - trygghet när du handlar",
                 "Dela upp större köp i efterhand"
             ],
             "button": "Ansök",
-            "success": {},
-            "failure": {}
+            "success": {
+                "header":"Tack för din beställning",
+                "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här."
+            },
+            "failure": {
+                "header":"Åh nej!",
+                "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(phone-link-08343550). Vi har öppet vardagar 9-18",
+                "link": "Tlllbaka till kontoöversikt"
+            }
+        },
+        "show-card": {
+            "default-card-name": "Ecsterkort"
         }
     },
     "customer": {
