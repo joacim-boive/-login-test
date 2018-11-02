@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, FlexPanel } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
+import { Value } from './Value';
 
-const Value = ({ label, value }) => (
-    <p className="flex-row card-info">
-        <span>{label}</span>
-        <strong>{value}</strong>
-    </p>
-);
-Value.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
+// const Value = ({ label, value }) => (
+//     <p className="flex-row card-info">
+//         <span>{label}</span>
+//         <strong>{value}</strong>
+//     </p>
+// );
+// Value.propTypes = {
+//     label: PropTypes.string.isRequired,
+//     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+// };
 
 export default class ShowCardPanel extends React.Component {
     static propTypes = {

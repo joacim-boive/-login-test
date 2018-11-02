@@ -331,6 +331,15 @@
         "block-card": {
             "header": "Spärra ditt kort",
             "info": "Ring $t(general.phone-link-020411212). Vi har öppet dygnet runt. Om du befinner dig utomlands så ringer du $t(general.phone-link-4684112122)."
+        },
+        "apply-for-extra-card": {
+            "header": "Beställ ett extrakort",
+            "info": "Beställ extrakort till någon i familjen. Då kan ni handla och samla bonuspoäng från flera kort kopplade till samma konto. Skriv ut och fyll i ansökningsblanketten och skicka till Ecster, Box 2169, 103 14 Stockholm",
+            "button": "Ladda ner ansökan (pdf)"
+        },
+        "show-extra-card": {
+            "header": "Befintliga extrakort",
+            "change-button": "Ändra"
         }
     },
     "customer": {

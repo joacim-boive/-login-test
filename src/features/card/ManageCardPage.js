@@ -9,14 +9,12 @@ import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPa
 import { updateAccountCard } from '../account/redux/updateAccountCard';
 
 import ActivateCardPanel from './ActivateCardPanel';
-import ActivateExtraCardSubpanel from './ActivateExtraCardSubpanel';
 import ApplyForCardFailurePanel from './ApplyForCardFailurePanel';
 import ApplyForCardPanel from './ApplyForCardPanel';
 import ApplyForCardSuccessPanel from './ApplyForCardSuccessPanel';
 import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
-import ShowExtraCardSubpanel from './ShowExtraCardSubpanel';
 import BlockCardPanel from './BlockCardPanel';
 import { getAccount } from '../account/redux/getAccount';
 
@@ -44,6 +42,8 @@ export class ManageCardPage extends Component {
                 <ActivateCardPanel account={account} />
                 <ApplyForCardSuccessPanel account={account} />
                 <ApplyForCardFailurePanel />
+                <ApplyForExtraCardPanel />
+                <ShowExtraCardsPanel account={account}/>
                 <BlockCardPanel />
             </AuthenticatedSubPageTemplate>
         );

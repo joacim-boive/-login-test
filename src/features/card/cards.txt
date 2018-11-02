@@ -20,13 +20,12 @@ x Aktivera kort (panel)
 
 EXTRAKORT
 --
-Skaffa extrakort (panel)
-  Tack för din beställning (samma som kort)
-  Beställning kunde inte genomföras (samma som kort)
+x Skaffa extrakort (panel)
+x  Tack för din beställning (samma som kort)
+x  Beställning kunde inte genomföras (samma som kort)
 
 Visa extrakort (panel)
-  Aktivera extrakort (subpanel)
-  Visa befintligt extrakort (subpanel)
+  Visa/akivera befintligt extrakort (subpanel)
 
 
 
@@ -55,7 +54,6 @@ rekit add component card/ShowCardPanel
 
 rekit add component card/ApplyForExtraCardPanel
 rekit add component card/ShowExtraCardsPanel
-rekit add component card/ActivateExtraCardSubpanel
 rekit add component card/ShowExtraCardSubpanel
 
 rekit add component card/BlockCardPanel
