@@ -71,9 +71,11 @@ class LoanGeneralInformationPanel extends Component {
     };
 
     setRef = element => {
-        const field = element.inputField;
-        // We can't set the ref directly as the DOM element is inside the component.
-        this[field.id || field.name] = { current: element };
+        if (element && element.inputField) {
+            const field = element.inputField;
+            // We can't set the ref directly as the DOM element is inside the component.
+            this[field.id || field.name] = { current: element };
+        }
     };
 
     render() {
