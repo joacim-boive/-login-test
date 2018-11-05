@@ -316,7 +316,8 @@
             },
             "success": {
                 "header":"Tack för din beställning",
-                "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här."
+                "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "link": "Tlllbaka till kontoöversikt"
             },
             "failure": {
                 "header":"Åh nej!",
