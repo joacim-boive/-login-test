@@ -5,7 +5,7 @@ const initialState = {
     accountAllowedPartPayments: [],
     accountBills: {},
     accountCampaignPurchases: [],
-    accountCards: [],
+    accountCards: undefined, // undefined = important, used for test!
     accountTransactions: {},
     accountTransactionsFilter: { shortList: 3, offset: 0, maxRecords: 20, stepSize: 20 },
     accountReservedTransactions: {},

@@ -9,13 +9,13 @@ import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 
-export const updateAccountCard = (customerId, referenceId) => async dispatch => {
+export const updateAccountCard = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });
 
     try {
-        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, referenceId));
+        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
             data: res.response,

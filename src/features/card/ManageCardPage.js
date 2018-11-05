@@ -12,16 +12,28 @@ import ActivateCardPanel from './ActivateCardPanel';
 import ApplyForCardFailurePanel from './ApplyForCardFailurePanel';
 import ApplyForCardPanel from './ApplyForCardPanel';
 import ApplyForCardSuccessPanel from './ApplyForCardSuccessPanel';
+import ApplyForCardPendingPanel from './ApplyForCardPendingPanel';
 import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import BlockCardPanel from './BlockCardPanel';
 import { getAccount } from '../account/redux/getAccount';
+import { getAccountCards } from '../account/redux/getAccountCards';
 
 export class ManageCardPage extends Component {
     static propTypes = {
         account: PropTypes.shape().isRequired,
+        accountCards: PropTypes.shape().isRequired,
         getAccount: PropTypes.func.isRequired,
+        getAccountCards: PropTypes.func.isRequired,
+        getAccountPending: PropTypes.bool.isRequired,
+        getAccountCardsPending: PropTypes.bool.isRequired,
+    };
+
+    state = {
+        applicationSucceeded: false,
+        applicationFailed: false,
+        requestedCards: false,
     };
 
     componentWillMount() {
@@ -29,22 +41,44 @@ export class ManageCardPage extends Component {
         getAccount();
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { getAccountCards } = this.props;
+        const { requestedCards } = this.state;
+        if (nextProps.account.numberOfCards > 0 && !nextProps.accountCards && !requestedCards) {
+            console.log('getting cards');
+            this.setState({ requestedCards: true });
+            getAccountCards();
+        }
+    }
+
     render() {
-        const { account } = this.props;
+        const { account, accountCards } = this.props;
+
+        const hasNoCard = account.numberOfCards === 0;
+        const hasCard = account.numberOfCards === 1;
+        const cardIsActive = false;
+        const noOfExtraCards = 0;
+        const { applicationSucceeded, applicationFailed } = this.state;
+        const applicationPending = account.numberOfCards > 0 && (accountCards && accountCards.length === 0);
 
         return (
             <AuthenticatedSubPageTemplate
                 className="card-manage-card-page"
                 header={i18n('card.manage-card.page-header')}
             >
-                <ShowCardPanel account={account} />
-                <ApplyForCardPanel account={account} />
-                <ActivateCardPanel account={account} />
-                <ApplyForCardSuccessPanel account={account} />
-                <ApplyForCardFailurePanel />
-                <ApplyForExtraCardPanel />
-                <ShowExtraCardsPanel account={account} />
-                <BlockCardPanel />
+                {hasCard && !applicationPending && <ShowCardPanel account={account} accountCards={accountCards} />}
+                {hasNoCard && <ApplyForCardPanel account={account} />}
+
+                {applicationSucceeded && <ApplyForCardSuccessPanel account={account} />}
+                {applicationPending && <ApplyForCardPendingPanel account={account} />}
+                {applicationFailed && <ApplyForCardFailurePanel />}
+
+                {hasCard && !cardIsActive && !applicationPending && <ActivateCardPanel account={account} />}
+
+                {noOfExtraCards > 0 && <ShowExtraCardsPanel account={account} />}
+                {hasCard && cardIsActive && noOfExtraCards < 5 && <ApplyForExtraCardPanel />}
+
+                {hasCard && cardIsActive && <BlockCardPanel />}
             </AuthenticatedSubPageTemplate>
         );
     }
@@ -55,6 +89,9 @@ function mapStateToProps({ account }) {
     // const { customerId, accountRef } = route.match.params;
     return {
         account: account.account,
+        accountCards: account.accountCards,
+        getAccountPending: account.getAccountPending,
+        getAccountCardsPending: account.getAccountCardsPending,
     };
 }
 
@@ -63,6 +100,7 @@ function mapDispatchToProps(dispatch, route) {
     const { customerId, accountRef } = route.match.params;
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
+        getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (customerId, accountRef) => dispatch(updateAccountCard(customerId, accountRef)),
     };
 }

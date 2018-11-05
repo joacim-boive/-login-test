@@ -6,20 +6,10 @@ import { Panel, FlexPanel } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 import { Value } from './Value';
 
-// const Value = ({ label, value }) => (
-//     <p className="flex-row card-info">
-//         <span>{label}</span>
-//         <strong>{value}</strong>
-//     </p>
-// );
-// Value.propTypes = {
-//     label: PropTypes.string.isRequired,
-//     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-// };
-
 export default class ShowCardPanel extends React.Component {
     static propTypes = {
         account: PropTypes.shape().isRequired,
+        accountCards: PropTypes.shape().isRequired,
     };
 
     static defaultProps = {};
@@ -28,7 +18,7 @@ export default class ShowCardPanel extends React.Component {
         const { account } = this.props;
 
         const cardName = (
-            (account.product && account.product.cardName) ||
+            (account.product && account.product.name) ||
             i18n('card.show-card.default-card-name')
         ).toLocaleLowerCase(); // will be css cap'ed
 

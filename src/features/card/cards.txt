@@ -10,44 +10,102 @@ Components
 KORT
 --
 x Ansök om kort (panel)
-x  Tack för din beställning (panel)
-x  Beställning kunde inte genomföras (panel)
-
+x   Tack för din beställning (panel)
+x   Beställning kunde inte genomföras (panel)
 x Visa befintligt kort (panel)
-
 x Aktivera kort (panel)
-
 
 EXTRAKORT
 --
 x Skaffa extrakort (panel)
-x  Tack för din beställning (samma som kort)
-x  Beställning kunde inte genomföras (samma som kort)
-
-Visa extrakort (panel)
-  Visa/akivera befintligt extrakort (subpanel)
-
-
+x   Tack för din beställning (samma som kort)
+x   Beställning kunde inte genomföras (samma som kort)
+x Visa extrakort (panel)
+x   Visa/aktivera befintligt extrakort (subpanel)
 
 OTHER
 --
 x Spärra kort
 
 
-Apply for card
-
-GET  https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts?noCache=1541088865083
-POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3UEAVFUCXUFQH5hRQRWNzdGVyLVNIQgxxxxx
-
-
-PAGE STATE
+TEST DATA
 ----
-hasCard: true | false
+GET ACCOUNT with no card
+---
+{
+  "responseTime" : 17,
+  "status" : 200,
+  "response" : {
+    "accountNumber" : "9752238000003902",
+    "reference" : "CHMNc3UHD1FUCXQCQHJlQQRWNzdGVyLVNIQgxxxxx",
+    "product" : {
+      "id" : "MCARD111",
+      "name" : "Inlåning mastercard 111",
+      "cardName" : "MULTICARD MASTERCARD            "
+    },
+    "limit" : 4000000,
+    "used" : -486197,
+    "maxLimit" : 20000000,
+    "overDrawn" : false,
+    "allowIncreaseLimit" : true,
+    "status" : "ACTIVE",
+    "cardProfile" : "other",
+    "brickId" : "130",
+    "reserved" : false,
+    "numberOfCards" : 0
+  }
+}
 
-cardIsActivated: true | false
+APPLY FOR CARD
+---
+POST
+/rest/customers/v1/:customerId/accounts/cards/:accountRef
 
-extraCardCount: number
+response
+{
+  "responseTime" : 435,
+  "status" : 204
+}
 
+GET ACCOUNT after card application
+---
+{
+  "responseTime" : 22,
+  "status" : 200,
+  "response" : {
+    "accountNumber" : "9752206000201859",
+    "reference" : "CHMNc3UEAVFUCXYCQnNgSgRWNzdGVyLVNIQgxxxxx",
+    "product" : {
+      "id" : "MCARD002",
+      "name" : "HX KONTO",
+      "cardName" : "MASTERCCARD ICKE CHIP           "
+    },
+    "limit" : 1500000,
+    "used" : 0,
+    "maxLimit" : 15000000,
+    "overDrawn" : false,
+    "allowIncreaseLimit" : true,
+    "status" : "ACTIVE",
+    "cardProfile" : "ecster",
+    "brickId" : "112",
+    "reserved" : false,
+    "numberOfCards" : 1    <==============
+  }
+}
+
+Get cards
+---
+GET
+/rest/customers/v1/:customerRef/accounts/:accountRef/cards
+
+response
+{
+  "responseTime" : 21,
+  "status" : 200,
+  "response" : {
+    "cards" : [ ]
+  }
+}
 
 
 REKIT

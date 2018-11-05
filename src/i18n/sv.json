@@ -317,12 +317,17 @@
             "success": {
                 "header":"Tack för din beställning",
                 "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
-                "link": "Tlllbaka till kontoöversikt"
+                "link": "Tillbaka till kontoöversikt"
+            },
+            "pending": {
+                "header":"Din kortbeställning behandlas",
+                "info":"Det kan ta ett litet tag. Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "link": "Tillbaka till kontoöversikt"
             },
             "failure": {
                 "header":"Åh nej!",
                 "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
-                "link": "Tlllbaka till kontoöversikt"
+                "link": "Tillbaka till kontoöversikt"
             }
         },
         "activate-card": {

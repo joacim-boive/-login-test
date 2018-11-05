@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, FlexPanel, UnorderedList, ButtonGroup, ConfirmButton } from '@ecster/ecster-components';
+import { Panel, FlexPanel, UnorderedList, Form, Checkbox, ButtonGroup, Button } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 
 export default class ApplyForCardPanel extends React.Component {
@@ -20,7 +20,7 @@ export default class ApplyForCardPanel extends React.Component {
         const { account } = this.props;
 
         const cardName = (
-            (account.product && account.product.cardName) ||
+            (account.product && account.product.name) ||
             i18n('card.show-card.default-card-name')
         ).toLocaleLowerCase(); // will be css cap'ed
 
@@ -53,16 +53,12 @@ export default class ApplyForCardPanel extends React.Component {
                             </div>
                         </FlexPanel>
                         <ButtonGroup alignCenter spaceBelow={false}>
-                            <ConfirmButton
+                            <Button
                                 round
-                                confirmHeader={i18n('card.apply-for-card.confirm-dialog.header')}
-                                confirmText={i18n('card.apply-for-card.confirm-dialog.text')}
-                                consfirmOk={i18n('general.ok')}
-                                confirmCancel={i18n('general.cancel')}
                                 onClick={this.onClick}
                             >
                                 {i18n('card.apply-for-card.button')}
-                            </ConfirmButton>
+                            </Button>
                         </ButtonGroup>
                     </div>
                 </Panel>

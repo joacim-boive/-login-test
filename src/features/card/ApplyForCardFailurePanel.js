@@ -4,6 +4,7 @@ import React from 'react';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, Link } from '@ecster/ecster-components';
 import disappointedFace from '../../common/images/face-disappointed.svg';
+import './ApplyForCardMessagePanel.scss';
 
 export default class ApplyForCardFailurePanel extends React.Component {
     static propTypes = {};
@@ -12,7 +13,7 @@ export default class ApplyForCardFailurePanel extends React.Component {
 
     render() {
         return (
-            <Panel withMixedContent centeredContent className="card-apply-for-card-failure-panel">
+            <Panel withMixedContent centeredContent className="card-apply-for-card-message-panel">
                 <div className="mixed-content">
                     <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
                     <h1 className="h2">{i18n('card.apply-for-card.failure.header')}</h1>
