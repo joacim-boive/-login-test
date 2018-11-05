@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link } from '@ecster/ecster-components';
 import './ArrowLink.scss';
 
 export const ArrowLink = ({ className, icon, text, onClick, to, ...rest }) => {
@@ -12,7 +12,7 @@ export const ArrowLink = ({ className, icon, text, onClick, to, ...rest }) => {
     });
 
     return (
-        <Link {...rest} to={to} onClick={onClick} className={classes}>
+        <Link {...rest} to={to} onClick={onClick} className={classes} underline={false}>
             {icon ? <i className={icon} /> : null}
             <div className="arrow-link__wrapper">
                 <div>{text}</div>

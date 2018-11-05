@@ -64,7 +64,7 @@ class OnboardingDialog extends Component {
                         })}
                     </DialogBody>
                     <ButtonGroup alignCenter>
-                        <Button round onClick={this.onClickGo}>
+                        <Button round onClick={this.onClickGo} name="alpha-lets-go">
                             {i18n('common.alpha.button-text')}
                         </Button>
                     </ButtonGroup>

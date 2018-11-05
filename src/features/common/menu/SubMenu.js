@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link } from '@ecster/ecster-components';
 import classNames from 'classnames';
 
 import './SubMenu.scss';
@@ -11,10 +11,10 @@ export class SubMenu extends React.Component {
         this.arrowRef = React.createRef();
     }
 
-    closeMenu = e => {
-        if (this.props.show) {
-            e.stopPropagation();
-            this.props.requestClose();
+    closeMenu = () => {
+        const { show, requestClose } = this.props;
+        if (show) {
+            requestClose();
         }
     };
 
@@ -72,7 +72,7 @@ export class SubMenu extends React.Component {
     }
 }
 
-export const SubMenuItem = ({ children, linkTo, iconClass, active }) => {
+export const SubMenuItem = ({ id, children, linkTo, iconClass, active }) => {
     const icon = iconClass ? <i className={`e-green ${iconClass}`} /> : undefined;
 
     return (
@@ -82,7 +82,11 @@ export const SubMenuItem = ({ children, linkTo, iconClass, active }) => {
                 active,
             })}
         >
-            <Link to={linkTo} href={linkTo} className="no-underline">
+            <Link
+                id={id}
+                to={linkTo}
+                underline={false}
+            >
                 <span className="submenu-item__text">{children}</span>
                 {icon}
             </Link>
@@ -115,6 +119,7 @@ SubMenu.defaultProps = {
 };
 
 SubMenuItem.propTypes = {
+    id: PropTypes.string,
     children: PropTypes.node, // Link text
     iconClass: PropTypes.string,
     linkTo: PropTypes.string,
@@ -122,6 +127,7 @@ SubMenuItem.propTypes = {
 };
 
 SubMenuItem.defaultProps = {
+    id: undefined,
     children: '',
     iconClass: 'icon-chevron-right',
     linkTo: '',

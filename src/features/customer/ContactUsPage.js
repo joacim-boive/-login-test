@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger, react/jsx-no-target-blank */
 import React, { Component } from 'react';
-import { Panel, FlexPanel } from '@ecster/ecster-components';
+import { Panel, FlexPanel, Link } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import balloonSvg from '../../common/images/SvgIconBalloon.svg';
@@ -46,9 +46,13 @@ export class ContactUsPage extends Component {
                             <h2 className="centered-content">{i18n('customer.contact-us.faq-text1')}</h2>
                             {i18n('customer.contact-us.faq-text2')}
                             <div className="pt-4x">
-                                <a href={i18n('customer.contact-us.faq-url')} target="_blank">
-                                    {i18n('customer.contact-us.faq-link')} <i className="icon-external-link" />
-                                </a>
+                                <Link
+                                    href={i18n('customer.contact-us.faq-url')}
+                                    iconRight="icon-external-link"
+                                    target="_blank"
+                                >
+                                    {i18n('customer.contact-us.faq-link')}
+                                </Link>
                             </div>
                         </div>
                     </Panel>

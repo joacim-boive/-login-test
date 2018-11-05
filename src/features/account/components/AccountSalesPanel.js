@@ -16,7 +16,7 @@ export const AccountSalesPanel = ({ className }) => {
             <h4>{i18n('account.sales-panel.header')}</h4>
             <p>{i18n('account.sales-panel.body')}</p>
             <ButtonGroup alignCenter spaceBelow={false}>
-                <Button outline round onClick={() => {}} name="submit">
+                <Button outline round onClick={() => {}} name="submit" gaLabel="read-and-apply-for-card">
                     {i18n('account.sales-panel.button')}
                 </Button>
             </ButtonGroup>

@@ -65,9 +65,8 @@ export class EditableInputPhone extends Component {
     handleExternalValidate = () => {
         if (this.formRef && this.formRef.current) {
             return this.formRef.current.validate();
-        } else {
-            return true;
         }
+        return true;
     };
 
     render() {
@@ -105,10 +104,17 @@ export class EditableInputPhone extends Component {
                     </Form>
                 </div>
                 <ButtonGroup align="right">
-                    <Button name="cancel" onClick={this.onCancel} xSmall round transparent>
+                    <Button
+                        gaLabel="editable-phone-cancel"
+                        name="cancel"
+                        onClick={this.onCancel}
+                        xSmall
+                        round
+                        transparent
+                    >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button name="save" onClick={this.onSave} xSmall round>
+                    <Button gaLabel="editable-phone-save" name="save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -120,7 +126,7 @@ export class EditableInputPhone extends Component {
                     <strong>
                         {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                     </strong>
-                    <Button name="edit" onClick={this.onEdit} xSmall round outline>
+                    <Button gaLabel="editable-phone-edit" name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
                     </Button>
                 </div>

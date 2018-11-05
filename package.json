@@ -110,7 +110,7 @@
             "cssWhiteList": [],
             "language": "sv",
             "googleAnalytics": {
-                "isDevModeEnabled": false,
+                "isDevModeEnabled": true,
                 "id": "UA-127526908-1",
                 "script": "ga/tracking.js"
             },
@@ -217,8 +217,8 @@
         "webpack": "4.19.0"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.114",
-        "@ecster/ecster-components": "^2.0.507",
+        "@ecster/ecster-analytics": "^4.0.122",
+        "@ecster/ecster-components": "^2.0.531",
         "@ecster/ecster-i18n": "^3.0.69",
         "@ecster/ecster-net": "^2.0.98",
         "@ecster/ecster-styles": "^3.0.218",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, Message } from '@ecster/ecster-components';
+import { Panel, Message, Link } from '@ecster/ecster-components';
 import { AccountSummary } from '../components/AccountSummary';
 import { formatAmount } from '../../../common/util/format-amount';
 import { formatAccount } from '../../../common/util/format-account';
@@ -88,9 +88,9 @@ export class AccountTermsPage extends Component {
                                     description={
                                         <span>
                                             {i18n('account.terms.deposit-rate-description')}{' '}
-                                            <a target="_blank" rel="noopener noreferrer" href={terms.termsPDFURL}>
+                                            <Link target="_blank" href={terms.termsPDFURL} id="open-account-terms-pdf-link1">
                                                 pdf
-                                            </a>
+                                            </Link>
                                         </span>
                                     }
                                 />
@@ -174,28 +174,22 @@ export class AccountTermsPage extends Component {
                             {terms.termsPDFURL && (
                                 <InfoItem
                                     label={
-                                        <a
-                                            className="--bold"
+                                        <Link
                                             href={terms.termsPDFURL}
                                             target="_blank"
-                                            rel="noopener noreferrer"
+                                            id="open-account-terms-pdf-link2"
                                         >
                                             {i18n('account.terms.account-terms-pdf')}
-                                        </a>
+                                        </Link>
                                     }
                                 />
                             )}
                             {terms.agreementPDFURL && (
                                 <InfoItem
                                     label={
-                                        <a
-                                            className="--bold"
-                                            href={terms.agreementPDFURL}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
+                                        <Link href={terms.agreementPDFURL} target="_blank" id="open-agreement-pdf">
                                             {i18n('account.terms.account-agreement-pdf')}
-                                        </a>
+                                        </Link>
                                     }
                                 />
                             )}

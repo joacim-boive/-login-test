@@ -49,9 +49,8 @@ export class EditableInput extends Component {
     handleExternalValidate = () => {
         if (this.formRef && this.formRef.current) {
             return this.formRef.current.validate();
-        } else {
-            return true;
         }
+        return true;
     };
 
     render() {
@@ -80,10 +79,17 @@ export class EditableInput extends Component {
                     />
                 </Form>
                 <ButtonGroup align="right">
-                    <Button name="cancel" onClick={this.onCancel} xSmall round transparent>
+                    <Button
+                        gaLabel="editable-input-cancel"
+                        name="cancel"
+                        onClick={this.onCancel}
+                        xSmall
+                        round
+                        transparent
+                    >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button name="save" onClick={this.onSave} xSmall round>
+                    <Button gaLabel="editable-input-save" name="editable-input-save" onClick={this.onSave} xSmall round>
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -93,7 +99,7 @@ export class EditableInput extends Component {
                 <label>{label}</label>
                 <div className="flex-row">
                     <strong>{value}</strong>
-                    <Button name="edit" onClick={this.onEdit} xSmall round outline>
+                    <Button gaLabel="editable-input-edit" name="edit" onClick={this.onEdit} xSmall round outline>
                         {i18n('general.edit')}
                     </Button>
                 </div>

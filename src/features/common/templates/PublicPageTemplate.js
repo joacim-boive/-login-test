@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Logo } from '@ecster/ecster-components';
+import { Logo, Link } from '@ecster/ecster-components';
 
 import MessagePanel from '../MessagePanel';
 
@@ -17,9 +17,9 @@ const PublicPageTemplate = props => {
         <>
             <div className={classes}>
                 <header className="logo-header">
-                    <a href="https://www.ecster.se" rel="noopener" title="ecster.se">
+                    <Link href="https://www.ecster.se" title="ecster.se" id="logo-link-in-header">
                         <Logo withName width="150px" />
-                    </a>
+                    </Link>
                 </header>
                 <div className="page-content">{children}</div>
                 {footer}

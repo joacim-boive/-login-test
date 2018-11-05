@@ -36,29 +36,29 @@ class MobileNavigation extends React.Component {
         const invoiceIsActive = !!pathname.match(/.invoice.overview/);
         const loanIsActive = !!pathname.match(/.loan.overview/);
         // submenu items, indicate active when submenu is visible
-        const customerSettingsIsActive = !!pathname.match(/.customer.settings/);
+        const customerSettingsIsActive = !!pathname.match(/.customer\/[0-9]+\/profile/);
         const customerSupportIsActive = !!pathname.match(/.customer.support/);
         const { showLoanMenu, customerId, hasZeroAccounts } = this.props;
 
         return (
             <BottomNavigation light showOverlay={showSubMenu}>
                 <BottomMenu>
-                    <MenuItem linkTo="/account/overview" active={overviewIsActive}>
+                    <MenuItem id="mobile-nav-account-overview" linkTo="/account/overview" active={overviewIsActive}>
                         <SvgIconOverview />
                         <MenuItemText>{i18n('navigation.account-overview')}</MenuItemText>
                     </MenuItem>
 
-                    <MenuItem linkTo="/invoice/overview" active={invoiceIsActive}>
+                    <MenuItem id="mobile-nav-invoice-overview" linkTo="/invoice/overview" active={invoiceIsActive}>
                         <SvgIconInvoices />
                         <MenuItemText>{i18n('navigation.invoices')}</MenuItemText>
                     </MenuItem>
                     {showLoanMenu && (
-                        <MenuItem linkTo="/loan/overview" active={loanIsActive}>
+                        <MenuItem id="mobile-nav-loan-overview" linkTo="/loan/overview" active={loanIsActive}>
                             <SvgIconLoan />
                             <MenuItemText>{i18n('navigation.loan')}</MenuItemText>
                         </MenuItem>
                     )}
-                    <InteractiveElement onClick={this.toggleSubMenu}>
+                    <InteractiveElement id="mobile-nav-open-submenu" onClick={this.toggleSubMenu}>
                         <div
                             className={classNames({
                                 'menu-item': true,
@@ -72,14 +72,22 @@ class MobileNavigation extends React.Component {
                 </BottomMenu>
                 <SubMenu bottom show={showSubMenu} requestClose={this.closeSubMenu}>
                     {!hasZeroAccounts && (
-                        <SubMenuItem linkTo={`/customer/${customerId}/profile`} active={customerSettingsIsActive}>
+                        <SubMenuItem
+                            id="mobile-nav-customer-profile"
+                            linkTo={`/customer/${customerId}/profile`}
+                            active={customerSettingsIsActive}
+                        >
                             {i18n('navigation.settings')}
                         </SubMenuItem>
                     )}
-                    <SubMenuItem linkTo="/customer/support" active={customerSupportIsActive}>
+                    <SubMenuItem
+                        id="mobile-nav-customer-support"
+                        linkTo="/customer/support"
+                        active={customerSupportIsActive}
+                    >
                         {i18n('navigation.customer-support')}
                     </SubMenuItem>
-                    <SubMenuItem linkTo="/authentication/logout" iconClass="icon-lock">
+                    <SubMenuItem id="mobile-nav-logout" linkTo="/authentication/logout" iconClass="icon-lock">
                         {i18n('navigation.logout')}
                     </SubMenuItem>
                 </SubMenu>

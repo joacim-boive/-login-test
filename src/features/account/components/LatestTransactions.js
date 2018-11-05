@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { DataColumns, DataColumn, DataRow, Data } from '@ecster/ecster-components/DataColumns';
 import './LatestTransactions.scss';
-import { LinkButton } from '@ecster/ecster-components';
+import { LinkButton, Link } from '@ecster/ecster-components';
 import { formatDateShort } from '../../../common/util/format-date';
 import { formatAmount } from '../../../common/util/format-amount';
 
@@ -59,16 +59,17 @@ export const LatestTransactions = ({
                     )}
                     {totalTransactions > transactions.length && (
                         <DataRow>
-                            <Data right>
-                                <LinkButton
+                            <Data right className="mt-3x">
+                                <Link
                                     purple
-                                    link
                                     iconRight="icon-chevron-right"
-                                    className="show-more no-underline"
+                                    iconColorClass="e-black"
+                                    underline={false}
                                     to={`/account/${account.reference}/customer/${user.id}/transactions`}
+                                    gaLabel="show-more-transactions"
                                 >
                                     {i18n('account.transactions.show-more')}
-                                </LinkButton>
+                                </Link>
                             </Data>
                         </DataRow>
                     )}
