@@ -43,7 +43,7 @@ export class ManageCardPage extends Component {
                 <ApplyForCardSuccessPanel account={account} />
                 <ApplyForCardFailurePanel />
                 <ApplyForExtraCardPanel />
-                <ShowExtraCardsPanel account={account}/>
+                <ShowExtraCardsPanel account={account} />
                 <BlockCardPanel />
             </AuthenticatedSubPageTemplate>
         );

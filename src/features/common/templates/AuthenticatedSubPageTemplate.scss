@@ -18,6 +18,10 @@
         border-bottom: 1px solid $beige40;
         position: fixed;
 
+        @include ie11-only() {
+            left: 0;
+        }
+
         &-content {
             display: flex;
             flex-flow: row nowrap;
@@ -33,6 +37,10 @@
             color: $beige140;
             z-index: 1;
             margin-left: 20px;
+
+            @include ie11-only() {
+                top: 0;
+            }
         }
 
         h1 {

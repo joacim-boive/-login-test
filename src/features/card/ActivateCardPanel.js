@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, Form, Input, Button } from '@ecster/ecster-components';
+import { Panel } from '@ecster/ecster-components';
+import CvcForm from './CvcForm';
 import cardIcon from '../../common/images/icon-activate-card.svg';
 
 export default class ActivateCardPanel extends React.Component {
@@ -12,16 +13,8 @@ export default class ActivateCardPanel extends React.Component {
 
     static defaultProps = {};
 
-    formRef = React.createRef();
-
-    cvcRef = React.createRef();
-
-    state = {
-        cvc: '',
-    };
-
-    onChange = ({ target }) => {
-        this.setState({ cvc: target.value });
+    onSubmitForm = cvc => {
+        console.log('activate card... not yet implemented: cvc = ', cvc);
     };
 
     render() {
@@ -31,14 +24,7 @@ export default class ActivateCardPanel extends React.Component {
                     <img src={cardIcon} alt="card icon" />
                     <h1 className="h2">{i18n('card.activate-card.header')}</h1>
                     <p>{i18n('card.activate-card.info')}</p>
-                    <Form className="flex-row activate-form">
-                        <Input
-                            label={i18n('card.activate-card.input-label')}
-                            value={this.state.cvc}
-                            onChange={this.onChange}
-                        />
-                        <Button round>{i18n('card.activate-card.button')}</Button>
-                    </Form>
+                    <CvcForm onSubmitForm={this.onSubmitForm} />
                 </div>
             </Panel>
         );

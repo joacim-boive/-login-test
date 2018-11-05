@@ -40,6 +40,15 @@ GET  https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts?noCache=15410
 POST https://secure4.ft.ecster.se/rest/customers/v1/15893/accounts/cards/CHMNc3UEAVFUCXUFQH5hRQRWNzdGVyLVNIQgxxxxx
 
 
+PAGE STATE
+----
+hasCard: true | false
+
+cardIsActivated: true | false
+
+extraCardCount: number
+
+
 
 REKIT
 ----

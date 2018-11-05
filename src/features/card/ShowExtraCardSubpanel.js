@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ButtonGroup, Button, Form, Input } from '@ecster/ecster-components';
+import { ButtonGroup, Button } from '@ecster/ecster-components';
+import CvcForm from './CvcForm';
 import { Value } from './Value';
 
 export default class ShowExtraCardSubpanel extends React.Component {
@@ -13,12 +14,12 @@ export default class ShowExtraCardSubpanel extends React.Component {
 
     static defaultProps = {};
 
-    state = {
-        cvc: '',
-    };
-
     onChange = ({ target }) => {
         this.setState({ cvc: target.value });
+    };
+
+    onSubmitForm = cvc => {
+        console.log('activate card... not yet implemented: cvc = ', cvc);
     };
 
     render() {
@@ -39,14 +40,7 @@ export default class ShowExtraCardSubpanel extends React.Component {
                         </Button>
                     </ButtonGroup>
                 ) : (
-                    <Form className="flex-row activate-form">
-                        <Input
-                            label={i18n('card.activate-card.input-label')}
-                            value={this.state.cvc}
-                            onChange={this.onChange}
-                        />
-                        <Button round>{i18n('card.activate-card.button')}</Button>
-                    </Form>
+                    <CvcForm onSubmitForm={this.onSubmitForm} />
                 )}
             </div>
         );

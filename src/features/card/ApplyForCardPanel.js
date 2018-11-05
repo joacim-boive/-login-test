@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, FlexPanel, UnorderedList, ButtonGroup, Button } from '@ecster/ecster-components';
+import { Panel, FlexPanel, UnorderedList, ButtonGroup, ConfirmButton } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 
 export default class ApplyForCardPanel extends React.Component {
@@ -11,6 +11,10 @@ export default class ApplyForCardPanel extends React.Component {
     };
 
     static defaultProps = {};
+
+    onClick = () => {
+        console.log('Applying for card... not yet implemented');
+    };
 
     render() {
         const { account } = this.props;
@@ -31,11 +35,11 @@ export default class ApplyForCardPanel extends React.Component {
                                 <p>{i18n('card.apply-for-card.info', { cardName: 'Ecster' })}</p>
                                 <p className="flex-row">
                                     <span>{i18n('card.apply-for-card.yearly-fee')}</span>
-                                    <strong>295 kr</strong>
+                                    <strong>15 000 kr</strong>
                                 </p>
                                 <p className="flex-row">
                                     <span>{i18n('card.apply-for-card.credit-limit')}</span>
-                                    <strong>20 000 kr</strong>
+                                    <strong>1 000 000 000 kr</strong>
                                 </p>
                                 <p dangerouslySetInnerHTML={{ __html: i18n('card.apply-for-card.card-terms') }} />
                             </div>
@@ -49,7 +53,16 @@ export default class ApplyForCardPanel extends React.Component {
                             </div>
                         </FlexPanel>
                         <ButtonGroup alignCenter spaceBelow={false}>
-                            <Button round>{i18n('card.apply-for-card.button')}</Button>
+                            <ConfirmButton
+                                round
+                                confirmHeader={i18n('card.apply-for-card.confirm-dialog.header')}
+                                confirmText={i18n('card.apply-for-card.confirm-dialog.text')}
+                                consfirmOk={i18n('general.ok')}
+                                confirmCancel={i18n('general.cancel')}
+                                onClick={this.onClick}
+                            >
+                                {i18n('card.apply-for-card.button')}
+                            </ConfirmButton>
                         </ButtonGroup>
                     </div>
                 </Panel>

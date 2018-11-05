@@ -7,6 +7,7 @@
         "close": "Stäng",
         "edit": "Ändra",
         "save": "Spara",
+        "ok": "Ok",
         "next": "Nästa",
         "previous": "Föregående",
         "ssn": "Personnummer",
@@ -309,6 +310,10 @@
                 "Dela upp större köp i efterhand"
             ],
             "button": "Ansök",
+            "confirm-dialog": {
+                "header": "Ansök om kort",
+                "text": "Bekräfta ansökan om kort"
+            },
             "success": {
                 "header":"Tack för din beställning",
                 "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här."
@@ -323,7 +328,8 @@
             "header": "Aktivera ditt kort",
             "info": "Ange CVC-koden på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
-            "button": "Aktivera kort"
+            "button": "Aktivera kort",
+            "validation-message": "Ange tre siffror"
         },
         "show-card": {
             "default-card-name": "Ecsterkort"
