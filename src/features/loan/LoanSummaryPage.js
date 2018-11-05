@@ -53,13 +53,28 @@ export class LoanSummaryPage extends Component {
         let thisState = {};
 
         if (step === steps.length) {
-            const isLoanPersonalInformationValid =
-                this.LoanPersonalInformation.current && this.LoanPersonalInformation.current.isFormValid();
-            let isLoanEconomyValid = this.LoanEconomy.current && this.LoanEconomy.current.isFormValid();
+            let isLoanPersonalInformationValid =
+                this.LoanPersonalInformation.current &&
+                typeof this.LoanPersonalInformation.current.isFormValid === 'function' &&
+                this.LoanPersonalInformation.current.isFormValid();
+
+            // The form isn't in edit mode so it has to be true
+            isLoanPersonalInformationValid =
+                this.LoanPersonalInformation.current &&
+                typeof this.LoanPersonalInformation.current.isFormValid !== 'function'
+                    ? true
+                    : isLoanPersonalInformationValid;
+
+            let isLoanEconomyValid =
+                this.LoanEconomy.current &&
+                typeof this.LoanEconomy.current.isFormValid === 'function' &&
+                this.LoanEconomy.current.isFormValid();
             isLoanEconomyValid = typeof isLoanEconomyValid === 'undefined' ? true : isLoanEconomyValid;
 
             let isLoanGeneralInformation =
-                this.LoanGeneralInformation.current && this.LoanGeneralInformation.current.isFormValid();
+                this.LoanGeneralInformation.current &&
+                typeof this.LoanGeneralInformation.current.isFormValid === 'function' &&
+                this.LoanGeneralInformation.current.isFormValid();
             isLoanGeneralInformation =
                 typeof isLoanGeneralInformation === 'undefined' ? true : isLoanGeneralInformation;
 
