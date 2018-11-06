@@ -8,6 +8,7 @@ import { EcsterCard } from '../common/card/EcsterCard';
 export default class ApplyForCardPanel extends React.Component {
     static propTypes = {
         account: PropTypes.shape().isRequired,
+        createAccountCard: PropTypes.func.isRequired,
     };
 
     static defaultProps = {};
@@ -22,7 +23,8 @@ export default class ApplyForCardPanel extends React.Component {
 
     onClick = () => {
         if (this.formRef.current.validate()) {
-            console.log('Applying for card... not yet implemented');
+            const { createAccountCard } = this.props;
+            createAccountCard();
         }
     };
 
@@ -69,13 +71,14 @@ export default class ApplyForCardPanel extends React.Component {
                             </FlexPanel>
                         </Form>
                     </div>
-                    <div className="centered-content">
+                    <div className="flex-row">
                         <Checkbox
                             ref={this.checkboxRef}
                             required
                             checked={checkboxChecked}
                             onChange={this.onCheckboxChange}
                             validationMessage={i18n('card.apply-for-card.validation-message')}
+                            className="terms-cb"
                         >
                             <span dangerouslySetInnerHTML={{ __html: i18n('card.apply-for-card.card-terms') }} />
                         </Checkbox>

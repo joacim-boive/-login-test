@@ -1,11 +1,11 @@
+import { put } from '@ecster/ecster-net/v2';
+
 import {
     ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
     ACCOUNT_UPDATE_ACCOUNT_CARD_FAILURE,
     ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR,
 } from './constants';
-
-import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 

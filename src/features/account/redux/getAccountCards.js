@@ -30,6 +30,11 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
 
 export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
+// temporary fix
+const getMainCard = cards => cards && cards.length > 0 && cards[0];
+
+const getExtraCards = cards => (cards && cards.length > 1 ? cards.slice(1) : []);
+
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_CARDS_BEGIN:
@@ -42,7 +47,8 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS:
             return {
                 ...state,
-                accountCards: action.data.cards,
+                accountCard: getMainCard(action.data.cards),
+                extraCards: getExtraCards(action.data.cards),
                 getAccountCardsPending: false,
                 getAccountCardsError: null,
             };

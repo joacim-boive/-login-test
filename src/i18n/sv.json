@@ -339,7 +339,9 @@
             "validation-message": "Ange tre siffror"
         },
         "show-card": {
-            "default-card-name": "Ecsterkort"
+            "default-card-name": "Ecsterkort",
+            "ACTIVE": "Aktivt",
+            "INACTIVE": "Ej aktiverat"
         },
         "block-card": {
             "header": "Spärra ditt kort",

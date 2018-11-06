@@ -21,6 +21,7 @@ import { reducer as getAccountLimitRaiseTermsReducer } from './getAccountLimitRa
 import { reducer as updateAccountReducer } from './updateAccount';
 import { reducer as updateAccountTransactionPartPaymentReducer } from './updateAccountTransactionPartPayment';
 import { reducer as updateAccountCardReducer } from './updateAccountCard';
+import { reducer as createAccountCardReducer } from './createAccountCard';
 
 const reducers = [
     deleteAccountReducer,
@@ -37,6 +38,7 @@ const reducers = [
     updateAccountReducer,
     updateAccountTransactionPartPaymentReducer,
     updateAccountCardReducer,
+  createAccountCardReducer,
 ];
 
 export default function reducer(state = initialState, action) {

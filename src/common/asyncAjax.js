@@ -1,5 +1,4 @@
-// Copied from Dashboard X, src/util/api.js
-// todo: @ecster node modules?
+// TODO: Replace with @ecster/ecster-net/v2/Ajax
 
 import Ajax from '@ecster/ecster-net/lib/Ajax';
 import Session from '@ecster/ecster-net/lib/Session';

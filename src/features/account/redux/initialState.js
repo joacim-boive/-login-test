@@ -5,7 +5,8 @@ const initialState = {
     accountAllowedPartPayments: [],
     accountBills: {},
     accountCampaignPurchases: [],
-    accountCards: undefined, // undefined = important, used for test!
+    accountCard: undefined, // undefined = important, used for test!
+    extraCards: undefined, // undefined = important, used for test!
     accountTransactions: {},
     accountTransactionsFilter: { shortList: 3, offset: 0, maxRecords: 20, stepSize: 20 },
     accountReservedTransactions: {},
@@ -43,6 +44,8 @@ const initialState = {
     updateAccountTransactionPartPaymentError: null,
     updateAccountCardPending: false,
     updateAccountCardError: null,
+    createAccountCardPending: false,
+    createAccountCardError: null,
 };
 
 export default initialState;

@@ -5,13 +5,14 @@ import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
 import { Translate } from '@ecster/ecster-i18n';
-import Ajax from '@ecster/ecster-net/lib/Ajax';
+import { setBaseUrl, setErrorHandler } from '@ecster/ecster-net/v2';
 import Session from '@ecster/ecster-net/lib/Session';
 
 import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
 import Root from './Root';
 import { setApplicationCountry, setLocale } from './features/home/redux/actions';
+import history from './common/history';
 
 export const store = configStore();
 
@@ -33,8 +34,12 @@ const initApplication = config => {
     store.dispatch(setLocale('sv-SE'));
 
     if (config && config.ajaxBaseUrl) {
-        Ajax.setBaseUrl(config.ajaxBaseUrl);
+        setBaseUrl(config.ajaxBaseUrl);
     }
+
+    setErrorHandler((xhr, body) => {
+        if (body.status === 401) history.push('/authentication/logout');
+    });
 
     // basePath, language, country
     Translate.init('static/i18n', lang, undefined).then(() => {
