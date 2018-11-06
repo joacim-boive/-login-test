@@ -303,7 +303,8 @@
             "info": "Med {{cardName}}kortet kan du ta del av fler förmåner.",
             "yearly-fee": "Årsavgift",
             "credit-limit": "Kreditgräns",
-            "card-terms": "Samtliga villkor hittar du i dina [link-new-win https://a.pdf.com 'kontovillkor']",
+            "card-terms": "Jag godkänner samtliga [link-new-win https://a.pdf.com 'kontovillkor']",
+            "validation-message": "Du måste godkänna villkoren",
             "info-list": [
                 "Upp till 8 veckors räntefri kredit",
                 "Köparskydd ingår - trygghet när du handlar",
