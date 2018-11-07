@@ -20,6 +20,7 @@
 
         @include ie11-only() {
             left: 0;
+            z-index: 2;
         }
 
         &-content {
@@ -40,7 +41,6 @@
 
             @include ie11-only() {
                 top: 0;
-                z-index: 2;
             }
         }
 
