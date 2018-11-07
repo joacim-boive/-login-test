@@ -5,11 +5,12 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ButtonGroup, Button } from '@ecster/ecster-components';
 import CvcForm from './CvcForm';
 import { Value } from './Value';
+import { formatAccount } from '../../common/util/format-account';
 
 export default class ShowExtraCardSubpanel extends React.Component {
     static propTypes = {
         account: PropTypes.shape().isRequired,
-        active: PropTypes.bool.isRequired,
+        card: PropTypes.shape().isRequired,
     };
 
     static defaultProps = {};
@@ -23,17 +24,30 @@ export default class ShowExtraCardSubpanel extends React.Component {
     };
 
     render() {
-        const { active } = this.props;
+        const { card } = this.props;
 
         return (
             <div className="card-show-extra-card-subpanel">
                 <p>
                     <strong>Karl-Peter Ûxne</strong>
                 </p>
-                <Value label={i18n('card.general.card-number')} value="**** **** **** 1234" strong={false} />
-                <Value label={i18n('card.general.valid-to')} value="2018-11" strong={false} />
-                <Value label={i18n('general.address.mobile')} value="0703 123 456" strong={false} />
-                {active ? (
+                <Value
+                    label={i18n('card.general.card-number')}
+                    value={formatAccount(card.cardNumber).replace(/X/g, '*')}
+                    strong={false}
+                />
+                <Value label={i18n('card.general.card-holder')} value={card.holder} strong={false} />
+                <Value
+                    label={i18n('card.general.valid-to')}
+                    value={`${card.expires.year} / ${card.expires.month}`}
+                    strong={false}
+                />
+                <Value
+                    label={i18n('card.general.status')}
+                    value={i18n(`card.show-card.${card.status}`)}
+                    strong={false}
+                />
+                {card.status === 'ACTIVE' ? (
                     <ButtonGroup alignCenter>
                         <Button round outline>
                             {i18n('card.show-extra-card.change-button')}

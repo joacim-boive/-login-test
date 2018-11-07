@@ -50,36 +50,20 @@ export class ManageCardPage extends Component {
         const { getAccountCards } = this.props;
         const { requestedCards } = this.state;
         if (nextProps.account.numberOfCards > 0 && !nextProps.accountCard && !requestedCards) {
-            console.log('getting cards');
             this.setState({ requestedCards: true });
             getAccountCards();
         }
     }
 
     render() {
-        const { account, accountCard, extraCards, createAccountCard } = this.props;
+        const { account, accountCard, extraCards, createAccountCard, updateAccountCard } = this.props;
 
         const hasNoCard = account.numberOfCards === 0;
         const hasCard = account.numberOfCards > 0;
-        const cardIsActive = false;
+        const cardIsActive = accountCard && accountCard.status === 'ACTIVE';
         const noOfExtraCards = extraCards && extraCards.length;
         const { applicationSucceeded, applicationFailed } = this.state;
         const applicationPending = account.numberOfCards > 0 && !accountCard;
-
-        console.log('ManageCardPage: render');
-        console.log('----');
-
-        console.log('account = ', account);
-        console.log('accountCard = ', accountCard);
-        console.log('extraCards = ', extraCards);
-
-        console.log('hasNoCard = ', hasNoCard);
-        console.log('hasCard = ', hasCard);
-        console.log('cardIsActive = ', cardIsActive);
-        console.log('noOfExtraCards = ', noOfExtraCards);
-        console.log('applicationSucceeded = ', applicationSucceeded);
-        console.log('applicationFailed = ', applicationFailed);
-        console.log('applicationPending = ', applicationPending);
 
         return (
             <AuthenticatedSubPageTemplate
@@ -93,9 +77,13 @@ export class ManageCardPage extends Component {
                 {applicationPending && <ApplyForCardPendingPanel account={account} />}
                 {applicationFailed && <ApplyForCardFailurePanel />}
 
-                {hasCard && !cardIsActive && !applicationPending && <ActivateCardPanel account={account} />}
+                {hasCard &&
+                    !cardIsActive &&
+                    !applicationPending && (
+                        <ActivateCardPanel account={account} updateAccountCard={updateAccountCard} />
+                    )}
 
-                {noOfExtraCards > 0 && <ShowExtraCardsPanel account={account} />}
+                {noOfExtraCards > 0 && <ShowExtraCardsPanel account={account} cards={extraCards} />}
                 {hasCard && cardIsActive && noOfExtraCards < 5 && <ApplyForExtraCardPanel />}
 
                 {hasCard && cardIsActive && <BlockCardPanel />}
@@ -105,7 +93,8 @@ export class ManageCardPage extends Component {
 }
 
 /* istanbul ignore next */
-function mapStateToProps({ account }) {w
+function mapStateToProps({ account }) {
+    w;
     // const { customerId, accountRef } = route.match.params;
     return {
         account: account.account,
@@ -122,7 +111,7 @@ function mapDispatchToProps(dispatch, route) {
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
-        updateAccountCard: () => dispatch(updateAccountCard(customerId, accountRef)),
+        updateAccountCard: cvc => dispatch(updateAccountCard(customerId, accountRef, cvc)),
         createAccountCard: () => dispatch(createAccountCard(customerId, accountRef)),
     };
 }

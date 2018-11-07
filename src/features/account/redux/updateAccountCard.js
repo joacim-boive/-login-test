@@ -9,10 +9,19 @@ import {
 
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 
-export const updateAccountCard = (customerId, accountRef) => async dispatch => {
+export const updateAccountCard = (customerId, accountRef, cvc) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });
+
+    // POST data
+    // ---
+    // status (String) [1]: "ACTIVE". At present only accepts "ACTIVE" value.
+    // cvc (String): The cvc code for the card.
+    // cardNumber (String): the masked card number for this card.
+    // expires
+    //    year (String): Expire year for the card. In format YYYY.
+    //    month (String): Expire month for the card. In format MM.
 
     try {
         const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, accountRef));
