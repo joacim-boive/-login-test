@@ -65,9 +65,13 @@
     padding: 0;
     border-top: 1px solid $gray60;
     background: #fff;
-    a, a:visited, a:hover, a:active {
+    a > span {
         display: flex;
         justify-content: space-between;
+        width: 100%;
+    }
+    a, a:visited, a:hover, a:active {
+        display: flex;
         padding: 14px 24px;
         text-decoration: none;
     }
@@ -76,9 +80,6 @@
     }
     a:hover, a:active {
         color: $gray140;
-        //span {
-        //    text-decoration: underline;
-        //}
     }
 
     &.active a {
