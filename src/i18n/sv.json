@@ -321,8 +321,10 @@
                 "link": "Tillbaka till kontoöversikt"
             },
             "pending": {
-                "header":"Din kortbeställning behandlas",
-                "info":"Det kan ta ett litet tag. Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "header": "Ditt kort är på väg",
+                "header_plural": "Dina kort är på väg",
+                "info": "Det kan ta ett par dagar. Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "info_plural": "Det kan ta ett par dagar. Så snart du har fått hem dina kort, kan du logga in och aktivera dem här.",
                 "link": "Tillbaka till kontoöversikt"
             },
             "failure": {
@@ -354,7 +356,11 @@
         },
         "show-extra-card": {
             "header": "Befintliga extrakort",
-            "change-button": "Ändra"
+            "change-button": "Ändra",
+            "pending": {
+                "header": "Din beställning av extrakort behandlas",
+                "info": "$t(card.apply-for-card.pending.info)"
+            }
         }
     },
     "customer": {

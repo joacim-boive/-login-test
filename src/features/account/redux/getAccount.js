@@ -9,13 +9,17 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_URL } from './urls';
 
+const testNo = window.location.hash.split('test=')[1]; // ...?test=01
+
 export const getAccount = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_URL(customerId, accountRef));
+        const res = testNo
+            ? await get(`test/${testNo}-account.json`)
+            : await get(GET_ACCOUNT_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_SUCCESS,
             data: res.response,

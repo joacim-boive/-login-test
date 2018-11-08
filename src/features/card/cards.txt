@@ -1,3 +1,117 @@
+Användningsfall
+----
+ 1. Inget kort
+    account.noOfCards: 0
+    cards: []
+
+    Visa:
+        ansök om kort
+
+
+ 2. Kort best�llt
+    account.noOfCards: 1
+    cards: []
+
+    Visa:
+        ditt kort är på väg
+
+
+ 3. Inaktivt kort
+    account.noOfCards: 1
+    cards: [ {extra: false, active: false} ]
+
+    Visa:
+        aktivera kort
+
+    Efter aktivering:
+        ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 4.)
+
+
+ 4. Aktivt kort
+    account.noOfCards: 1
+    cards: [ {extra: false, active: true} ]
+
+    Visa:
+        kortinfo
+        beställ extrakort
+        spärra kort
+
+
+ 5. Kort beställt, extrakort beställt   (kan uppstå efter spärra kort?)
+    account.noOfCards: 2
+    cards: []
+
+    Visa:
+        dina kort är på väg (2 st)
+
+
+ 6. Inaktivt kort, extrakort beställt
+    account.noOfCards: 2
+    cards: [ {extraCard: false] ]
+
+    Visa:
+        aktivera kort
+        ditt extrakort är på väg
+
+    Efter aktivering:
+        ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 7.)
+
+
+ 7. Aktivt kort, extrakort beställt
+    account.noOfCards: 2
+    cards: [ {extraCard: false, active: true] ]
+
+    Visa:
+        kortinfo
+        ditt kort är på väg (1 st)
+        beställ extrakort
+        spärra kort
+
+
+ 8. Levererat kort, 2 x extrakort beställt
+    account.noOfCards: 3
+    cards: [ {extraCard: false, active: false] ]
+
+    Visa:
+        aktivera kort
+        dina kort är på väg (2 st)
+
+    Efter aktivering:
+        ditt kort har aktiverats, tillbaka till kortöversikt
+
+
+ 9. Inget kort, 2 x extrakort beställda  (kan uppstå efter spärra kort?)
+    account.noOfCards: 2   <== samma som 5.
+    cards: []              <== samma som 5.
+
+    Visa:
+        dina kort är på väg (2 st)
+
+
+10. Inget kort, extrakort levererat, extrakort beställt
+    account.noOfCards: 2
+    cards: [ {extraCard: true, active: false} ]
+
+    Visa:
+        ditt kort är på väg    (går ej avgöra om det är huvudkort eller extrakort som beställts)
+        dina extrakort
+            kortinfo med aktivera
+
+    Efter aktivering:
+        ditt kort har aktiverats, tillbaka till kortöversikt
+
+11. Inget kort, 2 x extrakort levererade
+    account.noOfCards: 2
+    cards: [ {extraCard: true}, {extraCard: true} ]
+
+    Visa:
+        ansök om kort
+        dina extrakort
+            kortinfo med aktivera
+            kortinfo med aktivera
+
+
+
 Pages
 ----
 
@@ -89,7 +203,7 @@ GET ACCOUNT after card application
     "cardProfile" : "ecster",
     "brickId" : "112",
     "reserved" : false,
-    "numberOfCards" : 1    <==============
+    "numberOfCards" : 1    <== no of cards is 1
   }
 }
 
@@ -103,8 +217,8 @@ response
   "responseTime" : 21,
   "status" : 200,
   "response" : {
-    "cards" : [ ]
-  }
+    "cards" : [ ]   <== no of elements is 0
+   }
 }
 
 

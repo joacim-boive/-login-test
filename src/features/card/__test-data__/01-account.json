@@ -1,0 +1,20 @@
+{ "response": {
+    "accountNumber" : "9752238000130937",
+    "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+    "product" : {
+      "id" : "MCARD004",
+      "name" : "Ecster",
+      "cardName" : "Ecster kortet                   "
+    },
+    "limit" : 4700000,
+    "used" : 899900,
+    "maxLimit" : 18000000,
+    "overDrawn" : false,
+    "allowIncreaseLimit" : true,
+    "status" : "ACTIVE",
+    "cardProfile" : "ecster",
+    "brickId" : "130",
+    "reserved" : false,
+    "numberOfCards" : 0
+}
+}

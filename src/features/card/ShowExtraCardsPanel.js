@@ -8,15 +8,13 @@ import ShowExtraCardSubpanel from './ShowExtraCardSubpanel';
 
 export default class ShowExtraCardsPanel extends React.Component {
     static propTypes = {
-        account: PropTypes.shape().isRequired,
         cards: PropTypes.shape().isRequired,
-        noOfCards: PropTypes.number.isRequired,
     };
 
     static defaultProps = {};
 
     render() {
-        const { account, cards } = this.props;
+        const { cards } = this.props;
 
         console.log('extra cards panel: cards = ', cards);
         return (
@@ -24,9 +22,7 @@ export default class ShowExtraCardsPanel extends React.Component {
                 <div className="narrow-content">
                     <h1 className="h2">{i18n('card.show-extra-card.header')}</h1>
                     <div className="extra-cards">
-                        {cards.map(card => (
-                            <ShowExtraCardSubpanel account={account} card={card} />
-                        ))}
+                        {cards && cards.map(card => <ShowExtraCardSubpanel card={card} />)}
                     </div>
                 </div>
             </Panel>

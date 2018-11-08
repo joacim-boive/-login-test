@@ -9,15 +9,10 @@ import { formatAccount } from '../../common/util/format-account';
 
 export default class ShowExtraCardSubpanel extends React.Component {
     static propTypes = {
-        account: PropTypes.shape().isRequired,
         card: PropTypes.shape().isRequired,
     };
 
     static defaultProps = {};
-
-    onChange = ({ target }) => {
-        this.setState({ cvc: target.value });
-    };
 
     onSubmitForm = cvc => {
         console.log('activate card... not yet implemented: cvc = ', cvc);
@@ -29,14 +24,13 @@ export default class ShowExtraCardSubpanel extends React.Component {
         return (
             <div className="card-show-extra-card-subpanel">
                 <p>
-                    <strong>Karl-Peter Ûxne</strong>
+                    <strong>{card.holder}</strong>
                 </p>
                 <Value
                     label={i18n('card.general.card-number')}
                     value={formatAccount(card.cardNumber).replace(/X/g, '*')}
                     strong={false}
                 />
-                <Value label={i18n('card.general.card-holder')} value={card.holder} strong={false} />
                 <Value
                     label={i18n('card.general.valid-to')}
                     value={`${card.expires.year} / ${card.expires.month}`}

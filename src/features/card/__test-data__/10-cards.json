@@ -1,0 +1,15 @@
+{ "response": [ {
+      "holder" : "Ludde Larsman",
+      "type" : "MASTERCARD HXXX",
+      "brickId" : "113",
+      "status" : "INACTIVE",
+      "cardNumber" : "529928XXXXXX3679",
+      "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+      "extraCard" : true,
+      "expires" : {
+        "year" : "2019",
+        "month" : "03"
+      }
+    } 
+]
+}

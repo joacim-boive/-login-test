@@ -9,7 +9,7 @@ import {
 
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 
-export const updateAccountCard = (customerId, accountRef, cvc) => async dispatch => {
+export const updateAccountCard = (customerId, accountRef, card, cvc) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });

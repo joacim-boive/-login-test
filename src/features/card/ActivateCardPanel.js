@@ -8,7 +8,7 @@ import cardIcon from '../../common/images/icon-activate-card.svg';
 
 export default class ActivateCardPanel extends React.Component {
     static propTypes = {
-        account: PropTypes.shape().isRequired,
+        card: PropTypes.shape().isRequired,
         updateAccountCard: PropTypes.func.isRequired,
     };
 
@@ -16,7 +16,7 @@ export default class ActivateCardPanel extends React.Component {
 
     onSubmitForm = cvc => {
         const { updateAccountCard } = this.props;
-        updateAccountCard(cvc);
+        updateAccountCard(card, cvc);
     };
 
     render() {

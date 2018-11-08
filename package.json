@@ -131,6 +131,10 @@
                 {
                     "from": "images",
                     "to": "images"
+                },
+                {
+                    "from": "features/card/__test-data__/",
+                    "to": "test"
                 }
             ],
             "template": "template.ejs",
@@ -159,7 +163,7 @@
                     "contexts": [
                         "/rest/"
                     ],
-                    "target": "https://secure5.ft.ecster.se",
+                    "target": "https://secure4.ft.ecster.se",
                     "headers": [
                         [
                             "X-ECSTER-Origin",

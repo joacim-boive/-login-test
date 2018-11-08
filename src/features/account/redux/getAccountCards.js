@@ -30,10 +30,22 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
 
 export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
-// temporary fix
-const getMainCard = cards => cards && cards.length > 0 && cards[0];
+const getMainCard = cards => {
+    if (cards && cards.length > 0) {
+        const result = cards.filter(card => !card.extraCard);
+        return result && result.length > 0 && result[0]; // assumes exactly one main card
+    }
 
-const getExtraCards = cards => (cards && cards.length > 1 ? cards.slice(1) : []);
+    return undefined;
+};
+
+const getExtraCards = cards => {
+    if (cards && cards.length > 1) {
+        return cards.filter(card => card.extraCard);
+    }
+
+    return [];
+};
 
 export function reducer(state, action) {
     switch (action.type) {
