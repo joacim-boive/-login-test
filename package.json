@@ -177,6 +177,7 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
         "@ecster/ecster-rekit-templates": "^1.0.18",
+        "@ecster/ecster-webpack": "^2.0.213",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "babel-preset-airbnb": "^3.0.1",
@@ -224,7 +225,6 @@
         "@ecster/ecster-styles": "^3.0.220",
         "@ecster/ecster-util": "^2.0.81",
         "@ecster/ecster-validation": "^2.0.63",
-        "@ecster/ecster-webpack": "^2.0.208",
         "ajv": "^6.5.5",
         "babel-plugin-module-resolver": "^3.1.1",
         "classnames": "^2.2.6",
@@ -239,7 +239,6 @@
         "react": "^16.6.0",
         "react-dom": "^16.6.0",
         "react-grid-layout": "^0.16.6",
-        "react-hot-loader": "^4.3.12",
         "react-media": "^1.8.0",
         "react-redux": "^5.1.0",
         "react-router": "^4.3.1",
