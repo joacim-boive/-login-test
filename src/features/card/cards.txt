@@ -1,6 +1,6 @@
 Användningsfall
 ----
- 1. Inget kort
+01. Inget kort
     account.noOfCards: 0
     cards: []
 
@@ -8,7 +8,7 @@ Användningsfall
         ansök om kort
 
 
- 2. Kort best�llt
+02. Kort beställt
     account.noOfCards: 1
     cards: []
 
@@ -16,7 +16,7 @@ Användningsfall
         ditt kort är på väg
 
 
- 3. Inaktivt kort
+03. Inaktivt kort
     account.noOfCards: 1
     cards: [ {extra: false, active: false} ]
 
@@ -27,7 +27,7 @@ Användningsfall
         ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 4.)
 
 
- 4. Aktivt kort
+04. Aktivt kort
     account.noOfCards: 1
     cards: [ {extra: false, active: true} ]
 
@@ -37,7 +37,7 @@ Användningsfall
         spärra kort
 
 
- 5. Kort beställt, extrakort beställt   (kan uppstå efter spärra kort?)
+05. Kort beställt, extrakort beställt   (kan uppstå efter spärra kort?)
     account.noOfCards: 2
     cards: []
 
@@ -45,7 +45,7 @@ Användningsfall
         dina kort är på väg (2 st)
 
 
- 6. Inaktivt kort, extrakort beställt
+06. Inaktivt kort, extrakort beställt
     account.noOfCards: 2
     cards: [ {extraCard: false] ]
 
@@ -57,7 +57,7 @@ Användningsfall
         ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 7.)
 
 
- 7. Aktivt kort, extrakort beställt
+07. Aktivt kort, extrakort beställt
     account.noOfCards: 2
     cards: [ {extraCard: false, active: true] ]
 
@@ -68,7 +68,7 @@ Användningsfall
         spärra kort
 
 
- 8. Levererat kort, 2 x extrakort beställt
+08. Levererat kort, 2 x extrakort beställt
     account.noOfCards: 3
     cards: [ {extraCard: false, active: false] ]
 
@@ -80,7 +80,7 @@ Användningsfall
         ditt kort har aktiverats, tillbaka till kortöversikt
 
 
- 9. Inget kort, 2 x extrakort beställda  (kan uppstå efter spärra kort?)
+09. Inget kort, 2 x extrakort beställda  (kan uppstå efter spärra kort?)
     account.noOfCards: 2   <== samma som 5.
     cards: []              <== samma som 5.
 
@@ -111,11 +111,13 @@ Användningsfall
             kortinfo med aktivera
 
 12. Tre huvudkort, inga extrakort (obs: felaktigt data)
+    account.noOfCards: 3
+    cards: [ {extraCard: false}, {extraCard: false}, {extraCard: false} ]
 
     Visa:
         kortinfo
         hur visa resterande?
-           visas som "dina kort �r p� v�g" med korrekt impl av fallen 1-11
+           visas som "dina kort är på väg" med korrekt impl av fallen 1-11
            visa som "2 x extrakort"?
 
 
