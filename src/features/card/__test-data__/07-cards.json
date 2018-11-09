@@ -1,15 +1,19 @@
-{ "response": [ {
-      "holder" : "Linus Larsman",
-      "type" : "MASTERCARD HXXX",
-      "brickId" : "113",
-      "status" : "ACTIVE",
-      "cardNumber" : "529928XXXXXX3679",
-      "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-      "extraCard" : false,
-      "expires" : {
-        "year" : "2019",
-        "month" : "03"
-      }
-    } 
-]
+{
+    "response": {
+        "cards": [
+            {
+                "holder": "Linus Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "ACTIVE",
+                "cardNumber": "529928XXXXXX3679",
+                "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                "extraCard": false,
+                "expires": {
+                    "year": "2019",
+                    "month": "03"
+                }
+            }
+        ]
+    }
 }

@@ -36,7 +36,6 @@
     // TODO: should be a rule in LinkButton component
     .button {
         white-space: nowrap;
-        color: $purple!important;
     }
 
     @include ie11-only() {

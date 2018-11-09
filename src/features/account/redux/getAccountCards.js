@@ -9,13 +9,17 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_CARDS_URL } from './urls';
 
+const testNo = window.location.hash.split('test=')[1]; // ...?test=01
+
 export const getAccountCards = (customerId, referenceId) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_CARDS_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_CARDS_URL(customerId, referenceId));
+        const res = testNo
+            ? await get(`test/${testNo}-cards.json`)
+            : await get(GET_ACCOUNT_CARDS_URL(customerId, referenceId));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
             data: res.response,
@@ -40,7 +44,7 @@ const getMainCard = cards => {
 };
 
 const getExtraCards = cards => {
-    if (cards && cards.length > 1) {
+    if (cards && cards.length > 0) {
         return cards.filter(card => card.extraCard);
     }
 

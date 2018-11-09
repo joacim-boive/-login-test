@@ -71,14 +71,7 @@ export class ManageCardPage extends Component {
     render() {
         const { account, accountCard, extraCards, createAccountCard, updateAccountCard } = this.props;
 
-        console.log('=====================================================================');
-        console.log('account card = ', accountCard);
-        console.log('extra cards = ', extraCards);
-        console.log('no of cards  =', account.numberOfCards);
-        console.log('=====================================================================');
-
         const hasMainCard = !!accountCard;
-        const hasNoMainCard = !accountCard;
 
         // actual number of cards returned from backend
         const noOfExtraCards = (extraCards && extraCards.length) || 0;
@@ -91,13 +84,30 @@ export class ManageCardPage extends Component {
 
         const { applicationSucceeded, applicationFailed } = this.state;
 
+        console.log('=====================================================================');
+        console.log('account card = ', accountCard);
+        console.log('extra cards = ', extraCards);
+        console.log('---------------------------------------------------------------------');
+        console.log('account total no of cards  =', account.numberOfCards);
+        console.log('has main card  = ', hasMainCard);
+        console.log('main card active = ', mainCardIsActive);
+        console.log('no of cards = ', noOfCards);
+        console.log('no of extra cards = ', noOfExtraCards);
+        console.log('no pending cards = ', applicationsPending);
+        console.log('=====================================================================');
+
         return (
             <AuthenticatedSubPageTemplate
                 className="card-manage-card-page"
                 header={i18n('card.manage-card.page-header')}
             >
-                {hasNoMainCard && <ApplyForCardPanel account={account} createAccountCard={createAccountCard} />}
+                {!hasMainCard &&
+                    !applicationsPending && (
+                        <ApplyForCardPanel account={account} createAccountCard={createAccountCard} />
+                    )}
+
                 {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
+
                 {hasMainCard &&
                     !mainCardIsActive && <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />}
 

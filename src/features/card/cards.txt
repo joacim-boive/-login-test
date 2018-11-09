@@ -110,6 +110,11 @@ Användningsfall
             kortinfo med aktivera
             kortinfo med aktivera
 
+12. Flera huvudkort, inga extrakort
+
+    Visa:
+        
+
 
 
 Pages

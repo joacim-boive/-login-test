@@ -321,8 +321,8 @@
                 "link": "Tillbaka till kontoöversikt"
             },
             "pending": {
-                "header": "Ditt kort är på väg",
-                "header_plural": "Dina kort är på väg",
+                "header": "Ditt beställda kort är på väg",
+                "header_plural": "Dina beställda kort är på väg",
                 "info": "Det kan ta ett par dagar. Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
                 "info_plural": "Det kan ta ett par dagar. Så snart du har fått hem dina kort, kan du logga in och aktivera dem här.",
                 "link": "Tillbaka till kontoöversikt"
