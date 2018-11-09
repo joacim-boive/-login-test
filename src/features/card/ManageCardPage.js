@@ -13,10 +13,16 @@ import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import BlockCardPanel from './BlockCardPanel';
-import { getAccount } from '../account/redux/getAccount';
-import { getAccountCards } from '../account/redux/getAccountCards';
-import { createAccountCard } from '../account/redux/createAccountCard'; // apply for card
-import { updateAccountCard } from '../account/redux/updateAccountCard'; // activate card
+import {
+    getAccount,
+    getAccountTerms,
+    getAccountCards,
+    createAccountCard,
+    updateAccountCard,
+} from '../account/redux/actions';
+// import { getAccountCards } from '../account/redux/getAccountCards';
+// import { createAccountCard } from '../account/redux/createAccountCard'; // apply for card
+// import { updateAccountCard } from '../account/redux/updateAccountCard'; // activate card
 
 const operationSucceeded = (operation, prevProps, props) =>
     prevProps[`${operation}Pending`] && !props[`${operation}Pending`] && !props[`${operation}Error`];
@@ -27,6 +33,7 @@ export class ManageCardPage extends Component {
         accountCard: PropTypes.shape().isRequired,
         extraCards: PropTypes.shape().isRequired,
         getAccount: PropTypes.func.isRequired,
+        getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
 
         createAccountCard: PropTypes.func.isRequired,
@@ -49,8 +56,9 @@ export class ManageCardPage extends Component {
     };
 
     componentWillMount() {
-        const { getAccount } = this.props;
+        const { getAccount, getAccountTerms } = this.props;
         getAccount();
+        getAccountTerms();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,13 +71,13 @@ export class ManageCardPage extends Component {
         if (operationSucceeded('createAccountCard', this.props, nextProps)) {
             this.setState({ applicationSucceeded: true });
         }
-        // if (operationSucceeded('updateAccountCard', this.props, nextProps)) {
-        //     this.setState({ activationSucceeded: true });
-        // }
+        if (operationSucceeded('updateAccountCard', this.props, nextProps)) {
+            this.setState({ activationSucceeded: true });
+        }
     }
 
     render() {
-        const { account, accountCard, extraCards, createAccountCard, updateAccountCard } = this.props;
+        const { account, accountTerms, accountCard, extraCards, createAccountCard, updateAccountCard } = this.props;
 
         const hasMainCard = !!accountCard;
 
@@ -101,17 +109,21 @@ export class ManageCardPage extends Component {
                 className="card-manage-card-page"
                 header={i18n('card.manage-card.page-header')}
             >
-                {!hasMainCard &&
-                    !applicationsPending && (
-                        <ApplyForCardPanel account={account} createAccountCard={createAccountCard} />
-                    )}
+                {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
+
+                {!hasMainCard && !applicationsPending && (
+                    <ApplyForCardPanel
+                        account={account}
+                        accountTerms={accountTerms}
+                        createAccountCard={createAccountCard}
+                    />
+                )}
 
                 {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
 
-                {hasMainCard &&
-                    !mainCardIsActive && <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />}
-
-                {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
+                {hasMainCard && !mainCardIsActive && (
+                    <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
+                )}
 
                 {applicationSucceeded && <ApplyForCardSuccessPanel account={account} />}
                 {applicationFailed && <ApplyForCardFailurePanel />}
@@ -129,6 +141,7 @@ function mapStateToProps({ account }) {
     // const { customerId, accountRef } = route.match.params;
     return {
         account: account.account,
+        accountTerms: account.accountTerms,
         accountCard: account.accountCard,
         extraCards: account.extraCards,
         getAccountPending: account.getAccountPending,
@@ -141,6 +154,7 @@ function mapDispatchToProps(dispatch, route) {
     const { customerId, accountRef } = route.match.params;
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
+        getAccountTerms: () => dispatch(getAccountTerms(customerId, accountRef)),
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),
         createAccountCard: () => dispatch(createAccountCard(customerId, accountRef)),

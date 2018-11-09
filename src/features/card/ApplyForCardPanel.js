@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, FlexPanel, UnorderedList, Form, Checkbox, ButtonGroup, Button } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
+import { formatAmount } from '../../common/util/format-amount';
 
 export default class ApplyForCardPanel extends React.Component {
     static propTypes = {
         account: PropTypes.shape().isRequired,
+        accountTerms: PropTypes.shape().isRequired,
         createAccountCard: PropTypes.func.isRequired,
     };
 
@@ -33,7 +35,7 @@ export default class ApplyForCardPanel extends React.Component {
     };
 
     render() {
-        const { account } = this.props;
+        const { account, accountTerms } = this.props;
         const { checkboxChecked } = this.state;
 
         const cardName = (
@@ -53,11 +55,11 @@ export default class ApplyForCardPanel extends React.Component {
                                     <p>{i18n('card.apply-for-card.info', { cardName: 'Ecster' })}</p>
                                     <p className="flex-row">
                                         <span>{i18n('card.apply-for-card.yearly-fee')}</span>
-                                        <strong>15 000 kr</strong>
+                                        <strong>{formatAmount(accountTerms.yearlyFee)}</strong>
                                     </p>
                                     <p className="flex-row">
                                         <span>{i18n('card.apply-for-card.credit-limit')}</span>
-                                        <strong>1 000 000 000 kr</strong>
+                                        <strong>{formatAmount(account.limit)}</strong>
                                     </p>
                                 </div>
                                 <div className="column-2">

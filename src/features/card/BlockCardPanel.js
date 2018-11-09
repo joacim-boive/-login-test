@@ -20,7 +20,6 @@ export default class BlockCardPanel extends React.Component {
                     <p>
                         <span dangerouslySetInnerHTML={{ __html: i18n('card.block-card.info') }} />
                     </p>
-                    Arne
                 </div>
             </Panel>
         );

@@ -323,8 +323,8 @@
             "pending": {
                 "header": "Ditt beställda kort är på väg",
                 "header_plural": "Dina beställda kort är på väg",
-                "info": "Det kan ta ett par dagar. Så snart du har fått hem ditt kort, kan du logga in här och aktivera det.",
-                "info_plural": "Det kan ta ett par dagar. Så snart du har fått hem dina kort, kan du logga in här och aktivera dem.",
+                "info": "Kortet landar i din brevlåda inom ett par dagar, din pinkod kommer i ett separat brev. Innan du börjar använda kortet måste du logga in och aktivera det här.",
+                "info_plural": "Korten landar i din brevlåda inom ett par dagar, pinkoderna kommer i separata brev. Innan du börjar använda korten måste du logga in och aktivera dem här.",
                 "link": "Tillbaka till kontoöversikt"
             },
             "failure": {
@@ -335,7 +335,7 @@
         },
         "activate-card": {
             "header": "Aktivera ditt kort",
-            "info": "Ange CVC-koden på kortets baksida för att aktivera kortet.",
+            "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
             "button": "Aktivera kort",
             "validation-message": "Ange tre siffror"
