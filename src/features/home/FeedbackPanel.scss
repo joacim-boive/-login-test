@@ -21,7 +21,6 @@
         @include mobile() {
             text-align: center;
         }
-
     }
 
     img, .info {
@@ -31,11 +30,6 @@
             margin-right: 0;
             margin-bottom: 30px;
         }
-    }
-
-    // TODO: should be a rule in LinkButton component
-    .button {
-        white-space: nowrap;
     }
 
     @include ie11-only() {

@@ -34,31 +34,10 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
 
 export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
-// const getMainCard = cards => {
-//     if (cards && cards.length > 0) {
-//         const result = cards.filter(card => !card.extraCard);
-//
-//         return result && result.length > 0 && result[0]; // assumes exactly one main card
-//     }
-//
-//     return undefined;
-// };
-//
-// const getExtraCards = cards => {
-//     if (cards && cards.length > 0) {
-//         const mainCards = cards.filter(card => !card.extraCard);
-//
-//         // do we have "corrupt" data with many main cards?
-//         if (mainCards && mainCards.length > 1) {
-//             return cards.slice(1);
-//         }
-//
-//         return cards.filter(card => card.extraCard);
-//     }
-//
-//     return [];
-// };
-//
+// slice cards array into:
+//  one main card (or no main card)
+//  array of extra cards (or empty array)
+// returns: { mainCard: { ... }, extraCards: [ ... ] }
 const sliceCards = cards => {
     if (cards && cards.length > 0) {
         const result = {};
@@ -66,7 +45,7 @@ const sliceCards = cards => {
         const mainCards = cards.filter(card => !card.extraCard);
 
         if (mainCards && mainCards.length > 0) {
-            result.mainCard = mainCards[0];
+            result.mainCard = mainCards[0]; // eslint-disable-line prefer-destructuring
         }
 
         // do we have "corrupt" data with many main cards?
