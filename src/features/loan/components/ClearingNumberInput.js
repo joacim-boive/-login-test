@@ -88,10 +88,12 @@ class ClearingNumberInput extends Component {
                         className="input-field no-wrap"
                         value={myBank}
                         name="myBank"
+                        id="myBank"
                         placeholder={i18n('loan.general.bank')}
                         onChange={this.handleChange}
                         required
                         validationMessage={i18n('loan.general.bank-error')}
+                        ref={setRef}
                     />
                 )}
             </div>

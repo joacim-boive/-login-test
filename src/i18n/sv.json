@@ -562,7 +562,9 @@
         },
         "economy": {
             "12month": "Anställd längre än 12 månader?",
+            "12month-error": "Ange din anställningstid",
             "12month-company": "Har du haft företaget längre än 12 mån?",
+            "12month-company-error": "Ange hur länge du haft ditt företag",
             "adults-label": "Hur många vuxna finns det i hushållet?",
             "children-label": "Hur många barn finns det i hushållet?",
             "company-name": "Företagsnamn",
