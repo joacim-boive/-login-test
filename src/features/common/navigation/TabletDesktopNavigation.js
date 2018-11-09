@@ -7,6 +7,9 @@ import { Logo, Link } from '@ecster/ecster-components';
 import { TopNavigation, TopMenu, SubMenu, SubMenuItem } from '../menu/index';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
+// TODO: remove tmp IE fix when fonts load in HITS
+import { SvgIconHamburger } from '../../../common/images/index';
+
 import './TabletDesktopNavigation.scss';
 
 class TabletDesktopNavigation extends React.Component {
@@ -93,6 +96,7 @@ class TabletDesktopNavigation extends React.Component {
                                 role="link"
                             >
                                 <i className="icon-menu" />
+                                <SvgIconHamburger />
                             </div>
                         </div>
                     </div>

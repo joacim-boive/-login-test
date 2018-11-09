@@ -1,4 +1,5 @@
-@import '../../../styles/constants';
+@import "../../../styles/constants";
+@import "~@ecster/ecster-styles/scss/v2/common/media-queries";
 
 .top-menu-container {
     max-width: $content-max-width-desktop;
@@ -15,6 +16,33 @@
                 text-decoration: none;
             }
         }
+
+        // TODO: remove tmp IE fix when fonts load in HITS
+        .svg-icon--hamburger {
+            display: none;
+        }
+
+        @include ie11-only {
+            a {
+                position: relative;
+                top: -6px;
+            }
+            .icon-menu {
+                display: none;
+            }
+            .svg-icon--hamburger {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                position: relative;
+                top: -6px;
+                .icon-paths {
+                    stroke: #fff;
+                }
+            }
+        }
+        // TODO: end tmp fix
+
         .icon-link { // div tag
             margin-left: 40px;
             font-size: 24px;

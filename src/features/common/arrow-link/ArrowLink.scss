@@ -1,6 +1,6 @@
 @import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
 
-.arrow-link {
+.arrow-link, .arrow-link > span { // Link adds a span!
     display: flex;
     flex: 0 1 auto;
     align-items: center;
@@ -16,7 +16,7 @@
 
         div {
             margin-left: 15px;
-            font-family: 'PT Sans';
+            font-family: 'PT Sans', sans-serif;
             font-size: 18px;
             color: $gray140;
         }
