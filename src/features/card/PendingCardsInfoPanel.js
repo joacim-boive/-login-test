@@ -22,25 +22,7 @@ export default class PendingCardsInfoPanel extends React.Component {
                 icon={cardIcon}
                 header={i18n('card.apply-for-card.pending.header', { count: noOfPendingCards })}
                 body={i18n('card.apply-for-card.pending.info', { count: noOfPendingCards })}
-                large
             />
         );
     }
-    // render() {
-    //     const { noOfPendingCards } = this.props;
-    //
-    //     return (
-    //         <Panel withFullWidthContent className="card-apply-for-card-pending-panel">
-    //             <div className="full-width-content">
-    //                 <img src={cardIcon} aria-hidden="true" alt="almost happy face icon" />
-    //                 <div>
-    //                     <h1 className="h3">
-    //                         {i18n('card.apply-for-card.pending.header', { count: noOfPendingCards })}
-    //                     </h1>
-    //                     <p>{i18n('card.apply-for-card.pending.info', { count: noOfPendingCards })}</p>
-    //                 </div>
-    //             </div>
-    //         </Panel>
-    //     );
-    // }
 }

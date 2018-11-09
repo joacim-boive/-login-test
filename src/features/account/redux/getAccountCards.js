@@ -34,21 +34,52 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
 
 export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
-const getMainCard = cards => {
+// const getMainCard = cards => {
+//     if (cards && cards.length > 0) {
+//         const result = cards.filter(card => !card.extraCard);
+//
+//         return result && result.length > 0 && result[0]; // assumes exactly one main card
+//     }
+//
+//     return undefined;
+// };
+//
+// const getExtraCards = cards => {
+//     if (cards && cards.length > 0) {
+//         const mainCards = cards.filter(card => !card.extraCard);
+//
+//         // do we have "corrupt" data with many main cards?
+//         if (mainCards && mainCards.length > 1) {
+//             return cards.slice(1);
+//         }
+//
+//         return cards.filter(card => card.extraCard);
+//     }
+//
+//     return [];
+// };
+//
+const sliceCards = cards => {
     if (cards && cards.length > 0) {
-        const result = cards.filter(card => !card.extraCard);
-        return result && result.length > 0 && result[0]; // assumes exactly one main card
+        const result = {};
+
+        const mainCards = cards.filter(card => !card.extraCard);
+
+        if (mainCards && mainCards.length > 0) {
+            result.mainCard = mainCards[0];
+        }
+
+        // do we have "corrupt" data with many main cards?
+        if (mainCards && mainCards.length > 1) {
+            result.extraCards = cards.slice(1);
+        } else {
+            result.extraCards = cards.filter(card => card.extraCard);
+        }
+
+        return result;
     }
 
-    return undefined;
-};
-
-const getExtraCards = cards => {
-    if (cards && cards.length > 0) {
-        return cards.filter(card => card.extraCard);
-    }
-
-    return [];
+    return { mainCard: undefined, extraCards: [] };
 };
 
 export function reducer(state, action) {
@@ -61,10 +92,11 @@ export function reducer(state, action) {
             };
 
         case ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS:
+            const slicedCards = sliceCards(action.data.cards);
             return {
                 ...state,
-                accountCard: getMainCard(action.data.cards),
-                extraCards: getExtraCards(action.data.cards),
+                accountCard: slicedCards.mainCard,
+                extraCards: slicedCards.extraCards,
                 getAccountCardsPending: false,
                 getAccountCardsError: null,
             };

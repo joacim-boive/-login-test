@@ -110,10 +110,13 @@ AnvÃ¤ndningsfall
             kortinfo med aktivera
             kortinfo med aktivera
 
-12. Flera huvudkort, inga extrakort
+12. Tre huvudkort, inga extrakort (obs: felaktigt data)
 
     Visa:
-        
+        kortinfo
+        hur visa resterande?
+           visas som "dina kort är på väg" med korrekt impl av fallen 1-11
+           visa som "2 x extrakort"?
 
 
 
