@@ -239,7 +239,6 @@
         "react": "^16.6.0",
         "react-dom": "^16.6.0",
         "react-grid-layout": "^0.16.6",
-        "react-hot-loader": "^4.3.12",
         "react-media": "^1.8.0",
         "react-redux": "^5.1.0",
         "react-router": "^4.3.1",
