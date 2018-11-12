@@ -23,6 +23,8 @@ export default class ShowCardPanel extends React.Component {
             i18n('card.show-card.default-card-name')
         ).toLocaleLowerCase(); // will be css cap'ed
 
+        const tmpBlock = card.status === 'TEMPORARILY_BLOCKED';
+
         return (
             <Panel withMixedContent greenBG className="card-show-card-panel">
                 <div className="wide-content">
@@ -32,12 +34,17 @@ export default class ShowCardPanel extends React.Component {
                         </div>
                         <div>
                             <h2 className="e-green120 card-name">{cardName}</h2>
-                            <Value label={i18n('card.general.card-number')} value={formatAccount(card.cardNumber).replace(/X/g, '*')} />
-                            <Value label={i18n('card.general.card-holder')} value={card.holder} />
                             <Value
-                                label={i18n('card.general.valid-to')}
-                                value={`${card.expires.year} / ${card.expires.month}`}
+                                label={i18n('card.general.card-number')}
+                                value={formatAccount(card.cardNumber).replace(/X/g, '*')}
                             />
+                            <Value label={i18n('card.general.card-holder')} value={card.holder} />
+                            {!tmpBlock && (
+                                <Value
+                                    label={i18n('card.general.valid-to')}
+                                    value={`${card.expires.year} / ${card.expires.month}`}
+                                />
+                            )}
                             <Value label={i18n('card.general.status')} value={i18n(`card.show-card.${card.status}`)} />
                         </div>
                     </FlexPanel>

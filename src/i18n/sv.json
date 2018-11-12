@@ -354,6 +354,7 @@
         },
         "show-card": {
             "default-card-name": "Ecsterkort",
+            "TEMPORARILY_BLOCKED": "Tillfälligt spärrat",
             "ACTIVE": "Aktivt",
             "INACTIVE": "Ej aktiverat"
         },

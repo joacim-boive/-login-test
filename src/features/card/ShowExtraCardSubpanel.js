@@ -23,6 +23,8 @@ export default class ShowExtraCardSubpanel extends React.Component {
     render() {
         const { card } = this.props;
 
+        const tmpBlock = card.status === 'TEMPORARILY_BLOCKED';
+
         return (
             <div className="card-show-extra-card-subpanel">
                 <p>
@@ -33,25 +35,26 @@ export default class ShowExtraCardSubpanel extends React.Component {
                     value={formatAccount(card.cardNumber).replace(/X/g, '*')}
                     strong={false}
                 />
-                <Value
-                    label={i18n('card.general.valid-to')}
-                    value={`${card.expires.year} / ${card.expires.month}`}
-                    strong={false}
-                />
+                {!tmpBlock && (
+                    <Value
+                        label={i18n('card.general.valid-to')}
+                        value={`${card.expires.year} / ${card.expires.month}`}
+                        strong={false}
+                    />
+                )}
                 <Value
                     label={i18n('card.general.status')}
                     value={i18n(`card.show-card.${card.status}`)}
                     strong={false}
                 />
-                {card.status === 'ACTIVE' ? (
+                {card.status === 'ACTIVE' && (
                     <ButtonGroup alignCenter>
                         <Button round outline>
                             {i18n('card.show-extra-card.change-button')}
                         </Button>
                     </ButtonGroup>
-                ) : (
-                    <CvcForm onSubmitForm={this.onSubmitForm} />
                 )}
+                {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} />}
             </div>
         );
     }

@@ -132,6 +132,7 @@ export class ManageCardPage extends Component {
         const noOfPendingCards = account.numberOfCards - noOfCards;
 
         const mainCardIsActive = hasMainCard && accountCard.status === 'ACTIVE';
+        const mainCardIsInactive = hasMainCard && accountCard.status === 'INACTIVE';
 
         const { applicationSucceeded, activationSucceeded } = this.state;
 
@@ -177,7 +178,7 @@ export class ManageCardPage extends Component {
 
                     {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
 
-                    {hasMainCard && !mainCardIsActive && (
+                    {hasMainCard && mainCardIsInactive && (
                         <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
                     )}
 
