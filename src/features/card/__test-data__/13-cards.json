@@ -1,0 +1,65 @@
+{
+    "response": { 
+        "cards": [ {
+            "holder" : "Lars Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX5397",
+            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "extraCard" : true,
+            "expires" : {
+                "year" : "2020",
+                "month" : "10"
+            }
+        }, {
+            "holder" : "Lisa Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX0294",
+            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "extraCard" : true,
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Lena Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "extraCard" : true,
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Larsa Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "extraCard" : true,
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Lelle Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "extraCard" : true,
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        } ]
+    }
+}

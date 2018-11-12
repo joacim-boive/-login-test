@@ -15,7 +15,7 @@ export default class ActivateCardPanel extends React.Component {
     static defaultProps = {};
 
     onSubmitForm = cvc => {
-        const { updateAccountCard } = this.props;
+        const { updateAccountCard, card } = this.props;
         updateAccountCard(card, cvc);
     };
 

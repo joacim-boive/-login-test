@@ -18,10 +18,10 @@ const LoginPageTemplate = props => {
         <>
             <article
                 className="common-login-page-template lazyload"
-                data-bgset={`${cloudinary.defaults},o_40${cloudinary.scaling}/v1/backgrounds/login.jpg`}
-                data-absurl="false"
-                data-sizes="auto"
-                data-widths="768, 1536, 1024, 2048, 1920, 3840"
+                nodata-bgset={`${cloudinary.defaults},o_40${cloudinary.scaling}/v1/backgrounds/login.jpg`}
+                nodata-absurl="false"
+                nodata-sizes="auto"
+                nodata-widths="768, 1536, 1024, 2048, 1920, 3840"
             >
                 <header className="logo-header">
                     <Link href="https://www.ecster.se" target="_blank" title="ecster.se" id="login-page-logo-link">

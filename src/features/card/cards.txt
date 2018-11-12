@@ -7,14 +7,12 @@ Användningsfall
     Visa:
         ansök om kort
 
-
 02. Kort beställt
     account.noOfCards: 1
     cards: []
 
     Visa:
         ditt kort är på väg
-
 
 03. Inaktivt kort
     account.noOfCards: 1
@@ -26,7 +24,6 @@ Användningsfall
     Efter aktivering:
         ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 4.)
 
-
 04. Aktivt kort
     account.noOfCards: 1
     cards: [ {extra: false, active: true} ]
@@ -36,14 +33,12 @@ Användningsfall
         beställ extrakort
         spärra kort
 
-
 05. Kort beställt, extrakort beställt   (kan uppstå efter spärra kort?)
     account.noOfCards: 2
     cards: []
 
     Visa:
         dina kort är på väg (2 st)
-
 
 06. Inaktivt kort, extrakort beställt
     account.noOfCards: 2
@@ -56,7 +51,6 @@ Användningsfall
     Efter aktivering:
         ditt kort har aktiverats, tillbaka till kortöversikt (ritar om sig enligt 7.)
 
-
 07. Aktivt kort, extrakort beställt
     account.noOfCards: 2
     cards: [ {extraCard: false, active: true] ]
@@ -66,7 +60,6 @@ Användningsfall
         ditt kort är på väg (1 st)
         beställ extrakort
         spärra kort
-
 
 08. Levererat kort, 2 x extrakort beställt
     account.noOfCards: 3
@@ -79,14 +72,12 @@ Användningsfall
     Efter aktivering:
         ditt kort har aktiverats, tillbaka till kortöversikt
 
-
 09. Inget kort, 2 x extrakort beställda  (kan uppstå efter spärra kort?)
     account.noOfCards: 2   <== samma som 5.
     cards: []              <== samma som 5.
 
     Visa:
         dina kort är på väg (2 st)
-
 
 10. Inget kort, extrakort levererat, extrakort beställt
     account.noOfCards: 2
@@ -115,10 +106,8 @@ Användningsfall
     cards: [ {extraCard: false}, {extraCard: false}, {extraCard: false} ]
 
     Visa:
-        kortinfo
-        hur visa resterande?
-           visas som "dina kort är på väg" med korrekt impl av fallen 1-11
-           visa som "2 x extrakort"?
+        kortinfo (första)
+        2 x extrakort (resterande)
 
 
 

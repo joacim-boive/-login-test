@@ -14,15 +14,15 @@
 
     img {
         width: 34px;
-        height: 34px;
+        height: auto;
         margin-right: 30px;
     }
 
     &.large {
         padding: 30px;
         img {
-            width: 45px;
-            height: 45px;
+            width: 65px;
+            height: auto;
         }
     }
 

@@ -14,6 +14,19 @@ export const updateAccountCard = (customerId, accountRef, card, cvc) => async di
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });
 
+    // CARD
+    // ---
+    // brickId: "113"
+    // cardNumber: "529928XXXXXX5397"
+    // expires:
+    //     month: "10"
+    //     year: "2018"
+    // extraCard: false
+    // holder: "Lars Larsman"
+    // reference: "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx"
+    // status: "INACTIVE"
+    // type: "MASTERCARD HXXX"
+
     // POST data
     // ---
     // status (String) [1]: "ACTIVE". At present only accepts "ACTIVE" value.
@@ -23,8 +36,18 @@ export const updateAccountCard = (customerId, accountRef, card, cvc) => async di
     //    year (String): Expire year for the card. In format YYYY.
     //    month (String): Expire month for the card. In format MM.
 
+    const cardData = {
+        status: 'ACTIVE',
+        cvc,
+        cardNumber: card.cardNumber,
+        expires: {
+            month: card.expires.month,
+            year: card.expires.year,
+        },
+    };
+
     try {
-        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, accountRef));
+        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, accountRef), cardData);
         dispatch({
             type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
             data: res.response,

@@ -85,7 +85,7 @@
             "part-payments": "Delbetalningar",
             "monthly-invoices": "Månadsfakturor",
             "manage-cards": "Hantera kort",
-            "apply-for-card": "Ansök om kort",
+            "apply-for-card": "Beställ kort",
             "terms": "Kontoinformation",
             "validation-message": "Välj nytt kreditbelopp"
         },
@@ -104,7 +104,7 @@
         "sales-panel": {
             "header": "Skaffa ett kort till ditt konto",
             "body": "Handla världen över. Ta del av fler förmåner och försäkringar med ett flexibelt kreditkort.",
-            "button": "Läs mer och ansök"
+            "button": "Läs mer och beställ"
         },
         "terms": {
             "account-terms": "Kontovillkor",
@@ -299,21 +299,22 @@
             "page-header": "Hantera kort"
         },
         "apply-for-card": {
-            "header":"Ansök om ett {{cardName}}kort",
-            "info": "Med {{cardName}}kortet kan du ta del av fler förmåner.",
+            "header":"Koppla ett kort till ditt konto",
+            "info": "När du ansluter ett kreditkort till ditt konto kan du använda din kontokredit på fler ställen. Kortet är kopplat till Mastercard och funkar över hela världen.",
+            "terms-info": "Samtliga villkor hittar du i dina [link-new-win {{termsURL}} 'kontovillkor']",
+            "sub-header1": "Villkor",
+            "sub-header2": "Förmåner",
             "yearly-fee": "Årsavgift",
             "credit-limit": "Kreditgräns",
-            "card-terms": "Jag godkänner samtliga [link-new-win https://a.pdf.com 'kontovillkor']",
-            "validation-message": "Du måste godkänna villkoren",
             "info-list": [
                 "Upp till 8 veckors räntefri kredit",
                 "Köparskydd ingår - trygghet när du handlar",
                 "Dela upp större köp i efterhand"
             ],
-            "button": "Ansök",
+            "button": "Beställ",
             "confirm-dialog": {
-                "header": "Ansök om kort",
-                "text": "Bekräfta ansökan om kort"
+                "header": "Beställ kort",
+                "text": "Med Ecsterkortet ..."
             },
             "success": {
                 "header":"Tack för din beställning",
@@ -330,7 +331,7 @@
             "failure": {
                 "header":"Åh nej!",
                 "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
-                "link": "Tillbaka till kontoöversikt"
+                "button": "Tillbaka till kontoöversikt"
             }
         },
         "activate-card": {
@@ -338,7 +339,18 @@
             "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
             "button": "Aktivera kort",
-            "validation-message": "Ange tre siffror"
+            "validation-message": "Ange tre siffror",
+            "success": {
+                "header":"Ditt kort är aktiverat",
+                "info":"Ditt kort är aktiverat och klart att använda.",
+                "link": "Tillbaka till kontoöversikt"
+            },
+            "failure": {
+                "header":"Åh nej!",
+                "info": "Ditt kort kunde inte aktiveras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
+                "button": "Tillbaka till kontoöversikt"
+            }
+
         },
         "show-card": {
             "default-card-name": "Ecsterkort",

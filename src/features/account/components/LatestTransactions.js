@@ -58,7 +58,7 @@ export const LatestTransactions = ({ className, transactions, totalTransactions,
                                     iconRight="icon-chevron-right"
                                     iconColorClass="e-black"
                                     underline={false}
-                                    to={`/account/${account.reference}/customer/${user.id}/transactions`}
+                                    to={`/account/${account.reference}/customer/${customer.id}/transactions`}
                                     gaLabel="show-more-transactions"
                                 >
                                     {i18n('account.transactions.show-more')}

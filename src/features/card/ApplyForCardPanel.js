@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, FlexPanel, UnorderedList, Form, Checkbox, ButtonGroup, Button } from '@ecster/ecster-components';
+import { Panel, FlexPanel, UnorderedList, ButtonGroup, ConfirmButton } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -13,30 +13,13 @@ export default class ApplyForCardPanel extends React.Component {
         createAccountCard: PropTypes.func.isRequired,
     };
 
-    static defaultProps = {};
-
-    state = {
-        checkboxChecked: false,
-    };
-
-    formRef = React.createRef();
-
-    checkboxRef = React.createRef();
-
     onClick = () => {
-        if (this.formRef.current.validate()) {
-            const { createAccountCard } = this.props;
-            createAccountCard();
-        }
-    };
-
-    onCheckboxChange = ({ target }) => {
-        this.setState({ checkboxChecked: target.checked });
+        const { createAccountCard } = this.props;
+        createAccountCard();
     };
 
     render() {
         const { account, accountTerms } = this.props;
-        const { checkboxChecked } = this.state;
 
         const cardName = (
             (account.product && account.product.name) ||
@@ -49,46 +32,52 @@ export default class ApplyForCardPanel extends React.Component {
                     <div className="two-col-content">
                         <EcsterCard account={account} />
                         <h1 className="h2">{i18n('card.apply-for-card.header', { cardName })}</h1>
-                        <Form ref={this.formRef} validateRefs={[this.checkboxRef]}>
-                            <FlexPanel>
-                                <div className="column-1">
-                                    <p>{i18n('card.apply-for-card.info', { cardName: 'Ecster' })}</p>
-                                    <p className="flex-row">
-                                        <span>{i18n('card.apply-for-card.yearly-fee')}</span>
-                                        <strong>{formatAmount(accountTerms.yearlyFee)}</strong>
-                                    </p>
-                                    <p className="flex-row">
-                                        <span>{i18n('card.apply-for-card.credit-limit')}</span>
-                                        <strong>{formatAmount(account.limit)}</strong>
-                                    </p>
-                                </div>
-                                <div className="column-2">
-                                    <UnorderedList icon="icon-check" iconClass="e-purple">
-                                        {i18n('card.apply-for-card.info-list', {
-                                            returnObjects: true,
-                                            wrapper: { tag: 'span', dangerouslySetInnerHTML: true },
-                                        })}
-                                    </UnorderedList>
-                                </div>
-                            </FlexPanel>
-                        </Form>
+                        <p>{i18n('card.apply-for-card.info')}</p>
+                        <FlexPanel>
+                            <div className="column-1">
+                                <p>
+                                    <strong>{i18n('card.apply-for-card.sub-header1')}</strong>
+                                </p>
+                                <p className="flex-row">
+                                    <span>{i18n('card.apply-for-card.yearly-fee')}</span>
+                                    <strong>{formatAmount(accountTerms.yearlyFee)}</strong>
+                                </p>
+                                <p className="flex-row">
+                                    <span>{i18n('card.apply-for-card.credit-limit')}</span>
+                                    <strong>{formatAmount(account.limit)}</strong>
+                                </p>
+                                <p
+                                    dangerouslySetInnerHTML={{
+                                        __html: i18n('card.apply-for-card.terms-info', {
+                                            termsURL: accountTerms.termsPDFURL,
+                                        }),
+                                    }}
+                                />
+                            </div>
+                            <div className="column-2">
+                                <p>
+                                    <strong>{i18n('card.apply-for-card.sub-header2')}</strong>
+                                </p>
+                                <UnorderedList icon="icon-check" iconClass="e-purple">
+                                    {i18n('card.apply-for-card.info-list', {
+                                        returnObjects: true,
+                                        wrapper: { tag: 'span', dangerouslySetInnerHTML: true },
+                                    })}
+                                </UnorderedList>
+                            </div>
+                        </FlexPanel>
                     </div>
-                    <div className="flex-row">
-                        <Checkbox
-                            ref={this.checkboxRef}
-                            required
-                            checked={checkboxChecked}
-                            onChange={this.onCheckboxChange}
-                            validationMessage={i18n('card.apply-for-card.validation-message')}
-                            className="terms-cb"
+                    <ButtonGroup alignCenter spaceBelow={false}>
+                        <ConfirmButton
+                            confirmHeader={i18n('card.apply-for-card.confirm-dialog.header')}
+                            confirmText={i18n('card.apply-for-card.confirm-dialog.text')}
+                            confirmOk={i18n('card.apply-for-card.button')}
+                            confirmCancel={i18n('general.cancel')}
+                            round
+                            onClick={this.onClick}
                         >
-                            <span dangerouslySetInnerHTML={{ __html: i18n('card.apply-for-card.card-terms') }} />
-                        </Checkbox>
-                    </div>
-                    <ButtonGroup alignColumn spaceBelow={false}>
-                        <Button round onClick={this.onClick}>
                             {i18n('card.apply-for-card.button')}
-                        </Button>
+                        </ConfirmButton>
                     </ButtonGroup>
                 </Panel>
             </div>

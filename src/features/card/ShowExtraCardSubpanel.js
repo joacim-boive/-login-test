@@ -10,12 +10,14 @@ import { formatAccount } from '../../common/util/format-account';
 export default class ShowExtraCardSubpanel extends React.Component {
     static propTypes = {
         card: PropTypes.shape().isRequired,
+        updateAccountCard: PropTypes.func.isRequired,
     };
 
     static defaultProps = {};
 
     onSubmitForm = cvc => {
-        console.log('activate card... not yet implemented: cvc = ', cvc);
+        const { updateAccountCard, card } = this.props;
+        updateAccountCard(card, cvc);
     };
 
     render() {
