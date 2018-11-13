@@ -22,9 +22,10 @@ class TabletDesktopNavigation extends React.Component {
     }
 
     toggleSubMenu = e => {
+        const { showSubMenu } = this.state;
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showSubMenu: !this.state.showSubMenu });
+        this.setState({ showSubMenu: !showSubMenu });
     };
 
     closeSubMenu = () => {
