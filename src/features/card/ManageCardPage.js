@@ -27,6 +27,8 @@ import {
     dismissCreateAccountCardError,
 } from '../account/redux/actions';
 
+import { getCustomerExtraCardHolders } from '../customer/redux/actions';
+
 const If = ({ condition, children }) => condition && children;
 If.propTypes = {
     condition: PropTypes.bool.isRequired,
@@ -51,6 +53,7 @@ export class ManageCardPage extends Component {
         getAccount: PropTypes.func.isRequired,
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
+        getCustomerExtraCardHolders: PropTypes.func.isRequired,
 
         createAccountCard: PropTypes.func.isRequired,
         updateAccountCard: PropTypes.func.isRequired,
@@ -85,6 +88,10 @@ export class ManageCardPage extends Component {
             this.setState({ requestedCards: true });
             getAccountCards();
         }
+
+        if (nextProps.extraCards && nextProps.extraCards.length > 0) {
+        }
+
         if (operationSucceeded('createAccountCard', this.props, nextProps)) {
             this.setState({ applicationSucceeded: true });
         }
@@ -255,6 +262,7 @@ function mapDispatchToProps(dispatch, route) {
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),
         createAccountCard: () => dispatch(createAccountCard(customerId, accountRef)),
+        getCustomerExtraCardHolders: () => dispatch(getCustomerExtraCardHolders(customerId)),
         dismissUpdateAccountCardError: () => dispatch(dismissUpdateAccountCardError()),
         dismissCreateAccountCardError: () => dispatch(dismissCreateAccountCardError()),
     };

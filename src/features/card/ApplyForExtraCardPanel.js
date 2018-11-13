@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Panel, ButtonGroup, LinkButton } from '@ecster/ecster-components';
@@ -29,6 +28,3 @@ export default class ApplyForExtraCardPanel extends React.Component {
         );
     }
 }
-
-ApplyForExtraCardPanel.propTypes = {};
-ApplyForExtraCardPanel.defaultProps = {};

@@ -34,10 +34,12 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
 
 export const dismissGetAccountCardsError = () => ({ type: ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR });
 
-// slice cards array into:
-//  one main card (or no main card)
-//  array of extra cards (or empty array)
-// returns: { mainCard: { ... }, extraCards: [ ... ] }
+/**
+ * slice cards array into:
+ * - one main card (or no main card)
+ * - array of extra cards (or empty array)
+ * @return { mainCard: { ... }, extraCards: [ ... ] }
+ */
 const sliceCards = cards => {
     if (cards && cards.length > 0) {
         const result = {};
