@@ -29,7 +29,7 @@ export default class MessagePanel extends React.Component {
         return (
             <Panel withMixedContent centeredContent className="card-message-panel">
                 <div className="mixed-content">
-                    <img src={icon} aria-hidden="true" />
+                    <img src={icon} aria-hidden="true" alt="" />
                     <h1 className="h2">{header}</h1>
                     <p dangerouslySetInnerHTML={{ __html: text }} />
                     {linkText && link && (
