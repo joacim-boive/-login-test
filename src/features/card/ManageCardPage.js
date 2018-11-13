@@ -158,73 +158,75 @@ export class ManageCardPage extends Component {
                 className="card-manage-card-page"
                 header={i18n('card.manage-card.page-header')}
             >
-                <If
-                    condition={
-                        !applicationSucceeded &&
-                        !createAccountCardError &&
-                        !activationSucceeded &&
-                        !updateAccountCardError
-                    }
-                >
-                    {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
+                <div className="card-manage-card-page-container">
+                    <If
+                        condition={
+                            !applicationSucceeded &&
+                            !createAccountCardError &&
+                            !activationSucceeded &&
+                            !updateAccountCardError
+                        }
+                    >
+                        {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
 
-                    {!hasMainCard && !applicationsPending && (
-                        <ApplyForCardPanel
-                            account={account}
-                            accountTerms={accountTerms}
-                            createAccountCard={createAccountCard}
+                        {!hasMainCard && !applicationsPending && (
+                            <ApplyForCardPanel
+                                account={account}
+                                accountTerms={accountTerms}
+                                createAccountCard={createAccountCard}
+                            />
+                        )}
+
+                        {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
+
+                        {hasMainCard && mainCardIsInactive && (
+                            <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
+                        )}
+
+                        {noOfExtraCards > 0 && (
+                            <ShowExtraCardsPanel cards={extraCards} updateAccountCard={updateAccountCard} />
+                        )}
+                        {noOfExtraCards < 5 && account.numberOfCards < 6 && <ApplyForExtraCardPanel />}
+                        {mainCardIsActive && <BlockCardPanel />}
+                    </If>
+
+                    {applicationSucceeded && (
+                        <UserMessagePanel
+                            icon={happyFace}
+                            header={i18n('card.apply-for-card.success.header')}
+                            text={i18n('card.apply-for-card.success.info')}
+                            linkText={i18n('card.apply-for-card.success.link')}
+                            link="/account/overview"
                         />
                     )}
-
-                    {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
-
-                    {hasMainCard && mainCardIsInactive && (
-                        <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
+                    {createAccountCardError && (
+                        <UserMessagePanel
+                            icon={disappointedFace}
+                            header={i18n('card.apply-for-card.failure.header')}
+                            text={i18n('card.apply-for-card.failure.info')}
+                            buttonText={i18n('card.apply-for-card.failure.button')}
+                            onButtonClick={this.onClickBack}
+                        />
                     )}
-
-                    {noOfExtraCards > 0 && (
-                        <ShowExtraCardsPanel cards={extraCards} updateAccountCard={updateAccountCard} />
+                    {activationSucceeded && (
+                        <UserMessagePanel
+                            icon={happyFace}
+                            header={i18n('card.activate-card.success.header')}
+                            text={i18n('card.activate-card.success.info')}
+                            linkText={i18n('card.activate-card.success.link')}
+                            link="/account/overview"
+                        />
                     )}
-                    {noOfExtraCards < 5 && account.numberOfCards < 6 && <ApplyForExtraCardPanel />}
-                    {mainCardIsActive && <BlockCardPanel />}
-                </If>
-
-                {applicationSucceeded && (
-                    <UserMessagePanel
-                        icon={happyFace}
-                        header={i18n('card.apply-for-card.success.header')}
-                        text={i18n('card.apply-for-card.success.info')}
-                        linkText={i18n('card.apply-for-card.success.link')}
-                        link="/account/overview"
-                    />
-                )}
-                {createAccountCardError && (
-                    <UserMessagePanel
-                        icon={disappointedFace}
-                        header={i18n('card.apply-for-card.failure.header')}
-                        text={i18n('card.apply-for-card.failure.info')}
-                        buttonText={i18n('card.apply-for-card.failure.button')}
-                        onButtonClick={this.onClickBack}
-                    />
-                )}
-                {activationSucceeded && (
-                    <UserMessagePanel
-                        icon={happyFace}
-                        header={i18n('card.activate-card.success.header')}
-                        text={i18n('card.activate-card.success.info')}
-                        linkText={i18n('card.activate-card.success.link')}
-                        link="/account/overview"
-                    />
-                )}
-                {updateAccountCardError && (
-                    <UserMessagePanel
-                        icon={disappointedFace}
-                        header={i18n('card.activate-card.failure.header')}
-                        text={i18n('card.activate-card.failure.info')}
-                        buttonText={i18n('card.activate-card.failure.button')}
-                        onButtonClick={this.onClickBack}
-                    />
-                )}
+                    {updateAccountCardError && (
+                        <UserMessagePanel
+                            icon={disappointedFace}
+                            header={i18n('card.activate-card.failure.header')}
+                            text={i18n('card.activate-card.failure.info')}
+                            buttonText={i18n('card.activate-card.failure.button')}
+                            onButtonClick={this.onClickBack}
+                        />
+                    )}
+                </div>
             </AuthenticatedSubPageTemplate>
         );
     }

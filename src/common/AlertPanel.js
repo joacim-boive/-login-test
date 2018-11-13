@@ -9,14 +9,14 @@ import infoIcon from './images/icon-info-circle.svg';
 import './AlertPanel.scss';
 
 const AlertPanel = ({ header, body, icon, large, className }) => {
-    const ctrClasses = classNames({
+    const containerClasses = classNames({
         'alert-ctr': true,
         large,
     });
     const HTag = large ? 'h3' : 'strong';
     return (
         <Panel withNoPadding stretchInMobile className={className}>
-            <div className={ctrClasses}>
+            <div className={containerClasses}>
                 <img src={icon} />
                 <div>
                     <HTag>{header}</HTag>

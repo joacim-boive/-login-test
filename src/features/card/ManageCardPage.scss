@@ -10,7 +10,7 @@
         text-transform: capitalize;
     }
 
-    .ec-panel { // TODO: don't use compnent classes
+    &-container > div, &-container > section {
         margin-bottom: 20px;
     }
 
