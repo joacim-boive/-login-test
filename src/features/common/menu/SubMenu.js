@@ -43,8 +43,8 @@ export class SubMenu extends React.Component {
     };
 
     handleClick = e => {
-        e.stopPropagation();
-        e.preventDefault();
+        // e.stopPropagation();
+        // e.preventDefault();
         this.closeMenu(e);
     };
 
