@@ -5,7 +5,31 @@ import classNames from 'classnames';
 
 import './SubMenu.scss';
 
+const validatePosition = props => {
+    if (props.top && props.bottom) {
+        return new Error('Only one of "top" and "bottom" can be true');
+    }
+    if (!props.top && !props.bottom) {
+        return new Error('One of "top" or "bottom" must be specified');
+    }
+    return undefined;
+};
+
 export class SubMenu extends React.Component {
+    static propTypes = {
+        show: PropTypes.bool.isRequired,
+        children: PropTypes.node, // SubMenuItems
+        requestClose: PropTypes.func.isRequired,
+        top: validatePosition,
+        bottom: validatePosition,
+    };
+
+    static defaultProps = {
+        children: '',
+        top: false,
+        bottom: false,
+    };
+
     constructor(props) {
         super(props);
         this.arrowRef = React.createRef();
@@ -19,6 +43,8 @@ export class SubMenu extends React.Component {
     };
 
     handleClick = e => {
+        e.stopPropagation();
+        e.preventDefault();
         this.closeMenu(e);
     };
 
@@ -82,40 +108,12 @@ export const SubMenuItem = ({ id, children, linkTo, iconClass, active }) => {
                 active,
             })}
         >
-            <Link
-                id={id}
-                to={linkTo}
-                underline={false}
-            >
+            <Link id={id} to={linkTo} underline={false}>
                 <span className="submenu-item__text">{children}</span>
                 {icon}
             </Link>
         </div>
     );
-};
-
-const validatePosition = props => {
-    if (props.top && props.bottom) {
-        return new Error('Only one of "top" and "bottom" can be true');
-    }
-    if (!props.top && !props.bottom) {
-        return new Error('One of "top" or "bottom" must be specified');
-    }
-    return undefined;
-};
-
-SubMenu.propTypes = {
-    show: PropTypes.bool.isRequired,
-    children: PropTypes.node, // SubMenuItems
-    requestClose: PropTypes.func.isRequired,
-    top: validatePosition,
-    bottom: validatePosition,
-};
-
-SubMenu.defaultProps = {
-    children: '',
-    top: false,
-    bottom: false,
 };
 
 SubMenuItem.propTypes = {
