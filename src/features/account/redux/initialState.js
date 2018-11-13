@@ -32,7 +32,7 @@ const initialState = {
     getAccountCardsError: null,
     getAccountTransactionsPending: false,
     getAccountTransactionsError: null,
-    getAccountsPendzing: false,
+    getAccountsPending: false,
     getAccountsError: null,
     getAccountPaymentTermsPending: false,
     getAccountPaymentTermsError: null,
