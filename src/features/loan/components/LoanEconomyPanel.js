@@ -456,26 +456,28 @@ class LoanEconomyPanel extends Component {
                                     name="hasMortgageLoan"
                                     id="hasMortgageLoan"
                                     ref={this.hasMortgageLoan}
+                                    validationMessage={i18n('loan.economy.mortgage-checkbox-error')}
                                 >
-                                    {i18n('loan.economy.others-checkbox')}
+                                    {i18n('loan.economy.mortgage-checkbox')}
                                 </Checkbox>
                                 {!hasMortgageLoan && (
                                     <Select
                                         required
-                                        label={i18n('loan.economy.others-label')}
+                                        label={i18n('loan.economy.mortgage-cost-label')}
                                         value={monthlyMortgageCost}
                                         onChange={event => {
                                             this.onChange(event, this.formEconomy);
                                         }}
                                         name="monthlyMortgageCost"
                                         ref={this.monthlyMortgageCost}
+                                        validationMessage={i18n('loan.economy.mortgage-cost-error')}
                                     >
-                                        <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span3')} value="3" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span4')} value="4" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span5')} value="5" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span6')} value="6" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span4')} value="4" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span5')} value="5" />
+                                        <Option label={i18n('loan.economy.options.mortgage-loan.span6')} value="6" />
                                     </Select>
                                 )}
                             </section>
@@ -490,6 +492,7 @@ class LoanEconomyPanel extends Component {
                                     name="hasOtherLoan"
                                     id="hasOtherLoan"
                                     ref={this.hasOtherLoan}
+                                    validationMessage={i18n('loan.economy.other-loan-checkbox-error')}
                                 >
                                     {i18n('loan.economy.other-loan-checkbox')}
                                 </Checkbox>
@@ -503,13 +506,14 @@ class LoanEconomyPanel extends Component {
                                         }}
                                         name="monthlyCostOtherLoans"
                                         ref={this.monthlyCostOtherLoans}
+                                        validationMessage={i18n('loan.economy.other-loan-cost-error')}
                                     >
-                                        <Option label={i18n('loan.economy.options.otherLoan.span1')} value="1" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span2')} value="2" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span3')} value="3" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span4')} value="4" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span5')} value="5" />
-                                        <Option label={i18n('loan.economy.options.otherLoan.span6')} value="6" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span1')} value="1" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span2')} value="2" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span3')} value="3" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span4')} value="4" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span5')} value="5" />
+                                        <Option label={i18n('loan.economy.options.other-loan.span6')} value="6" />
                                     </Select>
                                 )}
                             </section>
