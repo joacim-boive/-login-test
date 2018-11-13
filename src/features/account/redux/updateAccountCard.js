@@ -14,28 +14,6 @@ export const updateAccountCard = (customerId, accountRef, card, cvc) => async di
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });
 
-    // CARD
-    // ---
-    // brickId: "113"
-    // cardNumber: "529928XXXXXX5397"
-    // expires:
-    //     month: "10"
-    //     year: "2018"
-    // extraCard: false
-    // holder: "Lars Larsman"
-    // reference: "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx"
-    // status: "INACTIVE"
-    // type: "MASTERCARD HXXX"
-
-    // POST data
-    // ---
-    // status (String) [1]: "ACTIVE". At present only accepts "ACTIVE" value.
-    // cvc (String): The cvc code for the card.
-    // cardNumber (String): the masked card number for this card.
-    // expires
-    //    year (String): Expire year for the card. In format YYYY.
-    //    month (String): Expire month for the card. In format MM.
-
     const cardData = {
         status: 'ACTIVE',
         cvc,

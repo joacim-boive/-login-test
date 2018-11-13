@@ -234,7 +234,6 @@ export class ManageCardPage extends Component {
 
 /* istanbul ignore next */
 function mapStateToProps({ account }) {
-    // const { customerId, accountRef } = route.match.params;
     return {
         account: account.account,
         accountTerms: account.accountTerms,
