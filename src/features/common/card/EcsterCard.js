@@ -22,7 +22,7 @@ export const EcsterCard = ({ className, account, ...rest }) => {
     }
 
     return (
-        <Lazyload alt="card image" className={classes} src={`/v1/cards/${brickId}.png`} widths={[166, 312]} {...rest} />
+        <Lazyload alt="credit card image" className={classes} src={`/v1/cards/${brickId}.png`} widths={[166, 312]} {...rest} />
     );
 };
 
