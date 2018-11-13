@@ -44,7 +44,6 @@ export class SubMenu extends React.Component {
 
     handleClick = e => {
         e.stopPropagation();
-        e.preventDefault();
         this.closeMenu(e);
     };
 
@@ -107,6 +106,7 @@ export const SubMenuItem = ({ id, children, linkTo, iconClass, active }) => {
                 'submenu-item': true,
                 active,
             })}
+            onClick={e => e.stopPropagation()}
         >
             <Link id={id} to={linkTo} underline={false}>
                 <span className="submenu-item__text">{children}</span>
