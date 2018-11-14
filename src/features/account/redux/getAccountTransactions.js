@@ -32,7 +32,7 @@ const concatIfExists = (source, key, values = [], isShortList = false) => ({
 const receivedAllTransactions = (transactions, reservedTransactions) =>
     (!transactions || transactions.length === 0) && (!reservedTransactions || reservedTransactions.length === 0);
 
-export const getAccountTransactions = (customerId, referenceId, filter, isShortList = false) => async (
+export const getAccountTransactions = (customerId, referenceId, filter, isShortList = false, concat = true) => async (
     dispatch,
     getState
 ) => {
@@ -56,6 +56,7 @@ export const getAccountTransactions = (customerId, referenceId, filter, isShortL
             reservedTransactions,
             referenceId,
             isShortList,
+            concat,
         });
     } catch (err) {
         dispatch({
@@ -86,13 +87,13 @@ export function reducer(state, action) {
             return {
                 ...state,
                 accountTransactions: concatIfExists(
-                    state.accountTransactions,
+                    action.concat ? state.accountTransactions : {},
                     action.referenceId,
                     action.transactions,
                     action.isShortList
                 ),
                 accountReservedTransactions: concatIfExists(
-                    state.accountReservedTransactions,
+                    action.concat ? state.accountReservedTransactions : {},
                     action.referenceId,
                     action.reservedTransactions,
                     action.isShortList

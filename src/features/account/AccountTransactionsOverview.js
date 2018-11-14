@@ -25,28 +25,27 @@ const getFilter = (defaultFilter, transactions) =>
 
 export class AccountTransactionsOverview extends Component {
     componentWillMount() {
-        const { account, getTransactions, getAccount, transactions } = this.props;
+        const { account, getAccountTransactions, getAccount, transactions } = this.props;
         if (account.product) {
             const thisFilter = getFilter(defaultFilter, transactions);
-            getTransactions(thisFilter);
+            getAccountTransactions(thisFilter, false, false);
         }
         getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions, account, transactions } = this.props;
+        const { getAccountTransactions, account, transactions } = this.props;
 
         if (nextProps.account.accountNumber !== account.accountNumber) {
             const thisFilter = getFilter(defaultFilter, transactions);
-
-            getTransactions(thisFilter);
+            getAccountTransactions(thisFilter, false, false);
         }
     }
 
     onScrollBottom = () => {
-        const { getTransactions, filter, transactions } = this.props;
+        const { getAccountTransactions, filter, transactions } = this.props;
 
-        getTransactions({
+        getAccountTransactions({
             ...filter,
             maxRecords: filter.maxRecords + filter.stepSize,
             offset: transactions.length || 0,
@@ -107,7 +106,7 @@ export class AccountTransactionsOverview extends Component {
 
 AccountTransactionsOverview.propTypes = {
     getAccount: PropTypes.func.isRequired,
-    getTransactions: PropTypes.func.isRequired,
+    getAccountTransactions: PropTypes.func.isRequired,
     account: PropTypes.shape(),
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
@@ -139,7 +138,8 @@ function mapDispatchToProps(dispatch, state) {
     const { customerId, accountRef } = state.match.params;
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
-        getTransactions: filter => dispatch(getAccountTransactions(customerId, accountRef, filter)),
+        getAccountTransactions: (filter, isShortList, concat) =>
+            dispatch(getAccountTransactions(customerId, accountRef, filter, isShortList, concat)),
     };
 }
 
