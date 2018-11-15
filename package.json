@@ -178,7 +178,7 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
         "@ecster/ecster-rekit-templates": "^1.0.18",
-        "@ecster/ecster-webpack": "^2.0.213",
+        "@ecster/ecster-webpack": "^2.0.221",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "babel-preset-airbnb": "^3.0.1",
