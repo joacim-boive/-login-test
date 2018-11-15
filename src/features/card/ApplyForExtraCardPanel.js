@@ -14,7 +14,7 @@ export default class ApplyForExtraCardPanel extends React.Component {
                     <p>{i18n('card.apply-for-extra-card.info')}</p>
                     <ButtonGroup alignCenter spaceBelow={false}>
                         <LinkButton
-                            href="https://www.ecster.se/pdf.pdf"
+                            href="files/Ecster-ansok-om-extrakort.pdf"
                             target="_blank"
                             round
                             green

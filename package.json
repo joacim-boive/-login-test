@@ -134,6 +134,10 @@
                     "to": "images"
                 },
                 {
+                    "from": "files",
+                    "to": "files"
+                },
+                {
                     "from": "features/card/__test-data__/",
                     "to": "test"
                 }
