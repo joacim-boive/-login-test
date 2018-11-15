@@ -10,7 +10,7 @@ export default class FeedbackPanel extends Component {
     render() {
         return (
             <Panel className="home-feedback-panel" withNoPadding>
-                <img src={feedbackIcon} alt="" />
+                <img src={feedbackIcon} aria-hidden="true" alt="" />
                 <div className="info">
                     <h3 className="e-black">{i18n('home.feedback.header')}</h3>
                     <p>{i18n('home.feedback.info')}</p>

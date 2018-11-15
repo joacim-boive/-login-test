@@ -79,22 +79,20 @@ export class LoanSummaryPage extends Component {
                 typeof isLoanGeneralInformation === 'undefined' ? true : isLoanGeneralInformation;
 
             if (isLoanPersonalInformationValid && isLoanEconomyValid && isLoanGeneralInformation) {
-                thisState = {
+                this.setState({
                     isSubmitted: true,
-                };
+                });
             }
         } else {
             const currentStep = steps[step];
             const nextStep = step + 1;
 
-            thisState = {
+            this.setState({
                 [id]: !this.state[id],
                 [currentStep]: true,
                 currentStep: nextStep,
-            };
+            });
         }
-
-        this.setState(thisState);
     };
 
     handleCollapse = id => {
