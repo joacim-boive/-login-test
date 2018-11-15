@@ -11,7 +11,7 @@ export class ContactUsPage extends Component {
             <AuthenticatedPageTemplate className="customer-contact-us-page" header={i18n('customer.contact-us.header')}>
                 <Panel withMixedContent centeredContent className="mb-8x">
                     <div className="mixed-content">
-                        <img src={balloonSvg} alt="" />
+                        <img src={balloonSvg} aria-hidden="true" alt="" />
                         <h2>{i18n('customer.contact-us.question-panel-text1')}</h2>
                         {i18n('customer.contact-us.question-panel-text2')}
                         <p dangerouslySetInnerHTML={{ __html: i18n('customer.contact-us.question-panel-tel') }} />

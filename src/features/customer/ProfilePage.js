@@ -26,7 +26,7 @@ class ProfilePage extends Component {
         return (
             <FlexPanel>
                 <div key={1} className="summary-panel">
-                    <img src={profileIcon} alt="profile icon" />
+                    <img src={profileIcon} aria-hidden="true" alt="" />
                     <div>
                         <h2>{person.name}</h2>
                         <p>{i18n('customer.profile.info-text')}</p>
