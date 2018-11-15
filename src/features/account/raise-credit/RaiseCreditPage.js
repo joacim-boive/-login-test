@@ -117,7 +117,7 @@ export class RaiseCreditPage extends Component {
                         <NoRaiseMsg />
                         <Panel withMixedContent stretchInMobile>
                             <div className="mixed-content centered-content mb-8x">
-                                <img className="mb-4x" src={walletIcon} alt="wallet icon" />
+                                <img className="mb-4x" src={walletIcon} aria-hidden="true" alt="" />
                                 <h2>{i18n('account.raise-credit.header')}</h2>
                                 <p>{i18n('account.raise-credit.intro')}</p>
                             </div>
@@ -202,7 +202,7 @@ export class RaiseCreditPage extends Component {
 
                 {showView === 'APPROVED' && (
                     <Panel withMixedContent centeredContent className="result-panel">
-                        <img src={happyFace} aria-hidden="true" alt="happy face icon" />
+                        <img src={happyFace} aria-hidden="true" alt="" />
                         <h2>{i18n('account.raise-credit.approved-header')}</h2>
                         <p>
                             {i18n('account.raise-credit.approved-message', {
@@ -216,7 +216,7 @@ export class RaiseCreditPage extends Component {
                 {showView === 'PENDING' && (
                     <Panel withMixedContent centeredContent className="result-panel">
                         <div className="mixed-content">
-                            <img src={pendingIcon} aria-hidden="true" alt="disappointed face icon" />
+                            <img src={pendingIcon} aria-hidden="true" alt="" />
                             <h2>{i18n('account.raise-credit.pending-header')}</h2>
                             {i18n('account.raise-credit.pending-message', {
                                 returnObjects: true,
@@ -231,7 +231,7 @@ export class RaiseCreditPage extends Component {
                 {showView === 'DENIED' && (
                     <Panel withMixedContent centeredContent className="result-panel">
                         <div className="mixed-content">
-                            <img src={disappointedFace} aria-hidden="true" alt="sad face icon" />
+                            <img src={disappointedFace} aria-hidden="true" alt="" />
                             <h2>{i18n('account.raise-credit.denied-header')}</h2>
                             {i18n('account.raise-credit.denied-message', {
                                 returnObjects: true,
@@ -245,7 +245,7 @@ export class RaiseCreditPage extends Component {
                 {showView === 'ERROR' && (
                     <Panel withMixedContent centeredContent className="result-panel">
                         <div className="mixed-content">
-                            <img src={robotFace} aria-hidden="true" alt="sad face icon" />
+                            <img src={robotFace} aria-hidden="true" alt="" />
                             <h2>{i18n('account.raise-credit.error.communication.header')}</h2>
                             <p>{i18n('account.raise-credit.error.communication.body')}</p>
                             <BackToOverviewLink />
