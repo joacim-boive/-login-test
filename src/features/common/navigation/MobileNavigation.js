@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { InteractiveElement } from '@ecster/ecster-components';
 import { BottomNavigation, BottomMenu, MenuItem, MenuItemText, SubMenu, SubMenuItem } from '../menu/index';
@@ -10,6 +10,13 @@ import './MobileNavigation.scss';
 import scrollTopOnLocationChange from './scrollTopOnLocationChange';
 
 class MobileNavigation extends React.Component {
+    static propTypes = {
+        customerId: PropTypes.number.isRequired,
+        history: PropTypes.shape().isRequired,
+        showLoanMenu: PropTypes.bool.isRequired,
+        hasZeroAccounts: PropTypes.bool.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -19,9 +26,10 @@ class MobileNavigation extends React.Component {
     }
 
     toggleSubMenu = e => {
+        const { showSubMenu } = this.state;
         e.stopPropagation();
         e.preventDefault();
-        this.setState({ showSubMenu: !this.state.showSubMenu });
+        this.setState({ showSubMenu: !showSubMenu });
     };
 
     closeSubMenu = () => {
@@ -95,12 +103,5 @@ class MobileNavigation extends React.Component {
         );
     }
 }
-
-MobileNavigation.propTypes = {
-    customerId: PropTypes.number.isRequired,
-    history: PropTypes.shape().isRequired,
-    showLoanMenu: PropTypes.bool.isRequired,
-    hasZeroAccounts: PropTypes.bool.isRequired,
-};
 
 export default withRouter(MobileNavigation);

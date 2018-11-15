@@ -50,6 +50,13 @@
 
     .economy-row {
         margin-bottom: 20px;
+
+        label{
+            display: flex;
+            span:nth-child(n+2){
+                margin-left: 5px;
+            }
+        }
     }
 
     .formEconomy {
