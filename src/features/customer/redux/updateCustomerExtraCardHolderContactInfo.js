@@ -15,7 +15,6 @@ export const updateCustomerExtraCardHolderContactInfo = (customerId, data) => as
     });
 
     try {
-        console.log('updating extra card holder info: ', customerId, data);
         const res = await put(UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_URL(customerId), data);
         dispatch({
             type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_SUCCESS,

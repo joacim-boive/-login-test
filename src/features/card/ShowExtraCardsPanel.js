@@ -18,7 +18,6 @@ export default class ShowExtraCardsPanel extends React.Component {
     render() {
         const { cards, updateAccountCard, updateCustomerExtraCardHolderContactInfo } = this.props;
 
-        console.log('extra cards panel: cards = ', cards);
         return (
             <Panel withMixedContent className="card-show-extra-cards-panel">
                 <div className="narrow-content">

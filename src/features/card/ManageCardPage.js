@@ -247,10 +247,6 @@ export class ManageCardPage extends Component {
     }
 }
 
-const saveCI = (dispatch, customerId, data) => {
-    dispatch(updateCustomerExtraCardHolderContactInfo(customerId, data));
-};
-
 /* istanbul ignore next */
 function mapStateToProps({ account }) {
     return {
@@ -277,7 +273,8 @@ function mapDispatchToProps(dispatch, route) {
         getCustomerExtraCardHolders: () => dispatch(getCustomerExtraCardHolders(customerId)),
         dismissUpdateAccountCardError: () => dispatch(dismissUpdateAccountCardError()),
         dismissCreateAccountCardError: () => dispatch(dismissCreateAccountCardError()),
-        updateCustomerExtraCardHolderContactInfo: data => saveCI(dispatch, customerId, data),
+        updateCustomerExtraCardHolderContactInfo: data =>
+            dispatch(updateCustomerExtraCardHolderContactInfo(customerId, data)),
     };
 }
 

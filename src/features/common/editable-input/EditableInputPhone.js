@@ -162,15 +162,3 @@ EditableInputPhone.defaultProps = {
     label: '',
     strong: true,
 };
-
-// <div className={classes}>
-//     <label>{label}</label>
-//     <div className="flex-row">
-//         <strong>
-//             {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
-//         </strong>
-//         <Button gaLabel="editable-phone-edit" name="edit" onClick={this.onEdit} xSmall round outline>
-//             {i18n('general.edit')}
-//         </Button>
-//     </div>
-// </div>
