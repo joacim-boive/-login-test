@@ -1,5 +1,5 @@
 {
-    "response": { 
+    "response": {
         "cards": [ {
             "holder" : "Lars Larsman",
             "type" : "MASTERCARD HXXX",
@@ -7,7 +7,13 @@
             "status" : "INACTIVE",
             "cardNumber" : "529928XXXXXX5397",
             "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-            "extraCard" : true,
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "81212121"
+                },
+                "ssn": "1212121212"
+            },
             "expires" : {
                 "year" : "2020",
                 "month" : "10"
@@ -19,7 +25,13 @@
             "status" : "INACTIVE",
             "cardNumber" : "529928XXXXXX0294",
             "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-            "extraCard" : true,
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "84545454"
+                },
+                "ssn": "1212121212"
+            },
             "expires" : {
                 "year" : "2020",
                 "month" : "03"
@@ -31,7 +43,13 @@
             "status" : "INACTIVE",
             "cardNumber" : "529928XXXXXX3679",
             "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-            "extraCard" : true,
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "87878787"
+                },
+                "ssn": "1212121212"
+            },
             "expires" : {
                 "year" : "2020",
                 "month" : "03"
@@ -43,7 +61,13 @@
             "status" : "INACTIVE",
             "cardNumber" : "529928XXXXXX3679",
             "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-            "extraCard" : true,
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "86565656"
+                },
+                "ssn": "1212121212"
+            },
             "expires" : {
                 "year" : "2020",
                 "month" : "03"
@@ -55,7 +79,13 @@
             "status" : "INACTIVE",
             "cardNumber" : "529928XXXXXX3679",
             "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
-            "extraCard" : true,
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "82323232"
+                },
+                "ssn": "1212121212"
+            },
             "expires" : {
                 "year" : "2020",
                 "month" : "03"

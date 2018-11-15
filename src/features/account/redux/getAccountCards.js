@@ -44,7 +44,7 @@ const sliceCards = cards => {
     if (cards && cards.length > 0) {
         const result = {};
 
-        const mainCards = cards.filter(card => !card.extraCard);
+        const mainCards = cards.filter(card => !card.extraCardInfo);
 
         if (mainCards && mainCards.length > 0) {
             result.mainCard = mainCards[0]; // eslint-disable-line prefer-destructuring
@@ -54,7 +54,7 @@ const sliceCards = cards => {
         if (mainCards && mainCards.length > 1) {
             result.extraCards = cards.slice(1);
         } else {
-            result.extraCards = cards.filter(card => card.extraCard);
+            result.extraCards = cards.filter(card => !!card.extraCardInfo);
         }
 
         return result;

@@ -1,0 +1,79 @@
+{
+    "account-ino": {
+        "response": {
+            "accountNumber": "9752238000130937",
+            "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "product": {
+                "id": "MCARD004",
+                "name": "Ecster",
+                "cardName": "Ecster kortet                   "
+            },
+            "limit": 4700000,
+            "used": 899900,
+            "maxLimit": 18000000,
+            "overDrawn": false,
+            "allowIncreaseLimit": true,
+            "status": "ACTIVE",
+            "cardProfile": "ecster",
+            "brickId": "130",
+            "reserved": false,
+            "numberOfCards": 3
+        }
+    },
+    "cards-array": {
+        "response": {
+            "cards": [
+                {
+                    "holder": "Lars Larsman",
+                    "type": "MASTERCARD HXXX",
+                    "brickId": "113",
+                    "status": "INACTIVE",
+                    "cardNumber": "529928XXXXXX5397",
+                    "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                    "expires": {
+                        "year": "2019",
+                        "month": "10"
+                    }
+                },
+                {
+                    "holder": "Lisa Larsman",
+                    "type": "MASTERCARD HXXX",
+                    "brickId": "113",
+                    "status": "INACTIVE",
+                    "cardNumber": "529928XXXXXX0294",
+                    "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                    "extraCardInfo": {
+                        "phoneNumber": {
+                            "countryCallingCode": "+46",
+                            "number": "87412121"
+                        },
+                        "ssn": "1212121212"
+                    },
+                    "expires": {
+                        "year": "2019",
+                        "month": "03"
+                    }
+                },
+                {
+                    "holder": "Lena Larsman",
+                    "type": "MASTERCARD HXXX",
+                    "brickId": "113",
+                    "status": "INACTIVE",
+                    "cardNumber": "529928XXXXXX3679",
+                    "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                    "extraCardInfo": {
+                        "phoneNumber": {
+                            "countryCallingCode": "+46",
+                            "number": "87412121"
+                        },
+                        "ssn": "1212121212"
+                    },
+                    "expires": {
+                        "year": "2019",
+                        "month": "03"
+                    }
+                }
+            ]
+        }
+    }
+}
