@@ -256,24 +256,25 @@ class LoanEconomyPanel extends Component {
                                     <div className="input-field">
                                         <div>{i18n('loan.economy.12month')}</div>
                                         <RadioGroup
+                                            component="radio-group"
                                             name="employedMoreThan1Year"
                                             selectedValue={employedMoreThan1Year}
                                             className="radio-buttons"
+                                            onChange={e => this.onChange(e)}
+                                            ref={this.employedMoreThan1Year}
+                                            validationMessage={i18n('loan.economy.12month-error')}
                                         >
                                             <Radio
                                                 className="radio-button"
-                                                onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
-                                                ref={this.employedMoreThan1Year}
-                                                validationMessage={i18n('loan.economy.12month-error')}
                                                 required
                                             />
                                             <Radio
                                                 className="radio-button"
-                                                onChange={e => this.onChange(e)}
                                                 value="no"
                                                 label={i18n('general.answer.no')}
+                                                required
                                             />
                                         </RadioGroup>
                                     </div>
