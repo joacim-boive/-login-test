@@ -2,15 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { ButtonGroup, Button } from '@ecster/ecster-components';
+// import { ButtonGroup, Button } from '@ecster/ecster-components';
+import phoneValidator from '@ecster/ecster-components/Input/validators/mobilePhoneNumberSE';
 import CvcForm from './CvcForm';
 import { Value } from './Value';
 import { formatAccount } from '../../common/util/format-account';
+import { EditableInputPhone } from '../common/editable-input/EditableInputPhone';
 
 export default class ShowExtraCardSubpanel extends React.Component {
     static propTypes = {
         card: PropTypes.shape().isRequired,
         updateAccountCard: PropTypes.func.isRequired,
+        updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
     };
 
     static defaultProps = {};
@@ -21,10 +24,11 @@ export default class ShowExtraCardSubpanel extends React.Component {
     };
 
     render() {
-        const { card } = this.props;
+        const { card, updateCustomerExtraCardHolderContactInfo } = this.props;
 
         const tmpBlock = card.status === 'TEMPORARILY_BLOCKED';
 
+        console.log('card = ', card);
         return (
             <div className="card-show-extra-card-subpanel">
                 <p>
@@ -47,12 +51,22 @@ export default class ShowExtraCardSubpanel extends React.Component {
                     value={i18n(`card.show-card.${card.status}`)}
                     strong={false}
                 />
-                {card.status === 'ACTIVE' && (
-                    <ButtonGroup alignCenter>
-                        <Button round outline>
-                            {i18n('card.show-extra-card.change-button')}
-                        </Button>
-                    </ButtonGroup>
+                {card.extraCardInfo && (
+                    <EditableInputPhone
+                        type="tel"
+                        value={card.extraCardInfo.phoneNumber}
+                        label={i18n('general.address.mobile')}
+                        onSave={value =>
+                            updateCustomerExtraCardHolderContactInfo({
+                                name: card.holder,
+                                ssn: card.extraCardInfo.ssn,
+                                phoneNumber: value,
+                            })
+                        }
+                        validationMessage={i18n('general.validation.phone')}
+                        validator={phoneValidator}
+                        strong={false}
+                    />
                 )}
                 {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} />}
             </div>

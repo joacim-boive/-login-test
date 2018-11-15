@@ -10,12 +10,13 @@ export default class ShowExtraCardsPanel extends React.Component {
     static propTypes = {
         cards: PropTypes.shape().isRequired,
         updateAccountCard: PropTypes.func.isRequired,
+        updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
     };
 
     static defaultProps = {};
 
     render() {
-        const { cards, updateAccountCard } = this.props;
+        const { cards, updateAccountCard, updateCustomerExtraCardHolderContactInfo } = this.props;
 
         console.log('extra cards panel: cards = ', cards);
         return (
@@ -25,7 +26,11 @@ export default class ShowExtraCardsPanel extends React.Component {
                     <div className="extra-cards">
                         {cards &&
                             cards.map(card => (
-                                <ShowExtraCardSubpanel card={card} updateAccountCard={updateAccountCard} />
+                                <ShowExtraCardSubpanel
+                                    card={card}
+                                    updateAccountCard={updateAccountCard}
+                                    updateCustomerExtraCardHolderContactInfo={updateCustomerExtraCardHolderContactInfo}
+                                />
                             ))}
                     </div>
                 </div>

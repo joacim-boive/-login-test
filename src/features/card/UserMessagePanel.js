@@ -32,18 +32,20 @@ export default class MessagePanel extends React.Component {
                     <img src={icon} aria-hidden="true" alt="" />
                     <h1 className="h2">{header}</h1>
                     <p dangerouslySetInnerHTML={{ __html: text }} />
-                    {linkText && link && (
-                        <Link iconLeft="icon-chevron-left" to={link}>
-                            {linkText}
-                        </Link>
-                    )}
-                    {buttonText && onButtonClick && (
-                        <ButtonGroup alignCenter spaceBelow={false}>
-                            <Button transparent iconLeft="icon-chevron-left" onClick={onButtonClick}>
-                                {buttonText}
-                            </Button>
-                        </ButtonGroup>
-                    )}
+                    {linkText &&
+                        link && (
+                            <Link iconLeft="icon-chevron-left" to={link}>
+                                {linkText}
+                            </Link>
+                        )}
+                    {buttonText &&
+                        onButtonClick && (
+                            <ButtonGroup alignCenter spaceBelow={false}>
+                                <Button transparent iconLeft="icon-chevron-left" onClick={onButtonClick}>
+                                    {buttonText}
+                                </Button>
+                            </ButtonGroup>
+                        )}
                 </div>
             </Panel>
         );

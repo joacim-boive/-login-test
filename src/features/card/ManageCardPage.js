@@ -27,7 +27,7 @@ import {
     dismissCreateAccountCardError,
 } from '../account/redux/actions';
 
-import { getCustomerExtraCardHolders } from '../customer/redux/actions';
+import { getCustomerExtraCardHolders, updateCustomerExtraCardHolderContactInfo } from '../customer/redux/actions';
 
 const If = ({ condition, children }) => condition && children;
 If.propTypes = {
@@ -54,6 +54,7 @@ export class ManageCardPage extends Component {
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
         getCustomerExtraCardHolders: PropTypes.func.isRequired,
+        updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
 
         createAccountCard: PropTypes.func.isRequired,
         updateAccountCard: PropTypes.func.isRequired,
@@ -127,6 +128,7 @@ export class ManageCardPage extends Component {
             updateAccountCard,
             createAccountCardError,
             updateAccountCardError,
+            updateCustomerExtraCardHolderContactInfo,
         } = this.props;
 
         const hasMainCard = !!accountCard;
@@ -176,22 +178,28 @@ export class ManageCardPage extends Component {
                     >
                         {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
 
-                        {!hasMainCard && !applicationsPending && (
-                            <ApplyForCardPanel
-                                account={account}
-                                accountTerms={accountTerms}
-                                createAccountCard={createAccountCard}
-                            />
-                        )}
+                        {!hasMainCard &&
+                            !applicationsPending && (
+                                <ApplyForCardPanel
+                                    account={account}
+                                    accountTerms={accountTerms}
+                                    createAccountCard={createAccountCard}
+                                />
+                            )}
 
                         {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
 
-                        {hasMainCard && mainCardIsInactive && (
-                            <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
-                        )}
+                        {hasMainCard &&
+                            mainCardIsInactive && (
+                                <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
+                            )}
 
                         {noOfExtraCards > 0 && (
-                            <ShowExtraCardsPanel cards={extraCards} updateAccountCard={updateAccountCard} />
+                            <ShowExtraCardsPanel
+                                cards={extraCards}
+                                updateAccountCard={updateAccountCard}
+                                updateCustomerExtraCardHolderContactInfo={updateCustomerExtraCardHolderContactInfo}
+                            />
                         )}
                         {noOfExtraCards < 5 && account.numberOfCards < 6 && <ApplyForExtraCardPanel />}
                         {mainCardIsActive && <BlockCardPanel />}
@@ -239,6 +247,10 @@ export class ManageCardPage extends Component {
     }
 }
 
+const saveCI = (dispatch, customerId, data) => {
+    dispatch(updateCustomerExtraCardHolderContactInfo(customerId, data));
+};
+
 /* istanbul ignore next */
 function mapStateToProps({ account }) {
     return {
@@ -265,6 +277,7 @@ function mapDispatchToProps(dispatch, route) {
         getCustomerExtraCardHolders: () => dispatch(getCustomerExtraCardHolders(customerId)),
         dismissUpdateAccountCardError: () => dispatch(dismissUpdateAccountCardError()),
         dismissCreateAccountCardError: () => dispatch(dismissCreateAccountCardError()),
+        updateCustomerExtraCardHolderContactInfo: data => saveCI(dispatch, customerId, data),
     };
 }
 

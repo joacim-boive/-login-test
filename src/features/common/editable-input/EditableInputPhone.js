@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
+import IconButton from '@ecster/ecster-components/Clickable/IconButton';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInputPhone.scss';
 import CountrySelect from './CountryCodeSelect';
@@ -72,7 +73,7 @@ export class EditableInputPhone extends Component {
     };
 
     render() {
-        const { className, label, validator, validationMessage, ...rest } = this.props;
+        const { className, label, validator, validationMessage, strong, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -123,14 +124,20 @@ export class EditableInputPhone extends Component {
             </div>
         ) : (
             <div className={classes}>
-                <label>{label}</label>
                 <div className="flex-row">
-                    <strong>
-                        {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
-                    </strong>
-                    <Button gaLabel="editable-phone-edit" name="edit" onClick={this.onEdit} xSmall round outline>
-                        {i18n('general.edit')}
-                    </Button>
+                    <label>{label}</label>
+                    <div>
+                        <span className={strong ? 'strong' : ''}>
+                            {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
+                        </span>
+                        <IconButton
+                            gaLabel="editable-phone-edit"
+                            name="edit"
+                            onClick={this.onEdit}
+                            icon="icon-edit"
+                            className="ml-3x e-green120"
+                        />
+                    </div>
                 </div>
             </div>
         );
@@ -145,6 +152,7 @@ EditableInputPhone.propTypes = {
     label: PropTypes.string,
     validator: PropTypes.string.isRequired,
     validationMessage: PropTypes.string.isRequired,
+    strong: PropTypes.bool,
 };
 
 EditableInputPhone.defaultProps = {
@@ -152,4 +160,17 @@ EditableInputPhone.defaultProps = {
     value: {},
     countryCode: '',
     label: '',
+    strong: true,
 };
+
+// <div className={classes}>
+//     <label>{label}</label>
+//     <div className="flex-row">
+//         <strong>
+//             {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
+//         </strong>
+//         <Button gaLabel="editable-phone-edit" name="edit" onClick={this.onEdit} xSmall round outline>
+//             {i18n('general.edit')}
+//         </Button>
+//     </div>
+// </div>
