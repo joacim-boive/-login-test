@@ -4,18 +4,20 @@ import classNames from 'classnames';
 import { Link } from '@ecster/ecster-components';
 import './ArrowLink.scss';
 
-export const ArrowLink = ({ className, icon, text, onClick, to, ...rest }) => {
+export const ArrowLink = ({ icon, text, onClick, to, badge }) => {
     const classes = classNames({
         'arrow-link': true,
         'no-underline': true,
-        [className]: className,
     });
 
+    //    const theBadge = badge ? <div className="badge">{badge}</div> : undefined;
+
     return (
-        <Link {...rest} to={to} onClick={onClick} className={classes} underline={false}>
+        <Link to={to} onClick={onClick} className={classes} underline={false}>
             {icon ? <i className={icon} /> : null}
             <div className="arrow-link__wrapper">
                 <div>{text}</div>
+                {badge ? <div className="badge">{badge}</div> : ''}
                 <i className="icon-chevron-right" />
             </div>
         </Link>

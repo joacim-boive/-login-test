@@ -5,18 +5,21 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { ArrowLink } from '../../common/arrow-link/ArrowLink';
 import './AccountLinksPanel.scss';
 
-export const AccountLinksPanel = ({ className, account, customer, ...rest }) => {
+export const AccountLinksPanel = ({ account, customer, hasInactiveCards }) => {
     const classes = classNames({
         'account-links-panel': true,
-        [className]: className,
     });
 
     if (!account) return null;
 
     const hasCard = account.numberOfCards > 0;
 
+    console.log('links: hasInactiveCards: ', hasInactiveCards);
+
+    const activateCards = hasInactiveCards && 'Aktivera';
+
     return (
-        <div {...rest} className={classes}>
+        <div className={classes}>
             <ArrowLink
                 text={i18n('account.links.transactions')}
                 icon="icon-minimize-2"
@@ -46,6 +49,7 @@ export const AccountLinksPanel = ({ className, account, customer, ...rest }) => 
                 icon="icon-book"
                 to={`/card/${account.reference}/customer/${customer.id}`}
                 id="arrow-link-account-overview-manage-cards"
+                badge={activateCards}
             />
             <ArrowLink
                 text={i18n('account.links.terms')}
@@ -58,11 +62,9 @@ export const AccountLinksPanel = ({ className, account, customer, ...rest }) => 
 };
 
 AccountLinksPanel.propTypes = {
-    className: PropTypes.string,
     account: PropTypes.shape().isRequired,
     customer: PropTypes.shape().isRequired,
+    hasInactiveCards: PropTypes.bool.isRequired,
 };
 
-AccountLinksPanel.defaultProps = {
-    className: '',
-};
+AccountLinksPanel.defaultProps = {};

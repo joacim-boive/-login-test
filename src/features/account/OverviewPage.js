@@ -5,7 +5,7 @@ import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import AuthenticatedPageTemplate from '../common/templates/AuthenticatedPageTemplate';
 import FeedbackPanel from '../home/FeedbackPanel';
 import OnboardingDialog from '../common/alpha/OnboardingDialog';
-import { getAccounts } from './redux/getAccounts';
+import { getAccounts } from './redux/actions';
 import AccountPanel from './components/AccountPanel';
 import AccountPanelTerminatedAccount from './components/AccountPanelTerminatedAccount';
 import NoAccountsPanel from './no-account/NoAccountsPanel';
@@ -81,7 +81,7 @@ function mapStateToProps({ account, authentication }) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        getAccounts: userId => dispatch(getAccounts(userId)),
+        getAccounts: customerId => dispatch(getAccounts(customerId)),
     };
 }
 

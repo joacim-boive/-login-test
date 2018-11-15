@@ -11,7 +11,7 @@ import { GET_ACCOUNT_CARDS_URL } from './urls';
 
 const testNo = window.location.hash.split('test=')[1]; // ...?test=01
 
-export const getAccountCards = (customerId, referenceId) => async dispatch => {
+export const getAccountCards = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_CARDS_BEGIN,
     });
@@ -19,10 +19,11 @@ export const getAccountCards = (customerId, referenceId) => async dispatch => {
     try {
         const res = testNo
             ? await get(`test/${testNo}-cards.json`)
-            : await get(GET_ACCOUNT_CARDS_URL(customerId, referenceId));
+            : await get(GET_ACCOUNT_CARDS_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
             data: res.response,
+            accountRef,
         });
     } catch (err) {
         dispatch({
@@ -76,8 +77,8 @@ export function reducer(state, action) {
             const slicedCards = sliceCards(action.data.cards);
             return {
                 ...state,
-                accountCard: slicedCards.mainCard,
-                extraCards: slicedCards.extraCards,
+                accountCards: { ...state.accountCards, [action.accountRef]: slicedCards.mainCard },
+                extraCards: { ...state.extraCards, [action.accountRef]: slicedCards.extraCards },
                 getAccountCardsPending: false,
                 getAccountCardsError: null,
             };

@@ -27,7 +27,7 @@ import {
     dismissCreateAccountCardError,
 } from '../account/redux/actions';
 
-import { getCustomerExtraCardHolders, updateCustomerExtraCardHolderContactInfo } from '../customer/redux/actions';
+import { updateCustomerExtraCardHolderContactInfo } from '../customer/redux/actions';
 
 const If = ({ condition, children }) => condition && children;
 If.propTypes = {
@@ -53,7 +53,6 @@ export class ManageCardPage extends Component {
         getAccount: PropTypes.func.isRequired,
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
-        getCustomerExtraCardHolders: PropTypes.func.isRequired,
         updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
 
         createAccountCard: PropTypes.func.isRequired,
@@ -88,9 +87,6 @@ export class ManageCardPage extends Component {
         if (nextProps.account.numberOfCards > 0 && !nextProps.accountCard && !requestedCards) {
             this.setState({ requestedCards: true });
             getAccountCards();
-        }
-
-        if (nextProps.extraCards && nextProps.extraCards.length > 0) {
         }
 
         if (operationSucceeded('createAccountCard', this.props, nextProps)) {
@@ -252,8 +248,9 @@ function mapStateToProps({ account }) {
     return {
         account: account.account,
         accountTerms: account.accountTerms,
-        accountCard: account.accountCard,
-        extraCards: account.extraCards,
+        accountCard:
+            account.account && account.accountCards ? account.accountCards[account.account.reference] : undefined,
+        extraCards: account.account && account.extraCards ? account.extraCards[account.account.reference] : undefined,
         updateAccountCardPending: account.updateAccountCardPending,
         updateAccountCardError: account.updateAccountCardError,
         createAccountCardPending: account.createAccountCardPending,
@@ -270,7 +267,6 @@ function mapDispatchToProps(dispatch, route) {
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),
         createAccountCard: () => dispatch(createAccountCard(customerId, accountRef)),
-        getCustomerExtraCardHolders: () => dispatch(getCustomerExtraCardHolders(customerId)),
         dismissUpdateAccountCardError: () => dispatch(dismissUpdateAccountCardError()),
         dismissCreateAccountCardError: () => dispatch(dismissCreateAccountCardError()),
         updateCustomerExtraCardHolderContactInfo: data =>

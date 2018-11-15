@@ -28,5 +28,13 @@
                 }
             }
         }
+
+        .badge {
+            font-size: 13px;
+            padding: 1px 10px;
+            background: $purple20;
+            color: $purple120;
+            border-radius: 10px;
+        }
     }
 }
