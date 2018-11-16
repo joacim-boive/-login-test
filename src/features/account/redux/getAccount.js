@@ -22,7 +22,7 @@ export const getAccount = (customerId, accountRef) => async dispatch => {
             : await get(GET_ACCOUNT_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_SUCCESS,
-            data: res.response,
+            data: testNo ? { ...res.response, reference: 'XYZ0123456789' } : res.response,
         });
     } catch (err) {
         dispatch({

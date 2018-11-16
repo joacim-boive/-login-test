@@ -7,7 +7,7 @@
                 "brickId": "113",
                 "status": "ACTIVE",
                 "cardNumber": "529928XXXXXX5397",
-                "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                "reference": "XYZ0123456789",
                 "expires": {
                     "year": "2021",
                     "month": "10"
@@ -19,7 +19,7 @@
                 "brickId": "113",
                 "status": "TEMPORARILY_BLOCKED",
                 "cardNumber": "529928XXXXXX5397",
-                "reference": "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+                "reference": "XYZ0123456789",
                 "extraCardInfo": {
                     "phoneNumber": {
                         "countryCallingCode": "+46",

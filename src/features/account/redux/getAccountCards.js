@@ -23,7 +23,7 @@ export const getAccountCards = (customerId, accountRef) => async dispatch => {
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
             data: res.response,
-            accountRef,
+            accountRef: testNo ? 'XYZ0123456789' : accountRef,
         });
     } catch (err) {
         dispatch({

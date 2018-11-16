@@ -6,7 +6,7 @@
             "brickId" : "113",
             "status" : "ACTIVE",
             "cardNumber" : "529928XXXXXX5397",
-            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "reference": "XYZ0123456789",
             "extraCard" : false,
             "expires" : {
                 "year" : "2018",
@@ -18,7 +18,7 @@
             "brickId" : "113",
             "status" : "ACTIVE",
             "cardNumber" : "529928XXXXXX0294",
-            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "reference": "XYZ0123456789",
             "extraCard" : false,
             "expires" : {
                 "year" : "2019",
@@ -30,7 +30,7 @@
             "brickId" : "113",
             "status" : "ACTIVE",
             "cardNumber" : "529928XXXXXX3679",
-            "reference" : "CHMNc3UHD1FUCXUBQ3JmRARWNzdGVyLVNIQgxxxxx",
+            "reference": "XYZ0123456789",
             "extraCard" : false,
             "expires" : {
                 "year" : "2019",
