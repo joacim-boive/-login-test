@@ -26,15 +26,4 @@ const reducerMap = {
     card: cardReducer,
 };
 
-const appReducer = combineReducers(reducerMap);
-
-const rootReducer = (state, action) => {
-    let nextState = state;
-    if (action.type === 'CLEAR_STATE') {
-        console.log('CLEANING REDUX STATE...');
-        // nextState = undefined;
-    }
-    return appReducer(nextState, action);
-};
-
-export default rootReducer;
+export default combineReducers(reducerMap);
