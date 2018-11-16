@@ -22,8 +22,19 @@ const reducerMap = {
     authentication: authenticationReducer,
     customer: customerReducer,
     loan: loanReducer,
-  invoice: invoiceReducer,
-  card: cardReducer,
+    invoice: invoiceReducer,
+    card: cardReducer,
 };
 
-export default combineReducers(reducerMap);
+const appReducer = combineReducers(reducerMap);
+
+const rootReducer = (state, action) => {
+    let nextState = state;
+    if (action.type === 'CLEAR_STATE') {
+        console.log('CLEANING REDUX STATE...');
+        // nextState = undefined;
+    }
+    return appReducer(nextState, action);
+};
+
+export default rootReducer;
