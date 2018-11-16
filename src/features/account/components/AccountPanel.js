@@ -45,16 +45,7 @@ class AccountPanel extends Component {
     }
 
     render() {
-        const {
-            className,
-            account,
-            bills,
-            transactions,
-            totalTransactions,
-            accountCard,
-            extraCards,
-            user,
-        } = this.props;
+        const { className, account, bills, transactions, totalTransactions, user } = this.props;
 
         const { hasInactiveCards } = this.state;
 
@@ -68,11 +59,6 @@ class AccountPanel extends Component {
         const noCard = account.numberOfCards === 0;
         const showOverdrawn = account.limit - account.used <= -500 * 100; // compare in "öre"
         const amountLabel = i18n('account.header.left-to-buy');
-
-        console.log('panel: no of cards: ', account.numberOfCards);
-        console.log('panel: hasInactiveCards: ', hasInactiveCards);
-        console.log('panel: accountCard: ', accountCard);
-        console.log('panel: extraCards: ', extraCards);
 
         return (
             <Panel withFullWidthContent className={classes}>

@@ -38,7 +38,7 @@ const reducers = [
     updateAccountReducer,
     updateAccountTransactionPartPaymentReducer,
     updateAccountCardReducer,
-  createAccountCardReducer,
+    createAccountCardReducer,
 ];
 
 export default function reducer(state = initialState, action) {

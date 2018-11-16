@@ -1,2 +1,13 @@
 .card-apply-for-card-panel {
+    .info-panel {
+        padding: 20px 0;
+        .column {
+            & > :first-child {
+                margin-top: 0;
+            }
+            & > :last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
 }

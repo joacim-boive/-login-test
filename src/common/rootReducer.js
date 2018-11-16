@@ -22,8 +22,8 @@ const reducerMap = {
     authentication: authenticationReducer,
     customer: customerReducer,
     loan: loanReducer,
-  invoice: invoiceReducer,
-  card: cardReducer,
+    invoice: invoiceReducer,
+    card: cardReducer,
 };
 
 export default combineReducers(reducerMap);

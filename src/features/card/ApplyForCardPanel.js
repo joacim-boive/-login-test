@@ -33,8 +33,8 @@ export default class ApplyForCardPanel extends React.Component {
                         <EcsterCard account={account} />
                         <h1 className="h2">{i18n('card.apply-for-card.header', { cardName })}</h1>
                         <p>{i18n('card.apply-for-card.info')}</p>
-                        <FlexPanel>
-                            <div className="column-1">
+                        <FlexPanel className="info-panel">
+                            <div className="column column-1">
                                 <p>
                                     <strong>{i18n('card.apply-for-card.sub-header1')}</strong>
                                 </p>
@@ -54,7 +54,7 @@ export default class ApplyForCardPanel extends React.Component {
                                     }}
                                 />
                             </div>
-                            <div className="column-2">
+                            <div className="column column-2">
                                 <p>
                                     <strong>{i18n('card.apply-for-card.sub-header2')}</strong>
                                 </p>
