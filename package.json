@@ -224,7 +224,7 @@
         "@ecster/ecster-i18n": "^3.0.69",
         "@ecster/ecster-net": "^2.0.100",
         "@ecster/ecster-styles": "^3.0.220",
-        "@ecster/ecster-util": "^2.0.81",
+        "@ecster/ecster-util": "^2.0.84",
         "@ecster/ecster-validation": "^2.0.63",
         "ajv": "^6.5.5",
         "babel-plugin-module-resolver": "^3.1.1",
