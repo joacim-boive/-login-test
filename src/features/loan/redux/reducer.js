@@ -14,20 +14,23 @@ import { reducer as getPromissoryNotePaymentTermsReducer } from './getPromissory
 import { reducer as createCustomerPromissoryNoteReducer } from './createCustomerPromissoryNote';
 
 const reducers = [
-  getCustomerPromissoryNotesReducer,
-  getActivePromissoryNoteCampaignsReducer,
-  getPromissoryNoteDefaultParametersReducer,
-  getPromissoryNotePaymentTermsReducer,
-  createCustomerPromissoryNoteReducer,
+    getCustomerPromissoryNotesReducer,
+    getActivePromissoryNoteCampaignsReducer,
+    getPromissoryNoteDefaultParametersReducer,
+    getPromissoryNotePaymentTermsReducer,
+    createCustomerPromissoryNoteReducer,
 ];
 
 export default function reducer(state = initialState, action) {
-  let newState;
-  switch (action.type) {
-    // Handle cross-topic actions here
-    default:
-      newState = state;
-      break;
-  }
-  return reducers.reduce((s, r) => r(s, action), newState);
+    let nextState;
+    switch (action.type) {
+        // Handle cross-topic actions here
+        case 'CLEAR_STATE':
+            nextState = initialState;
+            break;
+        default:
+            nextState = state;
+            break;
+    }
+    return reducers.reduce((s, r) => r(s, action), nextState);
 }
