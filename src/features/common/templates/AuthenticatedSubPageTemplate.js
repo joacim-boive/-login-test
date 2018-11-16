@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Mobile, TabletOrDesktop } from '@ecster/ecster-components';
+import { Link, Mobile, TabletOrDesktop } from '@ecster/ecster-components';
 import MobileNavigation from '../navigation/MobileNavigation';
 import TabletDesktopNavigation from '../navigation/TabletDesktopNavigation';
 import MessagePanel from '../MessagePanel';
@@ -30,7 +29,7 @@ class AuthenticatedSubPageTemplate extends Component {
         const renderHeader = header && (
             <div className="page-header">
                 <div className="page-header-content">
-                    <Link to={linkTo} href={linkTo} className="no-underline">
+                    <Link to={linkTo} underline={false}>
                         <i className="icon-arrow-left" />
                     </Link>
                     <h1>{header}</h1>
@@ -83,7 +82,7 @@ AuthenticatedSubPageTemplate.propTypes = {
 AuthenticatedSubPageTemplate.defaultProps = {
     className: '',
     header: undefined,
-    linkTo: '',
+    linkTo: '/account/overview',
     showLoanMenu: undefined, // undefined important, used in componentDidUpdate
 };
 
