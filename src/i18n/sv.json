@@ -296,7 +296,8 @@
             "inactive": "Inaktivt"
         },
         "manage-card": {
-            "page-header": "Hantera kort"
+            "page-header": "Hantera kort",
+            "page-header-no-card": "Beställ kort"
         },
         "apply-for-card": {
             "header":"Koppla ett kort till ditt konto",

@@ -158,11 +158,10 @@ export class ManageCardPage extends Component {
         console.log('activation failed          = ', updateAccountCardError);
         console.log('=====================================================================');
 
+        const pageHeader = i18n(`card.manage-card.page-header${account.numberOfCards === 0 ? '-no-card' : ''}`);
+
         return (
-            <AuthenticatedSubPageTemplate
-                className="card-manage-card-page"
-                header={i18n('card.manage-card.page-header')}
-            >
+            <AuthenticatedSubPageTemplate className="card-manage-card-page" header={pageHeader}>
                 <div className="card-manage-card-page-container">
                     <If
                         condition={
