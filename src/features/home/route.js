@@ -13,6 +13,5 @@ export default {
             isPublic: true,
             childRoutes: [],
         },
-        { path: '/loggedout', name: 'After logout', component: AfterLogout, isPublic: true },
     ],
 };

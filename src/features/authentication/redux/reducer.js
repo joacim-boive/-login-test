@@ -13,6 +13,7 @@ import { reducer as getSessionReducer } from './getSession';
 import { reducer as setNextRouteReducer } from './setNextRoute';
 import { reducer as clearNextRouteReducer } from './clearNextRoute';
 import { reducer as removeSessionReducer } from './removeSession';
+import { reducer as clearJustLoggedOutReducer } from './clearJustLoggedOut';
 
 const reducers = [
     deleteSessionReducer,
@@ -21,6 +22,7 @@ const reducers = [
     setNextRouteReducer,
     clearNextRouteReducer,
     removeSessionReducer,
+    clearJustLoggedOutReducer,
 ];
 
 export default function reducer(state = initialState, action) {
@@ -28,8 +30,10 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         // Handle cross-topic actions here
         case 'CLEAR_STATE':
-            console.log('authentication: next state = ', initialState);
+            console.log('auth: Clear state: ', initialState);
             nextState = initialState;
+            nextState.loginStatus = nextState.loginStatus || {};
+            nextState.loginStatus.justLoggedOut = true;
             break;
         default:
             nextState = state;

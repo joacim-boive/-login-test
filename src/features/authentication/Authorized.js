@@ -38,7 +38,7 @@ class Authorized extends React.Component {
         // if (!nextRoute.match(/\/authentication\/logout/)) {
         //     setNextRoute(nextRoute);
         // }
-        return <Redirect to="/loggedout" />;
+        return <Redirect to="/" />;
     }
 }
 
