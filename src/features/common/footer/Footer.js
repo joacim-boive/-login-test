@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-
 import classNames from 'classnames';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { Logo, TabletOrDesktop, Link } from '@ecster/ecster-components';
 
 import './Footer.scss';
-
-import { Logo, TabletOrDesktop } from '@ecster/ecster-components';
 
 export const Footer = ({ className, ...rest }) => {
     const classes = classNames({
