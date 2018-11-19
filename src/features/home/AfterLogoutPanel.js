@@ -19,7 +19,7 @@ export default class AfterLogoutPanel extends React.Component {
         const { loginAgain } = this.props;
 
         return (
-            <Panel withMixedContent centeredContent stretchInMobile>
+            <Panel withMixedContent centeredContent sideMarginsInMobile className="after-logout-info">
                 <div className="mixed-content">
                     <img src={icon} className="mb-4x" />
                     <h2>{i18n('home.after-logout.header')}</h2>
