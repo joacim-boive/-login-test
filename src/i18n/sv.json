@@ -348,7 +348,7 @@
             },
             "failure": {
                 "header":"Åh nej!",
-                "info": "Ditt kort kunde inte aktiveras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
+                "info": "Kortet kunde inte aktiveras. Ring oss gärna på $t(general.phone-link-08343550) så hjälper vi till.",
                 "button": "Tillbaka till kontoöversikt"
             }
 
