@@ -58,7 +58,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                             onClick={this.startLogin}
                             round
                             name="login-button"
-                            gaLabel="mobile-bankid-other-device-touch"
+                            gaLabel="login-mobile-bankid-other-device"
                         >
                             {i18n('login-button')}
                         </Button>
@@ -70,7 +70,7 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                             transparent
                             iconLeft="icon-chevron-left"
                             name="to-mbid-this-device-button"
-                            gaLabel="mobile-bankid-this-device-touch"
+                            gaLabel="to-mobile-bankid-this-device"
                         >
                             {i18n(`to-mbid-this-device-button`)}
                         </Button>
