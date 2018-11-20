@@ -46,7 +46,7 @@ export class EditableInputPhone extends Component {
     };
 
     onEdit = () => {
-        this.setState({ editMode: true }, () => {
+        this.setState({ editMode: true, valueUnedited: this.props.value }, () => {
             this.phoneRef.current.getInputEl().focus();
         });
     };
