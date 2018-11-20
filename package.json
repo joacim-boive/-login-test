@@ -231,7 +231,7 @@
         "@ecster/ecster-analytics": "^4.0.122",
         "@ecster/ecster-components": "^2.0.568",
         "@ecster/ecster-i18n": "^3.0.69",
-        "@ecster/ecster-net": "^2.0.102",
+        "@ecster/ecster-net": "^2.0.104",
         "@ecster/ecster-styles": "^3.0.220",
         "@ecster/ecster-util": "^2.0.81",
         "@ecster/ecster-validation": "^2.0.63",
