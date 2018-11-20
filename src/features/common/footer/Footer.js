@@ -20,10 +20,10 @@ export const Footer = ({ className, ...rest }) => {
                 </div>
                 <Logo id="footer-logo" withName width="140px" height="35px" />
                 <div className="links ends">
-                    <Link name="block-card" to="/customer/support">
+                    <Link id="block-card-link" to="/customer/support">
                         {i18n('footer.block-card')}
                     </Link>
-                    <Link name="contact" to="/customer/support">
+                    <Link id="customer-support-link" to="/customer/support">
                         {i18n('footer.contact')}
                     </Link>
                 </div>
