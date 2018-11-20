@@ -69,7 +69,7 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
                     </ButtonGroup>
 
                     <ButtonGroup alignCenter space={false}>
-                        <Button onClick={this.startBidLogin} transparent name="login-bankid-this-device">
+                        <Button onClick={this.startBidLogin} transparent name="login-bankid">
                             {i18n('login-button-bid')}
                         </Button>
                     </ButtonGroup>

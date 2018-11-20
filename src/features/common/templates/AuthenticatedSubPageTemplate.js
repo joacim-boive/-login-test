@@ -29,7 +29,7 @@ class AuthenticatedSubPageTemplate extends Component {
         const renderHeader = header && (
             <div className="page-header">
                 <div className="page-header-content">
-                    <Link to={linkTo} underline={false} gaLabel="back-link">
+                    <Link to={linkTo} underline={false} gaLabel="sub-page-back-link">
                         <i className="icon-arrow-left" />
                     </Link>
                     <h1>{header}</h1>
