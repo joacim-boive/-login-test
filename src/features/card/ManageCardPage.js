@@ -173,21 +173,19 @@ export class ManageCardPage extends Component {
                     >
                         {applicationsPending && <PendingCardsInfoPanel noOfPendingCards={noOfPendingCards} />}
 
-                        {!hasMainCard &&
-                            !applicationsPending && (
-                                <ApplyForCardPanel
-                                    account={account}
-                                    accountTerms={accountTerms}
-                                    createAccountCard={createAccountCard}
-                                />
-                            )}
+                        {!hasMainCard && !applicationsPending && (
+                            <ApplyForCardPanel
+                                account={account}
+                                accountTerms={accountTerms}
+                                createAccountCard={createAccountCard}
+                            />
+                        )}
 
                         {hasMainCard && <ShowCardPanel account={account} accountCard={accountCard} />}
 
-                        {hasMainCard &&
-                            mainCardIsInactive && (
-                                <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
-                            )}
+                        {hasMainCard && mainCardIsInactive && (
+                            <ActivateCardPanel card={accountCard} updateAccountCard={updateAccountCard} />
+                        )}
 
                         {noOfExtraCards > 0 && (
                             <ShowExtraCardsPanel
