@@ -11,17 +11,17 @@ import cardRoute from '../features/card/route';
 
 // NOTE: DO NOT CHANGE the 'childRoutes' name and the declaration pattern.
 // This is used for Rekit cmds to register routes config for new features, and remove config when remove features, etc.
-const childRoutes = [homeRoute, commonRoute, accountRoute, authenticationRoute, customerRoute, loanRoute, invoiceRoute, cardRoute];
+const childRoutes = [
+    homeRoute,
+    commonRoute,
+    accountRoute,
+    authenticationRoute,
+    customerRoute,
+    loanRoute,
+    invoiceRoute,
+    cardRoute,
+];
 
-// const routes = [
-//     {
-//         path: '/',
-//         component: App,
-//         childRoutes: [...childRoutes, { path: '*', name: 'Page not found', component: PageNotFound }].filter(
-//             r => r.component || (r.childRoutes && r.childRoutes.length > 0)
-//         ),
-//     },
-// ];
 const routes = [
     {
         path: '/',
