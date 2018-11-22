@@ -8,8 +8,8 @@ import {
     Form,
     Input,
     Option,
-    // Radio,
-    // RadioGroup,
+    Radio,
+    RadioGroup,
     ResponsivePanel,
     Select,
 } from '@ecster/ecster-components';
@@ -17,8 +17,6 @@ import storeValueForNameInState from '../../../common/util/store-value-for-name-
 
 import './LoanEconomyPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
-
-import { RadioGroup, Radio } from './RadioGroup';
 
 class LoanEconomyPanel extends Component {
     static propTypes = {
@@ -256,13 +254,13 @@ class LoanEconomyPanel extends Component {
                                 )}
                                 {['PERMANENT', 'TEMPORARY_EMPLOYMENT', 'TRYOUT_EMPLOYED'].includes(employmentForm) && (
                                     <div className="input-field">
-                                        <div>{i18n('loan.economy.12month')}</div>
+                                        <div className="label">{i18n('loan.economy.12month')}</div>
                                         <RadioGroup
-                                            component="radio-group"
+                                            Component="radio-group"
                                             name="employedMoreThan1Year"
                                             selectedValue={employedMoreThan1Year}
                                             className="radio-buttons"
-                                            onChange={e => this.onChange(e)}
+                                            onChange={this.onChange}
                                             ref={this.employedMoreThan1Year}
                                             validationMessage={i18n('loan.economy.12month-error')}
                                             required
@@ -296,7 +294,7 @@ class LoanEconomyPanel extends Component {
                                 )}
                                 {['SELFEMPLOYED'].includes(employmentForm) && (
                                     <div className="input-field">
-                                        <div>{i18n('loan.economy.12month-company')}</div>
+                                        <div className="label">{i18n('loan.economy.12month-company')}</div>
                                         <RadioGroup
                                             name="ownedCompanyMoreThan1Year"
                                             selectedValue={ownedCompanyMoreThan1Year}

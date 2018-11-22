@@ -80,7 +80,9 @@
         "build": "node ./compile.js --prod --port 8081",
         "build:ci": "node ./compile.js --prod --ci",
         "build:vendor": "node ./compile.js --vendor",
+        "build:vendor:dev": "node ./compile.js --vendor --dev",
         "build:dll": "node ./compile.js --vendor",
+        "build:dll:dev": "node ./compile.js --vendor --dev",
         "build:vendor:debug": "node --inspect-brk ./compile.js --debug --vendor --dev",
         "build:dll:debug": "node --inspect-brk ./compile.js --debug --vendor",
         "start": "node ./compile.js --dev",
@@ -182,7 +184,7 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
         "@ecster/ecster-rekit-templates": "^1.0.18",
-        "@ecster/ecster-webpack": "^2.0.232",
+        "@ecster/ecster-webpack": "^2.0",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "babel-preset-airbnb": "^3.0.1",

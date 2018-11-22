@@ -12,7 +12,6 @@ import { EditableInputPhone } from '../../common/editable-input/EditableInputPho
 
 class LoanPersonalInformationPanel extends Component {
     static propTypes = {
-        media: PropTypes.shape().isRequired,
         person: PropTypes.object.isRequired,
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
