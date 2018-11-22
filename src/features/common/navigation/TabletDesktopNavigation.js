@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RRLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Logo, Link } from '@ecster/ecster-components';
@@ -21,9 +21,8 @@ class TabletDesktopNavigation extends React.Component {
         scrollTopOnLocationChange(props.history);
     }
 
-    toggleSubMenu = e => {
+    toggleSubMenu = () => {
         const { showSubMenu } = this.state;
-        e.stopPropagation();
         this.setState({ showSubMenu: !showSubMenu });
     };
 

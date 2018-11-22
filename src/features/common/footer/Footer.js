@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-
 import classNames from 'classnames';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { Logo, TabletOrDesktop, Link } from '@ecster/ecster-components';
 
 import './Footer.scss';
-
-import { Logo, TabletOrDesktop } from '@ecster/ecster-components';
 
 export const Footer = ({ className, ...rest }) => {
     const classes = classNames({
@@ -23,10 +20,10 @@ export const Footer = ({ className, ...rest }) => {
                 </div>
                 <Logo id="footer-logo" withName width="140px" height="35px" />
                 <div className="links ends">
-                    <Link name="block-card" to="/customer/support">
+                    <Link id="footer-block-card-link" to="/customer/support">
                         {i18n('footer.block-card')}
                     </Link>
-                    <Link name="contact" to="/customer/support">
+                    <Link id="footer-customer-support-link" to="/customer/support">
                         {i18n('footer.contact')}
                     </Link>
                 </div>
