@@ -19,12 +19,19 @@ class LoginPage extends Component {
     };
 
     componentDidMount() {
-        setPageView('/login', 'Login page'); // auto page view for '/' is disabled
+        const { loginStatus } = this.props;
+        if (!loginStatus.justLoggedOut) {
+            this.gaPageView(); // auto page view for '#/' is disabled
+        }
     }
+
+    gaPageView = () => {
+        setPageView('/login', 'Login page');
+    };
 
     loginAgain = () => {
         const { clearJustLoggedOut } = this.props;
-        console.log('loginAgain...');
+        this.gaPageView();
         clearJustLoggedOut();
     };
 
