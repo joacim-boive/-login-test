@@ -8,8 +8,8 @@ import {
     Form,
     Input,
     Option,
-    Radio,
-    RadioGroup,
+    // Radio,
+    // RadioGroup,
     ResponsivePanel,
     Select,
 } from '@ecster/ecster-components';
@@ -17,6 +17,8 @@ import storeValueForNameInState from '../../../common/util/store-value-for-name-
 
 import './LoanEconomyPanel.scss';
 import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
+
+import { RadioGroup, Radio } from './RadioGroup';
 
 class LoanEconomyPanel extends Component {
     static propTypes = {
@@ -263,18 +265,17 @@ class LoanEconomyPanel extends Component {
                                             onChange={e => this.onChange(e)}
                                             ref={this.employedMoreThan1Year}
                                             validationMessage={i18n('loan.economy.12month-error')}
+                                            required
                                         >
                                             <Radio
                                                 className="radio-button"
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
-                                                required
                                             />
                                             <Radio
                                                 className="radio-button"
                                                 value="no"
                                                 label={i18n('general.answer.no')}
-                                                required
                                             />
                                         </RadioGroup>
                                     </div>
