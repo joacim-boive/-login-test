@@ -29,6 +29,12 @@ export default class CvcForm extends React.Component {
         }
     };
 
+    onKeyUp = e => {
+        if (e.keyCode === 13) {
+            this.onClick();
+        }
+    };
+
     render() {
         const { cvc } = this.state;
 
@@ -42,8 +48,11 @@ export default class CvcForm extends React.Component {
                     validator={value => value.length === 3}
                     validationMessage={i18n('card.activate-card.validation-message')}
                     ref={this.cvcRef}
+                    onKeyUp={this.onKeyUp}
                 />
-                <Button round onClick={this.onClick}>{i18n('card.activate-card.button')}</Button>
+                <Button round onClick={this.onClick}>
+                    {i18n('card.activate-card.button')}
+                </Button>
             </Form>
         );
     }
