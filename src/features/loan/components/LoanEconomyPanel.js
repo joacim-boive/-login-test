@@ -296,24 +296,24 @@ class LoanEconomyPanel extends Component {
                                     <div className="input-field">
                                         <div className="label">{i18n('loan.economy.12month-company')}</div>
                                         <RadioGroup
+                                            Component="radio-group"
                                             name="ownedCompanyMoreThan1Year"
                                             selectedValue={ownedCompanyMoreThan1Year}
                                             className="radio-buttons"
+                                            ref={this.ownedCompanyMoreThan1Year}
+                                            validationMessage={i18n('loan.economy.12month-company-error')}
+                                            onChange={this.onChange}
+                                            required
                                         >
                                             <Radio
                                                 className="radio-button"
-                                                onChange={e => this.onChange(e)}
                                                 value="yes"
                                                 label={i18n('general.answer.yes')}
-                                                ref={this.ownedCompanyMoreThan1Year}
-                                                validationMessage={i18n('loan.economy.12month-company-error')}
-                                                required
                                             />
                                             <Radio
                                                 className="radio-button"
                                                 value="no"
                                                 label={i18n('general.answer.no')}
-                                                onChange={e => this.onChange(e)}
                                             />
                                         </RadioGroup>
                                     </div>
