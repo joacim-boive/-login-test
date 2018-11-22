@@ -118,7 +118,7 @@ AccountPanel.propTypes = {
     totalTransactions: PropTypes.number.isRequired,
     bills: PropTypes.shape(),
     accountCard: PropTypes.shape(),
-    extraCards: PropTypes.shape(),
+    extraCards: PropTypes.arrayOf(PropTypes.shape()),
     getAccountTransactions: PropTypes.func.isRequired,
     getAccountBills: PropTypes.func.isRequired,
     getAccountCards: PropTypes.func.isRequired,

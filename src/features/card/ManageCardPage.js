@@ -97,8 +97,11 @@ export class ManageCardPage extends Component {
         }
     }
 
-    // click back from failure message dialogs
-    onClickBack = () => {
+    componentWillUnmount() {
+        this.clearState();
+    }
+
+    clearState = () => {
         const {
             createAccountCardError,
             dismissCreateAccountCardError,
@@ -106,11 +109,16 @@ export class ManageCardPage extends Component {
             dismissUpdateAccountCardError,
         } = this.props;
 
+        console.log('manage card page: clear state');
         this.setState({ ...initialState });
 
         if (createAccountCardError) dismissCreateAccountCardError();
         if (updateAccountCardError) dismissUpdateAccountCardError();
+    };
 
+    // click back from failure message dialogs
+    onClickBack = () => {
+        this.clearState();
         history.push('/account/overview');
     };
 

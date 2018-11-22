@@ -68,7 +68,7 @@ AuthenticatedPageTemplate.propTypes = {
     header: PropTypes.string,
     children: PropTypes.node.isRequired,
     showLoanMenu: PropTypes.bool,
-    hasZeroAccounts: PropTypes.bool.isRequired,
+    hasZeroAccounts: PropTypes.bool,
     getCustomerPropertiesPending: PropTypes.bool.isRequired,
     getCustomerProperties: PropTypes.func.isRequired,
 };
@@ -77,12 +77,13 @@ AuthenticatedPageTemplate.defaultProps = {
     className: '',
     header: undefined,
     showLoanMenu: undefined, // undefined important, used in componentDidUpdate
+    hasZeroAccounts: undefined,
 };
 
 /* istanbul ignore next */
 function mapStateToProps({ account, authentication, customer }) {
     return {
-        customerId: authentication.person && authentication.person.id,
+        customerId: authentication.person && authentication.person.id || 0,
         showLoanMenu: customer.SHOW_PRIVATLAN_MENU,
         hasZeroAccounts: account.hasZeroAccounts,
         getCustomerPropertiesPending: customer.getCustomerPropertiesPending,

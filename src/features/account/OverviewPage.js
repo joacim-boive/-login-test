@@ -16,11 +16,12 @@ export class OverviewPage extends Component {
         accountsTerminated: PropTypes.array,
         user: PropTypes.object.isRequired,
         getAccounts: PropTypes.func.isRequired,
-        hasZeroAccounts: PropTypes.bool.isRequired,
+        hasZeroAccounts: PropTypes.bool,
     };
 
     static defaultProps = {
         accountsTerminated: [],
+        hasZeroAccounts: false,
     };
 
     componentWillMount() {
