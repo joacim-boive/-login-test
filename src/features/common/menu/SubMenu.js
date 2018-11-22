@@ -43,7 +43,10 @@ export class SubMenu extends React.Component {
     };
 
     handleClick = e => {
-        e.stopPropagation();
+        // avoid multiple "toggle menu" when clicking hamburger menu (svg-icon used in IE11)
+        if (e.target.className === 'icon-menu' || e.target.className.match(/svg-icon--hamburger/)) {
+            e.stopPropagation();
+        }
         this.closeMenu(e);
     };
 
@@ -106,7 +109,6 @@ export const SubMenuItem = ({ id, children, linkTo, iconClass, active }) => {
                 'submenu-item': true,
                 active,
             })}
-            onClick={e => e.stopPropagation()}
         >
             <Link id={id} to={linkTo} underline={false}>
                 <span className="submenu-item__text">{children}</span>

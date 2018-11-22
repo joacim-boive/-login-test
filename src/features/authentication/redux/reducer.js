@@ -30,7 +30,6 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         // Handle cross-topic actions here
         case 'CLEAR_STATE':
-            console.log('auth: Clear state: ', initialState);
             nextState = initialState;
             nextState.loginStatus = nextState.loginStatus || {};
             nextState.loginStatus.justLoggedOut = true;
