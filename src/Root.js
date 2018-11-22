@@ -19,6 +19,7 @@ export default class Root extends Component {
         const { routeConfig, store } = this.props;
 
         const routes = createRoutes(routeConfig);
+
         return (
             <Provider store={store}>
                 <HashRouter>

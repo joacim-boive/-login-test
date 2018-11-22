@@ -59,7 +59,6 @@ export class EditableInputPhone extends Component {
 
     onSave = () => {
         const { countryCallingCode, number } = this.state.value;
-        console.log('EditableInputPhone: typeof number / value ', typeof number, number);
         if (this.formRef.current.validate()) {
             this.props.onSave({ countryCallingCode, number });
             this.setState({ editMode: false, valueUnedited: this.state.value });
