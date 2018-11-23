@@ -47,6 +47,7 @@ export class ContactUsPage extends Component {
                             {i18n('customer.contact-us.faq-text2')}
                             <div className="pt-4x">
                                 <Link
+                                    id="contact-us-faq-link"
                                     href={i18n('customer.contact-us.faq-url')}
                                     iconRight="icon-external-link"
                                     target="_blank"
