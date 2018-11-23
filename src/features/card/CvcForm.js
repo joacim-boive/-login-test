@@ -30,6 +30,7 @@ export default class CvcForm extends React.Component {
     };
 
     onKeyUp = e => {
+        e.stopPropagation();
         if (e.keyCode === 13) {
             this.onClick();
         }
