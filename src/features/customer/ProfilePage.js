@@ -20,7 +20,7 @@ class ProfilePage extends Component {
         this.props.getCustomer(this.props.hasAccounts);
     }
 
-    renderPanel(person) {
+    renderPanel(person, customer) {
         const { updateCustomerContactInfo, hasAccounts } = this.props;
 
         return (
@@ -28,7 +28,11 @@ class ProfilePage extends Component {
                 <div key={1} className="summary-panel">
                     <img src={profileIcon} aria-hidden="true" alt="" />
                     <div>
-                        <h2>{person.name}</h2>
+                        <h2>
+                            {person.firstName && person.lastName
+                                ? person.firstName + ' ' + person.lastName
+                                : person.name}
+                        </h2>
                         <p>{i18n('customer.profile.info-text')}</p>
                     </div>
                 </div>
@@ -49,9 +53,9 @@ class ProfilePage extends Component {
                             {i18n('general.address.info')}
                         </Tooltip>
                         <div className="strong">
-                            <div>{capWords(person.address)}</div>
+                            <div>{capWords(customer.address)}</div>
                             <div>
-                                {person.zip} {capWords(person.city)}
+                                {customer.zip} {capWords(customer.city)}
                             </div>
                         </div>
                     </section>
@@ -59,7 +63,7 @@ class ProfilePage extends Component {
                     <section className="sub-panel">
                         <EditableInputPhone
                             type="tel"
-                            value={person.contactInformation.phoneNumber}
+                            value={customer.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
                             onSave={val => updateCustomerContactInfo(hasAccounts, { phoneNumber: val })}
                             validationMessage={i18n('general.validation.phone')}
@@ -70,7 +74,7 @@ class ProfilePage extends Component {
                     <section className="sub-panel">
                         <EditableInput
                             type="email"
-                            value={person.contactInformation.email}
+                            value={customer.contactInformation.email}
                             label={i18n('general.address.email')}
                             onSave={val => updateCustomerContactInfo(hasAccounts, { email: val })}
                             validationMessage={i18n('general.validation.email')}
@@ -83,13 +87,17 @@ class ProfilePage extends Component {
     }
 
     render() {
-        const { person } = this.props;
-        const dataReceived = person && person.name && person.contactInformation;
+        const { person, customer } = this.props;
+        const dataReceived = customer && customer.name && customer.contactInformation;
         return (
             <AuthenticatedPageTemplate header="Profil">
                 <div className="customer-profile-page">
                     <Panel withNoPadding className="customer-profile-panel">
-                        {dataReceived ? this.renderPanel(person) : <Spinner id="profile-spinner" isVisible isCenterX />}
+                        {dataReceived ? (
+                            this.renderPanel(person, customer)
+                        ) : (
+                            <Spinner id="profile-spinner" isVisible isCenterX />
+                        )}
                     </Panel>
                 </div>
             </AuthenticatedPageTemplate>
@@ -99,6 +107,7 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
     person: PropTypes.shape().isRequired,
+    customer: PropTypes.shape().isRequired,
     getCustomer: PropTypes.func.isRequired,
     updateCustomerContactInfo: PropTypes.func.isRequired,
     hasAccounts: PropTypes.bool.isRequired,
@@ -107,7 +116,8 @@ ProfilePage.propTypes = {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        person: state.customer.customer,
+        person: state.authentication.person,
+        customer: state.customer.customer,
         hasAccounts: !state.account.hasZeroAccounts,
     };
 }
