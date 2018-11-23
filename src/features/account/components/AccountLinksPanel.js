@@ -14,8 +14,6 @@ export const AccountLinksPanel = ({ account, customer, hasInactiveCards }) => {
 
     const hasCard = account.numberOfCards > 0;
 
-    console.log('links: hasInactiveCards: ', hasInactiveCards);
-
     const activateCards = hasInactiveCards && 'Aktivera';
 
     return (
