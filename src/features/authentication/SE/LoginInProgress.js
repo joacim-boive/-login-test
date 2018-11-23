@@ -139,7 +139,7 @@ export default class LoginInProgress extends Component {
                     {i18nBody}
                     <Spinner id="login-se-login-in-progress-spinner" isVisible={showSpinner} isCenterX />
                     <ButtonGroup alignCenter space={false}>
-                        <Button link onClick={this.onCancel} space={false} name="cancel-login-button">
+                        <Button transparent onClick={this.onCancel} name="cancel-login-button">
                             {i18n('general.cancel')}
                         </Button>
                     </ButtonGroup>
