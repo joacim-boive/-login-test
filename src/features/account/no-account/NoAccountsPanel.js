@@ -23,7 +23,8 @@ export default class NoAccountsPanel extends Component {
                     <Mobile>
                         <Lazyload
                             className="lazyload"
-                            alt="Happy girl"
+                            aria-hidden="true"
+                            alt=""
                             src="/v1/imgs/girl-in-town.jpg"
                             customTransform="/c_crop,g_face,t_base,w_1900,h_1400/w_{width}"
                             widths={[323, 646]}
@@ -32,7 +33,8 @@ export default class NoAccountsPanel extends Component {
                     <TabletOrDesktop>
                         <Lazyload
                             className="lazyload"
-                            alt="Happy girl"
+                            aria-hidden="true"
+                            alt=""
                             src="/v1/imgs/girl-in-town.jpg"
                             customTransform="/c_crop,g_face,t_base,w_3350,h_1200/w_{width}"
                             widths={[898, 1796]}
@@ -58,7 +60,8 @@ export default class NoAccountsPanel extends Component {
                                 <div className="ecster-card">
                                     <Lazyload
                                         className="lazyload"
-                                        alt="Ecster Pay Card"
+                                        aria-hidden="true"
+                                        alt=""
                                         src="/v1/cards/130.png"
                                         widths={[166, 312]}
                                     />
@@ -83,7 +86,8 @@ export default class NoAccountsPanel extends Component {
                     <Mobile>
                         <Lazyload
                             className="lazyload"
-                            alt="Happy girl"
+                            aria-hidden="true"
+                            alt=""
                             src="/v1/imgs/guitar.jpg"
                             customTransform="/t_base,w_1400,h_1000,c_crop,g_auto/w_{width}"
                             widths={[323, 646]}
@@ -92,7 +96,8 @@ export default class NoAccountsPanel extends Component {
                     <TabletOrDesktop>
                         <Lazyload
                             className="lazyload"
-                            alt="Happy girl"
+                            aria-hidden="true"
+                            alt=""
                             src="/v1/imgs/guitar.jpg"
                             widths={[898, 1796]}
                         />
@@ -102,7 +107,13 @@ export default class NoAccountsPanel extends Component {
                         <p>{i18n('account.no-account.panel2.text')}</p>
                     </div>
                     <ButtonGroup align="center">
-                        <LinkButton id="goto-loan-link" to="/loan/overview" round outline gaLabel="no-account-loan-overview">
+                        <LinkButton
+                            id="goto-loan-link"
+                            to="/loan/overview"
+                            round
+                            outline
+                            gaLabel="no-account-loan-overview"
+                        >
                             {i18n('account.no-account.panel2.button-text')}
                         </LinkButton>
                     </ButtonGroup>

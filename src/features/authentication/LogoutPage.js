@@ -9,6 +9,7 @@ export class LogoutPage extends Component {
         authentication: PropTypes.object.isRequired,
         removeSession: PropTypes.func.isRequired,
         deleteSession: PropTypes.func.isRequired,
+        clearState: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -17,10 +18,11 @@ export class LogoutPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { authentication, removeSession } = this.props;
+        const { authentication, removeSession, clearState } = this.props;
         if (authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
             clearSessionStorage();
             removeSession(); // remove login state
+            clearState();
         }
     }
 
@@ -41,6 +43,7 @@ function mapDispatchToProps(dispatch) {
     return {
         removeSession: () => dispatch(removeSession()),
         deleteSession: sessionKey => dispatch(deleteSession(sessionKey)),
+        clearState: () => dispatch({ type: 'CLEAR_STATE' }),
     };
 }
 
