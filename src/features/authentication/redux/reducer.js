@@ -6,13 +6,14 @@
 // Learn more from the introduction of this approach:
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
-import initialState from './initialState';
+// eslint-disable-next-line
+import { default as initialState, loginStatus, loginProgress } from './initialState';
 import { reducer as deleteSessionReducer } from './deleteSession';
 import { reducer as createSessionReducer } from './createSession';
 import { reducer as getSessionReducer } from './getSession';
 import { reducer as setNextRouteReducer } from './setNextRoute';
 import { reducer as clearNextRouteReducer } from './clearNextRoute';
-import { reducer as removeSessionReducer } from './removeSession';
+import { reducer as resetLoginStateReducer } from './resetLoginState';
 import { reducer as clearJustLoggedOutReducer } from './clearJustLoggedOut';
 
 const reducers = [
@@ -21,7 +22,7 @@ const reducers = [
     getSessionReducer,
     setNextRouteReducer,
     clearNextRouteReducer,
-    removeSessionReducer,
+    resetLoginStateReducer,
     clearJustLoggedOutReducer,
 ];
 
@@ -30,8 +31,9 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         // Handle cross-topic actions here
         case 'CLEAR_STATE':
-            nextState = initialState;
-            nextState.loginStatus = nextState.loginStatus || {};
+            // ensure loginStatus and loginProgress don't contain real session data read
+            // from reduxState in sessionStorage - see initialState.js
+            nextState = { ...initialState, loginStatus, loginProgress };
             nextState.loginStatus.justLoggedOut = true;
             break;
         default:

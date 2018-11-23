@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import history from './history';
 import rootReducer from './rootReducer';
-import { saveState, removeState } from './sessionStoredState';
+import { saveReduxState, removeReduxState } from './sessionStoredState';
 
 const router = routerMiddleware(history);
 
@@ -33,6 +33,20 @@ export default function configureStore(initialState) {
             devToolsExtension
         )
     );
+
+    store.subscribe(() => {
+        const state = store.getState();
+        const isLoggedIn =
+            state.authentication &&
+            state.authentication.loginStatus &&
+            state.authentication.loginStatus.isLoggedIn === true;
+
+        if (isLoggedIn) {
+            saveReduxState(state); // read by authorization/redux/initialState
+        } else {
+            removeReduxState();
+        }
+    });
 
     /* istanbul ignore if  */
     if (module.hot) {
