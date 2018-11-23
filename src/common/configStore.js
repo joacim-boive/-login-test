@@ -34,20 +34,6 @@ export default function configureStore(initialState) {
         )
     );
 
-    store.subscribe(() => {
-        const state = store.getState();
-        const isLoggedIn =
-            state.authentication &&
-            state.authentication.loginStatus &&
-            state.authentication.loginStatus.isLoggedIn === true;
-
-        if (isLoggedIn) {
-            saveState(state);
-        } else {
-            removeState();
-        }
-    });
-
     /* istanbul ignore if  */
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
