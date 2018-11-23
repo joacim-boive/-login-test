@@ -501,23 +501,27 @@
             "default-label": "Välj",
             "employer": "Arbetsgivare",
             "employer-error": "Ange namnet på din arbetsgivare",
+            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
+            "gross-income-error": "Fyll i din inkomst med siffror",
             "header": "Ekonomi",
             "household": "Hushåll",
             "house-label": "Vad är bostadens driftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
             "income-error": "Fyll i din inkomst med siffror",
-            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
-            "gross-income-error": "Fyll i din inkomst med siffror",
             "living-label": "Hur bor du?",
             "living-other-label": "Fyll i vilken boendeform",
+            "mortgage-checkbox": "Jag har inga bolån",
+            "mortgage-checkbox-error": "Kryssa denna eller välj ett lånebelopp nedan",
+            "mortgage-cost-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
+            "mortgage-cost-error": "Välj ett ungefärligt lånebelopp",
             "occupation": "Sysselsättning",
             "occupation-label": "Vad är din huvudsakliga sysselsättning?",
             "others": "Bolån och övriga lån/krediter",
             "others-living-label": "Vad är bostadens kostnader/mån?",
-            "others-checkbox": "Jag har inga bolån",
-            "others-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
             "other-loan-checkbox": "Jag har inga övriga lån",
+            "other-loan-checkbox-error": "Kryssa denna eller välj ett lånebelopp nedan",
             "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter",
+            "other-loan-cost-error": "Välj ett ungefärligt lånebelopp",
             "options": {
                 "occupation": {
                     "fulltime": "Tillsvidareanställd",
@@ -540,7 +544,15 @@
                     "span3": "4001 kr - 5000 kr",
                     "span4": "5000 kr eller mer"
                 },
-                "otherLoan": {
+                "mortgage-loan": {
+                    "span1": "0,5 mkr - 1 mkr",
+                    "span2": "1+ mkr - 2 mkr",
+                    "span3": "2+ mkr - 3 mkr",
+                    "span4": "3+ mkr - 4 mkr",
+                    "span5": "4+ mkr - 5 mkr",
+                    "span6": "5+ mkr eller mer"
+                },
+                "other-loan": {
                     "span1": "500 kr - 1000 kr",
                     "span2": "1001 kr - 2000 kr",
                     "span3": "2001 kr - 3000 kr",
