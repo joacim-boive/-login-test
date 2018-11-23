@@ -15,7 +15,10 @@ export class ManageCardPage extends Component {
 
     render() {
         return (
-            <AuthenticatedSubPageTemplate className="card-manage-card-page" header={i18n('card.manage-card.page-header')}>
+            <AuthenticatedSubPageTemplate
+                className="card-manage-card-page"
+                header={i18n('card.manage-card.page-header')}
+            >
                 <UnderConstruction />
             </AuthenticatedSubPageTemplate>
         );
