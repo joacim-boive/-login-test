@@ -1,5 +1,5 @@
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
-import { loadByKey } from '../../../common/sessionStoredState';
+import { loadReduxStateByKey } from '../../../common/sessionStoredState';
 
 export const loginStatus = {
     sessionKey: undefined,
@@ -12,7 +12,8 @@ export const loginProgress = {
     startURL: undefined,
 };
 
-const initialState = loadByKey('authentication') || {
+// read from session storage at page reload
+const initialState = loadReduxStateByKey('authentication') || {
     // generated
     deleteSessionPending: false,
     deleteSessionError: null,

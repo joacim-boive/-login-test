@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeSession as clearSessionStorage } from '../../common/asyncAjax';
-import { removeSession, deleteSession } from './redux/actions';
+import { removeSession as removeAjaxSession } from '../../common/asyncAjax';
+import { resetLoginState, deleteSession } from './redux/actions';
 
 export class LogoutPage extends Component {
     static propTypes = {
         authentication: PropTypes.object.isRequired,
-        removeSession: PropTypes.func.isRequired,
+        resetLoginState: PropTypes.func.isRequired,
         deleteSession: PropTypes.func.isRequired,
         clearState: PropTypes.func.isRequired,
     };
@@ -18,10 +18,10 @@ export class LogoutPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { authentication, removeSession, clearState } = this.props;
+        const { authentication, resetLoginState, clearState } = this.props;
         if (authentication.deleteSessionPending && nextProps.authentication.deleteSessionPending === false) {
-            clearSessionStorage();
-            removeSession(); // remove login state
+            removeAjaxSession();
+            resetLoginState();
             clearState();
         }
     }
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        removeSession: () => dispatch(removeSession()),
+        resetLoginState: () => dispatch(resetLoginState()),
         deleteSession: sessionKey => dispatch(deleteSession(sessionKey)),
         clearState: () => dispatch({ type: 'CLEAR_STATE' }),
     };
