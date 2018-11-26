@@ -114,7 +114,6 @@ export class ManageCardPage extends Component {
             dismissUpdateAccountCardError,
         } = this.props;
 
-        console.log('manage card page: clear state');
         this.setState({ ...initialState });
 
         if (createAccountCardError) dismissCreateAccountCardError();
