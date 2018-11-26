@@ -163,24 +163,25 @@
                 "mobile-detect",
                 "qwest"
             ],
-            "proxies": [
-                {
-                    "contexts": [
-                        "/rest/"
-                    ],
-                    "target": "https://secure3.ft.ecster.se",
-                    "headers": [
-                        [
-                            "X-ECSTER-Origin",
-                            "mypages"
+            "proxies":  [
+                    {
+                        "contexts": [
+                            "/rest/"
                         ],
-                        [
-                            "Content-Type",
-                            "application/json"
+                        "target": "https://secure3.ft.ecster.se",
+                        "headers": [
+                            [
+                                "X-ECSTER-Origin",
+                                "mypages"
+                            ],
+                            [
+                                "Content-Type",
+                                "application/json"
+                            ]
                         ]
-                    ]
-                }
-            ]
+                    }
+                ]
+
         }
     ],
     "devDependencies": {
@@ -255,7 +256,7 @@
         "react-router-dom": "^4.3.1",
         "react-router-redux": "5.0.0-alpha.9",
         "react-tooltip": "^3.9.0",
-        "redux": "^3.7.2",
+        "redux": "^4.0.1",
         "redux-thunk": "^2.3.0"
     }
 }

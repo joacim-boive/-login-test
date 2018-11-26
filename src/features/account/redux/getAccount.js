@@ -3,6 +3,7 @@ import {
     ACCOUNT_GET_ACCOUNT_SUCCESS,
     ACCOUNT_GET_ACCOUNT_FAILURE,
     ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
+    ACCOUNT_GET_ACCOUNT_UNMOUNT,
 } from './constants';
 
 import { get } from '../../../common/asyncAjax';
@@ -34,6 +35,8 @@ export const getAccount = (customerId, accountRef) => async dispatch => {
 
 export const dismissGetAccountError = () => ({ type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR });
 
+// export const getAccountReset = () => ({ type: ACCOUNT_GET_ACCOUNT_UNMOUNT });
+
 export function reducer(state, action) {
     switch (action.type) {
         case ACCOUNT_GET_ACCOUNT_BEGIN:
@@ -61,6 +64,14 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_DISMISS_ERROR:
             return {
                 ...state,
+                getAccountError: null,
+            };
+
+        case ACCOUNT_GET_ACCOUNT_UNMOUNT:
+            return {
+                ...state,
+                account: { ...state.account, brickId: undefined },
+                getAccountPending: false,
                 getAccountError: null,
             };
 

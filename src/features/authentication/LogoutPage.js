@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch) {
         resetLoginState: () => dispatch(resetLoginState()),
         deleteSession: sessionKey => dispatch(deleteSession(sessionKey)),
         clearState: () => dispatch({ type: 'CLEAR_STATE' }),
-    };
+};
 }
 
 export default connect(

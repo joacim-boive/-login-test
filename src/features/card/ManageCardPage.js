@@ -51,6 +51,7 @@ export class ManageCardPage extends Component {
         accountTerms: PropTypes.shape().isRequired,
         extraCards: PropTypes.shape().isRequired,
         getAccount: PropTypes.func.isRequired,
+        unmountThisAccount: PropTypes.func.isRequired,
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
         updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
@@ -75,7 +76,7 @@ export class ManageCardPage extends Component {
         requestedCards: false,
     };
 
-    componentWillMount() {
+    componentDidMount() {
         const { getAccount, getAccountTerms } = this.props;
         getAccount();
         getAccountTerms();
@@ -98,6 +99,10 @@ export class ManageCardPage extends Component {
     }
 
     componentWillUnmount() {
+        const { unmountThisAccount } = this.props;
+        debugger;
+        unmountThisAccount();
+
         this.clearState();
     }
 
@@ -266,8 +271,10 @@ function mapStateToProps({ account }) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch, route) {
     const { customerId, accountRef } = route.match.params;
+
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
+        unmountThisAccount: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_UNMOUNT' }),
         getAccountTerms: () => dispatch(getAccountTerms(customerId, accountRef)),
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),
