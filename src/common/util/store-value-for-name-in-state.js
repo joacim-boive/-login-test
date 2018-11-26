@@ -1,5 +1,5 @@
 const storeValueForNameInState = (e, that, callback = () => {}) => {
-    const { target } = e;
+    const { target } = typeof e === 'object' ? e : event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
 

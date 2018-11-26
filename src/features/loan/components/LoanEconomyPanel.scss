@@ -3,6 +3,13 @@
 @import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
 
 .loan-economy-panel {
+    .label{
+        display: block;
+        margin: 0 0 4px 0;
+        color: $gray130;
+        font-size: 14px;
+    }
+
     .radio-buttons {
         display: inline-block;
         margin-right: 20px;
