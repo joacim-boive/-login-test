@@ -1,0 +1,24 @@
+@import "~@ecster/ecster-styles/scss/v2/common/colors";
+
+.card-show-extra-cards-panel {
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .extra-cards {
+        $space-between: 30px;
+        & > div {
+            margin-top: $space-between;
+            padding-bottom: $space-between;
+            border-bottom: 1px solid $beige20;
+
+            &:first-child {
+                margin-top: 0;
+            }
+            &:last-child {
+                padding-bottom: 0;
+                border: none;
+            }
+        }
+    }
+}

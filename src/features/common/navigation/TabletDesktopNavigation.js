@@ -132,10 +132,11 @@ TabletDesktopNavigation.propTypes = {
     customerId: PropTypes.number.isRequired,
     history: PropTypes.shape().isRequired,
     showLoanMenu: PropTypes.bool,
-    hasZeroAccounts: PropTypes.bool.isRequired,
+    hasZeroAccounts: PropTypes.bool,
 };
 
 TabletDesktopNavigation.defaultProps = {
     showLoanMenu: false,
+    hasZeroAccounts: false,
 };
 export default withRouter(TabletDesktopNavigation);

@@ -9,7 +9,7 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_CUSTOMER_EXTRA_CARD_HOLDERS_URL } from './urls';
 
-export const getCustomerExtraCardHolders = customerId => async (dispatch) => {
+export const getCustomerExtraCardHolders = customerId => async dispatch => {
     dispatch({
         type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_BEGIN,
     });
@@ -28,7 +28,9 @@ export const getCustomerExtraCardHolders = customerId => async (dispatch) => {
     }
 };
 
-export const dismissGetCustomerExtraCardHoldersError = () => ({ type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_DISMISS_ERROR });
+export const dismissGetCustomerExtraCardHoldersError = () => ({
+    type: CUSTOMER_GET_CUSTOMER_EXTRA_CARD_HOLDERS_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {

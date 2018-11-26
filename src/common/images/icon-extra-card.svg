@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58.716mm" height="49.994mm" version="1.1" viewBox="0 0 208.04756 177.14298" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-244.51 -492.12)">
+<rect transform="matrix(.98481 -.17365 .17365 .98481 0 0)" x="171.68" y="559.25" width="170.33" height="111.6" ry="20.556" fill="#fff" stroke="#59b189" stroke-width="5"/>
+<rect x="245.01" y="544.74" width="183.19" height="120.02" ry="22.108" fill="#fff"/>
+<rect x="247.01" y="555.16" width="170.33" height="111.6" ry="20.556" fill="#eff8f3" stroke="#59b189" stroke-width="5"/>
+<path d="m276.68 584.05h14.685" fill="none" stroke="#59b189" stroke-width="5"/>
+<path d="m305.34 584.05h14.685" fill="none" stroke="#59b189" stroke-width="5"/>
+<path d="m334.01 584.05h14.685" fill="none" stroke="#59b189" stroke-width="5"/>
+<path d="m362.68 584.05h14.685" fill="none" stroke="#59b189" stroke-width="5"/>
+<circle cx="360.08" cy="626.64" r="15" fill="none" stroke="#59b189" stroke-width="4"/>
+<circle cx="377.75" cy="627.14" r="15" fill="#eff8f3" stroke="#59b189" stroke-width="4"/>
+<path d="m276.68 612.39h25.143" fill="none" stroke="#59b189" stroke-width="5"/>
+<path d="m276.68 636.39h59.429" fill="none" stroke="#59b189" stroke-width="5"/>
+</g>
+</svg>

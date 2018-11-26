@@ -1,11 +1,11 @@
+import { get } from '@ecster/ecster-net/v2'; // or post, put, del
+
 import {
     ${actionTypes.begin},
     ${actionTypes.success},
     ${actionTypes.failure},
     ${actionTypes.dismissError},
 } from './constants';
-
-import { get } from '@ecster/ecster-net/lib/v2/Ajax'; // or post, put, del
 
 const ${_.snakeCase(action).toUpperCase()}_URL = () => `/rest/...`;
 

@@ -1,5 +1,20 @@
-@import '../../styles/mixins';
-
 .card-manage-card-page {
+    .ecster-card {
+        max-width: 240px;
+        height: auto;
+        margin: 0 auto 30px;
+    }
+    .card-name {
+        text-transform: capitalize;
+    }
+
+    &-container > div, &-container > section {
+        margin-bottom: 20px;
+    }
+
+    .narrow-content { // TODO: add to ecster-components/Panel.scss
+        max-width: 480px;
+        margin: 0 auto;
+    }
 
 }

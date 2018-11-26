@@ -9,13 +9,13 @@ import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_CAMPAIGN_PURCHASES_URL } from './urls';
 
-export const getAccountCampaignPurchases = (customerId, referenceId) => async (dispatch) => {
+export const getAccountCampaignPurchases = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_CAMPAIGN_PURCHASES_URL(customerId, referenceId));
+        const res = await get(GET_ACCOUNT_CAMPAIGN_PURCHASES_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_SUCCESS,
             data: res.response,
@@ -28,7 +28,9 @@ export const getAccountCampaignPurchases = (customerId, referenceId) => async (d
     }
 };
 
-export const dismissGetAccountCampaignPurchasesError = () => ({ type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_DISMISS_ERROR });
+export const dismissGetAccountCampaignPurchasesError = () => ({
+    type: ACCOUNT_GET_ACCOUNT_CAMPAIGN_PURCHASES_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {

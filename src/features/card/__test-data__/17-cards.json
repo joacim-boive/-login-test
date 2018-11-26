@@ -1,0 +1,33 @@
+{
+    "response": {
+        "cards": [
+            {
+                "holder": "Lars Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "ACTIVE",
+                "cardNumber": "529928XXXXXX5397",
+                "reference": "XYZ0123456789",
+                "expires": {
+                    "year": "2021",
+                    "month": "10"
+                }
+            },
+            {
+                "holder": "Lars Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "TEMPORARILY_BLOCKED",
+                "cardNumber": "529928XXXXXX5397",
+                "reference": "XYZ0123456789",
+                "extraCardInfo": {
+                    "phoneNumber": {
+                        "countryCallingCode": "+46",
+                        "number": "81212121"
+                    },
+                    "ssn": "1212121212"
+                }
+            }
+        ]
+    }
+}

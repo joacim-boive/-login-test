@@ -1,0 +1,18 @@
+{
+    "response": {
+        "cards": [
+            {
+                "holder": "Laban Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "ACTIVE",
+                "cardNumber": "529928XXXXXX5397",
+                "reference": "XYZ0123456789",
+                "expires": {
+                    "year": "2018",
+                    "month": "10"
+                }
+            }
+        ]
+    }
+}

@@ -13,8 +13,7 @@ import { LatestTransactions } from './LatestTransactions';
 import { AccountHeaderMobile } from './AccountHeaderMobile';
 import OverdrawnInfo from './OverdrawnInfo';
 
-import { getAccountTransactions } from '../redux/getAccountTransactions';
-import { getAccountBills } from '../redux/getAccountBills';
+import { getAccountTransactions, getAccountBills, getAccountCards } from '../redux/actions';
 
 import './AccountPanel.scss';
 import initialState from '../redux/initialState';
@@ -22,15 +21,33 @@ import initialState from '../redux/initialState';
 const defaultFilter = initialState.accountTransactionsFilter;
 
 class AccountPanel extends Component {
+    state = {
+        hasInactiveCards: false,
+    };
+
     componentDidMount() {
-        const { getAccountTransactions, getAccountBills, user, account } = this.props;
+        const { getAccountTransactions, getAccountBills, getAccountCards, user, account } = this.props;
 
         getAccountTransactions(user.id, account.reference, defaultFilter);
         getAccountBills(user.id, account.reference);
+        getAccountCards(user.id, account.reference);
+    }
+
+    componentWillReceiveProps() {
+        const { accountCard, extraCards } = this.props;
+
+        if (
+            (extraCards && extraCards.filter(card => card.status === 'INACTIVE').length > 0) ||
+            (accountCard && accountCard.status === 'INACTIVE')
+        ) {
+            this.setState({ hasInactiveCards: true });
+        }
     }
 
     render() {
         const { className, account, bills, transactions, totalTransactions, user } = this.props;
+
+        const { hasInactiveCards } = this.state;
 
         if (!transactions) return null;
 
@@ -81,13 +98,13 @@ class AccountPanel extends Component {
                                     transactions={transactions}
                                     totalTransactions={totalTransactions}
                                     account={account}
-                                    user={user}
+                                    customer={user}
                                 />
                             </TabletOrDesktop>
                         )}
                         <NextPaymentPanel bills={bills} />
                     </ResponsivePanel>
-                    <AccountLinksPanel account={account} user={user} />
+                    <AccountLinksPanel account={account} customer={user} hasInactiveCards={hasInactiveCards} />
                 </ResponsivePanel>
             </Panel>
         );
@@ -100,8 +117,11 @@ AccountPanel.propTypes = {
     transactions: PropTypes.array,
     totalTransactions: PropTypes.number.isRequired,
     bills: PropTypes.shape(),
+    accountCard: PropTypes.shape(),
+    extraCards: PropTypes.arrayOf(PropTypes.shape()),
     getAccountTransactions: PropTypes.func.isRequired,
     getAccountBills: PropTypes.func.isRequired,
+    getAccountCards: PropTypes.func.isRequired,
     user: PropTypes.shape().isRequired,
 };
 
@@ -109,25 +129,30 @@ AccountPanel.defaultProps = {
     className: '',
     transactions: [],
     bills: {},
+    accountCard: undefined,
+    extraCards: [],
 };
 
 /* istanbul ignore next */
-function mapStateToProps(state, ownProps) {
-    const transactions = state.account.accountTransactions[ownProps.account.reference];
+function mapStateToProps({ account }, ownProps) {
+    const transactions = account.accountTransactions[ownProps.account.reference];
 
     return {
         transactions: transactions ? transactions.slice(0, defaultFilter.shortList) : undefined,
         totalTransactions: transactions ? transactions.length : 0,
-        bills: state.account.accountBills[ownProps.account.reference],
+        bills: account.accountBills[ownProps.account.reference],
+        accountCard: account.accountCards ? account.accountCards[ownProps.account.reference] : undefined,
+        extraCards: account.extraCards ? account.extraCards[ownProps.account.reference] : [],
     };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        getAccountTransactions: (userId, reference, filter) =>
-            dispatch(getAccountTransactions(userId, reference, filter, true)),
-        getAccountBills: (userId, reference) => dispatch(getAccountBills(userId, reference)),
+        getAccountTransactions: (customerId, reference, filter) =>
+            dispatch(getAccountTransactions(customerId, reference, filter, true)),
+        getAccountBills: (customerId, reference) => dispatch(getAccountBills(customerId, reference)),
+        getAccountCards: (customerId, reference) => dispatch(getAccountCards(customerId, reference)),
     };
 }
 

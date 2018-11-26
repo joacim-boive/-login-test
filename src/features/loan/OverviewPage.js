@@ -21,7 +21,6 @@ export class OverviewPage extends Component {
 
     onSubmit = () => {
         const { history } = this.props;
-
         history.push('/loan/summary');
     };
 

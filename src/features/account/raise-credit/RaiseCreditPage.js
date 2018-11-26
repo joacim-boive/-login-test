@@ -50,7 +50,7 @@ export class RaiseCreditPage extends Component {
         const { updateAccountPending } = this.props;
         const { applicationResult, limit, maxLimit } = nextProps.account;
 
-        if (limit && (limit === maxLimit)) {
+        if (limit && limit === maxLimit) {
             this.setState({ allowRaise: false });
         }
 
@@ -103,7 +103,7 @@ export class RaiseCreditPage extends Component {
                 <AlertPanel
                     header={i18n('account.raise-credit.not-allowed.alert-header')}
                     body={i18n('account.raise-credit.not-allowed.alert-message')}
-                    className="mb-8x"
+                    className="mb-6x"
                 />
             );
 

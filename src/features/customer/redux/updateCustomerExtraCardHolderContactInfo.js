@@ -9,7 +9,7 @@ import { put } from '../../../common/asyncAjax';
 
 import { UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_URL } from './urls';
 
-export const updateCustomerExtraCardHolderContactInfo = (customerId, data) => async (dispatch) => {
+export const updateCustomerExtraCardHolderContactInfo = (customerId, data) => async dispatch => {
     dispatch({
         type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_BEGIN,
     });
@@ -28,7 +28,9 @@ export const updateCustomerExtraCardHolderContactInfo = (customerId, data) => as
     }
 };
 
-export const dismissUpdateCustomerExtraCardHolderContactInfoError = () => ({ type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR });
+export const dismissUpdateCustomerExtraCardHolderContactInfoError = () => ({
+    type: CUSTOMER_UPDATE_CUSTOMER_EXTRA_CARD_HOLDER_CONTACT_INFO_DISMISS_ERROR,
+});
 
 export function reducer(state, action) {
     switch (action.type) {
