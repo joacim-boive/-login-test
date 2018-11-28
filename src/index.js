@@ -18,6 +18,12 @@ export const store = configStore();
 
 Session.set('sessionKey', window.sessionStorage.getItem('sessionKey')); // Remove when API uses sessionStorage instead
 
+// Set base URL
+if (window.EcsterConfig && window.EcsterConfig.baseURL) {
+    console.log('Setting base URL: ', window.EcsterConfig.baseURL);
+    setBaseUrl(window.EcsterConfig.baseURL);
+}
+
 const renderApp = app => {
     render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
 };
@@ -33,9 +39,10 @@ const initApplication = config => {
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 
-    if (config && config.ajaxBaseUrl) {
-        setBaseUrl(config.ajaxBaseUrl);
-    }
+    // Obsolete
+    // if (config && config.ajaxBaseUrl) {
+    //     setBaseUrl(config.ajaxBaseUrl);
+    // }
 
     setErrorHandler((xhr, body) => {
         if (body.status === 401) history.push('/authentication/logout');
