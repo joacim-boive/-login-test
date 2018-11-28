@@ -14,6 +14,10 @@ import Root from './Root';
 import { setApplicationCountry, setLocale } from './features/home/redux/actions';
 import history from './common/history';
 
+// Needed for Babel to find what stuff we need to polyfill in IE11 & Android (mostly)
+Promise;
+Array.from;
+
 export const store = configStore();
 
 Session.set('sessionKey', window.sessionStorage.getItem('sessionKey')); // Remove when API uses sessionStorage instead
