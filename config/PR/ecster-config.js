@@ -1,4 +1,4 @@
 window.EcsterConfig = {
-    baseURL: '',
+    baseURL: 'https://secure.ecster.se',
     version: '%BUILD_VERSION%',
 };
