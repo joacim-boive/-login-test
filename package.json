@@ -163,7 +163,9 @@
                 "mobile-detect",
                 "qwest"
             ],
-            "proxies":  [
+            "proxies": {
+                "debug": false,
+                "configs": [
                     {
                         "contexts": [
                             "/rest/"
@@ -181,7 +183,7 @@
                         ]
                     }
                 ]
-
+            }
         }
     ],
     "devDependencies": {
@@ -229,9 +231,9 @@
         "webpack": "4.19.0"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.124",
-        "@ecster/ecster-components": "^2.0.568",
-        "@ecster/ecster-i18n": "^3.0.71",
+        "@ecster/ecster-analytics": "^4.0.125",
+        "@ecster/ecster-components": "^2.0.586",
+        "@ecster/ecster-i18n": "^3.0.76",
         "@ecster/ecster-net": "^2.0.104",
         "@ecster/ecster-styles": "^3.0.220",
         "@ecster/ecster-util": "^2.0.85",
