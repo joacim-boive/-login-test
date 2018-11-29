@@ -55,7 +55,7 @@ export class TerminateAccount extends Component {
         <div>
             <h1>{i18n('account.terminate.header')}</h1>
             <p>{i18n('account.terminate.info-text')}</p>
-            <ResponsivePanel desktop={2} tablet={2} mobile={1} className="choices" separator>
+            <ResponsivePanel desktop={2} tablet={2} mobile={1} className="choices" verticalLines>
                 <div className="checkbox-group">
                     <Checkbox
                         name="terminate-account-q1"

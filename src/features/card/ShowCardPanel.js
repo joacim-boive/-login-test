@@ -28,7 +28,7 @@ export default class ShowCardPanel extends React.Component {
         return (
             <Panel withMixedContent greenBG className="card-show-card-panel">
                 <div className="wide-content">
-                    <ResponsivePanel>
+                    <ResponsivePanel separator>
                         {/* account.brickId is deleted on unmount of ManageCardPage to not show the card that is
                         currently stored in Redux - we always need a fresh one otherwise lazyloading wont work */}
                         <div>{account.brickId && <EcsterCard account={account} />}</div>

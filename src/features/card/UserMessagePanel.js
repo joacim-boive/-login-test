@@ -27,7 +27,7 @@ export default class MessagePanel extends React.Component {
         const { icon, header, text, linkText, link, buttonText, onButtonClick } = this.props;
 
         return (
-            <Panel withMixedContent centeredContent sideMarginsInMobile className="card-message-panel">
+            <Panel withMixedContent centeredContent className="card-message-panel">
                 <div className="mixed-content">
                     <img src={icon} aria-hidden="true" alt="" />
                     <h1 className="h2">{header}</h1>
