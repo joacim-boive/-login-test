@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, FlexPanel } from '@ecster/ecster-components';
+import { Panel, ResponsivePanel } from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 import { Value } from './Value';
 import { formatAccount } from '../../common/util/format-account';
@@ -28,7 +28,7 @@ export default class ShowCardPanel extends React.Component {
         return (
             <Panel withMixedContent greenBG className="card-show-card-panel">
                 <div className="wide-content">
-                    <FlexPanel>
+                    <ResponsivePanel>
                         {/* account.brickId is deleted on unmount of ManageCardPage to not show the card that is
                         currently stored in Redux - we always need a fresh one otherwise lazyloading wont work */}
                         <div>{account.brickId && <EcsterCard account={account} />}</div>
@@ -47,7 +47,7 @@ export default class ShowCardPanel extends React.Component {
                             )}
                             <Value label={i18n('card.general.status')} value={i18n(`card.show-card.${card.status}`)} />
                         </div>
-                    </FlexPanel>
+                    </ResponsivePanel>
                 </div>
             </Panel>
         );

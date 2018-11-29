@@ -1,10 +1,14 @@
 @import "~@ecster/ecster-styles/scss/v2/common/colors";
+@import "~@ecster/ecster-styles/scss/v2/common/media-queries";
 
 .card-show-card-panel {
     .ecster-card {
         margin: 0;
         max-width: 260px;
         height: auto;
+        @include mobile() {
+            margin: 0 auto;
+        }
     }
     .card-info {
         color: $green120
