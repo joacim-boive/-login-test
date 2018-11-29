@@ -71,7 +71,7 @@ export default class ApplyForCardPanel extends React.Component {
                         <ConfirmButton
                             confirmHeader={i18n('card.apply-for-card.confirm-dialog.header')}
                             confirmText={i18n('card.apply-for-card.confirm-dialog.text')}
-                            confirmOk={i18n('card.apply-for-card.button')}
+                            confirmOk={i18n('card.apply-for-card.confirm-dialog.ok-button')}
                             confirmCancel={i18n('general.cancel')}
                             round
                             onClick={this.onClick}

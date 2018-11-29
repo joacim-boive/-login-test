@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Select, Option } from '@ecster/ecster-components';
+import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './CountryCodeSelect.scss';
 
 export class CountryCodeSelect extends Component {
@@ -16,7 +17,7 @@ export class CountryCodeSelect extends Component {
     };
 
     render() {
-        const { className, value, label } = this.props;
+        const { className, value, label, selectRef } = this.props;
 
         if (!this.countryCodes) return null;
 
@@ -31,7 +32,16 @@ export class CountryCodeSelect extends Component {
 
         return (
             <div className={classes}>
-                <Select className={classesSelect} label={label} value={value} onChange={this.onChange} small>
+                <Select
+                    ref={selectRef}
+                    className={classesSelect}
+                    label={label}
+                    value={value}
+                    required
+                    validationMessage={i18n('general.validation.country-code')}
+                    onChange={this.onChange}
+                    small
+                >
                     {this.countryCodes.map(obj => (
                         <Option
                             key={`${obj.countryName} (${obj.phoneCode})`}
@@ -47,6 +57,7 @@ export class CountryCodeSelect extends Component {
 
 CountryCodeSelect.propTypes = {
     className: PropTypes.string,
+    selectRef: PropTypes.shape().isRequired,
     value: PropTypes.string,
     label: PropTypes.string,
     language: PropTypes.string.isRequired,
