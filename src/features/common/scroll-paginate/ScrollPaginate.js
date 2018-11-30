@@ -27,6 +27,11 @@ export class ScrollPaginate extends Component {
         this.setState({ showMoreButton: !isUpdateOnScroll });
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { children } = this.props;
+        const hasNewData = children.props.transactions.length < nextProps.children.props.transactions.length;
+    }
+
     componentDidUpdate(prevProps) {
         const { children } = this.props;
 
@@ -56,7 +61,7 @@ export class ScrollPaginate extends Component {
         }
 
         return true;
-    }, 300);
+    }, 200);
 
     render() {
         const { children, onScrollBottom } = this.props;

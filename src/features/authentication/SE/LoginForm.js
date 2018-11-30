@@ -81,7 +81,7 @@ class LoginFormSE extends Component {
             this.pollTimer = undefined;
         }
 
-        this.props.removeSession();
+        this.props.resetLoginState();
 
         this.setState({
             ...this.prevState,
@@ -206,7 +206,7 @@ class LoginFormSE extends Component {
 LoginFormSE.propTypes = {
     showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
-    removeSession: PropTypes.func.isRequired,
+    resetLoginState: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
