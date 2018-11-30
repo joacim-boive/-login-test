@@ -1,6 +1,8 @@
 // Summary:
 //   This is the entry of the application, works together with index.html.
 
+import './detect-ie-polyfills';
+
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
@@ -13,10 +15,6 @@ import routeConfig from './common/routeConfig';
 import Root from './Root';
 import { setApplicationCountry, setLocale } from './features/home/redux/actions';
 import history from './common/history';
-
-// Needed for Babel to find what stuff we need to polyfill in IE11 & Android (mostly)
-Promise;
-Array.from;
 
 export const store = configStore();
 
