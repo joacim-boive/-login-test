@@ -96,8 +96,8 @@
         "test:debug": "ndb ./node_modules/jest/bin/jest.js --runInBand",
         "record": "node ./tools/server.js -record",
         "mock": "node ./tools/server.js -mock",
-        "precordova": "rimraf build && node ./compile.js --prod && cpx \"build/**\" \"cordova/www\"",
-        "cordova": "cd cordova && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cordova run android && cd..",
+        "precordova": "rimraf build && node ./compile.js --prod --cordova && cpx \"build/**\" \"cordova/www\"",
+        "cordova": "cd cordova && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cordova run android && cd ..",
         "android": "cd cordova && cordova  && cordova run android && cd..",
         "ios": "cd cordova && cordova  && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd .."
     },
