@@ -31,10 +31,10 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     </script>
     <script async defer src="<%= htmlWebpackPlugin.options.googleAnalytics.script %>"></script>
     <% } %>
-    <script async defer src="static/ecster-config.js"></script>
+    <script src="static/ecster-config.js"></script>
     <% if(htmlWebpackPlugin.options.env) { %>
     <script>
-        window.ECSTER_CONFIG_ENVIRONMENT = '<%= htmlWebpackPlugin.options.env %>';
+        window.EcsterConfig.environment = '<%= htmlWebpackPlugin.options.env %>';
     </script>
     <% } %>
 </head>

@@ -35,7 +35,6 @@ const initApplication = () => {
 
     // Set base URL
     if (window.EcsterConfig && window.EcsterConfig.baseURL) {
-        console.log('Setting base URL: ', window.EcsterConfig.baseURL);
         setBaseUrl(window.EcsterConfig.baseURL);
     }
 

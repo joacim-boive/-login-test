@@ -7,13 +7,13 @@ import { saveReduxState, removeReduxState } from './sessionStoredState';
 
 const router = routerMiddleware(history);
 
-// NOTE: Do not change middleares delaration pattern since rekit plugins may register middlewares to it.
+// NOTE: Do not change middlewares declaration pattern since rekit plugins may register middlewares to it.
 const middlewares = [thunk, router];
 
 let devToolsExtension = f => f;
 
 /* istanbul ignore if  */
-if (window.ECSTER_CONFIG_ENVIRONMENT === 'development') {
+if (window.EcsterConfig.environment === 'development') {
     const { createLogger } = require('redux-logger');
 
     const logger = createLogger({ collapsed: true });
