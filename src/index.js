@@ -59,10 +59,8 @@ const initApplication = () => {
     }
 };
 
-if (window.cordovaApp) {
-    window.initApplication = initApplication({
-        ajaxBaseUrl: 'https://secure.ecster.se',
-    }); // called on deviceready event
+if (window.EcsterConfig.isCordova) {
+    window.EcsterConfig.init = initApplication; // called on deviceready event
 } else {
     initApplication();
 }

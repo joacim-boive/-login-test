@@ -15,7 +15,11 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
     <% if(htmlWebpackPlugin.options.isDontIndexThisPage === true){ %>
-    <meta name="robots" content="noindex">
+        <meta name="robots" content="noindex">
+    <% } %>
+
+    <% if(htmlWebpackPlugin.options.isCordova) { %>
+        <link rel="stylesheet" href="css/cordova.css">
     <% } %>
 
     <title><%= htmlWebpackPlugin.options.title || 'Ecster' %></title>
@@ -39,11 +43,12 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <script src="static/ecster-config.js"></script>
     <% if(htmlWebpackPlugin.options.env) { %>
     <script>
-        <% if(htmlWebpackPlugin.options.isCordova) { %>
-            window.cordovaApp = true
-        <% } %>
         window.EcsterConfig = window.EcsterConfig || {};
         window.EcsterConfig.environment = '<%= htmlWebpackPlugin.options.env %>';
+
+        <% if(htmlWebpackPlugin.options.isCordova) { %>
+            window.EcsterConfig.isCordova = true;
+        <% } %>
     </script>
     <% } %>
 </head>
@@ -69,6 +74,9 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <!-- Use a noscript-tag for the stamp as HTML comments might be removed during build -->
     <%= htmlWebpackPlugin.options.stamp %>
 </noscript>
+<% } %>
+<% if(htmlWebpackPlugin.options.isCordova) { %>
+    <script src="js/cordova.js"></script>
 <% } %>
 </body>
 </html>
