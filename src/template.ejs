@@ -6,7 +6,12 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
 <html lang="<%= lang %>" <%= manifest %>>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <% if(htmlWebpackPlugin.options.env === 'production'){%>
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; connect-src 'self' https://*.ecster.se https://www.google-analytics.com http://www.google-analytics.com ws:; style-src 'self' 'unsafe-inline' blob: data:; font-src 'self' 'unsafe-inline' blob: data:; media-src *; img-src 'self' 'unsafe-inline' https://*.ecster.se https://res.cloudinary.com https://www.google-analytics.com http://www.google-analytics.com data: blob: content:;script-src 'self' 'unsafe-inline';" />
+    <% }else{ %>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; connect-src 'self' https://*.ecster.se https://www.google-analytics.com http://www.google-analytics.com ws:; style-src 'self' 'unsafe-inline' blob: data:; font-src 'self' 'unsafe-inline' blob: data:; media-src *; img-src 'self' 'unsafe-inline' https://*.ecster.se https://res.cloudinary.com https://www.google-analytics.com http://www.google-analytics.com data: blob: content:;script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+    <% } %>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
     <% if(htmlWebpackPlugin.options.isDontIndexThisPage === true){ %>
@@ -16,10 +21,10 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <title><%= htmlWebpackPlugin.options.title || 'Ecster' %></title>
 
     <% if(htmlWebpackPlugin.options.isGoogleFonts) { %>
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="preconnect" crossorigin href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preconnect" crossorigin href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" crossorigin href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" crossorigin href="https://fonts.gstatic.com">
     <% } %>
     <% if(htmlWebpackPlugin.options.googleAnalytics) { %>
     <script>
@@ -34,6 +39,9 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <% if(htmlWebpackPlugin.options.env) { %>
     <script>
         window.ECSTER_CONFIG_ENVIRONMENT = '<%= htmlWebpackPlugin.options.env %>';
+        <% if(htmlWebpackPlugin.options.isCordova) { %>
+            window.cordovaApp = true
+        <% } %>
     </script>
     <% } %>
 </head>

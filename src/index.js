@@ -59,7 +59,9 @@ const initApplication = config => {
 };
 
 if (window.cordovaApp) {
-    window.initApplication = initApplication; // called on deviceready event
+    window.initApplication = initApplication({
+        ajaxBaseUrl: 'https://secure.ecster.se',
+    }); // called on deviceready event
 } else {
     initApplication();
 }

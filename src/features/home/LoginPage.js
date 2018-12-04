@@ -7,10 +7,7 @@ import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 import LoginForm from '../authentication/LoginForm';
 import AfterLogoutPanel from './AfterLogoutPanel';
 
-import loadFont from '../../common/util/load-font';
 import { clearJustLoggedOut } from '../authentication/redux/actions';
-
-loadFont('PT Sans');
 
 class LoginPage extends Component {
     static propTypes = {
