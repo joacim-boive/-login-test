@@ -24,7 +24,7 @@ const renderApp = app => {
     render(<AppContainer>{app}</AppContainer>, document.getElementById('react-root'));
 };
 
-const initApplication = config => {
+const initApplication = () => {
     Session.set('origin', 'mypages');
 
     // TODO: tmp solutions, fix later
@@ -35,8 +35,9 @@ const initApplication = config => {
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 
-    if (config && config.ajaxBaseUrl) {
-        setBaseUrl(config.ajaxBaseUrl);
+    // Set base URL
+    if (window.EcsterConfig && window.EcsterConfig.baseURL) {
+        setBaseUrl(window.EcsterConfig.baseURL);
     }
 
     setErrorHandler((xhr, body) => {
