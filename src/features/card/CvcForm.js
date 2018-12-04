@@ -40,7 +40,7 @@ export default class CvcForm extends React.Component {
         const { cvc } = this.state;
 
         return (
-            <Form className="flex-row activate-form" ref={this.formRef} validateRefs={[this.cvcRef]}>
+            <Form className="activate-form" ref={this.formRef} validateRefs={[this.cvcRef]}>
                 <Input
                     type="number"
                     label={i18n('card.activate-card.input-label')}

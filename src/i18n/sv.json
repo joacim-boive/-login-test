@@ -316,7 +316,7 @@
             "button": "Beställ",
             "confirm-dialog": {
                 "header": "Beställ ett kort",
-                "text": "När du skickat beställningen kommer ditt kort att präglas och skickas till dig, det tar ca en vecka. Pinkoden kommer i ett separat kuvert. Du måste logga in och aktivera ditt kort innan du börjar använda det.",
+                "text": "När du skickat beställningen kommer ditt kort att präglas och skickas till dig, det tar ca en vecka. Pinkoden kommer i ett separat kuvert",
                 "ok-button": "Ok, skicka"
             },
             "success": {
