@@ -341,7 +341,7 @@
             "header": "Aktivera ditt kort",
             "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
-            "button": "Aktivera kort",
+            "button": "Aktivera",
             "validation-message": "Ange tre siffror",
             "success": {
                 "header":"Ditt kort är aktiverat",

@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
-import { Panel, FlexPanel, UnorderedList, ButtonGroup, ConfirmButton } from '@ecster/ecster-components';
+import {
+    Panel,
+    FlexPanel,
+    ResponsivePanel,
+    UnorderedList,
+    ButtonGroup,
+    ConfirmButton,
+    Mobile,
+    TabletOrDesktop,
+} from '@ecster/ecster-components';
 import { EcsterCard } from '../common/card/EcsterCard';
 import { formatAmount } from '../../common/util/format-amount';
 
@@ -28,12 +37,19 @@ export default class ApplyForCardPanel extends React.Component {
 
         return (
             <div className="card-apply-for-card-panel">
+                <Mobile>
+                    <div className="card-ctr">
+                        <EcsterCard account={account} />
+                    </div>
+                </Mobile>
                 <Panel withMixedContent sideMarginsInMobile>
                     <div className="two-col-content">
-                        <EcsterCard account={account} />
+                        <TabletOrDesktop>
+                            <EcsterCard account={account} />
+                        </TabletOrDesktop>
                         <h1 className="h2">{i18n('card.apply-for-card.header', { cardName })}</h1>
                         <p>{i18n('card.apply-for-card.info')}</p>
-                        <FlexPanel className="info-panel">
+                        <ResponsivePanel separator className="info-panel">
                             <div className="column column-1">
                                 <p>
                                     <strong>{i18n('card.apply-for-card.sub-header1')}</strong>
@@ -65,7 +81,7 @@ export default class ApplyForCardPanel extends React.Component {
                                     })}
                                 </UnorderedList>
                             </div>
-                        </FlexPanel>
+                        </ResponsivePanel>
                     </div>
                     <ButtonGroup alignCenter spaceBelow={false}>
                         <ConfirmButton
