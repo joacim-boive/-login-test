@@ -127,7 +127,8 @@ export class LoanSummaryPage extends Component {
                             className="loan-panel"
                             onUpdateContactInfo={data => updateCustomerContactInfo(person.id, hasAccounts, data)}
                             contactInformation={contactInformation}
-                            person={customer}
+                            person={person}
+                            customer={customer}
                             onNextStep={this.onNextStep}
                             handleCollapse={this.handleCollapse}
                             ref={this.LoanPersonalInformation}
