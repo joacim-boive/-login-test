@@ -163,25 +163,24 @@
                 "mobile-detect",
                 "qwest"
             ],
-            "proxies":  [
-                    {
-                        "contexts": [
-                            "/rest/"
+            "proxies": [
+                {
+                    "contexts": [
+                        "/rest/"
+                    ],
+                    "target": "https://secure3.ft.ecster.se",
+                    "headers": [
+                        [
+                            "X-ECSTER-Origin",
+                            "mypages"
                         ],
-                        "target": "https://secure3.ft.ecster.se",
-                        "headers": [
-                            [
-                                "X-ECSTER-Origin",
-                                "mypages"
-                            ],
-                            [
-                                "Content-Type",
-                                "application/json"
-                            ]
+                        [
+                            "Content-Type",
+                            "application/json"
                         ]
-                    }
-                ]
-
+                    ]
+                }
+            ]
         }
     ],
     "devDependencies": {
@@ -230,7 +229,7 @@
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.124",
-        "@ecster/ecster-components": "^2.0.568",
+        "@ecster/ecster-components": "^2.0.615",
         "@ecster/ecster-i18n": "^3.0.71",
         "@ecster/ecster-net": "^2.0.104",
         "@ecster/ecster-styles": "^3.0.220",
