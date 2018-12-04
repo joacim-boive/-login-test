@@ -140,6 +140,14 @@
                 {
                     "from": "features/card/__test-data__/",
                     "to": "test"
+                },
+                {
+                    "from": "../config/ecster-config.js",
+                    "to": "static/ecster-config.js"
+                },
+                {
+                    "from": "../config",
+                    "to": "config"
                 }
             ],
             "template": "template.ejs",

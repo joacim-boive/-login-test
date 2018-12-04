@@ -17,7 +17,7 @@ const app = {
         console.log('Received deviceready event');
         // initApplication defined in src/index.js
         if (window.initApplication) {
-            window.initApplication(window.ecsterAppConfig);
+            window.initApplication();
         }
     },
 };
