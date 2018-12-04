@@ -34,6 +34,7 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <script src="static/ecster-config.js"></script>
     <% if(htmlWebpackPlugin.options.env) { %>
     <script>
+        window.EcsterConfig = window.EcsterConfig || {};
         window.EcsterConfig.environment = '<%= htmlWebpackPlugin.options.env %>';
     </script>
     <% } %>
