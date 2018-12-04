@@ -1,0 +1,106 @@
+{
+    "response": {
+        "cards": [ {
+            "holder" : "Laban Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX5397",
+            "reference": "XYZ0123456789",
+            "expires" : {
+                "year" : "2020",
+                "month" : "10"
+            }
+        }, {
+            "holder" : "Lars Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX5397",
+            "reference": "XYZ0123456789",
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "80202020"
+                },
+                "ssn": "1212121212"
+            },
+            "expires" : {
+                "year" : "2020",
+                "month" : "10"
+            }
+        },{
+            "holder" : "Lisa Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX0294",
+            "reference": "XYZ0123456789",
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "80202020"
+                },
+                "ssn": "1212121212"
+            },
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Lena Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference": "XYZ0123456789",
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "18060606"
+                },
+                "ssn": "1212121212"
+            },
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Larsa Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference": "XYZ0123456789",
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "18050505"
+                },
+                "ssn": "1212121212"
+            },
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        }, {
+            "holder" : "Lelle Larsman",
+            "type" : "MASTERCARD HXXX",
+            "brickId" : "113",
+            "status" : "INACTIVE",
+            "cardNumber" : "529928XXXXXX3679",
+            "reference": "XYZ0123456789",
+            "extraCardInfo": {
+                "phoneNumber": {
+                    "countryCallingCode": "+46",
+                    "number": "18030303"
+                },
+                "ssn": "1212121212"
+            },
+            "expires" : {
+                "year" : "2020",
+                "month" : "03"
+            }
+        } ]
+    }
+}

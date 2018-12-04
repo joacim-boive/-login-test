@@ -1,7 +1,7 @@
 const REDUX_STATE = 'reduxState';
 const wss = window.sessionStorage;
 
-export const loadState = () => {
+export const loadReduxState = () => {
     try {
         const serializedState = wss.getItem(REDUX_STATE);
         if (serializedState === null) {
@@ -14,7 +14,7 @@ export const loadState = () => {
     }
 };
 
-export const loadByKey = key => {
+export const loadReduxStateByKey = key => {
     try {
         const serializedState = wss.getItem(REDUX_STATE);
         if (serializedState === null) {
@@ -28,7 +28,7 @@ export const loadByKey = key => {
     }
 };
 
-export const saveState = state => {
+export const saveReduxState = state => {
     try {
         const serializedState = JSON.stringify(state);
         wss.setItem(REDUX_STATE, serializedState);
@@ -37,6 +37,6 @@ export const saveState = state => {
     }
 };
 
-export const removeState = () => {
+export const removeReduxState = () => {
     wss.removeItem(REDUX_STATE);
 };

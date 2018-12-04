@@ -7,6 +7,7 @@
         "close": "Stäng",
         "edit": "Ändra",
         "save": "Spara",
+        "ok": "Ok",
         "next": "Nästa",
         "previous": "Föregående",
         "ssn": "Personnummer",
@@ -84,7 +85,7 @@
             "part-payments": "Delbetalningar",
             "monthly-invoices": "Månadsfakturor",
             "manage-cards": "Hantera kort",
-            "apply-for-card": "Ansök om kort",
+            "apply-for-card": "Beställ kort",
             "terms": "Kontoinformation",
             "validation-message": "Välj nytt kreditbelopp"
         },
@@ -103,7 +104,7 @@
         "sales-panel": {
             "header": "Skaffa ett kort till ditt konto",
             "body": "Handla världen över. Ta del av fler förmåner och försäkringar med ett flexibelt kreditkort.",
-            "button": "Läs mer och ansök"
+            "button": "Läs mer och beställ"
         },
         "terms": {
             "account-terms": "Kontovillkor",
@@ -286,11 +287,94 @@
         }
     },
     "card": {
-        "manage-card": {
-            "page-header": "Hantera kort"
+        "general": {
+            "card-number": "Kortnummer",
+            "card-holder": "Kortinnehavare",
+            "valid-to": "Giltigt t.o.m.",
+            "status": "Status",
+            "active": "Aktivt",
+            "inactive": "Inaktivt"
         },
-        "extra-card": {
-            "page-header": "Hantera kort"
+        "manage-card": {
+            "page-header": "Hantera kort",
+            "page-header-no-card": "Beställ kort"
+        },
+        "apply-for-card": {
+            "header":"Koppla ett kort till ditt konto",
+            "info": "När du ansluter ett kreditkort till ditt konto kan du använda din kontokredit på fler ställen. Kortet är kopplat till Mastercard och funkar över hela världen.",
+            "terms-info": "Samtliga villkor hittar du i dina [link-new-win {{termsURL}} 'kontovillkor']",
+            "sub-header1": "Villkor",
+            "sub-header2": "Förmåner",
+            "yearly-fee": "Årsavgift",
+            "credit-limit": "Kreditgräns",
+            "info-list": [
+                "Upp till 8 veckors räntefri kredit",
+                "Köparskydd ingår - trygghet när du handlar",
+                "Dela upp större köp i efterhand"
+            ],
+            "button": "Beställ",
+            "confirm-dialog": {
+                "header": "Beställ kort",
+                "text": "Med Ecsterkortet ..."
+            },
+            "success": {
+                "header":"Tack för din beställning",
+                "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "link": "Tillbaka till kontoöversikt"
+            },
+            "pending": {
+                "header": "Ditt beställda kort är på väg",
+                "header_plural": "Dina beställda kort är på väg",
+                "info": "Kortet landar i din brevlåda inom ett par dagar, din pinkod kommer i ett separat brev. Innan du börjar använda kortet måste du logga in och aktivera det här.",
+                "info_plural": "Korten landar i din brevlåda inom ett par dagar, pinkoderna kommer i separata brev. Innan du börjar använda korten måste du logga in och aktivera dem här.",
+                "link": "Tillbaka till kontoöversikt"
+            },
+            "failure": {
+                "header":"Åh nej!",
+                "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
+                "button": "Tillbaka till kontoöversikt"
+            }
+        },
+        "activate-card": {
+            "header": "Aktivera ditt kort",
+            "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
+            "input-label": "CVC-kod",
+            "button": "Aktivera kort",
+            "validation-message": "Ange tre siffror",
+            "success": {
+                "header":"Ditt kort är aktiverat",
+                "info":"Ditt kort är aktiverat och klart att använda.",
+                "link": "Tillbaka till kontoöversikt"
+            },
+            "failure": {
+                "header":"Åh nej!",
+                "info": "Kortet kunde inte aktiveras. Ring oss gärna på $t(general.phone-link-08343550) så hjälper vi till.",
+                "button": "Tillbaka till kontoöversikt"
+            }
+
+        },
+        "show-card": {
+            "default-card-name": "Ecsterkort",
+            "TEMPORARILY_BLOCKED": "Tillfälligt spärrat",
+            "ACTIVE": "Aktivt",
+            "INACTIVE": "Ej aktiverat"
+        },
+        "block-card": {
+            "header": "Spärra ditt kort",
+            "info": "Ring $t(general.phone-link-020411212). Vi har öppet dygnet runt. Om du befinner dig utomlands så ringer du $t(general.phone-link-4684112122)."
+        },
+        "apply-for-extra-card": {
+            "header": "Beställ ett extrakort",
+            "info": "Beställ extrakort till någon i familjen. Då kan ni handla och samla bonuspoäng från flera kort kopplade till samma konto. Skriv ut och fyll i ansökningsblanketten och skicka till Ecster, Box 2169, 103 14 Stockholm",
+            "button": "Ladda ner ansökan (pdf)"
+        },
+        "show-extra-card": {
+            "header": "Befintliga extrakort",
+            "change-button": "Ändra",
+            "pending": {
+                "header": "Din beställning av extrakort behandlas",
+                "info": "$t(card.apply-for-card.pending.info)"
+            }
         }
     },
     "customer": {
@@ -501,23 +585,27 @@
             "default-label": "Välj",
             "employer": "Arbetsgivare",
             "employer-error": "Ange namnet på din arbetsgivare",
+            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
+            "gross-income-error": "Fyll i din inkomst med siffror",
             "header": "Ekonomi",
             "household": "Hushåll",
             "house-label": "Vad är bostadens driftkostnader/mån?",
             "income-label": "Månadsinkomst efter skatt (kr/mån)",
             "income-error": "Fyll i din inkomst med siffror",
-            "gross-income-label": "Månadsinkomst före skatt (kr/mån)",
-            "gross-income-error": "Fyll i din inkomst med siffror",
             "living-label": "Hur bor du?",
             "living-other-label": "Fyll i vilken boendeform",
+            "mortgage-checkbox": "Jag har inga bolån",
+            "mortgage-checkbox-error": "Kryssa denna eller välj ett lånebelopp nedan",
+            "mortgage-cost-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
+            "mortgage-cost-error": "Välj ett ungefärligt lånebelopp",
             "occupation": "Sysselsättning",
             "occupation-label": "Vad är din huvudsakliga sysselsättning?",
             "others": "Bolån och övriga lån/krediter",
             "others-living-label": "Vad är bostadens kostnader/mån?",
-            "others-checkbox": "Jag har inga bolån",
-            "others-label": "Ungefärlig månadskostnad för bolån - endast amortering och ränta",
             "other-loan-checkbox": "Jag har inga övriga lån",
+            "other-loan-checkbox-error": "Kryssa denna eller välj ett lånebelopp nedan",
             "other-loan-cost-label": "Ungefärlig månadskostnad för övriga lån och krediter",
+            "other-loan-cost-error": "Välj ett ungefärligt lånebelopp",
             "options": {
                 "occupation": {
                     "fulltime": "Tillsvidareanställd",
@@ -540,7 +628,15 @@
                     "span3": "4001 kr - 5000 kr",
                     "span4": "5000 kr eller mer"
                 },
-                "otherLoan": {
+                "mortgage-loan": {
+                    "span1": "0,5 mkr - 1 mkr",
+                    "span2": "1+ mkr - 2 mkr",
+                    "span3": "2+ mkr - 3 mkr",
+                    "span4": "3+ mkr - 4 mkr",
+                    "span5": "4+ mkr - 5 mkr",
+                    "span6": "5+ mkr eller mer"
+                },
+                "other-loan": {
                     "span1": "500 kr - 1000 kr",
                     "span2": "1001 kr - 2000 kr",
                     "span3": "2001 kr - 3000 kr",

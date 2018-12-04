@@ -1,0 +1,44 @@
+{
+    "response": {
+        "cards": [
+            {
+                "holder": "Leo Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "INACTIVE",
+                "cardNumber": "529928XXXXXX0294",
+                "reference": "XYZ0123456789",
+                "extraCardInfo": {
+                    "phoneNumber": {
+                        "countryCallingCode": "+46",
+                        "number": "123455667"
+                    },
+                    "ssn": "1212121212"
+                },
+                "expires": {
+                    "year": "2019",
+                    "month": "03"
+                }
+            },
+            {
+                "holder": "Labbe Larsman",
+                "type": "MASTERCARD HXXX",
+                "brickId": "113",
+                "status": "INACTIVE",
+                "cardNumber": "529928XXXXXX3679",
+                "reference": "XYZ0123456789",
+                "extraCardInfo": {
+                    "phoneNumber": {
+                        "countryCallingCode": "+46",
+                        "number": "87412121"
+                    },
+                    "ssn": "1212121212"
+                },
+                "expires": {
+                    "year": "2019",
+                    "month": "03"
+                }
+            }
+        ]
+    }
+}

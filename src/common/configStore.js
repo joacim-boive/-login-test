@@ -3,17 +3,17 @@ import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import history from './history';
 import rootReducer from './rootReducer';
-import { saveState, removeState } from './sessionStoredState';
+import { saveReduxState, removeReduxState } from './sessionStoredState';
 
 const router = routerMiddleware(history);
 
-// NOTE: Do not change middleares delaration pattern since rekit plugins may register middlewares to it.
+// NOTE: Do not change middlewares declaration pattern since rekit plugins may register middlewares to it.
 const middlewares = [thunk, router];
 
 let devToolsExtension = f => f;
 
 /* istanbul ignore if  */
-if (window.ECSTER_CONFIG_ENVIRONMENT === 'development') {
+if (window.EcsterConfig.environment === 'development') {
     const { createLogger } = require('redux-logger');
 
     const logger = createLogger({ collapsed: true });
@@ -42,9 +42,9 @@ export default function configureStore(initialState) {
             state.authentication.loginStatus.isLoggedIn === true;
 
         if (isLoggedIn) {
-            saveState(state);
+            saveReduxState(state); // read by authorization/redux/initialState
         } else {
-            removeState();
+            removeReduxState();
         }
     });
 

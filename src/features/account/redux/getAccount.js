@@ -3,22 +3,27 @@ import {
     ACCOUNT_GET_ACCOUNT_SUCCESS,
     ACCOUNT_GET_ACCOUNT_FAILURE,
     ACCOUNT_GET_ACCOUNT_DISMISS_ERROR,
+    ACCOUNT_GET_ACCOUNT_UNMOUNT,
 } from './constants';
 
 import { get } from '../../../common/asyncAjax';
 
 import { GET_ACCOUNT_URL } from './urls';
 
-export const getAccount = (customerId, refcode) => async dispatch => {
+const testNo = window.location.hash.split('test=')[1]; // ...?test=01
+
+export const getAccount = (customerId, accountRef) => async dispatch => {
     dispatch({
         type: ACCOUNT_GET_ACCOUNT_BEGIN,
     });
 
     try {
-        const res = await get(GET_ACCOUNT_URL(customerId, refcode));
+        const res = testNo
+            ? await get(`test/${testNo}-account.json`)
+            : await get(GET_ACCOUNT_URL(customerId, accountRef));
         dispatch({
             type: ACCOUNT_GET_ACCOUNT_SUCCESS,
-            data: res.response,
+            data: testNo ? { ...res.response, reference: 'XYZ0123456789' } : res.response,
         });
     } catch (err) {
         dispatch({
@@ -29,6 +34,8 @@ export const getAccount = (customerId, refcode) => async dispatch => {
 };
 
 export const dismissGetAccountError = () => ({ type: ACCOUNT_GET_ACCOUNT_DISMISS_ERROR });
+
+// export const getAccountReset = () => ({ type: ACCOUNT_GET_ACCOUNT_UNMOUNT });
 
 export function reducer(state, action) {
     switch (action.type) {
@@ -57,6 +64,14 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_DISMISS_ERROR:
             return {
                 ...state,
+                getAccountError: null,
+            };
+
+        case ACCOUNT_GET_ACCOUNT_UNMOUNT:
+            return {
+                ...state,
+                account: { ...state.account, brickId: undefined },
+                getAccountPending: false,
                 getAccountError: null,
             };
 

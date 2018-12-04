@@ -16,23 +16,26 @@
 
         div {
             margin-left: 15px;
-            font-family: 'PT Sans', sans-serif;
             font-size: 18px;
             color: $gray140;
         }
 
         i {
-            &:before {
-                color: $green;
-                width: 20px;
-                height: 20px;
-            }
             &:last-child {
                 flex-direction: row-reverse;
                 &:before {
                     color: $gray140;
                 }
             }
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 1px 10px;
+            background: $purple20;
+            color: $purple120;
+            border-radius: 10px;
+            height: 18px;
         }
     }
 }

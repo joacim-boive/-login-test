@@ -1,3 +1,5 @@
+import { put } from '@ecster/ecster-net/v2';
+
 import {
     ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
@@ -5,17 +7,25 @@ import {
     ACCOUNT_UPDATE_ACCOUNT_CARD_DISMISS_ERROR,
 } from './constants';
 
-import { put } from '../../../common/asyncAjax';
-
 import { UPDATE_ACCOUNT_CARD_URL } from './urls';
 
-export const updateAccountCard = (customerId, referenceId, data) => async (dispatch) => {
+export const updateAccountCard = (customerId, accountRef, card, cvc) => async dispatch => {
     dispatch({
         type: ACCOUNT_UPDATE_ACCOUNT_CARD_BEGIN,
     });
 
+    const cardData = {
+        status: 'ACTIVE',
+        cvc,
+        cardNumber: card.cardNumber,
+        expires: {
+            month: card.expires.month,
+            year: card.expires.year,
+        },
+    };
+
     try {
-        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, referenceId), data);
+        const res = await put(UPDATE_ACCOUNT_CARD_URL(customerId, accountRef), cardData);
         dispatch({
             type: ACCOUNT_UPDATE_ACCOUNT_CARD_SUCCESS,
             data: res.response,

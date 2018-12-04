@@ -65,7 +65,7 @@ class ProfilePage extends Component {
                             type="tel"
                             value={customer.contactInformation.phoneNumber}
                             label={i18n('general.address.mobile')}
-                            onSave={val => updateCustomerContactInfo(hasAccounts, { phoneNumber: val })}
+                            onSave={value => updateCustomerContactInfo(hasAccounts, { phoneNumber: value })}
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
                         />
@@ -123,8 +123,8 @@ function mapStateToProps(state) {
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch, state) {
-    const { customerId } = state.match.params;
+function mapDispatchToProps(dispatch, route) {
+    const { customerId } = route.match.params;
 
     return {
         getCustomer: customerHasAccounts => dispatch(getCustomer(customerId, customerHasAccounts)),

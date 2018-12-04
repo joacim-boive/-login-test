@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-import { Panel } from '@ecster/ecster-components';
+import { Panel, Spinner } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { connect } from 'react-redux';
 import AuthenticatedSubPageTemplate from '../common/templates/AuthenticatedSubPageTemplate';
@@ -17,36 +16,27 @@ import OverdrawnInfo from './components/OverdrawnInfo';
 
 const defaultFilter = initialState.accountTransactionsFilter;
 
-// Check if we already have transactions - in that case we came from the overview page and will already have a short list of transactions
-const getFilter = (defaultFilter, transactions) =>
-    Array.isArray(transactions) && transactions.length > 0
-        ? { ...defaultFilter, offset: defaultFilter.shortList + 1 }
-        : defaultFilter;
-
 export class AccountTransactionsOverview extends Component {
     componentWillMount() {
-        const { account, getTransactions, getAccount, transactions } = this.props;
+        const { account, getAccountTransactions, getAccount } = this.props;
         if (account.product) {
-            const thisFilter = getFilter(defaultFilter, transactions);
-            getTransactions(thisFilter);
+            getAccountTransactions(defaultFilter, false, false);
         }
         getAccount();
     }
 
     componentWillReceiveProps(nextProps) {
-        const { getTransactions, account, transactions } = this.props;
+        const { getAccountTransactions, account } = this.props;
 
         if (nextProps.account.accountNumber !== account.accountNumber) {
-            const thisFilter = getFilter(defaultFilter, transactions);
-
-            getTransactions(thisFilter);
+            getAccountTransactions(defaultFilter, false, false);
         }
     }
 
     onScrollBottom = () => {
-        const { getTransactions, filter, transactions } = this.props;
+        const { getAccountTransactions, filter, transactions } = this.props;
 
-        getTransactions({
+        getAccountTransactions({
             ...filter,
             maxRecords: filter.maxRecords + filter.stepSize,
             offset: transactions.length || 0,
@@ -54,7 +44,13 @@ export class AccountTransactionsOverview extends Component {
     };
 
     render() {
-        const { account, transactions, reservedTransactions, receivedAllTransactions } = this.props;
+        const {
+            account,
+            transactions,
+            reservedTransactions,
+            receivedAllTransactions,
+            getAccountTransactionsPending,
+        } = this.props;
 
         if (!account.product || !transactions) return null;
 
@@ -87,6 +83,7 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
+                <Spinner isCenterX isVisible={getAccountTransactionsPending} />
                 {receivedAllTransactions && (
                     <Panel
                         id={transactions.length === 0 ? 'no-tx-info' : 'no-more-tx-info'}
@@ -107,12 +104,13 @@ export class AccountTransactionsOverview extends Component {
 
 AccountTransactionsOverview.propTypes = {
     getAccount: PropTypes.func.isRequired,
-    getTransactions: PropTypes.func.isRequired,
+    getAccountTransactions: PropTypes.func.isRequired,
     account: PropTypes.shape(),
     transactions: PropTypes.array,
     reservedTransactions: PropTypes.array,
     filter: PropTypes.shape().isRequired,
     receivedAllTransactions: PropTypes.bool,
+    getAccountTransactionsPending: PropTypes.bool.isRequired,
 };
 
 AccountTransactionsOverview.defaultProps = {
@@ -131,15 +129,17 @@ function mapStateToProps({ account }, route) {
         reservedTransactions: account.accountReservedTransactions[accountRef],
         filter: account.accountTransactionsFilter,
         receivedAllTransactions: account.receivedAllTransactions,
+        getAccountTransactionsPending: account.getAccountTransactionsPending,
     };
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch, state) {
-    const { customerId, accountRef } = state.match.params;
+function mapDispatchToProps(dispatch, route) {
+    const { customerId, accountRef } = route.match.params;
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
-        getTransactions: filter => dispatch(getAccountTransactions(customerId, accountRef, filter)),
+        getAccountTransactions: (filter, isShortList, concat) =>
+            dispatch(getAccountTransactions(customerId, accountRef, filter, isShortList, concat)),
     };
 }
 

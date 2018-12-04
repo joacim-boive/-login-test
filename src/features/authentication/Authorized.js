@@ -7,11 +7,11 @@ import history from '../../common/history';
 
 class Authorized extends React.Component {
     componentDidMount() {
-        const { loginStatus } = this.props;
+        const { loginStatus, getSession, getSessionPending } = this.props;
 
         // TODO: is this call needed?? Handled by (bank-id) login?
-        if (loginStatus.sessionKey && !this.props.getSessionPending && loginStatus.isLoggedIn) {
-            this.props.getSession(loginStatus.sessionKey);
+        if (loginStatus.sessionKey && !getSessionPending && loginStatus.isLoggedIn) {
+            getSession(loginStatus.sessionKey);
         }
     }
 
@@ -38,7 +38,7 @@ class Authorized extends React.Component {
         // if (!nextRoute.match(/\/authentication\/logout/)) {
         //     setNextRoute(nextRoute);
         // }
-        return <Redirect to="/loggedout" />;
+        return <Redirect to="/" />;
     }
 }
 

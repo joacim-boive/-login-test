@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Input, Button, ButtonGroup } from '@ecster/ecster-components';
+import IconButton from '@ecster/ecster-components/Clickable/IconButton';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import './EditableInput.scss';
 
@@ -54,7 +55,7 @@ export class EditableInput extends Component {
     };
 
     render() {
-        const { className, label, validationMessage, ...rest } = this.props;
+        const { className, label, validationMessage, strong, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -96,12 +97,18 @@ export class EditableInput extends Component {
             </div>
         ) : (
             <div className={classes}>
-                <label>{label}</label>
                 <div className="flex-row">
-                    <strong>{value}</strong>
-                    <Button gaLabel="editable-input-edit" name="edit" onClick={this.onEdit} xSmall round outline>
-                        {i18n('general.edit')}
-                    </Button>
+                    <label>{label}</label>
+                    <div>
+                        <span className={strong ? 'strong' : ''}>{value}</span>
+                        <IconButton
+                            gaLabel="editable-input-edit"
+                            name="edit"
+                            onClick={this.onEdit}
+                            icon="icon-edit"
+                            className="ml-3x e-green120"
+                        />
+                    </div>
                 </div>
             </div>
         );
@@ -115,6 +122,7 @@ EditableInput.propTypes = {
     label: PropTypes.string,
     validationMessage: PropTypes.string.isRequired,
     required: PropTypes.bool,
+    strong: PropTypes.bool,
 };
 
 EditableInput.defaultProps = {
@@ -122,4 +130,5 @@ EditableInput.defaultProps = {
     value: '',
     label: '',
     required: false,
+    strong: true,
 };
