@@ -3,15 +3,12 @@
 
 .account-header-mobile {
     width: 100%;
-    font-family: 'PT Sans', sans-serif;
     align-items: center;
     position: relative;
-
     display: flex;
     flex: 0 1 100%;
     flex-direction: column;
     justify-content: space-between;
-
     padding: 15px 20px 0;
 
     .ecster-card {
@@ -48,7 +45,6 @@
 
     &__amount {
         margin: 30px 0;
-
         font-family: 'Campton', sans-serif;
         font-size: 38px;
         font-weight: $weight-light;
