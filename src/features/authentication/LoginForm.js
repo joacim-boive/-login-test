@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSession, removeSession, getSession } from './redux/actions';
+import { createSession, resetLoginState, getSession } from './redux/actions';
 import { showFullscreenDialog } from '../common/redux/actions';
 import { LoginFormFI, LoginFormSE } from './index';
 
@@ -26,7 +26,7 @@ LoginForm.propTypes = {
     country: PropTypes.string.isRequired,
     showFullscreenDialog: PropTypes.func.isRequired,
     createSession: PropTypes.func.isRequired,
-    removeSession: PropTypes.func.isRequired,
+    resetLoginState: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
     loginProgress: PropTypes.shape().isRequired,
     loginStatus: PropTypes.shape().isRequired,
@@ -61,8 +61,8 @@ function mapDispatchToProps(dispatch) {
         createSession: data => {
             dispatch(createSession(data));
         },
-        removeSession: () => {
-            dispatch(removeSession());
+        resetLoginState: () => {
+            dispatch(resetLoginState());
         },
         getSession: sessionKey => {
             dispatch(getSession(sessionKey));
