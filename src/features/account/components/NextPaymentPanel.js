@@ -31,7 +31,20 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
 
     const monthlyInvoiceRoute = '/invoice/monthly-invoices';
 
-    const TheHeader = () => <h4>{i18n('account.next-payment.header')}</h4>;
+    const TheHeader = ({ icon }) => (
+        <h4>
+            {i18n('account.next-payment.header')}
+            {icon && <i className={icon} />}
+        </h4>
+    );
+
+    TheHeader.propTypes = {
+        icon: PropTypes.string,
+    };
+
+    TheHeader.defaultProps = {
+        icon: undefined,
+    };
 
     const TheData = () => (
         <>
@@ -40,20 +53,6 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
             {bg && <LabelValue label={i18n('account.next-payment.bg')} value={bg} />}
             {ocr && <LabelValue label={i18n('account.next-payment.ocr')} value={ocr} />}
         </>
-    );
-
-    const TheLink = () => (
-        <Link
-            className="mt-3x detail-link"
-            purple
-            iconRight="icon-chevron-right"
-            iconColorClass="e-black"
-            to={monthlyInvoiceRoute}
-            underline={false}
-            gaLabel="show-detailed-invoice-tablet-or-desktop"
-        >
-            {i18n('account.next-payment.show-details')}
-        </Link>
     );
 
     return (
@@ -67,14 +66,24 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
                             gaLabel="show-detailed-invoice-mobile"
                             underline={false}
                         >
-                            <TheHeader />
+                            <TheHeader icon="icon-chevron-right" />
                             <TheData />
                         </Link>
                     </Mobile>
                     <TabletOrDesktop>
                         <TheHeader />
                         <TheData />
-                        <TheLink />
+                        <Link
+                            className="detail-link"
+                            purple
+                            iconRight="icon-chevron-right"
+                            iconColorClass="e-black"
+                            to={monthlyInvoiceRoute}
+                            underline={false}
+                            gaLabel="show-detailed-invoice-tablet-or-desktop"
+                        >
+                            {i18n('account.next-payment.show-details')}
+                        </Link>
                     </TabletOrDesktop>
                 </>
             ) : (
