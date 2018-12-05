@@ -3,7 +3,7 @@
 
 .account-links-panel {
     @include mobile() {
-        margin: 0 -15px; // stretch over container padding
+        margin: 0 -15px; // stretch outside container padding
     }
 
     & > a {
