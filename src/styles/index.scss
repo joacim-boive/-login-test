@@ -76,16 +76,6 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-.font-loaded {
-    font-family: "PT Sans", sans-serif;
-
-    button, input, optgroup, select, textarea {
-        /* Need to override the normalize.css */
-        font-family: inherit;
-        font-size: inherit;
-    }
-}
-
 label {
     cursor: pointer;
 }
