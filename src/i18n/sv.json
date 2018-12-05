@@ -408,7 +408,7 @@
                     "ssn-label": "Personnummer",
                     "ssn-placeholder": "ÅÅMMDD-XXXX",
                     "login-button": "Mobilt BankID",
-                    "login-button-bid": "Logga in med BankID på fil"
+                    "login-button-bid": "Logga in med BankID"
                 },
                 "touch": {
                     "mbid-other-device": {
