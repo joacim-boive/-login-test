@@ -1,5 +1,5 @@
-@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
 
 .account-header-mobile {
     width: 100%;
@@ -35,28 +35,26 @@
 
     &__card-number {
         h3 {
-            font-family: 'Campton', sans-serif;
             font-size: 24px;
-            color: #488e6e;
+            color: $green120;
             font-weight: $weight-semibold;
             margin-bottom: 0;
         }
         div {
-            color: #858585;
+            color: $gray;
             font-size: 12px;
         }
     }
 
     &__amount {
-        margin: 30px 0 10px;
+        margin: 30px 0;
 
-        div {
-            font-family: 'Campton', sans-serif;
-            font-size: 30px;
-            font-weight: $weight-book;
-            text-align: center;
-            color: $gray140;
-        }
+        font-family: 'Campton', sans-serif;
+        font-size: 38px;
+        font-weight: $weight-light;
+        text-align: center;
+        color: $green120;
+
         p {
             font-size: 14px;
             text-align: center;

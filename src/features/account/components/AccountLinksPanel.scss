@@ -1,15 +1,22 @@
-@import '~@ecster/ecster-components/scss/MediaQuery';
-@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/media-queries';
 
 .account-links-panel {
     @include mobile() {
-        margin-top: -20px;
+        margin: 0 -15px; // stretch over container padding
     }
 
-    &> * {
+    & > a {
+        $border: 1px solid $beige40;
         padding: 10px 15px;
-        border-bottom: 1px solid $beige40;
+        border-bottom: $border;
 
+        @include mobile() {
+            padding: 10px 30px; // compensate margin stretch
+            &:first-child {
+                border-top: $border;
+            }
+        }
         &:last-child {
             border-bottom: none;
         }

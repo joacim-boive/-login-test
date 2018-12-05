@@ -11,6 +11,11 @@
 
     @include mobile() {
         padding: 0;
+        .left-panel > div {
+            &:first-child {
+                padding: 0;
+            }
+        }
     }
 
     &-content {

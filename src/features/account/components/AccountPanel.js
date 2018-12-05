@@ -88,8 +88,15 @@ class AccountPanel extends Component {
                         accountNumber={account.accountNumber}
                     />
                 )}
-                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" horizontalGutter>
-                    <ResponsivePanel desktop={1} tablet={1} mobile={1} verticalGutter reverseStack={noCard}>
+                <ResponsivePanel desktop={2} tablet={2} mobile={1} className="account-panel-content" verticalLines>
+                    <ResponsivePanel
+                        className="left-panel"
+                        desktop={1}
+                        tablet={1}
+                        mobile={1}
+                        horizontalLines
+                        reverseMobile={noCard}
+                    >
                         {noCard ? (
                             <AccountSalesPanel />
                         ) : (

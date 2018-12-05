@@ -14,15 +14,11 @@
     h4 {
         color: $gray140;
         font-weight: $weight-semibold;
-        margin: 0 0 10px 0;
-    }
-
-    .word-wrap {
-        word-break: inherit;
+        margin: 0 0 20px 0;
     }
 
     p {
-        margin: 0;
+        margin: 10px 0;
     }
 
     .link-no-style {
@@ -32,5 +28,10 @@
             color: $gray140;
             text-decoration: none;
         }
+    }
+
+    .detail-link {
+        display: block;
+        text-align: right;
     }
 }
