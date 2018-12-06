@@ -72,35 +72,35 @@ class LoanBodyPanel extends Component {
                     <h2>{i18n('loan.body.header')}</h2>
                     <div className="sliders">
                         <ResponsivePanel className="full-width" desktop={2} tablet={2} mobile={1}>
-                            <SliderPanel
-                                key="1"
-                                name="amount"
-                                header={i18n('loan.body.amount')}
-                                onChange={this.onChangeAmount}
-                                onAfterChange={val => this.onChangeAfter(val, 'amount')}
-                                min={promissory.minCreditAmount}
-                                max={promissory.maxCreditAmount}
-                                step={100000}
-                                defaultValue={promissory.defaultCreditAmount}
-                                value={amount}
-                                displayedValue={displayedAmount}
-                            />
-                            <SliderPanel
-                                key="2"
-                                name="year"
-                                header={i18n('loan.body.payback')}
-                                onChange={this.onChangeYear}
-                                onAfterChange={val => this.onChangeAfter(val, 'year')}
-                                min={promissory.minPaymentPeriodYear}
-                                max={promissory.maxPaymentPeriodYear}
-                                step={1}
-                                defaultValue={promissory.defaultPaymentPeriodYear}
-                                value={year}
-                                displayedValue={displayedYear}
-                            />
+                                <SliderPanel
+                                    key="1"
+                                    name="amount"
+                                    header={i18n('loan.body.amount')}
+                                    onChange={this.onChangeAmount}
+                                    onAfterChange={val => this.onChangeAfter(val, 'amount')}
+                                    min={promissory.minCreditAmount}
+                                    max={promissory.maxCreditAmount}
+                                    step={100000}
+                                    defaultValue={promissory.defaultCreditAmount}
+                                    value={amount}
+                                    displayedValue={displayedAmount}
+                                />
+                                <SliderPanel
+                                    key="2"
+                                    name="year"
+                                    header={i18n('loan.body.payback')}
+                                    onChange={this.onChangeYear}
+                                    onAfterChange={val => this.onChangeAfter(val, 'year')}
+                                    min={promissory.minPaymentPeriodYear}
+                                    max={promissory.maxPaymentPeriodYear}
+                                    step={1}
+                                    defaultValue={promissory.defaultPaymentPeriodYear}
+                                    value={year}
+                                    displayedValue={displayedYear}
+                                />
                         </ResponsivePanel>
                     </div>
-                    {/*<LoanCost className="loan-cost-panel" terms={terms} interestRate={promissory.interestRate} />*/}
+                    <LoanCost className="loan-cost-panel" terms={terms} interestRate={promissory.interestRate} />
                     <Button className="submit" green round onClick={onSubmit} name="loan-general-info-next">
                         {i18n('loan.body.submit')}
                     </Button>
