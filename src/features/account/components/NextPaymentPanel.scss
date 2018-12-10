@@ -1,6 +1,6 @@
-@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
-@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
+@import '~@ecster/ecster-styles/scss/v2/common/media-queries';
 
 .next-payment-panel {
     font-family: 'PT Sans', sans-serif;
@@ -8,7 +8,7 @@
     color: $gray140;
 
     @include mobile() {
-        padding: 0 20px;
+        padding: 0;
     }
 
     h4 {
