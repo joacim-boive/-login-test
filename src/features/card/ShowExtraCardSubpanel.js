@@ -28,7 +28,6 @@ export default class ShowExtraCardSubpanel extends React.Component {
 
         const tmpBlock = card.status === 'TEMPORARILY_BLOCKED';
 
-        console.log('card = ', card);
         return (
             <div className="card-show-extra-card-subpanel">
                 <p>

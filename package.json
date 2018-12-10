@@ -178,7 +178,7 @@
                         "contexts": [
                             "/rest/"
                         ],
-                        "target": "https://secure3.ft.ecster.se",
+                        "target": "https://secure1.ft.ecster.se",
                         "headers": [
                             [
                                 "X-ECSTER-Origin",
@@ -240,7 +240,7 @@
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.125",
-        "@ecster/ecster-components": "^2.0.586",
+        "@ecster/ecster-components": "^2.0.610",
         "@ecster/ecster-i18n": "^3.0.76",
         "@ecster/ecster-net": "^2.0.104",
         "@ecster/ecster-styles": "^3.0.220",

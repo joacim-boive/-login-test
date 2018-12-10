@@ -17,4 +17,23 @@
         margin: 0 auto;
     }
 
+    .activate-form {
+        text-align: left;
+        max-width: 400px;
+        align-items: flex-end;
+        margin: 30px auto 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        @include mobile() {
+            flex-direction: column;
+            align-items: center;
+            & > div {
+                margin-bottom: 30px;
+            }
+        }
+
+    }
+
 }

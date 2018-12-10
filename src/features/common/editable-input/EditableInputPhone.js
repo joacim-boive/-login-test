@@ -88,7 +88,7 @@ export class EditableInputPhone extends Component {
                 <div className="input-wrapper">
                     <Form ref={this.formRef} validateRefs={[this.phoneRef, this.countryRef]} className="flex-row">
                         <CountrySelect
-                            ref={this.countryRef}
+                            selectRef={this.countryRef}
                             label={i18n('general.address.country-code')}
                             value={value.countryCallingCode}
                             onChange={this.onChangeCountryCode}

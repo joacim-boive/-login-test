@@ -27,7 +27,8 @@
         "validation": {
             "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmdd-xxxx)",
             "email": "Kolla att e-postadressen blev rätt och försök igen",
-            "phone": "Kolla att numret blev rätt och försök igen"
+            "phone": "Kolla att numret blev rätt och försök igen",
+            "country-code": "Du måste välja en landskod"
         },
         "answer": {
             "yes": "Ja",
@@ -314,8 +315,9 @@
             ],
             "button": "Beställ",
             "confirm-dialog": {
-                "header": "Beställ kort",
-                "text": "Med Ecsterkortet ..."
+                "header": "Beställ ett kort",
+                "text": "När du skickat beställningen kommer ditt kort att präglas och skickas till dig, det tar ca en vecka. Pinkoden kommer i ett separat kuvert",
+                "ok-button": "Ok, skicka"
             },
             "success": {
                 "header": "Tack för din beställning",
@@ -339,7 +341,7 @@
             "header": "Aktivera ditt kort",
             "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
-            "button": "Aktivera kort",
+            "button": "Aktivera",
             "validation-message": "Ange tre siffror",
             "success": {
                 "header": "Ditt kort är aktiverat",

@@ -1,11 +1,7 @@
+@import "~@ecster/ecster-styles/scss/v2/common/media-queries";
+
 .card-activate-card-panel {
     img {
         width: 104px;
-    }
-    .activate-form {
-        text-align: left;
-        max-width: 400px;
-        align-items: flex-end;
-        margin: 30px auto 0;
     }
 }

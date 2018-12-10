@@ -7,7 +7,7 @@ import extraCardIcon from '../../common/images/icon-extra-card.svg';
 export default class ApplyForExtraCardPanel extends React.Component {
     render() {
         return (
-            <Panel withMixedContent centeredContent className="card-apply-for-extra-card-panel">
+            <Panel withMixedContent centeredContent sideMarginsInMobile className="card-apply-for-extra-card-panel">
                 <div className="mixed-content centered-content">
                     <img src={extraCardIcon} aria-hidden="true" alt="extra card icon" />
                     <h1 className="h2">{i18n('card.apply-for-extra-card.header')}</h1>
