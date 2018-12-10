@@ -103,6 +103,7 @@ class LoanGeneralInformationPanel extends Component {
                         ref={this.formGeneralInformation}
                         validateRefs={[
                             this.loanUsage,
+                            this.loanUsageDescription,
                             this.clearingNumber,
                             this.myBank,
                             this.accountNumber,
@@ -139,6 +140,7 @@ class LoanGeneralInformationPanel extends Component {
                                         onChange={this.onChange}
                                         name="loanUsageDescription"
                                         required
+                                        validationMessage={i18n('loan.general.other-usage-error')}
                                         minLength={3}
                                         maxLength={30}
                                         ref={this.loanUsageDescription}
