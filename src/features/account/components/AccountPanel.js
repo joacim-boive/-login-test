@@ -98,7 +98,7 @@ class AccountPanel extends Component {
                         reverseMobile={noCard}
                     >
                         {noCard ? (
-                            <AccountSalesPanel />
+                            <AccountSalesPanel accountRef={account.reference} customerId={user.id} />
                         ) : (
                             <TabletOrDesktop>
                                 <LatestTransactions

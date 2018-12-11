@@ -14,7 +14,7 @@ export default class BlockCardPanel extends React.Component {
 
     render() {
         return (
-            <Panel withMixedContent centeredContent yellowBG className="card-block-card-panel">
+            <Panel withMixedContent centeredContent sideMarginsInMobile yellowBG className="card-block-card-panel">
                 <div className="mixed-content">
                     <h1 className="h2">{i18n('card.block-card.header')}</h1>
                     <p>
