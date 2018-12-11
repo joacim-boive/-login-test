@@ -13,6 +13,7 @@ import { EditableInputPhone } from '../../common/editable-input/EditableInputPho
 class LoanPersonalInformationPanel extends Component {
     static propTypes = {
         person: PropTypes.object.isRequired,
+        customer: PropTypes.object.isRequired,
         contactInformation: PropTypes.object,
         onUpdateContactInfo: PropTypes.func.isRequired,
         onNextStep: PropTypes.func.isRequired,
@@ -45,7 +46,16 @@ class LoanPersonalInformationPanel extends Component {
     };
 
     render() {
-        const { className, person, contactInformation, onUpdateContactInfo, collapse, handleCollapse, id } = this.props;
+        const {
+            className,
+            person,
+            customer,
+            contactInformation,
+            onUpdateContactInfo,
+            collapse,
+            handleCollapse,
+            id,
+        } = this.props;
 
         const classes = classNames({
             'loan-personal-information-panel': true,
@@ -71,31 +81,33 @@ class LoanPersonalInformationPanel extends Component {
                             <DataRow>
                                 <Data small>{i18n('general.address.name')}</Data>
                                 <Data right strong>
-                                    {person.name}
+                                    {person.firstName && person.lastName
+                                        ? person.firstName + ' ' + person.lastName
+                                        : person.name}
                                 </Data>
                             </DataRow>
                             <DataRow>
                                 <Data small>{i18n('general.ssn')}</Data>
                                 <Data right strong>
-                                    {person.ssn}
+                                    {customer.ssn}
                                 </Data>
                             </DataRow>
                             <DataRow>
                                 <Data small>{i18n('general.address.address')}</Data>
                                 <Data right strong>
-                                    {person.address}
+                                    {customer.address}
                                 </Data>
                             </DataRow>
                             <DataRow>
                                 <Data small>{i18n('general.address.zip')}</Data>
                                 <Data right strong>
-                                    {person.zip}
+                                    {customer.zip}
                                 </Data>
                             </DataRow>
                             <DataRow>
                                 <Data small>{i18n('general.address.city')}</Data>
                                 <Data right strong>
-                                    {person.city}
+                                    {customer.city}
                                 </Data>
                             </DataRow>
                             <DataRow className="hide-on-mobile">

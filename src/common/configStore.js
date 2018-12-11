@@ -22,7 +22,7 @@ const middlewares = [thunk, router];
 let devToolsExtension = f => f;
 
 /* istanbul ignore if  */
-if (window.ECSTER_CONFIG_ENVIRONMENT === 'development') {
+if (window.EcsterConfig.environment === 'development') {
     const { createLogger } = require('redux-logger');
 
     const logger = createLogger({ collapsed: true });

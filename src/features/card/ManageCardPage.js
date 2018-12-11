@@ -101,7 +101,6 @@ export class ManageCardPage extends Component {
     componentWillUnmount() {
         const { unmountThisAccount } = this.props;
         unmountThisAccount();
-
         this.clearState();
     }
 

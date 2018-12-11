@@ -140,6 +140,14 @@
                 {
                     "from": "features/card/__test-data__/",
                     "to": "test"
+                },
+                {
+                    "from": "../config/ecster-config.js",
+                    "to": "static/ecster-config.js"
+                },
+                {
+                    "from": "../config",
+                    "to": "config"
                 }
             ],
             "template": "template.ejs",
@@ -164,13 +172,13 @@
                 "qwest"
             ],
             "proxies": {
-                "debug": false,
+                "isDebug": false,
                 "configs": [
                     {
                         "contexts": [
                             "/rest/"
                         ],
-                        "target": "https://secure3.ft.ecster.se",
+                        "target": "https://secure1.ft.ecster.se",
                         "headers": [
                             [
                                 "X-ECSTER-Origin",
@@ -222,7 +230,7 @@
         "npm-run": "^5.0.1",
         "nyc": "^11.9.0",
         "puppeteer": "^1.10.0",
-        "react-hot-loader": "^4.3.11",
+        "react-hot-loader": "^4.5.0-next",
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.3",
         "rekit-core": "^2.3.4",
@@ -232,7 +240,7 @@
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.125",
-        "@ecster/ecster-components": "^2.0.586",
+        "@ecster/ecster-components": "^2.0.610",
         "@ecster/ecster-i18n": "^3.0.76",
         "@ecster/ecster-net": "^2.0.104",
         "@ecster/ecster-styles": "^3.0.220",
