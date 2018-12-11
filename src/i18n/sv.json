@@ -27,7 +27,8 @@
         "validation": {
             "ssn": "Något gick fel. Kontrollera att du angett ett giltigt personnummer, tio siffror (ååmmdd-xxxx)",
             "email": "Kolla att e-postadressen blev rätt och försök igen",
-            "phone": "Kolla att numret blev rätt och försök igen"
+            "phone": "Kolla att numret blev rätt och försök igen",
+            "country-code": "Du måste välja en landskod"
         },
         "answer": {
             "yes": "Ja",
@@ -300,7 +301,7 @@
             "page-header-no-card": "Beställ kort"
         },
         "apply-for-card": {
-            "header":"Koppla ett kort till ditt konto",
+            "header": "Koppla ett kort till ditt konto",
             "info": "När du ansluter ett kreditkort till ditt konto kan du använda din kontokredit på fler ställen. Kortet är kopplat till Mastercard och funkar över hela världen.",
             "terms-info": "Samtliga villkor hittar du i dina [link-new-win {{termsURL}} 'kontovillkor']",
             "sub-header1": "Villkor",
@@ -314,12 +315,13 @@
             ],
             "button": "Beställ",
             "confirm-dialog": {
-                "header": "Beställ kort",
-                "text": "Med Ecsterkortet ..."
+                "header": "Beställ ett kort",
+                "text": "När du skickat beställningen kommer ditt kort att präglas och skickas till dig, det tar ca en vecka. Pinkoden kommer i ett separat kuvert",
+                "ok-button": "Ok, skicka"
             },
             "success": {
-                "header":"Tack för din beställning",
-                "info":"Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
+                "header": "Tack för din beställning",
+                "info": "Så snart du har fått hem ditt kort, kan du logga in och aktivera det här.",
                 "link": "Tillbaka till kontoöversikt"
             },
             "pending": {
@@ -330,7 +332,7 @@
                 "link": "Tillbaka till kontoöversikt"
             },
             "failure": {
-                "header":"Åh nej!",
+                "header": "Åh nej!",
                 "info": "Din beställning kunde inte genomföras. Har du frågor kan du ringa oss på $t(general.phone-link-08343550). Vi har öppet vardagar 9-18",
                 "button": "Tillbaka till kontoöversikt"
             }
@@ -339,19 +341,18 @@
             "header": "Aktivera ditt kort",
             "info": "Ange CVC-koden som står på kortets baksida för att aktivera kortet.",
             "input-label": "CVC-kod",
-            "button": "Aktivera kort",
+            "button": "Aktivera",
             "validation-message": "Ange tre siffror",
             "success": {
-                "header":"Ditt kort är aktiverat",
-                "info":"Ditt kort är aktiverat och klart att använda.",
+                "header": "Ditt kort är aktiverat",
+                "info": "Ditt kort är aktiverat och klart att använda.",
                 "link": "Tillbaka till kontoöversikt"
             },
             "failure": {
-                "header":"Åh nej!",
+                "header": "Åh nej!",
                 "info": "Kortet kunde inte aktiveras. Ring oss gärna på $t(general.phone-link-08343550) så hjälper vi till.",
                 "button": "Tillbaka till kontoöversikt"
             }
-
         },
         "show-card": {
             "default-card-name": "Ecsterkort",
@@ -560,6 +561,7 @@
             "header": "Låneinformation",
             "other": "Annat",
             "other-usage": "Definiera vad",
+            "other-usage-error": "Vänligen ange vad lånet ska användas till",
             "purpose": "Vad lånet skall användas till?",
             "purpose-error": "Vänligen ange vad lånet ska användas till",
             "resolve-other": "Ange belopp du avser lösa",

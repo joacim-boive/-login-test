@@ -8,7 +8,7 @@ import infoIcon from './images/icon-info-circle.svg';
 
 import './AlertPanel.scss';
 
-const AlertPanel = ({ header, body, icon, large, className }) => {
+const AlertPanel = ({ header, body, icon, large, xLarge, className }) => {
     const containerClasses = classNames({
         'alert-ctr': true,
         large,
