@@ -1,17 +1,17 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
-import history from './history';
-import rootReducer from './rootReducer';
 
-import { persistStore, persistReducer} from 'redux-persist'
-import storage from 'redux-persist/lib/storage/session'
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage/session';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import rootReducer from './rootReducer';
+import history from './history';
 
 const persistConfig = {
     key: 'root',
     storage,
-    stateReconciler: autoMergeLevel2
+    stateReconciler: autoMergeLevel2,
 };
 
 const router = routerMiddleware(history);
@@ -28,7 +28,9 @@ if (window.EcsterConfig.environment === 'development') {
     const logger = createLogger({ collapsed: true });
     middlewares.push(logger);
 
+    // eslint-disable-next-line no-underscore-dangle
     if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+        // eslint-disable-next-line no-underscore-dangle
         devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__() || compose;
     }
 }
@@ -49,17 +51,6 @@ const store = createStore(
 export const persistor = persistStore(store);
 
 export default function configureStore() {
-    /* istanbul ignore if  */
-    if (module.hot) {
-        module.hot.accept(() => {
-            // This fetch the new state of the above reducers.
-            const nextRootReducer = require('./rootReducer').default;
-
-            store.replaceReducer(
-                persistReducer(persistConfig, nextRootReducer)
-            )
-        })
-    }
-
+    // Don't to hot reloading here - it's not supported for stores anyway
     return store;
 }
