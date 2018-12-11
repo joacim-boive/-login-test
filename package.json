@@ -111,7 +111,7 @@
             "cssWhiteList": [],
             "language": "sv",
             "googleAnalytics": {
-                "isDevModeEnabled": false,
+                "isDevModeEnabled": true,
                 "id": "UA-127526908-1",
                 "script": "ga/tracking.js"
             },
@@ -178,7 +178,7 @@
                         "contexts": [
                             "/rest/"
                         ],
-                        "target": "https://secure1.ft.ecster.se",
+                        "target": "https://secure2.ft.ecster.se",
                         "headers": [
                             [
                                 "X-ECSTER-Origin",
