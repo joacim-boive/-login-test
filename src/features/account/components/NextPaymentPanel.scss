@@ -1,6 +1,6 @@
-@import '~@ecster/ecster-styles/scss/v2/common/_colors.scss';
-@import '~@ecster/ecster-styles/scss/v2/theme/fonts/_campton.scss';
-@import '~@ecster/ecster-components/scss/MediaQuery';
+@import '~@ecster/ecster-styles/scss/v2/common/colors';
+@import '~@ecster/ecster-styles/scss/v2/common/font-weights';
+@import '~@ecster/ecster-styles/scss/v2/common/media-queries';
 
 .next-payment-panel {
     font-family: 'PT Sans', sans-serif;
@@ -8,21 +8,19 @@
     color: $gray140;
 
     @include mobile() {
-        padding: 0 20px;
+        padding: 0;
     }
 
     h4 {
         color: $gray140;
         font-weight: $weight-semibold;
-        margin: 0 0 10px 0;
-    }
-
-    .word-wrap {
-        word-break: inherit;
+        margin: 0 0 20px 0;
+        display: flex;
+        justify-content: space-between;
     }
 
     p {
-        margin: 0;
+        margin: 10px 0;
     }
 
     .link-no-style {
@@ -32,5 +30,11 @@
             color: $gray140;
             text-decoration: none;
         }
+    }
+
+    .detail-link {
+        display: block;
+        text-align: right;
+        margin-top: 15px;
     }
 }
