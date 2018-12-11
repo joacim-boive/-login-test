@@ -236,7 +236,7 @@
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
         "sinon": "^4.5.0",
-        "webpack": "4.19.0"
+        "webpack": "^4.27.1"
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.125",
