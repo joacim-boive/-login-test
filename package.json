@@ -111,7 +111,7 @@
             "cssWhiteList": [],
             "language": "sv",
             "googleAnalytics": {
-                "isDevModeEnabled": false,
+                "isDevModeEnabled": true,
                 "id": "UA-127526908-1",
                 "script": "ga/tracking.js"
             },
@@ -178,7 +178,7 @@
                         "contexts": [
                             "/rest/"
                         ],
-                        "target": "https://secure1.ft.ecster.se",
+                        "target": "https://secure3.ft.ecster.se",
                         "headers": [
                             [
                                 "X-ECSTER-Origin",
@@ -239,7 +239,7 @@
         "webpack": "4.19.0"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.125",
+        "@ecster/ecster-analytics": "^4.0.129",
         "@ecster/ecster-components": "^2.0.629",
         "@ecster/ecster-i18n": "^3.0.76",
         "@ecster/ecster-net": "^2.0.104",

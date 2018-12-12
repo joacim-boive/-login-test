@@ -5,6 +5,7 @@ import { Redirect } from 'react-router';
 
 import { Button, detectDevice, DesktopDevice, TouchDevice } from '@ecster/ecster-components';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
+import { setDimension, DIMENSION_AGE_GROUP } from '@ecster/ecster-analytics/v2';
 
 import validateSsn from '@ecster/ecster-components/Input/validators/persNr';
 
@@ -14,6 +15,8 @@ import LoginHelp from './LoginHelp';
 import MobileBankIdOtherDeviceForTouchDevice from './MobileBankIdOtherDeviceForTouchDevice';
 import MobileBankIdOtherDeviceForDesktopDevice from './MobileBankIdOtherDeviceForDesktopDevice';
 import MobileBankIdThisDevice from './MobileBankIdThisDevice';
+
+import { ageGroupFromSsn } from '../../../common/util/age-from-ssn';
 
 class LoginFormSE extends Component {
     state = {
@@ -68,20 +71,23 @@ class LoginFormSE extends Component {
 
         this.prevState = { ...this.state };
         this.setState(nextState, () => {
+            const { createSession } = this.props;
             if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
                 createSessionConfig.ssn = ssn;
             }
-            this.props.createSession(createSessionConfig);
+            createSession(createSessionConfig);
         });
     };
 
     cancelLogin = () => {
+        const { resetLoginState } = this.props;
+
         if (this.pollTimer) {
             clearTimeout(this.pollTimer);
             this.pollTimer = undefined;
         }
 
-        this.props.resetLoginState();
+        resetLoginState();
 
         this.setState({
             ...this.prevState,
@@ -95,9 +101,8 @@ class LoginFormSE extends Component {
             return;
         }
 
-        const { loginProgress } = this.props;
+        const { loginProgress, getSession, loginStatus } = this.props;
         this.pollTimer = setTimeout(() => {
-            const { getSession, loginStatus } = this.props;
             this.pollTimer = undefined;
             getSession(loginStatus.sessionKey);
         }, loginProgress.pollTime);
@@ -115,9 +120,10 @@ class LoginFormSE extends Component {
     };
 
     render() {
-        const { loginStatus, loginProgress, getSessionError, createSessionError } = this.props;
+        const { person, loginStatus, loginProgress, getSessionError, createSessionError } = this.props;
 
         if (loginStatus.isLoggedIn) {
+            setDimension(DIMENSION_AGE_GROUP, ageGroupFromSsn(person.ssn));
             return <Redirect to="../account/overview" />;
         }
 
@@ -213,11 +219,13 @@ LoginFormSE.propTypes = {
 
     createSessionError: PropTypes.object,
     getSessionError: PropTypes.object,
+    person: PropTypes.shape(),
 };
 
 LoginFormSE.defaultProps = {
     createSessionError: null,
     getSessionError: null,
+    person: undefined,
 };
 
 export default LoginFormSE;
