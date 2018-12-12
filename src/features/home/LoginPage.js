@@ -25,6 +25,11 @@ class LoginPage extends Component {
         }
     }
 
+    componentWillUnmount() {
+        const { clearJustLoggedOut } = this.props;
+        clearJustLoggedOut();
+    }
+
     gaRegistrations = () => {
         setDimension(DIMENSION_IS_LOGGED_IN, 'no');
         setDimension(DIMENSION_LOGIN_METHOD, 'none');

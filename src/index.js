@@ -40,6 +40,7 @@ const initApplication = () => {
     // const country = 'FI';
     const { EcsterConfig: conf } = window;
 
+
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 
