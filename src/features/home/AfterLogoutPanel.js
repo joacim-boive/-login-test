@@ -21,7 +21,7 @@ export default class AfterLogoutPanel extends React.Component {
         return (
             <Panel withMixedContent centeredContent sideMarginsInMobile className="after-logout-info">
                 <div className="mixed-content">
-                    <img src={icon} className="mb-4x" />
+                    <img alt="" src={icon} className="mb-4x" />
                     <h2>{i18n('home.after-logout.header')}</h2>
                     <p className="info-text">{i18n('home.after-logout.info')}</p>
                     <ButtonGroup alignCenter>
