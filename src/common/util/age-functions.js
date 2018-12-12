@@ -1,22 +1,24 @@
-// TODO: temporary
+import moment from 'moment';
+
+// TODO: temporary age calculation, will be returned in person object when logging in
 export const approximateAgeFromSsn = ssn => {
     if (!ssn || !ssn.match(/^[0-9][0-9]/)) return 0;
 
+    // ssn has no century!
     const birthYear = Number.parseInt(ssn.substring(0, 2), 10);
-    const year = new Date().getFullYear() - 2000; // TODO: fix before 2100-01-01!
+    const year = new Date().getFullYear() - 2000; // TODO: stops working after 2100-01-01 :-)
 
-    let age = 0;
+    let century = 19;
 
-    if (birthYear > year - 10) {
-        // year - 10
-        age = 100 - birthYear + year;
-    } else {
-        age = year - birthYear;
+    if (birthYear < year - 10) {
+        // year - 10? 10 year olds and younger probably not logging in, assume age over 100
+        century = 20;
     }
 
-    return age;
+    return moment().diff(`${century}${ssn.substring(0, 6)}`, 'years');
 };
 
+// age in min/max interval?
 const inInterval = (age, min, max) => min <= age && age <= max;
 
 export const ageGroupFromSsn = ssn => {

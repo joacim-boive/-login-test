@@ -21,7 +21,7 @@ import MobileBankIdOtherDeviceForTouchDevice from './MobileBankIdOtherDeviceForT
 import MobileBankIdOtherDeviceForDesktopDevice from './MobileBankIdOtherDeviceForDesktopDevice';
 import MobileBankIdThisDevice from './MobileBankIdThisDevice';
 
-import { ageGroupFromSsn } from '../../../common/util/age-from-ssn';
+import { ageGroupFromSsn } from '../../../common/util/age-functions';
 
 class LoginFormSE extends Component {
     state = {
@@ -79,7 +79,6 @@ class LoginFormSE extends Component {
 
         this.prevState = { ...this.state };
         this.setState(nextState, () => {
-            console.log('create session: state = ', this.state);
             const { createSession } = this.props;
             if (config.type === 'BANKID_MOBILE' && !isOnThisDevice) {
                 createSessionConfig.ssn = ssn;
