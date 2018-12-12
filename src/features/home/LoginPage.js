@@ -19,10 +19,11 @@ class LoginPage extends Component {
     };
 
     componentDidMount() {
-        const { loginStatus } = this.props;
-        if (!loginStatus.justLoggedOut) {
-            this.gaRegistrations();
-        }
+        console.log('LoginPage did mount');
+        setDimension(DIMENSION_IS_LOGGED_IN, 'no');
+        setDimension(DIMENSION_LOGIN_METHOD, 'none');
+        setDimension(DIMENSION_AGE_GROUP, 0); // unknown age group
+        setPageView('/login', 'Login page'); // auto page view for '#/' is disabled
     }
 
     componentWillUnmount() {
@@ -30,16 +31,8 @@ class LoginPage extends Component {
         clearJustLoggedOut();
     }
 
-    gaRegistrations = () => {
-        setDimension(DIMENSION_IS_LOGGED_IN, 'no');
-        setDimension(DIMENSION_LOGIN_METHOD, 'none');
-        setDimension(DIMENSION_AGE_GROUP, 0); // unknown
-        setPageView('/login', 'Login page'); // auto page view for '#/' is disabled
-    };
-
     loginAgain = () => {
         const { clearJustLoggedOut } = this.props;
-        this.gaRegistrations();
         clearJustLoggedOut();
     };
 
