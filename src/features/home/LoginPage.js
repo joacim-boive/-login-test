@@ -21,11 +21,11 @@ class LoginPage extends Component {
     componentDidMount() {
         const { loginStatus } = this.props;
         if (!loginStatus.justLoggedOut) {
-            this.registerGa();
+            this.gaRegistrations();
         }
     }
 
-    registerGa = () => {
+    gaRegistrations = () => {
         setDimension(DIMENSION_IS_LOGGED_IN, 'no');
         setDimension(DIMENSION_LOGIN_METHOD, 'none');
         setDimension(DIMENSION_AGE_GROUP, 0); // unknown
@@ -34,7 +34,7 @@ class LoginPage extends Component {
 
     loginAgain = () => {
         const { clearJustLoggedOut } = this.props;
-        this.registerGa();
+        this.gaRegistrations();
         clearJustLoggedOut();
     };
 
