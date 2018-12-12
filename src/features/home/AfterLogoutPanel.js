@@ -37,7 +37,7 @@ export default class AfterLogoutPanel extends React.Component {
                         </LinkButton>
                     </ButtonGroup>
                     <ButtonGroup alignCenter spaceBelow={false}>
-                        <Button transparent onClick={loginAgain}>
+                        <Button transparent onClick={loginAgain} id="after-logout-login-again">
                             <strong>{i18n('home.after-logout.login-link')}</strong>
                         </Button>
                     </ButtonGroup>
