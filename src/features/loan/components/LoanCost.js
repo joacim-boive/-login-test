@@ -13,7 +13,7 @@ export const LoanCost = ({ className, terms, interestRate }) => {
         [className]: className,
     });
 
-    if (!terms.averageMonthlyCost) return null;
+    if (!terms && !terms.averageMonthlyCost) return null;
 
     return (
         <div className={classes}>
