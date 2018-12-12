@@ -85,6 +85,7 @@ export default class ApplyForCardPanel extends React.Component {
                     </div>
                     <ButtonGroup alignCenter spaceBelow={false}>
                         <ConfirmButton
+                            id="order-card"
                             confirmHeader={i18n('card.apply-for-card.confirm-dialog.header')}
                             confirmText={i18n('card.apply-for-card.confirm-dialog.text')}
                             confirmOk={i18n('card.apply-for-card.confirm-dialog.ok-button')}

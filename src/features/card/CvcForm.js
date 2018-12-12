@@ -51,7 +51,7 @@ export default class CvcForm extends React.Component {
                     ref={this.cvcRef}
                     onKeyUp={this.onKeyUp}
                 />
-                <Button round onClick={this.onClick}>
+                <Button round onClick={this.onClick} id="activate-card">
                     {i18n('card.activate-card.button')}
                 </Button>
             </Form>

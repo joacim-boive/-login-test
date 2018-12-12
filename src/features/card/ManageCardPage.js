@@ -17,6 +17,8 @@ import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import BlockCardPanel from './BlockCardPanel';
+
+import { operationSucceeded } from '../../common/rekit/operationSucceeded';
 import {
     getAccount,
     getAccountTerms,
@@ -28,16 +30,13 @@ import {
 } from '../account/redux/actions';
 
 import { updateCustomerExtraCardHolderContactInfo } from '../customer/redux/actions';
+import {ACCOUNT_GET_ACCOUNT_CARDS_CLEAR} from "../account/redux/constants";
 
 const If = ({ condition, children }) => condition && children;
 If.propTypes = {
     condition: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
 };
-
-const operationSucceeded = (operation, prevProps, props) =>
-    // true if pending state went from true to false and no error
-    prevProps[`${operation}Pending`] && !props[`${operation}Pending`] && !props[`${operation}Error`];
 
 const initialState = {
     applicationSucceeded: false,
@@ -51,7 +50,8 @@ export class ManageCardPage extends Component {
         accountTerms: PropTypes.shape().isRequired,
         extraCards: PropTypes.shape().isRequired,
         getAccount: PropTypes.func.isRequired,
-        unmountThisAccount: PropTypes.func.isRequired,
+        clearAccountState: PropTypes.func.isRequired,
+        clearAccountCardsState: PropTypes.func.isRequired,
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
         updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
@@ -99,12 +99,14 @@ export class ManageCardPage extends Component {
     }
 
     componentWillUnmount() {
-        const { unmountThisAccount } = this.props;
-        unmountThisAccount();
-        this.clearState();
+        console.log('ManageCardPage: componentWillUnmount');
+        const { clearAccountState, clearAccountCardsState } = this.props;
+        clearAccountState();
+        clearAccountCardsState();
+        this.clearComponentState();
     }
 
-    clearState = () => {
+    clearComponentState = () => {
         const {
             createAccountCardError,
             dismissCreateAccountCardError,
@@ -120,7 +122,7 @@ export class ManageCardPage extends Component {
 
     // click back from failure message dialogs
     onClickBack = () => {
-        this.clearState();
+        this.clearComponentState();
         history.push('/account/overview');
     };
 
@@ -271,7 +273,8 @@ function mapDispatchToProps(dispatch, route) {
 
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
-        unmountThisAccount: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_UNMOUNT' }),
+        clearAccountState: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_CLEAR' }),
+        clearAccountCardsState: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_CARDS_CLEAR' }),
         getAccountTerms: () => dispatch(getAccountTerms(customerId, accountRef)),
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),
