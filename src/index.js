@@ -32,6 +32,7 @@ const initApplication = () => {
     const country = 'SE';
     // const country = 'FI';
 
+
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 

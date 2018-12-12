@@ -33,8 +33,9 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
 
         return (
             isVisible && (
-                <div className="login-se-touch-mbid-other-device">
-                    <h3 className="e-green120">{i18n('header')}</h3>
+                <div className="login-se-touch-mbid-other-device flex-column flex-column-centered">
+                    <h1 className="e-green120">{i18n('header')}</h1>
+                    <h4 className="e-green120 h5">{i18n('sub-header')}</h4>
                     <Input
                         ref={input => {
                             this.inputRef = input;
@@ -68,7 +69,6 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
                         <Button
                             onClick={() => toggleState('isOnThisDevice')}
                             transparent
-                            iconLeft="icon-chevron-left"
                             name="to-mbid-this-device-button"
                             gaLabel="to-mobile-bankid-this-device"
                         >

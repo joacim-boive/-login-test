@@ -413,11 +413,12 @@
                 },
                 "touch": {
                     "mbid-other-device": {
-                        "header": "Logga in med Mobilt BankID från annan enhet",
+                        "header": "Logga in",
+                        "sub-header": "med Mobilt BankID från annan enhet",
                         "ssn-label": "Personnummer",
                         "ssn-placeholder": "ÅÅMMDD-XXXX",
                         "login-button": "Logga in",
-                        "to-mbid-this-device-button": "Tillbaka"
+                        "to-mbid-this-device-button": "Mobilt BankID på denna enhet"
                     },
                     "mbid-this-device": {
                         "header": "Logga in",
