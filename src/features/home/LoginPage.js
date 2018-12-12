@@ -19,7 +19,6 @@ class LoginPage extends Component {
     };
 
     componentDidMount() {
-        console.log('LoginPage did mount');
         setDimension(DIMENSION_IS_LOGGED_IN, 'no');
         setDimension(DIMENSION_LOGIN_METHOD, 'none');
         setDimension(DIMENSION_AGE_GROUP, 0); // unknown age group
