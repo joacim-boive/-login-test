@@ -63,7 +63,7 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
                         <Link
                             to={monthlyInvoiceRoute}
                             className="link-no-style"
-                            gaLabel="show-detailed-invoice-mobile"
+                            id="show-detailed-invoice-mobile"
                             underline={false}
                         >
                             <TheHeader icon="icon-chevron-right" />
@@ -80,7 +80,7 @@ export const NextPaymentPanel = ({ className, bills, bg, ocr }) => {
                             iconColorClass="e-black"
                             to={monthlyInvoiceRoute}
                             underline={false}
-                            gaLabel="show-detailed-invoice-tablet-or-desktop"
+                            id="show-detailed-invoice-tablet-or-desktop"
                         >
                             {i18n('account.next-payment.show-details')}
                         </Link>
