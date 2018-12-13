@@ -64,7 +64,7 @@ export class EditableInput extends Component {
             [className]: className,
         });
 
-        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-` : '';
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-editable-input` : 'editable-input';
 
         return editMode ? (
             <div className={classes}>
@@ -83,7 +83,7 @@ export class EditableInput extends Component {
                 </Form>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel={`${gaLabelPrefix}editable-input-cancel`}
+                        gaLabel={`${gaLabelPrefix}-cancel`}
                         name="cancel"
                         onClick={this.onCancel}
                         xSmall
@@ -93,7 +93,7 @@ export class EditableInput extends Component {
                         {i18n('general.cancel')}
                     </Button>
                     <Button
-                        gaLabel={`${gaLabelPrefix}editable-input-save`}
+                        gaLabel={`${gaLabelPrefix}-save`}
                         name="editable-input-save"
                         onClick={this.onSave}
                         xSmall
@@ -110,8 +110,8 @@ export class EditableInput extends Component {
                     <div>
                         <span className={strong ? 'strong' : ''}>{value}</span>
                         <IconButton
-                            gaLabel={`${gaLabelPrefix}editable-input-edit`}
-                            name="edit"
+                            gaLabel={`${gaLabelPrefix}-edit`}
+                            name="editable-input-edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
                             className="ml-3x e-green120"

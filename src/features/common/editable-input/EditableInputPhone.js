@@ -81,7 +81,7 @@ export class EditableInputPhone extends Component {
             [className]: className,
         });
 
-        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-` : '';
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-editable-phone` : 'editable-phone';
 
         return editMode ? (
             <div className={classes}>
@@ -108,8 +108,8 @@ export class EditableInputPhone extends Component {
                 </div>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel={`${gaLabelPrefix}editable-phone-cancel`}
-                        name="cancel"
+                        gaLabel={`${gaLabelPrefix}-cancel`}
+                        name="editable-phone-cancel"
                         onClick={this.onCancel}
                         xSmall
                         round
@@ -118,8 +118,8 @@ export class EditableInputPhone extends Component {
                         {i18n('general.cancel')}
                     </Button>
                     <Button
-                        gaLabel={`${gaLabelPrefix}editable-phone-save`}
-                        name="save"
+                        gaLabel={`${gaLabelPrefix}-save`}
+                        name="editable-phone-save"
                         onClick={this.onSave}
                         xSmall
                         round
@@ -137,8 +137,8 @@ export class EditableInputPhone extends Component {
                             {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                         </span>
                         <IconButton
-                            gaLabel={`${gaLabelPrefix}editable-phone-edit`}
-                            name="edit"
+                            gaLabel={`${gaLabelPrefix}-edit`}
+                            name="editable-phone-edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
                             className="ml-3x e-green120"
