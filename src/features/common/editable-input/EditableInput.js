@@ -55,7 +55,7 @@ export class EditableInput extends Component {
     };
 
     render() {
-        const { className, label, validationMessage, strong, ...rest } = this.props;
+        const { className, label, validationMessage, strong, gaPrefix, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -63,6 +63,8 @@ export class EditableInput extends Component {
             'edit-mode': editMode,
             [className]: className,
         });
+
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-` : '';
 
         return editMode ? (
             <div className={classes}>
@@ -81,7 +83,7 @@ export class EditableInput extends Component {
                 </Form>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel="editable-input-cancel"
+                        gaLabel={`${gaLabelPrefix}editable-input-cancel`}
                         name="cancel"
                         onClick={this.onCancel}
                         xSmall
@@ -90,7 +92,13 @@ export class EditableInput extends Component {
                     >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button gaLabel="editable-input-save" name="editable-input-save" onClick={this.onSave} xSmall round>
+                    <Button
+                        gaLabel={`${gaLabelPrefix}editable-input-save`}
+                        name="editable-input-save"
+                        onClick={this.onSave}
+                        xSmall
+                        round
+                    >
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -102,7 +110,7 @@ export class EditableInput extends Component {
                     <div>
                         <span className={strong ? 'strong' : ''}>{value}</span>
                         <IconButton
-                            gaLabel="editable-input-edit"
+                            gaLabel={`${gaLabelPrefix}editable-input-edit`}
                             name="edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
@@ -123,6 +131,7 @@ EditableInput.propTypes = {
     validationMessage: PropTypes.string.isRequired,
     required: PropTypes.bool,
     strong: PropTypes.bool,
+    gaPrefix: PropTypes.string,
 };
 
 EditableInput.defaultProps = {
@@ -131,4 +140,5 @@ EditableInput.defaultProps = {
     label: '',
     required: false,
     strong: true,
+    gaPrefix: undefined,
 };

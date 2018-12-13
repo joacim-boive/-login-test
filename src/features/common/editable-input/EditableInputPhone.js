@@ -71,7 +71,7 @@ export class EditableInputPhone extends Component {
     };
 
     render() {
-        const { className, label, validator, validationMessage, strong, ...rest } = this.props;
+        const { className, label, validator, validationMessage, strong, gaPrefix, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -80,6 +80,8 @@ export class EditableInputPhone extends Component {
             'edit-mode': editMode,
             [className]: className,
         });
+
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-` : '';
 
         return editMode ? (
             <div className={classes}>
@@ -106,7 +108,7 @@ export class EditableInputPhone extends Component {
                 </div>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel="editable-phone-cancel"
+                        gaLabel={`${gaLabelPrefix}editable-phone-cancel`}
                         name="cancel"
                         onClick={this.onCancel}
                         xSmall
@@ -115,7 +117,13 @@ export class EditableInputPhone extends Component {
                     >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button gaLabel="editable-phone-save" name="save" onClick={this.onSave} xSmall round>
+                    <Button
+                        gaLabel={`${gaLabelPrefix}editable-phone-save`}
+                        name="save"
+                        onClick={this.onSave}
+                        xSmall
+                        round
+                    >
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -129,7 +137,7 @@ export class EditableInputPhone extends Component {
                             {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                         </span>
                         <IconButton
-                            gaLabel="editable-phone-edit"
+                            gaLabel={`${gaLabelPrefix}editable-phone-edit`}
                             name="edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
@@ -151,6 +159,7 @@ EditableInputPhone.propTypes = {
     validator: PropTypes.string.isRequired,
     validationMessage: PropTypes.string.isRequired,
     strong: PropTypes.bool,
+    gaPrefix: PropTypes.string,
 };
 
 EditableInputPhone.defaultProps = {
@@ -159,4 +168,5 @@ EditableInputPhone.defaultProps = {
     countryCode: '',
     label: '',
     strong: true,
+    gaPrefix: undefined,
 };
