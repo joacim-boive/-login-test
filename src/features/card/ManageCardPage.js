@@ -153,23 +153,6 @@ export class ManageCardPage extends Component {
 
         const { applicationSucceeded, activationSucceeded } = this.state;
 
-        console.log('=====================================================================');
-        console.log('account card  = ', accountCard);
-        console.log('account terms = ', accountTerms);
-        console.log('extra cards   = ', extraCards);
-        console.log('---------------------------------------------------------------------');
-        console.log('account total no of cards  =', account.numberOfCards);
-        console.log('has main card              = ', hasMainCard);
-        console.log('main card active           = ', mainCardIsActive);
-        console.log('no of cards                = ', noOfCards);
-        console.log('no of extra cards          = ', noOfExtraCards);
-        console.log('no pending cards           = ', applicationsPending);
-        console.log('application succeeded      = ', applicationSucceeded);
-        console.log('application failed         = ', createAccountCardError);
-        console.log('activation succeeded       = ', activationSucceeded);
-        console.log('activation failed          = ', updateAccountCardError);
-        console.log('=====================================================================');
-
         const pageHeader = i18n(`card.manage-card.page-header${account.numberOfCards === 0 ? '-no-card' : ''}`);
 
         return (

@@ -9,6 +9,13 @@ import { render } from 'react-dom';
 import { Translate } from '@ecster/ecster-i18n';
 import { setBaseUrl, setErrorHandler } from '@ecster/ecster-net/v2';
 import Session from '@ecster/ecster-net/lib/Session';
+import {
+    setDimension,
+    DIMENSION_COUNTRY,
+    DIMENSION_APP_NAME,
+    DIMENSION_APP_VERSION,
+    DIMENSION_TECH_ENV
+} from '@ecster/ecster-analytics/v2';
 
 import configStore from './common/configStore';
 import routeConfig from './common/routeConfig';
@@ -31,14 +38,26 @@ const initApplication = () => {
     const lang = window.location.hash.split('lang=')[1] || 'sv';
     const country = 'SE';
     // const country = 'FI';
+    const { EcsterConfig: conf } = window;
 
 
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
 
-    // Set base URL
-    if (window.EcsterConfig && window.EcsterConfig.baseURL) {
-        setBaseUrl(window.EcsterConfig.baseURL);
+    setDimension(DIMENSION_APP_NAME, 'login');
+    setDimension(DIMENSION_COUNTRY, country);
+
+    if (conf) {
+        if (conf.version && !conf.version.match(/^%BUILD/)) {
+            setDimension(DIMENSION_APP_VERSION, conf.version);
+        }
+        if (conf.env) {
+            setDimension(DIMENSION_TECH_ENV, conf.env);
+        }
+        // Set base URL
+        if (conf.baseURL) {
+            setBaseUrl(conf.baseURL);
+        }
     }
 
     setErrorHandler((xhr, body) => {

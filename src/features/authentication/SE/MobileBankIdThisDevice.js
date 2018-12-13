@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Button, ButtonGroup } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
+import { GA_METHOD_MBID } from './constants';
 
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-this-device.${keySuffix}`);
 
@@ -16,7 +17,9 @@ class BankIdThisDevice extends React.Component {
                     <h1 className="e-green120">{i18n('header')}</h1>
                     <ButtonGroup alignCenter>
                         <Button
-                            onClick={() => startLogin({ type: 'BANKID', isOnThisDevice: true })}
+                            onClick={() =>
+                                startLogin({ type: 'BANKID', isOnThisDevice: true, gaLoginMethod: GA_METHOD_MBID })
+                            }
                             round
                             name="login-button"
                             gaLabel="login-mobile-bankid-this-device"

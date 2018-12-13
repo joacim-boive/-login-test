@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Panel } from '@ecster/ecster-components';
-import { setPageView } from '@ecster/ecster-analytics/v2';
+import { setPageView, setDimension, DIMENSION_IS_LOGGED_IN, DIMENSION_LOGIN_METHOD, DIMENSION_AGE_GROUP } from '@ecster/ecster-analytics/v2';
 import LoginPageTemplate from '../common/templates/LoginPageTemplate';
 import LoginForm from '../authentication/LoginForm';
 import AfterLogoutPanel from './AfterLogoutPanel';
@@ -19,10 +19,10 @@ class LoginPage extends Component {
     };
 
     componentDidMount() {
-        const { loginStatus } = this.props;
-        if (!loginStatus.justLoggedOut) {
-            this.gaPageView(); // auto page view for '#/' is disabled
-        }
+        setDimension(DIMENSION_IS_LOGGED_IN, 'no');
+        setDimension(DIMENSION_LOGIN_METHOD, 'none');
+        setDimension(DIMENSION_AGE_GROUP, 0); // unknown age group
+        setPageView('/login', 'Login page'); // auto page view for '#/' is disabled
     }
 
     componentWillUnmount() {
@@ -32,12 +32,7 @@ class LoginPage extends Component {
 
     loginAgain = () => {
         const { clearJustLoggedOut } = this.props;
-        this.gaPageView();
         clearJustLoggedOut();
-    };
-
-    gaPageView = () => {
-        setPageView('/login', 'Login page');
     };
 
     render() {
