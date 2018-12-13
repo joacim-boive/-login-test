@@ -40,7 +40,8 @@ export default class CvcForm extends React.Component {
         const { cvc } = this.state;
 
         return (
-            <Form className="activate-form" ref={this.formRef} validateRefs={[this.cvcRef]}>
+            // eslint-disable-next-line no-script-url
+            <Form className="activate-form" ref={this.formRef} validateRefs={[this.cvcRef]} action="javascript:void(0)">
                 <Input
                     type="number"
                     label={i18n('card.activate-card.input-label')}
