@@ -83,7 +83,7 @@ export class AccountTransactionsOverview extends Component {
                 <ScrollPaginate onScrollBottom={this.onScrollBottom}>
                     <AccountTransactions transactions={transactions} />
                 </ScrollPaginate>
-                <Spinner isCenterX isVisible={getAccountTransactionsPending} />
+                <Spinner id="load-transactions-spinner" isCenterX isVisible={getAccountTransactionsPending} />
                 {receivedAllTransactions && (
                     <Panel
                         id={transactions.length === 0 ? 'no-tx-info' : 'no-more-tx-info'}
