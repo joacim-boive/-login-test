@@ -14,7 +14,7 @@ import {
     DIMENSION_COUNTRY,
     DIMENSION_APP_NAME,
     DIMENSION_APP_VERSION,
-    DIMENSION_TECH_ENV
+    DIMENSION_TECH_ENV,
 } from '@ecster/ecster-analytics/v2';
 
 import configStore from './common/configStore';
@@ -39,7 +39,6 @@ const initApplication = () => {
     const country = 'SE';
     // const country = 'FI';
     const { EcsterConfig: conf } = window;
-
 
     store.dispatch(setApplicationCountry(country));
     store.dispatch(setLocale('sv-SE'));
