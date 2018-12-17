@@ -200,6 +200,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.apply-for-card.success.info')}
                             linkText={i18n('card.apply-for-card.success.link')}
                             link="/account/overview"
+                            idPrefix="apply-for-card-success-back"
                         />
                     )}
                     {createAccountCardError && (
@@ -209,6 +210,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.apply-for-card.failure.info')}
                             buttonText={i18n('card.apply-for-card.failure.button')}
                             onButtonClick={this.onClickBack}
+                            idPrefix="apply-for-card-failure-back"
                         />
                     )}
                     {activationSucceeded && (
@@ -218,6 +220,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.activate-card.success.info')}
                             linkText={i18n('card.activate-card.success.link')}
                             link="/account/overview"
+                            idPrefix="activate-card-success-back"
                         />
                     )}
                     {updateAccountCardError && (
@@ -227,6 +230,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.activate-card.failure.info')}
                             buttonText={i18n('card.activate-card.failure.button')}
                             onButtonClick={this.onClickBack}
+                            idPrefix="activate-card-failure-back"
                         />
                     )}
                 </div>

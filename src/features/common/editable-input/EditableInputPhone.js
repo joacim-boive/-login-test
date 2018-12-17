@@ -88,6 +88,7 @@ export class EditableInputPhone extends Component {
                 <div className="input-wrapper">
                     <Form ref={this.formRef} validateRefs={[this.phoneRef, this.countryRef]} className="flex-row">
                         <CountrySelect
+                            id="editable-phone-country-code"
                             selectRef={this.countryRef}
                             label={i18n('general.address.country-code')}
                             value={value.countryCallingCode}
@@ -95,6 +96,7 @@ export class EditableInputPhone extends Component {
                         />
                         <Input
                             {...rest}
+                            id="editable-phone-number-input"
                             value={value.number}
                             small
                             label={i18n('general.address.number')}
@@ -160,6 +162,7 @@ EditableInputPhone.propTypes = {
     validationMessage: PropTypes.string.isRequired,
     strong: PropTypes.bool,
     gaPrefix: PropTypes.string,
+    idPrefix: PropTypes.string,
 };
 
 EditableInputPhone.defaultProps = {

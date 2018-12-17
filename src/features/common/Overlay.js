@@ -8,6 +8,8 @@ import { Button } from '@ecster/ecster-components';
 
 import './Overlay.scss';
 
+// TODO: remove? not used. /joli44 2018-12
+
 export default class Overlay extends Component {
     /* Needs to be a class as we need access to the lifecycles */
 

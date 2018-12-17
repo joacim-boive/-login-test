@@ -106,6 +106,7 @@ export class TerminateAccount extends Component {
                     confirmCancel={i18n('account.terminate.confirm-cancel')}
                     onClick={this.onDeleteAccount}
                     disabled={this.state.checkCount === 0}
+                    gaPrefix="terminate-account"
                 >
                     {i18n('account.terminate.terminate-my-account')}
                 </ConfirmButton>

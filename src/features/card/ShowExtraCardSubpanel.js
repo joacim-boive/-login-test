@@ -68,7 +68,7 @@ export default class ShowExtraCardSubpanel extends React.Component {
                         gaPrefix="extra-card"
                     />
                 )}
-                {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} />}
+                {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} idPrefix="activate-extra-card" />}
             </div>
         );
     }

@@ -71,6 +71,7 @@ export class EditableInput extends Component {
                 <Form ref={this.formRef} validateRefs={[this.inputRef]}>
                     <Input
                         {...rest}
+                        id="editable-input-value-input"
                         className="editable-input__input"
                         label={label}
                         value={value}
@@ -84,7 +85,7 @@ export class EditableInput extends Component {
                 <ButtonGroup align="right">
                     <Button
                         gaLabel={`${gaLabelPrefix}-cancel`}
-                        name="cancel"
+                        name="editable-input-cancel"
                         onClick={this.onCancel}
                         xSmall
                         round

@@ -92,6 +92,7 @@ export default class ApplyForCardPanel extends React.Component {
                             confirmCancel={i18n('general.cancel')}
                             round
                             onClick={this.onClick}
+                            gaPrefix="order-card"
                         >
                             {i18n('card.apply-for-card.button')}
                         </ConfirmButton>

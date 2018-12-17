@@ -92,7 +92,7 @@ export class RaiseCreditPage extends Component {
 
         const BackToOverviewLink = () => (
             <p className="mt-8x">
-                <Link to="/account/overview">
+                <Link to="/account/overview" id="raise-credit-back-to-overview">
                     <i className="icon-chevron-left" /> {i18n('account.raise-credit.back-to-overview')}
                 </Link>
             </p>
