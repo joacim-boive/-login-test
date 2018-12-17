@@ -248,7 +248,7 @@
     },
     "dependencies": {
         "@ecster/ecster-analytics": "^4.0.131",
-        "@ecster/ecster-components": "^2.0.661",
+        "@ecster/ecster-components": "^2.0.662",
         "@ecster/ecster-i18n": "^3.0.78",
         "@ecster/ecster-net": "^2.0.107",
         "@ecster/ecster-styles": "^3.0.226",
