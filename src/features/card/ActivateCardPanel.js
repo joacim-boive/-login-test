@@ -21,7 +21,7 @@ export default class ActivateCardPanel extends React.Component {
 
     render() {
         return (
-            <Panel withMixedContent className="card-activate-card-panel">
+            <Panel withMixedContent sideMarginsInMobile className="card-activate-card-panel">
                 <div className="mixed-content centered-content">
                     <img src={cardIcon} alt="card icon" />
                     <h1 className="h2">{i18n('card.activate-card.header')}</h1>

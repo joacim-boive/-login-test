@@ -120,6 +120,10 @@ strong, .strong {
     flex-direction: column;
 }
 
+.flex-column-centered {
+    align-items: center;
+}
+
 // experimental react-tooltip overrides
 // TODO: make a wrapper component in ecster-components, sync with or use the one from Dashboard
 .ecster-tooltip {

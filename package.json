@@ -74,6 +74,7 @@
         "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
         "pre:build:clear_build": "rimraf build",
         "prebuild": "npm-run-all pre:build:*",
+        "prestart": "npm-run-all pre:build:*",
         "prebuild:dev": "npm-run-all pre:build:clear_build",
         "help": "node ./src/lib/node-start.js --help",
         "prettier": "prettier",
@@ -158,11 +159,16 @@
             "dll": [
                 "react",
                 "react-dom",
+                "react-grid-layout",
+                "react-media",
                 "react-redux",
+                "react-router",
                 "react-router-dom",
                 "react-router-redux",
+                "react-tooltip",
                 "redux",
                 "redux-thunk",
+                "i18next",
                 "moment",
                 "classnames",
                 "lazysizes/plugins/respimg/ls.respimg.min",
@@ -181,7 +187,7 @@
                         "contexts": [
                             "/rest/"
                         ],
-                        "target": "https://secure2.ft.ecster.se",
+                        "target": "https://secure3.ft.ecster.se",
                         "headers": [
                             [
                                 "X-ECSTER-Origin",
@@ -199,6 +205,8 @@
     ],
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@ecster/ecster-rekit-templates": "^1.0.18",
+        "@ecster/ecster-webpack": "^2.0.259",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "babel-preset-airbnb": "^3.0.1",
@@ -231,22 +239,20 @@
         "npm-run": "^5.0.1",
         "nyc": "^11.9.0",
         "puppeteer": "^1.10.0",
+        "react-hot-loader": "^4.6.0",
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.3",
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
-        "sinon": "^4.5.0",
-        "webpack": "^4.26.1"
+        "webpack": "^4.27.1"
     },
     "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.125",
-        "@ecster/ecster-components": "^2.0.586",
-        "@ecster/ecster-i18n": "^3.0.76",
-        "@ecster/ecster-net": "^2.0.104",
-        "@ecster/ecster-rekit-templates": "^1.0.18",
-        "@ecster/ecster-styles": "^3.0.220",
-        "@ecster/ecster-util": "^2.0.86",
-        "@ecster/ecster-webpack": "^2.0.242",
+        "@ecster/ecster-analytics": "^4.0.131",
+        "@ecster/ecster-components": "^2.0.645",
+        "@ecster/ecster-i18n": "^3.0.78",
+        "@ecster/ecster-net": "^2.0.107",
+        "@ecster/ecster-styles": "^3.0.226",
+        "@ecster/ecster-util": "^2.0.94",
         "@ecster/ecster-validation": "^2.0.63",
         "ajv": "^6.5.5",
         "babel-plugin-module-resolver": "^3.1.1",
@@ -263,7 +269,6 @@
         "react": "^16.6.3",
         "react-dom": "^16.6.3",
         "react-grid-layout": "^0.16.6",
-        "react-hot-loader": "^4.5.1",
         "react-media": "^1.8.0",
         "react-redux": "^5.1.1",
         "react-router": "^4.3.1",
@@ -271,6 +276,7 @@
         "react-router-redux": "5.0.0-alpha.9",
         "react-tooltip": "^3.9.0",
         "redux": "^4.0.1",
+        "redux-persist": "^5.10.0",
         "redux-thunk": "^2.3.0"
     }
 }

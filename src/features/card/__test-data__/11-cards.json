@@ -5,7 +5,7 @@
                 "holder": "Leo Larsman",
                 "type": "MASTERCARD HXXX",
                 "brickId": "113",
-                "status": "INACTIVE",
+                "status": "ACTIVE",
                 "cardNumber": "529928XXXXXX0294",
                 "reference": "XYZ0123456789",
                 "extraCardInfo": {

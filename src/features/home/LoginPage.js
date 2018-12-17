@@ -22,14 +22,19 @@ class LoginPage extends Component {
         }
     }
 
-    gaPageView = () => {
-        setPageView('/login', 'Login page');
-    };
+    componentWillUnmount() {
+        const { clearJustLoggedOut } = this.props;
+        clearJustLoggedOut();
+    }
 
     loginAgain = () => {
         const { clearJustLoggedOut } = this.props;
         this.gaPageView();
         clearJustLoggedOut();
+    };
+
+    gaPageView = () => {
+        setPageView('/login', 'Login page');
     };
 
     render() {
