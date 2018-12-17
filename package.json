@@ -99,8 +99,9 @@
         "mock": "node ./tools/server.js -mock",
         "precordova": "rimraf cordova/www && rimraf build && node ./compile.js --prod --cordova && cpx \"build/**\" \"cordova/www\" && cpx \"cordova/setup/cordova-index.js\" \"cordova/www/js\" && cpx \"cordova/setup/cordova-index.css\" \"cordova/www/css\" ",
         "cordova": "cd cordova && cordova run android && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd ..",
-        "android": "cd cordova && cordova  && cordova run android && cd ..",
-        "ios": "cd cordova && cordova  && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd .."
+        "preandroid": "npm-run-all precordova",
+        "android": "cd cordova && cordova run android && cd ..",
+        "ios": "cd cordova && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd .."
     },
     "appConfig": [
         {
@@ -233,7 +234,6 @@
         "jest": "^23.6.0",
         "jest-image-snapshot": "^2.7.0",
         "jest-teamcity-reporter": "^0.9.0",
-        "jsdom": "^12.2.0",
         "lodash": "^4.17.10",
         "nock": "^9.6.1",
         "npm-run": "^5.0.1",
