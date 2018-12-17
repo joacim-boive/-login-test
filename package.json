@@ -204,8 +204,8 @@
     ],
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-        "@ecster/ecster-rekit-templates": "^1.0.18",
-        "@ecster/ecster-webpack": "^2.0.259",
+        "@ecster/ecster-rekit-templates": "^1.0.19",
+        "@ecster/ecster-webpack": "^2.0.263",
         "argparse": "^1.0.7",
         "axios": "^0.18.0",
         "babel-preset-airbnb": "^3.0.1",
@@ -243,7 +243,6 @@
         "redux-mock-store": "^1.5.3",
         "rekit-core": "^2.3.4",
         "rekit-studio": "^2.4.1",
-        "sinon": "^4.5.0",
         "webpack": "^4.27.1"
     },
     "dependencies": {
@@ -251,8 +250,8 @@
         "@ecster/ecster-components": "^2.0.662",
         "@ecster/ecster-i18n": "^3.0.78",
         "@ecster/ecster-net": "^2.0.107",
-        "@ecster/ecster-styles": "^3.0.226",
-        "@ecster/ecster-util": "^2.0.94",
+        "@ecster/ecster-styles": "^3.0.230",
+        "@ecster/ecster-util": "^3.0.90",
         "@ecster/ecster-validation": "^2.0.63",
         "ajv": "^6.5.5",
         "babel-plugin-module-resolver": "^3.1.1",
