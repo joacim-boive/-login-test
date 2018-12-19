@@ -1,5 +1,4 @@
 import { LoginPage } from '.';
-import { AfterLogout } from '.';
 
 export default {
     path: '/',
