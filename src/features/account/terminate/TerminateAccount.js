@@ -5,14 +5,13 @@ import { connect } from 'react-redux';
 import { getText as i18n } from '@ecster/ecster-i18n/lib/Translate';
 import { Checkbox, Panel, ConfirmButton, ButtonGroup, ResponsivePanel, Link } from '@ecster/ecster-components';
 
-import { gaGenericEvent, gaActionEvent } from '../../../common/ga/index';
+import { setEvent } from '@ecster/ecster-analytics/v2';
 import AuthenticatedSubPageTemplate from '../../common/templates/AuthenticatedSubPageTemplate';
 import { deleteAccount } from '../redux/actions';
 
 export class TerminateAccount extends Component {
     state = {
         checkCount: 0,
-        deleteAccountPending: false,
         deleteAccountSuccess: false,
         deleteAccountFailure: false,
         'terminate-account-q1': false,
@@ -29,16 +28,11 @@ export class TerminateAccount extends Component {
             if (!nextProps.deleteAccountError) {
                 // delete succeeded
                 this.setState({ deleteAccountSuccess: true });
-                gaActionEvent('Delete account|Succeeded');
-                for (let i = 1; i < 7; i++) { // eslint-disable-line
-                    if (this.state[`terminate-account-q${i}`]) {
-                        gaGenericEvent(`Delete account|Reason-${i18n(`account.terminate.q${i}`)}`);
-                    }
-                }
+                setEvent('message', 'show', 'terminate-account-succeeded');
             } else {
                 // delete failed
                 this.setState({ deleteAccountFailure: true });
-                gaActionEvent('Delete account|Failed');
+                setEvent('message', 'show', 'terminate-account-failed');
             }
         }
     }
@@ -112,6 +106,7 @@ export class TerminateAccount extends Component {
                     confirmCancel={i18n('account.terminate.confirm-cancel')}
                     onClick={this.onDeleteAccount}
                     disabled={this.state.checkCount === 0}
+                    gaPrefix="terminate-account"
                 >
                     {i18n('account.terminate.terminate-my-account')}
                 </ConfirmButton>

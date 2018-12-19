@@ -51,11 +51,11 @@
         },
         "support-opening-hours": "Vi har öppet vardagar 9-20 och helger 10-18.",
 
-        "phone-link-087014667": "[link tel:087014667 '08&#8209;701&nbsp;46&nbsp;67' ga:call-087014667]",
-        "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50' ga:call-08343550]",
-        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30' ga:call-08330130]",
-        "phone-link-020411212": "[link tel:020411212 '020&#8209;41&nbsp;12&nbsp;12' ga:call-020411212]",
-        "phone-link-4684112122": "[link tel:+4684112122 '+46&nbsp;8&nbsp;411&nbsp;21&nbsp;22' ga:call-4684112122]",
+        "phone-link-087014667": "[link tel:087014667 '08&#8209;701&nbsp;46&nbsp;67' ga:call-customer-account]",
+        "phone-link-08343550": "[link tel:08343550 '08&#8209;34&nbsp;35&nbsp;50' ga:call-raise-credit]",
+        "phone-link-08330130": "[link tel:08330130 '08&#8209;33&nbsp;01&nbsp;30' ga:call-customer-contract-credit]",
+        "phone-link-020411212": "[link tel:020411212 '020&#8209;41&nbsp;12&nbsp;12' ga:call-block-card]",
+        "phone-link-4684112122": "[link tel:+4684112122 '+46&#8209;8&#8209;411&#8209;21&#8209;22' ga:call-block-card-from-abroad]",
         "bg": "847-2425"
     },
     "account": {

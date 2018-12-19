@@ -55,7 +55,7 @@ export class EditableInput extends Component {
     };
 
     render() {
-        const { className, label, validationMessage, strong, ...rest } = this.props;
+        const { className, label, validationMessage, strong, gaPrefix, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -64,11 +64,14 @@ export class EditableInput extends Component {
             [className]: className,
         });
 
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-editable-input` : 'editable-input';
+
         return editMode ? (
             <div className={classes}>
                 <Form ref={this.formRef} validateRefs={[this.inputRef]}>
                     <Input
                         {...rest}
+                        id="editable-input-value-input"
                         className="editable-input__input"
                         label={label}
                         value={value}
@@ -81,8 +84,8 @@ export class EditableInput extends Component {
                 </Form>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel="editable-input-cancel"
-                        name="cancel"
+                        gaLabel={`${gaLabelPrefix}-cancel`}
+                        name="editable-input-cancel"
                         onClick={this.onCancel}
                         xSmall
                         round
@@ -90,7 +93,13 @@ export class EditableInput extends Component {
                     >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button gaLabel="editable-input-save" name="editable-input-save" onClick={this.onSave} xSmall round>
+                    <Button
+                        gaLabel={`${gaLabelPrefix}-save`}
+                        name="editable-input-save"
+                        onClick={this.onSave}
+                        xSmall
+                        round
+                    >
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -102,8 +111,8 @@ export class EditableInput extends Component {
                     <div>
                         <span className={strong ? 'strong' : ''}>{value}</span>
                         <IconButton
-                            gaLabel="editable-input-edit"
-                            name="edit"
+                            gaLabel={`${gaLabelPrefix}-edit`}
+                            name="editable-input-edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
                             className="ml-3x e-green120"
@@ -123,6 +132,7 @@ EditableInput.propTypes = {
     validationMessage: PropTypes.string.isRequired,
     required: PropTypes.bool,
     strong: PropTypes.bool,
+    gaPrefix: PropTypes.string,
 };
 
 EditableInput.defaultProps = {
@@ -131,4 +141,5 @@ EditableInput.defaultProps = {
     label: '',
     required: false,
     strong: true,
+    gaPrefix: undefined,
 };

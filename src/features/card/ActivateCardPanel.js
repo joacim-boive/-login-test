@@ -26,7 +26,7 @@ export default class ActivateCardPanel extends React.Component {
                     <img src={cardIcon} alt="card icon" />
                     <h1 className="h2">{i18n('card.activate-card.header')}</h1>
                     <p>{i18n('card.activate-card.info')}</p>
-                    <CvcForm onSubmitForm={this.onSubmitForm} />
+                    <CvcForm onSubmitForm={this.onSubmitForm} idPrefix="activate-account-card" />
                 </div>
             </Panel>
         );

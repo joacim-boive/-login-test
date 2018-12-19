@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Button, ButtonGroup, Input } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
+import { GA_METHOD_MBID } from './constants';
 
 const i18n = keySuffix => getText(`home.login.SE.touch.mbid-other-device.${keySuffix}`);
 
@@ -22,9 +23,9 @@ class MobileBankIdOtherDeviceForTouchDevice extends React.Component {
         const { ssn, startLogin } = this.props;
 
         if (ssn) {
-            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false, gaLoginMethod: GA_METHOD_MBID });
         } else {
-            this.inputRef.getInputEl().focus(); // focus field, helps user understand it must be filled in
+            this.inputRef.getInputEl().focus();
         }
     };
 

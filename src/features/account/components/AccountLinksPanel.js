@@ -22,38 +22,38 @@ export const AccountLinksPanel = ({ account, customer, hasInactiveCards }) => {
                 text={i18n('account.links.transactions')}
                 icon="icon-minimize-2"
                 to={`/account/${account.reference}/customer/${customer.id}/transactions`}
-                id="arrow-link-account-overview-transactions"
+                id="account-overview-transactions"
             />
             <ArrowLink
                 text={i18n('account.links.raise-credit')}
                 icon="icon-arrow-up"
                 to={`/account/${account.reference}/customer/${customer.id}/raise-credit`}
-                id="arrow-link-account-overview-raise-credit"
+                id="account-overview-raise-credit"
             />
             <ArrowLink
                 text={i18n('account.links.part-payments')}
                 icon="icon-layers"
                 to={`/account/${account.reference}/part-payments`}
-                id="arrow-link-account-overview-part-payments"
+                id="account-overview-part-payments"
             />
             <ArrowLink
                 text={i18n('account.links.monthly-invoices')}
                 icon="icon-file"
                 to="/invoice/monthly-invoices"
-                id="arrow-link-account-overview-monthly-invoices"
+                id="account-overview-monthly-invoices"
             />
             <ArrowLink
                 text={hasCard ? i18n('account.links.manage-cards') : i18n('account.links.apply-for-card')}
                 icon="icon-book"
                 to={`/card/${account.reference}/customer/${customer.id}`}
-                id="arrow-link-account-overview-manage-cards"
+                id="account-overview-manage-cards"
                 badge={activateCards}
             />
             <ArrowLink
                 text={i18n('account.links.terms')}
                 icon="icon-info"
                 to={`/account/${account.reference}/customer/${customer.id}/terms`}
-                id="arrow-link-account-overview-account-terms"
+                id="account-overview-account-terms"
             />
         </div>
     );

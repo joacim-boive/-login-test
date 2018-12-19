@@ -17,7 +17,7 @@ export class CountryCodeSelect extends Component {
     };
 
     render() {
-        const { className, value, label, selectRef } = this.props;
+        const { className, value, label, selectRef, id } = this.props;
 
         if (!this.countryCodes) return null;
 
@@ -33,6 +33,7 @@ export class CountryCodeSelect extends Component {
         return (
             <div className={classes}>
                 <Select
+                    id={id}
                     ref={selectRef}
                     className={classesSelect}
                     label={label}
@@ -56,6 +57,7 @@ export class CountryCodeSelect extends Component {
 }
 
 CountryCodeSelect.propTypes = {
+    id: PropTypes.string,
     className: PropTypes.string,
     selectRef: PropTypes.shape().isRequired,
     value: PropTypes.string,

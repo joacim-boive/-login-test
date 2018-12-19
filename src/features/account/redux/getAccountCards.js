@@ -3,6 +3,7 @@ import {
     ACCOUNT_GET_ACCOUNT_CARDS_SUCCESS,
     ACCOUNT_GET_ACCOUNT_CARDS_FAILURE,
     ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR,
+    ACCOUNT_GET_ACCOUNT_CARDS_CLEAR,
 } from './constants';
 
 import { get } from '../../../common/asyncAjax';
@@ -93,6 +94,16 @@ export function reducer(state, action) {
         case ACCOUNT_GET_ACCOUNT_CARDS_DISMISS_ERROR:
             return {
                 ...state,
+                getAccountCardsError: null,
+            };
+
+        case ACCOUNT_GET_ACCOUNT_CARDS_CLEAR:
+            console.log('ACCOUNT_GET_ACCOUNT_CARDS_CLEAR');
+            return {
+                ...state,
+                accountCards: undefined,
+                extraCards: undefined,
+                getAccountCardsPending: false,
                 getAccountCardsError: null,
             };
 
