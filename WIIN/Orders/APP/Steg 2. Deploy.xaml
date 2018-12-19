@@ -56,6 +56,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <hwa:CreateFolder DisplayName="Create folder to be used" sap:VirtualizedContainerService.HintSize="322,61" Path="[ApplicationDeployPath]" />
       <hwa:FileCopy CheckVersion="False" DisplayName="Deploy new files" FromPath="[FromLib + &quot;\build\&quot;]" sap:VirtualizedContainerService.HintSize="322,111" ToPath="[ApplicationDeployPath]" />
+      <hwa:FileCopy CheckVersion="False" DisplayName="Copy environment specific ecster-config.js" FromPath="[FromLib + &quot;\build\&quot; + &quot;\config\%AppType%\&quot; + Envir + &quot;%InstanceNumber%\ecster-config.js&quot;]" sap:VirtualizedContainerService.HintSize="316,111" ToPath="[ApplicationDeployPath + &quot;\static\&quot;]" />
       <hwa:Command Arguments="[ApplicationDeployPath + &quot; &quot; + ApplicationName]" DisplayName="Create Version.txt" FilePath="[FromLib + &quot;\Scripts\CREATE_Version.cmd&quot;]" sap:VirtualizedContainerService.HintSize="322,86">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
