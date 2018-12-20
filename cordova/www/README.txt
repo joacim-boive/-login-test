@@ -1,1 +1,0 @@
-Note: files including index.html and static/* are copied from build result after npm run build in ecster-login/
