@@ -110,11 +110,6 @@ class LoanPersonalInformationPanel extends Component {
                                     {customer.city}
                                 </Data>
                             </DataRow>
-                            <DataRow className="hide-on-mobile">
-                                <Data className="text" right>
-                                    {i18n('loan.personal.info')}
-                                </Data>
-                            </DataRow>
                         </DataColumn>
                         <DataColumn>
                             <DataRow className="column-first">
