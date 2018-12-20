@@ -1,5 +1,5 @@
 // URL to cloudinary CDN
-const url = '//res.cloudinary.com/ecster';
+const url = 'https://res.cloudinary.com/ecster';
 
 /*
 f_auto - Choose whatever image format is best for this particular request and client

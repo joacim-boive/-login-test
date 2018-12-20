@@ -6,20 +6,29 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
 <html lang="<%= lang %>" <%= manifest %>>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <% if(htmlWebpackPlugin.options.env === 'production'){%>
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; connect-src 'self' https://*.ecster.se https://www.google-analytics.com http://www.google-analytics.com ws:; style-src 'self' 'unsafe-inline' blob: data:; font-src 'self' 'unsafe-inline' blob: data:; media-src *; img-src 'self' 'unsafe-inline' https://*.ecster.se https://res.cloudinary.com https://www.google-analytics.com http://www.google-analytics.com data: blob: content:;script-src 'self' 'unsafe-inline';" />
+    <% }else{ %>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; connect-src 'self' https://*.ecster.se https://www.google-analytics.com http://www.google-analytics.com ws:; style-src 'self' 'unsafe-inline' blob: data:; font-src 'self' 'unsafe-inline' blob: data:; media-src *; img-src 'self' 'unsafe-inline' https://*.ecster.se https://res.cloudinary.com https://www.google-analytics.com http://www.google-analytics.com data: blob: content:;script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+    <% } %>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
     <% if(htmlWebpackPlugin.options.isDontIndexThisPage === true){ %>
-    <meta name="robots" content="noindex">
+        <meta name="robots" content="noindex">
+    <% } %>
+
+    <% if(htmlWebpackPlugin.options.isCordova) { %>
+        <link rel="stylesheet" href="css/cordova-index.css">
     <% } %>
 
     <title><%= htmlWebpackPlugin.options.title || 'Ecster' %></title>
 
     <% if(htmlWebpackPlugin.options.isGoogleFonts) { %>
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="preconnect" crossorigin href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preconnect" crossorigin href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" crossorigin href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" crossorigin href="https://fonts.gstatic.com">
     <% } %>
     <% if(htmlWebpackPlugin.options.googleAnalytics) { %>
     <script>
@@ -36,6 +45,11 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <script>
         window.EcsterConfig = window.EcsterConfig || {};
         window.EcsterConfig.environment = '<%= htmlWebpackPlugin.options.env %>';
+
+        <% if(htmlWebpackPlugin.options.isCordova) { %>
+            window.EcsterConfig.isCordova = true;
+            window.EcsterConfig.baseURL = 'https://secure.ecster.se';
+        <% } %>
     </script>
     <% } %>
 </head>
@@ -61,6 +75,10 @@ var manifest = htmlWebpackPlugin.files.manifest ? ' manifest="htmlWebpackPlugin.
     <!-- Use a noscript-tag for the stamp as HTML comments might be removed during build -->
     <%= htmlWebpackPlugin.options.stamp %>
 </noscript>
+<% } %>
+<% if(htmlWebpackPlugin.options.isCordova) { %>
+    <script src="js/cordova-index.js"></script>
+    <script src="cordova.js"></script>
 <% } %>
 </body>
 </html>
