@@ -14,6 +14,7 @@ export default class MessagePanel extends React.Component {
         // alt #2: button
         buttonText: PropTypes.string,
         onButtonClick: PropTypes.func,
+        idPrefix: PropTypes.string,
     };
 
     static defaultProps = {
@@ -21,10 +22,11 @@ export default class MessagePanel extends React.Component {
         link: undefined,
         buttonText: undefined,
         onButtonClick: undefined,
+        idPrefix: 'card-user-message',
     };
 
     render() {
-        const { icon, header, text, linkText, link, buttonText, onButtonClick } = this.props;
+        const { icon, header, text, linkText, link, buttonText, onButtonClick, idPrefix } = this.props;
 
         return (
             <Panel withMixedContent centeredContent className="card-message-panel">
@@ -33,13 +35,13 @@ export default class MessagePanel extends React.Component {
                     <h1 className="h2">{header}</h1>
                     <p dangerouslySetInnerHTML={{ __html: text }} />
                     {linkText && link && (
-                        <Link iconLeft="icon-chevron-left" to={link}>
+                        <Link iconLeft="icon-chevron-left" to={link} id={`${idPrefix}-link`}>
                             {linkText}
                         </Link>
                     )}
                     {buttonText && onButtonClick && (
                         <ButtonGroup alignCenter spaceBelow={false}>
-                            <Button transparent iconLeft="icon-chevron-left" onClick={onButtonClick}>
+                            <Button transparent iconLeft="icon-chevron-left" onClick={onButtonClick} id={`${idPrefix}-button`}>
                                 {buttonText}
                             </Button>
                         </ButtonGroup>

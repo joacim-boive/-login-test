@@ -68,6 +68,7 @@ class ProfilePage extends Component {
                             onSave={value => updateCustomerContactInfo(hasAccounts, { phoneNumber: value })}
                             validationMessage={i18n('general.validation.phone')}
                             validator={phoneValidator}
+                            gaPrefix="profile"
                         />
                     </section>
 
@@ -79,6 +80,7 @@ class ProfilePage extends Component {
                             onSave={val => updateCustomerContactInfo(hasAccounts, { email: val })}
                             validationMessage={i18n('general.validation.email')}
                             required
+                            gaPrefix="profile"
                         />
                     </section>
                 </div>

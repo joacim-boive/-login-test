@@ -82,7 +82,7 @@ class LoanPersonalInformationPanel extends Component {
                                 <Data small>{i18n('general.address.name')}</Data>
                                 <Data right strong>
                                     {person.firstName && person.lastName
-                                        ? person.firstName + ' ' + person.lastName
+                                        ? `${person.firstName} ${person.lastName}`
                                         : person.name}
                                 </Data>
                             </DataRow>
@@ -127,6 +127,7 @@ class LoanPersonalInformationPanel extends Component {
                                     validationMessage={i18n('general.validation.phone')}
                                     validator={phoneValidator}
                                     ref={this.phoneNumber}
+                                    gaPrefix="loan"
                                 />
                             </DataRow>
                             <DataRow>
@@ -139,6 +140,7 @@ class LoanPersonalInformationPanel extends Component {
                                     validationMessage={i18n('general.validation.email')}
                                     required
                                     ref={this.email}
+                                    gaPrefix="loan"
                                 />
                             </DataRow>
                             <DataRow>{i18n('loan.personal.contact-text')}</DataRow>

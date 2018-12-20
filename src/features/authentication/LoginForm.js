@@ -33,11 +33,13 @@ LoginForm.propTypes = {
 
     createSessionError: PropTypes.object,
     getSessionError: PropTypes.object,
+    person: PropTypes.shape(),
 };
 
 LoginForm.defaultProps = {
     createSessionError: null,
     getSessionError: null,
+    person: undefined,
 };
 
 /* istanbul ignore next */

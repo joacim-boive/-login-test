@@ -65,9 +65,10 @@ export default class ShowExtraCardSubpanel extends React.Component {
                         validationMessage={i18n('general.validation.phone')}
                         validator={phoneValidator}
                         strong={false}
+                        gaPrefix="extra-card"
                     />
                 )}
-                {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} />}
+                {card.status === 'INACTIVE' && <CvcForm onSubmitForm={this.onSubmitForm} idPrefix="activate-extra-card" />}
             </div>
         );
     }

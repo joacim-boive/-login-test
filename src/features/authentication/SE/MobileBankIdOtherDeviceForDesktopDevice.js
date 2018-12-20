@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Button, ButtonGroup, Input } from '@ecster/ecster-components';
 import { getText } from '@ecster/ecster-i18n/lib/Translate';
 
+import { GA_METHOD_BID, GA_METHOD_MBID } from './constants';
+
 const i18n = keySuffix => getText(`home.login.SE.desktop.${keySuffix}`);
 
 class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
@@ -22,14 +24,14 @@ class MobileBankIdOtherDeviceForDesktopDevice extends React.Component {
         const { ssn, startLogin } = this.props;
 
         if (ssn) {
-            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false });
+            startLogin({ type: 'BANKID_MOBILE', isOnThisDevice: false, gaLoginMethod: GA_METHOD_MBID });
         } else {
-            this.inputRef.getInputEl().focus(); // focus field, helps user understand it must be filled in
+            this.inputRef.getInputEl().focus();
         }
     };
 
     startBidLogin = () => {
-        this.props.startLogin({ type: 'BANKID', isOnThisDevice: true });
+        this.props.startLogin({ type: 'BANKID', isOnThisDevice: true, gaLoginMethod: GA_METHOD_BID });
     };
 
     render() {

@@ -6,6 +6,11 @@ import { Input, Button, Form } from '@ecster/ecster-components';
 export default class CvcForm extends React.Component {
     static propTypes = {
         onSubmitForm: PropTypes.func.isRequired,
+        idPrefix: PropTypes.string,
+    };
+
+    static defaultProps = {
+        idPrefix: 'activate-card',
     };
 
     formRef = React.createRef();
@@ -38,6 +43,7 @@ export default class CvcForm extends React.Component {
 
     render() {
         const { cvc } = this.state;
+        const { idPrefix } = this.props;
 
         return (
             // eslint-disable-next-line no-script-url
@@ -51,8 +57,9 @@ export default class CvcForm extends React.Component {
                     validationMessage={i18n('card.activate-card.validation-message')}
                     ref={this.cvcRef}
                     onKeyUp={this.onKeyUp}
+                    id={`${idPrefix}-input`}
                 />
-                <Button round onClick={this.onClick}>
+                <Button round onClick={this.onClick} id={`${idPrefix}-button`}>
                     {i18n('card.activate-card.button')}
                 </Button>
             </Form>

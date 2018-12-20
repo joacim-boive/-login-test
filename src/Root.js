@@ -20,6 +20,9 @@ export default class Root extends Component {
 
         const routes = createRoutes(routeConfig);
 
+        console.log('public routes = ', routes.publicRoutes);
+        console.log('auth routes = ', routes.authRoutes);
+        console.log('all routes = ', routes.allRoutes);
         return (
             <Provider store={store}>
                 <HashRouter>

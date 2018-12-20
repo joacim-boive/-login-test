@@ -17,6 +17,8 @@ import ApplyForExtraCardPanel from './ApplyForExtraCardPanel';
 import ShowCardPanel from './ShowCardPanel';
 import ShowExtraCardsPanel from './ShowExtraCardsPanel';
 import BlockCardPanel from './BlockCardPanel';
+
+import { operationSucceeded } from '../../common/rekit/operationSucceeded';
 import {
     getAccount,
     getAccountTerms,
@@ -28,16 +30,13 @@ import {
 } from '../account/redux/actions';
 
 import { updateCustomerExtraCardHolderContactInfo } from '../customer/redux/actions';
+import {ACCOUNT_GET_ACCOUNT_CARDS_CLEAR} from "../account/redux/constants";
 
 const If = ({ condition, children }) => condition && children;
 If.propTypes = {
     condition: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
 };
-
-const operationSucceeded = (operation, prevProps, props) =>
-    // true if pending state went from true to false and no error
-    prevProps[`${operation}Pending`] && !props[`${operation}Pending`] && !props[`${operation}Error`];
 
 const initialState = {
     applicationSucceeded: false,
@@ -51,7 +50,8 @@ export class ManageCardPage extends Component {
         accountTerms: PropTypes.shape().isRequired,
         extraCards: PropTypes.shape().isRequired,
         getAccount: PropTypes.func.isRequired,
-        unmountThisAccount: PropTypes.func.isRequired,
+        clearAccountState: PropTypes.func.isRequired,
+        clearAccountCardsState: PropTypes.func.isRequired,
         getAccountTerms: PropTypes.func.isRequired,
         getAccountCards: PropTypes.func.isRequired,
         updateCustomerExtraCardHolderContactInfo: PropTypes.func.isRequired,
@@ -99,12 +99,14 @@ export class ManageCardPage extends Component {
     }
 
     componentWillUnmount() {
-        const { unmountThisAccount } = this.props;
-        unmountThisAccount();
-        this.clearState();
+        console.log('ManageCardPage: componentWillUnmount');
+        const { clearAccountState, clearAccountCardsState } = this.props;
+        clearAccountState();
+        clearAccountCardsState();
+        this.clearComponentState();
     }
 
-    clearState = () => {
+    clearComponentState = () => {
         const {
             createAccountCardError,
             dismissCreateAccountCardError,
@@ -120,7 +122,7 @@ export class ManageCardPage extends Component {
 
     // click back from failure message dialogs
     onClickBack = () => {
-        this.clearState();
+        this.clearComponentState();
         history.push('/account/overview');
     };
 
@@ -150,23 +152,6 @@ export class ManageCardPage extends Component {
         const mainCardIsInactive = hasMainCard && accountCard.status === 'INACTIVE';
 
         const { applicationSucceeded, activationSucceeded } = this.state;
-
-        console.log('=====================================================================');
-        console.log('account card  = ', accountCard);
-        console.log('account terms = ', accountTerms);
-        console.log('extra cards   = ', extraCards);
-        console.log('---------------------------------------------------------------------');
-        console.log('account total no of cards  =', account.numberOfCards);
-        console.log('has main card              = ', hasMainCard);
-        console.log('main card active           = ', mainCardIsActive);
-        console.log('no of cards                = ', noOfCards);
-        console.log('no of extra cards          = ', noOfExtraCards);
-        console.log('no pending cards           = ', applicationsPending);
-        console.log('application succeeded      = ', applicationSucceeded);
-        console.log('application failed         = ', createAccountCardError);
-        console.log('activation succeeded       = ', activationSucceeded);
-        console.log('activation failed          = ', updateAccountCardError);
-        console.log('=====================================================================');
 
         const pageHeader = i18n(`card.manage-card.page-header${account.numberOfCards === 0 ? '-no-card' : ''}`);
 
@@ -215,6 +200,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.apply-for-card.success.info')}
                             linkText={i18n('card.apply-for-card.success.link')}
                             link="/account/overview"
+                            idPrefix="apply-for-card-success-back"
                         />
                     )}
                     {createAccountCardError && (
@@ -224,6 +210,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.apply-for-card.failure.info')}
                             buttonText={i18n('card.apply-for-card.failure.button')}
                             onButtonClick={this.onClickBack}
+                            idPrefix="apply-for-card-failure-back"
                         />
                     )}
                     {activationSucceeded && (
@@ -233,6 +220,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.activate-card.success.info')}
                             linkText={i18n('card.activate-card.success.link')}
                             link="/account/overview"
+                            idPrefix="activate-card-success-back"
                         />
                     )}
                     {updateAccountCardError && (
@@ -242,6 +230,7 @@ export class ManageCardPage extends Component {
                             text={i18n('card.activate-card.failure.info')}
                             buttonText={i18n('card.activate-card.failure.button')}
                             onButtonClick={this.onClickBack}
+                            idPrefix="activate-card-failure-back"
                         />
                     )}
                 </div>
@@ -271,7 +260,8 @@ function mapDispatchToProps(dispatch, route) {
 
     return {
         getAccount: () => dispatch(getAccount(customerId, accountRef)),
-        unmountThisAccount: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_UNMOUNT' }),
+        clearAccountState: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_CLEAR' }),
+        clearAccountCardsState: () => dispatch({ type: 'ACCOUNT_GET_ACCOUNT_CARDS_CLEAR' }),
         getAccountTerms: () => dispatch(getAccountTerms(customerId, accountRef)),
         getAccountCards: () => dispatch(getAccountCards(customerId, accountRef)),
         updateAccountCard: (card, cvc) => dispatch(updateAccountCard(customerId, accountRef, card, cvc)),

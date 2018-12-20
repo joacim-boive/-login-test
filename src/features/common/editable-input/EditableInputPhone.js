@@ -47,13 +47,11 @@ export class EditableInputPhone extends Component {
 
     onEdit = () => {
         this.setState({ editMode: true, valueUnedited: this.state.value }, () => {
-            console.log('onEdit: unedited after  : ', this.state.valueUnedited);
             this.phoneRef.current.getInputEl().focus();
         });
     };
 
     onCancel = () => {
-        console.log('onCancel: unedited value: ', this.state.valueUnedited);
         this.setState({ editMode: false, value: this.state.valueUnedited });
     };
 
@@ -73,7 +71,7 @@ export class EditableInputPhone extends Component {
     };
 
     render() {
-        const { className, label, validator, validationMessage, strong, ...rest } = this.props;
+        const { className, label, validator, validationMessage, strong, gaPrefix, ...rest } = this.props;
         const { value, editMode } = this.state;
 
         const classes = classNames({
@@ -83,11 +81,14 @@ export class EditableInputPhone extends Component {
             [className]: className,
         });
 
+        const gaLabelPrefix = gaPrefix ? `${gaPrefix}-editable-phone` : 'editable-phone';
+
         return editMode ? (
             <div className={classes}>
                 <div className="input-wrapper">
                     <Form ref={this.formRef} validateRefs={[this.phoneRef, this.countryRef]} className="flex-row">
                         <CountrySelect
+                            id="editable-phone-country-code"
                             selectRef={this.countryRef}
                             label={i18n('general.address.country-code')}
                             value={value.countryCallingCode}
@@ -95,6 +96,7 @@ export class EditableInputPhone extends Component {
                         />
                         <Input
                             {...rest}
+                            id="editable-phone-number-input"
                             value={value.number}
                             small
                             label={i18n('general.address.number')}
@@ -108,8 +110,8 @@ export class EditableInputPhone extends Component {
                 </div>
                 <ButtonGroup align="right">
                     <Button
-                        gaLabel="editable-phone-cancel"
-                        name="cancel"
+                        gaLabel={`${gaLabelPrefix}-cancel`}
+                        name="editable-phone-cancel"
                         onClick={this.onCancel}
                         xSmall
                         round
@@ -117,7 +119,13 @@ export class EditableInputPhone extends Component {
                     >
                         {i18n('general.cancel')}
                     </Button>
-                    <Button gaLabel="editable-phone-save" name="save" onClick={this.onSave} xSmall round>
+                    <Button
+                        gaLabel={`${gaLabelPrefix}-save`}
+                        name="editable-phone-save"
+                        onClick={this.onSave}
+                        xSmall
+                        round
+                    >
                         {i18n('general.save')}
                     </Button>
                 </ButtonGroup>
@@ -131,8 +139,8 @@ export class EditableInputPhone extends Component {
                             {value.countryCallingCode} (0) {formatMobileNumber(value.number)}
                         </span>
                         <IconButton
-                            gaLabel="editable-phone-edit"
-                            name="edit"
+                            gaLabel={`${gaLabelPrefix}-edit`}
+                            name="editable-phone-edit"
                             onClick={this.onEdit}
                             icon="icon-edit"
                             className="ml-3x e-green120"
@@ -153,6 +161,8 @@ EditableInputPhone.propTypes = {
     validator: PropTypes.string.isRequired,
     validationMessage: PropTypes.string.isRequired,
     strong: PropTypes.bool,
+    gaPrefix: PropTypes.string,
+    idPrefix: PropTypes.string,
 };
 
 EditableInputPhone.defaultProps = {
@@ -161,4 +171,5 @@ EditableInputPhone.defaultProps = {
     countryCode: '',
     label: '',
     strong: true,
+    gaPrefix: undefined,
 };
