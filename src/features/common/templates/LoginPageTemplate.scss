@@ -19,6 +19,10 @@ body {
     justify-content: center;
     align-items: center;
 
+    video{
+        position: absolute;
+    }
+
     & > .logo-header {
         position: absolute;
         top: 50px;
@@ -52,16 +56,11 @@ body {
     }
 
     @include desktop {
-        background-size: cover;
-        background-position: 0 0;
-
         & > .logo-header {
-            top: 40px;
-            text-align: left;
-            padding-left: 150px;
+            top: 70px;
 
             svg {
-                width: 240px;
+                width: 320px;
             }
         }
     }
