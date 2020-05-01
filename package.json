@@ -1,283 +1,287 @@
 {
-    "name": "ecster-login",
-    "version": "0.0.1",
-    "private": true,
-    "description": "ecster-login created by Rekit.",
-    "keywords": [
-        "rekit"
+  "name": "ecster-login",
+  "version": "0.0.1",
+  "private": true,
+  "description": "ecster-login created by Rekit.",
+  "keywords": [
+    "rekit"
+  ],
+  "rekit": {
+    "devPort": 6075,
+    "studioPort": 6076,
+    "buildPort": 6077,
+    "restPort": 6078,
+    "plugins": [],
+    "css": "sass"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie 11",
+    "not ie < 11",
+    "not android < 5",
+    "not ie_mob 10-99",
+    "not bb 7-99"
+  ],
+  "jest": {
+    "testURL": "http://localhost",
+    "testEnvironment": "jsdom",
+    "preset": "jest-puppeteer",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/(build|docs|node_modules)/"
     ],
-    "rekit": {
-        "devPort": 6075,
-        "studioPort": 6076,
-        "buildPort": 6077,
-        "restPort": 6078,
-        "plugins": [],
-        "css": "sass"
-    },
-    "browserslist": [
-        "last 2 versions",
-        "ie 11",
-        "not ie < 11",
-        "not android < 5",
-        "not ie_mob 10-99",
-        "not bb 7-99"
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*test.(js|jsx)",
+      "!<rootDir>/src/knockout-components/**/*.(js|jsx)"
     ],
-    "jest": {
-        "testURL": "http://localhost",
-        "testEnvironment": "jsdom",
-        "preset": "jest-puppeteer",
-        "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-            "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
-        },
-        "testPathIgnorePatterns": [
-            "<rootDir>/(build|docs|node_modules)/"
-        ],
-        "collectCoverageFrom": [
-            "<rootDir>/src/**/*test.(js|jsx)",
-            "!<rootDir>/src/knockout-components/**/*.(js|jsx)"
-        ],
-        "snapshotSerializers": [
-            "enzyme-to-json/serializer"
-        ],
-        "testResultsProcessor": "jest-teamcity-reporter"
-    },
-    "jestConfig": {
-        "timeout": 20000,
-        "configureToMatchImageSnapshot": {
-            "failureThreshold": "100",
-            "failureThresholdType": "pixel",
-            "noColors": false
-        },
-        "port": 5600,
-        "puppeteer": {
-            "headless": true,
-            "slowMo": 0,
-            "args": [
-                "--disable-dev-shm-usage",
-                "--cap-add=SYS_ADMIN"
-            ],
-            "defaultViewport": {
-                "width": 1024,
-                "height": 768
-            }
-        }
-    },
-    "test": {
-        "persons": [
-            {
-                "ssn": "3702030333"
-            }
-        ]
-    },
-    "scripts": {
-        "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
-        "pre:build:clear_build": "rimraf build",
-        "prebuild": "npm-run-all pre:build:*",
-        "prestart": "npm-run-all pre:build:*",
-        "prebuild:dev": "npm-run-all pre:build:clear_build",
-        "help": "node ./src/lib/node-start.js --help",
-        "prettier": "prettier",
-        "build": "node ./compile.js --prod --port 8081",
-        "build:ci": "node ./compile.js --prod --ci",
-        "build:vendor": "node ./compile.js --vendor",
-        "build:vendor:dev": "node ./compile.js --vendor --dev",
-        "build:dll": "node ./compile.js --vendor",
-        "build:dll:dev": "node ./compile.js --vendor --dev",
-        "build:vendor:debug": "node --inspect-brk ./compile.js --debug --vendor --dev",
-        "build:dll:debug": "node --inspect-brk ./compile.js --debug --vendor",
-        "start": "node ./compile.js --dev",
-        "start:debug": "ndb ./compile.js --debug --dev",
-        "test": "jest --coverage --testPathIgnorePatterns=__e2e__",
-        "test:watch": "jest --testPathIgnorePatterns=__e2e__ --watch",
-        "test:e2e": "jest __e2e__",
-        "test:e2e:watch": "jest __e2e__ --watch",
-        "test:all": "jest",
-        "test:all:watch": "jest --watch",
-        "test:debug": "ndb ./node_modules/jest/bin/jest.js --runInBand",
-        "record": "node ./tools/server.js -record",
-        "mock": "node ./tools/server.js -mock",
-        "precordova": "rimraf cordova/www && rimraf build && node ./compile.js --prod --cordova && cpx \"build/**\" \"cordova/www\" && cpx \"cordova/setup/cordova-index.js\" \"cordova/www/js\" && cpx \"cordova/setup/cordova-index.css\" \"cordova/www/css\" ",
-        "cordova": "cd cordova && cordova run android && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd ..",
-        "preandroid": "npm-run-all precordova",
-        "android": "cd cordova && cordova run android && cd ..",
-        "ios": "cd cordova && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd .."
-    },
-    "appConfig": [
-        {
-            "title": "Ecster - Login page",
-            "description": "Välkommen till Ecster",
-            "buildCatalog": "build",
-            "sourceCatalog": "src",
-            "isDontIndexThisPage": false,
-            "isGoogleFonts": false,
-            "isInjectReferences": true,
-            "isOptimizeCSS": false,
-            "cssWhiteList": [],
-            "language": "sv",
-            "googleAnalytics": {
-                "isDevModeEnabled": true,
-                "id": "UA-127526908-1",
-                "script": "ga/tracking.js"
-            },
-            "entries": [
-                "index.js",
-                "styles/index.scss",
-                "i18n/sv.json"
-            ],
-            "copy": [
-                {
-                    "from": "i18n",
-                    "to": "static/i18n"
-                },
-                {
-                    "from": "../node_modules/@ecster/ecster-analytics/vendor/",
-                    "to": "ga"
-                },
-                {
-                    "from": "images",
-                    "to": "images"
-                },
-                {
-                    "from": "files",
-                    "to": "files"
-                },
-                {
-                    "from": "features/card/__test-data__/",
-                    "to": "test"
-                },
-                {
-                    "from": "../config/ecster-config.js",
-                    "to": "static/ecster-config.js"
-                },
-                {
-                    "from": "../config",
-                    "to": "config"
-                }
-            ],
-            "template": "template.ejs",
-            "favicon": "favicon.png",
-            "dll": [
-                "react",
-                "react-dom",
-                "react-grid-layout",
-                "react-media",
-                "react-redux",
-                "react-router",
-                "react-router-dom",
-                "react-router-redux",
-                "react-tooltip",
-                "redux",
-                "redux-thunk",
-                "i18next",
-                "moment",
-                "classnames",
-                "lazysizes/plugins/respimg/ls.respimg.min",
-                "lazysizes/plugins/bgset/ls.bgset.min",
-                "lazysizes/plugins/rias/ls.rias.min",
-                "lazysizes",
-                "jquery-param",
-                "pikaday",
-                "mobile-detect",
-                "qwest"
-            ],
-            "proxies": {
-                "isDebug": false,
-                "configs": [
-                    {
-                        "contexts": [
-                            "/rest/"
-                        ],
-                        "target": "https://secure3.ft.ecster.se",
-                        "headers": [
-                            [
-                                "X-ECSTER-Origin",
-                                "mypages"
-                            ],
-                            [
-                                "Content-Type",
-                                "application/json"
-                            ]
-                        ]
-                    }
-                ]
-            }
-        }
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ],
-    "devDependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-        "@ecster/ecster-rekit-templates": "^1.0.19",
-        "@ecster/ecster-webpack": "^2.0.263",
-        "argparse": "^1.0.7",
-        "axios": "^0.18.0",
-        "babel-preset-airbnb": "^3.0.1",
-        "body-parser": "^1.18.3",
-        "chai": "^4.2.0",
-        "colors": "^1.3.2",
-        "core-js": "^2.5.7",
-        "enzyme": "^3.7.0",
-        "enzyme-adapter-react-16": "^1.7.0",
-        "enzyme-to-json": "^3.3.4",
-        "eslint": "^5.9.0",
-        "eslint-config-airbnb": "^17.1.0",
-        "eslint-config-prettier": "^3.3.0",
-        "eslint-import-resolver-babel-module": "^4.0.0",
-        "eslint-plugin-import": "^2.14.0",
-        "eslint-plugin-jsx-a11y": "^6.1.2",
-        "eslint-plugin-prettier": "^2.7.0",
-        "eslint-plugin-react": "^7.11.1",
-        "express": "^4.16.4",
-        "express-history-api-fallback": "^2.2.1",
-        "hint": "^3.4.14",
-        "history": "^4.7.2",
-        "ip": "^1.1.5",
-        "jest": "^23.6.0",
-        "jest-image-snapshot": "^2.7.0",
-        "jest-teamcity-reporter": "^0.9.0",
-        "lodash": "^4.17.10",
-        "nock": "^9.6.1",
-        "npm-run": "^5.0.1",
-        "nyc": "^11.9.0",
-        "puppeteer": "^1.10.0",
-        "react-hot-loader": "^4.6.0",
-        "redux-logger": "^3.0.6",
-        "redux-mock-store": "^1.5.3",
-        "rekit-core": "^2.3.4",
-        "rekit-studio": "^2.4.1",
-        "webpack": "^4.27.1"
+    "testResultsProcessor": "jest-teamcity-reporter"
+  },
+  "jestConfig": {
+    "timeout": 20000,
+    "configureToMatchImageSnapshot": {
+      "failureThreshold": "100",
+      "failureThresholdType": "pixel",
+      "noColors": false
     },
-    "dependencies": {
-        "@ecster/ecster-analytics": "^4.0.131",
-        "@ecster/ecster-components": "^2.0.662",
-        "@ecster/ecster-i18n": "^3.0.78",
-        "@ecster/ecster-net": "^2.0.107",
-        "@ecster/ecster-styles": "^3.0.230",
-        "@ecster/ecster-util": "^3.0.90",
-        "@ecster/ecster-validation": "^2.0.63",
-        "ajv": "^6.5.5",
-        "babel-plugin-module-resolver": "^3.1.1",
-        "classnames": "^2.2.6",
-        "cpx": "^1.5.0",
-        "eslint-plugin-jest": "^21.27.1",
-        "features": "^0.1.0",
-        "jest-puppeteer": "^3.5.1",
-        "lazysizes": "^4.1.4",
-        "ndb": "^1.0.32",
-        "nodemon": "^1.18.6",
-        "normalize-scss": "^7.0.1",
-        "prop-types": "^15.6.2",
-        "react": "^16.6.3",
-        "react-dom": "^16.6.3",
-        "react-grid-layout": "^0.16.6",
-        "react-media": "^1.8.0",
-        "react-redux": "^5.1.1",
-        "react-router": "^4.3.1",
-        "react-router-dom": "^4.3.1",
-        "react-router-redux": "5.0.0-alpha.9",
-        "react-tooltip": "^3.9.0",
-        "react-video-cover": "^1.2.2",
-        "redux": "^4.0.1",
-        "redux-persist": "^5.10.0",
-        "redux-thunk": "^2.3.0"
+    "port": 5600,
+    "puppeteer": {
+      "headless": true,
+      "slowMo": 0,
+      "args": [
+        "--disable-dev-shm-usage",
+        "--cap-add=SYS_ADMIN"
+      ],
+      "defaultViewport": {
+        "width": 1024,
+        "height": 768
+      }
     }
+  },
+  "test": {
+    "persons": [
+      {
+        "ssn": "3702030333"
+      }
+    ]
+  },
+  "scripts": {
+    "clear:caches": "rimraf node_modules/.cache src/node_modules/.cache",
+    "pre:build:clear_build": "rimraf build",
+    "prebuild": "npm-run-all pre:build:*",
+    "prestart": "npm-run-all pre:build:*",
+    "prebuild:dev": "npm-run-all pre:build:clear_build",
+    "help": "node ./src/lib/node-start.js --help",
+    "prettier": "prettier",
+    "build": "node ./compile.js --prod --port 8081",
+    "build:ci": "node ./compile.js --prod --ci",
+    "build:vendor": "node ./compile.js --vendor",
+    "build:vendor:dev": "node ./compile.js --vendor --dev",
+    "build:dll": "node ./compile.js --vendor",
+    "build:dll:dev": "node ./compile.js --vendor --dev",
+    "build:vendor:debug": "node --inspect-brk ./compile.js --debug --vendor --dev",
+    "build:dll:debug": "node --inspect-brk ./compile.js --debug --vendor",
+    "start": "node ./compile.js --dev",
+    "start:debug": "ndb ./compile.js --debug --dev",
+    "test": "jest --coverage --testPathIgnorePatterns=__e2e__",
+    "test:watch": "jest --testPathIgnorePatterns=__e2e__ --watch",
+    "test:e2e": "jest __e2e__",
+    "test:e2e:watch": "jest __e2e__ --watch",
+    "test:all": "jest",
+    "test:all:watch": "jest --watch",
+    "test:debug": "ndb ./node_modules/jest/bin/jest.js --runInBand",
+    "record": "node ./tools/server.js -record",
+    "mock": "node ./tools/server.js -mock",
+    "precordova": "rimraf cordova/www && rimraf build && node ./compile.js --prod --cordova && cpx \"build/**\" \"cordova/www\" && cpx \"cordova/setup/cordova-index.js\" \"cordova/www/js\" && cpx \"cordova/setup/cordova-index.css\" \"cordova/www/css\" ",
+    "cordova": "cd cordova && cordova run android && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd ..",
+    "preandroid": "npm-run-all precordova",
+    "android": "cd cordova && cordova run android && cd ..",
+    "ios": "cd cordova && cordova run ios --buildFlag=\"-UseModernBuildSystem=0\" && cd ..",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "appConfig": [
+    {
+      "title": "Ecster - Login page",
+      "description": "Välkommen till Ecster",
+      "buildCatalog": "build",
+      "sourceCatalog": "src",
+      "isDontIndexThisPage": false,
+      "isGoogleFonts": false,
+      "isInjectReferences": true,
+      "isOptimizeCSS": false,
+      "cssWhiteList": [],
+      "language": "sv",
+      "googleAnalytics": {
+        "isDevModeEnabled": true,
+        "id": "UA-127526908-1",
+        "script": "ga/tracking.js"
+      },
+      "entries": [
+        "index.js",
+        "styles/index.scss",
+        "i18n/sv.json"
+      ],
+      "copy": [
+        {
+          "from": "i18n",
+          "to": "static/i18n"
+        },
+        {
+          "from": "../node_modules/@ecster/ecster-analytics/vendor/",
+          "to": "ga"
+        },
+        {
+          "from": "images",
+          "to": "images"
+        },
+        {
+          "from": "files",
+          "to": "files"
+        },
+        {
+          "from": "features/card/__test-data__/",
+          "to": "test"
+        },
+        {
+          "from": "../config/ecster-config.js",
+          "to": "static/ecster-config.js"
+        },
+        {
+          "from": "../config",
+          "to": "config"
+        }
+      ],
+      "template": "template.ejs",
+      "favicon": "favicon.png",
+      "dll": [
+        "react",
+        "react-dom",
+        "react-grid-layout",
+        "react-media",
+        "react-redux",
+        "react-router",
+        "react-router-dom",
+        "react-router-redux",
+        "react-tooltip",
+        "redux",
+        "redux-thunk",
+        "i18next",
+        "moment",
+        "classnames",
+        "lazysizes/plugins/respimg/ls.respimg.min",
+        "lazysizes/plugins/bgset/ls.bgset.min",
+        "lazysizes/plugins/rias/ls.rias.min",
+        "lazysizes",
+        "jquery-param",
+        "pikaday",
+        "mobile-detect",
+        "qwest"
+      ],
+      "proxies": {
+        "isDebug": false,
+        "configs": [
+          {
+            "contexts": [
+              "/rest/"
+            ],
+            "target": "https://secure3.ft.ecster.se",
+            "headers": [
+              [
+                "X-ECSTER-Origin",
+                "mypages"
+              ],
+              [
+                "Content-Type",
+                "application/json"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@ecster/ecster-rekit-templates": "^1.0.19",
+    "@ecster/ecster-webpack": "^2.0.263",
+    "argparse": "^1.0.7",
+    "axios": "^0.18.0",
+    "babel-preset-airbnb": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "colors": "^1.3.2",
+    "core-js": "^2.5.7",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^2.7.0",
+    "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4",
+    "express-history-api-fallback": "^2.2.1",
+    "hint": "^3.4.14",
+    "history": "^4.7.2",
+    "ip": "^1.1.5",
+    "jest": "^23.6.0",
+    "jest-image-snapshot": "^2.7.0",
+    "jest-teamcity-reporter": "^0.9.0",
+    "lodash": "^4.17.10",
+    "nock": "^9.6.1",
+    "npm-run": "^5.0.1",
+    "nyc": "^11.9.0",
+    "puppeteer": "^1.10.0",
+    "react-hot-loader": "^4.6.0",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
+    "rekit-core": "^2.3.4",
+    "rekit-studio": "^2.4.1",
+    "webpack": "^4.27.1"
+  },
+  "dependencies": {
+    "@ecster/ecster-analytics": "^4.0.131",
+    "@ecster/ecster-components": "^2.0.662",
+    "@ecster/ecster-i18n": "^3.0.78",
+    "@ecster/ecster-net": "^2.0.107",
+    "@ecster/ecster-styles": "^3.0.230",
+    "@ecster/ecster-util": "^3.0.90",
+    "@ecster/ecster-validation": "^2.0.63",
+    "ajv": "^6.5.5",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "classnames": "^2.2.6",
+    "cpx": "^1.5.0",
+    "eslint-plugin-jest": "^21.27.1",
+    "features": "^0.1.0",
+    "jest-puppeteer": "^3.5.1",
+    "lazysizes": "^4.1.4",
+    "ndb": "^1.0.32",
+    "nodemon": "^1.18.6",
+    "normalize-scss": "^7.0.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-grid-layout": "^0.16.6",
+    "react-media": "^1.8.0",
+    "react-redux": "^5.1.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "5.0.0-alpha.9",
+    "react-tooltip": "^3.9.0",
+    "react-video-cover": "^1.2.2",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
