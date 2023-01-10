@@ -255,7 +255,7 @@
         "@ecster/ecster-util": "^3.0.90",
         "@ecster/ecster-validation": "^2.0.63",
         "ajv": "^6.5.5",
-        "babel-plugin-module-resolver": "^3.1.1",
+        "babel-plugin-module-resolver": "^5.0.0",
         "classnames": "^2.2.6",
         "cpx": "^1.5.0",
         "eslint-plugin-jest": "^21.27.1",
