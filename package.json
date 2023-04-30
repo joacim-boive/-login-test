@@ -228,7 +228,7 @@
         "eslint-plugin-react": "^7.11.1",
         "express": "^4.16.4",
         "express-history-api-fallback": "^2.2.1",
-        "hint": "^3.4.14",
+        "hint": "^7.1.8",
         "history": "^4.7.2",
         "ip": "^1.1.5",
         "jest": "^23.6.0",
