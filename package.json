@@ -262,7 +262,7 @@
         "features": "^0.1.0",
         "jest-puppeteer": "^3.5.1",
         "lazysizes": "^4.1.4",
-        "ndb": "^1.0.32",
+        "ndb": "^1.0.39",
         "nodemon": "^1.18.6",
         "normalize-scss": "^7.0.1",
         "prop-types": "^15.6.2",
